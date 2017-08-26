@@ -62,11 +62,17 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -79,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="BI, 数据分析, Python, R, SQL" />
+  <meta name="keywords" content="Kettle," />
 
 
 
@@ -95,17 +101,27 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。 1. Kettle的配置文件 配置文件在哪呢？">
+<meta name="keywords" content="Kettle">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/08/25/hello-world/index.html">
+<meta property="og:title" content="Kettle手册（三）- 配置文件的使用及密码加密">
+<meta property="og:url" content="http://yoursite.com/2017/03/28/Kettle-handbook-03/index.html">
 <meta property="og:site_name" content="于贵洋的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。 1. Kettle的配置文件 配置文件在哪呢？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-26T08:22:55.633Z">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-01.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-02.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-03.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-07.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-08.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-04.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-06.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-05.png-blog.photo">
+<meta property="og:updated_time" content="2017-08-26T15:31:19.840Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Kettle手册（三）- 配置文件的使用及密码加密">
+<meta name="twitter:description" content="好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。 1. Kettle的配置文件 配置文件在哪呢？">
+<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-01.png-blog.photo">
 
 
 
@@ -115,7 +131,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -135,13 +151,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/25/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/28/Kettle-handbook-03/"/>
 
 
 
 
 
-  <title>Hello World | 于贵洋的博客</title>
+  <title>Kettle手册（三）- 配置文件的使用及密码加密 | 于贵洋的博客</title>
   
 
 
@@ -226,16 +242,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -252,6 +258,26 @@
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
           </a>
         </li>
       
@@ -298,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/25/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/Kettle-handbook-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -315,7 +341,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">Kettle手册（三）- 配置文件的使用及密码加密</h1>
         
 
         <div class="post-meta">
@@ -327,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T15:42:07+08:00">
-                2017-08-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T22:24:44+08:00">
+                2017-03-28
               </time>
             
 
@@ -338,6 +364,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
+                    <span itemprop="name">ETL-Kettle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -346,9 +394,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/25/hello-world/#comments" itemprop="discussionUrl">
+                <a href="/2017/03/28/Kettle-handbook-03/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/25/hello-world/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/03/28/Kettle-handbook-03/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -359,7 +407,7 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"> 本文总阅读量</i>
+            <span class="page-pv"><i class="fa fa-file-o">  本文总阅读量</i>
             <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
             </span>
           
@@ -381,15 +429,13 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。</p>
+<div class="note primary"><h1 id="1-Kettle的配置文件"><a href="#1-Kettle的配置文件" class="headerlink" title="1. Kettle的配置文件"></a>1. Kettle的配置文件</h1></div>
+<p>配置文件在哪呢？Windows下，是再当前用户的目录下，一般再C盘，Users下面，有一个当前用户的文件夹，下面有.kettle文件夹<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-01.png-blog.photo" alt="Kettle-handbook-03-01.png"><br>进入之后，我们会看到一个kettle.properties的文件，我们的数据库配置信息，就可以放在这里，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-02.png-blog.photo" alt="Kettle-handbook-03-02.png"><br>我们打开之后，编辑一下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-03.png-blog.photo" alt="Kettle-handbook-03-03.png"><br>保存后，我们要重新启动下Kettle，因为这个配置文件是启动时加载的<br>重启后，我们将上一次，配置的转换打开，使用变量替换下之前的配置，Kettle中，我们使用${xxx}，表示引用一个变量，执行时，会自动替换<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-07.png-blog.photo" alt="Kettle-handbook-03-07.png"><br>我们测试下，同样时可以成功的。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-08.png-blog.photo" alt="Kettle-handbook-03-08.png"><br>好了，这样，以后，不管是，数据库地址变化，还是部署生产，我们只需要修改配置文件就可以了。</p>
+<div class="note primary"><h1 id="2-密码加密"><a href="#2-密码加密" class="headerlink" title="2. 密码加密"></a>2. 密码加密</h1></div>
+<p>这里，顺便说下，加密的问题，比如，我们上面的数据库密码，是明文的，这样是不太安全的，而实际上，我们都是需要对密码进行加密的<br>我们进到Kettle的安装目录<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-04.png-blog.photo" alt="Kettle-handbook-03-04.png"><br>我们会看到，这里有一个Encr.bat，这就是可以加密的脚本<br>使用方法<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-06.png-blog.photo" alt="Kettle-handbook-03-06.png"><br>我们输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Encr.bat -kettle postgres</div></pre></td></tr></table></figure></p>
+<p>执行后，会生成，这样一个加密后的密码，然后，我们可以使用这个加密后的字符串，替换我们的密码<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-05.png-blog.photo" alt="Kettle-handbook-03-05.png"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pg_password = Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</div></pre></td></tr></table></figure></p>
+<p>大家可以试下，这样也是可以的，好了，这个例子就到这。</p>
 
       
     </div>
@@ -410,8 +456,32 @@
     
 
     
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    于贵洋
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2017/03/28/Kettle-handbook-03/" title="Kettle手册（三）- 配置文件的使用及密码加密">http://yoursite.com/2017/03/28/Kettle-handbook-03/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kettle/" rel="tag"># Kettle</a>
+          
+        </div>
       
 
       
@@ -422,15 +492,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/03/27/Kettle-handbook-02/" rel="next" title="Kettle手册（二）- 将数据导出为Excel">
+                <i class="fa fa-chevron-left"></i> Kettle手册（二）- 将数据导出为Excel
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/26/hello-python/" rel="prev" title="hello-python">
-                hello-python <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -516,22 +586,31 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
           
             
             
             <div class="site-state-item site-state-tags">
-              
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
@@ -591,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Kettle的配置文件"><span class="nav-number">1.</span> <span class="nav-text">1. Kettle的配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-密码加密"><span class="nav-number">2.</span> <span class="nav-text">2. 密码加密</span></a></li></ol></div>
             
 
           </div>
@@ -599,6 +678,13 @@
       <!--/noindex-->
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -637,7 +723,7 @@
 
   
     <span class="site-uv">
-      <i class="fa fa-user"> 本站访客数</i>
+      <i class="fa fa-user">  本站访客数</i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       人次
     </span>
@@ -645,7 +731,7 @@
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"> 本站总访问量</i>
+      <i class="fa fa-eye">  本站总访问量</i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       次
     </span>
@@ -663,11 +749,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
   </div>
@@ -769,9 +850,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/08/25/hello-world/';
-          this.page.identifier = '2017/08/25/hello-world/';
-          this.page.title = 'Hello World';
+          this.page.url = 'http://yoursite.com/2017/03/28/Kettle-handbook-03/';
+          this.page.identifier = '2017/03/28/Kettle-handbook-03/';
+          this.page.title = 'Kettle手册（三）- 配置文件的使用及密码加密';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-yuguiyang-github-io.disqus.com.disqus.com/embed.js';
@@ -811,6 +892,21 @@
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
 

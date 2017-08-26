@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="BI, 数据分析, Python, R, SQL" />
+  <meta name="keywords" content="Kettle," />
 
 
 
@@ -101,17 +101,20 @@
 
 
 
-<meta name="description" content="愿你出走半生，归来仍是少年">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="1. 序 好久没有写博客了，新的一年总得留下点儿什么。目前主要负责数据仓库这一块任务，平时用用Kettle、SSIS这类ETL工具，而且工具的使用整理起来会方便些。所以先从Kettle开始，一点点整理下最近BI开发中掌握的知识。以前有做过BI报表Cognos开发还有些入门级的Java，都在CSDN博客上，感兴趣的同学可以去看看：于贵洋的博客好了，下面就根据自己的经验和理解，整理下Kettle的知识">
+<meta name="keywords" content="Kettle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kettle手册（一）- 序及Kettle简介">
+<meta property="og:url" content="http://yoursite.com/2017/03/27/Kettle-handbook-01/index.html">
 <meta property="og:site_name" content="于贵洋的博客">
-<meta property="og:description" content="愿你出走半生，归来仍是少年">
+<meta property="og:description" content="1. 序 好久没有写博客了，新的一年总得留下点儿什么。目前主要负责数据仓库这一块任务，平时用用Kettle、SSIS这类ETL工具，而且工具的使用整理起来会方便些。所以先从Kettle开始，一点点整理下最近BI开发中掌握的知识。以前有做过BI报表Cognos开发还有些入门级的Java，都在CSDN博客上，感兴趣的同学可以去看看：于贵洋的博客好了，下面就根据自己的经验和理解，整理下Kettle的知识">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-26T12:14:16.160Z">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-01-01.png-blog.photo">
+<meta property="og:updated_time" content="2017-08-26T14:47:39.475Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于我">
-<meta name="twitter:description" content="愿你出走半生，归来仍是少年">
+<meta name="twitter:title" content="Kettle手册（一）- 序及Kettle简介">
+<meta name="twitter:description" content="1. 序 好久没有写博客了，新的一年总得留下点儿什么。目前主要负责数据仓库这一块任务，平时用用Kettle、SSIS这类ETL工具，而且工具的使用整理起来会方便些。所以先从Kettle开始，一点点整理下最近BI开发中掌握的知识。以前有做过BI报表Cognos开发还有些入门级的Java，都在CSDN博客上，感兴趣的同学可以去看看：于贵洋的博客好了，下面就根据自己的经验和理解，整理下Kettle的知识">
+<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-01-01.png-blog.photo">
 
 
 
@@ -141,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/27/Kettle-handbook-01/"/>
 
 
 
 
 
-  <title>关于我 | 于贵洋的博客</title>
+  <title>Kettle手册（一）- 序及Kettle简介 | 于贵洋的博客</title>
   
 
 
@@ -302,33 +305,228 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/Kettle-handbook-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">关于我</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">Kettle手册（一）- 序及Kettle简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T21:59:00+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
+                    <span itemprop="name">ETL-Kettle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/27/Kettle-handbook-01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/27/Kettle-handbook-01/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">  本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <div class="note primary"><h1 id="1-序"><a href="#1-序" class="headerlink" title="1. 序"></a>1. 序</h1></div>
+<p>好久没有写博客了，新的一年总得留下点儿什么。目前主要负责数据仓库这一块任务，平时用用Kettle、SSIS这类ETL工具，而且工具的使用整理起来会方便些。所以先从Kettle开始，一点点整理下最近BI开发中掌握的知识。<br>以前有做过BI报表Cognos开发还有些入门级的Java，都在CSDN博客上，感兴趣的同学可以去看看：<a href="http://blog.csdn.net/yuguiyang1990" target="_blank" rel="external">于贵洋的博客</a><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-01-01.png-blog.photo" alt="Kettle-handbook-01Kettle-handbook-01-01"><br>好了，下面就根据自己的经验和理解，整理下Kettle的知识。</p>
+<div class="note primary"><h1 id="2-Kettle简介"><a href="#2-Kettle简介" class="headerlink" title="2. Kettle简介"></a>2. Kettle简介</h1></div>
+<p>Kettle这东西是干嘛的呢？<br>Kettle是一个开源的ETL工具，所以基本的数据抽取、转换、加载，他都可以。<br>比如：我要把一个mysql数据库的数据同步到一个Postgres数据库，我们有哪些办法呢?<br>大概会有:</p>
+<ol>
+<li>将数据导出为文本文件，使用PG的copy命令直接加载</li>
+<li>数据量少的话，直接拼接成insert脚本，批量插入</li>
+<li>一些开源的小工具，提供2种数据库直接的同步</li>
+<li>Kettle</li>
+</ol>
+<p>等等方法<br>再比如：<br>我每天需要统计一些系统中的异常数据，导出为Excel，用邮件发送给指定的开发人员处理，该怎样做呢？</p>
+<ol>
+<li>Java或者其他开发语言做定时任务</li>
+<li>Kettle   </li>
+</ol>
+<p>和其他的ETL工具相比，他有什么优势呢？</p>
+<blockquote>
+<p>Kettle是基于Java开发的，是开源免费的，大家可以直接在网上下载；<br>跨平台，Windows，Linux都可以使用；使用起来简单快捷。</p>
+<p>既然开源，相比于其他收费产品，劣势也就很显然了，比如稳定性啊，BUG修复处理啊，而且基于Java，性能上会差些。<br>当然都是相对来说，一般数据量使用或者逻辑不复杂的话，使用起来是很适合的。</p>
+</blockquote>
+<p>刚刚也在社区上，发现了Kettle的视频，kettle视频，大家可以看看，应该用的到。<br>Kettle的基本介绍就这些，后面会根据实际的例子，来介绍下Kettle的使用。</p>
+
       
     </div>
     
     
     
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="于贵洋 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    于贵洋
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2017/03/27/Kettle-handbook-01/" title="Kettle手册（一）- 序及Kettle简介">http://yoursite.com/2017/03/27/Kettle-handbook-01/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kettle/" rel="tag"># Kettle</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/27/Kettle-handbook-02/" rel="prev" title="Kettle手册（二）- 将数据导出为Excel">
+                Kettle手册（二）- 将数据导出为Excel <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -368,8 +566,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -460,6 +667,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-序"><span class="nav-number">1.</span> <span class="nav-text">1. 序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Kettle简介"><span class="nav-number">2.</span> <span class="nav-text">2. Kettle简介</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -610,10 +833,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
@@ -634,9 +857,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/about/index.html';
-          this.page.identifier = 'about/index.html';
-          this.page.title = '关于我';
+          this.page.url = 'http://yoursite.com/2017/03/27/Kettle-handbook-01/';
+          this.page.identifier = '2017/03/27/Kettle-handbook-01/';
+          this.page.title = 'Kettle手册（一）- 序及Kettle简介';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-yuguiyang-github-io.disqus.com.disqus.com/embed.js';
