@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>于贵洋的博客</title>
+  <subtitle>BI、数据分析</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-08-27T10:55:13.468Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>于贵洋</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kettle手册（五）- 实例-增量同步数据</title>
+    <link href="http://yoursite.com/2017/03/29/Kettle-handbook-05/"/>
+    <id>http://yoursite.com/2017/03/29/Kettle-handbook-05/</id>
+    <published>2017-03-29T13:24:44.000Z</published>
+    <updated>2017-08-27T10:55:13.468Z</updated>
+    
+    <content type="html"><![CDATA[<p>综合前面的几个例子，我们这里来是实现下增量数据的同步。<br>这里只是分享一种方法，实际工作中，还会有其他更好的方案。<br>增量同步的整体思路一般就是：首先拿到这张表的增量数据，怎么拿增量呢，源表需要有一个时间字段，代表该条记录的最新更新时间（及只要该条记录变化，该时间字段就会更新），当然有时间字段最好了，没有的话，可能需要做全表对比之类的操作；正常情况下，业务系统的表中都是有主键的，我们拿到增量数据之后，需要判断该记录的新插入的，还是更新的记录，如果是更新记录，我们需要先将数据加载到中间表，然后，根据主键将目标表中已存在的数据删除，最后再将本次的增量数据插入到目标表。</p>
+<h2 id="1-配置表的设计（元数据表）"><a href="#1-配置表的设计（元数据表）" class="headerlink" title="1.配置表的设计（元数据表）"></a>1.配置表的设计（元数据表）</h2><p>首先我们需要一张配置表，来保存我们要增量同步的表的基本信息<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">--元数据表</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> tm_etl_table(</div><div class="line">	table_name <span class="built_in">varchar</span>(<span class="number">50</span>), <span class="comment">--表名</span></div><div class="line">	is_run <span class="built_in">int</span> , <span class="comment">--调度状态</span></div><div class="line">	update_time <span class="keyword">timestamp</span>,<span class="comment">--表数据更新时间</span></div><div class="line">	etl_insert_time <span class="keyword">timestamp</span> <span class="comment">--记录更新时间</span></div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>我们初始化一条记录，我们就以这张ods_tm_book表<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-01.png-blog.photo" alt="Kettle-handbook-05-01.png"><br>一些基础表准备</p>
+<a id="more"></a>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 源表</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> tm_book(<span class="keyword">id</span> <span class="built_in">int</span>,book_name <span class="built_in">varchar</span>(<span class="number">10</span>),latest_time <span class="keyword">timestamp</span>);</div><div class="line"></div><div class="line"><span class="comment">-- 源表数据初始化</span></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book(<span class="keyword">id</span>,book_name,latest_time)</div><div class="line"><span class="keyword">select</span> x,x||<span class="string">'_name'</span>,clock_timestamp() <span class="keyword">from</span> generate_series(<span class="number">1</span>,<span class="number">10</span>) x;</div><div class="line"></div><div class="line"><span class="comment">-- 目标表和中间表</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> ods_tm_book(<span class="keyword">id</span> <span class="built_in">int</span>,book_name <span class="built_in">varchar</span>(<span class="number">10</span>),latest_time <span class="keyword">timestamp</span>,etl_insert_time <span class="keyword">timestamp</span>);</div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> staging_tm_book(<span class="keyword">id</span> <span class="built_in">int</span>,book_name <span class="built_in">varchar</span>(<span class="number">10</span>),latest_time <span class="keyword">timestamp</span>);</div></pre></td></tr></table></figure>
+<p>源表中的数据<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-02.png-blog.photo" alt="Kettle-handbook-05-02.png"></p>
+<h2 id="2-同步数据的流程开发"><a href="#2-同步数据的流程开发" class="headerlink" title="2.同步数据的流程开发"></a>2.同步数据的流程开发</h2><p>整体流程是这样的，注意下，这个只是为了简单演示了这个增量的例子，实际应用的话得修改，这是有漏洞的。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-03.png-blog.photo" alt="Kettle-handbook-05-03.png"></p>
+<h3 id="2-1更新元数据表的状态并获取表更新时间"><a href="#2-1更新元数据表的状态并获取表更新时间" class="headerlink" title="2.1更新元数据表的状态并获取表更新时间"></a>2.1更新元数据表的状态并获取表更新时间</h3><p>就是我们第一个状态，我们更新tm_etl_table表，更新is_run=0，表示我们开始同步数据了，update_time，初始化为 ‘1970-01-01’，表示我们要拉取所有的数据<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-04.png-blog.photo" alt="Kettle-handbook-05-04.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-05.png-blog.photo" alt="Kettle-handbook-05-05.png"><br>这里，我们将该表的更新时间作为变量，我们会在后面的转换中使用<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-06.png-blog.photo" alt="Kettle-handbook-05-06.png"></p>
+<h3 id="2-2-加载数据到中间表"><a href="#2-2-加载数据到中间表" class="headerlink" title="2.2 加载数据到中间表"></a>2.2 加载数据到中间表</h3><p>我们这里，直接表对表，将数据插入到staging<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-07.png-blog.photo" alt="Kettle-handbook-05-07.png"><br>其中，表输入中，我们需要根据前面的更新时间变量，获取增量数据，注意，需要勾选上“替换SQL语句中的变量”<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-08.png-blog.photo" alt="Kettle-handbook-05-08.png"><br>这里，我们直接就表输出到中间表，每次都需将清空表数据<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-09.png-blog.photo" alt="Kettle-handbook-05-09.png"></p>
+<h3 id="2-3-加载数据到目标表"><a href="#2-3-加载数据到目标表" class="headerlink" title="2.3 加载数据到目标表"></a>2.3 加载数据到目标表</h3><p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-10.png-blog.photo" alt="Kettle-handbook-05-10.png"><br>这里，主要有3段脚本（为了方便，就这样吧），根据主键ID，清空目标表数据，然后，将数据插入到目标表，最后，更新tm_etl_table表中的记录状态<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-11.png-blog.photo" alt="Kettle-handbook-05-11.png"><br>好了，用Kettle实现一个增量的逻辑大概就是这样了，</p>
+<h2 id="3-小结"><a href="#3-小结" class="headerlink" title="3.小结"></a>3.小结</h2><p>这里整理几个问题</p>
+<h3 id="3-1-中间表"><a href="#3-1-中间表" class="headerlink" title="3.1 中间表"></a>3.1 中间表</h3><p>这里的话，使用了中间表，Kettle中是有一个控件的，应该叫那个“插入/更新”，可以根据主键将数据更新掉，这个控件之前使用时，发现很慢，就一直没用，后面的话，可能会写个例子，简单测试看看。使用中间表，缓存下数据，也是不错的方法。</p>
+<h3 id="3-2-增量流程"><a href="#3-2-增量流程" class="headerlink" title="3.2 增量流程"></a>3.2 增量流程</h3><p>目前公司中，增量抽取，是这样的，首先各个业务系统的数据导出到文本文件，然后批量将文件加载到数据仓库中（这里使用循环加载的）。因为每天的数据量比较大，如果知己到表的话，会很慢，使用文件，一些数据库都有批量加载的命令，很快很方便，比如：PostgreSQL中的copy命令，Greenplum中的外部表，还有Mysql中的load data等等。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;综合前面的几个例子，我们这里来是实现下增量数据的同步。&lt;br&gt;这里只是分享一种方法，实际工作中，还会有其他更好的方案。&lt;br&gt;增量同步的整体思路一般就是：首先拿到这张表的增量数据，怎么拿增量呢，源表需要有一个时间字段，代表该条记录的最新更新时间（及只要该条记录变化，该时间字段就会更新），当然有时间字段最好了，没有的话，可能需要做全表对比之类的操作；正常情况下，业务系统的表中都是有主键的，我们拿到增量数据之后，需要判断该记录的新插入的，还是更新的记录，如果是更新记录，我们需要先将数据加载到中间表，然后，根据主键将目标表中已存在的数据删除，最后再将本次的增量数据插入到目标表。&lt;/p&gt;
+&lt;h2 id=&quot;1-配置表的设计（元数据表）&quot;&gt;&lt;a href=&quot;#1-配置表的设计（元数据表）&quot; class=&quot;headerlink&quot; title=&quot;1.配置表的设计（元数据表）&quot;&gt;&lt;/a&gt;1.配置表的设计（元数据表）&lt;/h2&gt;&lt;p&gt;首先我们需要一张配置表，来保存我们要增量同步的表的基本信息&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;--元数据表&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;table&lt;/span&gt; tm_etl_table(&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	table_name &lt;span class=&quot;built_in&quot;&gt;varchar&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;50&lt;/span&gt;), &lt;span class=&quot;comment&quot;&gt;--表名&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	is_run &lt;span class=&quot;built_in&quot;&gt;int&lt;/span&gt; , &lt;span class=&quot;comment&quot;&gt;--调度状态&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	update_time &lt;span class=&quot;keyword&quot;&gt;timestamp&lt;/span&gt;,&lt;span class=&quot;comment&quot;&gt;--表数据更新时间&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	etl_insert_time &lt;span class=&quot;keyword&quot;&gt;timestamp&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;--记录更新时间&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;我们初始化一条记录，我们就以这张ods_tm_book表&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-05-01.png&quot;&gt;&lt;br&gt;一些基础表准备&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+    
+    
+      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kettle手册（四）- 变量的使用</title>
+    <link href="http://yoursite.com/2017/03/28/Kettle-handbook-04/"/>
+    <id>http://yoursite.com/2017/03/28/Kettle-handbook-04/</id>
+    <published>2017-03-28T15:24:44.000Z</published>
+    <updated>2017-08-26T16:01:57.685Z</updated>
+    
+    <content type="html"><![CDATA[<p>我们在这一回，介绍下，Kettle中全局变量的使用，我们前面说过的配置文件，其实就是配置全局变量的地方<br><a href="2017/03/27/Kettle-handbook-03/">Kettle手册（三）- 配置文件的使用及密码加密 </a></p>
+<div class="note primary"><h2 id="1-全局变量"><a href="#1-全局变量" class="headerlink" title="1. 全局变量"></a>1. 全局变量</h2></div>
+<p>就是我们上面说的kettle.properties文件，我们在里面定义的变量，我们可以在所有的转换或者作业中获得到，比如，我们前面，说的数据库参数<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-01.png-blog.photo" alt="Kettle-handbook-04-01.png"><br>之前，我们已经在数据库连接中测试过，是可以，这里，我们输出下这个变量，看看</p>
+<a id="more"></a>
+<h3 id="1-1-输出变量的值"><a href="#1-1-输出变量的值" class="headerlink" title="1.1 输出变量的值"></a>1.1 输出变量的值</h3><p>我们这里，用到了“获取变量”这个控件<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-02.png-blog.photo" alt="Kettle-handbook-04-02.png"><br>我们单击，”Get Variables”,就可以获取到当前的全局变量信息<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-03.png-blog.photo" alt="Kettle-handbook-04-03.png"><br>我们选择几个输出试试<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-04.png-blog.photo" alt="Kettle-handbook-04-04.png"><br>还有一个，”日志“控件，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-05.png-blog.photo" alt="Kettle-handbook-04-05.png"><br>拖好之后，我们直接执行，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-06.png-blog.photo" alt="Kettle-handbook-04-06.png"><br>日志中，我们会看到，我们定义在文件中的参数（加密的参数，我没有重启，所以显示的还是原来的）<br>那我们，可不可以，动态的增加变量呢？</p>
+<h3 id="1-2-动态增加变量"><a href="#1-2-动态增加变量" class="headerlink" title="1.2 动态增加变量"></a>1.2 动态增加变量</h3><p>刚刚也在网上找了些资料，尝试了下，这里简单分享下（貌似，这得算是对局部变量的操作，暂时就放在这里吧）<br>我们先试下在转换中设置变量，作业中也是可以使用的，我们后面再说<br>测试流程是这样的， 我们再表输入中，有2个时间参数，然后作为变量<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-07.png-blog.photo" alt="Kettle-handbook-04-07.png"><br>比如，有这样一个场景，我们每天需要定时调度一些SP，SP都有开始时间，结束时间，调用时，需要传参数进去，<br>这个时候，我们在使用Kettle的时候，就可以通过这样的方式，去设置变量，然后再调用SP<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-08.png-blog.photo" alt="Kettle-handbook-04-08.png"><br>我们单击获取字段后，就可以了，这里可以修改变量存在的范围<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-09.png-blog.photo" alt="Kettle-handbook-04-09.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-10.png-blog.photo" alt="Kettle-handbook-04-10.png"><br>执行后，输出，后面，我们就可以使用这2个时间变量了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-11.png-blog.photo" alt="Kettle-handbook-04-11.png"><br>这里使用的时候，也遇到一个问题，就是变量的默认值，一直都没有生效，不知道为什么，不管是，静态值，还是变量值，都没有办法，待研究。</p>
+<div class="note primary"><h2 id="2-局部变量（命名参数）"><a href="#2-局部变量（命名参数）" class="headerlink" title="2. 局部变量（命名参数）"></a>2. 局部变量（命名参数）</h2></div>
+<p>在kettle中，相对于全局变量，我们还可以使用局部变量。感觉，这个全局变量，局部变量，都是相对而言的，<br>就网上大部分资料来说，Kettle中的局部变量就是“命名参数”<br>我们再转换中，右键单击，选择，转换设置</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-12.png-blog.photo" alt="Kettle-handbook-04-12.png"><br>我们选择，“命名参数”，定义一个变量，我们给一个默认值<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-13.png-blog.photo" alt="Kettle-handbook-04-13.png"><br>然后，在日志中，将变量输出<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-14.png-blog.photo" alt="Kettle-handbook-04-14.png"><br>我们执行下，这个转换，运行时的界面，我们可以看到，这个参数是可以动态改变的，或者，我们再命令行调这个转换的时候，同样可以给他赋值<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-15.png-blog.photo" alt="Kettle-handbook-04-15.png"><br>运行结果，这个就是简单的局部变量了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-16.png-blog.photo" alt="Kettle-handbook-04-16.png"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们在这一回，介绍下，Kettle中全局变量的使用，我们前面说过的配置文件，其实就是配置全局变量的地方&lt;br&gt;&lt;a href=&quot;2017/03/27/Kettle-handbook-03/&quot;&gt;Kettle手册（三）- 配置文件的使用及密码加密 &lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;note primary&quot;&gt;&lt;h2 id=&quot;1-全局变量&quot;&gt;&lt;a href=&quot;#1-全局变量&quot; class=&quot;headerlink&quot; title=&quot;1. 全局变量&quot;&gt;&lt;/a&gt;1. 全局变量&lt;/h2&gt;&lt;/div&gt;
+&lt;p&gt;就是我们上面说的kettle.properties文件，我们在里面定义的变量，我们可以在所有的转换或者作业中获得到，比如，我们前面，说的数据库参数&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-04-01.png&quot;&gt;&lt;br&gt;之前，我们已经在数据库连接中测试过，是可以，这里，我们输出下这个变量，看看&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+    
+    
+      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kettle手册（三）- 配置文件的使用及密码加密</title>
+    <link href="http://yoursite.com/2017/03/28/Kettle-handbook-03/"/>
+    <id>http://yoursite.com/2017/03/28/Kettle-handbook-03/</id>
+    <published>2017-03-28T14:24:44.000Z</published>
+    <updated>2017-08-26T15:39:56.222Z</updated>
+    
+    <content type="html"><![CDATA[<p>好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。</p>
+<div class="note primary"><h2 id="1-Kettle的配置文件"><a href="#1-Kettle的配置文件" class="headerlink" title="1. Kettle的配置文件"></a>1. Kettle的配置文件</h2></div>
+<p>配置文件在哪呢？Windows下，是再当前用户的目录下，一般再C盘，Users下面，有一个当前用户的文件夹，下面有.kettle文件夹<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-01.png-blog.photo" alt="Kettle-handbook-03-01.png"><br>进入之后，我们会看到一个kettle.properties的文件，我们的数据库配置信息，就可以放在这里，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-02.png-blog.photo" alt="Kettle-handbook-03-02.png"></p>
+<a id="more"></a>
+<p>我们打开之后，编辑一下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-03.png-blog.photo" alt="Kettle-handbook-03-03.png"><br>保存后，我们要重新启动下Kettle，因为这个配置文件是启动时加载的<br>重启后，我们将上一次，配置的转换打开，使用变量替换下之前的配置，Kettle中，我们使用${xxx}，表示引用一个变量，执行时，会自动替换<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-07.png-blog.photo" alt="Kettle-handbook-03-07.png"><br>我们测试下，同样时可以成功的。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-08.png-blog.photo" alt="Kettle-handbook-03-08.png"><br>好了，这样，以后，不管是，数据库地址变化，还是部署生产，我们只需要修改配置文件就可以了。</p>
+<div class="note primary"><h2 id="2-密码加密"><a href="#2-密码加密" class="headerlink" title="2. 密码加密"></a>2. 密码加密</h2></div>
+<p>这里，顺便说下，加密的问题，比如，我们上面的数据库密码，是明文的，这样是不太安全的，而实际上，我们都是需要对密码进行加密的<br>我们进到Kettle的安装目录<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-04.png-blog.photo" alt="Kettle-handbook-03-04.png"><br>我们会看到，这里有一个Encr.bat，这就是可以加密的脚本<br>使用方法<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-06.png-blog.photo" alt="Kettle-handbook-03-06.png"><br>我们输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Encr.bat -kettle postgres</div></pre></td></tr></table></figure></p>
+<p>执行后，会生成，这样一个加密后的密码，然后，我们可以使用这个加密后的字符串，替换我们的密码<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-05.png-blog.photo" alt="Kettle-handbook-03-05.png"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pg_password = Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</div></pre></td></tr></table></figure></p>
+<p>大家可以试下，这样也是可以的，好了，这个例子就到这。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。&lt;/p&gt;
+&lt;div class=&quot;note primary&quot;&gt;&lt;h2 id=&quot;1-Kettle的配置文件&quot;&gt;&lt;a href=&quot;#1-Kettle的配置文件&quot; class=&quot;headerlink&quot; title=&quot;1. Kettle的配置文件&quot;&gt;&lt;/a&gt;1. Kettle的配置文件&lt;/h2&gt;&lt;/div&gt;
+&lt;p&gt;配置文件在哪呢？Windows下，是再当前用户的目录下，一般再C盘，Users下面，有一个当前用户的文件夹，下面有.kettle文件夹&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-03-01.png&quot;&gt;&lt;br&gt;进入之后，我们会看到一个kettle.properties的文件，我们的数据库配置信息，就可以放在这里，&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-02.png-blog.photo&quot; alt=&quot;Kettle-handbook-03-02.png&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+    
+    
+      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kettle手册（二）- 将数据导出为Excel</title>
+    <link href="http://yoursite.com/2017/03/27/Kettle-handbook-02/"/>
+    <id>http://yoursite.com/2017/03/27/Kettle-handbook-02/</id>
+    <published>2017-03-27T15:24:44.000Z</published>
+    <updated>2017-08-26T16:02:23.400Z</updated>
+    
+    <content type="html"><![CDATA[<p>好了，我们先来看第一个例子，就是怎样将数据库中的数据，导出为Excel。<br>平时，如果我们需要将数据导出Excel的话，我们可能会直接复制，然后粘贴出来，但是数据量大的话，就不好用了；<br>或者使用Java等开发语言，写代码，导出Excel；或者一些数据库连接工具自带的导出功能。<br>其实，我们用Kettle的话，还是很方便的，但是平时用下来，Kettle的这个功能还是有些缺陷的，比如导出Excel2007+的时候，经常会报错，我一直也没有解决，这次记录博客顺便研究看看。</p>
+<div class="note primary"><h1 id="1-Kettle的下载及使用"><a href="#1-Kettle的下载及使用" class="headerlink" title="1. Kettle的下载及使用"></a>1. Kettle的下载及使用</h1></div>
+<p>正式开始之前，我们简单说下Kettle的安装配置啥的，Kettle是绿色的，下载之后，直接运行就可以了<br>刚刚在网上下了个最新版的，后面，我们就是用这个7.0版本介绍官网地址：<a href="http://community.pentaho.com/projects/data-integration/" target="_blank" rel="external">Kettle官网</a></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-01.png-blog.photo" alt="Kettle-handbook-02-01.png"></p>
+<a id="more"></a>
+<p>他这个网站，应该是不太好访问，有VPN的话，可以用起来，下载的话，大概800M左右，后面看看上传一份，昨天为了下载，现冲了个蓝灯的会员<br>解压以后，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-02.png-blog.photo" alt="Kettle-handbook-02-02.png"><br>目录大概是这样的，我们会看到，这里有.bat文件和.sh文件，.bat就是我们在windows下使用的，.sh就是在Linux下使用的，我们找到 Spoon.bat这个文件，就可以启动Kettle了，奥，对了，得先安装下Java<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-03.png-blog.photo" alt="Kettle-handbook-02-03.png"><br>打开后，就是这样了，都是图形界面的，很好用<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-04.png-blog.photo" alt="Kettle-handbook-02-04.png"><br>Kettle中，主要有2中任务，一个是作业，一个是转换。一般来说，转换是一系列具体的操作，比如：调度SP，导出Excel等等；作业的话，就是按照一定流程来调度一系列转换。大概是这样，实际上，他们也是可以嵌套调用的，我们后面可以再讨论。</p>
+<div class="note primary"><h1 id="2-第一个转换-将数据导出为Excel"><a href="#2-第一个转换-将数据导出为Excel" class="headerlink" title="2. 第一个转换-将数据导出为Excel"></a>2. 第一个转换-将数据导出为Excel</h1></div>
+<p>为了实现这个功能，我们需要：</p>
+<ol>
+<li>连接到数据库</li>
+<li>导出为Excel</li>
+</ol>
+<p>首先，我们新建一个转换，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-05.png-blog.photo" alt="Kettle-handbook-02-05.png"><br>新建，之后，我们可以看到，工具箱中，有很多的控件，我们都可以使用，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-06.png-blog.photo" alt="Kettle-handbook-02-06.png"><br>很多我也没有用过，大家可以自行去尝试使用<br>好了，下面，我们就开始介绍我们这次的主题，导出数据到Excel<br>既然，是导出数据，说明我们肯定有一个源头，一个目标，源头是我们的一个数据库，我们得先连接到这个数据库</p>
+<h2 id="新建数据库连接"><a href="#新建数据库连接" class="headerlink" title="新建数据库连接"></a>新建数据库连接</h2><p>我们在主对象库中，DB连接上，右键单击，新建<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-07.png-blog.photo" alt="Kettle-handbook-02-07.png"><br>在这里呢，我们可以看到，有很多的数据库可以选择，我们只需要填写基本的连接信息就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-08.png-blog.photo" alt="Kettle-handbook-02-08.png"><br>我们这里连接的是Postgresql，配置好后，测试下，（坑，刚刚在windows上装的数据库，一直连不上，白名单都加好了，就是不行，结果是防火墙忘关了。。）<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-09.png-blog.photo" alt="Kettle-handbook-02-09.png"><br>好了，可以连接到数据库了，下面，我们得把数据导出啊，我们需要使用输入这个控件<br>输入下面，有很多的控件，我们这次只使用表输入，因为我们是直接从数据库中拿数据<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-10.png-blog.photo" alt="Kettle-handbook-02-10.png"><br>这里直接就是拖拽的，拖过去就行了，双击之后，可以编辑，这里我们就使用刚才的数据源连接，然后查询一张表，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-11.png-blog.photo" alt="Kettle-handbook-02-11.png"><br>表的话，随便create一张就可以了，我们还可以预览数据<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-12.png-blog.photo" alt="Kettle-handbook-02-12.png"><br>源头好了，同样的思路，我们需要一个目标，就是输出了，输出到Excel<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-13.png-blog.photo" alt="Kettle-handbook-02-13.png"><br>同样的，我们托好之后，双击就可以编辑了，这里，我们主要关注2个配置，一个是excel保存地址，和字段<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-14.png-blog.photo" alt="Kettle-handbook-02-14.png"><br>我们选择一个地址，然后得，看下字段那个tab，<br>我们单击，获取字段，就可以从源头获取表中的字段了，当然，我们可以只导出，我们需要的字段，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-15.png-blog.photo" alt="Kettle-handbook-02-15.png"><br>一步一步来的话，上面获取，可能会获取不到，因为，有一步，需要将2个控件，连起来，源头有了，目标也有了，得让他们关联起来啊，再Kettle中，这个连线叫做Hop（跳），就像一个管道一样，将数据流从一个点，指向另一个点。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-16.png-blog.photo" alt="Kettle-handbook-02-16.png"><br>都好了，以后，我们就运行下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-17.png-blog.photo" alt="Kettle-handbook-02-17.png"><br>和Java里面，一样，绿色的话，就代表成功了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-19.png-blog.photo" alt="Kettle-handbook-02-19.png"><br>我们看下文件<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-18.png-blog.photo" alt="Kettle-handbook-02-18.png"><br>好了，我们的第一个例子，就成功了，还是很简单的，主要就是Kettle中控件的熟悉。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;好了，我们先来看第一个例子，就是怎样将数据库中的数据，导出为Excel。&lt;br&gt;平时，如果我们需要将数据导出Excel的话，我们可能会直接复制，然后粘贴出来，但是数据量大的话，就不好用了；&lt;br&gt;或者使用Java等开发语言，写代码，导出Excel；或者一些数据库连接工具自带的导出功能。&lt;br&gt;其实，我们用Kettle的话，还是很方便的，但是平时用下来，Kettle的这个功能还是有些缺陷的，比如导出Excel2007+的时候，经常会报错，我一直也没有解决，这次记录博客顺便研究看看。&lt;/p&gt;
+&lt;div class=&quot;note primary&quot;&gt;&lt;h1 id=&quot;1-Kettle的下载及使用&quot;&gt;&lt;a href=&quot;#1-Kettle的下载及使用&quot; class=&quot;headerlink&quot; title=&quot;1. Kettle的下载及使用&quot;&gt;&lt;/a&gt;1. Kettle的下载及使用&lt;/h1&gt;&lt;/div&gt;
+&lt;p&gt;正式开始之前，我们简单说下Kettle的安装配置啥的，Kettle是绿色的，下载之后，直接运行就可以了&lt;br&gt;刚刚在网上下了个最新版的，后面，我们就是用这个7.0版本介绍官网地址：&lt;a href=&quot;http://community.pentaho.com/projects/data-integration/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Kettle官网&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-02-01.png&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+    
+    
+      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kettle手册（一）- 序及Kettle简介</title>
+    <link href="http://yoursite.com/2017/03/27/Kettle-handbook-01/"/>
+    <id>http://yoursite.com/2017/03/27/Kettle-handbook-01/</id>
+    <published>2017-03-27T13:59:00.000Z</published>
+    <updated>2017-08-26T15:37:41.262Z</updated>
+    
+    <content type="html"><![CDATA[<div class="note primary"><h1 id="1-序"><a href="#1-序" class="headerlink" title="1. 序"></a>1. 序</h1></div>
+<p>好久没有写博客了，新的一年总得留下点儿什么。目前主要负责数据仓库这一块任务，平时用用Kettle、SSIS这类ETL工具，而且工具的使用整理起来会方便些。所以先从Kettle开始，一点点整理下最近BI开发中掌握的知识。<br>以前有做过BI报表Cognos开发还有些入门级的Java，都在CSDN博客上，感兴趣的同学可以去看看：<a href="http://blog.csdn.net/yuguiyang1990" target="_blank" rel="external">于贵洋的博客</a><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-01-01.png-blog.photo" alt="Kettle-handbook-01Kettle-handbook-01-01"><br>好了，下面就根据自己的经验和理解，整理下Kettle的知识。</p>
+<a id="more"></a>
+<div class="note primary"><h1 id="2-Kettle简介"><a href="#2-Kettle简介" class="headerlink" title="2. Kettle简介"></a>2. Kettle简介</h1></div>
+<p>Kettle这东西是干嘛的呢？<br>Kettle是一个开源的ETL工具，所以基本的数据抽取、转换、加载，他都可以。<br>比如：我要把一个mysql数据库的数据同步到一个Postgres数据库，我们有哪些办法呢?<br>大概会有:</p>
+<ol>
+<li>将数据导出为文本文件，使用PG的copy命令直接加载</li>
+<li>数据量少的话，直接拼接成insert脚本，批量插入</li>
+<li>一些开源的小工具，提供2种数据库直接的同步</li>
+<li>Kettle</li>
+</ol>
+<p>等等方法<br>再比如：<br>我每天需要统计一些系统中的异常数据，导出为Excel，用邮件发送给指定的开发人员处理，该怎样做呢？</p>
+<ol>
+<li>Java或者其他开发语言做定时任务</li>
+<li>Kettle   </li>
+</ol>
+<p>和其他的ETL工具相比，他有什么优势呢？</p>
+<blockquote>
+<p>Kettle是基于Java开发的，是开源免费的，大家可以直接在网上下载；<br>跨平台，Windows，Linux都可以使用；使用起来简单快捷。</p>
+<p>既然开源，相比于其他收费产品，劣势也就很显然了，比如稳定性啊，BUG修复处理啊，而且基于Java，性能上会差些。<br>当然都是相对来说，一般数据量使用或者逻辑不复杂的话，使用起来是很适合的。</p>
+</blockquote>
+<p>刚刚也在社区上，发现了Kettle的视频，kettle视频，大家可以看看，应该用的到。<br>Kettle的基本介绍就这些，后面会根据实际的例子，来介绍下Kettle的使用。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note primary&quot;&gt;&lt;h1 id=&quot;1-序&quot;&gt;&lt;a href=&quot;#1-序&quot; class=&quot;headerlink&quot; title=&quot;1. 序&quot;&gt;&lt;/a&gt;1. 序&lt;/h1&gt;&lt;/div&gt;
+&lt;p&gt;好久没有写博客了，新的一年总得留下点儿什么。目前主要负责数据仓库这一块任务，平时用用Kettle、SSIS这类ETL工具，而且工具的使用整理起来会方便些。所以先从Kettle开始，一点点整理下最近BI开发中掌握的知识。&lt;br&gt;以前有做过BI报表Cognos开发还有些入门级的Java，都在CSDN博客上，感兴趣的同学可以去看看：&lt;a href=&quot;http://blog.csdn.net/yuguiyang1990&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;于贵洋的博客&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-01-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-01Kettle-handbook-01-01&quot;&gt;&lt;br&gt;好了，下面就根据自己的经验和理解，整理下Kettle的知识。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+    
+    
+      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+    
+  </entry>
+  
+</feed>
