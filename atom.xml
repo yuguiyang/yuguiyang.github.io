@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-27T10:55:13.468Z</updated>
+  <updated>2017-08-27T14:52:03.630Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,244 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Cognos资料汇总贴</title>
+    <link href="http://yoursite.com/2017/08/01/cognos-doc-main/"/>
+    <id>http://yoursite.com/2017/08/01/cognos-doc-main/</id>
+    <published>2017-08-01T13:59:00.000Z</published>
+    <updated>2017-08-27T14:52:03.630Z</updated>
+    
+    <content type="html"><![CDATA[<p>以前搞过Cognos，写过很多基础的教程，应该是14年的样子，都在CSDN上，这里贴个汇总贴吧，想要看的同学可以去看看，希望有帮助。</p>
+<p>ReportStudio入门教程：<a href="http://blog.csdn.net/column/details/ygy-reportstudio.html" target="_blank" rel="external">http://blog.csdn.net/column/details/ygy-reportstudio.html</a></p>
+<p>Framework Manage入门教程：<a href="http://blog.csdn.net/column/details/ygy-frameworkmanager.html" target="_blank" rel="external">http://blog.csdn.net/column/details/ygy-frameworkmanager.html</a></p>
+<p>Cognos函数手册：<a href="http://blog.csdn.net/column/details/ygy-cognos-function.html" target="_blank" rel="external">http://blog.csdn.net/column/details/ygy-cognos-function.html</a></p>
+<p>Cognos相关的其他资料（主页不同的类别下看看）：<a href="http://blog.csdn.net/yuguiyang1990" target="_blank" rel="external">http://blog.csdn.net/yuguiyang1990</a></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/cognos-doc-main.png-blog.photo" alt="cognos-doc-main.png"></p>
+<p>好了，感兴趣的同学，可以自行去看看，好久不搞了，估计有疑问也解决不了了…</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;以前搞过Cognos，写过很多基础的教程，应该是14年的样子，都在CSDN上，这里贴个汇总贴吧，想要看的同学可以去看看，希望有帮助。&lt;/p&gt;
+&lt;p&gt;ReportStudio入门教程：&lt;a href=&quot;http://blog.csdn.net/column/details/y
+    
+    </summary>
+    
+      <category term="数据可视化-Cognos" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Cognos/"/>
+    
+    
+      <category term="Cognos" scheme="http://yoursite.com/tags/Cognos/"/>
+    
+      <category term="数据可视化" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kettle手册（十二）- 控件使用-从步骤插入数据</title>
+    <link href="http://yoursite.com/2017/04/14/Kettle-handbook-12/"/>
+    <id>http://yoursite.com/2017/04/14/Kettle-handbook-12/</id>
+    <published>2017-04-14T03:24:44.000Z</published>
+    <updated>2017-08-27T14:36:07.845Z</updated>
+    
+    <content type="html"><![CDATA[<p>这里介绍一个控件的小功能，也是最近才发现的，之前在“表输入”中要使用参数的话，一般都是使用变量，<br>其实，还有个功能也可以尝试使用<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-01.png-blog.photo" alt="Kettle-handbook-12-01.png"><br>整体流程就是这样，我们第一个 query_paramter，就是查询了我们想设置的参数<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-02.png-blog.photo" alt="Kettle-handbook-12-02.png"><br>然后，就是我们真正需要的，我们再表输入中，使用 “?”来占位，然后“从步骤插入数据”，选择上一个步骤，然后会将数据替换占位符<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-03.png-blog.photo" alt="Kettle-handbook-12-03.png"><br>最后，我们将文件导出即可，奥对了，我们可以改成日志控件，直接输出查看<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-04.png-blog.photo" alt="Kettle-handbook-12-04.png"><br>刚刚，上面还有一个“执行每一行”，这个就是，如果我们有多个参数，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-05.png-blog.photo" alt="Kettle-handbook-12-05.png"><br>就可以使用这个参数了，很方便，好了，就介绍到这里先。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-06.png-blog.photo" alt="Kettle-handbook-12-06.png"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里介绍一个控件的小功能，也是最近才发现的，之前在“表输入”中要使用参数的话，一般都是使用变量，&lt;br&gt;其实，还有个功能也可以尝试使用&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12
+    
+    </summary>
+    
+      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+    
+    
+      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kettle手册（十一）- 用PGP加密、加密文件</title>
+    <link href="http://yoursite.com/2017/04/11/Kettle-handbook-11/"/>
+    <id>http://yoursite.com/2017/04/11/Kettle-handbook-11/</id>
+    <published>2017-04-11T03:24:44.000Z</published>
+    <updated>2017-08-27T14:31:04.826Z</updated>
+    
+    <content type="html"><![CDATA[<p>看到有同学提问，以前也没用过，百度了一下，找了些资料，这里记录下。</p>
+<h1 id="1-安装gpg4win"><a href="#1-安装gpg4win" class="headerlink" title="1. 安装gpg4win"></a>1. 安装gpg4win</h1><p>这个gpg4win是干嘛的呢，我们可以去他的官网看看：<a href="https://www.gpg4win.org/index.html" target="_blank" rel="external">gpg4win</a><br>目前，只知道他是加密的，这个是对Windows平台使用的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-01.png-blog.photo" alt="Kettle-handbook-11-01.png"><br>这里可能还有个PGP的概念，看看百度百科<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-02.png-blog.photo" alt="Kettle-handbook-11-02.png"></p>
+<a id="more"></a>
+<p>好了，具体概念，大家可以自行找找，我们下载下来，然后安装一下即可<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-03.png-blog.photo" alt="Kettle-handbook-11-03.png"><br>这个是昨天安装的，就不粘贴步骤了，安装完后，我们要先创建一个证书的东西，我们打开这个管理界面<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-04.png-blog.photo" alt="Kettle-handbook-11-04.png"><br>打开后，是这样一个界面，（网上有这个的安装配置教程，这里也简单介绍下，不清楚的可以再百度看看）<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-05.png-blog.photo" alt="Kettle-handbook-11-05.png"><br>我们新建一个Certificate<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-06.png-blog.photo" alt="Kettle-handbook-11-06.png"><br>我们选择一个加密方式，使用第一个就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-07.png-blog.photo" alt="Kettle-handbook-11-07.png"><br>我们输入些基本信息然后next就可以<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-08.png-blog.photo" alt="Kettle-handbook-11-08.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-09.png-blog.photo" alt="Kettle-handbook-11-09.png"><br>然后，我们得输入一段密钥<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-10.png-blog.photo" alt="Kettle-handbook-11-10.png"><br>好了，这里，就配置完成了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-11.png-blog.photo" alt="Kettle-handbook-11-11.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-12.png-blog.photo" alt="Kettle-handbook-11-12.png"></p>
+<h1 id="2-用PGP加密文件"><a href="#2-用PGP加密文件" class="headerlink" title="2. 用PGP加密文件"></a>2. 用PGP加密文件</h1><p>好了，这里，我们新建一个作业，我们主要使用这2个控件<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-13.png-blog.photo" alt="Kettle-handbook-11-13.png"><br>一个很简单的流程，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-14.png-blog.photo" alt="Kettle-handbook-11-14.png"><br>我们做些简单的配置，<br>一个是GPG的目录（就是我们上面安装的那个）<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-15.png-blog.photo" alt="Kettle-handbook-11-15.png"><br>还有就是，我们的要加密的文件和一个目标文件名，注意，这里我们得填写一下“用户ID”，就是我们前面新建的那个用户名就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-16.png-blog.photo" alt="Kettle-handbook-11-16.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-17.png-blog.photo" alt="Kettle-handbook-11-17.png"><br>这里，可以勾选一下，目标是一个文件<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-18.png-blog.photo" alt="Kettle-handbook-11-18.png"><br>好了，然后，我们执行下就可以了<br>我们源文件：<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-19.png-blog.photo" alt="Kettle-handbook-11-19.png"><br>加密后的文件：<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-20.png-blog.photo" alt="Kettle-handbook-11-20.png"><br>下面，我们再看看，怎样解密</p>
+<h1 id="3-用PGP解密文件"><a href="#3-用PGP解密文件" class="headerlink" title="3. 用PGP解密文件"></a>3. 用PGP解密文件</h1><p>知道了加密，解密也是一样的，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-21.png-blog.photo" alt="Kettle-handbook-11-21.png"><br>这里的话，配置和上面差不多，这里，我们要填写一个“密钥”，就是我们上面创建时，输入的一个密码<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-22.png-blog.photo" alt="Kettle-handbook-11-22.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-23.png-blog.photo" alt="Kettle-handbook-11-23.png"><br>我们运行一下，解密后，是一样的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-24.png-blog.photo" alt="Kettle-handbook-11-24.png"><br>好了，就简单介绍到这里</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;看到有同学提问，以前也没用过，百度了一下，找了些资料，这里记录下。&lt;/p&gt;
+&lt;h1 id=&quot;1-安装gpg4win&quot;&gt;&lt;a href=&quot;#1-安装gpg4win&quot; class=&quot;headerlink&quot; title=&quot;1. 安装gpg4win&quot;&gt;&lt;/a&gt;1. 安装gpg4win&lt;/h1&gt;&lt;p&gt;这个gpg4win是干嘛的呢，我们可以去他的官网看看：&lt;a href=&quot;https://www.gpg4win.org/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gpg4win&lt;/a&gt;&lt;br&gt;目前，只知道他是加密的，这个是对Windows平台使用的&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-11-01.png&quot;&gt;&lt;br&gt;这里可能还有个PGP的概念，看看百度百科&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-02.png-blog.photo&quot; alt=&quot;Kettle-handbook-11-02.png&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+    
+    
+      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kettle手册（十）- 跨库查询</title>
+    <link href="http://yoursite.com/2017/04/10/Kettle-handbook-10/"/>
+    <id>http://yoursite.com/2017/04/10/Kettle-handbook-10/</id>
+    <published>2017-04-10T03:24:44.000Z</published>
+    <updated>2017-08-27T14:18:29.979Z</updated>
+    
+    <content type="html"><![CDATA[<p>Kettle整体使用起来，还是很方便的，熟悉应用了之后，就是对控件的熟悉和使用了，只要思路有了，就是整合下Kettle中各个控件的使用就行。<br>这里，简单介绍下一个“跨库查询”的控件。<br>有的时候，我们一个脚本，可能只是临时性的，或者需要实时的去查一下，同步到数仓的话，可能不太方便，我们就可以使用跨库查询的控件<br>用到的表信息<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-01.png-blog.photo" alt="Kettle-handbook-10-01.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-02.png-blog.photo" alt="Kettle-handbook-10-02.png"></p>
+<a id="more"></a>
+<h1 id="1-数据库连接-Database-Join"><a href="#1-数据库连接-Database-Join" class="headerlink" title="1. 数据库连接(Database Join)"></a>1. 数据库连接(Database Join)</h1><p>我们先用这个控件来实现一下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-03.png-blog.photo" alt="Kettle-handbook-10-03.png"><br>用起来也很简单<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-04.png-blog.photo" alt="Kettle-handbook-10-04.png"><br>表输入：是我们第一个库中的SQL<br>数据库连接：是我们另一个库的SQL<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-05.png-blog.photo" alt="Kettle-handbook-10-05.png"><br>我们用关联的字段放在where条件后，使用“?”来占位，并在下面，选择要传入的参数<br>默认的话，是JOIN，我们也可以勾选Outer Join，<br>然后，我们看下，输出就行<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-06.png-blog.photo" alt="Kettle-handbook-10-06.png"><br>这是后面导出的文件，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-07.png-blog.photo" alt="Kettle-handbook-10-07.png"><br>这里，我们就简单实现了跨库的查询</p>
+<h1 id="2-数据库查询"><a href="#2-数据库查询" class="headerlink" title="2. 数据库查询"></a>2. 数据库查询</h1><p>我们再来看另一个控件，“数据库查询”，这个控件同样可以实现跨库，但是有一个小问题<br>首先，我们使用上一次的数据来看<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-08.png-blog.photo" alt="Kettle-handbook-10-08.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-09.png-blog.photo" alt="Kettle-handbook-10-09.png"><br>我们执行下，结果看上去是一样的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-10.png-blog.photo" alt="Kettle-handbook-10-10.png"><br>这其实有个隐藏的问题，我们再增加几条记录看看<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-11.png-blog.photo" alt="Kettle-handbook-10-11.png"><br>比如：现在1号有2条记录，正常的话，我们导出也是要有2条的<br>我们执行下看看<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-12.png-blog.photo" alt="Kettle-handbook-10-12.png"><br>我们会看到，数据并没有增加，这是控件导致的，<br>先获取左边的结果集，然后一条一条去右边匹配；匹配到第一条记录后，就会跳出，直接去匹配下一个，所以，我们有2条记录，也只会找到第一个。<br>这并不是我们想要的，我们再试下第一个控件<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-13.png-blog.photo" alt="Kettle-handbook-10-13.png"><br>使用这个“数据库查询”控件的话，可以通过将1-N关系汇总，将N的一方，放在前面<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-14.png-blog.photo" alt="Kettle-handbook-10-14.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-15.png-blog.photo" alt="Kettle-handbook-10-15.png"><br>最后的结果也是可以的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-16.png-blog.photo" alt="Kettle-handbook-10-16.png"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Kettle整体使用起来，还是很方便的，熟悉应用了之后，就是对控件的熟悉和使用了，只要思路有了，就是整合下Kettle中各个控件的使用就行。&lt;br&gt;这里，简单介绍下一个“跨库查询”的控件。&lt;br&gt;有的时候，我们一个脚本，可能只是临时性的，或者需要实时的去查一下，同步到数仓的话，可能不太方便，我们就可以使用跨库查询的控件&lt;br&gt;用到的表信息&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-10-01.png&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-02.png-blog.photo&quot; alt=&quot;Kettle-handbook-10-02.png&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+    
+    
+      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kettle手册（九）- 发送邮件</title>
+    <link href="http://yoursite.com/2017/03/30/Kettle-handbook-09/"/>
+    <id>http://yoursite.com/2017/03/30/Kettle-handbook-09/</id>
+    <published>2017-03-30T03:24:44.000Z</published>
+    <updated>2017-08-27T14:05:09.684Z</updated>
+    
+    <content type="html"><![CDATA[<p>在Kettle里面，我们每天执行完调度之后，想要监控下JOB的执行状态，通常我们可以会发送邮件，可以的话，还可以发送短信。</p>
+<p>在Kettle里面，发送邮件很方便，这里，我们就简单的测试下。</p>
+<h1 id="1-在作业中发送简单邮件"><a href="#1-在作业中发送简单邮件" class="headerlink" title="1. 在作业中发送简单邮件"></a>1. 在作业中发送简单邮件</h1><p>我们只需要使用到这个控件就可以了，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-01.png-blog.photo" alt="Kettle-handbook-09-01.png"><br>这样，一个简单的发送邮件流程就好了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-02.png-blog.photo" alt="Kettle-handbook-09-02.png"></p>
+<a id="more"></a>
+<p>控件的配置：<br>收件人，抄送啊，信息，自行填写就行，多个收件人，使用“空格”分隔<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-03.png-blog.photo" alt="Kettle-handbook-09-03.png"><br>在服务器这里，我们填上服务器的信息就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-04.png-blog.photo" alt="Kettle-handbook-09-04.png"><br>这里是邮件消息的一些配置，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-05.png-blog.photo" alt="Kettle-handbook-09-05.png"><br>暂时先到这里，我们测试下结果<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-06.png-blog.photo" alt="Kettle-handbook-09-06.png"><br>然后，查看邮箱，我们会接收到这个邮件，刚刚简单测了下这个“回复名称”，就是<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-07.png-blog.photo" alt="Kettle-handbook-09-07.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-08.png-blog.photo" alt="Kettle-handbook-09-08.png"><br>这里试过中文，会有问题，有乱码，可能是Windows下的原因，没有再去测试验证<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-09.png-blog.photo" alt="Kettle-handbook-09-09.png"><br>就是收到邮件时的一个发件人的名称，不同邮箱显示的不一样</p>
+<h1 id="2-增加附件"><a href="#2-增加附件" class="headerlink" title="2. 增加附件"></a>2. 增加附件</h1><p>附件的话，也很简单，上面的面板中直接配置就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-10.png-blog.photo" alt="Kettle-handbook-09-10.png"><br>然后，我们需要将待发送的邮件，添加到结果集中<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-11.png-blog.photo" alt="Kettle-handbook-09-11.png"><br>在控件中，我们添加好文件就行了。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-12.png-blog.photo" alt="Kettle-handbook-09-12.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-13.png-blog.photo" alt="Kettle-handbook-09-13.png"><br>我们再次发送，验证下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-14.png-blog.photo" alt="Kettle-handbook-09-14.png"><br>好了，附件也可以了，思路就是这样的，实际应用时，可能还有些问题得注意下</p>
+<h1 id="3-自定义邮件内容"><a href="#3-自定义邮件内容" class="headerlink" title="3. 自定义邮件内容"></a>3. 自定义邮件内容</h1><p>到这里，我们会看到，邮件的正文内容，可能并不是我们想要的， 我们想要的可能是这样的信息<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-15.png-blog.photo" alt="Kettle-handbook-09-15.png"><br>这就需要自定义正文内容，我们需要勾选下面这个选项<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-16.png-blog.photo" alt="Kettle-handbook-09-16.png"><br>这里是可以使用变量的，我们可以拼接HTML来实现<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-17.png-blog.photo" alt="Kettle-handbook-09-17.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-18.png-blog.photo" alt="Kettle-handbook-09-18.png"><br>好了，邮件的介绍，大概就这些，在转换中，也是可以使用的，大同小异</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在Kettle里面，我们每天执行完调度之后，想要监控下JOB的执行状态，通常我们可以会发送邮件，可以的话，还可以发送短信。&lt;/p&gt;
+&lt;p&gt;在Kettle里面，发送邮件很方便，这里，我们就简单的测试下。&lt;/p&gt;
+&lt;h1 id=&quot;1-在作业中发送简单邮件&quot;&gt;&lt;a href=&quot;#1-在作业中发送简单邮件&quot; class=&quot;headerlink&quot; title=&quot;1. 在作业中发送简单邮件&quot;&gt;&lt;/a&gt;1. 在作业中发送简单邮件&lt;/h1&gt;&lt;p&gt;我们只需要使用到这个控件就可以了，&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-09-01.png&quot;&gt;&lt;br&gt;这样，一个简单的发送邮件流程就好了&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-02.png-blog.photo&quot; alt=&quot;Kettle-handbook-09-02.png&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+    
+    
+      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kettle手册（八）- 循环</title>
+    <link href="http://yoursite.com/2017/03/29/Kettle-handbook-08/"/>
+    <id>http://yoursite.com/2017/03/29/Kettle-handbook-08/</id>
+    <published>2017-03-29T15:40:44.000Z</published>
+    <updated>2017-08-27T13:47:04.004Z</updated>
+    
+    <content type="html"><![CDATA[<p>有的时候，我们想要在Kettle中实现这个循环的功能，比如，批量加载数据的时候，我们要对10张表执行同样的操作，只有表名和一些信息不一样，这时，写个循环就省事儿多了</p>
+<h1 id="1-遍历结果集实现"><a href="#1-遍历结果集实现" class="headerlink" title="1. 遍历结果集实现"></a>1. 遍历结果集实现</h1><p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-01.png-blog.photo" alt="Kettle-handbook-08-01.png"><br>这里的话，我们主要是通过一个将结果集返回，然后通过转换的设置来实现的</p>
+<a id="more"></a>
+<h2 id="1-1-query-the-result"><a href="#1-1-query-the-result" class="headerlink" title="1.1 query_the_result"></a>1.1 query_the_result</h2><p>这个转换，只要是将我们要遍历的结果集返回，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-02.png-blog.photo" alt="Kettle-handbook-08-02.png"><br>表输入，我们就是返回了5条记录，来做遍历<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-03.png-blog.photo" alt="Kettle-handbook-08-03.png"><br>复制记录到结果，这个控件的作用，就是我们可以在后面的转换继续使用这个结果集。</p>
+<p>##1.2 traverse_the_result<br>这里呢，我们就是需要遍历的转换了，这里，我们只是获取结果集，然后将结果集输出<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-04.png-blog.photo" alt="Kettle-handbook-08-04.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-05.png-blog.photo" alt="Kettle-handbook-08-05.png"><br>还有一个很重要的一步，怎样让这个转换可以根据结果集的条数，去循环执行呢？<br>就是这个“执行每一个输入行”<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-06.png-blog.photo" alt="Kettle-handbook-08-06.png"><br>我们执行下看看<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-07.png-blog.photo" alt="Kettle-handbook-08-07.png"></p>
+<h1 id="2-使用JS实现"><a href="#2-使用JS实现" class="headerlink" title="2. 使用JS实现"></a>2. 使用JS实现</h1><p>网上有很多的例子，介绍怎样用JS来控制循环，这里我们也简单的测试下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-08.png-blog.photo" alt="Kettle-handbook-08-08.png"></p>
+<h2 id="2-1-query-the-result"><a href="#2-1-query-the-result" class="headerlink" title="2.1 query_the_result"></a>2.1 query_the_result</h2><p>这一步，和上面的一样，就是将结果集返回<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-09.png-blog.photo" alt="Kettle-handbook-08-09.png"></p>
+<h2 id="2-2-travers-the-result"><a href="#2-2-travers-the-result" class="headerlink" title="2.2 travers_the_result"></a>2.2 travers_the_result</h2><p>这里主要是使用JS将结果集进行遍历，通过JS，将一些结果存放到变量里面，在后面的操作中就可以使用了，通过${xxx}的方式使用<br>这个其实和Java、JS里面循环思路一样，通过结果集的总数“total_num”和下标“LoopCounter”进行判断<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-10.png-blog.photo" alt="Kettle-handbook-08-10.png"></p>
+<h2 id="2-3-evaluate-the-loop-count"><a href="#2-3-evaluate-the-loop-count" class="headerlink" title="2.3 evaluate_the_loop_count"></a>2.3 evaluate_the_loop_count</h2><p>这一步，就是判断下标的值和结果集的总数，进行对比，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-11.png-blog.photo" alt="Kettle-handbook-08-11.png"></p>
+<h2 id="2-4-print-the-log"><a href="#2-4-print-the-log" class="headerlink" title="2.4 print_the_log"></a>2.4 print_the_log</h2><p>输出下，我们想要使用的变量<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-12.png-blog.photo" alt="Kettle-handbook-08-12.png"></p>
+<h2 id="2-5-manage-the-loop-index"><a href="#2-5-manage-the-loop-index" class="headerlink" title="2.5 manage_the_loop_index"></a>2.5 manage_the_loop_index</h2><p>这一步，给下标加一，然后获取下一条记录<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-13.png-blog.photo" alt="Kettle-handbook-08-13.png"><br>好了，执行下，我们看看<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-14.png-blog.photo" alt="Kettle-handbook-08-14.png"><br>好了，循环的使用先介绍到这里</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有的时候，我们想要在Kettle中实现这个循环的功能，比如，批量加载数据的时候，我们要对10张表执行同样的操作，只有表名和一些信息不一样，这时，写个循环就省事儿多了&lt;/p&gt;
+&lt;h1 id=&quot;1-遍历结果集实现&quot;&gt;&lt;a href=&quot;#1-遍历结果集实现&quot; class=&quot;headerlink&quot; title=&quot;1. 遍历结果集实现&quot;&gt;&lt;/a&gt;1. 遍历结果集实现&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-08-01.png&quot;&gt;&lt;br&gt;这里的话，我们主要是通过一个将结果集返回，然后通过转换的设置来实现的&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+    
+    
+      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kettle手册（七）- 资源库的使用</title>
+    <link href="http://yoursite.com/2017/03/29/Kettle-handbook-07/"/>
+    <id>http://yoursite.com/2017/03/29/Kettle-handbook-07/</id>
+    <published>2017-03-29T15:24:44.000Z</published>
+    <updated>2017-08-27T13:28:47.101Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-为什么使用资源库"><a href="#1-为什么使用资源库" class="headerlink" title="1. 为什么使用资源库"></a>1. 为什么使用资源库</h1><p>之前，我们新建转换或者作业的时候，都是直接保存在本地，而如果我们是多人开发的话，除了使用SVN等版本控制软件，还可以使用Kettle的资源库，他会将转换、作业直接保存在数据库中，而且，连接资源库的话，我们就不需要每一次都新建数据库连接了，用起来还是蛮方便的。</p>
+<h1 id="2-新建资源库"><a href="#2-新建资源库" class="headerlink" title="2. 新建资源库"></a>2. 新建资源库</h1><p>Kettle7.0里面，是在右上角这个Connect来连接的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-01.png-blog.photo" alt="Kettle-handbook-07-01.png"></p>
+<a id="more"></a>
+<h2 id="2-1-资源库的类型"><a href="#2-1-资源库的类型" class="headerlink" title="2.1 资源库的类型"></a>2.1 资源库的类型</h2><p>资源库有3中类型<br>Pentaho Repository<br>Database Repository（使用数据库存储）<br>File Repository（使用文件存储）<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-02.png-blog.photo" alt="Kettle-handbook-07-02.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-03.png-blog.photo" alt="Kettle-handbook-07-03.png"></p>
+<h2 id="2-2-新建Pentaho-Repository"><a href="#2-2-新建Pentaho-Repository" class="headerlink" title="2.2 新建Pentaho Repository"></a>2.2 新建Pentaho Repository</h2><p>我们单击上面的get started 之后，就会进入新建界面<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-04.png-blog.photo" alt="Kettle-handbook-07-04.png"><br><a href="http://localhost:8080/pentaho" target="_blank" rel="external">http://localhost:8080/pentaho</a><br>一开始还没搞懂这个Server到底怎么启动，后来google了半天发现<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-05.png-blog.photo" alt="Kettle-handbook-07-05.png"><br>后来又找到了这个，应该是要安装其他的组件才行，这个类型的库就放弃吧。。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-06.png-blog.photo" alt="Kettle-handbook-07-06.png"></p>
+<h2 id="2-3-Database-Repository"><a href="#2-3-Database-Repository" class="headerlink" title="2.3 Database Repository"></a>2.3 Database Repository</h2><p>好了，这回，我们选择哪个database的资源库<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-07.png-blog.photo" alt="Kettle-handbook-07-07.png"><br>我们填一个connection的名字，然后配置一个资源库的连接就可以了，最好给kettle新建一个数据库使用<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-08.png-blog.photo" alt="Kettle-handbook-07-08.png"><br>至于数据库连接的话，和转换里面是一样的，大家可以自行新建一个<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-09.png-blog.photo" alt="Kettle-handbook-07-09.png"><br>配置好，以后，大家选择Finish就可以了，然后，我们可以连接下这个库，注意下，这里的用户名和密码，<br>默认是admin/admin，大家直接登录就好了，这是Kettle自己初始化的<br>这个怎么改呢，暂时还没有发现，待研究，等我再google看看，估计官网上会有。<br>（找了下，发现了在哪改密码，就是刚刚的搜索资源库<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-10.png-blog.photo" alt="Kettle-handbook-07-10.png"><br>)<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-11.png-blog.photo" alt="Kettle-handbook-07-11.png"><br>连接后，我们正常使用就好了，没啥两样，会多一些功能，比如，探索资源库这里<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-12.png-blog.photo" alt="Kettle-handbook-07-12.png"><br>我们再保存作业和转换的话，会直接保存在数据库中，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-13.png-blog.photo" alt="Kettle-handbook-07-13.png"><br>而且，很好的一个功能，个人感觉，就是数据库连接只需要创建一次，在哪里都可以用了，不需要再次创建。</p>
+<h2 id="2-4-File-Repository"><a href="#2-4-File-Repository" class="headerlink" title="2.4 File Repository"></a>2.4 File Repository</h2><p>这个和database的资源库，就差不多了，只不过是基于文件的，保存在本地就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-14.png-blog.photo" alt="Kettle-handbook-07-14.png"><br>这个就和Eclipse一个工作区差不多，转换、作业都保存在这个目录下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-15.png-blog.photo" alt="Kettle-handbook-07-15.png"><br>好了，关于资源库，就简单的说这些了，大家可以自行连接，试试。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1-为什么使用资源库&quot;&gt;&lt;a href=&quot;#1-为什么使用资源库&quot; class=&quot;headerlink&quot; title=&quot;1. 为什么使用资源库&quot;&gt;&lt;/a&gt;1. 为什么使用资源库&lt;/h1&gt;&lt;p&gt;之前，我们新建转换或者作业的时候，都是直接保存在本地，而如果我们是多人开发的话，除了使用SVN等版本控制软件，还可以使用Kettle的资源库，他会将转换、作业直接保存在数据库中，而且，连接资源库的话，我们就不需要每一次都新建数据库连接了，用起来还是蛮方便的。&lt;/p&gt;
+&lt;h1 id=&quot;2-新建资源库&quot;&gt;&lt;a href=&quot;#2-新建资源库&quot; class=&quot;headerlink&quot; title=&quot;2. 新建资源库&quot;&gt;&lt;/a&gt;2. 新建资源库&lt;/h1&gt;&lt;p&gt;Kettle7.0里面，是在右上角这个Connect来连接的&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-07-01.png&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+    
+    
+      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kettle手册（六）- Hop小记</title>
+    <link href="http://yoursite.com/2017/03/29/Kettle-handbook-06/"/>
+    <id>http://yoursite.com/2017/03/29/Kettle-handbook-06/</id>
+    <published>2017-03-29T14:24:44.000Z</published>
+    <updated>2017-08-27T13:10:27.873Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-什么是Hop"><a href="#1-什么是Hop" class="headerlink" title="1. 什么是Hop"></a>1. 什么是Hop</h1><p>在我们前面，使用Kettle过程中，控件与控件之间的连线，这里，我们详细介绍下它，它在Kettle中叫Hop（跳）。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-01.png-blog.photo" alt="Kettle-handbook-06-01.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-02.png-blog.photo" alt="Kettle-handbook-06-02.png"></p>
+<a id="more"></a>
+<h1 id="2-Hop的发送方式（转换）"><a href="#2-Hop的发送方式（转换）" class="headerlink" title="2. Hop的发送方式（转换）"></a>2. Hop的发送方式（转换）</h1><p>在转换中，一般情况，控件和控件之间只有一个Hop，当然，如果需要的话，我们拖了2个控件出来，像这样：<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-03.png-blog.photo" alt="Kettle-handbook-06-03.png"><br>Kettle会提示你，下面的信息，让你选择，数据发送的方式<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-04.png-blog.photo" alt="Kettle-handbook-06-04.png"></p>
+<h2 id="2-1-分发记录"><a href="#2-1-分发记录" class="headerlink" title="2.1 分发记录"></a>2.1 分发记录</h2><p>目标步骤轮流接收记录，其实就是你一条，我一条，轮着接收数据，这个我们试一下就知道了，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-05.png-blog.photo" alt="Kettle-handbook-06-05.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-06.png-blog.photo" alt="Kettle-handbook-06-06.png"><br>我们执行下，看看这个结果试试，我们再步骤度量中，可以看到，a.txt和b.txt分别写入的数量<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-07.png-blog.photo" alt="Kettle-handbook-06-07.png"><br>看看结果文件，就是这样的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-08.png-blog.photo" alt="Kettle-handbook-06-08.png"></p>
+<h2 id="2-2-复制记录"><a href="#2-2-复制记录" class="headerlink" title="2.2 复制记录"></a>2.2 复制记录</h2><p>所有记录同时发送到所有的目标步骤，这个看起来就简单多了，比如上面的例子，2个文本文件会接收到同样的所有的数据，我们也试一下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-09.png-blog.photo" alt="Kettle-handbook-06-09.png"><br>结果文件的话，就是2个节点，接收到的数据都是一样的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-10.png-blog.photo" alt="Kettle-handbook-06-10.png"></p>
+<h1 id="3-Hop的状态（作业）"><a href="#3-Hop的状态（作业）" class="headerlink" title="3.Hop的状态（作业）"></a>3.Hop的状态（作业）</h1><p>在作业中，Hop主要用来控制流程<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-11.png-blog.photo" alt="Kettle-handbook-06-11.png"><br>有3种状态，一个锁，一个绿色的对号，一个红色的叉号<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-12.png-blog.photo" alt="Kettle-handbook-06-12.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-13.png-blog.photo" alt="Kettle-handbook-06-13.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-14.png-blog.photo" alt="Kettle-handbook-06-14.png"><br>简单来说，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-15.png-blog.photo" alt="Kettle-handbook-06-15.png">：表示无论上一步执行成功还是失败，都一定会执行下一步<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-16.png-blog.photo" alt="Kettle-handbook-06-16.png">：表示上一步执行成功才会执行下一步<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-17.png-blog.photo" alt="Kettle-handbook-06-17.png">：表示上一步执行失败执行下一步<br>比如我们上面的例子，我们的转换执行成功后，就结束了，如果转换执行失败了，我们就发送邮件。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1-什么是Hop&quot;&gt;&lt;a href=&quot;#1-什么是Hop&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是Hop&quot;&gt;&lt;/a&gt;1. 什么是Hop&lt;/h1&gt;&lt;p&gt;在我们前面，使用Kettle过程中，控件与控件之间的连线，这里，我们详细介绍下它，它在Kettle中叫Hop（跳）。&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-06-01.png&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-02.png-blog.photo&quot; alt=&quot;Kettle-handbook-06-02.png&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+    
+    
+      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Kettle手册（五）- 实例-增量同步数据</title>
-    <link href="http://yoursite.com/2017/03/29/Kettle-handbook-05/"/>
-    <id>http://yoursite.com/2017/03/29/Kettle-handbook-05/</id>
-    <published>2017-03-29T13:24:44.000Z</published>
-    <updated>2017-08-27T10:55:13.468Z</updated>
+    <link href="http://yoursite.com/2017/03/28/Kettle-handbook-05/"/>
+    <id>http://yoursite.com/2017/03/28/Kettle-handbook-05/</id>
+    <published>2017-03-28T15:30:44.000Z</published>
+    <updated>2017-08-27T13:11:40.355Z</updated>
     
     <content type="html"><![CDATA[<p>综合前面的几个例子，我们这里来是实现下增量数据的同步。<br>这里只是分享一种方法，实际工作中，还会有其他更好的方案。<br>增量同步的整体思路一般就是：首先拿到这张表的增量数据，怎么拿增量呢，源表需要有一个时间字段，代表该条记录的最新更新时间（及只要该条记录变化，该时间字段就会更新），当然有时间字段最好了，没有的话，可能需要做全表对比之类的操作；正常情况下，业务系统的表中都是有主键的，我们拿到增量数据之后，需要判断该记录的新插入的，还是更新的记录，如果是更新记录，我们需要先将数据加载到中间表，然后，根据主键将目标表中已存在的数据删除，最后再将本次的增量数据插入到目标表。</p>
 <h2 id="1-配置表的设计（元数据表）"><a href="#1-配置表的设计（元数据表）" class="headerlink" title="1.配置表的设计（元数据表）"></a>1.配置表的设计（元数据表）</h2><p>首先我们需要一张配置表，来保存我们要增量同步的表的基本信息<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">--元数据表</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> tm_etl_table(</div><div class="line">	table_name <span class="built_in">varchar</span>(<span class="number">50</span>), <span class="comment">--表名</span></div><div class="line">	is_run <span class="built_in">int</span> , <span class="comment">--调度状态</span></div><div class="line">	update_time <span class="keyword">timestamp</span>,<span class="comment">--表数据更新时间</span></div><div class="line">	etl_insert_time <span class="keyword">timestamp</span> <span class="comment">--记录更新时间</span></div><div class="line">);</div></pre></td></tr></table></figure></p>

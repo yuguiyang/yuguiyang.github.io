@@ -1,8 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Cognos资料汇总贴]]></title>
+    <url>%2F2017%2F08%2F01%2Fcognos-doc-main%2F</url>
+    <content type="text"><![CDATA[以前搞过Cognos，写过很多基础的教程，应该是14年的样子，都在CSDN上，这里贴个汇总贴吧，想要看的同学可以去看看，希望有帮助。 ReportStudio入门教程：http://blog.csdn.net/column/details/ygy-reportstudio.html Framework Manage入门教程：http://blog.csdn.net/column/details/ygy-frameworkmanager.html Cognos函数手册：http://blog.csdn.net/column/details/ygy-cognos-function.html Cognos相关的其他资料（主页不同的类别下看看）：http://blog.csdn.net/yuguiyang1990 好了，感兴趣的同学，可以自行去看看，好久不搞了，估计有疑问也解决不了了…]]></content>
+      <categories>
+        <category>数据可视化-Cognos</category>
+      </categories>
+      <tags>
+        <tag>Cognos</tag>
+        <tag>数据可视化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Kettle手册（十二）- 控件使用-从步骤插入数据]]></title>
+    <url>%2F2017%2F04%2F14%2FKettle-handbook-12%2F</url>
+    <content type="text"><![CDATA[这里介绍一个控件的小功能，也是最近才发现的，之前在“表输入”中要使用参数的话，一般都是使用变量，其实，还有个功能也可以尝试使用整体流程就是这样，我们第一个 query_paramter，就是查询了我们想设置的参数然后，就是我们真正需要的，我们再表输入中，使用 “?”来占位，然后“从步骤插入数据”，选择上一个步骤，然后会将数据替换占位符最后，我们将文件导出即可，奥对了，我们可以改成日志控件，直接输出查看刚刚，上面还有一个“执行每一行”，这个就是，如果我们有多个参数，就可以使用这个参数了，很方便，好了，就介绍到这里先。]]></content>
+      <categories>
+        <category>ETL-Kettle</category>
+      </categories>
+      <tags>
+        <tag>Kettle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Kettle手册（十一）- 用PGP加密、加密文件]]></title>
+    <url>%2F2017%2F04%2F11%2FKettle-handbook-11%2F</url>
+    <content type="text"><![CDATA[看到有同学提问，以前也没用过，百度了一下，找了些资料，这里记录下。 1. 安装gpg4win这个gpg4win是干嘛的呢，我们可以去他的官网看看：gpg4win目前，只知道他是加密的，这个是对Windows平台使用的这里可能还有个PGP的概念，看看百度百科 好了，具体概念，大家可以自行找找，我们下载下来，然后安装一下即可这个是昨天安装的，就不粘贴步骤了，安装完后，我们要先创建一个证书的东西，我们打开这个管理界面打开后，是这样一个界面，（网上有这个的安装配置教程，这里也简单介绍下，不清楚的可以再百度看看）我们新建一个Certificate我们选择一个加密方式，使用第一个就可以了我们输入些基本信息然后next就可以然后，我们得输入一段密钥好了，这里，就配置完成了 2. 用PGP加密文件好了，这里，我们新建一个作业，我们主要使用这2个控件一个很简单的流程，我们做些简单的配置，一个是GPG的目录（就是我们上面安装的那个）还有就是，我们的要加密的文件和一个目标文件名，注意，这里我们得填写一下“用户ID”，就是我们前面新建的那个用户名就可以了这里，可以勾选一下，目标是一个文件好了，然后，我们执行下就可以了我们源文件：加密后的文件：下面，我们再看看，怎样解密 3. 用PGP解密文件知道了加密，解密也是一样的，这里的话，配置和上面差不多，这里，我们要填写一个“密钥”，就是我们上面创建时，输入的一个密码我们运行一下，解密后，是一样的好了，就简单介绍到这里]]></content>
+      <categories>
+        <category>ETL-Kettle</category>
+      </categories>
+      <tags>
+        <tag>Kettle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Kettle手册（十）- 跨库查询]]></title>
+    <url>%2F2017%2F04%2F10%2FKettle-handbook-10%2F</url>
+    <content type="text"><![CDATA[Kettle整体使用起来，还是很方便的，熟悉应用了之后，就是对控件的熟悉和使用了，只要思路有了，就是整合下Kettle中各个控件的使用就行。这里，简单介绍下一个“跨库查询”的控件。有的时候，我们一个脚本，可能只是临时性的，或者需要实时的去查一下，同步到数仓的话，可能不太方便，我们就可以使用跨库查询的控件用到的表信息 1. 数据库连接(Database Join)我们先用这个控件来实现一下用起来也很简单表输入：是我们第一个库中的SQL数据库连接：是我们另一个库的SQL我们用关联的字段放在where条件后，使用“?”来占位，并在下面，选择要传入的参数默认的话，是JOIN，我们也可以勾选Outer Join，然后，我们看下，输出就行这是后面导出的文件，这里，我们就简单实现了跨库的查询 2. 数据库查询我们再来看另一个控件，“数据库查询”，这个控件同样可以实现跨库，但是有一个小问题首先，我们使用上一次的数据来看我们执行下，结果看上去是一样的这其实有个隐藏的问题，我们再增加几条记录看看比如：现在1号有2条记录，正常的话，我们导出也是要有2条的我们执行下看看我们会看到，数据并没有增加，这是控件导致的，先获取左边的结果集，然后一条一条去右边匹配；匹配到第一条记录后，就会跳出，直接去匹配下一个，所以，我们有2条记录，也只会找到第一个。这并不是我们想要的，我们再试下第一个控件使用这个“数据库查询”控件的话，可以通过将1-N关系汇总，将N的一方，放在前面最后的结果也是可以的]]></content>
+      <categories>
+        <category>ETL-Kettle</category>
+      </categories>
+      <tags>
+        <tag>Kettle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Kettle手册（九）- 发送邮件]]></title>
+    <url>%2F2017%2F03%2F30%2FKettle-handbook-09%2F</url>
+    <content type="text"><![CDATA[在Kettle里面，我们每天执行完调度之后，想要监控下JOB的执行状态，通常我们可以会发送邮件，可以的话，还可以发送短信。 在Kettle里面，发送邮件很方便，这里，我们就简单的测试下。 1. 在作业中发送简单邮件我们只需要使用到这个控件就可以了，这样，一个简单的发送邮件流程就好了 控件的配置：收件人，抄送啊，信息，自行填写就行，多个收件人，使用“空格”分隔在服务器这里，我们填上服务器的信息就可以了这里是邮件消息的一些配置，暂时先到这里，我们测试下结果然后，查看邮箱，我们会接收到这个邮件，刚刚简单测了下这个“回复名称”，就是这里试过中文，会有问题，有乱码，可能是Windows下的原因，没有再去测试验证就是收到邮件时的一个发件人的名称，不同邮箱显示的不一样 2. 增加附件附件的话，也很简单，上面的面板中直接配置就可以了然后，我们需要将待发送的邮件，添加到结果集中在控件中，我们添加好文件就行了。我们再次发送，验证下好了，附件也可以了，思路就是这样的，实际应用时，可能还有些问题得注意下 3. 自定义邮件内容到这里，我们会看到，邮件的正文内容，可能并不是我们想要的， 我们想要的可能是这样的信息这就需要自定义正文内容，我们需要勾选下面这个选项这里是可以使用变量的，我们可以拼接HTML来实现好了，邮件的介绍，大概就这些，在转换中，也是可以使用的，大同小异]]></content>
+      <categories>
+        <category>ETL-Kettle</category>
+      </categories>
+      <tags>
+        <tag>Kettle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Kettle手册（八）- 循环]]></title>
+    <url>%2F2017%2F03%2F29%2FKettle-handbook-08%2F</url>
+    <content type="text"><![CDATA[有的时候，我们想要在Kettle中实现这个循环的功能，比如，批量加载数据的时候，我们要对10张表执行同样的操作，只有表名和一些信息不一样，这时，写个循环就省事儿多了 1. 遍历结果集实现这里的话，我们主要是通过一个将结果集返回，然后通过转换的设置来实现的 1.1 query_the_result这个转换，只要是将我们要遍历的结果集返回，表输入，我们就是返回了5条记录，来做遍历复制记录到结果，这个控件的作用，就是我们可以在后面的转换继续使用这个结果集。 ##1.2 traverse_the_result这里呢，我们就是需要遍历的转换了，这里，我们只是获取结果集，然后将结果集输出还有一个很重要的一步，怎样让这个转换可以根据结果集的条数，去循环执行呢？就是这个“执行每一个输入行”我们执行下看看 2. 使用JS实现网上有很多的例子，介绍怎样用JS来控制循环，这里我们也简单的测试下 2.1 query_the_result这一步，和上面的一样，就是将结果集返回 2.2 travers_the_result这里主要是使用JS将结果集进行遍历，通过JS，将一些结果存放到变量里面，在后面的操作中就可以使用了，通过${xxx}的方式使用这个其实和Java、JS里面循环思路一样，通过结果集的总数“total_num”和下标“LoopCounter”进行判断 2.3 evaluate_the_loop_count这一步，就是判断下标的值和结果集的总数，进行对比， 2.4 print_the_log输出下，我们想要使用的变量 2.5 manage_the_loop_index这一步，给下标加一，然后获取下一条记录好了，执行下，我们看看好了，循环的使用先介绍到这里]]></content>
+      <categories>
+        <category>ETL-Kettle</category>
+      </categories>
+      <tags>
+        <tag>Kettle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Kettle手册（七）- 资源库的使用]]></title>
+    <url>%2F2017%2F03%2F29%2FKettle-handbook-07%2F</url>
+    <content type="text"><![CDATA[1. 为什么使用资源库之前，我们新建转换或者作业的时候，都是直接保存在本地，而如果我们是多人开发的话，除了使用SVN等版本控制软件，还可以使用Kettle的资源库，他会将转换、作业直接保存在数据库中，而且，连接资源库的话，我们就不需要每一次都新建数据库连接了，用起来还是蛮方便的。 2. 新建资源库Kettle7.0里面，是在右上角这个Connect来连接的 2.1 资源库的类型资源库有3中类型Pentaho RepositoryDatabase Repository（使用数据库存储）File Repository（使用文件存储） 2.2 新建Pentaho Repository我们单击上面的get started 之后，就会进入新建界面http://localhost:8080/pentaho一开始还没搞懂这个Server到底怎么启动，后来google了半天发现后来又找到了这个，应该是要安装其他的组件才行，这个类型的库就放弃吧。。 2.3 Database Repository好了，这回，我们选择哪个database的资源库我们填一个connection的名字，然后配置一个资源库的连接就可以了，最好给kettle新建一个数据库使用至于数据库连接的话，和转换里面是一样的，大家可以自行新建一个配置好，以后，大家选择Finish就可以了，然后，我们可以连接下这个库，注意下，这里的用户名和密码，默认是admin/admin，大家直接登录就好了，这是Kettle自己初始化的这个怎么改呢，暂时还没有发现，待研究，等我再google看看，估计官网上会有。（找了下，发现了在哪改密码，就是刚刚的搜索资源库)连接后，我们正常使用就好了，没啥两样，会多一些功能，比如，探索资源库这里我们再保存作业和转换的话，会直接保存在数据库中，而且，很好的一个功能，个人感觉，就是数据库连接只需要创建一次，在哪里都可以用了，不需要再次创建。 2.4 File Repository这个和database的资源库，就差不多了，只不过是基于文件的，保存在本地就可以了这个就和Eclipse一个工作区差不多，转换、作业都保存在这个目录下好了，关于资源库，就简单的说这些了，大家可以自行连接，试试。]]></content>
+      <categories>
+        <category>ETL-Kettle</category>
+      </categories>
+      <tags>
+        <tag>Kettle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Kettle手册（六）- Hop小记]]></title>
+    <url>%2F2017%2F03%2F29%2FKettle-handbook-06%2F</url>
+    <content type="text"><![CDATA[1. 什么是Hop在我们前面，使用Kettle过程中，控件与控件之间的连线，这里，我们详细介绍下它，它在Kettle中叫Hop（跳）。 2. Hop的发送方式（转换）在转换中，一般情况，控件和控件之间只有一个Hop，当然，如果需要的话，我们拖了2个控件出来，像这样：Kettle会提示你，下面的信息，让你选择，数据发送的方式 2.1 分发记录目标步骤轮流接收记录，其实就是你一条，我一条，轮着接收数据，这个我们试一下就知道了，我们执行下，看看这个结果试试，我们再步骤度量中，可以看到，a.txt和b.txt分别写入的数量看看结果文件，就是这样的 2.2 复制记录所有记录同时发送到所有的目标步骤，这个看起来就简单多了，比如上面的例子，2个文本文件会接收到同样的所有的数据，我们也试一下结果文件的话，就是2个节点，接收到的数据都是一样的 3.Hop的状态（作业）在作业中，Hop主要用来控制流程有3种状态，一个锁，一个绿色的对号，一个红色的叉号简单来说，：表示无论上一步执行成功还是失败，都一定会执行下一步：表示上一步执行成功才会执行下一步：表示上一步执行失败执行下一步比如我们上面的例子，我们的转换执行成功后，就结束了，如果转换执行失败了，我们就发送邮件。]]></content>
+      <categories>
+        <category>ETL-Kettle</category>
+      </categories>
+      <tags>
+        <tag>Kettle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Kettle手册（五）- 实例-增量同步数据]]></title>
-    <url>%2F2017%2F03%2F29%2FKettle-handbook-05%2F</url>
+    <url>%2F2017%2F03%2F28%2FKettle-handbook-05%2F</url>
     <content type="text"><![CDATA[综合前面的几个例子，我们这里来是实现下增量数据的同步。这里只是分享一种方法，实际工作中，还会有其他更好的方案。增量同步的整体思路一般就是：首先拿到这张表的增量数据，怎么拿增量呢，源表需要有一个时间字段，代表该条记录的最新更新时间（及只要该条记录变化，该时间字段就会更新），当然有时间字段最好了，没有的话，可能需要做全表对比之类的操作；正常情况下，业务系统的表中都是有主键的，我们拿到增量数据之后，需要判断该记录的新插入的，还是更新的记录，如果是更新记录，我们需要先将数据加载到中间表，然后，根据主键将目标表中已存在的数据删除，最后再将本次的增量数据插入到目标表。 1.配置表的设计（元数据表）首先我们需要一张配置表，来保存我们要增量同步的表的基本信息1234567--元数据表create table tm_etl_table( table_name varchar(50), --表名 is_run int , --调度状态 update_time timestamp,--表数据更新时间 etl_insert_time timestamp --记录更新时间); 我们初始化一条记录，我们就以这张ods_tm_book表一些基础表准备 12345678910-- 源表create table tm_book(id int,book_name varchar(10),latest_time timestamp);-- 源表数据初始化insert into tm_book(id,book_name,latest_time)select x,x||'_name',clock_timestamp() from generate_series(1,10) x;-- 目标表和中间表create table ods_tm_book(id int,book_name varchar(10),latest_time timestamp,etl_insert_time timestamp);create table staging_tm_book(id int,book_name varchar(10),latest_time timestamp); 源表中的数据 2.同步数据的流程开发整体流程是这样的，注意下，这个只是为了简单演示了这个增量的例子，实际应用的话得修改，这是有漏洞的。 2.1更新元数据表的状态并获取表更新时间就是我们第一个状态，我们更新tm_etl_table表，更新is_run=0，表示我们开始同步数据了，update_time，初始化为 ‘1970-01-01’，表示我们要拉取所有的数据这里，我们将该表的更新时间作为变量，我们会在后面的转换中使用 2.2 加载数据到中间表我们这里，直接表对表，将数据插入到staging其中，表输入中，我们需要根据前面的更新时间变量，获取增量数据，注意，需要勾选上“替换SQL语句中的变量”这里，我们直接就表输出到中间表，每次都需将清空表数据 2.3 加载数据到目标表这里，主要有3段脚本（为了方便，就这样吧），根据主键ID，清空目标表数据，然后，将数据插入到目标表，最后，更新tm_etl_table表中的记录状态好了，用Kettle实现一个增量的逻辑大概就是这样了， 3.小结这里整理几个问题 3.1 中间表这里的话，使用了中间表，Kettle中是有一个控件的，应该叫那个“插入/更新”，可以根据主键将数据更新掉，这个控件之前使用时，发现很慢，就一直没用，后面的话，可能会写个例子，简单测试看看。使用中间表，缓存下数据，也是不错的方法。 3.2 增量流程目前公司中，增量抽取，是这样的，首先各个业务系统的数据导出到文本文件，然后批量将文件加载到数据仓库中（这里使用循环加载的）。因为每天的数据量比较大，如果知己到表的话，会很慢，使用文件，一些数据库都有批量加载的命令，很快很方便，比如：PostgreSQL中的copy命令，Greenplum中的外部表，还有Mysql中的load data等等。]]></content>
       <categories>
         <category>ETL-Kettle</category>

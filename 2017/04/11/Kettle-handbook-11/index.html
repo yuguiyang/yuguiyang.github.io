@@ -104,27 +104,43 @@
 
 
 
-<meta name="description" content="好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。 1. Kettle的配置文件 配置文件在哪呢？">
+<meta name="description" content="看到有同学提问，以前也没用过，百度了一下，找了些资料，这里记录下。 1. 安装gpg4win这个gpg4win是干嘛的呢，我们可以去他的官网看看：gpg4win目前，只知道他是加密的，这个是对Windows平台使用的这里可能还有个PGP的概念，看看百度百科">
 <meta name="keywords" content="Kettle">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kettle手册（三）- 配置文件的使用及密码加密">
-<meta property="og:url" content="http://yoursite.com/2017/03/28/Kettle-handbook-03/index.html">
+<meta property="og:title" content="Kettle手册（十一）- 用PGP加密、加密文件">
+<meta property="og:url" content="http://yoursite.com/2017/04/11/Kettle-handbook-11/index.html">
 <meta property="og:site_name" content="于贵洋的博客">
-<meta property="og:description" content="好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。 1. Kettle的配置文件 配置文件在哪呢？">
+<meta property="og:description" content="看到有同学提问，以前也没用过，百度了一下，找了些资料，这里记录下。 1. 安装gpg4win这个gpg4win是干嘛的呢，我们可以去他的官网看看：gpg4win目前，只知道他是加密的，这个是对Windows平台使用的这里可能还有个PGP的概念，看看百度百科">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-01.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-02.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-03.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-07.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-08.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-04.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-06.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-05.png-blog.photo">
-<meta property="og:updated_time" content="2017-08-26T15:39:56.222Z">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-01.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-02.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-03.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-04.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-05.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-06.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-07.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-08.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-09.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-10.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-11.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-12.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-13.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-14.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-15.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-16.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-17.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-18.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-19.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-20.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-21.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-22.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-23.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-24.png-blog.photo">
+<meta property="og:updated_time" content="2017-08-27T14:31:04.826Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kettle手册（三）- 配置文件的使用及密码加密">
-<meta name="twitter:description" content="好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。 1. Kettle的配置文件 配置文件在哪呢？">
-<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-01.png-blog.photo">
+<meta name="twitter:title" content="Kettle手册（十一）- 用PGP加密、加密文件">
+<meta name="twitter:description" content="看到有同学提问，以前也没用过，百度了一下，找了些资料，这里记录下。 1. 安装gpg4win这个gpg4win是干嘛的呢，我们可以去他的官网看看：gpg4win目前，只知道他是加密的，这个是对Windows平台使用的这里可能还有个PGP的概念，看看百度百科">
+<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-01.png-blog.photo">
 
 
 
@@ -154,13 +170,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/28/Kettle-handbook-03/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/11/Kettle-handbook-11/"/>
 
 
 
 
 
-  <title>Kettle手册（三）- 配置文件的使用及密码加密 | 于贵洋的博客</title>
+  <title>Kettle手册（十一）- 用PGP加密、加密文件 | 于贵洋的博客</title>
   
 
 
@@ -361,7 +377,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/Kettle-handbook-03/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/Kettle-handbook-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -378,7 +394,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Kettle手册（三）- 配置文件的使用及密码加密</h1>
+          <h1 class="post-title" itemprop="name headline">Kettle手册（十一）- 用PGP加密、加密文件</h1>
         
 
         <div class="post-meta">
@@ -390,8 +406,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T22:24:44+08:00">
-                2017-03-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-11T11:24:44+08:00">
+                2017-04-11
               </time>
             
 
@@ -455,15 +471,12 @@
       
 
       
-        <p>好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。</p>
-<div class="note primary"><h2 id="1-Kettle的配置文件"><a href="#1-Kettle的配置文件" class="headerlink" title="1. Kettle的配置文件"></a>1. Kettle的配置文件</h2></div>
-<p>配置文件在哪呢？Windows下，是再当前用户的目录下，一般再C盘，Users下面，有一个当前用户的文件夹，下面有.kettle文件夹<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-01.png-blog.photo" alt="Kettle-handbook-03-01.png"><br>进入之后，我们会看到一个kettle.properties的文件，我们的数据库配置信息，就可以放在这里，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-02.png-blog.photo" alt="Kettle-handbook-03-02.png"></p>
+        <p>看到有同学提问，以前也没用过，百度了一下，找了些资料，这里记录下。</p>
+<h1 id="1-安装gpg4win"><a href="#1-安装gpg4win" class="headerlink" title="1. 安装gpg4win"></a>1. 安装gpg4win</h1><p>这个gpg4win是干嘛的呢，我们可以去他的官网看看：<a href="https://www.gpg4win.org/index.html" target="_blank" rel="external">gpg4win</a><br>目前，只知道他是加密的，这个是对Windows平台使用的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-01.png-blog.photo" alt="Kettle-handbook-11-01.png"><br>这里可能还有个PGP的概念，看看百度百科<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-02.png-blog.photo" alt="Kettle-handbook-11-02.png"></p>
 <a id="more"></a>
-<p>我们打开之后，编辑一下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-03.png-blog.photo" alt="Kettle-handbook-03-03.png"><br>保存后，我们要重新启动下Kettle，因为这个配置文件是启动时加载的<br>重启后，我们将上一次，配置的转换打开，使用变量替换下之前的配置，Kettle中，我们使用${xxx}，表示引用一个变量，执行时，会自动替换<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-07.png-blog.photo" alt="Kettle-handbook-03-07.png"><br>我们测试下，同样时可以成功的。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-08.png-blog.photo" alt="Kettle-handbook-03-08.png"><br>好了，这样，以后，不管是，数据库地址变化，还是部署生产，我们只需要修改配置文件就可以了。</p>
-<div class="note primary"><h2 id="2-密码加密"><a href="#2-密码加密" class="headerlink" title="2. 密码加密"></a>2. 密码加密</h2></div>
-<p>这里，顺便说下，加密的问题，比如，我们上面的数据库密码，是明文的，这样是不太安全的，而实际上，我们都是需要对密码进行加密的<br>我们进到Kettle的安装目录<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-04.png-blog.photo" alt="Kettle-handbook-03-04.png"><br>我们会看到，这里有一个Encr.bat，这就是可以加密的脚本<br>使用方法<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-06.png-blog.photo" alt="Kettle-handbook-03-06.png"><br>我们输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Encr.bat -kettle postgres</div></pre></td></tr></table></figure></p>
-<p>执行后，会生成，这样一个加密后的密码，然后，我们可以使用这个加密后的字符串，替换我们的密码<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-05.png-blog.photo" alt="Kettle-handbook-03-05.png"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pg_password = Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</div></pre></td></tr></table></figure></p>
-<p>大家可以试下，这样也是可以的，好了，这个例子就到这。</p>
+<p>好了，具体概念，大家可以自行找找，我们下载下来，然后安装一下即可<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-03.png-blog.photo" alt="Kettle-handbook-11-03.png"><br>这个是昨天安装的，就不粘贴步骤了，安装完后，我们要先创建一个证书的东西，我们打开这个管理界面<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-04.png-blog.photo" alt="Kettle-handbook-11-04.png"><br>打开后，是这样一个界面，（网上有这个的安装配置教程，这里也简单介绍下，不清楚的可以再百度看看）<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-05.png-blog.photo" alt="Kettle-handbook-11-05.png"><br>我们新建一个Certificate<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-06.png-blog.photo" alt="Kettle-handbook-11-06.png"><br>我们选择一个加密方式，使用第一个就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-07.png-blog.photo" alt="Kettle-handbook-11-07.png"><br>我们输入些基本信息然后next就可以<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-08.png-blog.photo" alt="Kettle-handbook-11-08.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-09.png-blog.photo" alt="Kettle-handbook-11-09.png"><br>然后，我们得输入一段密钥<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-10.png-blog.photo" alt="Kettle-handbook-11-10.png"><br>好了，这里，就配置完成了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-11.png-blog.photo" alt="Kettle-handbook-11-11.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-12.png-blog.photo" alt="Kettle-handbook-11-12.png"></p>
+<h1 id="2-用PGP加密文件"><a href="#2-用PGP加密文件" class="headerlink" title="2. 用PGP加密文件"></a>2. 用PGP加密文件</h1><p>好了，这里，我们新建一个作业，我们主要使用这2个控件<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-13.png-blog.photo" alt="Kettle-handbook-11-13.png"><br>一个很简单的流程，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-14.png-blog.photo" alt="Kettle-handbook-11-14.png"><br>我们做些简单的配置，<br>一个是GPG的目录（就是我们上面安装的那个）<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-15.png-blog.photo" alt="Kettle-handbook-11-15.png"><br>还有就是，我们的要加密的文件和一个目标文件名，注意，这里我们得填写一下“用户ID”，就是我们前面新建的那个用户名就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-16.png-blog.photo" alt="Kettle-handbook-11-16.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-17.png-blog.photo" alt="Kettle-handbook-11-17.png"><br>这里，可以勾选一下，目标是一个文件<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-18.png-blog.photo" alt="Kettle-handbook-11-18.png"><br>好了，然后，我们执行下就可以了<br>我们源文件：<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-19.png-blog.photo" alt="Kettle-handbook-11-19.png"><br>加密后的文件：<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-20.png-blog.photo" alt="Kettle-handbook-11-20.png"><br>下面，我们再看看，怎样解密</p>
+<h1 id="3-用PGP解密文件"><a href="#3-用PGP解密文件" class="headerlink" title="3. 用PGP解密文件"></a>3. 用PGP解密文件</h1><p>知道了加密，解密也是一样的，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-21.png-blog.photo" alt="Kettle-handbook-11-21.png"><br>这里的话，配置和上面差不多，这里，我们要填写一个“密钥”，就是我们上面创建时，输入的一个密码<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-22.png-blog.photo" alt="Kettle-handbook-11-22.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-23.png-blog.photo" alt="Kettle-handbook-11-23.png"><br>我们运行一下，解密后，是一样的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-24.png-blog.photo" alt="Kettle-handbook-11-24.png"><br>好了，就简单介绍到这里</p>
 
       
     </div>
@@ -492,7 +505,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2017/03/28/Kettle-handbook-03/" title="Kettle手册（三）- 配置文件的使用及密码加密">http://yoursite.com/2017/03/28/Kettle-handbook-03/</a>
+    <a href="http://yoursite.com/2017/04/11/Kettle-handbook-11/" title="Kettle手册（十一）- 用PGP加密、加密文件">http://yoursite.com/2017/04/11/Kettle-handbook-11/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -520,8 +533,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/27/Kettle-handbook-02/" rel="next" title="Kettle手册（二）- 将数据导出为Excel">
-                <i class="fa fa-chevron-left"></i> Kettle手册（二）- 将数据导出为Excel
+              <a href="/2017/04/10/Kettle-handbook-10/" rel="next" title="Kettle手册（十）- 跨库查询">
+                <i class="fa fa-chevron-left"></i> Kettle手册（十）- 跨库查询
               </a>
             
           </div>
@@ -530,8 +543,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/28/Kettle-handbook-04/" rel="prev" title="Kettle手册（四）- 变量的使用">
-                Kettle手册（四）- 变量的使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/14/Kettle-handbook-12/" rel="prev" title="Kettle手册（十二）- 控件使用-从步骤插入数据">
+                Kettle手册（十二）- 控件使用-从步骤插入数据 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -702,7 +715,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Kettle的配置文件"><span class="nav-number">1.</span> <span class="nav-text">1. Kettle的配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-密码加密"><span class="nav-number">2.</span> <span class="nav-text">2. 密码加密</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-安装gpg4win"><span class="nav-number">1.</span> <span class="nav-text">1. 安装gpg4win</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-用PGP加密文件"><span class="nav-number">2.</span> <span class="nav-text">2. 用PGP加密文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-用PGP解密文件"><span class="nav-number">3.</span> <span class="nav-text">3. 用PGP解密文件</span></a></li></ol></div>
             
 
           </div>

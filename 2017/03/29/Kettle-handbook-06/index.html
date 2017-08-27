@@ -104,27 +104,36 @@
 
 
 
-<meta name="description" content="好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。 1. Kettle的配置文件 配置文件在哪呢？">
+<meta name="description" content="1. 什么是Hop在我们前面，使用Kettle过程中，控件与控件之间的连线，这里，我们详细介绍下它，它在Kettle中叫Hop（跳）。">
 <meta name="keywords" content="Kettle">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kettle手册（三）- 配置文件的使用及密码加密">
-<meta property="og:url" content="http://yoursite.com/2017/03/28/Kettle-handbook-03/index.html">
+<meta property="og:title" content="Kettle手册（六）- Hop小记">
+<meta property="og:url" content="http://yoursite.com/2017/03/29/Kettle-handbook-06/index.html">
 <meta property="og:site_name" content="于贵洋的博客">
-<meta property="og:description" content="好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。 1. Kettle的配置文件 配置文件在哪呢？">
+<meta property="og:description" content="1. 什么是Hop在我们前面，使用Kettle过程中，控件与控件之间的连线，这里，我们详细介绍下它，它在Kettle中叫Hop（跳）。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-01.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-02.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-03.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-07.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-08.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-04.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-06.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-05.png-blog.photo">
-<meta property="og:updated_time" content="2017-08-26T15:39:56.222Z">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-01.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-02.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-03.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-04.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-05.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-06.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-07.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-08.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-09.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-10.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-11.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-12.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-13.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-14.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-15.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-16.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-17.png-blog.photo">
+<meta property="og:updated_time" content="2017-08-27T13:10:27.873Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kettle手册（三）- 配置文件的使用及密码加密">
-<meta name="twitter:description" content="好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。 1. Kettle的配置文件 配置文件在哪呢？">
-<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-01.png-blog.photo">
+<meta name="twitter:title" content="Kettle手册（六）- Hop小记">
+<meta name="twitter:description" content="1. 什么是Hop在我们前面，使用Kettle过程中，控件与控件之间的连线，这里，我们详细介绍下它，它在Kettle中叫Hop（跳）。">
+<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-01.png-blog.photo">
 
 
 
@@ -154,13 +163,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/28/Kettle-handbook-03/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/29/Kettle-handbook-06/"/>
 
 
 
 
 
-  <title>Kettle手册（三）- 配置文件的使用及密码加密 | 于贵洋的博客</title>
+  <title>Kettle手册（六）- Hop小记 | 于贵洋的博客</title>
   
 
 
@@ -361,7 +370,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/Kettle-handbook-03/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/29/Kettle-handbook-06/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -378,7 +387,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Kettle手册（三）- 配置文件的使用及密码加密</h1>
+          <h1 class="post-title" itemprop="name headline">Kettle手册（六）- Hop小记</h1>
         
 
         <div class="post-meta">
@@ -390,8 +399,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T22:24:44+08:00">
-                2017-03-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-29T22:24:44+08:00">
+                2017-03-29
               </time>
             
 
@@ -455,15 +464,12 @@
       
 
       
-        <p>好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。</p>
-<div class="note primary"><h2 id="1-Kettle的配置文件"><a href="#1-Kettle的配置文件" class="headerlink" title="1. Kettle的配置文件"></a>1. Kettle的配置文件</h2></div>
-<p>配置文件在哪呢？Windows下，是再当前用户的目录下，一般再C盘，Users下面，有一个当前用户的文件夹，下面有.kettle文件夹<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-01.png-blog.photo" alt="Kettle-handbook-03-01.png"><br>进入之后，我们会看到一个kettle.properties的文件，我们的数据库配置信息，就可以放在这里，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-02.png-blog.photo" alt="Kettle-handbook-03-02.png"></p>
+        <h1 id="1-什么是Hop"><a href="#1-什么是Hop" class="headerlink" title="1. 什么是Hop"></a>1. 什么是Hop</h1><p>在我们前面，使用Kettle过程中，控件与控件之间的连线，这里，我们详细介绍下它，它在Kettle中叫Hop（跳）。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-01.png-blog.photo" alt="Kettle-handbook-06-01.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-02.png-blog.photo" alt="Kettle-handbook-06-02.png"></p>
 <a id="more"></a>
-<p>我们打开之后，编辑一下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-03.png-blog.photo" alt="Kettle-handbook-03-03.png"><br>保存后，我们要重新启动下Kettle，因为这个配置文件是启动时加载的<br>重启后，我们将上一次，配置的转换打开，使用变量替换下之前的配置，Kettle中，我们使用${xxx}，表示引用一个变量，执行时，会自动替换<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-07.png-blog.photo" alt="Kettle-handbook-03-07.png"><br>我们测试下，同样时可以成功的。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-08.png-blog.photo" alt="Kettle-handbook-03-08.png"><br>好了，这样，以后，不管是，数据库地址变化，还是部署生产，我们只需要修改配置文件就可以了。</p>
-<div class="note primary"><h2 id="2-密码加密"><a href="#2-密码加密" class="headerlink" title="2. 密码加密"></a>2. 密码加密</h2></div>
-<p>这里，顺便说下，加密的问题，比如，我们上面的数据库密码，是明文的，这样是不太安全的，而实际上，我们都是需要对密码进行加密的<br>我们进到Kettle的安装目录<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-04.png-blog.photo" alt="Kettle-handbook-03-04.png"><br>我们会看到，这里有一个Encr.bat，这就是可以加密的脚本<br>使用方法<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-06.png-blog.photo" alt="Kettle-handbook-03-06.png"><br>我们输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Encr.bat -kettle postgres</div></pre></td></tr></table></figure></p>
-<p>执行后，会生成，这样一个加密后的密码，然后，我们可以使用这个加密后的字符串，替换我们的密码<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-05.png-blog.photo" alt="Kettle-handbook-03-05.png"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pg_password = Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</div></pre></td></tr></table></figure></p>
-<p>大家可以试下，这样也是可以的，好了，这个例子就到这。</p>
+<h1 id="2-Hop的发送方式（转换）"><a href="#2-Hop的发送方式（转换）" class="headerlink" title="2. Hop的发送方式（转换）"></a>2. Hop的发送方式（转换）</h1><p>在转换中，一般情况，控件和控件之间只有一个Hop，当然，如果需要的话，我们拖了2个控件出来，像这样：<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-03.png-blog.photo" alt="Kettle-handbook-06-03.png"><br>Kettle会提示你，下面的信息，让你选择，数据发送的方式<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-04.png-blog.photo" alt="Kettle-handbook-06-04.png"></p>
+<h2 id="2-1-分发记录"><a href="#2-1-分发记录" class="headerlink" title="2.1 分发记录"></a>2.1 分发记录</h2><p>目标步骤轮流接收记录，其实就是你一条，我一条，轮着接收数据，这个我们试一下就知道了，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-05.png-blog.photo" alt="Kettle-handbook-06-05.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-06.png-blog.photo" alt="Kettle-handbook-06-06.png"><br>我们执行下，看看这个结果试试，我们再步骤度量中，可以看到，a.txt和b.txt分别写入的数量<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-07.png-blog.photo" alt="Kettle-handbook-06-07.png"><br>看看结果文件，就是这样的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-08.png-blog.photo" alt="Kettle-handbook-06-08.png"></p>
+<h2 id="2-2-复制记录"><a href="#2-2-复制记录" class="headerlink" title="2.2 复制记录"></a>2.2 复制记录</h2><p>所有记录同时发送到所有的目标步骤，这个看起来就简单多了，比如上面的例子，2个文本文件会接收到同样的所有的数据，我们也试一下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-09.png-blog.photo" alt="Kettle-handbook-06-09.png"><br>结果文件的话，就是2个节点，接收到的数据都是一样的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-10.png-blog.photo" alt="Kettle-handbook-06-10.png"></p>
+<h1 id="3-Hop的状态（作业）"><a href="#3-Hop的状态（作业）" class="headerlink" title="3.Hop的状态（作业）"></a>3.Hop的状态（作业）</h1><p>在作业中，Hop主要用来控制流程<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-11.png-blog.photo" alt="Kettle-handbook-06-11.png"><br>有3种状态，一个锁，一个绿色的对号，一个红色的叉号<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-12.png-blog.photo" alt="Kettle-handbook-06-12.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-13.png-blog.photo" alt="Kettle-handbook-06-13.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-14.png-blog.photo" alt="Kettle-handbook-06-14.png"><br>简单来说，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-15.png-blog.photo" alt="Kettle-handbook-06-15.png">：表示无论上一步执行成功还是失败，都一定会执行下一步<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-16.png-blog.photo" alt="Kettle-handbook-06-16.png">：表示上一步执行成功才会执行下一步<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-17.png-blog.photo" alt="Kettle-handbook-06-17.png">：表示上一步执行失败执行下一步<br>比如我们上面的例子，我们的转换执行成功后，就结束了，如果转换执行失败了，我们就发送邮件。</p>
 
       
     </div>
@@ -492,7 +498,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2017/03/28/Kettle-handbook-03/" title="Kettle手册（三）- 配置文件的使用及密码加密">http://yoursite.com/2017/03/28/Kettle-handbook-03/</a>
+    <a href="http://yoursite.com/2017/03/29/Kettle-handbook-06/" title="Kettle手册（六）- Hop小记">http://yoursite.com/2017/03/29/Kettle-handbook-06/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -520,8 +526,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/27/Kettle-handbook-02/" rel="next" title="Kettle手册（二）- 将数据导出为Excel">
-                <i class="fa fa-chevron-left"></i> Kettle手册（二）- 将数据导出为Excel
+              <a href="/2017/03/28/Kettle-handbook-05/" rel="next" title="Kettle手册（五）- 实例-增量同步数据">
+                <i class="fa fa-chevron-left"></i> Kettle手册（五）- 实例-增量同步数据
               </a>
             
           </div>
@@ -530,8 +536,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/28/Kettle-handbook-04/" rel="prev" title="Kettle手册（四）- 变量的使用">
-                Kettle手册（四）- 变量的使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/29/Kettle-handbook-07/" rel="prev" title="Kettle手册（七）- 资源库的使用">
+                Kettle手册（七）- 资源库的使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -702,7 +708,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Kettle的配置文件"><span class="nav-number">1.</span> <span class="nav-text">1. Kettle的配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-密码加密"><span class="nav-number">2.</span> <span class="nav-text">2. 密码加密</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是Hop"><span class="nav-number">1.</span> <span class="nav-text">1. 什么是Hop</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Hop的发送方式（转换）"><span class="nav-number">2.</span> <span class="nav-text">2. Hop的发送方式（转换）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-分发记录"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 分发记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-复制记录"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 复制记录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Hop的状态（作业）"><span class="nav-number">3.</span> <span class="nav-text">3.Hop的状态（作业）</span></a></li></ol></div>
             
 
           </div>

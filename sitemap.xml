@@ -2,16 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
+    <loc>http://yoursite.com/2017/08/01/cognos-doc-main/</loc>
     
-    <lastmod>2017-08-27T11:05:05.723Z</lastmod>
+    <lastmod>2017-08-27T14:52:03.630Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/03/29/Kettle-handbook-05/</loc>
+    <loc>http://yoursite.com/2017/04/14/Kettle-handbook-12/</loc>
     
-    <lastmod>2017-08-27T10:55:13.468Z</lastmod>
+    <lastmod>2017-08-27T14:36:07.845Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/04/11/Kettle-handbook-11/</loc>
+    
+    <lastmod>2017-08-27T14:31:04.826Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/04/10/Kettle-handbook-10/</loc>
+    
+    <lastmod>2017-08-27T14:18:29.979Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/03/30/Kettle-handbook-09/</loc>
+    
+    <lastmod>2017-08-27T14:05:09.684Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/03/29/Kettle-handbook-08/</loc>
+    
+    <lastmod>2017-08-27T13:47:04.004Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/03/29/Kettle-handbook-07/</loc>
+    
+    <lastmod>2017-08-27T13:28:47.101Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/03/28/Kettle-handbook-05/</loc>
+    
+    <lastmod>2017-08-27T13:11:40.355Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/03/29/Kettle-handbook-06/</loc>
+    
+    <lastmod>2017-08-27T13:10:27.873Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2017-08-27T11:05:05.723Z</lastmod>
     
   </url>
   
