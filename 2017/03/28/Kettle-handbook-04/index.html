@@ -101,20 +101,35 @@
 
 
 
-<meta name="description" content="1. 序 好久没有写博客了，新的一年总得留下点儿什么。目前主要负责数据仓库这一块任务，平时用用Kettle、SSIS这类ETL工具，而且工具的使用整理起来会方便些。所以先从Kettle开始，一点点整理下最近BI开发中掌握的知识。以前有做过BI报表Cognos开发还有些入门级的Java，都在CSDN博客上，感兴趣的同学可以去看看：于贵洋的博客好了，下面就根据自己的经验和理解，整理下Kettle的知识">
+<meta name="description" content="我们在这一回，介绍下，Kettle中全局变量的使用，我们前面说过的配置文件，其实就是配置全局变量的地方Kettle手册（三）- 配置文件的使用及密码加密  1. 全局变量 就是我们上面说的kettle.properties文件，我们在里面定义的变量，我们可以在所有的转换或者作业中获得到，比如，我们前面，说的数据库参数之前，我们已经在数据库连接中测试过，是可以，这里，我们输出下这个变量，看看">
 <meta name="keywords" content="Kettle">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kettle手册（一）- 序及Kettle简介">
-<meta property="og:url" content="http://yoursite.com/2017/03/27/Kettle-handbook-01/index.html">
+<meta property="og:title" content="Kettle手册（四）- 变量的使用">
+<meta property="og:url" content="http://yoursite.com/2017/03/28/Kettle-handbook-04/index.html">
 <meta property="og:site_name" content="于贵洋的博客">
-<meta property="og:description" content="1. 序 好久没有写博客了，新的一年总得留下点儿什么。目前主要负责数据仓库这一块任务，平时用用Kettle、SSIS这类ETL工具，而且工具的使用整理起来会方便些。所以先从Kettle开始，一点点整理下最近BI开发中掌握的知识。以前有做过BI报表Cognos开发还有些入门级的Java，都在CSDN博客上，感兴趣的同学可以去看看：于贵洋的博客好了，下面就根据自己的经验和理解，整理下Kettle的知识">
+<meta property="og:description" content="我们在这一回，介绍下，Kettle中全局变量的使用，我们前面说过的配置文件，其实就是配置全局变量的地方Kettle手册（三）- 配置文件的使用及密码加密  1. 全局变量 就是我们上面说的kettle.properties文件，我们在里面定义的变量，我们可以在所有的转换或者作业中获得到，比如，我们前面，说的数据库参数之前，我们已经在数据库连接中测试过，是可以，这里，我们输出下这个变量，看看">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-01-01.png-blog.photo">
-<meta property="og:updated_time" content="2017-08-26T15:37:41.262Z">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-01.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-02.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-03.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-04.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-05.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-06.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-07.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-08.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-09.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-10.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-11.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-12.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-13.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-14.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-15.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-16.png-blog.photo">
+<meta property="og:updated_time" content="2017-08-26T16:01:57.685Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kettle手册（一）- 序及Kettle简介">
-<meta name="twitter:description" content="1. 序 好久没有写博客了，新的一年总得留下点儿什么。目前主要负责数据仓库这一块任务，平时用用Kettle、SSIS这类ETL工具，而且工具的使用整理起来会方便些。所以先从Kettle开始，一点点整理下最近BI开发中掌握的知识。以前有做过BI报表Cognos开发还有些入门级的Java，都在CSDN博客上，感兴趣的同学可以去看看：于贵洋的博客好了，下面就根据自己的经验和理解，整理下Kettle的知识">
-<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-01-01.png-blog.photo">
+<meta name="twitter:title" content="Kettle手册（四）- 变量的使用">
+<meta name="twitter:description" content="我们在这一回，介绍下，Kettle中全局变量的使用，我们前面说过的配置文件，其实就是配置全局变量的地方Kettle手册（三）- 配置文件的使用及密码加密  1. 全局变量 就是我们上面说的kettle.properties文件，我们在里面定义的变量，我们可以在所有的转换或者作业中获得到，比如，我们前面，说的数据库参数之前，我们已经在数据库连接中测试过，是可以，这里，我们输出下这个变量，看看">
+<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-01.png-blog.photo">
 
 
 
@@ -144,13 +159,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/27/Kettle-handbook-01/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/28/Kettle-handbook-04/"/>
 
 
 
 
 
-  <title>Kettle手册（一）- 序及Kettle简介 | 于贵洋的博客</title>
+  <title>Kettle手册（四）- 变量的使用 | 于贵洋的博客</title>
   
 
 
@@ -351,7 +366,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/Kettle-handbook-01/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/Kettle-handbook-04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -368,7 +383,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Kettle手册（一）- 序及Kettle简介</h1>
+          <h1 class="post-title" itemprop="name headline">Kettle手册（四）- 变量的使用</h1>
         
 
         <div class="post-meta">
@@ -380,8 +395,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T21:59:00+08:00">
-                2017-03-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T23:24:44+08:00">
+                2017-03-28
               </time>
             
 
@@ -421,9 +436,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/27/Kettle-handbook-01/#comments" itemprop="discussionUrl">
+                <a href="/2017/03/28/Kettle-handbook-04/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/27/Kettle-handbook-01/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/03/28/Kettle-handbook-04/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -456,28 +471,15 @@
       
 
       
-        <div class="note primary"><h1 id="1-序"><a href="#1-序" class="headerlink" title="1. 序"></a>1. 序</h1></div>
-<p>好久没有写博客了，新的一年总得留下点儿什么。目前主要负责数据仓库这一块任务，平时用用Kettle、SSIS这类ETL工具，而且工具的使用整理起来会方便些。所以先从Kettle开始，一点点整理下最近BI开发中掌握的知识。<br>以前有做过BI报表Cognos开发还有些入门级的Java，都在CSDN博客上，感兴趣的同学可以去看看：<a href="http://blog.csdn.net/yuguiyang1990" target="_blank" rel="external">于贵洋的博客</a><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-01-01.png-blog.photo" alt="Kettle-handbook-01Kettle-handbook-01-01"><br>好了，下面就根据自己的经验和理解，整理下Kettle的知识。</p>
+        <p>我们在这一回，介绍下，Kettle中全局变量的使用，我们前面说过的配置文件，其实就是配置全局变量的地方<br><a href="2017/03/27/Kettle-handbook-03/">Kettle手册（三）- 配置文件的使用及密码加密 </a></p>
+<div class="note primary"><h2 id="1-全局变量"><a href="#1-全局变量" class="headerlink" title="1. 全局变量"></a>1. 全局变量</h2></div>
+<p>就是我们上面说的kettle.properties文件，我们在里面定义的变量，我们可以在所有的转换或者作业中获得到，比如，我们前面，说的数据库参数<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-01.png-blog.photo" alt="Kettle-handbook-04-01.png"><br>之前，我们已经在数据库连接中测试过，是可以，这里，我们输出下这个变量，看看</p>
 <a id="more"></a>
-<div class="note primary"><h1 id="2-Kettle简介"><a href="#2-Kettle简介" class="headerlink" title="2. Kettle简介"></a>2. Kettle简介</h1></div>
-<p>Kettle这东西是干嘛的呢？<br>Kettle是一个开源的ETL工具，所以基本的数据抽取、转换、加载，他都可以。<br>比如：我要把一个mysql数据库的数据同步到一个Postgres数据库，我们有哪些办法呢?<br>大概会有:</p>
-<ol>
-<li>将数据导出为文本文件，使用PG的copy命令直接加载</li>
-<li>数据量少的话，直接拼接成insert脚本，批量插入</li>
-<li>一些开源的小工具，提供2种数据库直接的同步</li>
-<li>Kettle</li>
-</ol>
-<p>等等方法<br>再比如：<br>我每天需要统计一些系统中的异常数据，导出为Excel，用邮件发送给指定的开发人员处理，该怎样做呢？</p>
-<ol>
-<li>Java或者其他开发语言做定时任务</li>
-<li>Kettle   </li>
-</ol>
-<p>和其他的ETL工具相比，他有什么优势呢？</p>
-<blockquote>
-<p>Kettle是基于Java开发的，是开源免费的，大家可以直接在网上下载；<br>跨平台，Windows，Linux都可以使用；使用起来简单快捷。</p>
-<p>既然开源，相比于其他收费产品，劣势也就很显然了，比如稳定性啊，BUG修复处理啊，而且基于Java，性能上会差些。<br>当然都是相对来说，一般数据量使用或者逻辑不复杂的话，使用起来是很适合的。</p>
-</blockquote>
-<p>刚刚也在社区上，发现了Kettle的视频，kettle视频，大家可以看看，应该用的到。<br>Kettle的基本介绍就这些，后面会根据实际的例子，来介绍下Kettle的使用。</p>
+<h3 id="1-1-输出变量的值"><a href="#1-1-输出变量的值" class="headerlink" title="1.1 输出变量的值"></a>1.1 输出变量的值</h3><p>我们这里，用到了“获取变量”这个控件<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-02.png-blog.photo" alt="Kettle-handbook-04-02.png"><br>我们单击，”Get Variables”,就可以获取到当前的全局变量信息<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-03.png-blog.photo" alt="Kettle-handbook-04-03.png"><br>我们选择几个输出试试<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-04.png-blog.photo" alt="Kettle-handbook-04-04.png"><br>还有一个，”日志“控件，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-05.png-blog.photo" alt="Kettle-handbook-04-05.png"><br>拖好之后，我们直接执行，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-06.png-blog.photo" alt="Kettle-handbook-04-06.png"><br>日志中，我们会看到，我们定义在文件中的参数（加密的参数，我没有重启，所以显示的还是原来的）<br>那我们，可不可以，动态的增加变量呢？</p>
+<h3 id="1-2-动态增加变量"><a href="#1-2-动态增加变量" class="headerlink" title="1.2 动态增加变量"></a>1.2 动态增加变量</h3><p>刚刚也在网上找了些资料，尝试了下，这里简单分享下（貌似，这得算是对局部变量的操作，暂时就放在这里吧）<br>我们先试下在转换中设置变量，作业中也是可以使用的，我们后面再说<br>测试流程是这样的， 我们再表输入中，有2个时间参数，然后作为变量<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-07.png-blog.photo" alt="Kettle-handbook-04-07.png"><br>比如，有这样一个场景，我们每天需要定时调度一些SP，SP都有开始时间，结束时间，调用时，需要传参数进去，<br>这个时候，我们在使用Kettle的时候，就可以通过这样的方式，去设置变量，然后再调用SP<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-08.png-blog.photo" alt="Kettle-handbook-04-08.png"><br>我们单击获取字段后，就可以了，这里可以修改变量存在的范围<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-09.png-blog.photo" alt="Kettle-handbook-04-09.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-10.png-blog.photo" alt="Kettle-handbook-04-10.png"><br>执行后，输出，后面，我们就可以使用这2个时间变量了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-11.png-blog.photo" alt="Kettle-handbook-04-11.png"><br>这里使用的时候，也遇到一个问题，就是变量的默认值，一直都没有生效，不知道为什么，不管是，静态值，还是变量值，都没有办法，待研究。</p>
+<div class="note primary"><h2 id="2-局部变量（命名参数）"><a href="#2-局部变量（命名参数）" class="headerlink" title="2. 局部变量（命名参数）"></a>2. 局部变量（命名参数）</h2></div>
+<p>在kettle中，相对于全局变量，我们还可以使用局部变量。感觉，这个全局变量，局部变量，都是相对而言的，<br>就网上大部分资料来说，Kettle中的局部变量就是“命名参数”<br>我们再转换中，右键单击，选择，转换设置</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-12.png-blog.photo" alt="Kettle-handbook-04-12.png"><br>我们选择，“命名参数”，定义一个变量，我们给一个默认值<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-13.png-blog.photo" alt="Kettle-handbook-04-13.png"><br>然后，在日志中，将变量输出<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-14.png-blog.photo" alt="Kettle-handbook-04-14.png"><br>我们执行下，这个转换，运行时的界面，我们可以看到，这个参数是可以动态改变的，或者，我们再命令行调这个转换的时候，同样可以给他赋值<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-15.png-blog.photo" alt="Kettle-handbook-04-15.png"><br>运行结果，这个就是简单的局部变量了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-16.png-blog.photo" alt="Kettle-handbook-04-16.png"></p>
 
       
     </div>
@@ -506,7 +508,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2017/03/27/Kettle-handbook-01/" title="Kettle手册（一）- 序及Kettle简介">http://yoursite.com/2017/03/27/Kettle-handbook-01/</a>
+    <a href="http://yoursite.com/2017/03/28/Kettle-handbook-04/" title="Kettle手册（四）- 变量的使用">http://yoursite.com/2017/03/28/Kettle-handbook-04/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -534,14 +536,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/03/28/Kettle-handbook-03/" rel="next" title="Kettle手册（三）- 配置文件的使用及密码加密">
+                <i class="fa fa-chevron-left"></i> Kettle手册（三）- 配置文件的使用及密码加密
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/27/Kettle-handbook-02/" rel="prev" title="Kettle手册（二）- 将数据导出为Excel">
-                Kettle手册（二）- 将数据导出为Excel <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/29/Kettle-handbook-05/" rel="prev" title="Kettle手册（五）- 实例-增量同步数据">
+                Kettle手册（五）- 实例-增量同步数据 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -712,7 +718,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-序"><span class="nav-number">1.</span> <span class="nav-text">1. 序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Kettle简介"><span class="nav-number">2.</span> <span class="nav-text">2. Kettle简介</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-全局变量"><span class="nav-number">1.</span> <span class="nav-text">1. 全局变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-输出变量的值"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 输出变量的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-动态增加变量"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 动态增加变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-局部变量（命名参数）"><span class="nav-number">2.</span> <span class="nav-text">2. 局部变量（命名参数）</span></a></li></ol></div>
             
 
           </div>
@@ -892,9 +898,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/03/27/Kettle-handbook-01/';
-          this.page.identifier = '2017/03/27/Kettle-handbook-01/';
-          this.page.title = 'Kettle手册（一）- 序及Kettle简介';
+          this.page.url = 'http://yoursite.com/2017/03/28/Kettle-handbook-04/';
+          this.page.identifier = '2017/03/28/Kettle-handbook-04/';
+          this.page.title = 'Kettle手册（四）- 变量的使用';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-yuguiyang-github-io-1.disqus.com/embed.js';
