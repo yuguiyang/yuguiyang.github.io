@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+    
+  <url>
+    <loc>http://yoursite.com/2017/03/29/Kettle-handbook-05/</loc>
+    <lastmod>2017-08-27T10:55:13.468Z</lastmod>
+    <data>
+        <display>
+        <title>Kettle手册（五）- 实例-增量同步数据</title>
+        <pubTime>2017-03-29T13:24:44.000Z</pubTime>
+        
+        <tag>Kettle</tag>
+         
+         
+           
+             
+              <breadCrumb title="ETL-Kettle" url="http://yoursite.com/categories/ETL-Kettle/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+  <url>
+    <loc>http://yoursite.com/2017/03/27/Kettle-handbook-02/</loc>
+    <lastmod>2017-08-26T16:02:23.400Z</lastmod>
+    <data>
+        <display>
+        <title>Kettle手册（二）- 将数据导出为Excel</title>
+        <pubTime>2017-03-27T15:24:44.000Z</pubTime>
+        
+        <tag>Kettle</tag>
+         
+         
+           
+             
+              <breadCrumb title="ETL-Kettle" url="http://yoursite.com/categories/ETL-Kettle/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/03/28/Kettle-handbook-04/</loc>
+    <lastmod>2017-08-26T16:01:57.685Z</lastmod>
+    <data>
+        <display>
+        <title>Kettle手册（四）- 变量的使用</title>
+        <pubTime>2017-03-28T15:24:44.000Z</pubTime>
+        
+        <tag>Kettle</tag>
+         
+         
+           
+             
+              <breadCrumb title="ETL-Kettle" url="http://yoursite.com/categories/ETL-Kettle/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/03/28/Kettle-handbook-03/</loc>
+    <lastmod>2017-08-26T15:39:56.222Z</lastmod>
+    <data>
+        <display>
+        <title>Kettle手册（三）- 配置文件的使用及密码加密</title>
+        <pubTime>2017-03-28T14:24:44.000Z</pubTime>
+        
+        <tag>Kettle</tag>
+         
+         
+           
+             
+              <breadCrumb title="ETL-Kettle" url="http://yoursite.com/categories/ETL-Kettle/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/03/27/Kettle-handbook-01/</loc>
+    <lastmod>2017-08-26T15:37:41.262Z</lastmod>
+    <data>
+        <display>
+        <title>Kettle手册（一）- 序及Kettle简介</title>
+        <pubTime>2017-03-27T13:59:00.000Z</pubTime>
+        
+        <tag>Kettle</tag>
+         
+         
+           
+             
+              <breadCrumb title="ETL-Kettle" url="http://yoursite.com/categories/ETL-Kettle/"/>
+          
+        </display>
+    </data>
+    </url>
+
+</urlset>
