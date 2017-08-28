@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Kettle," />
+  <meta name="keywords" content="Python,Numpy," />
 
 
 
@@ -104,37 +104,26 @@
 
 
 
-<meta name="description" content="在Kettle里面，我们每天执行完调度之后，想要监控下JOB的执行状态，通常我们可以会发送邮件，可以的话，还可以发送短信。 在Kettle里面，发送邮件很方便，这里，我们就简单的测试下。 1. 在作业中发送简单邮件我们只需要使用到这个控件就可以了，这样，一个简单的发送邮件流程就好了">
-<meta name="keywords" content="Kettle">
+<meta name="description" content="前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。 1.numpy基本介绍numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。一个用Python实现的科学计算包。from 百度百科  numpy有2种基本对象，1ndarray（N-dimensional array object）和 ufunc（universal func">
+<meta name="keywords" content="Python,Numpy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kettle手册（九）- 发送邮件">
-<meta property="og:url" content="http://yoursite.com/2017/03/30/Kettle-handbook-09/index.html">
+<meta property="og:title" content="numpy手册(1)-ndarray">
+<meta property="og:url" content="http://yoursite.com/2017/08/02/numpy-handbook-01/index.html">
 <meta property="og:site_name" content="于贵洋的博客">
-<meta property="og:description" content="在Kettle里面，我们每天执行完调度之后，想要监控下JOB的执行状态，通常我们可以会发送邮件，可以的话，还可以发送短信。 在Kettle里面，发送邮件很方便，这里，我们就简单的测试下。 1. 在作业中发送简单邮件我们只需要使用到这个控件就可以了，这样，一个简单的发送邮件流程就好了">
+<meta property="og:description" content="前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。 1.numpy基本介绍numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。一个用Python实现的科学计算包。from 百度百科  numpy有2种基本对象，1ndarray（N-dimensional array object）和 ufunc（universal func">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-01.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-02.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-03.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-04.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-05.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-06.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-07.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-08.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-09.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-10.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-11.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-12.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-13.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-14.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-15.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-16.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-17.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-18.png-blog.photo">
-<meta property="og:updated_time" content="2017-08-27T14:05:09.684Z">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-01.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-02.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-03.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-04.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-05.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-06.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-07.png-blog.photo">
+<meta property="og:updated_time" content="2017-08-27T15:17:55.671Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kettle手册（九）- 发送邮件">
-<meta name="twitter:description" content="在Kettle里面，我们每天执行完调度之后，想要监控下JOB的执行状态，通常我们可以会发送邮件，可以的话，还可以发送短信。 在Kettle里面，发送邮件很方便，这里，我们就简单的测试下。 1. 在作业中发送简单邮件我们只需要使用到这个控件就可以了，这样，一个简单的发送邮件流程就好了">
-<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-01.png-blog.photo">
+<meta name="twitter:title" content="numpy手册(1)-ndarray">
+<meta name="twitter:description" content="前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。 1.numpy基本介绍numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。一个用Python实现的科学计算包。from 百度百科  numpy有2种基本对象，1ndarray（N-dimensional array object）和 ufunc（universal func">
+<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-01.png-blog.photo">
 
 
 
@@ -164,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/30/Kettle-handbook-09/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/02/numpy-handbook-01/"/>
 
 
 
 
 
-  <title>Kettle手册（九）- 发送邮件 | 于贵洋的博客</title>
+  <title>numpy手册(1)-ndarray | 于贵洋的博客</title>
   
 
 
@@ -371,7 +360,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/Kettle-handbook-09/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/02/numpy-handbook-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -388,7 +377,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Kettle手册（九）- 发送邮件</h1>
+          <h1 class="post-title" itemprop="name headline">numpy手册(1)-ndarray</h1>
         
 
         <div class="post-meta">
@@ -400,8 +389,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-30T11:24:44+08:00">
-                2017-03-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T21:59:00+08:00">
+                2017-08-02
               </time>
             
 
@@ -423,8 +412,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
-                    <span itemprop="name">ETL-Kettle</span>
+                  <a href="/categories/Python-Numpy/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Numpy</span>
                   </a>
                 </span>
 
@@ -465,13 +454,39 @@
       
 
       
-        <p>在Kettle里面，我们每天执行完调度之后，想要监控下JOB的执行状态，通常我们可以会发送邮件，可以的话，还可以发送短信。</p>
-<p>在Kettle里面，发送邮件很方便，这里，我们就简单的测试下。</p>
-<h1 id="1-在作业中发送简单邮件"><a href="#1-在作业中发送简单邮件" class="headerlink" title="1. 在作业中发送简单邮件"></a>1. 在作业中发送简单邮件</h1><p>我们只需要使用到这个控件就可以了，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-01.png-blog.photo" alt="Kettle-handbook-09-01.png"><br>这样，一个简单的发送邮件流程就好了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-02.png-blog.photo" alt="Kettle-handbook-09-02.png"></p>
+        <p>前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。</p>
+<h1 id="1-numpy基本介绍"><a href="#1-numpy基本介绍" class="headerlink" title="1.numpy基本介绍"></a>1.numpy基本介绍</h1><blockquote class="blockquote-center"><br>numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。<br>一个用Python实现的科学计算包。<br>from 百度百科<br></blockquote>
+
+<p>numpy有2种基本对象，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ndarray（N-dimensional array object）和 ufunc（universal function object）</div></pre></td></tr></table></figure></p>
+<p>ndarray是存储单一数据类型的多维数组，ufunc是能够对数组进行处理的函数。</p>
 <a id="more"></a>
-<p>控件的配置：<br>收件人，抄送啊，信息，自行填写就行，多个收件人，使用“空格”分隔<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-03.png-blog.photo" alt="Kettle-handbook-09-03.png"><br>在服务器这里，我们填上服务器的信息就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-04.png-blog.photo" alt="Kettle-handbook-09-04.png"><br>这里是邮件消息的一些配置，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-05.png-blog.photo" alt="Kettle-handbook-09-05.png"><br>暂时先到这里，我们测试下结果<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-06.png-blog.photo" alt="Kettle-handbook-09-06.png"><br>然后，查看邮箱，我们会接收到这个邮件，刚刚简单测了下这个“回复名称”，就是<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-07.png-blog.photo" alt="Kettle-handbook-09-07.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-08.png-blog.photo" alt="Kettle-handbook-09-08.png"><br>这里试过中文，会有问题，有乱码，可能是Windows下的原因，没有再去测试验证<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-09.png-blog.photo" alt="Kettle-handbook-09-09.png"><br>就是收到邮件时的一个发件人的名称，不同邮箱显示的不一样</p>
-<h1 id="2-增加附件"><a href="#2-增加附件" class="headerlink" title="2. 增加附件"></a>2. 增加附件</h1><p>附件的话，也很简单，上面的面板中直接配置就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-10.png-blog.photo" alt="Kettle-handbook-09-10.png"><br>然后，我们需要将待发送的邮件，添加到结果集中<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-11.png-blog.photo" alt="Kettle-handbook-09-11.png"><br>在控件中，我们添加好文件就行了。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-12.png-blog.photo" alt="Kettle-handbook-09-12.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-13.png-blog.photo" alt="Kettle-handbook-09-13.png"><br>我们再次发送，验证下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-14.png-blog.photo" alt="Kettle-handbook-09-14.png"><br>好了，附件也可以了，思路就是这样的，实际应用时，可能还有些问题得注意下</p>
-<h1 id="3-自定义邮件内容"><a href="#3-自定义邮件内容" class="headerlink" title="3. 自定义邮件内容"></a>3. 自定义邮件内容</h1><p>到这里，我们会看到，邮件的正文内容，可能并不是我们想要的， 我们想要的可能是这样的信息<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-15.png-blog.photo" alt="Kettle-handbook-09-15.png"><br>这就需要自定义正文内容，我们需要勾选下面这个选项<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-16.png-blog.photo" alt="Kettle-handbook-09-16.png"><br>这里是可以使用变量的，我们可以拼接HTML来实现<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-17.png-blog.photo" alt="Kettle-handbook-09-17.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-18.png-blog.photo" alt="Kettle-handbook-09-18.png"><br>好了，邮件的介绍，大概就这些，在转换中，也是可以使用的，大同小异</p>
+<h1 id="2-ndarray"><a href="#2-ndarray" class="headerlink" title="2.ndarray"></a>2.ndarray</h1><p>我们先来看看这个数组<br>首先，我们得引入numpy<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div></pre></td></tr></table></figure></p>
+<h2 id="2-1-创建"><a href="#2-1-创建" class="headerlink" title="2.1 创建"></a>2.1 创建</h2><p>数组初始化的话有很多方式：Array creation routines<br>我们可以直接使用list来初始化，array有很多的属性，比如大小，维度，元素个数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">a = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line">b = np.array([<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</div><div class="line">c = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]])</div><div class="line"></div><div class="line">print(a,type(a),<span class="string">',shape:'</span>,a.shape,<span class="string">',ndim:'</span>,a.ndim,<span class="string">',size:'</span>,a.size)</div><div class="line">print(b,type(b),<span class="string">',shape:'</span>,b.shape,<span class="string">',ndim:'</span>,b.ndim,<span class="string">',size:'</span>,b.size)</div><div class="line">print(c,type(c),<span class="string">',shape:'</span>,c.shape,<span class="string">',ndim:'</span>,c.ndim,<span class="string">',size:'</span>,c.size)</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-01.png-blog.photo" alt="numpy-handbook-01-01"></p>
+<p>这里呢，我们定义了一维数组和二维数组，比如c，是3行3列的2维数组，元素个数是9个<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">numpy.array(object, dtype=<span class="keyword">None</span>, copy=<span class="keyword">True</span>, order=<span class="string">'K'</span>, subok=<span class="keyword">False</span>, ndmin=<span class="number">0</span>)</div></pre></td></tr></table></figure></p>
+<p>这里，我们再说下这个shape，这个属性可以修改<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#原来是4行3列</span></div><div class="line">c = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],[<span class="number">0</span>,<span class="number">0</span>,<span class="number">7</span>]])</div><div class="line">print(c)</div><div class="line"><span class="comment">#我们改为3行4列</span></div><div class="line">c.shape=(<span class="number">3</span>,<span class="number">4</span>)</div><div class="line">print(c)</div><div class="line"><span class="comment">#改为2行6列</span></div><div class="line">c.shape=(<span class="number">2</span>,<span class="number">6</span>)</div><div class="line">print(c)</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-02.png-blog.photo" alt="numpy-handbook-01-02"></p>
+<p>这里需要注意下，如果某个轴的元素为-1，将根据数组元素的个数，自动计算长度<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">c.shape=(<span class="number">1</span>,<span class="number">-1</span>)</div><div class="line">print(c)</div><div class="line">c.shape=(<span class="number">-1</span>,<span class="number">1</span>)</div><div class="line">print(c)</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-03.png-blog.photo" alt="numpy-handbook-01-03"></p>
+<p>这里的shape是改变原来的数组，另一个method，可以创建一个改变shape的新数组，而原数组保持不变<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">c = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],[<span class="number">0</span>,<span class="number">0</span>,<span class="number">7</span>]])</div><div class="line">print(<span class="string">'c:'</span>,c)</div><div class="line">d = c.reshape(<span class="number">2</span>,<span class="number">6</span>)</div><div class="line">print(<span class="string">'c:'</span>,c)</div><div class="line">print(<span class="string">'d:'</span>,d)</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-04.png-blog.photo" alt="numpy-handbook-01-04"></p>
+<p>这里要注意的是，c和d共享内存数据存储内存区域，c变了，d也会变<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">print(c[<span class="number">0</span>])</div><div class="line"><span class="comment">#修改c[0]</span></div><div class="line">c[<span class="number">0</span>]=[<span class="number">-9</span>,<span class="number">-8</span>,<span class="number">-3</span>]</div><div class="line">print(<span class="string">'c:'</span>,c)</div><div class="line">print(<span class="string">'d:'</span>,d)</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-05.png-blog.photo" alt="numpy-handbook-01-05"></p>
+<p>我们可以通过dtype来获取元素的类型，我们可以在初始化的时候，指定dtype<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">c = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line">print(c.dtype) <span class="comment">#int32</span></div><div class="line"></div><div class="line">d = np.array([<span class="number">1.1</span>,<span class="number">3.3</span>])</div><div class="line">print(d.dtype) <span class="comment">#float64</span></div></pre></td></tr></table></figure></p>
+<p>下面，我们来看看常用的初始化方法</p>
+<h3 id="arange"><a href="#arange" class="headerlink" title="arange"></a>arange</h3><p>通过指定开始值，结束值和步长来创建一维数组，这里不包过终值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">arange([start,] stop[, step,], dtype=<span class="keyword">None</span>)</div><div class="line"></div><div class="line">np.arange(<span class="number">3</span>)</div><div class="line">Out[<span class="number">51</span>]: array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</div><div class="line"></div><div class="line">np.arange(<span class="number">1</span>,<span class="number">10</span>,<span class="number">3</span>)</div><div class="line">Out[<span class="number">52</span>]: array([<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>])</div></pre></td></tr></table></figure></p>
+<h3 id="linspace"><a href="#linspace" class="headerlink" title="linspace"></a>linspace</h3><p>通过指定开始值，终值和元素个数，来创建数组，这里包括终值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">np.linspace(<span class="number">1</span>,<span class="number">10</span>,<span class="number">5</span>)</div><div class="line">Out[<span class="number">53</span>]: array([  <span class="number">1.</span>  ,   <span class="number">3.25</span>,   <span class="number">5.5</span> ,   <span class="number">7.75</span>,  <span class="number">10.</span>  ])</div><div class="line"></div><div class="line">np.linspace(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</div><div class="line">Out[<span class="number">54</span>]: array([ <span class="number">1.</span> ,  <span class="number">1.5</span>,  <span class="number">2.</span> ])</div></pre></td></tr></table></figure></p>
+<h3 id="np-zeros-np-ones"><a href="#np-zeros-np-ones" class="headerlink" title="np.zeros,np.ones"></a>np.zeros,np.ones</h3><p>这2个函数可以初始化指定长度或形状的全0或全1的数组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">np.ones(<span class="number">3</span>)</div><div class="line">Out[<span class="number">202</span>]: array([ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>])</div><div class="line"></div><div class="line">np.ones([<span class="number">2</span>,<span class="number">2</span>])</div><div class="line">Out[<span class="number">203</span>]: </div><div class="line">array([[ <span class="number">1.</span>,  <span class="number">1.</span>],</div><div class="line">       [ <span class="number">1.</span>,  <span class="number">1.</span>]])</div><div class="line"></div><div class="line">np.zeros(<span class="number">5</span>)</div><div class="line">Out[<span class="number">204</span>]: array([ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>])</div><div class="line"></div><div class="line">np.zeros([<span class="number">4</span>,<span class="number">3</span>])</div><div class="line">Out[<span class="number">205</span>]: </div><div class="line">array([[ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</div><div class="line">       [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</div><div class="line">       [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</div><div class="line">       [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>]])</div></pre></td></tr></table></figure></p>
+<h3 id="np-empty"><a href="#np-empty" class="headerlink" title="np.empty"></a>np.empty</h3><p>可以创建一个没有任何具体值得数组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">np.empty(<span class="number">2</span>)</div><div class="line">Out[<span class="number">211</span>]: array([  <span class="number">7.74860419e-304</span>,   <span class="number">7.74860419e-304</span>])</div><div class="line"></div><div class="line">np.empty(<span class="number">2</span>,dtype=int)</div><div class="line">Out[<span class="number">214</span>]: array([        <span class="number">-1</span>, <span class="number">2147483647</span>])</div><div class="line"></div><div class="line">np.empty((<span class="number">3</span>,<span class="number">3</span>),dtype=np.float64)</div><div class="line">Out[<span class="number">215</span>]: </div><div class="line">array([[  <span class="number">4.94065646e-324</span>,   <span class="number">9.88131292e-324</span>,   <span class="number">1.48219694e-323</span>],</div><div class="line">       [  <span class="number">1.97626258e-323</span>,   <span class="number">2.47032823e-323</span>,   <span class="number">2.96439388e-323</span>],</div><div class="line">       [  <span class="number">3.45845952e-323</span>,   <span class="number">3.95252517e-323</span>,   <span class="number">4.44659081e-323</span>]])</div></pre></td></tr></table></figure></p>
+<p>这要注意下，empty初始化的都是没有意思的值，不一定会初始化为0</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-06.png-blog.photo" alt="numpy-handbook-01-06"></p>
+<h2 id="2-2-存取元素"><a href="#2-2-存取元素" class="headerlink" title="2.2 存取元素"></a>2.2 存取元素</h2><p>这里直接粘贴一个例子，原始教程在这：<a href="http://old.sebug.net/paper/books/scipydoc/numpy_intro.html" target="_blank" rel="external">http://old.sebug.net/paper/books/scipydoc/numpy_intro.html</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.arange(<span class="number">10</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">5</span>]    <span class="comment"># 用整数作为下标可以获取数组中的某个元素</span></div><div class="line"><span class="number">5</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">3</span>:<span class="number">5</span>]  <span class="comment"># 用范围作为下标获取数组的一个切片，包括a[3]不包括a[5]</span></div><div class="line">array([<span class="number">3</span>, <span class="number">4</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[:<span class="number">5</span>]   <span class="comment"># 省略开始下标，表示从a[0]开始</span></div><div class="line">array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[:<span class="number">-1</span>]  <span class="comment"># 下标可以使用负数，表示从数组后往前数</span></div><div class="line">array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">2</span>:<span class="number">4</span>] = <span class="number">100</span>,<span class="number">101</span>    <span class="comment"># 下标还可以用来修改元素的值</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">array([  <span class="number">0</span>,   <span class="number">1</span>, <span class="number">100</span>, <span class="number">101</span>,   <span class="number">4</span>,   <span class="number">5</span>,   <span class="number">6</span>,   <span class="number">7</span>,   <span class="number">8</span>,   <span class="number">9</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">1</span>:<span class="number">-1</span>:<span class="number">2</span>]   <span class="comment"># 范围中的第三个参数表示步长，2表示隔一个元素取一个元素</span></div><div class="line">array([  <span class="number">1</span>, <span class="number">101</span>,   <span class="number">5</span>,   <span class="number">7</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[::<span class="number">-1</span>] <span class="comment"># 省略范围的开始下标和结束下标，步长为-1，整个数组头尾颠倒</span></div><div class="line">array([  <span class="number">9</span>,   <span class="number">8</span>,   <span class="number">7</span>,   <span class="number">6</span>,   <span class="number">5</span>,   <span class="number">4</span>, <span class="number">101</span>, <span class="number">100</span>,   <span class="number">1</span>,   <span class="number">0</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">5</span>:<span class="number">1</span>:<span class="number">-2</span>] <span class="comment"># 步长为负数时，开始下标必须大于结束下标</span></div><div class="line">array([  <span class="number">5</span>, <span class="number">101</span>])</div></pre></td></tr></table></figure></p>
+<p>就2维数组来说</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-07.png-blog.photo" alt="numpy-handbook-01-07"></p>
+<p>这是基本的获取方式，还有些高级的方法</p>
+<h3 id="使用整数序列"><a href="#使用整数序列" class="headerlink" title="使用整数序列"></a>使用整数序列</h3><p>这里简单来2个练习，原文例子很多，就是通过下标来筛选数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">a = np.arange(<span class="number">-5</span>,<span class="number">5</span>,<span class="number">1</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">68</span>]: array([<span class="number">-5</span>, <span class="number">-4</span>, <span class="number">-3</span>, <span class="number">-2</span>, <span class="number">-1</span>,  <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>])</div><div class="line"></div><div class="line">a[[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>]]</div><div class="line">Out[<span class="number">69</span>]: array([<span class="number">-4</span>, <span class="number">-2</span>,  <span class="number">0</span>])</div><div class="line"></div><div class="line"><span class="comment">### 使用布尔数组</span></div><div class="line"></div><div class="line">按照传入的布尔数组，只有为<span class="keyword">True</span>的才返回，也叫布尔型索引</div><div class="line">``` python</div><div class="line">a=np.array([<span class="number">-3</span>,<span class="number">1</span>,<span class="number">5</span>])</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">72</span>]: array([<span class="number">-3</span>,  <span class="number">1</span>,  <span class="number">5</span>])</div><div class="line"></div><div class="line">a[[<span class="keyword">False</span>,<span class="keyword">True</span>,<span class="keyword">False</span>]]</div><div class="line">Out[<span class="number">73</span>]: array([<span class="number">1</span>])</div><div class="line"></div><div class="line">a[[<span class="keyword">True</span>,<span class="keyword">False</span>,<span class="keyword">True</span>]]</div><div class="line">Out[<span class="number">74</span>]: array([<span class="number">-3</span>,  <span class="number">5</span>])</div></pre></td></tr></table></figure></p>
+<h1 id="3-附录（参考资料）"><a href="#3-附录（参考资料）" class="headerlink" title="3.附录（参考资料）"></a>3.附录（参考资料）</h1><p>文档：<br><a href="https://docs.scipy.org/doc/numpy-dev/reference/index.html#reference" target="_blank" rel="external">https://docs.scipy.org/doc/numpy-dev/reference/index.html#reference</a></p>
+<p><a href="http://old.sebug.net/paper/books/scipydoc/numpy_intro.html" target="_blank" rel="external">numpy快速处理数据</a></p>
 
       
     </div>
@@ -500,7 +515,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2017/03/30/Kettle-handbook-09/" title="Kettle手册（九）- 发送邮件">http://yoursite.com/2017/03/30/Kettle-handbook-09/</a>
+    <a href="http://yoursite.com/2017/08/02/numpy-handbook-01/" title="numpy手册(1)-ndarray">http://yoursite.com/2017/08/02/numpy-handbook-01/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -515,7 +530,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Kettle/" rel="tag"># Kettle</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Numpy/" rel="tag"># Numpy</a>
           
         </div>
       
@@ -528,8 +545,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/29/Kettle-handbook-08/" rel="next" title="Kettle手册（八）- 循环">
-                <i class="fa fa-chevron-left"></i> Kettle手册（八）- 循环
+              <a href="/2017/08/01/cognos-doc-main/" rel="next" title="Cognos资料汇总贴">
+                <i class="fa fa-chevron-left"></i> Cognos资料汇总贴
               </a>
             
           </div>
@@ -538,8 +555,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/10/Kettle-handbook-10/" rel="prev" title="Kettle手册（十）- 跨库查询">
-                Kettle手册（十）- 跨库查询 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/28/data-analyst-interview-sql-01/" rel="prev" title="SQL笔试题-累计值（月累计、年累计）">
+                SQL笔试题-累计值（月累计、年累计） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -710,7 +727,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-在作业中发送简单邮件"><span class="nav-number">1.</span> <span class="nav-text">1. 在作业中发送简单邮件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-增加附件"><span class="nav-number">2.</span> <span class="nav-text">2. 增加附件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-自定义邮件内容"><span class="nav-number">3.</span> <span class="nav-text">3. 自定义邮件内容</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-numpy基本介绍"><span class="nav-number">1.</span> <span class="nav-text">1.numpy基本介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-ndarray"><span class="nav-number">2.</span> <span class="nav-text">2.ndarray</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-创建"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#arange"><span class="nav-number">2.1.1.</span> <span class="nav-text">arange</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linspace"><span class="nav-number">2.1.2.</span> <span class="nav-text">linspace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#np-zeros-np-ones"><span class="nav-number">2.1.3.</span> <span class="nav-text">np.zeros,np.ones</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#np-empty"><span class="nav-number">2.1.4.</span> <span class="nav-text">np.empty</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-存取元素"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 存取元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用整数序列"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用整数序列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-附录（参考资料）"><span class="nav-number">3.</span> <span class="nav-text">3.附录（参考资料）</span></a></li></ol></div>
             
 
           </div>

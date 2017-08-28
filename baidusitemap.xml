@@ -4,6 +4,72 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/28/data-analyst-interview-sql-02/</loc>
+    <lastmod>2017-08-28T05:50:36.495Z</lastmod>
+    <data>
+        <display>
+        <title>SQL笔试题-行转列</title>
+        <pubTime>2017-08-28T05:11:00.000Z</pubTime>
+        
+        <tag>SQL</tag>
+         
+        <tag>笔试题</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔试题" url="http://yoursite.com/categories/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/28/data-analyst-interview-sql-01/</loc>
+    <lastmod>2017-08-28T03:21:07.999Z</lastmod>
+    <data>
+        <display>
+        <title>SQL笔试题-累计值（月累计、年累计）</title>
+        <pubTime>2017-08-28T03:11:00.000Z</pubTime>
+        
+        <tag>SQL</tag>
+         
+        <tag>笔试题</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔试题" url="http://yoursite.com/categories/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/02/numpy-handbook-01/</loc>
+    <lastmod>2017-08-27T15:17:55.671Z</lastmod>
+    <data>
+        <display>
+        <title>numpy手册(1)-ndarray</title>
+        <pubTime>2017-08-02T13:59:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Numpy</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-Numpy" url="http://yoursite.com/categories/Python-Numpy/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/01/cognos-doc-main/</loc>
     <lastmod>2017-08-27T14:52:03.630Z</lastmod>
     <data>

@@ -351,6 +351,486 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/data-analyst-interview-sql-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/28/data-analyst-interview-sql-02/" itemprop="url">SQL笔试题-行转列</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T13:11:00+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔试题/" itemprop="url" rel="index">
+                    <span itemprop="name">笔试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>SQL笔试题</p>
+<blockquote>
+<p>下面的SQL基于PostgreSQL</p>
+</blockquote>
+<h1 id="1-行转列"><a href="#1-行转列" class="headerlink" title="1. 行转列"></a>1. 行转列</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们写SQL的时候，经常会遇到一些列转行、行转列的情况，有的时候是为了展现需要，有的时候是代码里就得这样转一下。总之嘞，得掌握这个技巧。下面就开始我们的练习。</p>
+<h2 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> interview.tm_score</div><div class="line">(</div><div class="line">  stu_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">20</span>), <span class="comment">-- 学生名称</span></div><div class="line">  course_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">20</span>), <span class="comment">-- 课程名称</span></div><div class="line">  score <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>) <span class="comment">-- 分数</span></div><div class="line">)</div><div class="line"><span class="keyword">WITH</span> (</div><div class="line">  OIDS=<span class="literal">FALSE</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="comment">-- 初始化数据</span></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'路飞'</span>,<span class="string">'数学'</span>,<span class="number">100</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'路飞'</span>,<span class="string">'语文'</span>,<span class="number">62</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'路飞'</span>,<span class="string">'英语'</span>,<span class="number">98</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'索隆'</span>,<span class="string">'数学'</span>,<span class="number">40</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'索隆'</span>,<span class="string">'语文'</span>,<span class="number">57</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'索隆'</span>,<span class="string">'英语'</span>,<span class="number">40</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'娜美'</span>,<span class="string">'数学'</span>,<span class="number">42</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'娜美'</span>,<span class="string">'语文'</span>,<span class="number">44</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'娜美'</span>,<span class="string">'英语'</span>,<span class="number">28</span>);</div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-01.png-blog.photo" alt="data-analyst-interview-sql-02-01"></p>
+<p>我们先来思考第一个问题：<br>我们怎样可以将课程变成列呢，类似交叉表那样？<br>最容易想到的方法，就是使用case when了</p>
+<h3 id="case-when"><a href="#case-when" class="headerlink" title="case when"></a>case when</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">	stu_name,</div><div class="line">	<span class="keyword">max</span>(<span class="keyword">case</span> course_name <span class="keyword">when</span> <span class="string">'数学'</span> <span class="keyword">then</span> score <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="keyword">as</span> <span class="string">"数学"</span>, </div><div class="line">	<span class="keyword">max</span>(<span class="keyword">case</span> course_name <span class="keyword">when</span> <span class="string">'语文'</span> <span class="keyword">then</span> score <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="keyword">as</span> <span class="string">"语文"</span>, </div><div class="line">	<span class="keyword">max</span>(<span class="keyword">case</span> course_name <span class="keyword">when</span> <span class="string">'英语'</span> <span class="keyword">then</span> score <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="keyword">as</span> <span class="string">"英语"</span></div><div class="line">	</div><div class="line"><span class="keyword">from</span> </div><div class="line">	interview.tm_score</div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span> </div><div class="line">	stu_name</div><div class="line">;</div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-02.png-blog.photo" alt="data-analyst-interview-sql-02-02"></p>
+<h3 id="crosstab"><a href="#crosstab" class="headerlink" title="crosstab"></a>crosstab</h3><p>在新版本的PostgreSQL中有一个extension，可以方便的实现行转列<br>我们需要先安装这个扩展，我看了下，PostgreSQL8.3以后的版本都可以安装<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> extension tablefunc</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>官网地址：<a href="https://www.postgresql.org/docs/9.5/static/tablefunc.html" target="_blank" rel="external">https://www.postgresql.org/docs/9.5/static/tablefunc.html</a></p>
+</blockquote>
+<p>安装完后，会有这么几个函数</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-03.png-blog.photo" alt="data-analyst-interview-sql-02-03"></p>
+<p>我们可以使用crosstab来实现上面的行转列<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> crosstab(</div><div class="line">	<span class="string">'select stu_name,course_name,score from interview.tm_score'</span></div><div class="line">) <span class="keyword">as</span> ct(stu_name <span class="built_in">varchar</span>(<span class="number">20</span>) ,<span class="string">"数学"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>),<span class="string">"语文"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>), <span class="string">"英语"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>))</div></pre></td></tr></table></figure></p>
+<p>结果也是一样的，我们传入一个SQL，SQL里面返回3列（这3列都是默认处理的，第一列是主字段，第2列是要拆成列的字段，第3列是要显示的值），最后因为返回值是record，所以我们要定义一下类型。</p>
+<p>这里，顺便看看这个函数的用法</p>
+<h4 id="要转成列的字段有Null"><a href="#要转成列的字段有Null" class="headerlink" title="要转成列的字段有Null"></a>要转成列的字段有Null</h4><p>是这样一种情况：不是所有的同学都有3门课程的分数<br>我们删掉了几条记录来模拟<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-04.png-blog.photo" alt="data-analyst-interview-sql-02-04"></p>
+<p>这时候使用crosstab，结果会有问题</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-05.png-blog.photo" alt="data-analyst-interview-sql-02-05"></p>
+<p>数据会自动从第一列开始，导致错误的数据<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- crosstab(text source_sql, text category_sql)</span></div><div class="line"></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> crosstab(</div><div class="line">	<span class="string">'select stu_name,course_name,score from interview.tm_score'</span>,<span class="string">'select distinct course_name from interview.tm_score'</span></div><div class="line">) <span class="keyword">as</span> ct(stu_name <span class="built_in">varchar</span>(<span class="number">20</span>) ,<span class="string">"数学"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>),<span class="string">"语文"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>), <span class="string">"英语"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>))</div></pre></td></tr></table></figure></p>
+<p>这时候，数据就对了</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-06.png-blog.photo" alt="data-analyst-interview-sql-02-06"></p>
+<h4 id="source-sql-多于3列"><a href="#source-sql-多于3列" class="headerlink" title="source_sql 多于3列"></a>source_sql 多于3列</h4><p>这种情况是，我们查询的结果不单单有上面说的3列，可能还有其他字段，<br>比如，我们可以在上面的测试数据上加一个班级列<br>我们同样也是使用上面的方式解决</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> interview.tm_score <span class="keyword">add</span> <span class="keyword">column</span> stu_class <span class="built_in">varchar</span>(<span class="number">10</span>);</div><div class="line"></div><div class="line"><span class="keyword">update</span> interview.tm_score <span class="keyword">set</span> stu_class=<span class="string">'一班'</span> <span class="keyword">where</span> stu_name <span class="keyword">in</span> (<span class="string">'路飞'</span>,<span class="string">'索隆'</span>);</div><div class="line"><span class="keyword">update</span> interview.tm_score <span class="keyword">set</span> stu_class=<span class="string">'二班'</span> <span class="keyword">where</span> stu_name <span class="keyword">not</span> <span class="keyword">in</span> (<span class="string">'路飞'</span>,<span class="string">'索隆'</span>);</div><div class="line"></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> crosstab(</div><div class="line">	<span class="string">'select stu_name,stu_class,course_name,score from interview.tm_score'</span>,<span class="string">'select distinct course_name from interview.tm_score'</span></div><div class="line">) <span class="keyword">as</span> ct(stu_name <span class="built_in">varchar</span>(<span class="number">20</span>) ,stu_class <span class="built_in">varchar</span>(<span class="number">10</span>),<span class="string">"数学"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>),<span class="string">"语文"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>), <span class="string">"英语"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>))</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这里我们六个思考题，有这样一组数据：</p>
+</blockquote>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-07.png-blog.photo" alt="data-analyst-interview-sql-02-07"></p>
+<p>我们想查询出这样格式的数据</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-07.png-blog.photo" alt="data-analyst-interview-sql-02-07"></p>
+<p>大家可以练习下这个SQL该怎么写</p>
+<h1 id="列转行"><a href="#列转行" class="headerlink" title="列转行"></a>列转行</h1><p>我们可以把行转成列，那要怎样把列转成行呢？</p>
+<h2 id="union-all"><a href="#union-all" class="headerlink" title="union all"></a>union all</h2><p>最简单的方法是直接union all,既然要放到一列里面，那字段类型肯定要一样，所以直接根据不同字段去union all 就好了</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> stu_name,<span class="string">"数学"</span> <span class="keyword">from</span> xxx</div><div class="line"><span class="keyword">union</span> all </div><div class="line"><span class="keyword">select</span> stu_name,<span class="string">"语文"</span> <span class="keyword">from</span> xxx</div><div class="line"><span class="keyword">union</span> all</div><div class="line"><span class="keyword">select</span> stu_name,<span class="string">"英语"</span> <span class="keyword">from</span> xxx</div></pre></td></tr></table></figure>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>这里简单介绍了几种常见的处理方法，实际使用中，一定还有更好地方法、或一些特殊的问题，欢迎大家分享、反馈。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/data-analyst-interview-sql-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/28/data-analyst-interview-sql-01/" itemprop="url">SQL笔试题-累计值（月累计、年累计）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T11:11:00+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔试题/" itemprop="url" rel="index">
+                    <span itemprop="name">笔试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>SQL笔试题</p>
+<blockquote>
+<p>下面的SQL基于PostgreSQL</p>
+</blockquote>
+<h1 id="1-累计值（月累计、年累计）"><a href="#1-累计值（月累计、年累计）" class="headerlink" title="1. 累计值（月累计、年累计）"></a>1. 累计值（月累计、年累计）</h1><h2 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 图书的销量表</span></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> interview.tm_book_sales</div><div class="line">(</div><div class="line">  calendar_date <span class="built_in">date</span>, <span class="comment">-- 日期</span></div><div class="line">  book_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">100</span>), <span class="comment">-- 图书名称</span></div><div class="line">  sales <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>) <span class="comment">-- 销量</span></div><div class="line">)</div><div class="line"><span class="keyword">WITH</span> (</div><div class="line">  OIDS=<span class="literal">FALSE</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="comment">-- 测试数据</span></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-01'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">56</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-02'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">100</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-03'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">70</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-06'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">11</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-07'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">65</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-08'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">9</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-09'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">30</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-10'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">56</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-01'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">18</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-02'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">40</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-03'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">2</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-04'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">22</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-05'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">48</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-07'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">71</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-09'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">73</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-10'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">37</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-03'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">5</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-05'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">46</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-06'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">35</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-07'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">10</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-09'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">30</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-10'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">12</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-13'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">43</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-01'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">10</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-04'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">78</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-10'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">50</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-20'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">93</span>);</div></pre></td></tr></table></figure>
+<p>现在呢，我们有了图书每天的销量数据，下面，我们思考1个问题：<br>我想要统计每本图书的当月累计销量，应该怎么做呢？</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/28/data-analyst-interview-sql-01/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/02/numpy-handbook-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/02/numpy-handbook-01/" itemprop="url">numpy手册(1)-ndarray</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T21:59:00+08:00">
+                2017-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Numpy/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Numpy</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。</p>
+<h1 id="1-numpy基本介绍"><a href="#1-numpy基本介绍" class="headerlink" title="1.numpy基本介绍"></a>1.numpy基本介绍</h1><blockquote class="blockquote-center"><br>numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。<br>一个用Python实现的科学计算包。<br>from 百度百科<br></blockquote>
+
+<p>numpy有2种基本对象，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ndarray（N-dimensional array object）和 ufunc（universal function object）</div></pre></td></tr></table></figure></p>
+<p>ndarray是存储单一数据类型的多维数组，ufunc是能够对数组进行处理的函数。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/02/numpy-handbook-01/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/01/cognos-doc-main/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1363,448 +1843,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/29/Kettle-handbook-06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/29/Kettle-handbook-06/" itemprop="url">Kettle手册（六）- Hop小记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-29T22:24:44+08:00">
-                2017-03-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
-                    <span itemprop="name">ETL-Kettle</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="1-什么是Hop"><a href="#1-什么是Hop" class="headerlink" title="1. 什么是Hop"></a>1. 什么是Hop</h1><p>在我们前面，使用Kettle过程中，控件与控件之间的连线，这里，我们详细介绍下它，它在Kettle中叫Hop（跳）。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-01.png-blog.photo" alt="Kettle-handbook-06-01.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-02.png-blog.photo" alt="Kettle-handbook-06-02.png"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/29/Kettle-handbook-06/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/Kettle-handbook-05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/28/Kettle-handbook-05/" itemprop="url">Kettle手册（五）- 实例-增量同步数据</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T23:30:44+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
-                    <span itemprop="name">ETL-Kettle</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>综合前面的几个例子，我们这里来是实现下增量数据的同步。<br>这里只是分享一种方法，实际工作中，还会有其他更好的方案。<br>增量同步的整体思路一般就是：首先拿到这张表的增量数据，怎么拿增量呢，源表需要有一个时间字段，代表该条记录的最新更新时间（及只要该条记录变化，该时间字段就会更新），当然有时间字段最好了，没有的话，可能需要做全表对比之类的操作；正常情况下，业务系统的表中都是有主键的，我们拿到增量数据之后，需要判断该记录的新插入的，还是更新的记录，如果是更新记录，我们需要先将数据加载到中间表，然后，根据主键将目标表中已存在的数据删除，最后再将本次的增量数据插入到目标表。</p>
-<h2 id="1-配置表的设计（元数据表）"><a href="#1-配置表的设计（元数据表）" class="headerlink" title="1.配置表的设计（元数据表）"></a>1.配置表的设计（元数据表）</h2><p>首先我们需要一张配置表，来保存我们要增量同步的表的基本信息<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">--元数据表</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> tm_etl_table(</div><div class="line">	table_name <span class="built_in">varchar</span>(<span class="number">50</span>), <span class="comment">--表名</span></div><div class="line">	is_run <span class="built_in">int</span> , <span class="comment">--调度状态</span></div><div class="line">	update_time <span class="keyword">timestamp</span>,<span class="comment">--表数据更新时间</span></div><div class="line">	etl_insert_time <span class="keyword">timestamp</span> <span class="comment">--记录更新时间</span></div><div class="line">);</div></pre></td></tr></table></figure></p>
-<p>我们初始化一条记录，我们就以这张ods_tm_book表<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-01.png-blog.photo" alt="Kettle-handbook-05-01.png"><br>一些基础表准备</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/28/Kettle-handbook-05/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/Kettle-handbook-04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/28/Kettle-handbook-04/" itemprop="url">Kettle手册（四）- 变量的使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T23:24:44+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
-                    <span itemprop="name">ETL-Kettle</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>我们在这一回，介绍下，Kettle中全局变量的使用，我们前面说过的配置文件，其实就是配置全局变量的地方<br><a href="2017/03/27/Kettle-handbook-03/">Kettle手册（三）- 配置文件的使用及密码加密 </a></p>
-<div class="note primary"><h2 id="1-全局变量"><a href="#1-全局变量" class="headerlink" title="1. 全局变量"></a>1. 全局变量</h2></div>
-<p>就是我们上面说的kettle.properties文件，我们在里面定义的变量，我们可以在所有的转换或者作业中获得到，比如，我们前面，说的数据库参数<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-01.png-blog.photo" alt="Kettle-handbook-04-01.png"><br>之前，我们已经在数据库连接中测试过，是可以，这里，我们输出下这个变量，看看</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/28/Kettle-handbook-04/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1857,7 +1895,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1868,7 +1906,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1879,7 +1917,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
