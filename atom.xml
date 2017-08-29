@@ -4,9 +4,9 @@
   <subtitle>BI、数据分析</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://yuguiyang.github.io/"/>
   <updated>2017-08-28T05:54:30.181Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://yuguiyang.github.io/</id>
   
   <author>
     <name>于贵洋</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>SQL笔试题-行转列</title>
-    <link href="http://yoursite.com/2017/08/28/data-analyst-interview-sql-02/"/>
-    <id>http://yoursite.com/2017/08/28/data-analyst-interview-sql-02/</id>
+    <link href="https://yuguiyang.github.io/2017/08/28/data-analyst-interview-sql-02/"/>
+    <id>https://yuguiyang.github.io/2017/08/28/data-analyst-interview-sql-02/</id>
     <published>2017-08-28T05:11:00.000Z</published>
     <updated>2017-08-28T05:54:30.181Z</updated>
     
@@ -75,19 +75,19 @@
     
     </summary>
     
-      <category term="笔试题" scheme="http://yoursite.com/categories/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
+      <category term="笔试题" scheme="https://yuguiyang.github.io/categories/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
     
     
-      <category term="SQL" scheme="http://yoursite.com/tags/SQL/"/>
+      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
     
-      <category term="笔试题" scheme="http://yoursite.com/tags/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
+      <category term="笔试题" scheme="https://yuguiyang.github.io/tags/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
     
   </entry>
   
   <entry>
     <title>SQL笔试题-累计值（月累计、年累计）</title>
-    <link href="http://yoursite.com/2017/08/28/data-analyst-interview-sql-01/"/>
-    <id>http://yoursite.com/2017/08/28/data-analyst-interview-sql-01/</id>
+    <link href="https://yuguiyang.github.io/2017/08/28/data-analyst-interview-sql-01/"/>
+    <id>https://yuguiyang.github.io/2017/08/28/data-analyst-interview-sql-01/</id>
     <published>2017-08-28T03:11:00.000Z</published>
     <updated>2017-08-29T03:04:09.671Z</updated>
     
@@ -209,21 +209,21 @@
     
     </summary>
     
-      <category term="笔试题" scheme="http://yoursite.com/categories/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
+      <category term="笔试题" scheme="https://yuguiyang.github.io/categories/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
     
     
-      <category term="SQL" scheme="http://yoursite.com/tags/SQL/"/>
+      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
     
-      <category term="笔试题" scheme="http://yoursite.com/tags/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
+      <category term="笔试题" scheme="https://yuguiyang.github.io/tags/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
     
   </entry>
   
   <entry>
     <title>matplotlib手册(9) - 绘制动画</title>
-    <link href="http://yoursite.com/2017/08/17/matplotlib-base-flash-09/"/>
-    <id>http://yoursite.com/2017/08/17/matplotlib-base-flash-09/</id>
+    <link href="https://yuguiyang.github.io/2017/08/17/matplotlib-base-flash-09/"/>
+    <id>https://yuguiyang.github.io/2017/08/17/matplotlib-base-flash-09/</id>
     <published>2017-08-17T03:11:00.000Z</published>
-    <updated>2017-08-29T09:21:47.457Z</updated>
+    <updated>2017-08-29T13:47:13.836Z</updated>
     
     <content type="html"><![CDATA[<p>matplotlib手册(9)</p>
 <blockquote>
@@ -248,7 +248,7 @@
 <h2 id="repeat、repeat-delay"><a href="#repeat、repeat-delay" class="headerlink" title="repeat、repeat_delay"></a>repeat、repeat_delay</h2><p>这2个参数一般会配合使用，repeat默认是true，所以上面的例子会一直循环下去，<br>如果我们改为false,第一次循环完之后就会停止。</p>
 <h1 id="2-ArtistAnimation"><a href="#2-ArtistAnimation" class="headerlink" title="2. ArtistAnimation"></a>2. ArtistAnimation</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">matplotlib</span>.<span class="title">animation</span>.<span class="title">ArtistAnimation</span><span class="params">(fig, artists, *args, **kwargs)</span></span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class"><span class="title">artists</span> :</span> list</div><div class="line"></div><div class="line">    Each list entry a collection of artists that represent what needs to be enabled on each frame. These will be disabled <span class="keyword">for</span> other frames.</div></pre></td></tr></table></figure>
 <p>使用起来和上面的差不多，这里不会调用函数，而是传入一个list，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np  </div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt  </div><div class="line"><span class="keyword">import</span> matplotlib.animation <span class="keyword">as</span> animation </div><div class="line">  </div><div class="line"></div><div class="line">fig,axes = plt.subplots()  </div><div class="line">    </div><div class="line">ims= []</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</div><div class="line">    ims.append(axes.plot(np.random.rand(<span class="number">10</span>)))</div><div class="line"></div><div class="line">im_ani = animation.ArtistAnimation(fig, ims, interval=<span class="number">1000</span>, repeat_delay=<span class="number">3000</span>,</div><div class="line">                                   blit=<span class="keyword">True</span>)</div><div class="line">print(ims)</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/matplotlib-base-flash-09-05.png-blog.photo" alt="matplotlib-base-flash-09-05"></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/matplotlib-base-flash-09-05.gif-blog.photo" alt="matplotlib-base-flash-09-05"></p>
 ]]></content>
     
     <summary type="html">
@@ -262,21 +262,21 @@
     
     </summary>
     
-      <category term="数据可视化-Python&amp;R" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+      <category term="数据可视化-Python&amp;R" scheme="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
     
     
-      <category term="数据可视化" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+      <category term="数据可视化" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="Python" scheme="https://yuguiyang.github.io/tags/Python/"/>
     
-      <category term="matplotlib" scheme="http://yoursite.com/tags/matplotlib/"/>
+      <category term="matplotlib" scheme="https://yuguiyang.github.io/tags/matplotlib/"/>
     
   </entry>
   
   <entry>
     <title>numpy手册(1)-ndarray</title>
-    <link href="http://yoursite.com/2017/08/02/numpy-handbook-01/"/>
-    <id>http://yoursite.com/2017/08/02/numpy-handbook-01/</id>
+    <link href="https://yuguiyang.github.io/2017/08/02/numpy-handbook-01/"/>
+    <id>https://yuguiyang.github.io/2017/08/02/numpy-handbook-01/</id>
     <published>2017-08-02T13:59:00.000Z</published>
     <updated>2017-08-27T15:17:55.671Z</updated>
     
@@ -325,19 +325,19 @@
     
     </summary>
     
-      <category term="Python-Numpy" scheme="http://yoursite.com/categories/Python-Numpy/"/>
+      <category term="Python-Numpy" scheme="https://yuguiyang.github.io/categories/Python-Numpy/"/>
     
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="Python" scheme="https://yuguiyang.github.io/tags/Python/"/>
     
-      <category term="Numpy" scheme="http://yoursite.com/tags/Numpy/"/>
+      <category term="Numpy" scheme="https://yuguiyang.github.io/tags/Numpy/"/>
     
   </entry>
   
   <entry>
     <title>Cognos资料汇总贴</title>
-    <link href="http://yoursite.com/2017/08/01/cognos-doc-main/"/>
-    <id>http://yoursite.com/2017/08/01/cognos-doc-main/</id>
+    <link href="https://yuguiyang.github.io/2017/08/01/cognos-doc-main/"/>
+    <id>https://yuguiyang.github.io/2017/08/01/cognos-doc-main/</id>
     <published>2017-08-01T13:59:00.000Z</published>
     <updated>2017-08-27T14:52:03.630Z</updated>
     
@@ -357,19 +357,19 @@
     
     </summary>
     
-      <category term="数据可视化-Cognos" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Cognos/"/>
+      <category term="数据可视化-Cognos" scheme="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Cognos/"/>
     
     
-      <category term="Cognos" scheme="http://yoursite.com/tags/Cognos/"/>
+      <category term="Cognos" scheme="https://yuguiyang.github.io/tags/Cognos/"/>
     
-      <category term="数据可视化" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+      <category term="数据可视化" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
   </entry>
   
   <entry>
     <title>Kettle手册（十二）- 控件使用-从步骤插入数据</title>
-    <link href="http://yoursite.com/2017/04/14/Kettle-handbook-12/"/>
-    <id>http://yoursite.com/2017/04/14/Kettle-handbook-12/</id>
+    <link href="https://yuguiyang.github.io/2017/04/14/Kettle-handbook-12/"/>
+    <id>https://yuguiyang.github.io/2017/04/14/Kettle-handbook-12/</id>
     <published>2017-04-14T03:24:44.000Z</published>
     <updated>2017-08-27T14:36:07.845Z</updated>
     
@@ -382,17 +382,17 @@
     
     </summary>
     
-      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
     
     
-      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
     
   </entry>
   
   <entry>
     <title>Kettle手册（十一）- 用PGP加密、加密文件</title>
-    <link href="http://yoursite.com/2017/04/11/Kettle-handbook-11/"/>
-    <id>http://yoursite.com/2017/04/11/Kettle-handbook-11/</id>
+    <link href="https://yuguiyang.github.io/2017/04/11/Kettle-handbook-11/"/>
+    <id>https://yuguiyang.github.io/2017/04/11/Kettle-handbook-11/</id>
     <published>2017-04-11T03:24:44.000Z</published>
     <updated>2017-08-27T14:31:04.826Z</updated>
     
@@ -411,17 +411,17 @@
     
     </summary>
     
-      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
     
     
-      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
     
   </entry>
   
   <entry>
     <title>Kettle手册（十）- 跨库查询</title>
-    <link href="http://yoursite.com/2017/04/10/Kettle-handbook-10/"/>
-    <id>http://yoursite.com/2017/04/10/Kettle-handbook-10/</id>
+    <link href="https://yuguiyang.github.io/2017/04/10/Kettle-handbook-10/"/>
+    <id>https://yuguiyang.github.io/2017/04/10/Kettle-handbook-10/</id>
     <published>2017-04-10T03:24:44.000Z</published>
     <updated>2017-08-27T14:18:29.979Z</updated>
     
@@ -437,17 +437,17 @@
     
     </summary>
     
-      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
     
     
-      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
     
   </entry>
   
   <entry>
     <title>Kettle手册（九）- 发送邮件</title>
-    <link href="http://yoursite.com/2017/03/30/Kettle-handbook-09/"/>
-    <id>http://yoursite.com/2017/03/30/Kettle-handbook-09/</id>
+    <link href="https://yuguiyang.github.io/2017/03/30/Kettle-handbook-09/"/>
+    <id>https://yuguiyang.github.io/2017/03/30/Kettle-handbook-09/</id>
     <published>2017-03-30T03:24:44.000Z</published>
     <updated>2017-08-27T14:05:09.684Z</updated>
     
@@ -468,17 +468,17 @@
     
     </summary>
     
-      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
     
     
-      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
     
   </entry>
   
   <entry>
     <title>Kettle手册（八）- 循环</title>
-    <link href="http://yoursite.com/2017/03/29/Kettle-handbook-08/"/>
-    <id>http://yoursite.com/2017/03/29/Kettle-handbook-08/</id>
+    <link href="https://yuguiyang.github.io/2017/03/29/Kettle-handbook-08/"/>
+    <id>https://yuguiyang.github.io/2017/03/29/Kettle-handbook-08/</id>
     <published>2017-03-29T15:40:44.000Z</published>
     <updated>2017-08-27T13:47:04.004Z</updated>
     
@@ -502,17 +502,17 @@
     
     </summary>
     
-      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
     
     
-      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
     
   </entry>
   
   <entry>
     <title>Kettle手册（七）- 资源库的使用</title>
-    <link href="http://yoursite.com/2017/03/29/Kettle-handbook-07/"/>
-    <id>http://yoursite.com/2017/03/29/Kettle-handbook-07/</id>
+    <link href="https://yuguiyang.github.io/2017/03/29/Kettle-handbook-07/"/>
+    <id>https://yuguiyang.github.io/2017/03/29/Kettle-handbook-07/</id>
     <published>2017-03-29T15:24:44.000Z</published>
     <updated>2017-08-27T13:28:47.101Z</updated>
     
@@ -532,17 +532,17 @@
     
     </summary>
     
-      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
     
     
-      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
     
   </entry>
   
   <entry>
     <title>Kettle手册（六）- Hop小记</title>
-    <link href="http://yoursite.com/2017/03/29/Kettle-handbook-06/"/>
-    <id>http://yoursite.com/2017/03/29/Kettle-handbook-06/</id>
+    <link href="https://yuguiyang.github.io/2017/03/29/Kettle-handbook-06/"/>
+    <id>https://yuguiyang.github.io/2017/03/29/Kettle-handbook-06/</id>
     <published>2017-03-29T14:24:44.000Z</published>
     <updated>2017-08-27T13:10:27.873Z</updated>
     
@@ -560,17 +560,17 @@
     
     </summary>
     
-      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
     
     
-      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
     
   </entry>
   
   <entry>
     <title>Kettle手册（五）- 实例-增量同步数据</title>
-    <link href="http://yoursite.com/2017/03/28/Kettle-handbook-05/"/>
-    <id>http://yoursite.com/2017/03/28/Kettle-handbook-05/</id>
+    <link href="https://yuguiyang.github.io/2017/03/28/Kettle-handbook-05/"/>
+    <id>https://yuguiyang.github.io/2017/03/28/Kettle-handbook-05/</id>
     <published>2017-03-28T15:30:44.000Z</published>
     <updated>2017-08-27T13:11:40.355Z</updated>
     
@@ -597,17 +597,17 @@
     
     </summary>
     
-      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
     
     
-      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
     
   </entry>
   
   <entry>
     <title>Kettle手册（四）- 变量的使用</title>
-    <link href="http://yoursite.com/2017/03/28/Kettle-handbook-04/"/>
-    <id>http://yoursite.com/2017/03/28/Kettle-handbook-04/</id>
+    <link href="https://yuguiyang.github.io/2017/03/28/Kettle-handbook-04/"/>
+    <id>https://yuguiyang.github.io/2017/03/28/Kettle-handbook-04/</id>
     <published>2017-03-28T15:24:44.000Z</published>
     <updated>2017-08-26T16:01:57.685Z</updated>
     
@@ -630,17 +630,17 @@
     
     </summary>
     
-      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
     
     
-      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
     
   </entry>
   
   <entry>
     <title>Kettle手册（三）- 配置文件的使用及密码加密</title>
-    <link href="http://yoursite.com/2017/03/28/Kettle-handbook-03/"/>
-    <id>http://yoursite.com/2017/03/28/Kettle-handbook-03/</id>
+    <link href="https://yuguiyang.github.io/2017/03/28/Kettle-handbook-03/"/>
+    <id>https://yuguiyang.github.io/2017/03/28/Kettle-handbook-03/</id>
     <published>2017-03-28T14:24:44.000Z</published>
     <updated>2017-08-26T15:39:56.222Z</updated>
     
@@ -663,17 +663,17 @@
     
     </summary>
     
-      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
     
     
-      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
     
   </entry>
   
   <entry>
     <title>Kettle手册（二）- 将数据导出为Excel</title>
-    <link href="http://yoursite.com/2017/03/27/Kettle-handbook-02/"/>
-    <id>http://yoursite.com/2017/03/27/Kettle-handbook-02/</id>
+    <link href="https://yuguiyang.github.io/2017/03/27/Kettle-handbook-02/"/>
+    <id>https://yuguiyang.github.io/2017/03/27/Kettle-handbook-02/</id>
     <published>2017-03-27T15:24:44.000Z</published>
     <updated>2017-08-26T16:02:23.400Z</updated>
     
@@ -702,17 +702,17 @@
     
     </summary>
     
-      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
     
     
-      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
     
   </entry>
   
   <entry>
     <title>Kettle手册（一）- 序及Kettle简介</title>
-    <link href="http://yoursite.com/2017/03/27/Kettle-handbook-01/"/>
-    <id>http://yoursite.com/2017/03/27/Kettle-handbook-01/</id>
+    <link href="https://yuguiyang.github.io/2017/03/27/Kettle-handbook-01/"/>
+    <id>https://yuguiyang.github.io/2017/03/27/Kettle-handbook-01/</id>
     <published>2017-03-27T13:59:00.000Z</published>
     <updated>2017-08-26T15:37:41.262Z</updated>
     
@@ -747,10 +747,10 @@
     
     </summary>
     
-      <category term="ETL-Kettle" scheme="http://yoursite.com/categories/ETL-Kettle/"/>
+      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
     
     
-      <category term="Kettle" scheme="http://yoursite.com/tags/Kettle/"/>
+      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
     
   </entry>
   

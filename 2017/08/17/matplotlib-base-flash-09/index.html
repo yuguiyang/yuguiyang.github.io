@@ -108,15 +108,15 @@
 <meta name="keywords" content="数据可视化,Python,matplotlib">
 <meta property="og:type" content="article">
 <meta property="og:title" content="matplotlib手册(9) - 绘制动画">
-<meta property="og:url" content="http://yoursite.com/2017/08/17/matplotlib-base-flash-09/index.html">
+<meta property="og:url" content="https://yuguiyang.github.io/2017/08/17/matplotlib-base-flash-09/index.html">
 <meta property="og:site_name" content="于贵洋的博客">
 <meta property="og:description" content="matplotlib手册(9)  绘制动画   前面，我们介绍了很多绘图的方法，matplotlib不单单可以绘制静态的图，还可以制作动态的图，下面，我们就来学习下。  我们主要参考matplotlib官网的例子http://matplotlib.org/api/animation_api.html  创建动画最简单的方式，就是使用Animation的子类,就是下面的这2个 1. FuncAnim">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/matplotlib-base-flash-09-01.gif-blog.photo">
 <meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/matplotlib-base-flash-09-03.png-blog.photo">
 <meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/matplotlib-base-flash-09-04.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/matplotlib-base-flash-09-05.png-blog.photo">
-<meta property="og:updated_time" content="2017-08-29T09:21:47.457Z">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/matplotlib-base-flash-09-05.gif-blog.photo">
+<meta property="og:updated_time" content="2017-08-29T13:47:13.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="matplotlib手册(9) - 绘制动画">
 <meta name="twitter:description" content="matplotlib手册(9)  绘制动画   前面，我们介绍了很多绘图的方法，matplotlib不单单可以绘制静态的图，还可以制作动态的图，下面，我们就来学习下。  我们主要参考matplotlib官网的例子http://matplotlib.org/api/animation_api.html  创建动画最简单的方式，就是使用Animation的子类,就是下面的这2个 1. FuncAnim">
@@ -150,7 +150,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/17/matplotlib-base-flash-09/"/>
+  <link rel="canonical" href="https://yuguiyang.github.io/2017/08/17/matplotlib-base-flash-09/"/>
 
 
 
@@ -357,7 +357,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/17/matplotlib-base-flash-09/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/17/matplotlib-base-flash-09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -474,7 +474,7 @@
 <h2 id="repeat、repeat-delay"><a href="#repeat、repeat-delay" class="headerlink" title="repeat、repeat_delay"></a>repeat、repeat_delay</h2><p>这2个参数一般会配合使用，repeat默认是true，所以上面的例子会一直循环下去，<br>如果我们改为false,第一次循环完之后就会停止。</p>
 <h1 id="2-ArtistAnimation"><a href="#2-ArtistAnimation" class="headerlink" title="2. ArtistAnimation"></a>2. ArtistAnimation</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">matplotlib</span>.<span class="title">animation</span>.<span class="title">ArtistAnimation</span><span class="params">(fig, artists, *args, **kwargs)</span></span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class"><span class="title">artists</span> :</span> list</div><div class="line"></div><div class="line">    Each list entry a collection of artists that represent what needs to be enabled on each frame. These will be disabled <span class="keyword">for</span> other frames.</div></pre></td></tr></table></figure>
 <p>使用起来和上面的差不多，这里不会调用函数，而是传入一个list，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np  </div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt  </div><div class="line"><span class="keyword">import</span> matplotlib.animation <span class="keyword">as</span> animation </div><div class="line">  </div><div class="line"></div><div class="line">fig,axes = plt.subplots()  </div><div class="line">    </div><div class="line">ims= []</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</div><div class="line">    ims.append(axes.plot(np.random.rand(<span class="number">10</span>)))</div><div class="line"></div><div class="line">im_ani = animation.ArtistAnimation(fig, ims, interval=<span class="number">1000</span>, repeat_delay=<span class="number">3000</span>,</div><div class="line">                                   blit=<span class="keyword">True</span>)</div><div class="line">print(ims)</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/matplotlib-base-flash-09-05.png-blog.photo" alt="matplotlib-base-flash-09-05"></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/matplotlib-base-flash-09-05.gif-blog.photo" alt="matplotlib-base-flash-09-05"></p>
 
       
     </div>
@@ -503,7 +503,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2017/08/17/matplotlib-base-flash-09/" title="matplotlib手册(9) - 绘制动画">http://yoursite.com/2017/08/17/matplotlib-base-flash-09/</a>
+    <a href="https://yuguiyang.github.io/2017/08/17/matplotlib-base-flash-09/" title="matplotlib手册(9) - 绘制动画">https://yuguiyang.github.io/2017/08/17/matplotlib-base-flash-09/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
