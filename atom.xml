@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuguiyang.github.io/"/>
-  <updated>2017-08-28T05:54:30.181Z</updated>
+  <updated>2017-08-29T14:48:43.744Z</updated>
   <id>https://yuguiyang.github.io/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>博客迁移整理中(置顶)</title>
+    <link href="https://yuguiyang.github.io/2017/12/31/top/"/>
+    <id>https://yuguiyang.github.io/2017/12/31/top/</id>
+    <published>2017-12-31T13:59:00.000Z</published>
+    <updated>2017-08-29T14:48:43.744Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hi，欢迎访问我的博客。最近正在迁移文章到这里，不定时更新中，请期待。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Hi，欢迎访问我的博客。最近正在迁移文章到这里，不定时更新中，请期待。&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>SQL笔试题-行转列</title>
