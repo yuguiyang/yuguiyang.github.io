@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/08/28/data-analyst-interview-sql-02/</loc>
-    <lastmod>2017-08-28T05:54:30.181Z</lastmod>
+    <loc>http://yoursite.com/2017/08/28/data-analyst-interview-sql-01/</loc>
+    <lastmod>2017-08-29T03:04:09.671Z</lastmod>
     <data>
         <display>
-        <title>SQL笔试题-行转列</title>
-        <pubTime>2017-08-28T05:11:00.000Z</pubTime>
+        <title>SQL笔试题-累计值（月累计、年累计）</title>
+        <pubTime>2017-08-28T03:11:00.000Z</pubTime>
         
         <tag>SQL</tag>
          
@@ -26,12 +26,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/08/28/data-analyst-interview-sql-01/</loc>
-    <lastmod>2017-08-28T03:21:07.999Z</lastmod>
+    <loc>http://yoursite.com/2017/08/28/data-analyst-interview-sql-02/</loc>
+    <lastmod>2017-08-28T05:54:30.181Z</lastmod>
     <data>
         <display>
-        <title>SQL笔试题-累计值（月累计、年累计）</title>
-        <pubTime>2017-08-28T03:11:00.000Z</pubTime>
+        <title>SQL笔试题-行转列</title>
+        <pubTime>2017-08-28T05:11:00.000Z</pubTime>
         
         <tag>SQL</tag>
          
