@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/08/17/matplotlib-base-flash-09/</loc>
+    <lastmod>2017-08-31T05:00:22.933Z</lastmod>
+    <data>
+        <display>
+        <title>matplotlib手册(9) - 绘制动画</title>
+        <pubTime>2017-08-17T03:11:00.000Z</pubTime>
+        
+        <tag>数据可视化</tag>
+         
+        <tag>Python</tag>
+         
+        <tag>matplotlib</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/08/31/data-analyst-interview-sql-03/</loc>
     <lastmod>2017-08-31T04:46:13.985Z</lastmod>
     <data>
@@ -39,30 +63,6 @@
            
              
               <breadCrumb title="随笔" url="https://yuguiyang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://yuguiyang.github.io/2017/08/17/matplotlib-base-flash-09/</loc>
-    <lastmod>2017-08-29T13:47:13.836Z</lastmod>
-    <data>
-        <display>
-        <title>matplotlib手册(9) - 绘制动画</title>
-        <pubTime>2017-08-17T03:11:00.000Z</pubTime>
-        
-        <tag>数据可视化</tag>
-         
-        <tag>Python</tag>
-         
-        <tag>matplotlib</tag>
-         
-         
-           
-             
-              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
           
         </display>
     </data>
