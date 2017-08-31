@@ -653,7 +653,7 @@
     <link href="https://yuguiyang.github.io/2017/07/30/Tableau-handbook-03/"/>
     <id>https://yuguiyang.github.io/2017/07/30/Tableau-handbook-03/</id>
     <published>2017-07-30T12:57:00.000Z</published>
-    <updated>2017-08-31T17:36:32.611Z</updated>
+    <updated>2017-08-31T17:37:59.064Z</updated>
     
     <content type="html"><![CDATA[<h1 id="序"><a href="#序" class="headerlink" title="序"></a>序</h1><p>昨天学习了下堆叠条形图，刚刚看到个类似的教程，说的是，在堆叠条中按值进行排序，挺有意思的。</p>
 <p>又学习到了一招，简单分享下。</p>
@@ -663,6 +663,7 @@
 <li>使用度量：销售额</li>
 </ul>
 <p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-03-01.png-blog.photo" alt="Tableau-handbook-03-01"></p>
+<a id="more"></a>
 <p>下面，我们来看下，是怎样让每个类别的数据块按照销售额排序的。</p>
 <p>我们观察下，上面的图，每个地区一个颜色，默认应该是按地区来排序的，每个数据条排序都一样。</p>
 <p>我们首先，在颜色“地区”上右键单击，选择“属性”</p>
@@ -685,7 +686,12 @@
     
       &lt;h1 id=&quot;序&quot;&gt;&lt;a href=&quot;#序&quot; class=&quot;headerlink&quot; title=&quot;序&quot;&gt;&lt;/a&gt;序&lt;/h1&gt;&lt;p&gt;昨天学习了下堆叠条形图，刚刚看到个类似的教程，说的是，在堆叠条中按值进行排序，挺有意思的。&lt;/p&gt;
 &lt;p&gt;又学习到了一招，简单分享下。&lt;/p&gt;
-&lt;h
+&lt;h1 id=&quot;按值在堆叠条中对段进行排序&quot;&gt;&lt;a href=&quot;#按值在堆叠条中对段进行排序&quot; class=&quot;headerlink&quot; title=&quot;按值在堆叠条中对段进行排序&quot;&gt;&lt;/a&gt;按值在堆叠条中对段进行排序&lt;/h1&gt;&lt;p&gt;我们先实现一个简单的堆叠条，&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用维度：地区、类别&lt;/li&gt;
+&lt;li&gt;使用度量：销售额&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-03-01.png-blog.photo&quot; alt=&quot;Tableau-handbook-03-01&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -703,13 +709,14 @@
     <link href="https://yuguiyang.github.io/2017/07/30/Tableau-handbook-02/"/>
     <id>https://yuguiyang.github.io/2017/07/30/Tableau-handbook-02/</id>
     <published>2017-07-30T11:57:00.000Z</published>
-    <updated>2017-08-31T17:29:29.079Z</updated>
+    <updated>2017-08-31T17:38:10.937Z</updated>
     
     <content type="html"><![CDATA[<h1 id="序"><a href="#序" class="headerlink" title="序"></a>序</h1><p>昨天在看水足迹那个可视化题目的时候，就想做一个堆叠条形图，但是发现只有一个维度，怎么也拖不出来，后来改了下数据源，成功实现了。今天搜到个例子，发现了解决办法，只能说明，还是对Tableau不熟啊，没有能领悟Tableau的内涵。</p>
 <h1 id="堆叠条形图"><a href="#堆叠条形图" class="headerlink" title="堆叠条形图"></a>堆叠条形图</h1><p>教程中介绍了2种方法，我们都来实践一下。这里面，最大的收获，就是原来那个“度量名称”和“度量值”是可以拖拽过去使用的，我也是醉了，这个操作得好好研究下，理解下Tableau的机制。</p>
 <p>这里的度量名称，应该就是所有度量的一个集合；度量值应该就是“度量名称”集合中选定的度量。</p>
 <p>这里我们就用 <a href="http://www.makeovermonday.co.uk/" target="_blank" rel="external">http://www.makeovermonday.co.uk/</a> 上的数据</p>
 <p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-01.png-blog.photo" alt="Tableau-handbook-02-01"></p>
+<a id="more"></a>
 <h2 id="对每个维度上使用一个单独的条"><a href="#对每个维度上使用一个单独的条" class="headerlink" title="对每个维度上使用一个单独的条"></a>对每个维度上使用一个单独的条</h2><p>首先，我们将“食物”维度，拖到列上，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-02.png-blog.photo" alt="Tableau-handbook-02-02"></p>
 <p>然后，我们需要观察的是3种水足迹的值，并让他们显示成堆叠图的样子</p>
 <p>我们把度量名称，拖到颜色上<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-03.png-blog.photo" alt="Tableau-handbook-02-03"></p>
@@ -725,7 +732,11 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;序&quot;&gt;&lt;a href=&quot;#序&quot; class=&quot;headerlink&quot; title=&quot;序&quot;&gt;&lt;/a&gt;序&lt;/h1&gt;&lt;p&gt;昨天在看水足迹那个可视化题目的时候，就想做一个堆叠条形图，但是发现只有一个维度，怎么也拖不出来，后来改了下数据源，成功实现了。今天搜到个例子，发现了
+      &lt;h1 id=&quot;序&quot;&gt;&lt;a href=&quot;#序&quot; class=&quot;headerlink&quot; title=&quot;序&quot;&gt;&lt;/a&gt;序&lt;/h1&gt;&lt;p&gt;昨天在看水足迹那个可视化题目的时候，就想做一个堆叠条形图，但是发现只有一个维度，怎么也拖不出来，后来改了下数据源，成功实现了。今天搜到个例子，发现了解决办法，只能说明，还是对Tableau不熟啊，没有能领悟Tableau的内涵。&lt;/p&gt;
+&lt;h1 id=&quot;堆叠条形图&quot;&gt;&lt;a href=&quot;#堆叠条形图&quot; class=&quot;headerlink&quot; title=&quot;堆叠条形图&quot;&gt;&lt;/a&gt;堆叠条形图&lt;/h1&gt;&lt;p&gt;教程中介绍了2种方法，我们都来实践一下。这里面，最大的收获，就是原来那个“度量名称”和“度量值”是可以拖拽过去使用的，我也是醉了，这个操作得好好研究下，理解下Tableau的机制。&lt;/p&gt;
+&lt;p&gt;这里的度量名称，应该就是所有度量的一个集合；度量值应该就是“度量名称”集合中选定的度量。&lt;/p&gt;
+&lt;p&gt;这里我们就用 &lt;a href=&quot;http://www.makeovermonday.co.uk/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.makeovermonday.co.uk/&lt;/a&gt; 上的数据&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-01.png-blog.photo&quot; alt=&quot;Tableau-handbook-02-01&quot;&gt;&lt;/p&gt;
     
     </summary>
     

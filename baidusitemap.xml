@@ -3,13 +3,14 @@
 
 
     
+    
   <url>
-    <loc>https://yuguiyang.github.io/2017/07/30/Tableau-handbook-03/</loc>
-    <lastmod>2017-08-31T17:36:32.611Z</lastmod>
+    <loc>https://yuguiyang.github.io/2017/07/30/Tableau-handbook-02/</loc>
+    <lastmod>2017-08-31T17:38:10.937Z</lastmod>
     <data>
         <display>
-        <title>小白学习Tableau-堆叠条按值排序</title>
-        <pubTime>2017-07-30T12:57:00.000Z</pubTime>
+        <title>小白学习Tableau-堆叠条形图</title>
+        <pubTime>2017-07-30T11:57:00.000Z</pubTime>
         
         <tag>数据可视化</tag>
          
@@ -26,12 +27,12 @@
 
     
   <url>
-    <loc>https://yuguiyang.github.io/2017/07/30/Tableau-handbook-02/</loc>
-    <lastmod>2017-08-31T17:29:29.079Z</lastmod>
+    <loc>https://yuguiyang.github.io/2017/07/30/Tableau-handbook-03/</loc>
+    <lastmod>2017-08-31T17:37:59.064Z</lastmod>
     <data>
         <display>
-        <title>小白学习Tableau-堆叠条形图</title>
-        <pubTime>2017-07-30T11:57:00.000Z</pubTime>
+        <title>小白学习Tableau-堆叠条按值排序</title>
+        <pubTime>2017-07-30T12:57:00.000Z</pubTime>
         
         <tag>数据可视化</tag>
          
@@ -92,7 +93,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>https://yuguiyang.github.io/2017/08/31/data-analyst-interview-sql-03/</loc>
