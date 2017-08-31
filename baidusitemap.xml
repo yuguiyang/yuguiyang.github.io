@@ -4,6 +4,72 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/07/30/Tableau-handbook-03/</loc>
+    <lastmod>2017-08-31T17:36:32.611Z</lastmod>
+    <data>
+        <display>
+        <title>小白学习Tableau-堆叠条按值排序</title>
+        <pubTime>2017-07-30T12:57:00.000Z</pubTime>
+        
+        <tag>数据可视化</tag>
+         
+        <tag>Tableau</tag>
+         
+         
+           
+             
+              <breadCrumb title="Tableau" url="https://yuguiyang.github.io/categories/Tableau/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/07/30/Tableau-handbook-02/</loc>
+    <lastmod>2017-08-31T17:29:29.079Z</lastmod>
+    <data>
+        <display>
+        <title>小白学习Tableau-堆叠条形图</title>
+        <pubTime>2017-07-30T11:57:00.000Z</pubTime>
+        
+        <tag>数据可视化</tag>
+         
+        <tag>Tableau</tag>
+         
+         
+           
+             
+              <breadCrumb title="Tableau" url="https://yuguiyang.github.io/categories/Tableau/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/07/30/Tableau-handbook-01/</loc>
+    <lastmod>2017-08-31T17:21:37.409Z</lastmod>
+    <data>
+        <display>
+        <title>小白学习Tableau-标签云</title>
+        <pubTime>2017-07-30T10:57:00.000Z</pubTime>
+        
+        <tag>数据可视化</tag>
+         
+        <tag>Tableau</tag>
+         
+         
+           
+             
+              <breadCrumb title="Tableau" url="https://yuguiyang.github.io/categories/Tableau/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/09/01/reading_notes_data_analysis_01/</loc>
     <lastmod>2017-08-31T16:58:22.936Z</lastmod>
     <data>
@@ -60,9 +126,9 @@
         
         <tag>数据可视化</tag>
          
-        <tag>Python</tag>
-         
         <tag>matplotlib</tag>
+         
+        <tag>Python</tag>
          
          
            
@@ -168,9 +234,9 @@
         <title>Cognos资料汇总贴</title>
         <pubTime>2017-08-01T13:59:00.000Z</pubTime>
         
-        <tag>Cognos</tag>
-         
         <tag>数据可视化</tag>
+         
+        <tag>Cognos</tag>
          
          
            
