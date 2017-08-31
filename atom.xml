@@ -40,6 +40,138 @@
   </entry>
   
   <entry>
+    <title>读书笔记-数据分析实战(1、2章)</title>
+    <link href="https://yuguiyang.github.io/2017/09/01/reading_notes_data_analysis_01/"/>
+    <id>https://yuguiyang.github.io/2017/09/01/reading_notes_data_analysis_01/</id>
+    <published>2017-08-31T16:59:00.000Z</published>
+    <updated>2017-08-31T16:58:22.936Z</updated>
+    
+    <content type="html"><![CDATA[<p> 读书笔记</p>
+<blockquote>
+<p>《数据分析实战》 </p>
+</blockquote>
+<h1 id="1-什么是数据科学家"><a href="#1-什么是数据科学家" class="headerlink" title="1. 什么是数据科学家"></a>1. 什么是数据科学家</h1><p>书中通过“什么是数据”和“数据在商业中的应用”，推导出数据科学家的定义。</p>
+<blockquote>
+<p>人们通过观测数据来推测出某种因果关系，再用这种因果关系来预测未来或者控制原因以达到预期的结果。把从事这种工作的人成为数据科学家。<br>– 书中摘录</p>
+</blockquote>
+<p>上面的定义觉得不是很清晰，就百度上找了找：</p>
+<blockquote>
+<p>数据科学家是指能采用科学方法、运用数据挖掘工具对复杂多量的数字、符号、文字、网址、音频或视频等信息进行数字化重现与认识，并能寻找新的数据洞察的工程师或专家(不同于统计学家或分析师)。一个优秀的数据科学家需要具备的素质有：懂数据采集、懂数学算法、懂数学软件、懂数据分析、懂预测分析、懂市场应用、懂决策分析等。<br>– 百度百科</p>
+</blockquote>
+<p>我觉得数据科学家就是对于数据相关的所有门类都有一个整体的认识，感觉是个“杂家”，精通算法、什么深度学习、机器学习、AI之类的都是信手拈来，对我就是神一样的存在了，努力吧，同学。</p>
+<a id="more"></a>
+<h1 id="2-3中类型的数据科学家"><a href="#2-3中类型的数据科学家" class="headerlink" title="2. 3中类型的数据科学家"></a>2. 3中类型的数据科学家</h1><p>书中将数据科学家分成了3类，主要从所在领域分类：</p>
+<ul>
+<li>商业领域出身</li>
+<li>统计学出身</li>
+<li>工程领域出身</li>
+</ul>
+<p>这应该也是数据科学家成长的3条路线，从不同的路线出发，最终殊途同归。当然，这3个领域需要综合，才称得上是合格的数据科学家。</p>
+<p>书中的技能配图，可以瞻仰下</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/reading_notes_data_analysis_01_01.png-blog.photo" alt="reading_notes_data_analysis_01_01.png"></p>
+<h1 id="数据分析的5个流程"><a href="#数据分析的5个流程" class="headerlink" title="数据分析的5个流程"></a>数据分析的5个流程</h1><p>书中，将数据分析分为5个步骤，看完后，感觉很靠谱，真的很实用，这里分享下</p>
+<p>商业数据分析的目的是解决问题，要解决问题，需要使用统计分析、机器学习、数据挖掘等各种方法。</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/reading_notes_data_analysis_01_02.png-blog.photo" alt="reading_notes_data_analysis_01_02.png"></p>
+<h2 id="现状和预期"><a href="#现状和预期" class="headerlink" title="现状和预期"></a>现状和预期</h2><p>首先我们要确认“什么才是数据分析中的问题”。<br>比如，“某种商品销售额下降”，这是一个现象，但它是不是一个问题呢？<br>如果，该产品不是公司主打商品，并且就要下架了，那销售额下降并不是一个问题，或者，该商品处于正常的波动，或是季节、市场环境的外部因素导致的，可能都不是一个问题；<br>相反，如果该商品是公司主打商品，并且没有其他外部因素导致，那销售额下降就是个问题了。</p>
+<p>这里记录下，其实，还需要确认下，销售额取数逻辑是否有问题，确保数据没有问题，并且要知道这个下降是怎么定义的，是和什么商品，或时间段对比发现下降的。</p>
+<p>有对比，才会有差距，既然下降了，说明他心里一定有个预期，即现状和预期之间是有差距的</p>
+<h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><p>有了上面的“现状和预期”，我们需要区别”现象和问题“。<br>像“销售额下降”，“顾客流失”，这都是一个现象，我们需要从中去发现问题</p>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>前提</th>
+<th>预期</th>
+<th>是否有问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>销售额下降</td>
+<td>销售额比例低</td>
+<td>维持现状</td>
+<td>无</td>
+</tr>
+<tr>
+<td>销售额下降</td>
+<td>销售额比例高</td>
+<td>将销售额恢复到良好状态</td>
+<td>有</td>
+</tr>
+<tr>
+<td>销售额上升</td>
+<td>广告费用高</td>
+<td>降低广告费用</td>
+<td>有</td>
+</tr>
+<tr>
+<td>销售额上升</td>
+<td>广告费用适当</td>
+<td>维持现状</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h3 id="从3个角度发现问题"><a href="#从3个角度发现问题" class="headerlink" title="从3个角度发现问题"></a>从3个角度发现问题</h3><p>发现问题的关键是思考并理解现状和预期之间的差距。<br>那怎样发现、理解这个差距呢？</p>
+<h4 id="观察数据大小"><a href="#观察数据大小" class="headerlink" title="观察数据大小"></a>观察数据大小</h4><p>首先考虑有哪些因素会导致这些差距，并明确这些因素的影响程度大小，即找到影响最大的因素。</p>
+<h4 id="将数据分解后观察"><a href="#将数据分解后观察" class="headerlink" title="将数据分解后观察"></a>将数据分解后观察</h4><p>指从多个角度观察发生的现象，分解出构成这种现象的因素。在分解的时候，必须遵循MECE原则：</p>
+<ul>
+<li>Mutually 相互性</li>
+<li>Exclusive 排重性</li>
+<li>Collectively 完整性</li>
+<li>Exhaustive 全面性</li>
+</ul>
+<p>我感觉这个很抽象，不是很理解，书上有一个例子，说的还不错，<br>常用的拆分方法是因数分解，比如：</p>
+<p>销售额=人均销售额*购买人数</p>
+<p>拆解后，找到容易调控的因子，才方面后面去解决问题</p>
+<h4 id="将数据比较后观察"><a href="#将数据比较后观察" class="headerlink" title="将数据比较后观察"></a>将数据比较后观察</h4><p>指的是将发生问题是的数据和没发生问题时的数据相互比较，并找出问题出现的原因。<br>比如，按时间对比，看看同比、环比（使用时间序列）</p>
+<ul>
+<li>昨天和今天比较</li>
+<li>上周和本周比较</li>
+<li><p>同一个商业活动前、后比较</p>
+</li>
+<li><p>与竞争对手数据比较</p>
+</li>
+<li><p>公司内部服务之间利益比较</p>
+</li>
+<li><p>年龄段差异</p>
+</li>
+<li>性别差异</li>
+<li>地域差异</li>
+</ul>
+<h2 id="数据收集和整理"><a href="#数据收集和整理" class="headerlink" title="数据收集和整理"></a>数据收集和整理</h2><p>## </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt; 读书笔记&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;《数据分析实战》 &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-什么是数据科学家&quot;&gt;&lt;a href=&quot;#1-什么是数据科学家&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是数据科学家&quot;&gt;&lt;/a&gt;1. 什么是数据科学家&lt;/h1&gt;&lt;p&gt;书中通过“什么是数据”和“数据在商业中的应用”，推导出数据科学家的定义。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;人们通过观测数据来推测出某种因果关系，再用这种因果关系来预测未来或者控制原因以达到预期的结果。把从事这种工作的人成为数据科学家。&lt;br&gt;– 书中摘录&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;上面的定义觉得不是很清晰，就百度上找了找：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;数据科学家是指能采用科学方法、运用数据挖掘工具对复杂多量的数字、符号、文字、网址、音频或视频等信息进行数字化重现与认识，并能寻找新的数据洞察的工程师或专家(不同于统计学家或分析师)。一个优秀的数据科学家需要具备的素质有：懂数据采集、懂数学算法、懂数学软件、懂数据分析、懂预测分析、懂市场应用、懂决策分析等。&lt;br&gt;– 百度百科&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我觉得数据科学家就是对于数据相关的所有门类都有一个整体的认识，感觉是个“杂家”，精通算法、什么深度学习、机器学习、AI之类的都是信手拈来，对我就是神一样的存在了，努力吧，同学。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="读书笔记" scheme="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="实例" scheme="https://yuguiyang.github.io/tags/%E5%AE%9E%E4%BE%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>SQL笔试题-连续登录天数</title>
     <link href="https://yuguiyang.github.io/2017/08/31/data-analyst-interview-sql-03/"/>
     <id>https://yuguiyang.github.io/2017/08/31/data-analyst-interview-sql-03/</id>
