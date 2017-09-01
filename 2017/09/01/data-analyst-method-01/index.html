@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="SQL,笔试题," />
+  <meta name="keywords" content="数据分析,购物篮分析," />
 
 
 
@@ -104,23 +104,20 @@
 
 
 
-<meta name="description" content="SQL笔试题  下面的SQL基于PostgreSQL  1. 累计值（月累计、年累计）背景描述比如说，我们有这样一份数据,记录的是图书每天的销量情况：    日期 图书名称 销量     2017-01-01 解忧杂货店 90   2017-01-03 解忧杂货店 50   2017-01-05 解忧杂货店 100   2017-01-01 雪落香杉树 100   2017-01-03 雪落香杉树">
-<meta name="keywords" content="SQL,笔试题">
+<meta name="description" content="数据分析案例  说到数据分析、数据挖掘，我们首先想到的可能就是沃尔玛那个“啤酒与尿布”的故事，它告诉我们，世间万物都有着千丝万缕的联系。这其中使用的数据分析方法就是“关联分析”。  什么是购物篮分析购物篮分析（Market Basket Analysis），购物篮就是我们去超市使用的篮子，结账的时候，购物篮中所有的商品都会被一起结算。所谓的购物篮分析就是通过购物篮子所反应的信息来==研究顾客的购买">
+<meta name="keywords" content="数据分析,购物篮分析">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQL笔试题-累计值（月累计、年累计）">
-<meta property="og:url" content="https://yuguiyang.github.io/2017/08/28/data-analyst-interview-sql-01/index.html">
+<meta property="og:title" content="数据分析案例-购物篮分析">
+<meta property="og:url" content="https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/index.html">
 <meta property="og:site_name" content="于贵洋的博客">
-<meta property="og:description" content="SQL笔试题  下面的SQL基于PostgreSQL  1. 累计值（月累计、年累计）背景描述比如说，我们有这样一份数据,记录的是图书每天的销量情况：    日期 图书名称 销量     2017-01-01 解忧杂货店 90   2017-01-03 解忧杂货店 50   2017-01-05 解忧杂货店 100   2017-01-01 雪落香杉树 100   2017-01-03 雪落香杉树">
+<meta property="og:description" content="数据分析案例  说到数据分析、数据挖掘，我们首先想到的可能就是沃尔玛那个“啤酒与尿布”的故事，它告诉我们，世间万物都有着千丝万缕的联系。这其中使用的数据分析方法就是“关联分析”。  什么是购物篮分析购物篮分析（Market Basket Analysis），购物篮就是我们去超市使用的篮子，结账的时候，购物篮中所有的商品都会被一起结算。所谓的购物篮分析就是通过购物篮子所反应的信息来==研究顾客的购买">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-01-01.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-01-02.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-01-03.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-01-04.png-blog.photo">
-<meta property="og:updated_time" content="2017-08-29T03:04:09.671Z">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-method-01.png-blog.photo">
+<meta property="og:updated_time" content="2017-09-01T02:36:46.335Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SQL笔试题-累计值（月累计、年累计）">
-<meta name="twitter:description" content="SQL笔试题  下面的SQL基于PostgreSQL  1. 累计值（月累计、年累计）背景描述比如说，我们有这样一份数据,记录的是图书每天的销量情况：    日期 图书名称 销量     2017-01-01 解忧杂货店 90   2017-01-03 解忧杂货店 50   2017-01-05 解忧杂货店 100   2017-01-01 雪落香杉树 100   2017-01-03 雪落香杉树">
-<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-01-01.png-blog.photo">
+<meta name="twitter:title" content="数据分析案例-购物篮分析">
+<meta name="twitter:description" content="数据分析案例  说到数据分析、数据挖掘，我们首先想到的可能就是沃尔玛那个“啤酒与尿布”的故事，它告诉我们，世间万物都有着千丝万缕的联系。这其中使用的数据分析方法就是“关联分析”。  什么是购物篮分析购物篮分析（Market Basket Analysis），购物篮就是我们去超市使用的篮子，结账的时候，购物篮中所有的商品都会被一起结算。所谓的购物篮分析就是通过购物篮子所反应的信息来==研究顾客的购买">
+<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-method-01.png-blog.photo">
 
 
 
@@ -150,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="https://yuguiyang.github.io/2017/08/28/data-analyst-interview-sql-01/"/>
+  <link rel="canonical" href="https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/"/>
 
 
 
 
 
-  <title>SQL笔试题-累计值（月累计、年累计） | 于贵洋的博客</title>
+  <title>数据分析案例-购物篮分析 | 于贵洋的博客</title>
   
 
 
@@ -357,7 +354,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/28/data-analyst-interview-sql-01/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -374,7 +371,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SQL笔试题-累计值（月累计、年累计）</h1>
+          <h1 class="post-title" itemprop="name headline">数据分析案例-购物篮分析</h1>
         
 
         <div class="post-meta">
@@ -386,8 +383,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T11:11:00+08:00">
-                2017-08-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-01T09:11:00+08:00">
+                2017-09-01
               </time>
             
 
@@ -409,8 +406,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/笔试题/" itemprop="url" rel="index">
-                    <span itemprop="name">笔试题</span>
+                  <a href="/categories/数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">数据分析</span>
                   </a>
                 </span>
 
@@ -451,68 +448,17 @@
       
 
       
-        <p>SQL笔试题</p>
+        <p>数据分析案例</p>
 <blockquote>
-<p>下面的SQL基于PostgreSQL</p>
+<p>说到数据分析、数据挖掘，我们首先想到的可能就是沃尔玛那个“啤酒与尿布”的故事，它告诉我们，世间万物都有着千丝万缕的联系。这其中使用的数据分析方法就是“关联分析”。</p>
 </blockquote>
-<h1 id="1-累计值（月累计、年累计）"><a href="#1-累计值（月累计、年累计）" class="headerlink" title="1. 累计值（月累计、年累计）"></a>1. 累计值（月累计、年累计）</h1><h2 id="背景描述"><a href="#背景描述" class="headerlink" title="背景描述"></a>背景描述</h2><p>比如说，我们有这样一份数据,记录的是图书每天的销量情况：</p>
-<table>
-<thead>
-<tr>
-<th>日期</th>
-<th>图书名称</th>
-<th>销量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2017-01-01</td>
-<td>解忧杂货店</td>
-<td>90</td>
-</tr>
-<tr>
-<td>2017-01-03</td>
-<td>解忧杂货店</td>
-<td>50</td>
-</tr>
-<tr>
-<td>2017-01-05</td>
-<td>解忧杂货店</td>
-<td>100</td>
-</tr>
-<tr>
-<td>2017-01-01</td>
-<td>雪落香杉树</td>
-<td>100</td>
-</tr>
-<tr>
-<td>2017-01-03</td>
-<td>雪落香杉树</td>
-<td>44</td>
-</tr>
-<tr>
-<td>2017-01-04</td>
-<td>雪落香杉树</td>
-<td>99</td>
-</tr>
-</tbody>
-</table>
-<p>现在，我们要统计每本书，当月的累计销量？即1号是1号的销量，2号是1号+2号当天的销量（注意：这里2号当天虽然没有销量，但是应该为1号的90+2号的0，为90）。大家先思考下，如果可以很快解答，就不需要接着读啦，有疑问的同学可以继续往下看。</p>
-<h2 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 图书的销量表</span></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> interview.tm_book_sales</div><div class="line">(</div><div class="line">  calendar_date <span class="built_in">date</span>, <span class="comment">-- 日期</span></div><div class="line">  book_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">100</span>), <span class="comment">-- 图书名称</span></div><div class="line">  sales <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>) <span class="comment">-- 销量</span></div><div class="line">)</div><div class="line"><span class="keyword">WITH</span> (</div><div class="line">  OIDS=<span class="literal">FALSE</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="comment">-- 测试数据</span></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-01'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">56</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-02'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">100</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-03'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">70</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-06'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">11</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-07'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">65</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-08'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">9</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-09'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">30</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-10'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">56</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-01'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">18</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-02'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">40</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-03'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">2</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-04'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">22</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-05'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">48</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-07'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">71</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-09'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">73</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-10'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">37</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-03'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">5</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-05'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">46</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-06'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">35</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-07'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">10</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-09'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">30</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-10'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">12</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-13'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">43</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-01'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">10</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-04'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">78</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-10'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">50</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-20'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">93</span>);</div></pre></td></tr></table></figure>
-<p>现在呢，我们有了图书每天的销量数据，下面，我们思考1个问题：<br>我想要统计每本图书的当月累计销量，应该怎么做呢？</p>
+<h1 id="什么是购物篮分析"><a href="#什么是购物篮分析" class="headerlink" title="什么是购物篮分析"></a>什么是购物篮分析</h1><p>购物篮分析（Market Basket Analysis），购物篮就是我们去超市使用的篮子，结账的时候，购物篮中所有的商品都会被一起结算。所谓的购物篮分析就是通过购物篮子所反应的信息来==研究顾客的购买行为==</p>
 <a id="more"></a>
-<p>如果只是单纯的统计每本书每个月的销量，熟悉SQL的同学，一定可以很快想到<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">	to_char(calendar_date,<span class="string">'yyyy-mm'</span>) month_name,</div><div class="line">	book_name,</div><div class="line">	<span class="keyword">sum</span>(sales) </div><div class="line"><span class="keyword">from</span> </div><div class="line">	interview.tm_book_sales </div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span></div><div class="line">	to_char(calendar_date,<span class="string">'yyyy-mm'</span>),</div><div class="line">	book_name</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> </div><div class="line">	book_name,</div><div class="line">	to_char(calendar_date,<span class="string">'yyyy-mm'</span>)</div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-01-01.png-blog.photo" alt="data-analyst-interview-sql-01-01"></p>
-<p>下面，我们来想下，这个月累计怎么做？<br>月累计值，其实就是当天的销量再加上当天之前的销量</p>
-<h2 id="自关联"><a href="#自关联" class="headerlink" title="自关联"></a>自关联</h2><p>通过 interview.tm_book_sales 表，我们可以获取每一天的销量，那要怎样获取每天历史的销量呢？<br>最简单的方式就是自关联了。<br>其实就是自己和自己去关联，来获取历史的销量<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">	t_today.calendar_date,</div><div class="line">	t_today.book_name,</div><div class="line">	<span class="keyword">sum</span>(t_his.sales) sales_mtd</div><div class="line"><span class="keyword">from</span> </div><div class="line">	interview.tm_book_sales t_today</div><div class="line"><span class="keyword">left</span> <span class="keyword">join</span> </div><div class="line">	interview.tm_book_sales t_his</div><div class="line"><span class="keyword">on</span></div><div class="line">	<span class="comment">-- 图书名称相等</span></div><div class="line">	t_his.book_name = t_today.book_name </div><div class="line"><span class="keyword">and</span> </div><div class="line">	<span class="comment">-- 月份相等，只统计当月</span></div><div class="line">	to_char(t_his.calendar_date,<span class="string">'yyyy-mm'</span>) = to_char(t_today.calendar_date,<span class="string">'yyyy-mm'</span>)</div><div class="line"><span class="keyword">and</span></div><div class="line">	<span class="comment">-- 获取当天之前的历史日期</span></div><div class="line">	t_his.calendar_date &lt;= t_today.calendar_date</div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span></div><div class="line">	t_today.calendar_date,</div><div class="line">	t_today.book_name</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> </div><div class="line">	t_today.book_name,</div><div class="line">	t_today.calendar_date</div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-01-02.png-blog.photo" alt="data-analyst-interview-sql-01-02"></p>
-<p>好了，上面，我们通过自关联，获取了每本图书的月累计销量，不要太高兴，我们观察下，就会发现些问题。<br>我们看看日期，就会发现，有些日期是没有销量的，比如：《解忧杂货店》2017-01-04，2017-01-05 就没有销量，但实际上，如果是累计值得花，他是应该有数据的，因为1号、2号、3号都有数据，就算4号当天没有销量，月累计也应该要算上前3天的销量，所以我们的SQL并不严谨，还得修改。</p>
-<h2 id="补全没有销量的日期"><a href="#补全没有销量的日期" class="headerlink" title="补全没有销量的日期"></a>补全没有销量的日期</h2><p>我们需要想办法补全缺失的日期，如果，t_today里面含有每一天每本书的数据就好了，这就要我们手动构造一个了。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">	t_day.calendar_date,</div><div class="line">	t_book.book_name</div><div class="line"><span class="keyword">from</span></div><div class="line">    <span class="comment">-- 日期维度表，就是存放每一天</span></div><div class="line">	base.dm_calendar t_day</div><div class="line"><span class="keyword">cross</span> <span class="keyword">join</span> </div><div class="line">    <span class="comment">-- 所有的图书信息</span></div><div class="line">	(<span class="keyword">select</span> <span class="keyword">distinct</span> book_name <span class="keyword">from</span> interview.tm_book_sales) t_book</div><div class="line"><span class="keyword">where</span> </div><div class="line">	t_day.month_id=<span class="number">201701</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-01-03.png-blog.photo" alt="data-analyst-interview-sql-01-03"></p>
-<p>日期维度表的话，其实是数仓中必备的地基础维度中的一个，她里面就是存放了每一天的数据，和其他一些我们会常用的字段，后面写一篇文章详细介绍下。<br>我们通过笛卡尔积，生成了一张包含每一天每本的图书的一个全维度表。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">with t_dim as (</div><div class="line">	<span class="keyword">select</span> </div><div class="line">		t_day.calendar_date,</div><div class="line">		t_book.book_name</div><div class="line">	<span class="keyword">from</span> </div><div class="line">		base.dm_calendar t_day</div><div class="line">	<span class="keyword">cross</span> <span class="keyword">join</span> </div><div class="line">		(<span class="keyword">select</span> <span class="keyword">distinct</span> book_name <span class="keyword">from</span> interview.tm_book_sales) t_book</div><div class="line">	<span class="keyword">where</span> </div><div class="line">		t_day.month_id=<span class="number">201701</span></div><div class="line">)</div><div class="line"><span class="keyword">select</span> </div><div class="line">	t_dim.calendar_date,</div><div class="line">	t_dim.book_name,</div><div class="line">	<span class="keyword">sum</span>(t_his.sales) sales_mtd</div><div class="line"><span class="keyword">from</span> </div><div class="line">	t_dim</div><div class="line"><span class="keyword">left</span> <span class="keyword">join</span> 	</div><div class="line">	interview.tm_book_sales t_today</div><div class="line"><span class="keyword">on</span> </div><div class="line">	t_today.calendar_date = t_dim.calendar_date</div><div class="line"><span class="keyword">and</span></div><div class="line">	t_today.book_name = t_dim.book_name</div><div class="line"><span class="keyword">left</span> <span class="keyword">join</span> </div><div class="line">	interview.tm_book_sales t_his</div><div class="line"><span class="keyword">on</span></div><div class="line">	<span class="comment">-- 图书名称相等</span></div><div class="line">	t_his.book_name = t_dim.book_name </div><div class="line"><span class="keyword">and</span> </div><div class="line">	<span class="comment">-- 月份相等，只统计当月</span></div><div class="line">	to_char(t_his.calendar_date,<span class="string">'yyyy-mm'</span>) = to_char(t_dim.calendar_date,<span class="string">'yyyy-mm'</span>)</div><div class="line"><span class="keyword">and</span></div><div class="line">	<span class="comment">-- 获取当天之前的历史日期</span></div><div class="line">	t_his.calendar_date &lt;= t_dim.calendar_date</div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span></div><div class="line">	t_dim.calendar_date,</div><div class="line">	t_dim.book_name</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> </div><div class="line">	t_dim.book_name,</div><div class="line">	t_dim.calendar_date</div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-01-04.png-blog.photo" alt="data-analyst-interview-sql-01-04"></p>
-<p>好啦，补全了日期信息后，我们的月累计算是完成了，手工。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>简单总结下，通过上面的例子，我们要掌握什么呢？<br>首先是对业务的理解，比如上面的月累计的统计方法；然后根据统计方法，使用SQL去实现，一步步完善；还有对日期维度表的一个综合使用。<br>年累计的实现也是一样的，同学们可以自行练习下，有问题可以反馈。</p>
+<p>关联分析要解决的问题是：一群用户购买了很多产品之后，哪些产品同时购买的几率比较高？买A产品的同时，买哪个产品的几率比较高</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-method-01.png-blog.photo" alt="data-analyst-method-01-01"></p>
+<p>这里介绍完概念，暂时还没啥写的，后面再补充下怎样实现，这里会有一个Tableau的简单购物篮分析。</p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p>上文的部分理论知识，摘自下面的博客</p>
+<p><a href="http://www.17bigdata.com/%E5%A4%9A%E8%A7%92%E5%BA%A6%E7%9C%8B%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%BB%8F%E5%85%B8%E6%A1%88%E4%BE%8B-%E8%B4%AD%E7%89%A9%E7%AF%AE%E5%88%86%E6%9E%90.html" target="_blank" rel="external">一起大数据</a></p>
 
       
     </div>
@@ -541,7 +487,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://yuguiyang.github.io/2017/08/28/data-analyst-interview-sql-01/" title="SQL笔试题-累计值（月累计、年累计）">https://yuguiyang.github.io/2017/08/28/data-analyst-interview-sql-01/</a>
+    <a href="https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/" title="数据分析案例-购物篮分析">https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -556,9 +502,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/SQL/" rel="tag"># SQL</a>
+            <a href="/tags/数据分析/" rel="tag"># 数据分析</a>
           
-            <a href="/tags/笔试题/" rel="tag"># 笔试题</a>
+            <a href="/tags/购物篮分析/" rel="tag"># 购物篮分析</a>
           
         </div>
       
@@ -571,8 +517,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/17/matplotlib-base-flash-09/" rel="next" title="matplotlib手册(9) - 绘制动画">
-                <i class="fa fa-chevron-left"></i> matplotlib手册(9) - 绘制动画
+              <a href="/2017/09/01/reading_notes_data_analysis_01/" rel="next" title="读书笔记-数据分析实战(1、2章)">
+                <i class="fa fa-chevron-left"></i> 读书笔记-数据分析实战(1、2章)
               </a>
             
           </div>
@@ -581,8 +527,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/28/data-analyst-interview-sql-02/" rel="prev" title="SQL笔试题-行转列">
-                SQL笔试题-行转列 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/31/top/" rel="prev" title="博客迁移整理中(置顶)">
+                博客迁移整理中(置顶) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -753,7 +699,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-累计值（月累计、年累计）"><span class="nav-number">1.</span> <span class="nav-text">1. 累计值（月累计、年累计）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景描述"><span class="nav-number">1.1.</span> <span class="nav-text">背景描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试数据"><span class="nav-number">1.2.</span> <span class="nav-text">测试数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自关联"><span class="nav-number">1.3.</span> <span class="nav-text">自关联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补全没有销量的日期"><span class="nav-number">1.4.</span> <span class="nav-text">补全没有销量的日期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是购物篮分析"><span class="nav-number">1.</span> <span class="nav-text">什么是购物篮分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">2.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
             
 
           </div>

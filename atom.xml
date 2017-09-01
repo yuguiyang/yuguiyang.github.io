@@ -40,6 +40,45 @@
   </entry>
   
   <entry>
+    <title>数据分析案例-购物篮分析</title>
+    <link href="https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/"/>
+    <id>https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/</id>
+    <published>2017-09-01T01:11:00.000Z</published>
+    <updated>2017-09-01T02:36:46.335Z</updated>
+    
+    <content type="html"><![CDATA[<p>数据分析案例</p>
+<blockquote>
+<p>说到数据分析、数据挖掘，我们首先想到的可能就是沃尔玛那个“啤酒与尿布”的故事，它告诉我们，世间万物都有着千丝万缕的联系。这其中使用的数据分析方法就是“关联分析”。</p>
+</blockquote>
+<h1 id="什么是购物篮分析"><a href="#什么是购物篮分析" class="headerlink" title="什么是购物篮分析"></a>什么是购物篮分析</h1><p>购物篮分析（Market Basket Analysis），购物篮就是我们去超市使用的篮子，结账的时候，购物篮中所有的商品都会被一起结算。所谓的购物篮分析就是通过购物篮子所反应的信息来==研究顾客的购买行为==</p>
+<a id="more"></a>
+<p>关联分析要解决的问题是：一群用户购买了很多产品之后，哪些产品同时购买的几率比较高？买A产品的同时，买哪个产品的几率比较高</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-method-01.png-blog.photo" alt="data-analyst-method-01-01"></p>
+<p>这里介绍完概念，暂时还没啥写的，后面再补充下怎样实现，这里会有一个Tableau的简单购物篮分析。</p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p>上文的部分理论知识，摘自下面的博客</p>
+<p><a href="http://www.17bigdata.com/%E5%A4%9A%E8%A7%92%E5%BA%A6%E7%9C%8B%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%BB%8F%E5%85%B8%E6%A1%88%E4%BE%8B-%E8%B4%AD%E7%89%A9%E7%AF%AE%E5%88%86%E6%9E%90.html" target="_blank" rel="external">一起大数据</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;数据分析案例&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;说到数据分析、数据挖掘，我们首先想到的可能就是沃尔玛那个“啤酒与尿布”的故事，它告诉我们，世间万物都有着千丝万缕的联系。这其中使用的数据分析方法就是“关联分析”。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;什么是购物篮分析&quot;&gt;&lt;a href=&quot;#什么是购物篮分析&quot; class=&quot;headerlink&quot; title=&quot;什么是购物篮分析&quot;&gt;&lt;/a&gt;什么是购物篮分析&lt;/h1&gt;&lt;p&gt;购物篮分析（Market Basket Analysis），购物篮就是我们去超市使用的篮子，结账的时候，购物篮中所有的商品都会被一起结算。所谓的购物篮分析就是通过购物篮子所反应的信息来==研究顾客的购买行为==&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="数据分析" scheme="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="购物篮分析" scheme="https://yuguiyang.github.io/tags/%E8%B4%AD%E7%89%A9%E7%AF%AE%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
     <title>读书笔记-数据分析实战(1、2章)</title>
     <link href="https://yuguiyang.github.io/2017/09/01/reading_notes_data_analysis_01/"/>
     <id>https://yuguiyang.github.io/2017/09/01/reading_notes_data_analysis_01/</id>
@@ -163,9 +202,9 @@
       <category term="读书笔记" scheme="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
       <category term="实例" scheme="https://yuguiyang.github.io/tags/%E5%AE%9E%E4%BE%8B/"/>
     
@@ -549,9 +588,9 @@
     
       <category term="数据可视化" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
-      <category term="matplotlib" scheme="https://yuguiyang.github.io/tags/matplotlib/"/>
-    
       <category term="Python" scheme="https://yuguiyang.github.io/tags/Python/"/>
+    
+      <category term="matplotlib" scheme="https://yuguiyang.github.io/tags/matplotlib/"/>
     
   </entry>
   
@@ -645,6 +684,51 @@
       <category term="数据可视化" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
       <category term="Cognos" scheme="https://yuguiyang.github.io/tags/Cognos/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小白学习Tableau-购物篮分析</title>
+    <link href="https://yuguiyang.github.io/2017/08/01/Tableau-handbook-04/"/>
+    <id>https://yuguiyang.github.io/2017/08/01/Tableau-handbook-04/</id>
+    <published>2017-08-01T02:57:00.000Z</published>
+    <updated>2017-09-01T02:40:37.627Z</updated>
+    
+    <content type="html"><![CDATA[<p>Tableau实例</p>
+<blockquote>
+<p>关于购物篮的介绍可以参考<a href="https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/">数据分析案例-购物篮分析</a></p>
+</blockquote>
+<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>我们想要分析的是顾客在购买商品的时候，哪些商品会同时购买。</p>
+<p>下面，我们直接开始开发Tableau</p>
+<h1 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h1><p>我们就是用Tableau默认自带的“示例-超市”</p>
+<h1 id="拖入两张订单表"><a href="#拖入两张订单表" class="headerlink" title="拖入两张订单表"></a>拖入两张订单表</h1><p>因为我们需要分析的是每个顾客，在购买A商品的时候，还会购买哪些商品。只使用一张订单表，不是很容易看出来，所以我们需要拖入2张订单表，以此来更方便的处理数据。<br>因为我们要分析的是每个顾客，所以我们使用顾客ID去关联</p>
+<a id="more"></a>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-04-01.png-blog.photo" alt="Tableau-handbook-04-01"></p>
+<h1 id="拖子类别进行分析"><a href="#拖子类别进行分析" class="headerlink" title="拖子类别进行分析"></a>拖子类别进行分析</h1><p>我们按照下图所示，进行拖拽<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-04-02.png-blog.photo" alt="Tableau-handbook-04-02"></p>
+<h1 id="剔除无效的值"><a href="#剔除无效的值" class="headerlink" title="剔除无效的值"></a>剔除无效的值</h1><p>手工剔除，好麻烦，如果数据是在数据库中，直接用SQL处理掉就可以了</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-04-03.png-blog.photo" alt="Tableau-handbook-04-03"></p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="http://tableau.analyticservice.net/%E4%BA%BA%E4%BA%BA%E9%83%BD%E6%98%AF%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%B8%88%E7%B3%BB%E5%88%97%EF%BC%9A%E7%94%A8tableau%E7%8E%A9%E8%BD%AC%E8%B4%AD%E7%89%A9%E7%AF%AE%E5%88%86%E6%9E%90/" target="_blank" rel="external">人人都是可视化分析师系列：用Tableau玩转购物篮分析</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Tableau实例&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;关于购物篮的介绍可以参考&lt;a href=&quot;https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/&quot;&gt;数据分析案例-购物篮分析&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;目标&quot;&gt;&lt;a href=&quot;#目标&quot; class=&quot;headerlink&quot; title=&quot;目标&quot;&gt;&lt;/a&gt;目标&lt;/h1&gt;&lt;p&gt;我们想要分析的是顾客在购买商品的时候，哪些商品会同时购买。&lt;/p&gt;
+&lt;p&gt;下面，我们直接开始开发Tableau&lt;/p&gt;
+&lt;h1 id=&quot;数据源&quot;&gt;&lt;a href=&quot;#数据源&quot; class=&quot;headerlink&quot; title=&quot;数据源&quot;&gt;&lt;/a&gt;数据源&lt;/h1&gt;&lt;p&gt;我们就是用Tableau默认自带的“示例-超市”&lt;/p&gt;
+&lt;h1 id=&quot;拖入两张订单表&quot;&gt;&lt;a href=&quot;#拖入两张订单表&quot; class=&quot;headerlink&quot; title=&quot;拖入两张订单表&quot;&gt;&lt;/a&gt;拖入两张订单表&lt;/h1&gt;&lt;p&gt;因为我们需要分析的是每个顾客，在购买A商品的时候，还会购买哪些商品。只使用一张订单表，不是很容易看出来，所以我们需要拖入2张订单表，以此来更方便的处理数据。&lt;br&gt;因为我们要分析的是每个顾客，所以我们使用顾客ID去关联&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Tableau" scheme="https://yuguiyang.github.io/categories/Tableau/"/>
+    
+    
+      <category term="数据可视化" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+      <category term="Tableau" scheme="https://yuguiyang.github.io/tags/Tableau/"/>
     
   </entry>
   
@@ -984,76 +1068,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;1-什么是Hop&quot;&gt;&lt;a href=&quot;#1-什么是Hop&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是Hop&quot;&gt;&lt;/a&gt;1. 什么是Hop&lt;/h1&gt;&lt;p&gt;在我们前面，使用Kettle过程中，控件与控件之间的连线，这里，我们详细介绍下它，它在Kettle中叫Hop（跳）。&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-06-01.png&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-02.png-blog.photo&quot; alt=&quot;Kettle-handbook-06-02.png&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
-    
-    
-      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kettle手册（五）- 实例-增量同步数据</title>
-    <link href="https://yuguiyang.github.io/2017/03/28/Kettle-handbook-05/"/>
-    <id>https://yuguiyang.github.io/2017/03/28/Kettle-handbook-05/</id>
-    <published>2017-03-28T15:30:44.000Z</published>
-    <updated>2017-08-27T13:11:40.355Z</updated>
-    
-    <content type="html"><![CDATA[<p>综合前面的几个例子，我们这里来是实现下增量数据的同步。<br>这里只是分享一种方法，实际工作中，还会有其他更好的方案。<br>增量同步的整体思路一般就是：首先拿到这张表的增量数据，怎么拿增量呢，源表需要有一个时间字段，代表该条记录的最新更新时间（及只要该条记录变化，该时间字段就会更新），当然有时间字段最好了，没有的话，可能需要做全表对比之类的操作；正常情况下，业务系统的表中都是有主键的，我们拿到增量数据之后，需要判断该记录的新插入的，还是更新的记录，如果是更新记录，我们需要先将数据加载到中间表，然后，根据主键将目标表中已存在的数据删除，最后再将本次的增量数据插入到目标表。</p>
-<h2 id="1-配置表的设计（元数据表）"><a href="#1-配置表的设计（元数据表）" class="headerlink" title="1.配置表的设计（元数据表）"></a>1.配置表的设计（元数据表）</h2><p>首先我们需要一张配置表，来保存我们要增量同步的表的基本信息<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">--元数据表</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> tm_etl_table(</div><div class="line">	table_name <span class="built_in">varchar</span>(<span class="number">50</span>), <span class="comment">--表名</span></div><div class="line">	is_run <span class="built_in">int</span> , <span class="comment">--调度状态</span></div><div class="line">	update_time <span class="keyword">timestamp</span>,<span class="comment">--表数据更新时间</span></div><div class="line">	etl_insert_time <span class="keyword">timestamp</span> <span class="comment">--记录更新时间</span></div><div class="line">);</div></pre></td></tr></table></figure></p>
-<p>我们初始化一条记录，我们就以这张ods_tm_book表<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-01.png-blog.photo" alt="Kettle-handbook-05-01.png"><br>一些基础表准备</p>
-<a id="more"></a>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 源表</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> tm_book(<span class="keyword">id</span> <span class="built_in">int</span>,book_name <span class="built_in">varchar</span>(<span class="number">10</span>),latest_time <span class="keyword">timestamp</span>);</div><div class="line"></div><div class="line"><span class="comment">-- 源表数据初始化</span></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book(<span class="keyword">id</span>,book_name,latest_time)</div><div class="line"><span class="keyword">select</span> x,x||<span class="string">'_name'</span>,clock_timestamp() <span class="keyword">from</span> generate_series(<span class="number">1</span>,<span class="number">10</span>) x;</div><div class="line"></div><div class="line"><span class="comment">-- 目标表和中间表</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> ods_tm_book(<span class="keyword">id</span> <span class="built_in">int</span>,book_name <span class="built_in">varchar</span>(<span class="number">10</span>),latest_time <span class="keyword">timestamp</span>,etl_insert_time <span class="keyword">timestamp</span>);</div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> staging_tm_book(<span class="keyword">id</span> <span class="built_in">int</span>,book_name <span class="built_in">varchar</span>(<span class="number">10</span>),latest_time <span class="keyword">timestamp</span>);</div></pre></td></tr></table></figure>
-<p>源表中的数据<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-02.png-blog.photo" alt="Kettle-handbook-05-02.png"></p>
-<h2 id="2-同步数据的流程开发"><a href="#2-同步数据的流程开发" class="headerlink" title="2.同步数据的流程开发"></a>2.同步数据的流程开发</h2><p>整体流程是这样的，注意下，这个只是为了简单演示了这个增量的例子，实际应用的话得修改，这是有漏洞的。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-03.png-blog.photo" alt="Kettle-handbook-05-03.png"></p>
-<h3 id="2-1更新元数据表的状态并获取表更新时间"><a href="#2-1更新元数据表的状态并获取表更新时间" class="headerlink" title="2.1更新元数据表的状态并获取表更新时间"></a>2.1更新元数据表的状态并获取表更新时间</h3><p>就是我们第一个状态，我们更新tm_etl_table表，更新is_run=0，表示我们开始同步数据了，update_time，初始化为 ‘1970-01-01’，表示我们要拉取所有的数据<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-04.png-blog.photo" alt="Kettle-handbook-05-04.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-05.png-blog.photo" alt="Kettle-handbook-05-05.png"><br>这里，我们将该表的更新时间作为变量，我们会在后面的转换中使用<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-06.png-blog.photo" alt="Kettle-handbook-05-06.png"></p>
-<h3 id="2-2-加载数据到中间表"><a href="#2-2-加载数据到中间表" class="headerlink" title="2.2 加载数据到中间表"></a>2.2 加载数据到中间表</h3><p>我们这里，直接表对表，将数据插入到staging<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-07.png-blog.photo" alt="Kettle-handbook-05-07.png"><br>其中，表输入中，我们需要根据前面的更新时间变量，获取增量数据，注意，需要勾选上“替换SQL语句中的变量”<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-08.png-blog.photo" alt="Kettle-handbook-05-08.png"><br>这里，我们直接就表输出到中间表，每次都需将清空表数据<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-09.png-blog.photo" alt="Kettle-handbook-05-09.png"></p>
-<h3 id="2-3-加载数据到目标表"><a href="#2-3-加载数据到目标表" class="headerlink" title="2.3 加载数据到目标表"></a>2.3 加载数据到目标表</h3><p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-10.png-blog.photo" alt="Kettle-handbook-05-10.png"><br>这里，主要有3段脚本（为了方便，就这样吧），根据主键ID，清空目标表数据，然后，将数据插入到目标表，最后，更新tm_etl_table表中的记录状态<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-11.png-blog.photo" alt="Kettle-handbook-05-11.png"><br>好了，用Kettle实现一个增量的逻辑大概就是这样了，</p>
-<h2 id="3-小结"><a href="#3-小结" class="headerlink" title="3.小结"></a>3.小结</h2><p>这里整理几个问题</p>
-<h3 id="3-1-中间表"><a href="#3-1-中间表" class="headerlink" title="3.1 中间表"></a>3.1 中间表</h3><p>这里的话，使用了中间表，Kettle中是有一个控件的，应该叫那个“插入/更新”，可以根据主键将数据更新掉，这个控件之前使用时，发现很慢，就一直没用，后面的话，可能会写个例子，简单测试看看。使用中间表，缓存下数据，也是不错的方法。</p>
-<h3 id="3-2-增量流程"><a href="#3-2-增量流程" class="headerlink" title="3.2 增量流程"></a>3.2 增量流程</h3><p>目前公司中，增量抽取，是这样的，首先各个业务系统的数据导出到文本文件，然后批量将文件加载到数据仓库中（这里使用循环加载的）。因为每天的数据量比较大，如果知己到表的话，会很慢，使用文件，一些数据库都有批量加载的命令，很快很方便，比如：PostgreSQL中的copy命令，Greenplum中的外部表，还有Mysql中的load data等等。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;综合前面的几个例子，我们这里来是实现下增量数据的同步。&lt;br&gt;这里只是分享一种方法，实际工作中，还会有其他更好的方案。&lt;br&gt;增量同步的整体思路一般就是：首先拿到这张表的增量数据，怎么拿增量呢，源表需要有一个时间字段，代表该条记录的最新更新时间（及只要该条记录变化，该时间字段就会更新），当然有时间字段最好了，没有的话，可能需要做全表对比之类的操作；正常情况下，业务系统的表中都是有主键的，我们拿到增量数据之后，需要判断该记录的新插入的，还是更新的记录，如果是更新记录，我们需要先将数据加载到中间表，然后，根据主键将目标表中已存在的数据删除，最后再将本次的增量数据插入到目标表。&lt;/p&gt;
-&lt;h2 id=&quot;1-配置表的设计（元数据表）&quot;&gt;&lt;a href=&quot;#1-配置表的设计（元数据表）&quot; class=&quot;headerlink&quot; title=&quot;1.配置表的设计（元数据表）&quot;&gt;&lt;/a&gt;1.配置表的设计（元数据表）&lt;/h2&gt;&lt;p&gt;首先我们需要一张配置表，来保存我们要增量同步的表的基本信息&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;--元数据表&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;table&lt;/span&gt; tm_etl_table(&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	table_name &lt;span class=&quot;built_in&quot;&gt;varchar&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;50&lt;/span&gt;), &lt;span class=&quot;comment&quot;&gt;--表名&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	is_run &lt;span class=&quot;built_in&quot;&gt;int&lt;/span&gt; , &lt;span class=&quot;comment&quot;&gt;--调度状态&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	update_time &lt;span class=&quot;keyword&quot;&gt;timestamp&lt;/span&gt;,&lt;span class=&quot;comment&quot;&gt;--表数据更新时间&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	etl_insert_time &lt;span class=&quot;keyword&quot;&gt;timestamp&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;--记录更新时间&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;我们初始化一条记录，我们就以这张ods_tm_book表&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-05-01.png&quot;&gt;&lt;br&gt;一些基础表准备&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
-    
-    
-      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kettle手册（四）- 变量的使用</title>
-    <link href="https://yuguiyang.github.io/2017/03/28/Kettle-handbook-04/"/>
-    <id>https://yuguiyang.github.io/2017/03/28/Kettle-handbook-04/</id>
-    <published>2017-03-28T15:24:44.000Z</published>
-    <updated>2017-08-26T16:01:57.685Z</updated>
-    
-    <content type="html"><![CDATA[<p>我们在这一回，介绍下，Kettle中全局变量的使用，我们前面说过的配置文件，其实就是配置全局变量的地方<br><a href="2017/03/27/Kettle-handbook-03/">Kettle手册（三）- 配置文件的使用及密码加密 </a></p>
-<div class="note primary"><h2 id="1-全局变量"><a href="#1-全局变量" class="headerlink" title="1. 全局变量"></a>1. 全局变量</h2></div>
-<p>就是我们上面说的kettle.properties文件，我们在里面定义的变量，我们可以在所有的转换或者作业中获得到，比如，我们前面，说的数据库参数<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-01.png-blog.photo" alt="Kettle-handbook-04-01.png"><br>之前，我们已经在数据库连接中测试过，是可以，这里，我们输出下这个变量，看看</p>
-<a id="more"></a>
-<h3 id="1-1-输出变量的值"><a href="#1-1-输出变量的值" class="headerlink" title="1.1 输出变量的值"></a>1.1 输出变量的值</h3><p>我们这里，用到了“获取变量”这个控件<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-02.png-blog.photo" alt="Kettle-handbook-04-02.png"><br>我们单击，”Get Variables”,就可以获取到当前的全局变量信息<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-03.png-blog.photo" alt="Kettle-handbook-04-03.png"><br>我们选择几个输出试试<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-04.png-blog.photo" alt="Kettle-handbook-04-04.png"><br>还有一个，”日志“控件，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-05.png-blog.photo" alt="Kettle-handbook-04-05.png"><br>拖好之后，我们直接执行，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-06.png-blog.photo" alt="Kettle-handbook-04-06.png"><br>日志中，我们会看到，我们定义在文件中的参数（加密的参数，我没有重启，所以显示的还是原来的）<br>那我们，可不可以，动态的增加变量呢？</p>
-<h3 id="1-2-动态增加变量"><a href="#1-2-动态增加变量" class="headerlink" title="1.2 动态增加变量"></a>1.2 动态增加变量</h3><p>刚刚也在网上找了些资料，尝试了下，这里简单分享下（貌似，这得算是对局部变量的操作，暂时就放在这里吧）<br>我们先试下在转换中设置变量，作业中也是可以使用的，我们后面再说<br>测试流程是这样的， 我们再表输入中，有2个时间参数，然后作为变量<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-07.png-blog.photo" alt="Kettle-handbook-04-07.png"><br>比如，有这样一个场景，我们每天需要定时调度一些SP，SP都有开始时间，结束时间，调用时，需要传参数进去，<br>这个时候，我们在使用Kettle的时候，就可以通过这样的方式，去设置变量，然后再调用SP<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-08.png-blog.photo" alt="Kettle-handbook-04-08.png"><br>我们单击获取字段后，就可以了，这里可以修改变量存在的范围<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-09.png-blog.photo" alt="Kettle-handbook-04-09.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-10.png-blog.photo" alt="Kettle-handbook-04-10.png"><br>执行后，输出，后面，我们就可以使用这2个时间变量了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-11.png-blog.photo" alt="Kettle-handbook-04-11.png"><br>这里使用的时候，也遇到一个问题，就是变量的默认值，一直都没有生效，不知道为什么，不管是，静态值，还是变量值，都没有办法，待研究。</p>
-<div class="note primary"><h2 id="2-局部变量（命名参数）"><a href="#2-局部变量（命名参数）" class="headerlink" title="2. 局部变量（命名参数）"></a>2. 局部变量（命名参数）</h2></div>
-<p>在kettle中，相对于全局变量，我们还可以使用局部变量。感觉，这个全局变量，局部变量，都是相对而言的，<br>就网上大部分资料来说，Kettle中的局部变量就是“命名参数”<br>我们再转换中，右键单击，选择，转换设置</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-12.png-blog.photo" alt="Kettle-handbook-04-12.png"><br>我们选择，“命名参数”，定义一个变量，我们给一个默认值<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-13.png-blog.photo" alt="Kettle-handbook-04-13.png"><br>然后，在日志中，将变量输出<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-14.png-blog.photo" alt="Kettle-handbook-04-14.png"><br>我们执行下，这个转换，运行时的界面，我们可以看到，这个参数是可以动态改变的，或者，我们再命令行调这个转换的时候，同样可以给他赋值<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-15.png-blog.photo" alt="Kettle-handbook-04-15.png"><br>运行结果，这个就是简单的局部变量了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-16.png-blog.photo" alt="Kettle-handbook-04-16.png"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我们在这一回，介绍下，Kettle中全局变量的使用，我们前面说过的配置文件，其实就是配置全局变量的地方&lt;br&gt;&lt;a href=&quot;2017/03/27/Kettle-handbook-03/&quot;&gt;Kettle手册（三）- 配置文件的使用及密码加密 &lt;/a&gt;&lt;/p&gt;
-&lt;div class=&quot;note primary&quot;&gt;&lt;h2 id=&quot;1-全局变量&quot;&gt;&lt;a href=&quot;#1-全局变量&quot; class=&quot;headerlink&quot; title=&quot;1. 全局变量&quot;&gt;&lt;/a&gt;1. 全局变量&lt;/h2&gt;&lt;/div&gt;
-&lt;p&gt;就是我们上面说的kettle.properties文件，我们在里面定义的变量，我们可以在所有的转换或者作业中获得到，比如，我们前面，说的数据库参数&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-04-01.png&quot;&gt;&lt;br&gt;之前，我们已经在数据库连接中测试过，是可以，这里，我们输出下这个变量，看看&lt;/p&gt;
     
     </summary>
     
