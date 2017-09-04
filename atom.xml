@@ -595,6 +595,51 @@
   </entry>
   
   <entry>
+    <title>最新行政区信息获取</title>
+    <link href="https://yuguiyang.github.io/2017/08/14/the-newest-area-info-01/"/>
+    <id>https://yuguiyang.github.io/2017/08/14/the-newest-area-info-01/</id>
+    <published>2017-08-14T13:59:00.000Z</published>
+    <updated>2017-09-04T15:04:39.861Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是之前记录的，这里顺便分享下。</p>
+<p>之前想要获取官方的省市区的代码code，就找了下。</p>
+<p>官方地址：<a href="http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/" target="_blank" rel="external">http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/</a></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-01.png-blog.photo" alt="the-newest-area-info-01-01"></p>
+<p>我们可以直接将数据复制到Excel中，简单处理下，导入到数据库中</p>
+<p>里面会有换行，先去个重，然后trim一下，再分列就可以了</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-02.png-blog.photo" alt="the-newest-area-info-01-02"></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-03.png-blog.photo" alt="the-newest-area-info-01-03"></p>
+<p>最后，我们可以将数据组织成我们想要的维度表格式</p>
+<p>————–update at 2017-08-15</p>
+<p>上面呢，我是直接在Excel里面生成insert脚本插入数据库的，但是目前的表使用起来应该不是很方便，这里我们改造下。</p>
+<p>这个区域信息呢，是很常用的一张维度表，通常他可能会是这个样子的<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> base.dm_area</div><div class="line">(</div><div class="line">  area_id <span class="built_in">integer</span>,</div><div class="line">  area_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">50</span>),</div><div class="line">  province_id <span class="built_in">integer</span>,</div><div class="line">  province_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">50</span>),</div><div class="line">  city_id <span class="built_in">integer</span>,</div><div class="line">  city_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">50</span>),</div><div class="line">  country_id <span class="built_in">integer</span>,</div><div class="line">  country_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">50</span>),</div><div class="line">  flevel <span class="built_in">integer</span></div><div class="line">)</div><div class="line"><span class="keyword">WITH</span> (</div><div class="line">  OIDS=<span class="literal">FALSE</span></div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>这里我们就简单处理下，变成这种格式。</p>
+<p>其实一开始的时候，我们可以通过数据的格式区分他是省份、城市、还是区县，下面我们用的是一个套路</p>
+<p>主要是观察法，因为这个code都是有规律的，所以我们处理起来方便很多</p>
+<p>code一共是6位，前两位是省份、中间2位是城市，后2位是区县<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> public.b_area <span class="keyword">where</span> area_id||<span class="string">''</span> <span class="keyword">like</span> <span class="string">'00'</span></div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-04.png-blog.photo" alt="the-newest-area-info-01-04"></p>
+<p>下面，我们来初始化数据<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> base.dm_area(</div><div class="line">            area_id, area_name)</div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span>  public.b_area;      </div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">-- 初始化flevel 1:省份,2:城市,3:区县</span></div><div class="line"><span class="keyword">update</span> base.dm_area <span class="keyword">set</span> flevel=<span class="number">1</span> <span class="keyword">where</span> area_id||<span class="string">''</span> <span class="keyword">like</span> <span class="string">'00'</span>;</div><div class="line"><span class="keyword">update</span> base.dm_area <span class="keyword">set</span> flevel=<span class="number">2</span> <span class="keyword">where</span> area_id||<span class="string">''</span> <span class="keyword">like</span> <span class="string">''</span> <span class="keyword">and</span> flevel <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line"><span class="keyword">update</span> base.dm_area <span class="keyword">set</span> flevel=<span class="number">3</span> <span class="keyword">where</span> flevel <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="comment">-- 更新省份信息</span></div><div class="line"><span class="keyword">update</span> base.dm_area a </div><div class="line"><span class="keyword">set</span> </div><div class="line">	province_id = b.area_id,</div><div class="line">	province_name = b.area_name</div><div class="line"><span class="keyword">from</span> </div><div class="line">	base.dm_area b</div><div class="line"><span class="keyword">where</span> </div><div class="line">	<span class="keyword">left</span>(a.area_id||<span class="string">''</span>,<span class="number">2</span>)=<span class="keyword">left</span>(b.area_id||<span class="string">''</span>,<span class="number">2</span>) <span class="keyword">and</span> b.flevel=<span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="comment">-- 更新城市信息</span></div><div class="line"><span class="keyword">update</span> base.dm_area a </div><div class="line"><span class="keyword">set</span> </div><div class="line">	city_id = c.area_id,</div><div class="line">	city_name = c.area_name	</div><div class="line"><span class="keyword">from</span> </div><div class="line">	base.dm_area c </div><div class="line"><span class="keyword">where</span> </div><div class="line">	<span class="keyword">left</span>(a.area_id||<span class="string">''</span>,<span class="number">4</span>)=<span class="keyword">left</span>(c.area_id||<span class="string">''</span>,<span class="number">4</span>) <span class="keyword">and</span> c.flevel=<span class="number">2</span>;</div><div class="line"></div><div class="line"><span class="comment">-- 更新区县信息</span></div><div class="line"><span class="keyword">update</span> base.dm_area a </div><div class="line"><span class="keyword">set</span> </div><div class="line">	country_id = area_id,</div><div class="line">	country_name = area_name	</div><div class="line"><span class="keyword">where</span> </div><div class="line">	a.flevel=<span class="number">3</span>;</div></pre></td></tr></table></figure></p>
+<p>到这里，flevel=3的数据已经没有问题了，再对省份、城市做些优化就行了<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 补全数据</span></div><div class="line"><span class="keyword">update</span> base.dm_area </div><div class="line"><span class="keyword">set</span> </div><div class="line">	city_id=-area_id,city_name=area_name||<span class="string">'XT'</span>,</div><div class="line">	country_id=-area_id,country_name=area_name||<span class="string">'XT'</span></div><div class="line"><span class="keyword">where</span></div><div class="line">	flevel=<span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="keyword">update</span> base.dm_area </div><div class="line"><span class="keyword">set</span> </div><div class="line">	country_id=-area_id,country_name=area_name||<span class="string">'XT'</span></div><div class="line"><span class="keyword">where</span></div><div class="line">	flevel=<span class="number">2</span>;</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-05.png-blog.photo" alt="the-newest-area-info-01-05"></p>
+<p>好了，我们就处理好这个区域维度了，正常使用的话，估计就用flevel=3的就够了</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是之前记录的，这里顺便分享下。&lt;/p&gt;
+&lt;p&gt;之前想要获取官方的省市区的代码code，就找了下。&lt;/p&gt;
+&lt;p&gt;官方地址：&lt;a href=&quot;http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/&quot; target=&quot;_blank&quot; rel=&quot;ex
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>numpy手册(1)-ndarray</title>
     <link href="https://yuguiyang.github.io/2017/08/02/numpy-handbook-01/"/>
     <id>https://yuguiyang.github.io/2017/08/02/numpy-handbook-01/</id>
@@ -1041,34 +1086,6 @@
     
       &lt;h1 id=&quot;1-为什么使用资源库&quot;&gt;&lt;a href=&quot;#1-为什么使用资源库&quot; class=&quot;headerlink&quot; title=&quot;1. 为什么使用资源库&quot;&gt;&lt;/a&gt;1. 为什么使用资源库&lt;/h1&gt;&lt;p&gt;之前，我们新建转换或者作业的时候，都是直接保存在本地，而如果我们是多人开发的话，除了使用SVN等版本控制软件，还可以使用Kettle的资源库，他会将转换、作业直接保存在数据库中，而且，连接资源库的话，我们就不需要每一次都新建数据库连接了，用起来还是蛮方便的。&lt;/p&gt;
 &lt;h1 id=&quot;2-新建资源库&quot;&gt;&lt;a href=&quot;#2-新建资源库&quot; class=&quot;headerlink&quot; title=&quot;2. 新建资源库&quot;&gt;&lt;/a&gt;2. 新建资源库&lt;/h1&gt;&lt;p&gt;Kettle7.0里面，是在右上角这个Connect来连接的&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-07-01.png&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
-    
-    
-      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kettle手册（六）- Hop小记</title>
-    <link href="https://yuguiyang.github.io/2017/03/29/Kettle-handbook-06/"/>
-    <id>https://yuguiyang.github.io/2017/03/29/Kettle-handbook-06/</id>
-    <published>2017-03-29T14:24:44.000Z</published>
-    <updated>2017-08-27T13:10:27.873Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1-什么是Hop"><a href="#1-什么是Hop" class="headerlink" title="1. 什么是Hop"></a>1. 什么是Hop</h1><p>在我们前面，使用Kettle过程中，控件与控件之间的连线，这里，我们详细介绍下它，它在Kettle中叫Hop（跳）。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-01.png-blog.photo" alt="Kettle-handbook-06-01.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-02.png-blog.photo" alt="Kettle-handbook-06-02.png"></p>
-<a id="more"></a>
-<h1 id="2-Hop的发送方式（转换）"><a href="#2-Hop的发送方式（转换）" class="headerlink" title="2. Hop的发送方式（转换）"></a>2. Hop的发送方式（转换）</h1><p>在转换中，一般情况，控件和控件之间只有一个Hop，当然，如果需要的话，我们拖了2个控件出来，像这样：<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-03.png-blog.photo" alt="Kettle-handbook-06-03.png"><br>Kettle会提示你，下面的信息，让你选择，数据发送的方式<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-04.png-blog.photo" alt="Kettle-handbook-06-04.png"></p>
-<h2 id="2-1-分发记录"><a href="#2-1-分发记录" class="headerlink" title="2.1 分发记录"></a>2.1 分发记录</h2><p>目标步骤轮流接收记录，其实就是你一条，我一条，轮着接收数据，这个我们试一下就知道了，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-05.png-blog.photo" alt="Kettle-handbook-06-05.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-06.png-blog.photo" alt="Kettle-handbook-06-06.png"><br>我们执行下，看看这个结果试试，我们再步骤度量中，可以看到，a.txt和b.txt分别写入的数量<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-07.png-blog.photo" alt="Kettle-handbook-06-07.png"><br>看看结果文件，就是这样的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-08.png-blog.photo" alt="Kettle-handbook-06-08.png"></p>
-<h2 id="2-2-复制记录"><a href="#2-2-复制记录" class="headerlink" title="2.2 复制记录"></a>2.2 复制记录</h2><p>所有记录同时发送到所有的目标步骤，这个看起来就简单多了，比如上面的例子，2个文本文件会接收到同样的所有的数据，我们也试一下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-09.png-blog.photo" alt="Kettle-handbook-06-09.png"><br>结果文件的话，就是2个节点，接收到的数据都是一样的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-10.png-blog.photo" alt="Kettle-handbook-06-10.png"></p>
-<h1 id="3-Hop的状态（作业）"><a href="#3-Hop的状态（作业）" class="headerlink" title="3.Hop的状态（作业）"></a>3.Hop的状态（作业）</h1><p>在作业中，Hop主要用来控制流程<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-11.png-blog.photo" alt="Kettle-handbook-06-11.png"><br>有3种状态，一个锁，一个绿色的对号，一个红色的叉号<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-12.png-blog.photo" alt="Kettle-handbook-06-12.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-13.png-blog.photo" alt="Kettle-handbook-06-13.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-14.png-blog.photo" alt="Kettle-handbook-06-14.png"><br>简单来说，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-15.png-blog.photo" alt="Kettle-handbook-06-15.png">：表示无论上一步执行成功还是失败，都一定会执行下一步<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-16.png-blog.photo" alt="Kettle-handbook-06-16.png">：表示上一步执行成功才会执行下一步<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-17.png-blog.photo" alt="Kettle-handbook-06-17.png">：表示上一步执行失败执行下一步<br>比如我们上面的例子，我们的转换执行成功后，就结束了，如果转换执行失败了，我们就发送邮件。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-什么是Hop&quot;&gt;&lt;a href=&quot;#1-什么是Hop&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是Hop&quot;&gt;&lt;/a&gt;1. 什么是Hop&lt;/h1&gt;&lt;p&gt;在我们前面，使用Kettle过程中，控件与控件之间的连线，这里，我们详细介绍下它，它在Kettle中叫Hop（跳）。&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-06-01.png&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-02.png-blog.photo&quot; alt=&quot;Kettle-handbook-06-02.png&quot;&gt;&lt;/p&gt;
     
     </summary>
     
