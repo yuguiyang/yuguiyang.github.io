@@ -12,6 +12,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[读书笔记-数据分析实战(3章)]]></title>
+    <url>%2F2017%2F09%2F04%2Freading_notes_data_analysis_02%2F</url>
+    <content type="text"><![CDATA[读书笔记 《数据分析实战》 从第3章开始，都是从一个实际问题出发，套用，前面的数据分析思路，来进行模拟分析。第3章的主题是“销售额为什么会减少？”：一款社交游戏本月的销售额相较于上月有所下滑，于是想调查下滑的原因，来提升销售额。 现状和预期现状肯定是当月销售额下降，预期肯定是保持上升，等于甚至高于上月销售额，这里的话，要确定销售额下降是不是一个问题，因为该社交游戏一直保持稳定增长，所以突然下滑，一定是不正常的， 是一个问题。 发现问题我们明确了现状和预期，需要从中，找出影响最大的因素。上面说到，有3种方法去发现问题： 观察数据大小 数据分解（指标拆解） 数据对比 这一步，也是一个根据经验来提出假设的过程，我们需要从宏观角度，找到可能影响销售额的因素。我感觉，这一步是数据分析切入的点，比较重要，如果这一步没有发现核心问题，那后面的数据收集和分析都会有问题。 书中，在这一步，提出的问题是“商业宣传上存在问题”，对了，这一步，还需要及时和其他部门去沟通，像这种市场推广、商业宣传，本身我们可能不知道，所以，假设后要去确认是否有这样的情况。 数据的收集和加工数据分析解决对策]]></content>
+      <categories>
+        <category>读书笔记</category>
+      </categories>
+      <tags>
+        <tag>数据分析</tag>
+        <tag>读书笔记</tag>
+        <tag>实例</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[数据分析案例-购物篮分析]]></title>
     <url>%2F2017%2F09%2F01%2Fdata-analyst-method-01%2F</url>
     <content type="text"><![CDATA[数据分析案例 说到数据分析、数据挖掘，我们首先想到的可能就是沃尔玛那个“啤酒与尿布”的故事，它告诉我们，世间万物都有着千丝万缕的联系。这其中使用的数据分析方法就是“关联分析”。 什么是购物篮分析购物篮分析（Market Basket Analysis），购物篮就是我们去超市使用的篮子，结账的时候，购物篮中所有的商品都会被一起结算。所谓的购物篮分析就是通过购物篮子所反应的信息来==研究顾客的购买行为== 关联分析要解决的问题是：一群用户购买了很多产品之后，哪些产品同时购买的几率比较高？买A产品的同时，买哪个产品的几率比较高 这里介绍完概念，暂时还没啥写的，后面再补充下怎样实现，这里会有一个Tableau的简单购物篮分析。 参考文章上文的部分理论知识，摘自下面的博客 一起大数据]]></content>
@@ -26,7 +39,7 @@
   <entry>
     <title><![CDATA[读书笔记-数据分析实战(1、2章)]]></title>
     <url>%2F2017%2F09%2F01%2Freading_notes_data_analysis_01%2F</url>
-    <content type="text"><![CDATA[读书笔记 《数据分析实战》 1. 什么是数据科学家书中通过“什么是数据”和“数据在商业中的应用”，推导出数据科学家的定义。 人们通过观测数据来推测出某种因果关系，再用这种因果关系来预测未来或者控制原因以达到预期的结果。把从事这种工作的人成为数据科学家。– 书中摘录 上面的定义觉得不是很清晰，就百度上找了找： 数据科学家是指能采用科学方法、运用数据挖掘工具对复杂多量的数字、符号、文字、网址、音频或视频等信息进行数字化重现与认识，并能寻找新的数据洞察的工程师或专家(不同于统计学家或分析师)。一个优秀的数据科学家需要具备的素质有：懂数据采集、懂数学算法、懂数学软件、懂数据分析、懂预测分析、懂市场应用、懂决策分析等。– 百度百科 我觉得数据科学家就是对于数据相关的所有门类都有一个整体的认识，感觉是个“杂家”，精通算法、什么深度学习、机器学习、AI之类的都是信手拈来，对我就是神一样的存在了，努力吧，同学。 2. 3中类型的数据科学家书中将数据科学家分成了3类，主要从所在领域分类： 商业领域出身 统计学出身 工程领域出身 这应该也是数据科学家成长的3条路线，从不同的路线出发，最终殊途同归。当然，这3个领域需要综合，才称得上是合格的数据科学家。 书中的技能配图，可以瞻仰下 数据分析的5个流程书中，将数据分析分为5个步骤，看完后，感觉很靠谱，真的很实用，这里分享下 商业数据分析的目的是解决问题，要解决问题，需要使用统计分析、机器学习、数据挖掘等各种方法。 现状和预期首先我们要确认“什么才是数据分析中的问题”。比如，“某种商品销售额下降”，这是一个现象，但它是不是一个问题呢？如果，该产品不是公司主打商品，并且就要下架了，那销售额下降并不是一个问题，或者，该商品处于正常的波动，或是季节、市场环境的外部因素导致的，可能都不是一个问题；相反，如果该商品是公司主打商品，并且没有其他外部因素导致，那销售额下降就是个问题了。 这里记录下，其实，还需要确认下，销售额取数逻辑是否有问题，确保数据没有问题，并且要知道这个下降是怎么定义的，是和什么商品，或时间段对比发现下降的。 有对比，才会有差距，既然下降了，说明他心里一定有个预期，即现状和预期之间是有差距的 发现问题有了上面的“现状和预期”，我们需要区别”现象和问题“。像“销售额下降”，“顾客流失”，这都是一个现象，我们需要从中去发现问题 现象 前提 预期 是否有问题 销售额下降 销售额比例低 维持现状 无 销售额下降 销售额比例高 将销售额恢复到良好状态 有 销售额上升 广告费用高 降低广告费用 有 销售额上升 广告费用适当 维持现状 无 从3个角度发现问题发现问题的关键是思考并理解现状和预期之间的差距。那怎样发现、理解这个差距呢？ 观察数据大小首先考虑有哪些因素会导致这些差距，并明确这些因素的影响程度大小，即找到影响最大的因素。 将数据分解后观察指从多个角度观察发生的现象，分解出构成这种现象的因素。在分解的时候，必须遵循MECE原则： Mutually 相互性 Exclusive 排重性 Collectively 完整性 Exhaustive 全面性 我感觉这个很抽象，不是很理解，书上有一个例子，说的还不错，常用的拆分方法是因数分解，比如： 销售额=人均销售额*购买人数 拆解后，找到容易调控的因子，才方面后面去解决问题 将数据比较后观察指的是将发生问题是的数据和没发生问题时的数据相互比较，并找出问题出现的原因。比如，按时间对比，看看同比、环比（使用时间序列） 昨天和今天比较 上周和本周比较 同一个商业活动前、后比较 与竞争对手数据比较 公司内部服务之间利益比较 年龄段差异 性别差异 地域差异 数据收集和整理##]]></content>
+    <content type="text"><![CDATA[读书笔记 《数据分析实战》 1. 什么是数据科学家书中通过“什么是数据”和“数据在商业中的应用”，推导出数据科学家的定义。 人们通过观测数据来推测出某种因果关系，再用这种因果关系来预测未来或者控制原因以达到预期的结果。把从事这种工作的人成为数据科学家。– 书中摘录 上面的定义觉得不是很清晰，就百度上找了找： 数据科学家是指能采用科学方法、运用数据挖掘工具对复杂多量的数字、符号、文字、网址、音频或视频等信息进行数字化重现与认识，并能寻找新的数据洞察的工程师或专家(不同于统计学家或分析师)。一个优秀的数据科学家需要具备的素质有：懂数据采集、懂数学算法、懂数学软件、懂数据分析、懂预测分析、懂市场应用、懂决策分析等。– 百度百科 我觉得数据科学家就是对于数据相关的所有门类都有一个整体的认识，感觉是个“杂家”，精通算法、什么深度学习、机器学习、AI之类的都是信手拈来，对我就是神一样的存在了，努力吧，同学。 2. 3中类型的数据科学家书中将数据科学家分成了3类，主要从所在领域分类： 商业领域出身 统计学出身 工程领域出身 这应该也是数据科学家成长的3条路线，从不同的路线出发，最终殊途同归。当然，这3个领域需要综合，才称得上是合格的数据科学家。 书中的技能配图，可以瞻仰下 数据分析的5个流程书中，将数据分析分为5个步骤，看完后，感觉很靠谱，真的很实用，这里分享下 商业数据分析的目的是解决问题，要解决问题，需要使用统计分析、机器学习、数据挖掘等各种方法。 现状和预期首先我们要确认“什么才是数据分析中的问题”。比如，“某种商品销售额下降”，这是一个现象，但它是不是一个问题呢？如果，该产品不是公司主打商品，并且就要下架了，那销售额下降并不是一个问题，或者，该商品处于正常的波动，或是季节、市场环境的外部因素导致的，可能都不是一个问题；相反，如果该商品是公司主打商品，并且没有其他外部因素导致，那销售额下降就是个问题了。 这里记录下，其实，还需要确认下，销售额取数逻辑是否有问题，确保数据没有问题，并且要知道这个下降是怎么定义的，是和什么商品，或时间段对比发现下降的。 有对比，才会有差距，既然下降了，说明他心里一定有个预期，即现状和预期之间是有差距的 发现问题有了上面的“现状和预期”，我们需要区别”现象和问题“。像“销售额下降”，“顾客流失”，这都是一个现象，我们需要从中去发现问题 现象 前提 预期 是否有问题 销售额下降 销售额比例低 维持现状 无 销售额下降 销售额比例高 将销售额恢复到良好状态 有 销售额上升 广告费用高 降低广告费用 有 销售额上升 广告费用适当 维持现状 无 从3个角度发现问题发现问题的关键是思考并理解现状和预期之间的差距。那怎样发现、理解这个差距呢？ 观察数据大小首先考虑有哪些因素会导致这些差距，并明确这些因素的影响程度大小，即找到影响最大的因素。 将数据分解后观察指从多个角度观察发生的现象，分解出构成这种现象的因素。在分解的时候，必须遵循MECE原则： Mutually 相互性 Exclusive 排重性 Collectively 完整性 Exhaustive 全面性 我感觉这个很抽象，不是很理解，书上有一个例子，说的还不错，常用的拆分方法是因数分解，比如： 销售额=人均销售额*购买人数 拆解后，找到容易调控的因子，才方面后面去解决问题 将数据比较后观察指的是将发生问题是的数据和没发生问题时的数据相互比较，并找出问题出现的原因。比如，按时间对比，看看同比、环比（使用时间序列） 昨天和今天比较 上周和本周比较 同一个商业活动前、后比较 与竞争对手数据比较 公司内部服务之间利益比较 年龄段差异 性别差异 地域差异 3.3 数据收集和整理通过前面，对现状和预期的对比，发现影响最大的因素后，我们就需要开始收集数据，来验证问题。数据收集的话，还会涉及到怎样去采集数据，比如想要的数据，并没有保存下来。已保存下来的数据，通常会保存在文件、数据库或者是Hadoop（HDFS）中收集完数据，我们就需要对数据进行加工，变成我们后面分析需要的格式，比如使用SQL进行处理，或者Python、R进行整合；我们再加工数据的同时，为了方便我们后面的分析，可能还需要增加一下自定义的变量，比如一些标志位，像“已消费（1），未消费（0）”；或者是一些离散变量，类似于区间段： 消费金额较大用户（1） 消费金额一般用户（2） 消费金额较小用户（3） 3.4 数据分析书中把数据分析按目的，分为两大类：“决策支持和自动化、最优化”。其中，“决策支持”使用简单求和、交叉列表的方式分析，还会涉及预测模型；“自动化、最优化”则涉及机器学习、构建算法。 3.5 解决对策通过上面两种分析思路，我们需要针对分析的结果，来判断是否要采取对应的决策，不同的对策， 又会产生不同的沟通成本。]]></content>
       <categories>
         <category>读书笔记</category>
       </categories>
@@ -166,6 +179,42 @@
       <tags>
         <tag>数据可视化</tag>
         <tag>Tableau</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[爬虫小实例学习篇-猫眼电影]]></title>
+    <url>%2F2017%2F04%2F20%2Fcrawler-demo-01%2F</url>
+    <content type="text"><![CDATA[这里参考了论坛里一位同学分享的博客：猫眼电影TOP100爬取练习，感谢分享。 学习要从模仿开始，学习了上面的博客之后，自己做下练习，正好最近看了selenium，就用了这个。 原作者的正则用的太溜了，等后面有时间再研究下，这里就简单的使用CSS Selector来实现了。 原文代码很精彩，我这个代码就粗糙很多了，先来个初始版，后面再慢慢优化。 大体思路和Python基础（7）- Selenium使用 里面的豆瓣读书例子差不多， 代码（2017-08-09版）123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123import csvfrom selenium import webdriverfrom selenium.webdriver.common.by import Byfrom selenium.webdriver.support.ui import WebDriverWaitfrom selenium.webdriver.support import expected_conditions as ECfrom selenium.common.exceptions import TimeoutException#打开浏览器browser = webdriver.Firefox()#设置等待时长，最长等待10swait = WebDriverWait(browser,10)#定义电影排名comment_index = 0#定义一个movieclass Movie: __movie_id = 0 __movie_name = '' __movie_star = '' __movie_releasetime = '' __movie_score = '' def __init__(self , movie_id,movie_name,movie_star,movie_releasetime,movie_score): self.__movie_id = movie_id self.__movie_name = movie_name self.__movie_star = movie_star self.__movie_releasetime = movie_releasetime self.__movie_score = movie_score def show(self): print('影片排名: ', self.__movie_id) print('影片名称: ', self.__movie_name) print(self.__movie_star) print(self.__movie_releasetime) print('影片评分', self.__movie_score) print('') def simple_list(self): return [self.__movie_id, self.__movie_name, self.__movie_star, self.__movie_releasetime, self.__movie_score] def save2csv(movie_list): with open('movie.csv', 'a', newline='',encoding='utf-8') as csvfile: csv_writer = csv.writer(csvfile) for m in movie_list: csv_writer.writerow(m.simple_list()) csvfile.close() def main(): #打开URL browser.get('http://maoyan.com/board/4') #输出浏览器标题 print('browser title: ',browser.title) #数据更新信息 p_update_info = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,'div.main p.update-time'))) print('更新信息: ',p_update_info.text) #输出当前页信息 show_current_page() def show_current_page(): print('-----------------------------------') print('current url: ',browser.current_url) #获取当前页信息 div_page = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,'div.pager-main li.active'))) print('current page: ',div_page.text) #当前页总数量 div_items = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR,'div.main div.board-item-main div.board-item-content'))) print('total count: ',len(div_items)) movie_list = [] #结果集有很多结果，我们获取 for item in div_items: #调用全局变量 global comment_index comment_index += 1 #获取我们需要的信息 p_name = item.find_element_by_css_selector('div.movie-item-info p.name') p_star = item.find_element_by_css_selector('div.movie-item-info p.star') p_releasetime = item.find_element_by_css_selector('div.movie-item-info p.releasetime') p_score_integer = item.find_element_by_css_selector('div.movie-item-number p.score i.integer') p_score_fraction = item.find_element_by_css_selector('div.movie-item-number p.score i.fraction') #初始化movie对象 m = Movie(comment_index , p_name.text , p_star.text, p_releasetime.text, p_score_integer.text+p_score_fraction.text) movie_list.append(m) save2csv(movie_list) #获取下一页 show_next_page()def show_next_page(): try: #获取下一页的标签 #最后1页，没有下一页标签 a_next = wait.until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT,'下一页'))) a_next.click() show_current_page() except TimeoutException: #找不到下一页 print('get all movies.') #也有可能真是网络异常 finally: browser.quit() if __name__=='__main__': main() 这里就简单记录遇到的一些问题和后面需要优化的地方： 获取影片信息的时候，数据没有清洗好，像这个“主演”，“上映时间”还没有剔除掉；那个地点也可以拆分出来单独一个字段 csv编码问题，一开始默认使用gbk（在Windows下开发的），会报错，说是有异常的字符无法保存，改为UTF-8后，就可以了，但是使用CSV打开前，先用notepad++转了编码，才用CSV打开 使用正则去获取元素 4.异常问题的处理]]></content>
+      <categories>
+        <category>Python-爬虫</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[BeautifulSoup教程（2） - 实例-解析博客专栏]]></title>
+    <url>%2F2017%2F04%2F20%2Fbs-handbook-02%2F</url>
+    <content type="text"><![CDATA[前几天学习了下Beautiful Soup的使用，本来想多写些内容的，但是发现，官方的介绍实在太详细了，每种方法基本都覆盖到了， 直接看官方的例子就足够了，而且还有一个中文版的，这里的话，就简单实践下，介绍几个常用的方法和一些小经验。 官方文档：https://www.crummy.com/software/BeautifulSoup/bs4/doc/ 这里，我们就简单的解析下博客专栏，https://blog.hellobi.com/ 这里的话，没有做太多的限制，我们直接解析就可以 1. 分析网页我们再Firefox中，使用 Firebug很方便 这里的话，文档结构也很清晰，很适合我们练习 基本代码，我们获取网页信息12345678910111213# -*- coding: utf-8 -*-import urllibfrom bs4 import BeautifulSoupimport sysreload(sys)sys.setdefaultencoding('utf-8')#加载网址，获取当前页面def getHTML(url) : page = urllib.urlopen(url) html = page.read() return html 2.常用类 123html = getHTML('https://blog.hellobi.com/')soup = BeautifulSoup(html, "html.parser") 这里，我们初始化Beautiful Soup，使用“html.parser”,这是一个默认的解析器，他还有其他的解析器，官网有介绍，这里就不说了，其他也没有测试过 这里，顺便说下Python中查看类的帮助信息，使用dir()函数，可以查看类的属性和方法列表12print type(soup)print dir(soup) 我们还可以使用help函数，查看详细的帮助信息 1print help(soup) Beautiful Soup是最基础的类，其他的还有Tag，这个用起来和HTML中的标签类似 12345print soup.titleprint type(soup.title)#print soup.headprint type(soup.head) 这里，的title，head都是HTML中的tag，也是Tag类的对象 123print soup.title.stringprint type(soup.title.string)print dir(soup.title.string) 然后，我们需要使用Tag的内容时，就用到了NavigableString 3.常用函数123456789101112131415161718blog_index=1for blog in soup.find_all('div', class_='blog-item'): print '----------------------------------------------------------' print '第%s篇博客' %(blog_index) title = blog.select_one('div.caption &gt; h2 &gt; a') print '博客标题: ',title.string author = blog.select_one('div.caption ul a') print '作者: ',author.text.strip() vote = blog.select_one('div.cp div.blog-votes span') print '推荐次数: ',vote.string info = blog.select_one('div.cp div.blog-views span') print '阅读次数: ',info.string blog_index+=1 上面的代码，就是遍历的首页的所有博客信息，很简单，就是一个find_all()和一个select_one() find_all() select_one() select() 方法中传入字符串参数,即可使用CSS选择器的语法找到tag: 思想其实都一样，就是根据一定的规则，找到我们想要的标签 后面的话，我们再找到总页数，遍历一下，就可以获取所有的博客基本信息啦1https://blog.hellobi.com/?page=2 传递页码就可以了 好了，这里就举这一个简单的小例子，大家多在实践中使用就好了]]></content>
+      <categories>
+        <category>Python-爬虫</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>BeautifulSoup</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[BeautifulSoup教程（1） - 简介及安装]]></title>
+    <url>%2F2017%2F04%2F14%2Fbs-handbook-01%2F</url>
+    <content type="text"><![CDATA[最近在学习Python，按照一些博客练习爬虫，最简单的步骤，就是访问一个主页，根据正则表达式去获取我们想要的标签数据； 比如这样：1234567891011#加载网址，获取当前页面def getHTML(url) : page = urllib.urlopen(url) html = page.read() return htmldef getImage(html) : reg = r'src="(.+?\.jpg)"' reg2 = r'&lt;img alt="(.+?)" src="(.+?\.jpg)' image_reg = re.compile(reg2) img_list = re.findall(image_reg,html) 简单的话，这样还好，如果复杂些的话，像我一样对正则表达式不熟悉的话，可能就不太好实现了， 后面发现这个beautifulSoup解析HTML很方便，这里简单学习下， 官网地址：https://www.crummy.com/software/BeautifulSoup/ 还有中文文档：https://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html 1. 简介这里说的不错，Python爬虫利器二之Beautiful Soup的用法 2. 安装Python里面安装东西很方便，直接使用pip就行了 pip install beautifulsoup4 3.小例子我们先写个小例子看看123456789101112131415161718 # -*- coding: utf-8 -*-import urllibimport refrom bs4 import BeautifulSoup#加载网址，获取当前页面def getHTML(url) : page = urllib.urlopen(url) html = page.read() return htmlhtml = getHTML('https://movie.douban.com/top250')soup = BeautifulSoup(html, "html.parser")for img in soup.find_all('img'): print img.get('src') 这里，我们就输出了所有的img标签 后面，我们再来继续练习使用]]></content>
+      <categories>
+        <category>Python-爬虫</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>BeautifulSoup</tag>
       </tags>
   </entry>
   <entry>

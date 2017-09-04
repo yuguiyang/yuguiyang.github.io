@@ -40,6 +40,60 @@
   </entry>
   
   <entry>
+    <title>读书笔记-数据分析实战(3章)</title>
+    <link href="https://yuguiyang.github.io/2017/09/04/reading_notes_data_analysis_02/"/>
+    <id>https://yuguiyang.github.io/2017/09/04/reading_notes_data_analysis_02/</id>
+    <published>2017-09-04T15:59:00.000Z</published>
+    <updated>2017-09-04T16:15:27.777Z</updated>
+    
+    <content type="html"><![CDATA[<p>读书笔记</p>
+<blockquote>
+<p>《数据分析实战》 </p>
+</blockquote>
+<p>从第3章开始，都是从一个实际问题出发，套用，前面的数据分析思路，来进行模拟分析。<br>第3章的主题是“销售额为什么会减少？”：一款社交游戏本月的销售额相较于上月有所下滑，于是想调查下滑的原因，来提升销售额。</p>
+<h2 id="现状和预期"><a href="#现状和预期" class="headerlink" title="现状和预期"></a>现状和预期</h2><p>现状肯定是当月销售额下降，预期肯定是保持上升，等于甚至高于上月销售额，这里的话，要确定销售额下降是不是一个问题，因为该社交游戏一直保持稳定增长，所以突然下滑，一定是不正常的， 是一个问题。</p>
+<h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><p>我们明确了现状和预期，需要从中，找出影响最大的因素。<br>上面说到，有3种方法去发现问题：</p>
+<ul>
+<li>观察数据大小</li>
+<li>数据分解（指标拆解）</li>
+<li>数据对比</li>
+</ul>
+<p>这一步，也是一个根据经验来提出假设的过程，我们需要从宏观角度，找到可能影响销售额的因素。<br>我感觉，这一步是数据分析切入的点，比较重要，如果这一步没有发现核心问题，那后面的数据收集和分析都会有问题。</p>
+<p>书中，在这一步，提出的问题是“商业宣传上存在问题”，对了，这一步，还需要及时和其他部门去沟通，像这种市场推广、商业宣传，本身我们可能不知道，所以，假设后要去确认是否有这样的情况。</p>
+<a id="more"></a>
+<h2 id="数据的收集和加工"><a href="#数据的收集和加工" class="headerlink" title="数据的收集和加工"></a>数据的收集和加工</h2><h2 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h2><h2 id="解决对策"><a href="#解决对策" class="headerlink" title="解决对策"></a>解决对策</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;读书笔记&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;《数据分析实战》 &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;从第3章开始，都是从一个实际问题出发，套用，前面的数据分析思路，来进行模拟分析。&lt;br&gt;第3章的主题是“销售额为什么会减少？”：一款社交游戏本月的销售额相较于上月有所下滑，于是想调查下滑的原因，来提升销售额。&lt;/p&gt;
+&lt;h2 id=&quot;现状和预期&quot;&gt;&lt;a href=&quot;#现状和预期&quot; class=&quot;headerlink&quot; title=&quot;现状和预期&quot;&gt;&lt;/a&gt;现状和预期&lt;/h2&gt;&lt;p&gt;现状肯定是当月销售额下降，预期肯定是保持上升，等于甚至高于上月销售额，这里的话，要确定销售额下降是不是一个问题，因为该社交游戏一直保持稳定增长，所以突然下滑，一定是不正常的， 是一个问题。&lt;/p&gt;
+&lt;h2 id=&quot;发现问题&quot;&gt;&lt;a href=&quot;#发现问题&quot; class=&quot;headerlink&quot; title=&quot;发现问题&quot;&gt;&lt;/a&gt;发现问题&lt;/h2&gt;&lt;p&gt;我们明确了现状和预期，需要从中，找出影响最大的因素。&lt;br&gt;上面说到，有3种方法去发现问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;观察数据大小&lt;/li&gt;
+&lt;li&gt;数据分解（指标拆解）&lt;/li&gt;
+&lt;li&gt;数据对比&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这一步，也是一个根据经验来提出假设的过程，我们需要从宏观角度，找到可能影响销售额的因素。&lt;br&gt;我感觉，这一步是数据分析切入的点，比较重要，如果这一步没有发现核心问题，那后面的数据收集和分析都会有问题。&lt;/p&gt;
+&lt;p&gt;书中，在这一步，提出的问题是“商业宣传上存在问题”，对了，这一步，还需要及时和其他部门去沟通，像这种市场推广、商业宣传，本身我们可能不知道，所以，假设后要去确认是否有这样的情况。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="读书笔记" scheme="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="实例" scheme="https://yuguiyang.github.io/tags/%E5%AE%9E%E4%BE%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>数据分析案例-购物篮分析</title>
     <link href="https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/"/>
     <id>https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/</id>
@@ -83,7 +137,7 @@
     <link href="https://yuguiyang.github.io/2017/09/01/reading_notes_data_analysis_01/"/>
     <id>https://yuguiyang.github.io/2017/09/01/reading_notes_data_analysis_01/</id>
     <published>2017-08-31T16:59:00.000Z</published>
-    <updated>2017-08-31T16:58:22.936Z</updated>
+    <updated>2017-09-04T15:43:55.134Z</updated>
     
     <content type="html"><![CDATA[<p> 读书笔记</p>
 <blockquote>
@@ -178,7 +232,14 @@
 <li>性别差异</li>
 <li>地域差异</li>
 </ul>
-<h2 id="数据收集和整理"><a href="#数据收集和整理" class="headerlink" title="数据收集和整理"></a>数据收集和整理</h2><p>## </p>
+<h2 id="3-3-数据收集和整理"><a href="#3-3-数据收集和整理" class="headerlink" title="3.3 数据收集和整理"></a>3.3 数据收集和整理</h2><p>通过前面，对现状和预期的对比，发现影响最大的因素后，我们就需要开始收集数据，来验证问题。<br>数据收集的话，还会涉及到怎样去采集数据，比如想要的数据，并没有保存下来。<br>已保存下来的数据，通常会保存在文件、数据库或者是Hadoop（HDFS）中<br>收集完数据，我们就需要对数据进行加工，变成我们后面分析需要的格式，比如使用SQL进行处理，或者Python、R进行整合；我们再加工数据的同时，为了方便我们后面的分析，可能还需要增加一下自定义的变量，比如一些标志位，像“已消费（1），未消费（0）”；或者是一些离散变量，类似于区间段：</p>
+<ul>
+<li>消费金额较大用户（1）</li>
+<li>消费金额一般用户（2）</li>
+<li>消费金额较小用户（3）</li>
+</ul>
+<h2 id="3-4-数据分析"><a href="#3-4-数据分析" class="headerlink" title="3.4 数据分析"></a>3.4 数据分析</h2><p>书中把数据分析按目的，分为两大类：“决策支持和自动化、最优化”。<br>其中，“决策支持”使用简单求和、交叉列表的方式分析，还会涉及预测模型；<br>“自动化、最优化”则涉及机器学习、构建算法。</p>
+<h2 id="3-5-解决对策"><a href="#3-5-解决对策" class="headerlink" title="3.5 解决对策"></a>3.5 解决对策</h2><p>通过上面两种分析思路，我们需要针对分析的结果，来判断是否要采取对应的决策，不同的对策， 又会产生不同的沟通成本。</p>
 ]]></content>
     
     <summary type="html">
@@ -924,6 +985,163 @@
   </entry>
   
   <entry>
+    <title>爬虫小实例学习篇-猫眼电影</title>
+    <link href="https://yuguiyang.github.io/2017/04/20/crawler-demo-01/"/>
+    <id>https://yuguiyang.github.io/2017/04/20/crawler-demo-01/</id>
+    <published>2017-04-20T13:59:00.000Z</published>
+    <updated>2017-09-04T16:40:13.656Z</updated>
+    
+    <content type="html"><![CDATA[<p>这里参考了论坛里一位同学分享的博客：<a href="https://ask.hellobi.com/blog/JiangYiXin/7660" target="_blank" rel="external">猫眼电影TOP100爬取练习</a>，感谢分享。</p>
+<p>学习要从模仿开始，学习了上面的博客之后，自己做下练习，正好最近看了selenium，就用了这个。</p>
+<p>原作者的正则用的太溜了，等后面有时间再研究下，这里就简单的使用CSS Selector来实现了。</p>
+<p>原文代码很精彩，我这个代码就粗糙很多了，先来个初始版，后面再慢慢优化。</p>
+<p>大体思路和<a href="https://ask.hellobi.com/blog/yuguiyang1990/9172" target="_blank" rel="external">Python基础（7）- Selenium使用</a>  里面的豆瓣读书例子差不多，</p>
+<a id="more"></a>
+<p>代码（2017-08-09版）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> csv</div><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</div><div class="line"><span class="keyword">from</span> selenium.common.exceptions <span class="keyword">import</span> TimeoutException</div><div class="line"></div><div class="line"><span class="comment">#打开浏览器</span></div><div class="line">browser = webdriver.Firefox()</div><div class="line"><span class="comment">#设置等待时长，最长等待10s</span></div><div class="line">wait = WebDriverWait(browser,<span class="number">10</span>)</div><div class="line"></div><div class="line"><span class="comment">#定义电影排名</span></div><div class="line">comment_index = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment">#定义一个movie</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Movie</span>:</span></div><div class="line">    </div><div class="line">    __movie_id = <span class="number">0</span></div><div class="line">    __movie_name = <span class="string">''</span></div><div class="line">    __movie_star = <span class="string">''</span></div><div class="line">    __movie_releasetime = <span class="string">''</span></div><div class="line">    __movie_score = <span class="string">''</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self , movie_id,movie_name,movie_star,movie_releasetime,movie_score)</span>:</span></div><div class="line">        self.__movie_id = movie_id</div><div class="line">        self.__movie_name = movie_name</div><div class="line">        self.__movie_star = movie_star</div><div class="line">        self.__movie_releasetime = movie_releasetime</div><div class="line">        self.__movie_score = movie_score</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">'影片排名: '</span>, self.__movie_id)</div><div class="line">        print(<span class="string">'影片名称: '</span>, self.__movie_name)</div><div class="line">        print(self.__movie_star)</div><div class="line">        print(self.__movie_releasetime)</div><div class="line">        print(<span class="string">'影片评分'</span>, self.__movie_score)</div><div class="line">        print(<span class="string">''</span>)</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">simple_list</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> [self.__movie_id, self.__movie_name, self.__movie_star, self.__movie_releasetime, self.__movie_score]</div><div class="line">        </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">save2csv</span><span class="params">(movie_list)</span>:</span></div><div class="line">    <span class="keyword">with</span> open(<span class="string">'movie.csv'</span>, <span class="string">'a'</span>, newline=<span class="string">''</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> csvfile:</div><div class="line">        csv_writer = csv.writer(csvfile)</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> m <span class="keyword">in</span> movie_list:</div><div class="line">            csv_writer.writerow(m.simple_list())</div><div class="line">    </div><div class="line">        csvfile.close()</div><div class="line">        </div><div class="line">        </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment">#打开URL</span></div><div class="line">    browser.get(<span class="string">'http://maoyan.com/board/4'</span>)</div><div class="line">    </div><div class="line">    <span class="comment">#输出浏览器标题</span></div><div class="line">    print(<span class="string">'browser title: '</span>,browser.title)</div><div class="line">    </div><div class="line">    <span class="comment">#数据更新信息</span></div><div class="line">    p_update_info = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,<span class="string">'div.main p.update-time'</span>)))</div><div class="line">    print(<span class="string">'更新信息: '</span>,p_update_info.text)</div><div class="line">    </div><div class="line">    <span class="comment">#输出当前页信息</span></div><div class="line">    show_current_page()</div><div class="line">    </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_current_page</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">'-----------------------------------'</span>)</div><div class="line">    print(<span class="string">'current url: '</span>,browser.current_url)</div><div class="line">    </div><div class="line">    <span class="comment">#获取当前页信息</span></div><div class="line">    div_page = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,<span class="string">'div.pager-main li.active'</span>)))</div><div class="line">    print(<span class="string">'current page: '</span>,div_page.text)</div><div class="line">    </div><div class="line">    <span class="comment">#当前页总数量</span></div><div class="line">    div_items = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR,<span class="string">'div.main div.board-item-main div.board-item-content'</span>)))</div><div class="line">    print(<span class="string">'total count: '</span>,len(div_items))</div><div class="line">    </div><div class="line">    movie_list = []</div><div class="line">    <span class="comment">#结果集有很多结果，我们获取</span></div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> div_items:</div><div class="line">        <span class="comment">#调用全局变量</span></div><div class="line">        <span class="keyword">global</span> comment_index</div><div class="line">        comment_index += <span class="number">1</span></div><div class="line">        </div><div class="line">        <span class="comment">#获取我们需要的信息</span></div><div class="line">        p_name = item.find_element_by_css_selector(<span class="string">'div.movie-item-info p.name'</span>)</div><div class="line">        </div><div class="line">        p_star = item.find_element_by_css_selector(<span class="string">'div.movie-item-info p.star'</span>)</div><div class="line">        </div><div class="line">        p_releasetime = item.find_element_by_css_selector(<span class="string">'div.movie-item-info p.releasetime'</span>)</div><div class="line">        </div><div class="line">        p_score_integer = item.find_element_by_css_selector(<span class="string">'div.movie-item-number p.score i.integer'</span>)</div><div class="line">        p_score_fraction = item.find_element_by_css_selector(<span class="string">'div.movie-item-number p.score i.fraction'</span>)</div><div class="line"></div><div class="line">        <span class="comment">#初始化movie对象</span></div><div class="line">        m = Movie(comment_index , p_name.text , p_star.text, p_releasetime.text, p_score_integer.text+p_score_fraction.text)</div><div class="line">        movie_list.append(m)</div><div class="line">    </div><div class="line">    save2csv(movie_list)</div><div class="line">    <span class="comment">#获取下一页</span></div><div class="line">    show_next_page()</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_next_page</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="comment">#获取下一页的标签</span></div><div class="line">        <span class="comment">#最后1页，没有下一页标签</span></div><div class="line">        a_next = wait.until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT,<span class="string">'下一页'</span>)))</div><div class="line">        a_next.click()</div><div class="line">        </div><div class="line">        show_current_page()</div><div class="line">    <span class="keyword">except</span> TimeoutException:</div><div class="line">        <span class="comment">#找不到下一页</span></div><div class="line">        print(<span class="string">'get all movies.'</span>)</div><div class="line">        <span class="comment">#也有可能真是网络异常</span></div><div class="line">    <span class="keyword">finally</span>:</div><div class="line">        browser.quit()</div><div class="line">        </div><div class="line">        </div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure></p>
+<p>这里就简单记录遇到的一些问题和后面需要优化的地方：</p>
+<ol>
+<li>获取影片信息的时候，数据没有清洗好，像这个“主演”，“上映时间”还没有剔除掉；那个地点也可以拆分出来单独一个字段</li>
+</ol>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/crawler-demo-01-01.png-blog.photo" alt="crawler-demo-01-01"></p>
+<ol>
+<li><p>csv编码问题，一开始默认使用gbk（在Windows下开发的），会报错，说是有异常的字符无法保存，改为UTF-8后，就可以了，但是使用CSV打开前，先用notepad++转了编码，才用CSV打开</p>
+</li>
+<li><p>使用正则去获取元素</p>
+</li>
+</ol>
+<p>4.异常问题的处理</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里参考了论坛里一位同学分享的博客：&lt;a href=&quot;https://ask.hellobi.com/blog/JiangYiXin/7660&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;猫眼电影TOP100爬取练习&lt;/a&gt;，感谢分享。&lt;/p&gt;
+&lt;p&gt;学习要从模仿开始，学习了上面的博客之后，自己做下练习，正好最近看了selenium，就用了这个。&lt;/p&gt;
+&lt;p&gt;原作者的正则用的太溜了，等后面有时间再研究下，这里就简单的使用CSS Selector来实现了。&lt;/p&gt;
+&lt;p&gt;原文代码很精彩，我这个代码就粗糙很多了，先来个初始版，后面再慢慢优化。&lt;/p&gt;
+&lt;p&gt;大体思路和&lt;a href=&quot;https://ask.hellobi.com/blog/yuguiyang1990/9172&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Python基础（7）- Selenium使用&lt;/a&gt;  里面的豆瓣读书例子差不多，&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python-爬虫" scheme="https://yuguiyang.github.io/categories/Python-%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="Python" scheme="https://yuguiyang.github.io/tags/Python/"/>
+    
+      <category term="爬虫" scheme="https://yuguiyang.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BeautifulSoup教程（2） - 实例-解析博客专栏</title>
+    <link href="https://yuguiyang.github.io/2017/04/20/bs-handbook-02/"/>
+    <id>https://yuguiyang.github.io/2017/04/20/bs-handbook-02/</id>
+    <published>2017-04-20T13:59:00.000Z</published>
+    <updated>2017-09-04T16:35:24.272Z</updated>
+    
+    <content type="html"><![CDATA[<p>前几天学习了下Beautiful Soup的使用，本来想多写些内容的，但是发现，官方的介绍实在太详细了，每种方法基本都覆盖到了，</p>
+<p>直接看官方的例子就足够了，而且还有一个中文版的，这里的话，就简单实践下，介绍几个常用的方法和一些小经验。</p>
+<p>官方文档：<a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/" target="_blank" rel="external">https://www.crummy.com/software/BeautifulSoup/bs4/doc/</a></p>
+<p>这里，我们就简单的解析下博客专栏，<a href="https://blog.hellobi.com/" target="_blank" rel="external">https://blog.hellobi.com/</a></p>
+<p>这里的话，没有做太多的限制，我们直接解析就可以</p>
+<h1 id="1-分析网页"><a href="#1-分析网页" class="headerlink" title="1. 分析网页"></a>1. 分析网页</h1><p>我们再Firefox中，使用 Firebug很方便</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-02.png-blog.photo" alt="bs-handbook-02-02"></p>
+<p>这里的话，文档结构也很清晰，很适合我们练习</p>
+<a id="more"></a>
+<p>基本代码，我们获取网页信息<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"><span class="comment">#加载网址，获取当前页面</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTML</span><span class="params">(url)</span> :</span></div><div class="line">	page = urllib.urlopen(url)</div><div class="line">	html = page.read()</div><div class="line">	<span class="keyword">return</span> html</div></pre></td></tr></table></figure></p>
+<h1 id="2-常用类"><a href="#2-常用类" class="headerlink" title="2.常用类"></a>2.常用类</h1><p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-01.png-blog.photo" alt="bs-handbook-02-01"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">html = getHTML(<span class="string">'https://blog.hellobi.com/'</span>)</div><div class="line"></div><div class="line">soup = BeautifulSoup(html, <span class="string">"html.parser"</span>)</div></pre></td></tr></table></figure>
+<p>这里，我们初始化Beautiful Soup，使用“html.parser”,这是一个默认的解析器，他还有其他的解析器，官网有介绍，这里就不说了，其他也没有测试过</p>
+<p>这里，顺便说下Python中查看类的帮助信息，使用dir()函数，可以查看类的属性和方法列表<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> type(soup)</div><div class="line"><span class="keyword">print</span> dir(soup)</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-03.png-blog.photo" alt="bs-handbook-02-03"></p>
+<p>我们还可以使用help函数，查看详细的帮助信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> help(soup)</div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-04.png-blog.photo" alt="bs-handbook-02-04"></p>
+<p>Beautiful Soup是最基础的类，其他的还有Tag，这个用起来和HTML中的标签类似</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> soup.title</div><div class="line"><span class="keyword">print</span> type(soup.title)</div><div class="line"></div><div class="line"><span class="comment">#print soup.head</span></div><div class="line"><span class="keyword">print</span> type(soup.head)</div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-05.png-blog.photo" alt="bs-handbook-02-05"></p>
+<p>这里，的title，head都是HTML中的tag，也是Tag类的对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> soup.title.string</div><div class="line"><span class="keyword">print</span> type(soup.title.string)</div><div class="line"><span class="keyword">print</span> dir(soup.title.string)</div></pre></td></tr></table></figure>
+<p>然后，我们需要使用Tag的内容时，就用到了NavigableString</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-06.png-blog.photo" alt="bs-handbook-02-06"></p>
+<h1 id="3-常用函数"><a href="#3-常用函数" class="headerlink" title="3.常用函数"></a>3.常用函数</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">blog_index=<span class="number">1</span></div><div class="line"><span class="keyword">for</span> blog <span class="keyword">in</span> soup.find_all(<span class="string">'div'</span>, class_=<span class="string">'blog-item'</span>):</div><div class="line">	<span class="keyword">print</span> <span class="string">'----------------------------------------------------------'</span></div><div class="line">	<span class="keyword">print</span> <span class="string">'第%s篇博客'</span> %(blog_index)</div><div class="line"></div><div class="line">	title = blog.select_one(<span class="string">'div.caption &gt; h2 &gt; a'</span>)</div><div class="line">	<span class="keyword">print</span> <span class="string">'博客标题: '</span>,title.string</div><div class="line"></div><div class="line">	author = blog.select_one(<span class="string">'div.caption  ul a'</span>)</div><div class="line">	<span class="keyword">print</span> <span class="string">'作者: '</span>,author.text.strip()</div><div class="line"></div><div class="line">	vote = blog.select_one(<span class="string">'div.cp div.blog-votes span'</span>)</div><div class="line">	<span class="keyword">print</span> <span class="string">'推荐次数: '</span>,vote.string</div><div class="line"></div><div class="line">	info = blog.select_one(<span class="string">'div.cp div.blog-views span'</span>)</div><div class="line">	<span class="keyword">print</span> <span class="string">'阅读次数: '</span>,info.string</div><div class="line"></div><div class="line">	blog_index+=<span class="number">1</span></div></pre></td></tr></table></figure>
+<p>上面的代码，就是遍历的首页的所有博客信息，很简单，就是一个find_all()和一个select_one()</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-07.png-blog.photo" alt="bs-handbook-02-07"></p>
+<p>find_all()</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-08.png-blog.photo" alt="bs-handbook-02-08"></p>
+<p>select_one()</p>
+<blockquote>
+<p>select() 方法中传入字符串参数,即可使用CSS选择器的语法找到tag:</p>
+</blockquote>
+<p>思想其实都一样，就是根据一定的规则，找到我们想要的标签</p>
+<p>后面的话，我们再找到总页数，遍历一下，就可以获取所有的博客基本信息啦<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://blog.hellobi.com/?page=2</div></pre></td></tr></table></figure></p>
+<p>传递页码就可以了</p>
+<p>好了，这里就举这一个简单的小例子，大家多在实践中使用就好了</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前几天学习了下Beautiful Soup的使用，本来想多写些内容的，但是发现，官方的介绍实在太详细了，每种方法基本都覆盖到了，&lt;/p&gt;
+&lt;p&gt;直接看官方的例子就足够了，而且还有一个中文版的，这里的话，就简单实践下，介绍几个常用的方法和一些小经验。&lt;/p&gt;
+&lt;p&gt;官方文档：&lt;a href=&quot;https://www.crummy.com/software/BeautifulSoup/bs4/doc/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.crummy.com/software/BeautifulSoup/bs4/doc/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里，我们就简单的解析下博客专栏，&lt;a href=&quot;https://blog.hellobi.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://blog.hellobi.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里的话，没有做太多的限制，我们直接解析就可以&lt;/p&gt;
+&lt;h1 id=&quot;1-分析网页&quot;&gt;&lt;a href=&quot;#1-分析网页&quot; class=&quot;headerlink&quot; title=&quot;1. 分析网页&quot;&gt;&lt;/a&gt;1. 分析网页&lt;/h1&gt;&lt;p&gt;我们再Firefox中，使用 Firebug很方便&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-02.png-blog.photo&quot; alt=&quot;bs-handbook-02-02&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这里的话，文档结构也很清晰，很适合我们练习&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python-爬虫" scheme="https://yuguiyang.github.io/categories/Python-%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="Python" scheme="https://yuguiyang.github.io/tags/Python/"/>
+    
+      <category term="BeautifulSoup" scheme="https://yuguiyang.github.io/tags/BeautifulSoup/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BeautifulSoup教程（1） - 简介及安装</title>
+    <link href="https://yuguiyang.github.io/2017/04/14/bs-handbook-01/"/>
+    <id>https://yuguiyang.github.io/2017/04/14/bs-handbook-01/</id>
+    <published>2017-04-14T13:59:00.000Z</published>
+    <updated>2017-09-04T16:34:58.904Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在学习Python，按照一些博客练习爬虫，最简单的步骤，就是访问一个主页，根据正则表达式去获取我们想要的标签数据；</p>
+<p>比如这样：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#加载网址，获取当前页面</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTML</span><span class="params">(url)</span> :</span></div><div class="line">	page = urllib.urlopen(url)</div><div class="line">	html = page.read()</div><div class="line">	<span class="keyword">return</span> html</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getImage</span><span class="params">(html)</span> :</span></div><div class="line">	reg = <span class="string">r'src="(.+?\.jpg)"'</span></div><div class="line">	reg2 = <span class="string">r'&lt;img alt="(.+?)" src="(.+?\.jpg)'</span></div><div class="line">	image_reg = re.compile(reg2)</div><div class="line">	img_list = re.findall(image_reg,html)</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>简单的话，这样还好，如果复杂些的话，像我一样对正则表达式不熟悉的话，可能就不太好实现了，</p>
+<p>后面发现这个beautifulSoup解析HTML很方便，这里简单学习下，</p>
+<p>官网地址：<a href="https://www.crummy.com/software/BeautifulSoup/" target="_blank" rel="external">https://www.crummy.com/software/BeautifulSoup/</a></p>
+<p>还有中文文档：<a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html" target="_blank" rel="external">https://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html</a></p>
+<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>这里说的不错，<a href="http://cuiqingcai.com/1319.html" target="_blank" rel="external">Python爬虫利器二之Beautiful Soup的用法</a></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-01-01.png-blog.photo" alt="bs-handbook-01-01"></p>
+<h1 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h1><p>Python里面安装东西很方便，直接使用pip就行了</p>
+<p> pip install beautifulsoup4</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-01-02.png-blog.photo" alt="bs-handbook-01-02"></p>
+<h1 id="3-小例子"><a href="#3-小例子" class="headerlink" title="3.小例子"></a>3.小例子</h1><p>我们先写个小例子看看<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"> <span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"></div><div class="line"><span class="comment">#加载网址，获取当前页面</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTML</span><span class="params">(url)</span> :</span></div><div class="line">	page = urllib.urlopen(url)</div><div class="line">	html = page.read()</div><div class="line">	<span class="keyword">return</span> html</div><div class="line"></div><div class="line">html = getHTML(<span class="string">'https://movie.douban.com/top250'</span>)</div><div class="line">soup = BeautifulSoup(html, <span class="string">"html.parser"</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">for</span> img <span class="keyword">in</span> soup.find_all(<span class="string">'img'</span>):</div><div class="line">	<span class="keyword">print</span> img.get(<span class="string">'src'</span>)</div></pre></td></tr></table></figure></p>
+<p>这里，我们就输出了所有的img标签</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-01-03.png-blog.photo" alt="bs-handbook-01-03"></p>
+<p>后面，我们再来继续练习使用</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在学习Python，按照一些博客练习爬虫，最简单的步骤，就是访问一个主页，根据正则表达式去获取我们想要的标签数据；&lt;/p&gt;
+&lt;p&gt;比如这样：&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#加载网址，获取当前页面&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;getHTML&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(url)&lt;/span&gt; :&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	page = urllib.urlopen(url)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	html = page.read()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; html&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;getImage&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(html)&lt;/span&gt; :&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	reg = &lt;span class=&quot;string&quot;&gt;r&#39;src=&quot;(.+?\.jpg)&quot;&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	reg2 = &lt;span class=&quot;string&quot;&gt;r&#39;&amp;lt;img alt=&quot;(.+?)&quot; src=&quot;(.+?\.jpg)&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	image_reg = re.compile(reg2)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	img_list = re.findall(image_reg,html)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python-爬虫" scheme="https://yuguiyang.github.io/categories/Python-%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="Python" scheme="https://yuguiyang.github.io/tags/Python/"/>
+    
+      <category term="BeautifulSoup" scheme="https://yuguiyang.github.io/tags/BeautifulSoup/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Kettle手册（十二）- 控件使用-从步骤插入数据</title>
     <link href="https://yuguiyang.github.io/2017/04/14/Kettle-handbook-12/"/>
     <id>https://yuguiyang.github.io/2017/04/14/Kettle-handbook-12/</id>
@@ -965,127 +1183,6 @@
     
       &lt;p&gt;看到有同学提问，以前也没用过，百度了一下，找了些资料，这里记录下。&lt;/p&gt;
 &lt;h1 id=&quot;1-安装gpg4win&quot;&gt;&lt;a href=&quot;#1-安装gpg4win&quot; class=&quot;headerlink&quot; title=&quot;1. 安装gpg4win&quot;&gt;&lt;/a&gt;1. 安装gpg4win&lt;/h1&gt;&lt;p&gt;这个gpg4win是干嘛的呢，我们可以去他的官网看看：&lt;a href=&quot;https://www.gpg4win.org/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gpg4win&lt;/a&gt;&lt;br&gt;目前，只知道他是加密的，这个是对Windows平台使用的&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-11-01.png&quot;&gt;&lt;br&gt;这里可能还有个PGP的概念，看看百度百科&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-11-02.png-blog.photo&quot; alt=&quot;Kettle-handbook-11-02.png&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
-    
-    
-      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kettle手册（十）- 跨库查询</title>
-    <link href="https://yuguiyang.github.io/2017/04/10/Kettle-handbook-10/"/>
-    <id>https://yuguiyang.github.io/2017/04/10/Kettle-handbook-10/</id>
-    <published>2017-04-10T03:24:44.000Z</published>
-    <updated>2017-08-27T14:18:29.979Z</updated>
-    
-    <content type="html"><![CDATA[<p>Kettle整体使用起来，还是很方便的，熟悉应用了之后，就是对控件的熟悉和使用了，只要思路有了，就是整合下Kettle中各个控件的使用就行。<br>这里，简单介绍下一个“跨库查询”的控件。<br>有的时候，我们一个脚本，可能只是临时性的，或者需要实时的去查一下，同步到数仓的话，可能不太方便，我们就可以使用跨库查询的控件<br>用到的表信息<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-01.png-blog.photo" alt="Kettle-handbook-10-01.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-02.png-blog.photo" alt="Kettle-handbook-10-02.png"></p>
-<a id="more"></a>
-<h1 id="1-数据库连接-Database-Join"><a href="#1-数据库连接-Database-Join" class="headerlink" title="1. 数据库连接(Database Join)"></a>1. 数据库连接(Database Join)</h1><p>我们先用这个控件来实现一下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-03.png-blog.photo" alt="Kettle-handbook-10-03.png"><br>用起来也很简单<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-04.png-blog.photo" alt="Kettle-handbook-10-04.png"><br>表输入：是我们第一个库中的SQL<br>数据库连接：是我们另一个库的SQL<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-05.png-blog.photo" alt="Kettle-handbook-10-05.png"><br>我们用关联的字段放在where条件后，使用“?”来占位，并在下面，选择要传入的参数<br>默认的话，是JOIN，我们也可以勾选Outer Join，<br>然后，我们看下，输出就行<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-06.png-blog.photo" alt="Kettle-handbook-10-06.png"><br>这是后面导出的文件，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-07.png-blog.photo" alt="Kettle-handbook-10-07.png"><br>这里，我们就简单实现了跨库的查询</p>
-<h1 id="2-数据库查询"><a href="#2-数据库查询" class="headerlink" title="2. 数据库查询"></a>2. 数据库查询</h1><p>我们再来看另一个控件，“数据库查询”，这个控件同样可以实现跨库，但是有一个小问题<br>首先，我们使用上一次的数据来看<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-08.png-blog.photo" alt="Kettle-handbook-10-08.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-09.png-blog.photo" alt="Kettle-handbook-10-09.png"><br>我们执行下，结果看上去是一样的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-10.png-blog.photo" alt="Kettle-handbook-10-10.png"><br>这其实有个隐藏的问题，我们再增加几条记录看看<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-11.png-blog.photo" alt="Kettle-handbook-10-11.png"><br>比如：现在1号有2条记录，正常的话，我们导出也是要有2条的<br>我们执行下看看<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-12.png-blog.photo" alt="Kettle-handbook-10-12.png"><br>我们会看到，数据并没有增加，这是控件导致的，<br>先获取左边的结果集，然后一条一条去右边匹配；匹配到第一条记录后，就会跳出，直接去匹配下一个，所以，我们有2条记录，也只会找到第一个。<br>这并不是我们想要的，我们再试下第一个控件<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-13.png-blog.photo" alt="Kettle-handbook-10-13.png"><br>使用这个“数据库查询”控件的话，可以通过将1-N关系汇总，将N的一方，放在前面<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-14.png-blog.photo" alt="Kettle-handbook-10-14.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-15.png-blog.photo" alt="Kettle-handbook-10-15.png"><br>最后的结果也是可以的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-16.png-blog.photo" alt="Kettle-handbook-10-16.png"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Kettle整体使用起来，还是很方便的，熟悉应用了之后，就是对控件的熟悉和使用了，只要思路有了，就是整合下Kettle中各个控件的使用就行。&lt;br&gt;这里，简单介绍下一个“跨库查询”的控件。&lt;br&gt;有的时候，我们一个脚本，可能只是临时性的，或者需要实时的去查一下，同步到数仓的话，可能不太方便，我们就可以使用跨库查询的控件&lt;br&gt;用到的表信息&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-10-01.png&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-10-02.png-blog.photo&quot; alt=&quot;Kettle-handbook-10-02.png&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
-    
-    
-      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kettle手册（九）- 发送邮件</title>
-    <link href="https://yuguiyang.github.io/2017/03/30/Kettle-handbook-09/"/>
-    <id>https://yuguiyang.github.io/2017/03/30/Kettle-handbook-09/</id>
-    <published>2017-03-30T03:24:44.000Z</published>
-    <updated>2017-08-27T14:05:09.684Z</updated>
-    
-    <content type="html"><![CDATA[<p>在Kettle里面，我们每天执行完调度之后，想要监控下JOB的执行状态，通常我们可以会发送邮件，可以的话，还可以发送短信。</p>
-<p>在Kettle里面，发送邮件很方便，这里，我们就简单的测试下。</p>
-<h1 id="1-在作业中发送简单邮件"><a href="#1-在作业中发送简单邮件" class="headerlink" title="1. 在作业中发送简单邮件"></a>1. 在作业中发送简单邮件</h1><p>我们只需要使用到这个控件就可以了，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-01.png-blog.photo" alt="Kettle-handbook-09-01.png"><br>这样，一个简单的发送邮件流程就好了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-02.png-blog.photo" alt="Kettle-handbook-09-02.png"></p>
-<a id="more"></a>
-<p>控件的配置：<br>收件人，抄送啊，信息，自行填写就行，多个收件人，使用“空格”分隔<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-03.png-blog.photo" alt="Kettle-handbook-09-03.png"><br>在服务器这里，我们填上服务器的信息就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-04.png-blog.photo" alt="Kettle-handbook-09-04.png"><br>这里是邮件消息的一些配置，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-05.png-blog.photo" alt="Kettle-handbook-09-05.png"><br>暂时先到这里，我们测试下结果<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-06.png-blog.photo" alt="Kettle-handbook-09-06.png"><br>然后，查看邮箱，我们会接收到这个邮件，刚刚简单测了下这个“回复名称”，就是<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-07.png-blog.photo" alt="Kettle-handbook-09-07.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-08.png-blog.photo" alt="Kettle-handbook-09-08.png"><br>这里试过中文，会有问题，有乱码，可能是Windows下的原因，没有再去测试验证<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-09.png-blog.photo" alt="Kettle-handbook-09-09.png"><br>就是收到邮件时的一个发件人的名称，不同邮箱显示的不一样</p>
-<h1 id="2-增加附件"><a href="#2-增加附件" class="headerlink" title="2. 增加附件"></a>2. 增加附件</h1><p>附件的话，也很简单，上面的面板中直接配置就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-10.png-blog.photo" alt="Kettle-handbook-09-10.png"><br>然后，我们需要将待发送的邮件，添加到结果集中<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-11.png-blog.photo" alt="Kettle-handbook-09-11.png"><br>在控件中，我们添加好文件就行了。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-12.png-blog.photo" alt="Kettle-handbook-09-12.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-13.png-blog.photo" alt="Kettle-handbook-09-13.png"><br>我们再次发送，验证下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-14.png-blog.photo" alt="Kettle-handbook-09-14.png"><br>好了，附件也可以了，思路就是这样的，实际应用时，可能还有些问题得注意下</p>
-<h1 id="3-自定义邮件内容"><a href="#3-自定义邮件内容" class="headerlink" title="3. 自定义邮件内容"></a>3. 自定义邮件内容</h1><p>到这里，我们会看到，邮件的正文内容，可能并不是我们想要的， 我们想要的可能是这样的信息<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-15.png-blog.photo" alt="Kettle-handbook-09-15.png"><br>这就需要自定义正文内容，我们需要勾选下面这个选项<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-16.png-blog.photo" alt="Kettle-handbook-09-16.png"><br>这里是可以使用变量的，我们可以拼接HTML来实现<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-17.png-blog.photo" alt="Kettle-handbook-09-17.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-18.png-blog.photo" alt="Kettle-handbook-09-18.png"><br>好了，邮件的介绍，大概就这些，在转换中，也是可以使用的，大同小异</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在Kettle里面，我们每天执行完调度之后，想要监控下JOB的执行状态，通常我们可以会发送邮件，可以的话，还可以发送短信。&lt;/p&gt;
-&lt;p&gt;在Kettle里面，发送邮件很方便，这里，我们就简单的测试下。&lt;/p&gt;
-&lt;h1 id=&quot;1-在作业中发送简单邮件&quot;&gt;&lt;a href=&quot;#1-在作业中发送简单邮件&quot; class=&quot;headerlink&quot; title=&quot;1. 在作业中发送简单邮件&quot;&gt;&lt;/a&gt;1. 在作业中发送简单邮件&lt;/h1&gt;&lt;p&gt;我们只需要使用到这个控件就可以了，&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-09-01.png&quot;&gt;&lt;br&gt;这样，一个简单的发送邮件流程就好了&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-02.png-blog.photo&quot; alt=&quot;Kettle-handbook-09-02.png&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
-    
-    
-      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kettle手册（八）- 循环</title>
-    <link href="https://yuguiyang.github.io/2017/03/29/Kettle-handbook-08/"/>
-    <id>https://yuguiyang.github.io/2017/03/29/Kettle-handbook-08/</id>
-    <published>2017-03-29T15:40:44.000Z</published>
-    <updated>2017-08-27T13:47:04.004Z</updated>
-    
-    <content type="html"><![CDATA[<p>有的时候，我们想要在Kettle中实现这个循环的功能，比如，批量加载数据的时候，我们要对10张表执行同样的操作，只有表名和一些信息不一样，这时，写个循环就省事儿多了</p>
-<h1 id="1-遍历结果集实现"><a href="#1-遍历结果集实现" class="headerlink" title="1. 遍历结果集实现"></a>1. 遍历结果集实现</h1><p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-01.png-blog.photo" alt="Kettle-handbook-08-01.png"><br>这里的话，我们主要是通过一个将结果集返回，然后通过转换的设置来实现的</p>
-<a id="more"></a>
-<h2 id="1-1-query-the-result"><a href="#1-1-query-the-result" class="headerlink" title="1.1 query_the_result"></a>1.1 query_the_result</h2><p>这个转换，只要是将我们要遍历的结果集返回，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-02.png-blog.photo" alt="Kettle-handbook-08-02.png"><br>表输入，我们就是返回了5条记录，来做遍历<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-03.png-blog.photo" alt="Kettle-handbook-08-03.png"><br>复制记录到结果，这个控件的作用，就是我们可以在后面的转换继续使用这个结果集。</p>
-<p>##1.2 traverse_the_result<br>这里呢，我们就是需要遍历的转换了，这里，我们只是获取结果集，然后将结果集输出<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-04.png-blog.photo" alt="Kettle-handbook-08-04.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-05.png-blog.photo" alt="Kettle-handbook-08-05.png"><br>还有一个很重要的一步，怎样让这个转换可以根据结果集的条数，去循环执行呢？<br>就是这个“执行每一个输入行”<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-06.png-blog.photo" alt="Kettle-handbook-08-06.png"><br>我们执行下看看<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-07.png-blog.photo" alt="Kettle-handbook-08-07.png"></p>
-<h1 id="2-使用JS实现"><a href="#2-使用JS实现" class="headerlink" title="2. 使用JS实现"></a>2. 使用JS实现</h1><p>网上有很多的例子，介绍怎样用JS来控制循环，这里我们也简单的测试下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-08.png-blog.photo" alt="Kettle-handbook-08-08.png"></p>
-<h2 id="2-1-query-the-result"><a href="#2-1-query-the-result" class="headerlink" title="2.1 query_the_result"></a>2.1 query_the_result</h2><p>这一步，和上面的一样，就是将结果集返回<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-09.png-blog.photo" alt="Kettle-handbook-08-09.png"></p>
-<h2 id="2-2-travers-the-result"><a href="#2-2-travers-the-result" class="headerlink" title="2.2 travers_the_result"></a>2.2 travers_the_result</h2><p>这里主要是使用JS将结果集进行遍历，通过JS，将一些结果存放到变量里面，在后面的操作中就可以使用了，通过${xxx}的方式使用<br>这个其实和Java、JS里面循环思路一样，通过结果集的总数“total_num”和下标“LoopCounter”进行判断<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-10.png-blog.photo" alt="Kettle-handbook-08-10.png"></p>
-<h2 id="2-3-evaluate-the-loop-count"><a href="#2-3-evaluate-the-loop-count" class="headerlink" title="2.3 evaluate_the_loop_count"></a>2.3 evaluate_the_loop_count</h2><p>这一步，就是判断下标的值和结果集的总数，进行对比，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-11.png-blog.photo" alt="Kettle-handbook-08-11.png"></p>
-<h2 id="2-4-print-the-log"><a href="#2-4-print-the-log" class="headerlink" title="2.4 print_the_log"></a>2.4 print_the_log</h2><p>输出下，我们想要使用的变量<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-12.png-blog.photo" alt="Kettle-handbook-08-12.png"></p>
-<h2 id="2-5-manage-the-loop-index"><a href="#2-5-manage-the-loop-index" class="headerlink" title="2.5 manage_the_loop_index"></a>2.5 manage_the_loop_index</h2><p>这一步，给下标加一，然后获取下一条记录<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-13.png-blog.photo" alt="Kettle-handbook-08-13.png"><br>好了，执行下，我们看看<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-14.png-blog.photo" alt="Kettle-handbook-08-14.png"><br>好了，循环的使用先介绍到这里</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;有的时候，我们想要在Kettle中实现这个循环的功能，比如，批量加载数据的时候，我们要对10张表执行同样的操作，只有表名和一些信息不一样，这时，写个循环就省事儿多了&lt;/p&gt;
-&lt;h1 id=&quot;1-遍历结果集实现&quot;&gt;&lt;a href=&quot;#1-遍历结果集实现&quot; class=&quot;headerlink&quot; title=&quot;1. 遍历结果集实现&quot;&gt;&lt;/a&gt;1. 遍历结果集实现&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-08-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-08-01.png&quot;&gt;&lt;br&gt;这里的话，我们主要是通过一个将结果集返回，然后通过转换的设置来实现的&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ETL-Kettle" scheme="https://yuguiyang.github.io/categories/ETL-Kettle/"/>
-    
-    
-      <category term="Kettle" scheme="https://yuguiyang.github.io/tags/Kettle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kettle手册（七）- 资源库的使用</title>
-    <link href="https://yuguiyang.github.io/2017/03/29/Kettle-handbook-07/"/>
-    <id>https://yuguiyang.github.io/2017/03/29/Kettle-handbook-07/</id>
-    <published>2017-03-29T15:24:44.000Z</published>
-    <updated>2017-08-27T13:28:47.101Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1-为什么使用资源库"><a href="#1-为什么使用资源库" class="headerlink" title="1. 为什么使用资源库"></a>1. 为什么使用资源库</h1><p>之前，我们新建转换或者作业的时候，都是直接保存在本地，而如果我们是多人开发的话，除了使用SVN等版本控制软件，还可以使用Kettle的资源库，他会将转换、作业直接保存在数据库中，而且，连接资源库的话，我们就不需要每一次都新建数据库连接了，用起来还是蛮方便的。</p>
-<h1 id="2-新建资源库"><a href="#2-新建资源库" class="headerlink" title="2. 新建资源库"></a>2. 新建资源库</h1><p>Kettle7.0里面，是在右上角这个Connect来连接的<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-01.png-blog.photo" alt="Kettle-handbook-07-01.png"></p>
-<a id="more"></a>
-<h2 id="2-1-资源库的类型"><a href="#2-1-资源库的类型" class="headerlink" title="2.1 资源库的类型"></a>2.1 资源库的类型</h2><p>资源库有3中类型<br>Pentaho Repository<br>Database Repository（使用数据库存储）<br>File Repository（使用文件存储）<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-02.png-blog.photo" alt="Kettle-handbook-07-02.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-03.png-blog.photo" alt="Kettle-handbook-07-03.png"></p>
-<h2 id="2-2-新建Pentaho-Repository"><a href="#2-2-新建Pentaho-Repository" class="headerlink" title="2.2 新建Pentaho Repository"></a>2.2 新建Pentaho Repository</h2><p>我们单击上面的get started 之后，就会进入新建界面<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-04.png-blog.photo" alt="Kettle-handbook-07-04.png"><br><a href="http://localhost:8080/pentaho" target="_blank" rel="external">http://localhost:8080/pentaho</a><br>一开始还没搞懂这个Server到底怎么启动，后来google了半天发现<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-05.png-blog.photo" alt="Kettle-handbook-07-05.png"><br>后来又找到了这个，应该是要安装其他的组件才行，这个类型的库就放弃吧。。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-06.png-blog.photo" alt="Kettle-handbook-07-06.png"></p>
-<h2 id="2-3-Database-Repository"><a href="#2-3-Database-Repository" class="headerlink" title="2.3 Database Repository"></a>2.3 Database Repository</h2><p>好了，这回，我们选择哪个database的资源库<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-07.png-blog.photo" alt="Kettle-handbook-07-07.png"><br>我们填一个connection的名字，然后配置一个资源库的连接就可以了，最好给kettle新建一个数据库使用<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-08.png-blog.photo" alt="Kettle-handbook-07-08.png"><br>至于数据库连接的话，和转换里面是一样的，大家可以自行新建一个<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-09.png-blog.photo" alt="Kettle-handbook-07-09.png"><br>配置好，以后，大家选择Finish就可以了，然后，我们可以连接下这个库，注意下，这里的用户名和密码，<br>默认是admin/admin，大家直接登录就好了，这是Kettle自己初始化的<br>这个怎么改呢，暂时还没有发现，待研究，等我再google看看，估计官网上会有。<br>（找了下，发现了在哪改密码，就是刚刚的搜索资源库<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-10.png-blog.photo" alt="Kettle-handbook-07-10.png"><br>)<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-11.png-blog.photo" alt="Kettle-handbook-07-11.png"><br>连接后，我们正常使用就好了，没啥两样，会多一些功能，比如，探索资源库这里<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-12.png-blog.photo" alt="Kettle-handbook-07-12.png"><br>我们再保存作业和转换的话，会直接保存在数据库中，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-13.png-blog.photo" alt="Kettle-handbook-07-13.png"><br>而且，很好的一个功能，个人感觉，就是数据库连接只需要创建一次，在哪里都可以用了，不需要再次创建。</p>
-<h2 id="2-4-File-Repository"><a href="#2-4-File-Repository" class="headerlink" title="2.4 File Repository"></a>2.4 File Repository</h2><p>这个和database的资源库，就差不多了，只不过是基于文件的，保存在本地就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-14.png-blog.photo" alt="Kettle-handbook-07-14.png"><br>这个就和Eclipse一个工作区差不多，转换、作业都保存在这个目录下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-15.png-blog.photo" alt="Kettle-handbook-07-15.png"><br>好了，关于资源库，就简单的说这些了，大家可以自行连接，试试。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-为什么使用资源库&quot;&gt;&lt;a href=&quot;#1-为什么使用资源库&quot; class=&quot;headerlink&quot; title=&quot;1. 为什么使用资源库&quot;&gt;&lt;/a&gt;1. 为什么使用资源库&lt;/h1&gt;&lt;p&gt;之前，我们新建转换或者作业的时候，都是直接保存在本地，而如果我们是多人开发的话，除了使用SVN等版本控制软件，还可以使用Kettle的资源库，他会将转换、作业直接保存在数据库中，而且，连接资源库的话，我们就不需要每一次都新建数据库连接了，用起来还是蛮方便的。&lt;/p&gt;
-&lt;h1 id=&quot;2-新建资源库&quot;&gt;&lt;a href=&quot;#2-新建资源库&quot; class=&quot;headerlink&quot; title=&quot;2. 新建资源库&quot;&gt;&lt;/a&gt;2. 新建资源库&lt;/h1&gt;&lt;p&gt;Kettle7.0里面，是在右上角这个Connect来连接的&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-07-01.png-blog.photo&quot; alt=&quot;Kettle-handbook-07-01.png&quot;&gt;&lt;/p&gt;
     
     </summary>
     

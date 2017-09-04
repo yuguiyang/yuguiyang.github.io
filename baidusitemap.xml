@@ -4,6 +4,120 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/04/20/crawler-demo-01/</loc>
+    <lastmod>2017-09-04T16:40:13.656Z</lastmod>
+    <data>
+        <display>
+        <title>爬虫小实例学习篇-猫眼电影</title>
+        <pubTime>2017-04-20T13:59:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>爬虫</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-爬虫" url="https://yuguiyang.github.io/categories/Python-%E7%88%AC%E8%99%AB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/04/20/bs-handbook-02/</loc>
+    <lastmod>2017-09-04T16:35:24.272Z</lastmod>
+    <data>
+        <display>
+        <title>BeautifulSoup教程（2） - 实例-解析博客专栏</title>
+        <pubTime>2017-04-20T13:59:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>BeautifulSoup</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-爬虫" url="https://yuguiyang.github.io/categories/Python-%E7%88%AC%E8%99%AB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/04/14/bs-handbook-01/</loc>
+    <lastmod>2017-09-04T16:34:58.904Z</lastmod>
+    <data>
+        <display>
+        <title>BeautifulSoup教程（1） - 简介及安装</title>
+        <pubTime>2017-04-14T13:59:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>BeautifulSoup</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-爬虫" url="https://yuguiyang.github.io/categories/Python-%E7%88%AC%E8%99%AB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/09/04/reading_notes_data_analysis_02/</loc>
+    <lastmod>2017-09-04T16:15:27.777Z</lastmod>
+    <data>
+        <display>
+        <title>读书笔记-数据分析实战(3章)</title>
+        <pubTime>2017-09-04T15:59:00.000Z</pubTime>
+        
+        <tag>数据分析</tag>
+         
+        <tag>读书笔记</tag>
+         
+        <tag>实例</tag>
+         
+         
+           
+             
+              <breadCrumb title="读书笔记" url="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/09/01/reading_notes_data_analysis_01/</loc>
+    <lastmod>2017-09-04T15:43:55.134Z</lastmod>
+    <data>
+        <display>
+        <title>读书笔记-数据分析实战(1、2章)</title>
+        <pubTime>2017-08-31T16:59:00.000Z</pubTime>
+        
+        <tag>数据分析</tag>
+         
+        <tag>读书笔记</tag>
+         
+        <tag>实例</tag>
+         
+         
+           
+             
+              <breadCrumb title="读书笔记" url="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/08/14/the-newest-area-info-01/</loc>
     <lastmod>2017-09-04T15:04:39.861Z</lastmod>
     <data>
@@ -128,30 +242,6 @@
            
              
               <breadCrumb title="Tableau" url="https://yuguiyang.github.io/categories/Tableau/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://yuguiyang.github.io/2017/09/01/reading_notes_data_analysis_01/</loc>
-    <lastmod>2017-08-31T16:58:22.936Z</lastmod>
-    <data>
-        <display>
-        <title>读书笔记-数据分析实战(1、2章)</title>
-        <pubTime>2017-08-31T16:59:00.000Z</pubTime>
-        
-        <tag>数据分析</tag>
-         
-        <tag>读书笔记</tag>
-         
-        <tag>实例</tag>
-         
-         
-           
-             
-              <breadCrumb title="读书笔记" url="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
           
         </display>
     </data>
