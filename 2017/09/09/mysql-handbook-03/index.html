@@ -117,7 +117,8 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-fc4ed0f6e9def043.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-f5a4a9876a971a43.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-f5d58640d50dbd22.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-09-09T10:50:51.169Z">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-04-11.png-blog.photo">
+<meta property="og:updated_time" content="2017-09-09T14:47:09.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL-关联查询">
 <meta name="twitter:description" content="MySQL关联查询 前面，我们介绍的都是单表查询（就是只从一张表中获取数据），而实际应用的时候，我们都会同时查询多张表，这里，我们就介绍下，多表关联查询的使用。  SQL join 用于根据两个或多个表中的列之间的关系，从这些表中查询数据   前置知识 主键（Primary Key）：可以唯一确定一条记录的字段，比如学生表中的学生ID，生活中我们的身份证号外键（Foreign Key）：指向另一张">
@@ -472,6 +473,8 @@
 <p><img src="http://upload-images.jianshu.io/upload_images/76024-f5a4a9876a971a43.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="right join"></p>
 <h2 id="full-outer-join"><a href="#full-outer-join" class="headerlink" title="full outer join"></a>full outer join</h2><p>全关联，mysql没有full join 语法，我们可以通过使用union来实现<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    *</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_student a </div><div class="line"><span class="keyword">left</span> <span class="keyword">join</span> </div><div class="line">    t_class b </div><div class="line"><span class="keyword">on</span> </div><div class="line">    a.c_id = b.c_id</div><div class="line"><span class="keyword">UNION</span></div><div class="line"><span class="keyword">select</span> </div><div class="line">    *</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_student a </div><div class="line"><span class="keyword">right</span> <span class="keyword">join</span> </div><div class="line">    t_class b </div><div class="line"><span class="keyword">on</span> </div><div class="line">    a.c_id = b.c_id</div><div class="line">;</div></pre></td></tr></table></figure></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/76024-f5d58640d50dbd22.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="full join"></p>
+<h2 id="cross-join"><a href="#cross-join" class="headerlink" title="cross join"></a>cross join</h2><p>cross join 是对2个表做笛卡尔积<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_class a </div><div class="line"><span class="keyword">cross</span> <span class="keyword">join</span> t_class b </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> a.c_id,b.c_id</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-04-11.png-blog.photo" alt="data-analyst-interview-sql-04-11"></p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>关联查询的话，我们主要是选择好主表，然后找好表与表之间的关联关系，注意多对多、一对多的这种关系，验证号结果数据就行了。</p>
 
       
@@ -541,8 +544,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/31/top/" rel="prev" title="博客迁移整理中(置顶)">
-                博客迁移整理中(置顶) <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/09/data-analyst-interview-sql-04/" rel="prev" title="SQL笔试题-MySQL练习题">
+                SQL笔试题-MySQL练习题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -622,7 +625,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -713,7 +716,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前置知识"><span class="nav-number">1.</span> <span class="nav-text">前置知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inner-join"><span class="nav-number">2.</span> <span class="nav-text">inner join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#left-join"><span class="nav-number">3.</span> <span class="nav-text">left join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#right-join"><span class="nav-number">4.</span> <span class="nav-text">right join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#full-outer-join"><span class="nav-number">5.</span> <span class="nav-text">full outer join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">6.</span> <span class="nav-text">小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前置知识"><span class="nav-number">1.</span> <span class="nav-text">前置知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inner-join"><span class="nav-number">2.</span> <span class="nav-text">inner join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#left-join"><span class="nav-number">3.</span> <span class="nav-text">left join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#right-join"><span class="nav-number">4.</span> <span class="nav-text">right join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#full-outer-join"><span class="nav-number">5.</span> <span class="nav-text">full outer join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cross-join"><span class="nav-number">6.</span> <span class="nav-text">cross join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">7.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
 
           </div>

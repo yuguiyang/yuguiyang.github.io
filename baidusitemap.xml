@@ -4,8 +4,32 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/09/09/data-analyst-interview-sql-04/</loc>
+    <lastmod>2017-09-09T14:49:17.589Z</lastmod>
+    <data>
+        <display>
+        <title>SQL笔试题-MySQL练习题</title>
+        <pubTime>2017-09-09T03:00:00.000Z</pubTime>
+        
+        <tag>SQL</tag>
+         
+        <tag>笔试题</tag>
+         
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔试题" url="https://yuguiyang.github.io/categories/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-03/</loc>
-    <lastmod>2017-09-09T10:50:51.169Z</lastmod>
+    <lastmod>2017-09-09T14:47:09.459Z</lastmod>
     <data>
         <display>
         <title>MySQL-关联查询</title>

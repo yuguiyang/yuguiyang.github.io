@@ -493,6 +493,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/09/09/data-analyst-interview-sql-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/09/data-analyst-interview-sql-04/" itemprop="url">SQL笔试题-MySQL练习题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-09T11:00:00+08:00">
+                2017-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔试题/" itemprop="url" rel="index">
+                    <span itemprop="name">笔试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>SQL笔试题</p>
+<blockquote>
+<p>下面的SQL基于MySQL</p>
+</blockquote>
+<p>下面整理些MySQL学习过程中，基本的练习题，题目来源于网上及个人总结。</p>
+<h2 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t_student(</div><div class="line">	s_id <span class="built_in">int</span> <span class="keyword">comment</span> <span class="string">'学生ID'</span>,</div><div class="line">	s_name <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">comment</span> <span class="string">'学生姓名'</span>,</div><div class="line">	s_gender <span class="built_in">int</span> <span class="keyword">comment</span> <span class="string">'学生性别 0-男,1-女'</span>,</div><div class="line">	s_birthday <span class="built_in">date</span> <span class="keyword">comment</span> <span class="string">'出生日期'</span>,</div><div class="line">	s_hobby <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">comment</span> <span class="string">'爱好'</span>,</div><div class="line">	c_id <span class="built_in">int</span> <span class="keyword">comment</span> <span class="string">'班级ID'</span></div><div class="line">) <span class="keyword">comment</span> <span class="string">'学生表'</span>;</div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t_class(</div><div class="line">	c_id <span class="built_in">int</span> <span class="keyword">comment</span> <span class="string">'班级ID'</span>,</div><div class="line">	c_name <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">comment</span> <span class="string">'班级名称'</span></div><div class="line">) <span class="keyword">comment</span> <span class="string">'班级表'</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> t_score(</div><div class="line">	sc_id <span class="built_in">int</span> <span class="keyword">comment</span> <span class="string">'成绩ID'</span>,</div><div class="line">	s_id <span class="built_in">int</span> <span class="keyword">comment</span> <span class="string">'学生ID'</span>,</div><div class="line">	course_name <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">comment</span> <span class="string">'课程名称'</span>,</div><div class="line">	score <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>) <span class="keyword">comment</span> <span class="string">'成绩'</span></div><div class="line">	</div><div class="line">) <span class="keyword">comment</span> <span class="string">'成绩表'</span>;</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_class <span class="keyword">values</span>(<span class="number">901</span>,<span class="string">'一班'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_class <span class="keyword">values</span>(<span class="number">902</span>,<span class="string">'二班'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_class <span class="keyword">values</span>(<span class="number">903</span>,<span class="string">'三班'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_class <span class="keyword">values</span>(<span class="number">905</span>,<span class="string">'五班'</span>);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_student <span class="keyword">values</span>(<span class="number">101</span>,<span class="string">'路飞'</span>,<span class="number">0</span>,<span class="string">'1990-01-26'</span>,<span class="string">'吃肉,睡觉'</span>,<span class="number">901</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_student <span class="keyword">values</span>(<span class="number">102</span>,<span class="string">'娜美'</span>,<span class="number">1</span>,<span class="string">'1995-10-05'</span>,<span class="string">'足球,篮球'</span>,<span class="number">901</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_student <span class="keyword">values</span>(<span class="number">103</span>,<span class="string">'乔巴'</span>,<span class="number">0</span>,<span class="string">'1992-08-11'</span>,<span class="string">'唱歌,吃肉'</span>,<span class="number">901</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_student <span class="keyword">values</span>(<span class="number">104</span>,<span class="string">'鸣人'</span>,<span class="number">0</span>,<span class="string">'1991-03-29'</span>,<span class="string">'拉面,忍术'</span>,<span class="number">901</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_student <span class="keyword">values</span>(<span class="number">105</span>,<span class="string">'卡卡西'</span>,<span class="number">1</span>,<span class="string">'1989-05-10'</span>,<span class="string">'看书,吃肉'</span>,<span class="number">902</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_student <span class="keyword">values</span>(<span class="number">106</span>,<span class="string">'乌索普'</span>,<span class="number">1</span>,<span class="string">'1988-02-02'</span>,<span class="string">'跳舞,篮球'</span>,<span class="number">902</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_student <span class="keyword">values</span>(<span class="number">107</span>,<span class="string">'乔峰'</span>,<span class="number">0</span>,<span class="string">'1990-12-12'</span>,<span class="string">'跑步,羽毛球'</span>,<span class="number">902</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_student <span class="keyword">values</span>(<span class="number">108</span>,<span class="string">'段誉'</span>,<span class="number">0</span>,<span class="string">'1990-12-13'</span>,<span class="string">'吃肉,加班'</span>,<span class="number">903</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_student <span class="keyword">values</span>(<span class="number">109</span>,<span class="string">'虚竹'</span>,<span class="number">1</span>,<span class="string">'1991-01-22'</span>,<span class="string">'看电影,旅行'</span>,<span class="number">903</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_student <span class="keyword">values</span>(<span class="number">110</span>,<span class="string">'杨过'</span>,<span class="number">0</span>,<span class="string">'2000-03-04'</span>,<span class="string">'旅行'</span>,<span class="number">903</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_student <span class="keyword">values</span>(<span class="number">111</span>,<span class="string">'令狐冲'</span>,<span class="number">0</span>,<span class="string">'1997-03-04'</span>,<span class="string">'喝酒'</span>,<span class="number">904</span>);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">101</span>,<span class="string">'数学'</span>,<span class="number">39</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">2</span>,<span class="number">102</span>,<span class="string">'数学'</span>,<span class="number">20</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">3</span>,<span class="number">103</span>,<span class="string">'数学'</span>,<span class="number">54</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">4</span>,<span class="number">104</span>,<span class="string">'数学'</span>,<span class="number">38</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">5</span>,<span class="number">105</span>,<span class="string">'数学'</span>,<span class="number">70</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">6</span>,<span class="number">106</span>,<span class="string">'数学'</span>,<span class="number">15</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">7</span>,<span class="number">107</span>,<span class="string">'数学'</span>,<span class="number">75</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">8</span>,<span class="number">108</span>,<span class="string">'数学'</span>,<span class="number">84</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">9</span>,<span class="number">109</span>,<span class="string">'数学'</span>,<span class="number">87</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">10</span>,<span class="number">110</span>,<span class="string">'数学'</span>,<span class="number">67</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">11</span>,<span class="number">101</span>,<span class="string">'语文'</span>,<span class="number">73</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">12</span>,<span class="number">102</span>,<span class="string">'语文'</span>,<span class="number">71</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">13</span>,<span class="number">103</span>,<span class="string">'语文'</span>,<span class="number">82</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">14</span>,<span class="number">104</span>,<span class="string">'语文'</span>,<span class="number">83</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">15</span>,<span class="number">105</span>,<span class="string">'语文'</span>,<span class="number">36</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">16</span>,<span class="number">106</span>,<span class="string">'语文'</span>,<span class="number">87</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">17</span>,<span class="number">107</span>,<span class="string">'语文'</span>,<span class="number">74</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">18</span>,<span class="number">108</span>,<span class="string">'语文'</span>,<span class="number">19</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">19</span>,<span class="number">109</span>,<span class="string">'语文'</span>,<span class="number">29</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">20</span>,<span class="number">110</span>,<span class="string">'语文'</span>,<span class="number">26</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">21</span>,<span class="number">101</span>,<span class="string">'英语'</span>,<span class="number">55</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">22</span>,<span class="number">102</span>,<span class="string">'英语'</span>,<span class="number">24</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">23</span>,<span class="number">103</span>,<span class="string">'英语'</span>,<span class="number">38</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">24</span>,<span class="number">104</span>,<span class="string">'英语'</span>,<span class="number">82</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">25</span>,<span class="number">105</span>,<span class="string">'英语'</span>,<span class="number">12</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">26</span>,<span class="number">106</span>,<span class="string">'英语'</span>,<span class="number">15</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">27</span>,<span class="number">107</span>,<span class="string">'英语'</span>,<span class="number">50</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">28</span>,<span class="number">108</span>,<span class="string">'英语'</span>,<span class="number">68</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">29</span>,<span class="number">109</span>,<span class="string">'英语'</span>,<span class="number">77</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t_score <span class="keyword">values</span>(<span class="number">30</span>,<span class="number">110</span>,<span class="string">'英语'</span>,<span class="number">19</span>);</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/09/data-analyst-interview-sql-04/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -943,165 +1094,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/09/04/reading_notes_data_analysis_02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/04/reading_notes_data_analysis_02/" itemprop="url">读书笔记-数据分析实战(3章)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-04T23:59:00+08:00">
-                2017-09-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>读书笔记</p>
-<blockquote>
-<p>《数据分析实战》 </p>
-</blockquote>
-<p>从第3章开始，都是从一个实际问题出发，套用，前面的数据分析思路，来进行模拟分析。<br>第3章的主题是“销售额为什么会减少？”：一款社交游戏本月的销售额相较于上月有所下滑，于是想调查下滑的原因，来提升销售额。</p>
-<h2 id="现状和预期"><a href="#现状和预期" class="headerlink" title="现状和预期"></a>现状和预期</h2><p>现状肯定是当月销售额下降，预期肯定是保持上升，等于甚至高于上月销售额，这里的话，要确定销售额下降是不是一个问题，因为该社交游戏一直保持稳定增长，所以突然下滑，一定是不正常的， 是一个问题。</p>
-<h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><p>我们明确了现状和预期，需要从中，找出影响最大的因素。<br>上面说到，有3种方法去发现问题：</p>
-<ul>
-<li>观察数据大小</li>
-<li>数据分解（指标拆解）</li>
-<li>数据对比</li>
-</ul>
-<p>这一步，也是一个根据经验来提出假设的过程，我们需要从宏观角度，找到可能影响销售额的因素。<br>我感觉，这一步是数据分析切入的点，比较重要，如果这一步没有发现核心问题，那后面的数据收集和分析都会有问题。</p>
-<p>书中，在这一步，提出的问题是“商业宣传上存在问题”，对了，这一步，还需要及时和其他部门去沟通，像这种市场推广、商业宣传，本身我们可能不知道，所以，假设后要去确认是否有这样的情况。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/04/reading_notes_data_analysis_02/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1154,7 +1146,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
