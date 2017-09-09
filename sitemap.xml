@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://yuguiyang.github.io/2017/04/20/crawler-demo-01/</loc>
+    <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-03/</loc>
     
-    <lastmod>2017-09-04T16:40:13.656Z</lastmod>
+    <lastmod>2017-09-09T10:50:51.169Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-02/</loc>
+    
+    <lastmod>2017-09-09T10:50:41.221Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-01/</loc>
+    
+    <lastmod>2017-09-09T10:25:04.832Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/09/crawler-demo-01/</loc>
+    
+    <lastmod>2017-09-04T16:40:29.153Z</lastmod>
     
   </url>
   

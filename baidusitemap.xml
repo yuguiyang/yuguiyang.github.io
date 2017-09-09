@@ -4,12 +4,78 @@
 
     
   <url>
-    <loc>https://yuguiyang.github.io/2017/04/20/crawler-demo-01/</loc>
-    <lastmod>2017-09-04T16:40:13.656Z</lastmod>
+    <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-03/</loc>
+    <lastmod>2017-09-09T10:50:51.169Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL-关联查询</title>
+        <pubTime>2017-09-09T02:00:00.000Z</pubTime>
+        
+        <tag>SQL</tag>
+         
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="https://yuguiyang.github.io/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-02/</loc>
+    <lastmod>2017-09-09T10:50:41.221Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL-中文排序</title>
+        <pubTime>2017-09-09T01:00:00.000Z</pubTime>
+        
+        <tag>SQL</tag>
+         
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="https://yuguiyang.github.io/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-01/</loc>
+    <lastmod>2017-09-09T10:25:04.832Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL-基本语法介绍</title>
+        <pubTime>2017-09-09T00:00:00.000Z</pubTime>
+        
+        <tag>SQL</tag>
+         
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="https://yuguiyang.github.io/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/09/crawler-demo-01/</loc>
+    <lastmod>2017-09-04T16:40:29.153Z</lastmod>
     <data>
         <display>
         <title>爬虫小实例学习篇-猫眼电影</title>
-        <pubTime>2017-04-20T13:59:00.000Z</pubTime>
+        <pubTime>2017-08-09T13:59:00.000Z</pubTime>
         
         <tag>Python</tag>
          
@@ -278,9 +344,9 @@
         <title>matplotlib手册(9) - 绘制动画</title>
         <pubTime>2017-08-17T03:11:00.000Z</pubTime>
         
-        <tag>数据可视化</tag>
-         
         <tag>Python</tag>
+         
+        <tag>数据可视化</tag>
          
         <tag>matplotlib</tag>
          

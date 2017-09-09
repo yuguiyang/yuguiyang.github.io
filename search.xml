@@ -12,6 +12,42 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[MySQL-关联查询]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-03%2F</url>
+    <content type="text"><![CDATA[MySQL关联查询 前面，我们介绍的都是单表查询（就是只从一张表中获取数据），而实际应用的时候，我们都会同时查询多张表，这里，我们就介绍下，多表关联查询的使用。 SQL join 用于根据两个或多个表中的列之间的关系，从这些表中查询数据 前置知识 主键（Primary Key）：可以唯一确定一条记录的字段，比如学生表中的学生ID，生活中我们的身份证号外键（Foreign Key）：指向另一张表的主键，比如学生表中的班级ID，班级ID是班级表中的主键，但在学生表中是外键 主键和外键可以在建表的时候指定，他可以在数据库层面，控制你的数据的完整性、一致性。 测试数据参考：http://yuguiyang.github.io/2017/09/09/mysql-handbook-01/ inner joininner join 可以简写为 join，结果集是两张表中 都存在的记录，是一个交集，详情参考上面的图片。比如：在学生表中，有一个班级ID，我们想根据班级ID，在班级表中找到班级信息1234567891011select *from t_student a -- 要关联查询的表join t_class b -- 使用什么字段去关联这两张表on a.c_id = b.c_id; left join左关联，以左边的表为主表，不管外键在右表中是否存在，左表的数据都会存在。比如学生表中，有这样一条记录，他的班级ID是904，但是班级表中并没有904的班级信息，所以，使用join的话是查不到这条记录的1234567891011-- 2. left join -- 学生表为主表，包含所有学生信息select *from t_student a left join t_class b on a.c_id = b.c_id; right join右关联，和做关联类似，但已右表为主表123456789101112-- 3. right join -- 班级表为主表，不管改班级是否有学生信息select *from t_student a right join t_class b on a.c_id = b.c_id; full outer join全关联，mysql没有full join 语法，我们可以通过使用union来实现123456789101112131415161718select *from t_student a left join t_class b on a.c_id = b.c_idUNIONselect *from t_student a right join t_class b on a.c_id = b.c_id; 小结关联查询的话，我们主要是选择好主表，然后找好表与表之间的关联关系，注意多对多、一对多的这种关系，验证号结果数据就行了。]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL-中文排序]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-02%2F</url>
+    <content type="text"><![CDATA[MySQL中文排序 测试数据参考：http://yuguiyang.github.io/2017/09/09/mysql-handbook-01/ 以前还真没有关注这个中文排序的问题，这里记录下。 一张学生表1select *from t_student; 我们根据s_name来排序1select *from t_student order by s_name; 这里的中文排序，是不对的，应该是由于字符集的问题，一般情况下，数据库中的编码都是使用UTF-8的，所以，对于中文会有问题。 从网上找到2中解决办法 create table的时候加上binary属性（经测试，不好用）注意下s_name字段，我们添加了binary属性12345678CREATE TABLE `t_student_test` ( `s_id` int(11) DEFAULT NULL COMMENT '学生ID', `s_name` varchar(20) binary DEFAULT NULL COMMENT '学生姓名', `s_gender` int(11) DEFAULT NULL COMMENT '学生性别 0-男,1-女', `s_birthday` date DEFAULT NULL COMMENT '出生日期', `s_hobby` varchar(100) DEFAULT NULL COMMENT '爱好', `c_id` int(11) DEFAULT NULL COMMENT '班级ID') ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生表'; 这里，我试验是失败的，中文排序依然不对 在order by 后面，使用 convert函数1select *from t_student order by convert(s_name using gbk); 使用convert函数是可以的，没有问题]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL-基本语法介绍]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-01%2F</url>
+    <content type="text"><![CDATA[MySQL基本语法介绍 1. 什么是SQLSQL（Structured Query Language）结构化查询语言，通过SQL，我们就可以查询数据库中的数据，而数据再数据库中又是以表的形式保存的，所以SQL查询，主要就是对表进行查询。 SQL的语法就和学习英语的语法、汉语拼音一样，满足给定的套路，去使用就可以了。 当我们拿到了数据库的连接信息，连接到一个数据库上，我们就可以开始写SQL了。 2. Navicat的使用MySQL的客户端有很多，通常使用的，可能有Navicat，还有MySQL自带的workbench。Navicat是收费产品，但在网上可以找到XX版，workbench是免费的。 这里以Navicat为例，简单介绍下。 在这里，输入数据库地址、用户名、密码等等就行了。 这一个一个圆柱形的，就是一个数据库实例，下面那些电子表格图标的就是表，数据就存储在表中。 默认是不会看到表结构信息的，我们勾选下面的配置之后，就可以看到了 3. 基本语法数据准备12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970create table t_student( s_id int comment '学生ID', s_name varchar(20) comment '学生姓名', s_gender int comment '学生性别 0-男,1-女', s_birthday date comment '出生日期', s_hobby varchar(100) comment '爱好', c_id int comment '班级ID') comment '学生表';create table t_class( c_id int comment '班级ID', c_name varchar(20) comment '班级名称') comment '班级表';create table t_score( sc_id int comment '成绩ID', s_id int comment '学生ID', course_name varchar(20) comment '课程名称', score numeric(10,0) comment '成绩' ) comment '成绩表';insert into t_class values(901,'一班');insert into t_class values(902,'二班');insert into t_class values(903,'三班');insert into t_student values(101,'路飞',0,'1990-01-26','吃肉,睡觉',901);insert into t_student values(102,'娜美',1,'1995-10-05','足球,篮球',901);insert into t_student values(103,'乔巴',0,'1992-08-11','唱歌,吃肉',901);insert into t_student values(104,'鸣人',0,'1991-03-29','拉面,忍术',901);insert into t_student values(105,'卡卡西',1,'1989-05-10','看书,吃肉',902);insert into t_student values(106,'乌索普',1,'1988-02-02','跳舞,篮球',902);insert into t_student values(107,'乔峰',0,'1990-12-12','跑步,羽毛球',902);insert into t_student values(108,'段誉',0,'1990-12-13','吃肉,加班',903);insert into t_student values(109,'虚竹',1,'1991-01-22','看电影,旅行',903);insert into t_student values(110,'杨过',0,'2000-03-04','旅行',903);insert into t_score values(1,101,'数学',39);insert into t_score values(2,102,'数学',20);insert into t_score values(3,103,'数学',54);insert into t_score values(4,104,'数学',38);insert into t_score values(5,105,'数学',70);insert into t_score values(6,106,'数学',15);insert into t_score values(7,107,'数学',75);insert into t_score values(8,108,'数学',84);insert into t_score values(9,109,'数学',87);insert into t_score values(10,110,'数学',67);insert into t_score values(11,101,'语文',73);insert into t_score values(12,102,'语文',71);insert into t_score values(13,103,'语文',82);insert into t_score values(14,104,'语文',83);insert into t_score values(15,105,'语文',36);insert into t_score values(16,106,'语文',87);insert into t_score values(17,107,'语文',74);insert into t_score values(18,108,'语文',19);insert into t_score values(19,109,'语文',29);insert into t_score values(20,110,'语文',26);insert into t_score values(21,101,'英语',55);insert into t_score values(22,102,'英语',24);insert into t_score values(23,103,'英语',38);insert into t_score values(24,104,'英语',82);insert into t_score values(25,105,'英语',12);insert into t_score values(26,106,'英语',15);insert into t_score values(27,107,'英语',50);insert into t_score values(28,108,'英语',68);insert into t_score values(29,109,'英语',77);insert into t_score values(30,110,'英语',19); select下面，我们来看看，怎样查看一张表的数据；SQL的语法呢，就好比是一个公式，初学的话我们去套用就可以了。 SELECT 列名称 FROM 表名称或者SELECT * FROM 表名称 使用Navicat执行查询12-- 查看学生表数据，指定字段select s_id,s_name from t_student; 12-- 查看所有字段select *from t_student; 排序排序是很常用的功能，我们想要对结果集进行指定的排序，就要使用order by order by 字段名默认升序，可以使用desc降序排列 12-- 学生ID降序排列select *from t_student order by s_id desc; 多字段排序12-- 班级ID升序排列，班级ID一样的按学生ID降序排列select *from t_student order by c_id,s_id desc; limit 指定返回记录的数目 我们上面，都是查询一张表所有的数据，有的时候表的数据量很大，或者我们只想看看排名前3的数据，我们就可以使用limit12-- 学生ID降序排列,取前3条记录select *from t_student order by s_id desc limit 3; where前面，我们可以查看一张表的所有数据、做排序、然后只取前几行，实际使用时，一定会有这样的需求，比如我们只想看学生ID是105的记录，就需要使用where了，它可以对数据进行过滤。 SELECT 列名称 FROM 表名称 WHERE 列 运算符 值 12345678-- 查看学生ID是105的学生信息select *from t_student where s_id = 105;-- 查看学生ID不是105的其他学生信息select *from t_student where s_id &lt;&gt; 105 ;-- 查看学生ID在103和108之间的学生信息select *from t_student where s_id between 103 and 108; 这里还有一个操作符很常用，就是 in 和 not in。in 表示在多个值中存在，加上not则表示不存在12345-- 查看学生ID是103,105，,107的学生信息select *from t_student where s_id in (103,105,107);-- 查看学生ID不在102中的其他学生信息select *from t_student where s_id not in (102); like匹配字符串，像‘xxxx’一样 %： 表示任意个或多个字符_：表示任意单个字符 123-- 查看喜欢吃肉的学生信息select *from t_student where s_hobby like '吃肉%';select *from t_student where s_hobby like '%吃肉%'; and 和 or上面，我们都是一个单独的过滤条件，实际上，我们的会有各种各样的情况，需要同时满足多种过滤条件，这就用到了 and 和 or。 AND 和 OR 可在 WHERE 子语句中把两个或多个条件结合起来。如果第一个条件和第二个条件都成立，则 AND 运算符显示一条记录。如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。 12345-- 查看班级ID是901的所有男生信息select *from t_student where c_id=901 and s_gender=0;-- 查看班级ID是901或者s_id大于107的学生信息select *from t_student where c_id=901 or s_id &gt; 107;]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[读书笔记-数据分析实战(3章)]]></title>
     <url>%2F2017%2F09%2F04%2Freading_notes_data_analysis_02%2F</url>
     <content type="text"><![CDATA[读书笔记 《数据分析实战》 从第3章开始，都是从一个实际问题出发，套用，前面的数据分析思路，来进行模拟分析。第3章的主题是“销售额为什么会减少？”：一款社交游戏本月的销售额相较于上月有所下滑，于是想调查下滑的原因，来提升销售额。 现状和预期现状肯定是当月销售额下降，预期肯定是保持上升，等于甚至高于上月销售额，这里的话，要确定销售额下降是不是一个问题，因为该社交游戏一直保持稳定增长，所以突然下滑，一定是不正常的， 是一个问题。 发现问题我们明确了现状和预期，需要从中，找出影响最大的因素。上面说到，有3种方法去发现问题： 观察数据大小 数据分解（指标拆解） 数据对比 这一步，也是一个根据经验来提出假设的过程，我们需要从宏观角度，找到可能影响销售额的因素。我感觉，这一步是数据分析切入的点，比较重要，如果这一步没有发现核心问题，那后面的数据收集和分析都会有问题。 书中，在这一步，提出的问题是“商业宣传上存在问题”，对了，这一步，还需要及时和其他部门去沟通，像这种市场推广、商业宣传，本身我们可能不知道，所以，假设后要去确认是否有这样的情况。 数据的收集和加工数据分析解决对策]]></content>
@@ -93,8 +129,8 @@
         <category>数据可视化-Python&amp;R</category>
       </categories>
       <tags>
-        <tag>数据可视化</tag>
         <tag>Python</tag>
+        <tag>数据可视化</tag>
         <tag>matplotlib</tag>
       </tags>
   </entry>
@@ -107,6 +143,18 @@
       </categories>
       <tags>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[爬虫小实例学习篇-猫眼电影]]></title>
+    <url>%2F2017%2F08%2F09%2Fcrawler-demo-01%2F</url>
+    <content type="text"><![CDATA[这里参考了论坛里一位同学分享的博客：猫眼电影TOP100爬取练习，感谢分享。 学习要从模仿开始，学习了上面的博客之后，自己做下练习，正好最近看了selenium，就用了这个。 原作者的正则用的太溜了，等后面有时间再研究下，这里就简单的使用CSS Selector来实现了。 原文代码很精彩，我这个代码就粗糙很多了，先来个初始版，后面再慢慢优化。 大体思路和Python基础（7）- Selenium使用 里面的豆瓣读书例子差不多， 代码（2017-08-09版）123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123import csvfrom selenium import webdriverfrom selenium.webdriver.common.by import Byfrom selenium.webdriver.support.ui import WebDriverWaitfrom selenium.webdriver.support import expected_conditions as ECfrom selenium.common.exceptions import TimeoutException#打开浏览器browser = webdriver.Firefox()#设置等待时长，最长等待10swait = WebDriverWait(browser,10)#定义电影排名comment_index = 0#定义一个movieclass Movie: __movie_id = 0 __movie_name = '' __movie_star = '' __movie_releasetime = '' __movie_score = '' def __init__(self , movie_id,movie_name,movie_star,movie_releasetime,movie_score): self.__movie_id = movie_id self.__movie_name = movie_name self.__movie_star = movie_star self.__movie_releasetime = movie_releasetime self.__movie_score = movie_score def show(self): print('影片排名: ', self.__movie_id) print('影片名称: ', self.__movie_name) print(self.__movie_star) print(self.__movie_releasetime) print('影片评分', self.__movie_score) print('') def simple_list(self): return [self.__movie_id, self.__movie_name, self.__movie_star, self.__movie_releasetime, self.__movie_score] def save2csv(movie_list): with open('movie.csv', 'a', newline='',encoding='utf-8') as csvfile: csv_writer = csv.writer(csvfile) for m in movie_list: csv_writer.writerow(m.simple_list()) csvfile.close() def main(): #打开URL browser.get('http://maoyan.com/board/4') #输出浏览器标题 print('browser title: ',browser.title) #数据更新信息 p_update_info = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,'div.main p.update-time'))) print('更新信息: ',p_update_info.text) #输出当前页信息 show_current_page() def show_current_page(): print('-----------------------------------') print('current url: ',browser.current_url) #获取当前页信息 div_page = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,'div.pager-main li.active'))) print('current page: ',div_page.text) #当前页总数量 div_items = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR,'div.main div.board-item-main div.board-item-content'))) print('total count: ',len(div_items)) movie_list = [] #结果集有很多结果，我们获取 for item in div_items: #调用全局变量 global comment_index comment_index += 1 #获取我们需要的信息 p_name = item.find_element_by_css_selector('div.movie-item-info p.name') p_star = item.find_element_by_css_selector('div.movie-item-info p.star') p_releasetime = item.find_element_by_css_selector('div.movie-item-info p.releasetime') p_score_integer = item.find_element_by_css_selector('div.movie-item-number p.score i.integer') p_score_fraction = item.find_element_by_css_selector('div.movie-item-number p.score i.fraction') #初始化movie对象 m = Movie(comment_index , p_name.text , p_star.text, p_releasetime.text, p_score_integer.text+p_score_fraction.text) movie_list.append(m) save2csv(movie_list) #获取下一页 show_next_page()def show_next_page(): try: #获取下一页的标签 #最后1页，没有下一页标签 a_next = wait.until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT,'下一页'))) a_next.click() show_current_page() except TimeoutException: #找不到下一页 print('get all movies.') #也有可能真是网络异常 finally: browser.quit() if __name__=='__main__': main() 这里就简单记录遇到的一些问题和后面需要优化的地方： 获取影片信息的时候，数据没有清洗好，像这个“主演”，“上映时间”还没有剔除掉；那个地点也可以拆分出来单独一个字段 csv编码问题，一开始默认使用gbk（在Windows下开发的），会报错，说是有异常的字符无法保存，改为UTF-8后，就可以了，但是使用CSV打开前，先用notepad++转了编码，才用CSV打开 使用正则去获取元素 4.异常问题的处理]]></content>
+      <categories>
+        <category>Python-爬虫</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
@@ -179,18 +227,6 @@
       <tags>
         <tag>数据可视化</tag>
         <tag>Tableau</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[爬虫小实例学习篇-猫眼电影]]></title>
-    <url>%2F2017%2F04%2F20%2Fcrawler-demo-01%2F</url>
-    <content type="text"><![CDATA[这里参考了论坛里一位同学分享的博客：猫眼电影TOP100爬取练习，感谢分享。 学习要从模仿开始，学习了上面的博客之后，自己做下练习，正好最近看了selenium，就用了这个。 原作者的正则用的太溜了，等后面有时间再研究下，这里就简单的使用CSS Selector来实现了。 原文代码很精彩，我这个代码就粗糙很多了，先来个初始版，后面再慢慢优化。 大体思路和Python基础（7）- Selenium使用 里面的豆瓣读书例子差不多， 代码（2017-08-09版）123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123import csvfrom selenium import webdriverfrom selenium.webdriver.common.by import Byfrom selenium.webdriver.support.ui import WebDriverWaitfrom selenium.webdriver.support import expected_conditions as ECfrom selenium.common.exceptions import TimeoutException#打开浏览器browser = webdriver.Firefox()#设置等待时长，最长等待10swait = WebDriverWait(browser,10)#定义电影排名comment_index = 0#定义一个movieclass Movie: __movie_id = 0 __movie_name = '' __movie_star = '' __movie_releasetime = '' __movie_score = '' def __init__(self , movie_id,movie_name,movie_star,movie_releasetime,movie_score): self.__movie_id = movie_id self.__movie_name = movie_name self.__movie_star = movie_star self.__movie_releasetime = movie_releasetime self.__movie_score = movie_score def show(self): print('影片排名: ', self.__movie_id) print('影片名称: ', self.__movie_name) print(self.__movie_star) print(self.__movie_releasetime) print('影片评分', self.__movie_score) print('') def simple_list(self): return [self.__movie_id, self.__movie_name, self.__movie_star, self.__movie_releasetime, self.__movie_score] def save2csv(movie_list): with open('movie.csv', 'a', newline='',encoding='utf-8') as csvfile: csv_writer = csv.writer(csvfile) for m in movie_list: csv_writer.writerow(m.simple_list()) csvfile.close() def main(): #打开URL browser.get('http://maoyan.com/board/4') #输出浏览器标题 print('browser title: ',browser.title) #数据更新信息 p_update_info = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,'div.main p.update-time'))) print('更新信息: ',p_update_info.text) #输出当前页信息 show_current_page() def show_current_page(): print('-----------------------------------') print('current url: ',browser.current_url) #获取当前页信息 div_page = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,'div.pager-main li.active'))) print('current page: ',div_page.text) #当前页总数量 div_items = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR,'div.main div.board-item-main div.board-item-content'))) print('total count: ',len(div_items)) movie_list = [] #结果集有很多结果，我们获取 for item in div_items: #调用全局变量 global comment_index comment_index += 1 #获取我们需要的信息 p_name = item.find_element_by_css_selector('div.movie-item-info p.name') p_star = item.find_element_by_css_selector('div.movie-item-info p.star') p_releasetime = item.find_element_by_css_selector('div.movie-item-info p.releasetime') p_score_integer = item.find_element_by_css_selector('div.movie-item-number p.score i.integer') p_score_fraction = item.find_element_by_css_selector('div.movie-item-number p.score i.fraction') #初始化movie对象 m = Movie(comment_index , p_name.text , p_star.text, p_releasetime.text, p_score_integer.text+p_score_fraction.text) movie_list.append(m) save2csv(movie_list) #获取下一页 show_next_page()def show_next_page(): try: #获取下一页的标签 #最后1页，没有下一页标签 a_next = wait.until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT,'下一页'))) a_next.click() show_current_page() except TimeoutException: #找不到下一页 print('get all movies.') #也有可能真是网络异常 finally: browser.quit() if __name__=='__main__': main() 这里就简单记录遇到的一些问题和后面需要优化的地方： 获取影片信息的时候，数据没有清洗好，像这个“主演”，“上映时间”还没有剔除掉；那个地点也可以拆分出来单独一个字段 csv编码问题，一开始默认使用gbk（在Windows下开发的），会报错，说是有异常的字符无法保存，改为UTF-8后，就可以了，但是使用CSV打开前，先用notepad++转了编码，才用CSV打开 使用正则去获取元素 4.异常问题的处理]]></content>
-      <categories>
-        <category>Python-爬虫</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
