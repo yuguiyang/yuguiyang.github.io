@@ -40,6 +40,101 @@
   </entry>
   
   <entry>
+    <title>MySQL-分组排序</title>
+    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/"/>
+    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/</id>
+    <published>2017-09-09T04:00:00.000Z</published>
+    <updated>2017-09-09T16:55:35.675Z</updated>
+    
+    <content type="html"><![CDATA[<p>MySQL<br>分组排序</p>
+<p>使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。</p>
+<p>我们先来看第一个类型的问题，关于排序的问题</p>
+<h2 id="排名"><a href="#排名" class="headerlink" title="排名"></a>排名</h2><p>就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名<br>在postgresql中可以使用像rank() over()这样的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo" alt="mysql-handbook-05-02"></p>
+<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="comment">-- 根据排序规则，每条记录增加1</span></div><div class="line">    @rn:=@rn+<span class="number">1</span> <span class="keyword">as</span> rank_score</div><div class="line">    <span class="comment">-- 初始化变量@rn，从0开始</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-03.png-blog.photo" alt="mysql-handbook-05-03"></p>
+<p>细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？</p>
+<p>当然可以，我们改一下SQL<br>只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    <span class="comment">-- 判断当前score是否和上一条记录的score相等，</span></div><div class="line">    <span class="comment">-- 如果相等则使用和上一条一样的排名</span></div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn+<span class="number">1</span>) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    <span class="comment">-- 使用pre来保存上一条记录的score</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-04.png-blog.photo" alt="mysql-handbook-05-04"></p>
+<p>上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？</p>
+<p>我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    @rn_1:=@rn_1+<span class="number">1</span> rank_score_1,</div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn_1) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    </div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>,@rn_1:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div></pre></td></tr></table></figure>
+<p>我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-05.png-blog.photo" alt="mysql-handbook-05-05"></p>
+<h2 id="分组排序"><a href="#分组排序" class="headerlink" title="分组排序"></a>分组排序</h2><p>就是给每个分组中的数据，分别进行排名<br>如果有类似rank() over()的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 在postgresql中</span></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> course_name <span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-01.png-blog.photo" alt="mysql-handbook-05-01"></p>
+<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>先到这，明天接着写</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MySQL&lt;br&gt;分组排序&lt;/p&gt;
+&lt;p&gt;使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL-regexp</title>
+    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/"/>
+    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/</id>
+    <published>2017-09-09T04:00:00.000Z</published>
+    <updated>2017-09-09T15:44:03.148Z</updated>
+    
+    <content type="html"><![CDATA[<p>MySQL<br>正则表达式</p>
+<p>在前面，我们了解了like的使用，它可以做一些简单的匹配</p>
+<blockquote>
+<p>在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符</p>
+</blockquote>
+<p>但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。</p>
+<p>常用的正则表达式，更多的内容，大家可以百度下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-01.png-blog.photo" alt="mysql-handbook-04-01"></p>
+<a id="more"></a>
+<p>我们就以前面的t_student表为例</p>
+<h2 id="查询学生姓路或乔的学生信息"><a href="#查询学生姓路或乔的学生信息" class="headerlink" title="查询学生姓路或乔的学生信息"></a>查询学生姓路或乔的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- like </span></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name <span class="keyword">like</span> <span class="string">'路%'</span> <span class="keyword">or</span> s_name <span class="keyword">like</span> <span class="string">'乔%'</span></div><div class="line"></div><div class="line"><span class="comment">-- regexp</span></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name regexp <span class="string">'^(路|乔)'</span></div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-02.png-blog.photo" alt="mysql-handbook-04-02"></p>
+<h2 id="查询名字是以美结尾的学生信息"><a href="#查询名字是以美结尾的学生信息" class="headerlink" title="查询名字是以美结尾的学生信息"></a>查询名字是以美结尾的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name regexp <span class="string">'美$'</span></div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-03.png-blog.photo" alt="mysql-handbook-04-03"></p>
+<h2 id="查询学生爱好中，有吃肉的学生信息"><a href="#查询学生爱好中，有吃肉的学生信息" class="headerlink" title="查询学生爱好中，有吃肉的学生信息"></a>查询学生爱好中，有吃肉的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_hobby regexp <span class="string">'吃肉'</span></div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-04.png-blog.photo" alt="mysql-handbook-04-04"></p>
+<h2 id="查询学生姓乔或者名字中有美字的学生信息"><a href="#查询学生姓乔或者名字中有美字的学生信息" class="headerlink" title="查询学生姓乔或者名字中有美字的学生信息"></a>查询学生姓乔或者名字中有美字的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name regexp <span class="string">'(^乔)|美'</span></div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-05.png-blog.photo" alt="mysql-handbook-04-05"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这里先整理这几个简单的例子，后续会再补充。</p>
+<p>可以参考官方的文档练习：<a href="https://dev.mysql.com/doc/refman/5.7/en/regexp.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/regexp.html</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MySQL&lt;br&gt;正则表达式&lt;/p&gt;
+&lt;p&gt;在前面，我们了解了like的使用，它可以做一些简单的匹配&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。&lt;/p&gt;
+&lt;p&gt;常用的正则表达式，更多的内容，大家可以百度下&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-01.png-blog.photo&quot; alt=&quot;mysql-handbook-04-01&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>SQL笔试题-MySQL练习题</title>
     <link href="https://yuguiyang.github.io/2017/09/09/data-analyst-interview-sql-04/"/>
     <id>https://yuguiyang.github.io/2017/09/09/data-analyst-interview-sql-04/</id>
@@ -1181,95 +1276,6 @@
 &lt;li&gt;使用度量：销售额&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-03-01.png-blog.photo&quot; alt=&quot;Tableau-handbook-03-01&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Tableau" scheme="https://yuguiyang.github.io/categories/Tableau/"/>
-    
-    
-      <category term="数据可视化" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-      <category term="Tableau" scheme="https://yuguiyang.github.io/tags/Tableau/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小白学习Tableau-堆叠条形图</title>
-    <link href="https://yuguiyang.github.io/2017/07/30/Tableau-handbook-02/"/>
-    <id>https://yuguiyang.github.io/2017/07/30/Tableau-handbook-02/</id>
-    <published>2017-07-30T11:57:00.000Z</published>
-    <updated>2017-08-31T17:38:10.937Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="序"><a href="#序" class="headerlink" title="序"></a>序</h1><p>昨天在看水足迹那个可视化题目的时候，就想做一个堆叠条形图，但是发现只有一个维度，怎么也拖不出来，后来改了下数据源，成功实现了。今天搜到个例子，发现了解决办法，只能说明，还是对Tableau不熟啊，没有能领悟Tableau的内涵。</p>
-<h1 id="堆叠条形图"><a href="#堆叠条形图" class="headerlink" title="堆叠条形图"></a>堆叠条形图</h1><p>教程中介绍了2种方法，我们都来实践一下。这里面，最大的收获，就是原来那个“度量名称”和“度量值”是可以拖拽过去使用的，我也是醉了，这个操作得好好研究下，理解下Tableau的机制。</p>
-<p>这里的度量名称，应该就是所有度量的一个集合；度量值应该就是“度量名称”集合中选定的度量。</p>
-<p>这里我们就用 <a href="http://www.makeovermonday.co.uk/" target="_blank" rel="external">http://www.makeovermonday.co.uk/</a> 上的数据</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-01.png-blog.photo" alt="Tableau-handbook-02-01"></p>
-<a id="more"></a>
-<h2 id="对每个维度上使用一个单独的条"><a href="#对每个维度上使用一个单独的条" class="headerlink" title="对每个维度上使用一个单独的条"></a>对每个维度上使用一个单独的条</h2><p>首先，我们将“食物”维度，拖到列上，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-02.png-blog.photo" alt="Tableau-handbook-02-02"></p>
-<p>然后，我们需要观察的是3种水足迹的值，并让他们显示成堆叠图的样子</p>
-<p>我们把度量名称，拖到颜色上<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-03.png-blog.photo" alt="Tableau-handbook-02-03"></p>
-<p>因为，我们只看3个水足迹的量，我们就筛选下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-04.png-blog.photo" alt="Tableau-handbook-02-04"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-05.png-blog.photo" alt="Tableau-handbook-02-05"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-06.png-blog.photo" alt="Tableau-handbook-02-06"></p>
-<p>（这个颜色是我之前设置过的，大家操作完，颜色可能和我不一样，但样式是一样的）<br>就这样，我们完成了，列上是每一种食物，然后行上面是选定的3中水足迹，一个简单的堆叠图就完成了。</p>
-<h2 id="对每个度量使用一个单独的条"><a href="#对每个度量使用一个单独的条" class="headerlink" title="对每个度量使用一个单独的条"></a>对每个度量使用一个单独的条</h2><p>这个操作其实就是和上面的操作的相反我们将度量名称拖到列上，并筛选<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-07.png-blog.photo" alt="Tableau-handbook-02-07"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-08.png-blog.photo" alt="Tableau-handbook-02-08"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-09.png-blog.photo" alt="Tableau-handbook-02-09"></p>
-<p>然后，将度量值拖到行上</p>
-<p>最后，将维度，食物拖到颜色上</p>
-<p>这样，我们就在3个度量值上，看食物维度的一个堆积情况。<br>好了，堆积图的例子就完成了，主要是理解下Tableau的思想。</p>
-<p>小例子，发布在Tableau Public上：<a href="https://public.tableau.com/profile/yuguiyang#!/vizhome/03-/sheet2?publish=yes" target="_blank" rel="external">练习03-堆叠条形图</a></p>
-<h1 id="附录（参考资料）"><a href="#附录（参考资料）" class="headerlink" title="附录（参考资料）"></a>附录（参考资料）</h1><p>官方教程：<a href="http://kb.tableau.com/articles/howto/stacked-bar-chart-multiple-measures?lang=zh-cn" target="_blank" rel="external">使用多个度量创建堆叠条形图</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;序&quot;&gt;&lt;a href=&quot;#序&quot; class=&quot;headerlink&quot; title=&quot;序&quot;&gt;&lt;/a&gt;序&lt;/h1&gt;&lt;p&gt;昨天在看水足迹那个可视化题目的时候，就想做一个堆叠条形图，但是发现只有一个维度，怎么也拖不出来，后来改了下数据源，成功实现了。今天搜到个例子，发现了解决办法，只能说明，还是对Tableau不熟啊，没有能领悟Tableau的内涵。&lt;/p&gt;
-&lt;h1 id=&quot;堆叠条形图&quot;&gt;&lt;a href=&quot;#堆叠条形图&quot; class=&quot;headerlink&quot; title=&quot;堆叠条形图&quot;&gt;&lt;/a&gt;堆叠条形图&lt;/h1&gt;&lt;p&gt;教程中介绍了2种方法，我们都来实践一下。这里面，最大的收获，就是原来那个“度量名称”和“度量值”是可以拖拽过去使用的，我也是醉了，这个操作得好好研究下，理解下Tableau的机制。&lt;/p&gt;
-&lt;p&gt;这里的度量名称，应该就是所有度量的一个集合；度量值应该就是“度量名称”集合中选定的度量。&lt;/p&gt;
-&lt;p&gt;这里我们就用 &lt;a href=&quot;http://www.makeovermonday.co.uk/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.makeovermonday.co.uk/&lt;/a&gt; 上的数据&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-02-01.png-blog.photo&quot; alt=&quot;Tableau-handbook-02-01&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Tableau" scheme="https://yuguiyang.github.io/categories/Tableau/"/>
-    
-    
-      <category term="数据可视化" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-      <category term="Tableau" scheme="https://yuguiyang.github.io/tags/Tableau/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小白学习Tableau-标签云</title>
-    <link href="https://yuguiyang.github.io/2017/07/30/Tableau-handbook-01/"/>
-    <id>https://yuguiyang.github.io/2017/07/30/Tableau-handbook-01/</id>
-    <published>2017-07-30T10:57:00.000Z</published>
-    <updated>2017-08-31T17:21:37.409Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="序"><a href="#序" class="headerlink" title="序"></a>序</h1><p>周末参加了2天的Tableau培训，发现这个东西做可视化分析还是很方便的，用户体验也很好。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-01-01.png-blog.photo" alt="Tableau-handbook-01-01"></p>
-<p>也听了很多大师的介绍，受益良多。不管怎样，要开始学些这个Tableau了。之前也有做过IBM Cognos的开发，2个产品对比一下，从直观上来看，就是Tableau的可视化效果好很多，而且还融合了一些分析功能，挺不错的。<br>很久之前就知道了Tableau其实，只是一直都没有去研究她。学习的一开始呢，先是模仿，熟练掌握了Tableau之后，就可以任意发挥了。Tableau入门的话，官方就有很多的资料，挺全的，还有视频教程。</p>
-<a id="more"></a>
-<h1 id="标签云之作"><a href="#标签云之作" class="headerlink" title="标签云之作"></a>标签云之作</h1><p>这个比较简单，主要参考了jiyang大神的教程，后面有链接<br>我们使用Tableau自带的示例库</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-01-02.png-blog.photo" alt="Tableau-handbook-01-02"></p>
-<p>我们主要就使用“类别”、“子类别”、“销售额”</p>
-<h2 id="我们把子类别拖到文本上"><a href="#我们把子类别拖到文本上" class="headerlink" title="我们把子类别拖到文本上"></a>我们把子类别拖到文本上</h2><p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-01-03.png-blog.photo" alt="Tableau-handbook-01-03"></p>
-<p>这里会显示，所有的子类别，然后呢，我们希望子类别可以根据销售额的大小而控制大小</p>
-<h2 id="把销售额拖到标记-大小上"><a href="#把销售额拖到标记-大小上" class="headerlink" title="把销售额拖到标记-大小上"></a>把销售额拖到标记-大小上</h2><p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-01-04.png-blog.photo" alt="Tableau-handbook-01-04"></p>
-<p>默认的话，可能会显示这个树状图，但是我们并不想要这样，我们想要显示文本</p>
-<p>我们修改下，我们把自动，修改为文本</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-01-05.png-blog.photo" alt="Tableau-handbook-01-05"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-01-06.png-blog.photo" alt="Tableau-handbook-01-06"></p>
-<p>好了，已经可以按销售额的大小来显示子类别的内容了<br>当然，我们一般见到的标签云，都是有颜色的，那我们就继续用销售额的大小来控制颜色</p>
-<h2 id="将销售额拖到颜色上"><a href="#将销售额拖到颜色上" class="headerlink" title="将销售额拖到颜色上"></a>将销售额拖到颜色上</h2><p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-01-07.png-blog.photo" alt="Tableau-handbook-01-07"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-01-08.png-blog.photo" alt="Tableau-handbook-01-08"></p>
-<p>这样呢，我们就用销售额控制了文本的大小和颜色，</p>
-<p>一个简单的标签云就实现了</p>
-<p>好了，这个例子就是这样简单，小例子，发布在Tableau Public上，</p>
-<p><a href="https://public.tableau.com/profile/yuguiyang#!/vizhome/02-/sheet2" target="_blank" rel="external">练习02-销售额标签云</a></p>
-<h1 id="附录（参考资料）"><a href="#附录（参考资料）" class="headerlink" title="附录（参考资料）"></a>附录（参考资料）</h1><p>参考学习jiyang大神的作品：<a href="https://public.tableau.com/profile/jiyang#!/vizhome/_3516/sheet0" target="_blank" rel="external">https://public.tableau.com/profile/jiyang#!/vizhome/_3516/sheet0</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;序&quot;&gt;&lt;a href=&quot;#序&quot; class=&quot;headerlink&quot; title=&quot;序&quot;&gt;&lt;/a&gt;序&lt;/h1&gt;&lt;p&gt;周末参加了2天的Tableau培训，发现这个东西做可视化分析还是很方便的，用户体验也很好。&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/Tableau-handbook-01-01.png-blog.photo&quot; alt=&quot;Tableau-handbook-01-01&quot;&gt;&lt;/p&gt;
-&lt;p&gt;也听了很多大师的介绍，受益良多。不管怎样，要开始学些这个Tableau了。之前也有做过IBM Cognos的开发，2个产品对比一下，从直观上来看，就是Tableau的可视化效果好很多，而且还融合了一些分析功能，挺不错的。&lt;br&gt;很久之前就知道了Tableau其实，只是一直都没有去研究她。学习的一开始呢，先是模仿，熟练掌握了Tableau之后，就可以任意发挥了。Tableau入门的话，官方就有很多的资料，挺全的，还有视频教程。&lt;/p&gt;
     
     </summary>
     
