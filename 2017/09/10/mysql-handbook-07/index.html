@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="BI, 数据分析, Python, R, SQL" />
+  <meta name="keywords" content="SQL,MySQL," />
 
 
 
@@ -104,16 +104,21 @@
 
 
 
-<meta name="description" content="愿你出走半生，归来仍是少年">
-<meta property="og:type" content="website">
-<meta property="og:title" content="于贵洋的博客">
-<meta property="og:url" content="https://yuguiyang.github.io/tags/数据可视化/index.html">
+<meta name="description" content="MySQL变量的使用 这里，我们简单介绍下MySQL中变量的使用 变量的作用域在MySQL中，变量的作用域主要有全局变量（Global）和会话级变量（Session）全局变量会影响当前server上的所有操作，而会话级变量则只会影响当前用户的会话，server上其他用户的会话不受影响 系统变量系统变量主要涉及MySQL Server的一些配置参数，系统变量，一般会在配置文件中进行配置，或者在使用命">
+<meta name="keywords" content="SQL,MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL-变量的使用">
+<meta property="og:url" content="https://yuguiyang.github.io/2017/09/10/mysql-handbook-07/index.html">
 <meta property="og:site_name" content="于贵洋的博客">
-<meta property="og:description" content="愿你出走半生，归来仍是少年">
+<meta property="og:description" content="MySQL变量的使用 这里，我们简单介绍下MySQL中变量的使用 变量的作用域在MySQL中，变量的作用域主要有全局变量（Global）和会话级变量（Session）全局变量会影响当前server上的所有操作，而会话级变量则只会影响当前用户的会话，server上其他用户的会话不受影响 系统变量系统变量主要涉及MySQL Server的一些配置参数，系统变量，一般会在配置文件中进行配置，或者在使用命">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-1bf110200938645e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-bb63e57e5a243008.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-09-11T09:05:34.806Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="于贵洋的博客">
-<meta name="twitter:description" content="愿你出走半生，归来仍是少年">
+<meta name="twitter:title" content="MySQL-变量的使用">
+<meta name="twitter:description" content="MySQL变量的使用 这里，我们简单介绍下MySQL中变量的使用 变量的作用域在MySQL中，变量的作用域主要有全局变量（Global）和会话级变量（Session）全局变量会影响当前server上的所有操作，而会话级变量则只会影响当前用户的会话，server上其他用户的会话不受影响 系统变量系统变量主要涉及MySQL Server的一些配置参数，系统变量，一般会在配置文件中进行配置，或者在使用命">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/76024-1bf110200938645e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -143,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="https://yuguiyang.github.io/tags/数据可视化/"/>
+  <link rel="canonical" href="https://yuguiyang.github.io/2017/09/10/mysql-handbook-07/"/>
 
 
 
 
 
-  <title>标签: 数据可视化 | 于贵洋的博客</title>
+  <title>MySQL-变量的使用 | 于贵洋的博客</title>
   
 
 
@@ -178,7 +183,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -336,170 +341,227 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>数据可视化<small>标签</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/09/10/mysql-handbook-07/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/09/10/Tableau-handbook-05/" itemprop="url">
-              
-                <span itemprop="name">小白学习Tableau-使用计算进行聚焦</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">MySQL-变量的使用</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-10T10:57:00+08:00"
-              content="2017-09-10" >
-          09-10
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-10T09:00:00+08:00">
+                2017-09-10
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">  本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/17/matplotlib-base-flash-09/" itemprop="url">
-              
-                <span itemprop="name">matplotlib手册(9) - 绘制动画</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-17T11:11:00+08:00"
-              content="2017-08-17" >
-          08-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/01/cognos-doc-main/" itemprop="url">
-              
-                <span itemprop="name">Cognos资料汇总贴</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-01T21:59:00+08:00"
-              content="2017-08-01" >
-          08-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/01/Tableau-handbook-04/" itemprop="url">
-              
-                <span itemprop="name">小白学习Tableau-购物篮分析</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-01T10:57:00+08:00"
-              content="2017-08-01" >
-          08-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/30/Tableau-handbook-03/" itemprop="url">
-              
-                <span itemprop="name">小白学习Tableau-堆叠条按值排序</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-30T20:57:00+08:00"
-              content="2017-07-30" >
-          07-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <p>MySQL<br>变量的使用</p>
+<p>这里，我们简单介绍下MySQL中变量的使用</p>
+<h2 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h2><p>在MySQL中，变量的作用域主要有全局变量（Global）和会话级变量（Session）<br>全局变量会影响当前server上的所有操作，而会话级变量则只会影响当前用户的会话，server上其他用户的会话不受影响</p>
+<h2 id="系统变量"><a href="#系统变量" class="headerlink" title="系统变量"></a>系统变量</h2><p>系统变量主要涉及MySQL Server的一些配置参数，系统变量，一般会在配置文件中进行配置，或者在使用命令启动MySQL的使用去指定。<br>当然，在MySQL启动后，也可以动态的去修改系统变量（有些变量是不能动态修改的，可以修改的变量请参照官方文档）。</p>
+<a id="more"></a>
+<p>那我们怎样动态的修改系统变量呢？<br>可以使用</p>
+<blockquote>
+<p>SET GLOBAL or SET SESSION<br>@@global. | @@session.</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> max_connections = <span class="number">1000</span>;</div><div class="line"><span class="keyword">SET</span> @@global.max_connections = <span class="number">1000</span>;</div><div class="line"></div><div class="line"><span class="keyword">SET</span> <span class="keyword">SESSION</span> sql_mode = <span class="string">'TRADITIONAL'</span>;</div><div class="line"><span class="keyword">SET</span> @@session.sql_mode = <span class="string">'TRADITIONAL'</span>;</div><div class="line"><span class="keyword">SET</span> @@sql_mode = <span class="string">'TRADITIONAL'</span>;</div></pre></td></tr></table></figure>
+<p>查看当前系统变量的值<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span>;</div><div class="line"></div><div class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'max_join_size'</span>;</div><div class="line"><span class="keyword">SHOW</span> <span class="keyword">SESSION</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'max_join_size'</span>;</div><div class="line"></div><div class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'%size%'</span>;</div><div class="line"><span class="keyword">SHOW</span> <span class="keyword">GLOBAL</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'%size%'</span>;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-1bf110200938645e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="查看系统变量"></p>
+<h2 id="用户自定义变量"><a href="#用户自定义变量" class="headerlink" title="用户自定义变量"></a>用户自定义变量</h2><p>我们可以定义自己的变量，变量名为 @var_name，用户自定义变量都是会话级的</p>
+<blockquote>
+<p>SET @var_name = expr [, @var_name = expr] …<br>For <a href="https://dev.mysql.com/doc/refman/5.7/en/set-variable.html" target="_blank" rel="external">SET</a>, either = or := can be used as the assignment operator.</p>
+</blockquote>
+<p>我们也可以使用select来使用变量，或者给变量赋值，但必须使用:=<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">mysql&gt; SET @t1=1, @t2=2, @t3:=4;</div><div class="line">Query OK, 0 rows affected</div><div class="line"></div><div class="line">mysql&gt; SELECT @t1, @t2, @t3, @t4 := @t1+@t2+@t3;</div><div class="line">+<span class="comment">-----+-----+-----+--------------------+</span></div><div class="line">| @t1 | @t2 | @t3 | @t4 := @t1+@t2+@t3 |</div><div class="line">+<span class="comment">-----+-----+-----+--------------------+</span></div><div class="line">|   1 |   2 |   4 |                  7 |</div><div class="line">+<span class="comment">-----+-----+-----+--------------------+</span></div><div class="line">1 row in <span class="keyword">set</span></div></pre></td></tr></table></figure></p>
+<p>在使用自定义变量的时候，会有一个顺序的问题，<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> @p_rank:= <span class="number">0</span>;</div><div class="line"><span class="keyword">select</span> *,@p_rank,@p_rank:=@p_rank+<span class="number">1</span> <span class="keyword">from</span> t_student;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-bb63e57e5a243008.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="变量顺序"></p>
+<p>这样虽然可以得到我们想要的结果，但是官方并不推荐</p>
+<p>自定义变量，是在结果返回到客户端时，才进行处理的，所以我们HAVING, GROUP BY, or ORDER BY中使用的时候，并没有效果。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>官方文档：<br><a href="https://dev.mysql.com/doc/refman/5.7/en/user-variables.html" target="_blank" rel="external">user-variables</a><br><a href="https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html" target="_blank" rel="external">server-system-variables</a></p>
 
       
     </div>
+    
+    
+    
 
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="于贵洋 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    于贵洋
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://yuguiyang.github.io/2017/09/10/mysql-handbook-07/" title="MySQL-变量的使用">https://yuguiyang.github.io/2017/09/10/mysql-handbook-07/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/10/mysql-handbook-06/" rel="next" title="MySQL-常用函数">
+                <i class="fa fa-chevron-left"></i> MySQL-常用函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/10/Tableau-handbook-05/" rel="prev" title="小白学习Tableau-使用计算进行聚焦">
+                小白学习Tableau-使用计算进行聚焦 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/tags/数据可视化/page/2/">2</a><a class="extend next" rel="next" href="/tags/数据可视化/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -507,6 +569,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -527,8 +593,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -626,6 +701,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的作用域"><span class="nav-number">1.</span> <span class="nav-text">变量的作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统变量"><span class="nav-number">2.</span> <span class="nav-text">系统变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户自定义变量"><span class="nav-number">3.</span> <span class="nav-text">用户自定义变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -776,10 +867,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
