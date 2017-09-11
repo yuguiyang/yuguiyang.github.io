@@ -117,7 +117,7 @@
 <meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-04.png-blog.photo">
 <meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-05.png-blog.photo">
 <meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-01.png-blog.photo">
-<meta property="og:updated_time" content="2017-09-09T16:55:35.675Z">
+<meta property="og:updated_time" content="2017-09-09T17:00:34.763Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL-分组排序">
 <meta name="twitter:description" content="MySQL分组排序 使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。 我们先来看第一个类型的问题，关于排序的问题 排名就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名在postgre">
@@ -457,6 +457,7 @@
 <p>我们先来看第一个类型的问题，关于排序的问题</p>
 <h2 id="排名"><a href="#排名" class="headerlink" title="排名"></a>排名</h2><p>就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名<br>在postgresql中可以使用像rank() over()这样的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
 <p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo" alt="mysql-handbook-05-02"></p>
+<a id="more"></a>
 <p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="comment">-- 根据排序规则，每条记录增加1</span></div><div class="line">    @rn:=@rn+<span class="number">1</span> <span class="keyword">as</span> rank_score</div><div class="line">    <span class="comment">-- 初始化变量@rn，从0开始</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
 <p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-03.png-blog.photo" alt="mysql-handbook-05-03"></p>
 <p>细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？</p>
@@ -541,8 +542,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/31/top/" rel="prev" title="博客迁移整理中(置顶)">
-                博客迁移整理中(置顶) <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/10/mysql-handbook-06/" rel="prev" title="MySQL-常用函数">
+                MySQL-常用函数 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -622,7 +623,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

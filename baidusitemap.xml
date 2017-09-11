@@ -4,8 +4,30 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/09/10/mysql-handbook-06/</loc>
+    <lastmod>2017-09-11T05:33:21.417Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL-常用函数</title>
+        <pubTime>2017-09-10T00:00:00.000Z</pubTime>
+        
+        <tag>SQL</tag>
+         
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="https://yuguiyang.github.io/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/</loc>
-    <lastmod>2017-09-09T16:55:35.675Z</lastmod>
+    <lastmod>2017-09-09T17:00:34.763Z</lastmod>
     <data>
         <display>
         <title>MySQL-分组排序</title>
