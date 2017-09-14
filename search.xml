@@ -12,6 +12,30 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[MySQL-聚合函数]]></title>
+    <url>%2F2017%2F09%2F11%2Fmysql-handbook-09%2F</url>
+    <content type="text"><![CDATA[MySQL聚合函数 聚合函数也是函数的一种，比较常用，这里我们就单独拿出来介绍下。聚合函数一般配合group by来使用，经常是用来对数据集中的数值求和、平均值啊这里类的。 聚合函数的默认特性 忽略NULL值 如果没有匹配的记录，返回NULL 如果没有使用group by，则默认对所有字段进行group by 常用聚合函数这里的测试数据依然使用前面的数据，可以参考前面的文章。 count统计结果集的数量,没有结果时，返回012345678910111213-- 我们以学生表为例，来统计每个班级的学生人数select c_id,count(1), count(s_id), -- 这里学生ID是唯一的，所以是否使用distinct是一样的 count(distinct s_id), -- 统计班级的个数 count(distinct c_id)from t_student group by c_id; 当我们只使用count，不使用group by的时候，相当于对所有字段进行group by12345select count(1)from t_student; 这里，我们再来看下count对于null值得处理1234567891011121314select -- count(*),是包括null值的 count(*), -- count(1),也包括null值 count(1), -- 指定字段的时候，是不包括null值的 count(id), -- 同样也不包括null值 count(DISTINCT id)from ( select 1 as id union select NULL union select 2)x avg、sum计算结果集的平局值和结果集的累加和12345678910-- 统计每个学生的平均分和总分select s_id, avg(score), sum(score) from t_scoregroup by s_id; 我们再来看看avg和sum对null值的处理1234567891011121314select -- count指定字段，是不包括null值的 count(score), -- avg也是不包括null值的 avg(score), -- 如果想要统计score的记录，需要使用ifnull进行判断 avg(IFNULL(score,0)), -- 求和 sum(score)from ( select 10 as score union select NULL union select 20)x; min、max统计结果集的最小值和最大值123456789101112select s_id, -- 最低分 min(score), -- 最高分 max(score)from t_scoregroup by s_id; 如果没有匹配的记录，则返回null；如果结果集中有null值，会忽略null123456789select max(score), min(score)from ( select 10 as score union select NULL union select 20)x;]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL-子查询的使用]]></title>
+    <url>%2F2017%2F09%2F11%2Fmysql-handbook-08%2F</url>
+    <content type="text"><![CDATA[MySQL变量的使用 什么是子查询子查询是将一个 SELECT 语句的查询结果作为中间结果，供另一个 SQL 语句调用。像这样：12-- 我们将学生表中的所有班级ID当做中间结果select *from t_class where c_id in (select distinct c_id from t_student); 常用比较符子查询最常用的用法： non_subquery_operand comparison_operator (subquery)其中操作符通常为= &gt; &lt; &gt;= &lt;= &lt;&gt; != &lt;=&gt; 其他的都不说了，这里说下这个&lt;=&gt;,以前还真没用过&lt;=&gt;和=比较类似，也是判断是否相等，相等返回1，不相等返回2123456789101112131415mysql&gt; select 1&lt;=&gt;1,1&lt;=&gt;2;+-------+-------+| 1&lt;=&gt;1 | 1&lt;=&gt;2 |+-------+-------+| 1 | 0 |+-------+-------+1 row in setmysql&gt; select 1=1,1=2;+-----+-----+| 1=1 | 1=2 |+-----+-----+| 1 | 0 |+-----+-----+1 row in set 和=不一样的地方，是对NULL的支持，用&lt;=&gt;可以判断是否为null，而等号则是出现null，结果就为null1234567mysql&gt; select 1&lt;=&gt;null,null&lt;=&gt;null,1=null,null=null;+----------+-------------+--------+-----------+| 1&lt;=&gt;null | null&lt;=&gt;null | 1=null | null=null |+----------+-------------+--------+-----------+| 0 | 1 | NULL | NULL |+----------+-------------+--------+-----------+1 row in set any、in、some在子查询中，in平时用的比较多，这个any、some，这里简单说下any和some operand comparison_operator ANY (subquery)operand comparison_operator SOME (subquery)可以为 = > < >= all ()：表示大于所有值，即&gt;子查询中最大值&lt; all() : 表示小于所有值，即&lt; 子查询中的最小值= all(): 返回单个值时和=一样，返回多个值时貌似没啥用&lt;&gt; all(): 和not in 一样 1234select *from t_student where s_id &gt; all( select s_id from t_student where s_id in (105,109)); 标量子查询这种情况下，子查询返回单个值，可以在任何地方使用它。1234567891011121314select c_id, c_name, (select max(s_id) from t_student) as max_s_idfrom t_class;select *from t_class where c_id = (select max(c_id) from t_class); 行子查询上面我们介绍的子查询，都是返回1列多行，行子查询的话，是返回1行多列123-- 查询一班所有男生select *from t_studentwhere (c_id,s_gender) = (901,0); 这里也可以返回多行多列（也叫做表子查询）12select *from t_studentwhere (c_id,s_gender) in (select 901,0 union select 902,0); 参考资料官方文档：https://dev.mysql.com/doc/refman/5.7/en/subqueries.html]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[小白学习Tableau-使用计算进行聚焦]]></title>
     <url>%2F2017%2F09%2F10%2FTableau-handbook-05%2F</url>
     <content type="text"><![CDATA[Tableau实例 什么是聚焦聚焦是一种技术，用于根据某个度量的值显示离散阈值。聚焦计算其实是一种可产生离散度量的特殊计算。 其实就是新构造了一个维度，这个维度将度量值进行分段，类似于年龄段这样的维度。这个应用场景很多，比如我们有一个达标值，想要哪些数据达标，哪些未达标。 实例数据源使用Tableau中自带的“示例-超市”，其中的订单表 交叉列表我们来看每个地区，每个子类别的数量 现在，我们想要实现这样的功能，就是我有一个达标值500，只有数量达到500，才达标，怎样展示最好呢？ 创建计算字段我们来创建一个计算字段，如果数量大于500则达标，否则不达标 然后，把他拖到颜色上 到这里，我们就可以看到，已经按照Good、Bad来区分颜色，达标、不达标 使用参数上面，我们已经达成了目的，思考下，这个达标值的问题，这个月是500，下个月可能会浮动为600或者400，但我们在代码中写死了500，不够灵活，我们就可以使用参数来控制。 然后，我们修改上面的计算字段 好了，最后，我们就可以动态的修改这个达标值了 参考官方文档：示例 — 使用计算进行聚焦]]></content>
@@ -48,9 +72,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MySQL-分组排序]]></title>
-    <url>%2F2017%2F09%2F09%2Fmysql-handbook-05%2F</url>
-    <content type="text"><![CDATA[MySQL分组排序 使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。 我们先来看第一个类型的问题，关于排序的问题 排名就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名在postgresql中可以使用像rank() over()这样的函数1234567select course_name, s_id, score, rank() over(order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现12345678910select course_name, s_id, score, -- 根据排序规则，每条记录增加1 @rn:=@rn+1 as rank_score -- 初始化变量@rn，从0开始from t_score cross join (select @rn:=0) xorder by score desc; 细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？ 当然可以，我们改一下SQL只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score12345678910111213select course_name, s_id, score, @pre pre_score, -- 判断当前score是否和上一条记录的score相等， -- 如果相等则使用和上一条一样的排名 if(@pre=score ,@rn:=@rn,@rn:=@rn+1) as rank_score, @pre:=score cur_score -- 使用pre来保存上一条记录的scorefrom t_score cross join (select @rn:=0,@pre:=null) xorder by score desc; 上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？ 我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。 1234567891011select course_name, s_id, score, @pre pre_score, @rn_1:=@rn_1+1 rank_score_1, if(@pre=score ,@rn:=@rn,@rn:=@rn_1) as rank_score, @pre:=score cur_score from t_score cross join (select @rn:=0,@pre:=null,@rn_1:=0) xorder by score desc 我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。 分组排序就是给每个分组中的数据，分别进行排名如果有类似rank() over()的函数12345678-- 在postgresql中select course_name, s_id, score, rank() over(partition by course_name order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，如果课程名称一样，则继续排名，如果不一样，则重新开始排名1234567891011set @rn:=0;set @pre_course:=null;select course_name, s_id, score, if(@pre_course=course_name,@rn:=@rn+1,@rn:=0), @pre_course:= course_name from t_score order by course_name,score desc;]]></content>
+    <title><![CDATA[MySQL-regexp]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-04%2F</url>
+    <content type="text"><![CDATA[MySQL正则表达式 在前面，我们了解了like的使用，它可以做一些简单的匹配 在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符 但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。 常用的正则表达式，更多的内容，大家可以百度下 我们就以前面的t_student表为例 查询学生姓路或乔的学生信息12345-- like select *from t_student where s_name like '路%' or s_name like '乔%'-- regexpselect *from t_student where s_name regexp '^(路|乔)' 查询名字是以美结尾的学生信息1select *from t_student where s_name regexp '美$' 查询学生爱好中，有吃肉的学生信息1select *from t_student where s_hobby regexp '吃肉' 查询学生姓乔或者名字中有美字的学生信息1select *from t_student where s_name regexp '(^乔)|美' 小结这里先整理这几个简单的例子，后续会再补充。 可以参考官方的文档练习：https://dev.mysql.com/doc/refman/5.7/en/regexp.html]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -60,9 +84,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MySQL-regexp]]></title>
-    <url>%2F2017%2F09%2F09%2Fmysql-handbook-04%2F</url>
-    <content type="text"><![CDATA[MySQL正则表达式 在前面，我们了解了like的使用，它可以做一些简单的匹配 在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符 但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。 常用的正则表达式，更多的内容，大家可以百度下 我们就以前面的t_student表为例 查询学生姓路或乔的学生信息12345-- like select *from t_student where s_name like '路%' or s_name like '乔%'-- regexpselect *from t_student where s_name regexp '^(路|乔)' 查询名字是以美结尾的学生信息1select *from t_student where s_name regexp '美$' 查询学生爱好中，有吃肉的学生信息1select *from t_student where s_hobby regexp '吃肉' 查询学生姓乔或者名字中有美字的学生信息1select *from t_student where s_name regexp '(^乔)|美' 小结这里先整理这几个简单的例子，后续会再补充。 可以参考官方的文档练习：https://dev.mysql.com/doc/refman/5.7/en/regexp.html]]></content>
+    <title><![CDATA[MySQL-分组排序]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-05%2F</url>
+    <content type="text"><![CDATA[MySQL分组排序 使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。 我们先来看第一个类型的问题，关于排序的问题 排名就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名在postgresql中可以使用像rank() over()这样的函数1234567select course_name, s_id, score, rank() over(order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现12345678910select course_name, s_id, score, -- 根据排序规则，每条记录增加1 @rn:=@rn+1 as rank_score -- 初始化变量@rn，从0开始from t_score cross join (select @rn:=0) xorder by score desc; 细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？ 当然可以，我们改一下SQL只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score12345678910111213select course_name, s_id, score, @pre pre_score, -- 判断当前score是否和上一条记录的score相等， -- 如果相等则使用和上一条一样的排名 if(@pre=score ,@rn:=@rn,@rn:=@rn+1) as rank_score, @pre:=score cur_score -- 使用pre来保存上一条记录的scorefrom t_score cross join (select @rn:=0,@pre:=null) xorder by score desc; 上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？ 我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。 1234567891011select course_name, s_id, score, @pre pre_score, @rn_1:=@rn_1+1 rank_score_1, if(@pre=score ,@rn:=@rn,@rn:=@rn_1) as rank_score, @pre:=score cur_score from t_score cross join (select @rn:=0,@pre:=null,@rn_1:=0) xorder by score desc 我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。 分组排序就是给每个分组中的数据，分别进行排名如果有类似rank() over()的函数12345678-- 在postgresql中select course_name, s_id, score, rank() over(partition by course_name order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，如果课程名称一样，则继续排名，如果不一样，则重新开始排名1234567891011set @rn:=0;set @pre_course:=null;select course_name, s_id, score, if(@pre_course=course_name,@rn:=@rn+1,@rn:=0), @pre_course:= course_name from t_score order by course_name,score desc;]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
