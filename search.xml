@@ -12,6 +12,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[MySQL-自增列]]></title>
+    <url>%2F2017%2F09%2F12%2Fmysql-handbook-10%2F</url>
+    <content type="text"><![CDATA[MySQL自增列 什么是自增列自增列就是一个自动增长的列，他没有什么业务含义，一般可能用来做主键，作为唯一标识。自增列一般是一个整数，相比其他的UUID占用的存储更少，网络资源占用也少。如果考虑其他因素的话，UUID使用也很多。实际应用还要考虑很多问题，不能单纯的使用 自增列是使用我们可以再create table的时候，就定义好自增列我们使用关键字 auto_increment 来指定。12345mysql&gt; create table t_book_1( -&gt; id int auto_increment, -&gt; f_name varchar(10), -&gt; primary key(id) -&gt; ); 这里的话，一定要让自增列是主键，不然会报错 123456mysql&gt; create table t_book_2( -&gt; id int auto_increment, -&gt; f_name varchar(10), -&gt; f_other varchar(10) -&gt; );ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key 另一种方式就是先建表，后面再修改为auto_increment12345678910111213mysql&gt; create table t_book_2( -&gt; id int , -&gt; f_name varchar(10) -&gt; );Query OK, 0 rows affected (0.01 sec)mysql&gt; alter table t_book_2 add primary key(id);Query OK, 0 rows affected (0.02 sec)Records: 0 Duplicates: 0 Warnings: 0mysql&gt; alter table t_book_2 modify id int auto_increment;Query OK, 0 rows affected (0.02 sec)Records: 0 Duplicates: 0 Warnings: 0 重置自增列一般自增列，都是自动赋值的，我们先插入几条记录试试123456789101112131415161718mysql&gt; insert into t_book_2(f_name) values('aa');Query OK, 1 row affected (0.00 sec)mysql&gt; insert into t_book_2(f_name) values('bb');Query OK, 1 row affected (0.00 sec)mysql&gt; insert into t_book_2(f_name) values('cc');Query OK, 1 row affected (0.01 sec)mysql&gt; select *from t_book_2;+----+--------+| id | f_name |+----+--------+| 1 | aa || 2 | bb || 3 | cc |+----+--------+3 rows in set (0.00 sec) 这时候，自增列已经到3了，如果我们删除了一条数据，123456789101112131415mysql&gt; delete from t_book_2 where id=3;Query OK, 1 row affected (0.00 sec)mysql&gt; insert into t_book_2(f_name) values('dd');Query OK, 1 row affected (0.00 sec)mysql&gt; select *from t_book_2;+----+--------+| id | f_name |+----+--------+| 1 | aa || 2 | bb || 4 | dd |+----+--------+3 rows in set (0.00 sec) 序列并不会重新从3开始，如果我们清空，也是一样的。那怎样可以重置自增列呢？ 使用truncate自动重置12345678910111213mysql&gt; truncate table t_book_2;Query OK, 0 rows affected (0.01 sec)mysql&gt; insert into t_book_2(f_name) values('ee');Query OK, 1 row affected (0.00 sec)mysql&gt; select *from t_book_2;+----+--------+| id | f_name |+----+--------+| 1 | ee |+----+--------+1 row in set (0.00 sec) 手工修改我们可以使用命令123-- 我们可以修改为我们想要的值，但如果表中有数据的话，如果修改-- 的值比当前最大值小，则会重置为最大值+1alter table table_name auto_increment = 1; 12345678910111213141516171819mysql&gt; delete from t_book_2 where id=3;Query OK, 1 row affected (0.00 sec)mysql&gt; alter table t_book_2 auto_increment=3;Query OK, 0 rows affected (0.00 sec)Records: 0 Duplicates: 0 Warnings: 0mysql&gt; insert into t_book_2(f_name) values('hh');Query OK, 1 row affected (0.00 sec)mysql&gt; select *from t_book_2;+----+--------+| id | f_name |+----+--------+| 1 | ee || 2 | ff || 3 | hh |+----+--------+3 rows in set (0.00 sec) 直接drop，重新create这个方法就不练习了， 手动给自增列赋值在insert的时候，手动给自增列赋值，也是可以的，手动赋值后，我们再插入的时候，就会使用当前自增序列的最大值1234567891011121314151617mysql&gt; insert into t_book_2(id,f_name) values(9,'xx');Query OK, 1 row affected (0.00 sec)mysql&gt; insert into t_book_2(f_name) values('yy');Query OK, 1 row affected (0.01 sec)mysql&gt; select *from t_book_2;+----+--------+| id | f_name |+----+--------+| 1 | ee || 2 | ff || 3 | hh || 9 | xx || 10 | yy |+----+--------+5 rows in set (0.00 sec) 附录发现一篇好文章，讲的还不错：数据库自增列]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MySQL-聚合函数]]></title>
     <url>%2F2017%2F09%2F11%2Fmysql-handbook-09%2F</url>
     <content type="text"><![CDATA[MySQL聚合函数 聚合函数也是函数的一种，比较常用，这里我们就单独拿出来介绍下。聚合函数一般配合group by来使用，经常是用来对数据集中的数值求和、平均值啊这里类的。 聚合函数的默认特性 忽略NULL值 如果没有匹配的记录，返回NULL 如果没有使用group by，则默认对所有字段进行group by 常用聚合函数这里的测试数据依然使用前面的数据，可以参考前面的文章。 count统计结果集的数量,没有结果时，返回012345678910111213-- 我们以学生表为例，来统计每个班级的学生人数select c_id,count(1), count(s_id), -- 这里学生ID是唯一的，所以是否使用distinct是一样的 count(distinct s_id), -- 统计班级的个数 count(distinct c_id)from t_student group by c_id; 当我们只使用count，不使用group by的时候，相当于对所有字段进行group by12345select count(1)from t_student; 这里，我们再来看下count对于null值得处理1234567891011121314select -- count(*),是包括null值的 count(*), -- count(1),也包括null值 count(1), -- 指定字段的时候，是不包括null值的 count(id), -- 同样也不包括null值 count(DISTINCT id)from ( select 1 as id union select NULL union select 2)x avg、sum计算结果集的平局值和结果集的累加和12345678910-- 统计每个学生的平均分和总分select s_id, avg(score), sum(score) from t_scoregroup by s_id; 我们再来看看avg和sum对null值的处理1234567891011121314select -- count指定字段，是不包括null值的 count(score), -- avg也是不包括null值的 avg(score), -- 如果想要统计score的记录，需要使用ifnull进行判断 avg(IFNULL(score,0)), -- 求和 sum(score)from ( select 10 as score union select NULL union select 20)x; min、max统计结果集的最小值和最大值123456789101112select s_id, -- 最低分 min(score), -- 最高分 max(score)from t_scoregroup by s_id; 如果没有匹配的记录，则返回null；如果结果集中有null值，会忽略null123456789select max(score), min(score)from ( select 10 as score union select NULL union select 20)x; group_concatgroup_concat会将函数聚合后的所有值以逗号分隔，以字符串展现1234GROUP_CONCAT([DISTINCT] expr [,expr ...] [ORDER BY &#123;unsigned_integer | col_name | expr&#125; [ASC | DESC] [,col_name ...]] [SEPARATOR str_val]) 123456789select s_id, -- 将该学生所有的成绩以逗号分隔显示 group_concat(score)from t_scoregroup by s_id; having在聚合函数的使用过程中，通常还会使用having来对聚合后的数据进行过滤12345678910select s_id, sum(score) sum_scorefrom t_scoregroup by s_id-- 总分大于150分having sum_score &gt; 150]]></content>
@@ -72,9 +84,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MySQL-regexp]]></title>
-    <url>%2F2017%2F09%2F09%2Fmysql-handbook-04%2F</url>
-    <content type="text"><![CDATA[MySQL正则表达式 在前面，我们了解了like的使用，它可以做一些简单的匹配 在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符 但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。 常用的正则表达式，更多的内容，大家可以百度下 我们就以前面的t_student表为例 查询学生姓路或乔的学生信息12345-- like select *from t_student where s_name like '路%' or s_name like '乔%'-- regexpselect *from t_student where s_name regexp '^(路|乔)' 查询名字是以美结尾的学生信息1select *from t_student where s_name regexp '美$' 查询学生爱好中，有吃肉的学生信息1select *from t_student where s_hobby regexp '吃肉' 查询学生姓乔或者名字中有美字的学生信息1select *from t_student where s_name regexp '(^乔)|美' 小结这里先整理这几个简单的例子，后续会再补充。 可以参考官方的文档练习：https://dev.mysql.com/doc/refman/5.7/en/regexp.html]]></content>
+    <title><![CDATA[MySQL-分组排序]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-05%2F</url>
+    <content type="text"><![CDATA[MySQL分组排序 使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。 我们先来看第一个类型的问题，关于排序的问题 排名就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名在postgresql中可以使用像rank() over()这样的函数1234567select course_name, s_id, score, rank() over(order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现12345678910select course_name, s_id, score, -- 根据排序规则，每条记录增加1 @rn:=@rn+1 as rank_score -- 初始化变量@rn，从0开始from t_score cross join (select @rn:=0) xorder by score desc; 细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？ 当然可以，我们改一下SQL只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score12345678910111213select course_name, s_id, score, @pre pre_score, -- 判断当前score是否和上一条记录的score相等， -- 如果相等则使用和上一条一样的排名 if(@pre=score ,@rn:=@rn,@rn:=@rn+1) as rank_score, @pre:=score cur_score -- 使用pre来保存上一条记录的scorefrom t_score cross join (select @rn:=0,@pre:=null) xorder by score desc; 上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？ 我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。 1234567891011select course_name, s_id, score, @pre pre_score, @rn_1:=@rn_1+1 rank_score_1, if(@pre=score ,@rn:=@rn,@rn:=@rn_1) as rank_score, @pre:=score cur_score from t_score cross join (select @rn:=0,@pre:=null,@rn_1:=0) xorder by score desc 我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。 分组排序就是给每个分组中的数据，分别进行排名如果有类似rank() over()的函数12345678-- 在postgresql中select course_name, s_id, score, rank() over(partition by course_name order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，如果课程名称一样，则继续排名，如果不一样，则重新开始排名1234567891011set @rn:=0;set @pre_course:=null;select course_name, s_id, score, if(@pre_course=course_name,@rn:=@rn+1,@rn:=0), @pre_course:= course_name from t_score order by course_name,score desc;]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -84,9 +96,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MySQL-分组排序]]></title>
-    <url>%2F2017%2F09%2F09%2Fmysql-handbook-05%2F</url>
-    <content type="text"><![CDATA[MySQL分组排序 使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。 我们先来看第一个类型的问题，关于排序的问题 排名就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名在postgresql中可以使用像rank() over()这样的函数1234567select course_name, s_id, score, rank() over(order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现12345678910select course_name, s_id, score, -- 根据排序规则，每条记录增加1 @rn:=@rn+1 as rank_score -- 初始化变量@rn，从0开始from t_score cross join (select @rn:=0) xorder by score desc; 细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？ 当然可以，我们改一下SQL只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score12345678910111213select course_name, s_id, score, @pre pre_score, -- 判断当前score是否和上一条记录的score相等， -- 如果相等则使用和上一条一样的排名 if(@pre=score ,@rn:=@rn,@rn:=@rn+1) as rank_score, @pre:=score cur_score -- 使用pre来保存上一条记录的scorefrom t_score cross join (select @rn:=0,@pre:=null) xorder by score desc; 上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？ 我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。 1234567891011select course_name, s_id, score, @pre pre_score, @rn_1:=@rn_1+1 rank_score_1, if(@pre=score ,@rn:=@rn,@rn:=@rn_1) as rank_score, @pre:=score cur_score from t_score cross join (select @rn:=0,@pre:=null,@rn_1:=0) xorder by score desc 我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。 分组排序就是给每个分组中的数据，分别进行排名如果有类似rank() over()的函数12345678-- 在postgresql中select course_name, s_id, score, rank() over(partition by course_name order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，如果课程名称一样，则继续排名，如果不一样，则重新开始排名1234567891011set @rn:=0;set @pre_course:=null;select course_name, s_id, score, if(@pre_course=course_name,@rn:=@rn+1,@rn:=0), @pre_course:= course_name from t_score order by course_name,score desc;]]></content>
+    <title><![CDATA[MySQL-regexp]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-04%2F</url>
+    <content type="text"><![CDATA[MySQL正则表达式 在前面，我们了解了like的使用，它可以做一些简单的匹配 在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符 但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。 常用的正则表达式，更多的内容，大家可以百度下 我们就以前面的t_student表为例 查询学生姓路或乔的学生信息12345-- like select *from t_student where s_name like '路%' or s_name like '乔%'-- regexpselect *from t_student where s_name regexp '^(路|乔)' 查询名字是以美结尾的学生信息1select *from t_student where s_name regexp '美$' 查询学生爱好中，有吃肉的学生信息1select *from t_student where s_hobby regexp '吃肉' 查询学生姓乔或者名字中有美字的学生信息1select *from t_student where s_name regexp '(^乔)|美' 小结这里先整理这几个简单的例子，后续会再补充。 可以参考官方的文档练习：https://dev.mysql.com/doc/refman/5.7/en/regexp.html]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -152,8 +164,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>数据分析</tag>
         <tag>读书笔记</tag>
+        <tag>数据分析</tag>
         <tag>实例</tag>
       </tags>
   </entry>
@@ -177,8 +189,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>数据分析</tag>
         <tag>读书笔记</tag>
+        <tag>数据分析</tag>
         <tag>实例</tag>
       </tags>
   </entry>
