@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/08/18/matplotlib-handbook-01/</loc>
+    <lastmod>2017-09-16T18:04:41.765Z</lastmod>
+    <data>
+        <display>
+        <title>matplotlib手册(10)-用pyplot实现“房间里100个人玩游戏的例子”</title>
+        <pubTime>2017-08-18T00:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Matplotlib</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/22/python-handbook-01/</loc>
+    <lastmod>2017-09-16T17:56:19.602Z</lastmod>
+    <data>
+        <display>
+        <title>词云图之《战狼2》影评</title>
+        <pubTime>2017-08-22T02:59:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>可视化</tag>
+         
+        <tag>词云图</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/08/01/pandas-handbook-05/</loc>
     <lastmod>2017-09-15T16:29:12.693Z</lastmod>
     <data>

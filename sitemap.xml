@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yuguiyang.github.io/2017/08/18/matplotlib-handbook-01/</loc>
+    
+    <lastmod>2017-09-16T18:04:41.765Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/22/python-handbook-01/</loc>
+    
+    <lastmod>2017-09-16T17:56:19.602Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://yuguiyang.github.io/2017/08/01/pandas-handbook-05/</loc>
     
     <lastmod>2017-09-15T16:29:12.693Z</lastmod>
