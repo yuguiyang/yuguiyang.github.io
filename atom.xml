@@ -40,6 +40,76 @@
   </entry>
   
   <entry>
+    <title>帕累托的故事</title>
+    <link href="https://yuguiyang.github.io/2017/09/18/jotting-01/"/>
+    <id>https://yuguiyang.github.io/2017/09/18/jotting-01/</id>
+    <published>2017-09-18T00:08:00.000Z</published>
+    <updated>2017-09-19T06:54:17.020Z</updated>
+    
+    <content type="html"><![CDATA[<p>周末听Tableau的一个培训，遇到一个帕累托图，就是关于二八定律的那个帕累托，就想着，他到底是干嘛的呢，然后，就有了这篇《帕累托的故事》，让我们开始了解一下这个经济学家。</p>
+<h1 id="帕累托简介"><a href="#帕累托简介" class="headerlink" title="帕累托简介"></a>帕累托简介</h1><blockquote>
+<p>维弗雷多·帕累托（Vilfredo Pareto ，1848年7月15日—1923年8月19日），意大利经济学家、社会学家，洛桑学派的主要代表之一。生于巴黎，曾就读于意大利都灵大学，后来任瑞士洛桑大学教授。<br>– 百度百科</p>
+</blockquote>
+<p>哦，他是一个经济学家、社会学家，怪不得会提出<strong>“20%的人掌握着百分之80%的财富”</strong>，以前，是先知道这句话，然后才知道帕累托的大名的。</p>
+<h2 id="洛桑学派"><a href="#洛桑学派" class="headerlink" title="洛桑学派"></a>洛桑学派</h2><p>洛桑学派主要代表之一，什么是洛桑学派，干嘛的呢？估计是因为在洛桑大学任教，所以统称为<strong>“洛桑学派”</strong>吧</p>
+<blockquote>
+<p>“洛桑学派”指的是，以法国人瓦尔拉斯和意大利人帕累托为中心的新古典思想流派的一支。洛桑学派的主要特点在于它对一般均衡理论的推进，从而在广度上和深度上都扩大了新古典研究方法在经济学上的适用性。洛桑学派也被称为“数理学派”（因为它们强调数理的解释说明）或者“意大利学派”（因为在早期的队伍里有很多意大利人）。<br>– 百度百科</p>
+</blockquote>
+<a id="more"></a>
+<p>数理学派，难道就是用数学和统计学来证明一些经济学理论？感觉好像是这样，他们一定是实战派，用数理方法来验证实际问题，厉害。<br>“对一般均衡理论的推进”，看看这个一般均衡理论是啥？</p>
+<h2 id="一般均衡理论"><a href="#一般均衡理论" class="headerlink" title="一般均衡理论"></a>一般均衡理论</h2><blockquote>
+<p>一般均衡理论（General Equilibrium Theory） 是1874年法国经济学家瓦尔拉斯在他的《纯粹经济学要义》中创立的。瓦尔拉斯认为，整个经济体系处于均衡状态时，所有消费品和生产要素的价格将有一个确定的均衡值，它们的产出和供给，将有一个确定的均衡量。他还认为在“完全竞争”的均衡条件下，出售一切生产要素的总收入和出售一切消费品的总收入必将相等。<br>该理论的实质是说明资本主义经济可以处于稳定的均衡状态。在资本主义经济中，消费者可以获得最大效用，企业家可以获得最大利润，生产要素的所有者可以得到最大报酬。<br>– 百度百科</p>
+</blockquote>
+<p>有点儿不明觉厉，反正是一个经济上了一个什么理论，果然是通过各种数理知识来解决真正改的经济学问题，大师就是大师，膜拜。<br>帕累托基于这个思路，进一步延伸和拓展了这一理论。</p>
+<h1 id="主要成就"><a href="#主要成就" class="headerlink" title="主要成就"></a>主要成就</h1><p>下面，我们来了解下他的主要成就，仰望下大师</p>
+<h2 id="帕累托法则"><a href="#帕累托法则" class="headerlink" title="帕累托法则"></a>帕累托法则</h2><p>这就是前面说到的那个80/20法则、二八定律</p>
+<blockquote>
+<p>帕累托法则是指在任何大系统中，约80%的结果是由该系统中约20%的变量产生的。</p>
+</blockquote>
+<p>帕累托主要是研究经济学和社会学的，在1906年，他观察了意大利的财富分配情况，发现80%的财富掌握在20%的人手里，<br>好残酷，但现实就是这样，我一定是那个80%里面的80%的里面的80%……</p>
+<p>抽象一下，就变成这样：</p>
+<blockquote>
+<p>在任何特定群体中，重要的因子通常只占少数，而不重要的因子则占多数，因此只要能控制具有重要性的少数因子即能控制全局。</p>
+</blockquote>
+<p>一开始这一理论只限定于经济领域，后来逐步推广到各个领域，而且深为人们认同。<br>根据帕累托法则，延伸出很多的有趣的结论，像：</p>
+<ul>
+<li>世界上80%的资源是由15%的人口耗尽的</li>
+<li>企业中80%的利润来自于20%的项目或客户</li>
+<li>时间管理中，20%的项目或付出可以得来80%的成绩</li>
+</ul>
+<p>我们可以从不同的角度去理解和应用这一原则，比如：时间管理，财务管理、员工管理、市场营销等等，都会有意想不到的收获。</p>
+<h2 id="帕累托最优"><a href="#帕累托最优" class="headerlink" title="帕累托最优"></a>帕累托最优</h2><p>帕累托最优(Pareto Optimality)也称为帕累托效率（Pareto Efficiency）、帕雷托最佳配置，是博弈论中的重要概念，并且在经济学， 工程学和社会科学中有着广泛的应用。 </p>
+<blockquote>
+<p>帕累托最优是指资源分配的一种理想状态，假定固有的一群人和可分配的资源，从一种分配状态到另一种状态的变化中，在没有使任何人境况变坏的前提下，使得至少一个人变得更好，这就是帕累托改进或帕累托最优化。帕累托最优的状态就是不可能再有更多的帕累托改进的余地；换句话说，帕累托改进是达到帕累托最优的路径和方法。帕累托最优是公平与效率的“理想王国”。</p>
+</blockquote>
+<p>这个也很有意思，<del>直白点儿说就是，你想要过的更好，就一定会有一个人过的更差，你想要挣更多的钱，就一定会有一个人挣更少的钱，又是一个残酷的现实啊</del>。<br>上面理解错了，帕累托最优说的是，在你挣了更多的钱的同时，也没有人因此少挣钱，强调的是不能减少任何一个人的福利。<br>维基百科上有一个例子：<br>说是有假设一个社会上，只有一个百万富翁和一个快饿死的乞丐，如果富翁拿出自己财富的万分之一，就可以让乞丐免于死亡，但是这样就损害了富翁的福利（假设乞丐没有可以回报富翁的服务或资源），这种财富转移，并不是“帕累托改进”，而这种社会被称为帕累托最优的。<br>帕累托最优，说的应该是一种理想社会，社会资源的分配已经非常合理，不会损害任何人的福利，但是这种社会里依然存在着富有与贫穷，依然存在贫富差距。</p>
+<h1 id="帕累托图"><a href="#帕累托图" class="headerlink" title="帕累托图"></a>帕累托图</h1><p>帕累托图又叫排列图、主次图,是按照发生频率大小顺序绘制的直方图，表示有多少结果是由已确认类型或范畴的原因所造成。<br>帕累托图在项目管理中主要用来找出产生大多数问题的关键原因，用来解决大多数问题。通过这个图，就可以看出80%的财富掌握在20%的人手里。<br><img src="http://upload-images.jianshu.io/upload_images/76024-21f806599e2b4a7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="帕累托图"></p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>上面的内容有些比较难懂，需要慢慢的消化，后续等了解的更多了，会再补充。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>这里整理的时候，综合了“百度百科”，“维基百科”等等网上资料</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;周末听Tableau的一个培训，遇到一个帕累托图，就是关于二八定律的那个帕累托，就想着，他到底是干嘛的呢，然后，就有了这篇《帕累托的故事》，让我们开始了解一下这个经济学家。&lt;/p&gt;
+&lt;h1 id=&quot;帕累托简介&quot;&gt;&lt;a href=&quot;#帕累托简介&quot; class=&quot;headerlink&quot; title=&quot;帕累托简介&quot;&gt;&lt;/a&gt;帕累托简介&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;维弗雷多·帕累托（Vilfredo Pareto ，1848年7月15日—1923年8月19日），意大利经济学家、社会学家，洛桑学派的主要代表之一。生于巴黎，曾就读于意大利都灵大学，后来任瑞士洛桑大学教授。&lt;br&gt;– 百度百科&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;哦，他是一个经济学家、社会学家，怪不得会提出&lt;strong&gt;“20%的人掌握着百分之80%的财富”&lt;/strong&gt;，以前，是先知道这句话，然后才知道帕累托的大名的。&lt;/p&gt;
+&lt;h2 id=&quot;洛桑学派&quot;&gt;&lt;a href=&quot;#洛桑学派&quot; class=&quot;headerlink&quot; title=&quot;洛桑学派&quot;&gt;&lt;/a&gt;洛桑学派&lt;/h2&gt;&lt;p&gt;洛桑学派主要代表之一，什么是洛桑学派，干嘛的呢？估计是因为在洛桑大学任教，所以统称为&lt;strong&gt;“洛桑学派”&lt;/strong&gt;吧&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“洛桑学派”指的是，以法国人瓦尔拉斯和意大利人帕累托为中心的新古典思想流派的一支。洛桑学派的主要特点在于它对一般均衡理论的推进，从而在广度上和深度上都扩大了新古典研究方法在经济学上的适用性。洛桑学派也被称为“数理学派”（因为它们强调数理的解释说明）或者“意大利学派”（因为在早期的队伍里有很多意大利人）。&lt;br&gt;– 百度百科&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MySQL-自增列</title>
     <link href="https://yuguiyang.github.io/2017/09/12/mysql-handbook-10/"/>
     <id>https://yuguiyang.github.io/2017/09/12/mysql-handbook-10/</id>
@@ -388,6 +458,54 @@
   </entry>
   
   <entry>
+    <title>MySQL-分组排序</title>
+    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/"/>
+    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/</id>
+    <published>2017-09-09T04:00:00.000Z</published>
+    <updated>2017-09-11T09:04:45.018Z</updated>
+    
+    <content type="html"><![CDATA[<p>MySQL<br>分组排序</p>
+<p>使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。</p>
+<p>我们先来看第一个类型的问题，关于排序的问题</p>
+<h2 id="排名"><a href="#排名" class="headerlink" title="排名"></a>排名</h2><p>就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名<br>在postgresql中可以使用像rank() over()这样的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo" alt="mysql-handbook-05-02"></p>
+<a id="more"></a>
+<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="comment">-- 根据排序规则，每条记录增加1</span></div><div class="line">    @rn:=@rn+<span class="number">1</span> <span class="keyword">as</span> rank_score</div><div class="line">    <span class="comment">-- 初始化变量@rn，从0开始</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-03.png-blog.photo" alt="mysql-handbook-05-03"></p>
+<p>细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？</p>
+<p>当然可以，我们改一下SQL<br>只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    <span class="comment">-- 判断当前score是否和上一条记录的score相等，</span></div><div class="line">    <span class="comment">-- 如果相等则使用和上一条一样的排名</span></div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn+<span class="number">1</span>) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    <span class="comment">-- 使用pre来保存上一条记录的score</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-04.png-blog.photo" alt="mysql-handbook-05-04"></p>
+<p>上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？</p>
+<p>我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    @rn_1:=@rn_1+<span class="number">1</span> rank_score_1,</div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn_1) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    </div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>,@rn_1:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div></pre></td></tr></table></figure>
+<p>我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-05.png-blog.photo" alt="mysql-handbook-05-05"></p>
+<h2 id="分组排序"><a href="#分组排序" class="headerlink" title="分组排序"></a>分组排序</h2><p>就是给每个分组中的数据，分别进行排名<br>如果有类似rank() over()的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 在postgresql中</span></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> course_name <span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-01.png-blog.photo" alt="mysql-handbook-05-01"></p>
+<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br>这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，<br>如果课程名称一样，则继续排名，如果不一样，则重新开始排名<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> @rn:=<span class="number">0</span>;</div><div class="line"><span class="keyword">set</span> @pre_course:=<span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">if</span>(@pre_course=course_name,@rn:=@rn+<span class="number">1</span>,@rn:=<span class="number">0</span>),</div><div class="line">    @pre_course:= course_name </div><div class="line"><span class="keyword">from</span> t_score </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> course_name,score <span class="keyword">desc</span>;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-91fb3a9a983c21d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分组排序"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MySQL&lt;br&gt;分组排序&lt;/p&gt;
+&lt;p&gt;使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。&lt;/p&gt;
+&lt;p&gt;我们先来看第一个类型的问题，关于排序的问题&lt;/p&gt;
+&lt;h2 id=&quot;排名&quot;&gt;&lt;a href=&quot;#排名&quot; class=&quot;headerlink&quot; title=&quot;排名&quot;&gt;&lt;/a&gt;排名&lt;/h2&gt;&lt;p&gt;就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名&lt;br&gt;在postgresql中可以使用像rank() over()这样的函数&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    course_name,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    s_id,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    score,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;rank&lt;/span&gt;() &lt;span class=&quot;keyword&quot;&gt;over&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;by&lt;/span&gt; score &lt;span class=&quot;keyword&quot;&gt;desc&lt;/span&gt;) rank_score&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    t_score&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo&quot; alt=&quot;mysql-handbook-05-02&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MySQL-regexp</title>
     <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/"/>
     <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/</id>
@@ -424,54 +542,6 @@
 &lt;/blockquote&gt;
 &lt;p&gt;但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。&lt;/p&gt;
 &lt;p&gt;常用的正则表达式，更多的内容，大家可以百度下&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-01.png-blog.photo&quot; alt=&quot;mysql-handbook-04-01&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
-    
-    
-      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL-分组排序</title>
-    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/"/>
-    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/</id>
-    <published>2017-09-09T04:00:00.000Z</published>
-    <updated>2017-09-11T09:04:45.018Z</updated>
-    
-    <content type="html"><![CDATA[<p>MySQL<br>分组排序</p>
-<p>使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。</p>
-<p>我们先来看第一个类型的问题，关于排序的问题</p>
-<h2 id="排名"><a href="#排名" class="headerlink" title="排名"></a>排名</h2><p>就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名<br>在postgresql中可以使用像rank() over()这样的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo" alt="mysql-handbook-05-02"></p>
-<a id="more"></a>
-<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="comment">-- 根据排序规则，每条记录增加1</span></div><div class="line">    @rn:=@rn+<span class="number">1</span> <span class="keyword">as</span> rank_score</div><div class="line">    <span class="comment">-- 初始化变量@rn，从0开始</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-03.png-blog.photo" alt="mysql-handbook-05-03"></p>
-<p>细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？</p>
-<p>当然可以，我们改一下SQL<br>只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    <span class="comment">-- 判断当前score是否和上一条记录的score相等，</span></div><div class="line">    <span class="comment">-- 如果相等则使用和上一条一样的排名</span></div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn+<span class="number">1</span>) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    <span class="comment">-- 使用pre来保存上一条记录的score</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-04.png-blog.photo" alt="mysql-handbook-05-04"></p>
-<p>上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？</p>
-<p>我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    @rn_1:=@rn_1+<span class="number">1</span> rank_score_1,</div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn_1) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    </div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>,@rn_1:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div></pre></td></tr></table></figure>
-<p>我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-05.png-blog.photo" alt="mysql-handbook-05-05"></p>
-<h2 id="分组排序"><a href="#分组排序" class="headerlink" title="分组排序"></a>分组排序</h2><p>就是给每个分组中的数据，分别进行排名<br>如果有类似rank() over()的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 在postgresql中</span></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> course_name <span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-01.png-blog.photo" alt="mysql-handbook-05-01"></p>
-<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br>这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，<br>如果课程名称一样，则继续排名，如果不一样，则重新开始排名<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> @rn:=<span class="number">0</span>;</div><div class="line"><span class="keyword">set</span> @pre_course:=<span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">if</span>(@pre_course=course_name,@rn:=@rn+<span class="number">1</span>,@rn:=<span class="number">0</span>),</div><div class="line">    @pre_course:= course_name </div><div class="line"><span class="keyword">from</span> t_score </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> course_name,score <span class="keyword">desc</span>;</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-91fb3a9a983c21d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分组排序"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;MySQL&lt;br&gt;分组排序&lt;/p&gt;
-&lt;p&gt;使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。&lt;/p&gt;
-&lt;p&gt;我们先来看第一个类型的问题，关于排序的问题&lt;/p&gt;
-&lt;h2 id=&quot;排名&quot;&gt;&lt;a href=&quot;#排名&quot; class=&quot;headerlink&quot; title=&quot;排名&quot;&gt;&lt;/a&gt;排名&lt;/h2&gt;&lt;p&gt;就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名&lt;br&gt;在postgresql中可以使用像rank() over()这样的函数&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    course_name,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    s_id,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    score,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;rank&lt;/span&gt;() &lt;span class=&quot;keyword&quot;&gt;over&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;by&lt;/span&gt; score &lt;span class=&quot;keyword&quot;&gt;desc&lt;/span&gt;) rank_score&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    t_score&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo&quot; alt=&quot;mysql-handbook-05-02&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -781,9 +851,9 @@
       <category term="读书笔记" scheme="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
       <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
     
       <category term="实例" scheme="https://yuguiyang.github.io/tags/%E5%AE%9E%E4%BE%8B/"/>
     
@@ -959,9 +1029,9 @@
       <category term="读书笔记" scheme="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
       <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
     
       <category term="实例" scheme="https://yuguiyang.github.io/tags/%E5%AE%9E%E4%BE%8B/"/>
     
@@ -1288,52 +1358,6 @@
       <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
     
       <category term="笔试题" scheme="https://yuguiyang.github.io/tags/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>词云图之《战狼2》影评</title>
-    <link href="https://yuguiyang.github.io/2017/08/22/python-handbook-01/"/>
-    <id>https://yuguiyang.github.io/2017/08/22/python-handbook-01/</id>
-    <published>2017-08-22T02:59:00.000Z</published>
-    <updated>2017-09-16T17:56:19.602Z</updated>
-    
-    <content type="html"><![CDATA[<p>下午看了社区里的一篇文章《<a href="https://ask.hellobi.com/blog/datakong/9461" target="_blank" rel="external">Python 爬虫实践：《战狼2》豆瓣影评分析</a>》，感谢分享。<br>最近也是在学习爬虫，周末刚好看了词云图，这里就自己也来实现下。</p>
-<p>周末的词云图介绍《<a href="https://ask.hellobi.com/blog/yuguiyang1990/9445" target="_blank" rel="external">word_cloud-用Python之作个性化词云图</a>》</p>
-<h1 id="豆瓣影评页面分析"><a href="#豆瓣影评页面分析" class="headerlink" title="豆瓣影评页面分析"></a>豆瓣影评页面分析</h1><p>我们到豆瓣电影模块，选择《战狼2》，找到下面的短评<br><img src="http://upload-images.jianshu.io/upload_images/76024-84b763c3bb1191de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>页面地址：<a href="https://movie.douban.com/subject/26363254/comments?status=P" target="_blank" rel="external">https://movie.douban.com/subject/26363254/comments?status=P</a></p>
-<p>通过FireBug，观察页面，可以发现，评论信息还是很好拿的<br><img src="http://upload-images.jianshu.io/upload_images/76024-f06cc16f71288259.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>然后，我们看看下一页数据是怎么获取的<br><img src="http://upload-images.jianshu.io/upload_images/76024-63258a9fa9c996bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这里是直接用参数传的，多点几次观察，就会发现规律<br><img src="http://upload-images.jianshu.io/upload_images/76024-b1aebe6f9e64b91a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<a id="more"></a>
-<p>这里有个小疑问，他这个参数start，短评每页20条没有问题，但是这个start，并不是0，20,40开始的，会跳跃，不知道为啥，<br>而且，这个limit貌似是假的，我改成100都没用，还是显示20条<br>而且，不登录的话，并不能看完所有的短评，后面会报错，说没有权限。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#解析当前页面        </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parseCurrentPage</span><span class="params">(html)</span>:</span></div><div class="line">    soup = BeautifulSoup(html, <span class="string">"html.parser"</span>)</div><div class="line">    </div><div class="line">    <span class="comment">#获取评论信息</span></div><div class="line">    p_comments = soup.select(<span class="string">'div#comments div.comment p'</span>)</div><div class="line"></div><div class="line">    p_lines=[]</div><div class="line">    <span class="keyword">for</span> com <span class="keyword">in</span> p_comments:</div><div class="line">        p_lines.append(com.contents[<span class="number">0</span>].strip()+<span class="string">'\n'</span>)</div><div class="line">    </div><div class="line">    <span class="comment">#获取下一页信息，可以通过这个获取数据</span></div><div class="line">    p_next = soup.select_one(<span class="string">'div#paginator a.next'</span>)</div><div class="line">    <span class="comment">#print(p_next)</span></div><div class="line">    print(p_next[<span class="string">'href'</span>])</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> p_lines</div></pre></td></tr></table></figure></p>
-<h1 id="生成词云图"><a href="#生成词云图" class="headerlink" title="生成词云图"></a>生成词云图</h1><p>这里的方法还是和周末的那一篇类似，这里多了一个stopwords的概念，就是剔除了一些没有用的词语，貌似网上可以找到通用的一些，我这里<br>直接根据测试，手动剔除的。<br>    原文是自己使用pandas统计的词频，我这里直接就传给Wordcloud了，后面再试试<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#指定需要提出的词语</span></div><div class="line">        stopwords = &#123;<span class="string">u'个'</span>,<span class="string">u'一个'</span>,<span class="string">u'这个'</span>,<span class="string">u'个人'</span>,<span class="string">u'不是'</span>,<span class="string">u'就是'</span>,<span class="string">u'一部'</span>,<span class="string">u'这部'</span></div><div class="line">                     ,<span class="string">u'我们'</span>,<span class="string">u'所以'</span>,<span class="string">u'不会'</span>,<span class="string">u'这种'</span>,<span class="string">u'没有'</span>,<span class="string">u'各种'</span>,<span class="string">u'觉得'</span></div><div class="line">                     ,<span class="string">u'真的'</span>,<span class="string">u'知道'</span>,<span class="string">u'还是'</span>,<span class="string">u'但是'</span>,<span class="string">u'可以'</span>,<span class="string">u'这么'</span>,<span class="string">u'因为'</span>,<span class="string">u'很多'</span>&#125;</div><div class="line">        print(<span class="string">'stopwords'</span>,stopwords)</div></pre></td></tr></table></figure></p>
-<h1 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码"></a>实例代码</h1><p>刚刚看了下导出的评论文件，发现有重复数据，一定是哪里有问题<br><img src="http://upload-images.jianshu.io/upload_images/76024-eba5db8ce8677474.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>刚试了下，这个影评的返回结果有毒啊<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">https://movie.douban.com/subject/26363254/comments?start=20&amp;limit=20&amp;sort=new_score&amp;status=P</div><div class="line">和</div><div class="line">https://movie.douban.com/subject/26363254/comments?start=26&amp;limit=20&amp;sort=new_score&amp;status=P</div><div class="line">这<span class="number">2</span>个显示的内容居然是一样的。。看来还是得通过每次下一页的href属性去获取下一页地址</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="string">"""</span></div><div class="line"><span class="string">Created on Tue Aug 22 16:13:24 2017</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">@author: yuguiyang</span></div><div class="line"><span class="string">"""</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> jieba</div><div class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line">file_name = <span class="string">'douban_movie_zhanlang.txt'</span></div><div class="line"></div><div class="line"><span class="comment">#根据URL，获取页面源码</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHtml</span><span class="params">(url)</span>:</span></div><div class="line">    req = urllib.request.Request(url)</div><div class="line">    page = urllib.request.urlopen(req).read().decode(<span class="string">'utf-8'</span>)</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> page</div><div class="line"></div><div class="line"><span class="comment">#删除文件</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">clearFile</span><span class="params">(targetFile)</span>:</span></div><div class="line">    <span class="keyword">if</span> os.path.exists(targetFile):</div><div class="line">        os.remove(targetFile)</div><div class="line">    </div><div class="line"><span class="comment">#将数据保存到文件</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">save2file</span><span class="params">(lines,targetFile)</span>:</span></div><div class="line">    <span class="keyword">with</span> open(targetFile,<span class="string">'a'</span>) <span class="keyword">as</span> file:</div><div class="line">        file.writelines(lines)</div><div class="line"></div><div class="line"><span class="comment">#解析当前页面        </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parseCurrentPage</span><span class="params">(html)</span>:</span></div><div class="line">    soup = BeautifulSoup(html, <span class="string">"html.parser"</span>)</div><div class="line">    </div><div class="line">    <span class="comment">#获取评论信息</span></div><div class="line">    p_comments = soup.select(<span class="string">'div#comments div.comment p'</span>)</div><div class="line"></div><div class="line">    p_lines=[]</div><div class="line">    <span class="keyword">for</span> com <span class="keyword">in</span> p_comments:</div><div class="line">        p_lines.append(com.contents[<span class="number">0</span>].strip()+<span class="string">'\n'</span>)</div><div class="line">    </div><div class="line">    <span class="comment">#获取下一页信息，可以通过这个获取数据</span></div><div class="line">    p_next = soup.select_one(<span class="string">'div#paginator a.next'</span>)</div><div class="line">    <span class="comment">#print(p_next)</span></div><div class="line">    print(p_next[<span class="string">'href'</span>])</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> p_lines</div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">showWordCloud</span><span class="params">(targetFile)</span>:</span></div><div class="line">    <span class="comment">#指定字体，是为了显示中文</span></div><div class="line">    font = <span class="string">r'C:\Windows\Fonts\simsun.ttc'</span></div><div class="line">    <span class="keyword">with</span> open(targetFile) <span class="keyword">as</span> file:</div><div class="line">        comments = file.read()</div><div class="line">        text_cut = jieba.cut(comments , cut_all=<span class="keyword">False</span>)</div><div class="line">        </div><div class="line">        <span class="comment">#指定需要提出的词语</span></div><div class="line">        stopwords = &#123;<span class="string">u'个'</span>,<span class="string">u'一个'</span>,<span class="string">u'这个'</span>,<span class="string">u'个人'</span>,<span class="string">u'不是'</span>,<span class="string">u'就是'</span>,<span class="string">u'一部'</span>,<span class="string">u'这部'</span></div><div class="line">                     ,<span class="string">u'我们'</span>,<span class="string">u'所以'</span>,<span class="string">u'不会'</span>,<span class="string">u'这种'</span>,<span class="string">u'没有'</span>,<span class="string">u'各种'</span>,<span class="string">u'觉得'</span></div><div class="line">                     ,<span class="string">u'真的'</span>,<span class="string">u'知道'</span>,<span class="string">u'还是'</span>,<span class="string">u'但是'</span>,<span class="string">u'可以'</span>,<span class="string">u'这么'</span>,<span class="string">u'因为'</span>,<span class="string">u'很多'</span>&#125;</div><div class="line">        print(<span class="string">'stopwords'</span>,stopwords)</div><div class="line">        </div><div class="line"></div><div class="line">        wordcloud = WordCloud(font_path=font,width=<span class="number">800</span>,height=<span class="number">400</span>,</div><div class="line">                              background_color=<span class="string">'white'</span>,stopwords=stopwords</div><div class="line">                              ).generate(<span class="string">' '</span>.join(text_cut))</div><div class="line">        </div><div class="line">        plt.imshow(wordcloud, interpolation=<span class="string">'bilinear'</span>)</div><div class="line">        plt.axis(<span class="string">"off"</span>)</div><div class="line">        </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span>   </div><div class="line">    url = <span class="string">'https://movie.douban.com/subject/26363254/comments?start=&#123;0&#125;&amp;limit=20&amp;sort=new_score&amp;status=P'</span></div><div class="line">    </div><div class="line">    clearFile(file_name)</div><div class="line">    <span class="comment">#直接遍历200条评论，这里要注意，超过多少页后，需要登录才可以，这里暂时还没有做，就到200</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">200</span>,<span class="number">20</span>):    </div><div class="line">        print(url.format(i))</div><div class="line">        html = getHtml(url.format(i))</div><div class="line">        movie_comments = parseCurrentPage(html)</div><div class="line">        save2file(movie_comments,file_name)</div><div class="line">    </div><div class="line">    <span class="comment">#显示词云图</span></div><div class="line">    showWordCloud(file_name)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-c08941b8d232444f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;下午看了社区里的一篇文章《&lt;a href=&quot;https://ask.hellobi.com/blog/datakong/9461&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Python 爬虫实践：《战狼2》豆瓣影评分析&lt;/a&gt;》，感谢分享。&lt;br&gt;最近也是在学习爬虫，周末刚好看了词云图，这里就自己也来实现下。&lt;/p&gt;
-&lt;p&gt;周末的词云图介绍《&lt;a href=&quot;https://ask.hellobi.com/blog/yuguiyang1990/9445&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;word_cloud-用Python之作个性化词云图&lt;/a&gt;》&lt;/p&gt;
-&lt;h1 id=&quot;豆瓣影评页面分析&quot;&gt;&lt;a href=&quot;#豆瓣影评页面分析&quot; class=&quot;headerlink&quot; title=&quot;豆瓣影评页面分析&quot;&gt;&lt;/a&gt;豆瓣影评页面分析&lt;/h1&gt;&lt;p&gt;我们到豆瓣电影模块，选择《战狼2》，找到下面的短评&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-84b763c3bb1191de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;页面地址：&lt;a href=&quot;https://movie.douban.com/subject/26363254/comments?status=P&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://movie.douban.com/subject/26363254/comments?status=P&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;通过FireBug，观察页面，可以发现，评论信息还是很好拿的&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-f06cc16f71288259.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;然后，我们看看下一页数据是怎么获取的&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-63258a9fa9c996bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;这里是直接用参数传的，多点几次观察，就会发现规律&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-b1aebe6f9e64b91a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="数据可视化-Python&amp;R" scheme="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
-    
-    
-      <category term="Python" scheme="https://yuguiyang.github.io/tags/Python/"/>
-    
-      <category term="可视化" scheme="https://yuguiyang.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-      <category term="词云图" scheme="https://yuguiyang.github.io/tags/%E8%AF%8D%E4%BA%91%E5%9B%BE/"/>
     
   </entry>
   

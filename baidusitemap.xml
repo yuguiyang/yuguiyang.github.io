@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/09/18/jotting-01/</loc>
+    <lastmod>2017-09-19T06:54:17.020Z</lastmod>
+    <data>
+        <display>
+        <title>帕累托的故事</title>
+        <pubTime>2017-09-18T00:08:00.000Z</pubTime>
+        
+        <tag>随笔</tag>
+         
+         
+           
+             
+              <breadCrumb title="随笔" url="https://yuguiyang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/08/18/matplotlib-handbook-01/</loc>
     <lastmod>2017-09-16T18:04:41.765Z</lastmod>
     <data>
@@ -587,9 +607,9 @@
         <title>读书笔记-数据分析实战(3章)</title>
         <pubTime>2017-09-04T15:59:00.000Z</pubTime>
         
-        <tag>数据分析</tag>
-         
         <tag>读书笔记</tag>
+         
+        <tag>数据分析</tag>
          
         <tag>实例</tag>
          
@@ -611,9 +631,9 @@
         <title>读书笔记-数据分析实战(1、2章)</title>
         <pubTime>2017-08-31T16:59:00.000Z</pubTime>
         
-        <tag>数据分析</tag>
-         
         <tag>读书笔记</tag>
+         
+        <tag>数据分析</tag>
          
         <tag>实例</tag>
          
