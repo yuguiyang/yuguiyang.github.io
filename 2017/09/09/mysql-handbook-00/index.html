@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python,BeautifulSoup," />
+  <meta name="keywords" content="SQL,MySQL," />
 
 
 
@@ -104,27 +104,18 @@
 
 
 
-<meta name="description" content="前几天学习了下Beautiful Soup的使用，本来想多写些内容的，但是发现，官方的介绍实在太详细了，每种方法基本都覆盖到了， 直接看官方的例子就足够了，而且还有一个中文版的，这里的话，就简单实践下，介绍几个常用的方法和一些小经验。 官方文档：https://www.crummy.com/software/BeautifulSoup/bs4/doc/ 这里，我们就简单的解析下博客专栏，https">
-<meta name="keywords" content="Python,BeautifulSoup">
+<meta name="description" content="MySQL怎样学习MySQL 作为一名BI开发工程师，SQL是必须要掌握的一门技能。数据分析师请参考这篇《数据分析师是否要掌握SQL?》 SQL是干嘛的呢？大街上随便拉个人过来，可能都听说过“大数据”，不管大数据、小数据，他这个数据到底在哪儿呢？其中一种方式，就是存储在关系型数据库中（其他的还有什么非关系型数据库、HDFS等等），就像我们把货物都放在仓库里一样，如果我们想要查看数据库中的数据，就用">
+<meta name="keywords" content="SQL,MySQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BeautifulSoup教程（2） - 实例-解析博客专栏">
-<meta property="og:url" content="https://yuguiyang.github.io/2017/04/20/bs-handbook-02/index.html">
+<meta property="og:title" content="MySQL-序(怎样学习MySQL)">
+<meta property="og:url" content="https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/index.html">
 <meta property="og:site_name" content="于贵洋的博客">
-<meta property="og:description" content="前几天学习了下Beautiful Soup的使用，本来想多写些内容的，但是发现，官方的介绍实在太详细了，每种方法基本都覆盖到了， 直接看官方的例子就足够了，而且还有一个中文版的，这里的话，就简单实践下，介绍几个常用的方法和一些小经验。 官方文档：https://www.crummy.com/software/BeautifulSoup/bs4/doc/ 这里，我们就简单的解析下博客专栏，https">
+<meta property="og:description" content="MySQL怎样学习MySQL 作为一名BI开发工程师，SQL是必须要掌握的一门技能。数据分析师请参考这篇《数据分析师是否要掌握SQL?》 SQL是干嘛的呢？大街上随便拉个人过来，可能都听说过“大数据”，不管大数据、小数据，他这个数据到底在哪儿呢？其中一种方式，就是存储在关系型数据库中（其他的还有什么非关系型数据库、HDFS等等），就像我们把货物都放在仓库里一样，如果我们想要查看数据库中的数据，就用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-02.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-01.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-03.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-04.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-05.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-06.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-07.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-08.png-blog.photo">
-<meta property="og:updated_time" content="2017-09-04T16:35:24.272Z">
+<meta property="og:updated_time" content="2017-10-09T17:09:51.402Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BeautifulSoup教程（2） - 实例-解析博客专栏">
-<meta name="twitter:description" content="前几天学习了下Beautiful Soup的使用，本来想多写些内容的，但是发现，官方的介绍实在太详细了，每种方法基本都覆盖到了， 直接看官方的例子就足够了，而且还有一个中文版的，这里的话，就简单实践下，介绍几个常用的方法和一些小经验。 官方文档：https://www.crummy.com/software/BeautifulSoup/bs4/doc/ 这里，我们就简单的解析下博客专栏，https">
-<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-02.png-blog.photo">
+<meta name="twitter:title" content="MySQL-序(怎样学习MySQL)">
+<meta name="twitter:description" content="MySQL怎样学习MySQL 作为一名BI开发工程师，SQL是必须要掌握的一门技能。数据分析师请参考这篇《数据分析师是否要掌握SQL?》 SQL是干嘛的呢？大街上随便拉个人过来，可能都听说过“大数据”，不管大数据、小数据，他这个数据到底在哪儿呢？其中一种方式，就是存储在关系型数据库中（其他的还有什么非关系型数据库、HDFS等等），就像我们把货物都放在仓库里一样，如果我们想要查看数据库中的数据，就用">
 
 
 
@@ -154,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="https://yuguiyang.github.io/2017/04/20/bs-handbook-02/"/>
+  <link rel="canonical" href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/"/>
 
 
 
 
 
-  <title>BeautifulSoup教程（2） - 实例-解析博客专栏 | 于贵洋的博客</title>
+  <title>MySQL-序(怎样学习MySQL) | 于贵洋的博客</title>
   
 
 
@@ -361,7 +352,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/20/bs-handbook-02/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -378,7 +369,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">BeautifulSoup教程（2） - 实例-解析博客专栏</h1>
+          <h1 class="post-title" itemprop="name headline">MySQL-序(怎样学习MySQL)</h1>
         
 
         <div class="post-meta">
@@ -390,8 +381,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-20T21:59:00+08:00">
-                2017-04-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-09T05:00:00+08:00">
+                2017-09-09
               </time>
             
 
@@ -413,8 +404,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-爬虫/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-爬虫</span>
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
                   </a>
                 </span>
 
@@ -455,44 +446,15 @@
       
 
       
-        <p>前几天学习了下Beautiful Soup的使用，本来想多写些内容的，但是发现，官方的介绍实在太详细了，每种方法基本都覆盖到了，</p>
-<p>直接看官方的例子就足够了，而且还有一个中文版的，这里的话，就简单实践下，介绍几个常用的方法和一些小经验。</p>
-<p>官方文档：<a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/" target="_blank" rel="external">https://www.crummy.com/software/BeautifulSoup/bs4/doc/</a></p>
-<p>这里，我们就简单的解析下博客专栏，<a href="https://blog.hellobi.com/" target="_blank" rel="external">https://blog.hellobi.com/</a></p>
-<p>这里的话，没有做太多的限制，我们直接解析就可以</p>
-<h1 id="1-分析网页"><a href="#1-分析网页" class="headerlink" title="1. 分析网页"></a>1. 分析网页</h1><p>我们再Firefox中，使用 Firebug很方便</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-02.png-blog.photo" alt="bs-handbook-02-02"></p>
-<p>这里的话，文档结构也很清晰，很适合我们练习</p>
-<a id="more"></a>
-<p>基本代码，我们获取网页信息<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"><span class="comment">#加载网址，获取当前页面</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTML</span><span class="params">(url)</span> :</span></div><div class="line">	page = urllib.urlopen(url)</div><div class="line">	html = page.read()</div><div class="line">	<span class="keyword">return</span> html</div></pre></td></tr></table></figure></p>
-<h1 id="2-常用类"><a href="#2-常用类" class="headerlink" title="2.常用类"></a>2.常用类</h1><p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-01.png-blog.photo" alt="bs-handbook-02-01"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">html = getHTML(<span class="string">'https://blog.hellobi.com/'</span>)</div><div class="line"></div><div class="line">soup = BeautifulSoup(html, <span class="string">"html.parser"</span>)</div></pre></td></tr></table></figure>
-<p>这里，我们初始化Beautiful Soup，使用“html.parser”,这是一个默认的解析器，他还有其他的解析器，官网有介绍，这里就不说了，其他也没有测试过</p>
-<p>这里，顺便说下Python中查看类的帮助信息，使用dir()函数，可以查看类的属性和方法列表<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> type(soup)</div><div class="line"><span class="keyword">print</span> dir(soup)</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-03.png-blog.photo" alt="bs-handbook-02-03"></p>
-<p>我们还可以使用help函数，查看详细的帮助信息</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> help(soup)</div></pre></td></tr></table></figure>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-04.png-blog.photo" alt="bs-handbook-02-04"></p>
-<p>Beautiful Soup是最基础的类，其他的还有Tag，这个用起来和HTML中的标签类似</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> soup.title</div><div class="line"><span class="keyword">print</span> type(soup.title)</div><div class="line"></div><div class="line"><span class="comment">#print soup.head</span></div><div class="line"><span class="keyword">print</span> type(soup.head)</div></pre></td></tr></table></figure>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-05.png-blog.photo" alt="bs-handbook-02-05"></p>
-<p>这里，的title，head都是HTML中的tag，也是Tag类的对象</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> soup.title.string</div><div class="line"><span class="keyword">print</span> type(soup.title.string)</div><div class="line"><span class="keyword">print</span> dir(soup.title.string)</div></pre></td></tr></table></figure>
-<p>然后，我们需要使用Tag的内容时，就用到了NavigableString</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-06.png-blog.photo" alt="bs-handbook-02-06"></p>
-<h1 id="3-常用函数"><a href="#3-常用函数" class="headerlink" title="3.常用函数"></a>3.常用函数</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">blog_index=<span class="number">1</span></div><div class="line"><span class="keyword">for</span> blog <span class="keyword">in</span> soup.find_all(<span class="string">'div'</span>, class_=<span class="string">'blog-item'</span>):</div><div class="line">	<span class="keyword">print</span> <span class="string">'----------------------------------------------------------'</span></div><div class="line">	<span class="keyword">print</span> <span class="string">'第%s篇博客'</span> %(blog_index)</div><div class="line"></div><div class="line">	title = blog.select_one(<span class="string">'div.caption &gt; h2 &gt; a'</span>)</div><div class="line">	<span class="keyword">print</span> <span class="string">'博客标题: '</span>,title.string</div><div class="line"></div><div class="line">	author = blog.select_one(<span class="string">'div.caption  ul a'</span>)</div><div class="line">	<span class="keyword">print</span> <span class="string">'作者: '</span>,author.text.strip()</div><div class="line"></div><div class="line">	vote = blog.select_one(<span class="string">'div.cp div.blog-votes span'</span>)</div><div class="line">	<span class="keyword">print</span> <span class="string">'推荐次数: '</span>,vote.string</div><div class="line"></div><div class="line">	info = blog.select_one(<span class="string">'div.cp div.blog-views span'</span>)</div><div class="line">	<span class="keyword">print</span> <span class="string">'阅读次数: '</span>,info.string</div><div class="line"></div><div class="line">	blog_index+=<span class="number">1</span></div></pre></td></tr></table></figure>
-<p>上面的代码，就是遍历的首页的所有博客信息，很简单，就是一个find_all()和一个select_one()</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-07.png-blog.photo" alt="bs-handbook-02-07"></p>
-<p>find_all()</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/bs-handbook-02-08.png-blog.photo" alt="bs-handbook-02-08"></p>
-<p>select_one()</p>
-<blockquote>
-<p>select() 方法中传入字符串参数,即可使用CSS选择器的语法找到tag:</p>
-</blockquote>
-<p>思想其实都一样，就是根据一定的规则，找到我们想要的标签</p>
-<p>后面的话，我们再找到总页数，遍历一下，就可以获取所有的博客基本信息啦<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://blog.hellobi.com/?page=2</div></pre></td></tr></table></figure></p>
-<p>传递页码就可以了</p>
-<p>好了，这里就举这一个简单的小例子，大家多在实践中使用就好了</p>
+        <p>MySQL<br>怎样学习MySQL</p>
+<p>作为一名BI开发工程师，SQL是必须要掌握的一门技能。<br>数据分析师请参考这篇《数据分析师是否要掌握SQL?》</p>
+<h3 id="SQL是干嘛的呢？"><a href="#SQL是干嘛的呢？" class="headerlink" title="SQL是干嘛的呢？"></a>SQL是干嘛的呢？</h3><p>大街上随便拉个人过来，可能都听说过“大数据”，不管大数据、小数据，他这个数据到底在哪儿呢？其中一种方式，就是存储在关系型数据库中（其他的还有什么非关系型数据库、HDFS等等），就像我们把货物都放在仓库里一样，如果我们想要查看数据库中的数据，就用到了SQL。</p>
+<p>SQL也是一种编程语言，偏底层，所以学起来会枯燥些，不像Tableau那样可视化效果好，可以托拉拽。只要掌握了SQL的基本语法，他就像数学公式一样，直接去套用就行了。<br>SQL的知识点也非常多，我们不需要都记住，要学会查文档、用Google，而且不同的数据库，他的语法可能不太一样，很容易记混。<br>开发人员平时说的SQL脚本，就是一段或者多段SQL或者存储过程。</p>
+<h3 id="怎么学习SQL"><a href="#怎么学习SQL" class="headerlink" title="怎么学习SQL?"></a>怎么学习SQL?</h3><p>随着互联网的发展，现在的学习成本非常的低，网络上的免费资源非常多。<br>评价好些的像w3school的<a href="http://www.w3school.com.cn/sql/index.asp" target="_blank" rel="external">SQL 教程</a><br>在这，就可以了解SQL的基本语法，记住这些，再配合习题练习就算是入门了。</p>
+<p><a href="http://zh.sqlzoo.net/" target="_blank" rel="external">sqlzoo</a>是一个在线的练习网站,上面有很多SQL的练习题，我们可以直接在线写SQL，而且提交后，还会告诉我们对错。</p>
+<p>如果还有时间的话，找一本书《SQL必知必会》、《MySQL必知必会》、《深入浅出SQL》，查漏补缺，可以更好的梳理自己的知识架构。</p>
+<p>SQL就像所有的知识一样，学会不用很容易就忘掉，所以最好可以在工作中多用用，而且一定要记住“实践是检验真理的唯一标准”，SQL一定要多练习、多实践。</p>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>客户端安装及pdf资料：<a href="http://www.jianshu.com/p/3e56600d97de" target="_blank" rel="external">SQL工具及资料</a><br>后面也整理了一些MySQL的知识点<a href="http://yuguiyang.github.io/categories/MySQL/">MySQL分类</a>，欢迎大家访问。</p>
 
       
     </div>
@@ -521,7 +483,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://yuguiyang.github.io/2017/04/20/bs-handbook-02/" title="BeautifulSoup教程（2） - 实例-解析博客专栏">https://yuguiyang.github.io/2017/04/20/bs-handbook-02/</a>
+    <a href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/" title="MySQL-序(怎样学习MySQL)">https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -536,9 +498,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
           
-            <a href="/tags/BeautifulSoup/" rel="tag"># BeautifulSoup</a>
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
           
         </div>
       
@@ -551,8 +513,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/14/bs-handbook-01/" rel="next" title="BeautifulSoup教程（1） - 简介及安装">
-                <i class="fa fa-chevron-left"></i> BeautifulSoup教程（1） - 简介及安装
+              <a href="/2017/09/04/reading_notes_data_analysis_02/" rel="next" title="读书笔记-数据分析实战(3章)">
+                <i class="fa fa-chevron-left"></i> 读书笔记-数据分析实战(3章)
               </a>
             
           </div>
@@ -561,8 +523,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/30/Tableau-handbook-01/" rel="prev" title="小白学习Tableau-标签云">
-                小白学习Tableau-标签云 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/09/mysql-handbook-01/" rel="prev" title="MySQL-基本语法介绍">
+                MySQL-基本语法介绍 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -733,7 +695,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-分析网页"><span class="nav-number">1.</span> <span class="nav-text">1. 分析网页</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-常用类"><span class="nav-number">2.</span> <span class="nav-text">2.常用类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-常用函数"><span class="nav-number">3.</span> <span class="nav-text">3.常用函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL是干嘛的呢？"><span class="nav-number">1.</span> <span class="nav-text">SQL是干嘛的呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么学习SQL"><span class="nav-number">2.</span> <span class="nav-text">怎么学习SQL?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附录"><span class="nav-number">3.</span> <span class="nav-text">附录</span></a></li></ol></div>
             
 
           </div>

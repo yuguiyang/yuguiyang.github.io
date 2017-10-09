@@ -567,54 +567,6 @@
   </entry>
   
   <entry>
-    <title>MySQL-分组排序</title>
-    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/"/>
-    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/</id>
-    <published>2017-09-09T04:00:00.000Z</published>
-    <updated>2017-09-11T09:04:45.018Z</updated>
-    
-    <content type="html"><![CDATA[<p>MySQL<br>分组排序</p>
-<p>使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。</p>
-<p>我们先来看第一个类型的问题，关于排序的问题</p>
-<h2 id="排名"><a href="#排名" class="headerlink" title="排名"></a>排名</h2><p>就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名<br>在postgresql中可以使用像rank() over()这样的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo" alt="mysql-handbook-05-02"></p>
-<a id="more"></a>
-<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="comment">-- 根据排序规则，每条记录增加1</span></div><div class="line">    @rn:=@rn+<span class="number">1</span> <span class="keyword">as</span> rank_score</div><div class="line">    <span class="comment">-- 初始化变量@rn，从0开始</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-03.png-blog.photo" alt="mysql-handbook-05-03"></p>
-<p>细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？</p>
-<p>当然可以，我们改一下SQL<br>只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    <span class="comment">-- 判断当前score是否和上一条记录的score相等，</span></div><div class="line">    <span class="comment">-- 如果相等则使用和上一条一样的排名</span></div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn+<span class="number">1</span>) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    <span class="comment">-- 使用pre来保存上一条记录的score</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-04.png-blog.photo" alt="mysql-handbook-05-04"></p>
-<p>上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？</p>
-<p>我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    @rn_1:=@rn_1+<span class="number">1</span> rank_score_1,</div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn_1) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    </div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>,@rn_1:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div></pre></td></tr></table></figure>
-<p>我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-05.png-blog.photo" alt="mysql-handbook-05-05"></p>
-<h2 id="分组排序"><a href="#分组排序" class="headerlink" title="分组排序"></a>分组排序</h2><p>就是给每个分组中的数据，分别进行排名<br>如果有类似rank() over()的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 在postgresql中</span></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> course_name <span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-01.png-blog.photo" alt="mysql-handbook-05-01"></p>
-<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br>这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，<br>如果课程名称一样，则继续排名，如果不一样，则重新开始排名<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> @rn:=<span class="number">0</span>;</div><div class="line"><span class="keyword">set</span> @pre_course:=<span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">if</span>(@pre_course=course_name,@rn:=@rn+<span class="number">1</span>,@rn:=<span class="number">0</span>),</div><div class="line">    @pre_course:= course_name </div><div class="line"><span class="keyword">from</span> t_score </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> course_name,score <span class="keyword">desc</span>;</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-91fb3a9a983c21d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分组排序"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;MySQL&lt;br&gt;分组排序&lt;/p&gt;
-&lt;p&gt;使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。&lt;/p&gt;
-&lt;p&gt;我们先来看第一个类型的问题，关于排序的问题&lt;/p&gt;
-&lt;h2 id=&quot;排名&quot;&gt;&lt;a href=&quot;#排名&quot; class=&quot;headerlink&quot; title=&quot;排名&quot;&gt;&lt;/a&gt;排名&lt;/h2&gt;&lt;p&gt;就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名&lt;br&gt;在postgresql中可以使用像rank() over()这样的函数&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    course_name,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    s_id,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    score,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;rank&lt;/span&gt;() &lt;span class=&quot;keyword&quot;&gt;over&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;by&lt;/span&gt; score &lt;span class=&quot;keyword&quot;&gt;desc&lt;/span&gt;) rank_score&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    t_score&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo&quot; alt=&quot;mysql-handbook-05-02&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
-    
-    
-      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
     <title>MySQL-regexp</title>
     <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/"/>
     <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/</id>
@@ -651,6 +603,54 @@
 &lt;/blockquote&gt;
 &lt;p&gt;但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。&lt;/p&gt;
 &lt;p&gt;常用的正则表达式，更多的内容，大家可以百度下&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-01.png-blog.photo&quot; alt=&quot;mysql-handbook-04-01&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL-分组排序</title>
+    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/"/>
+    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/</id>
+    <published>2017-09-09T04:00:00.000Z</published>
+    <updated>2017-09-11T09:04:45.018Z</updated>
+    
+    <content type="html"><![CDATA[<p>MySQL<br>分组排序</p>
+<p>使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。</p>
+<p>我们先来看第一个类型的问题，关于排序的问题</p>
+<h2 id="排名"><a href="#排名" class="headerlink" title="排名"></a>排名</h2><p>就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名<br>在postgresql中可以使用像rank() over()这样的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo" alt="mysql-handbook-05-02"></p>
+<a id="more"></a>
+<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="comment">-- 根据排序规则，每条记录增加1</span></div><div class="line">    @rn:=@rn+<span class="number">1</span> <span class="keyword">as</span> rank_score</div><div class="line">    <span class="comment">-- 初始化变量@rn，从0开始</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-03.png-blog.photo" alt="mysql-handbook-05-03"></p>
+<p>细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？</p>
+<p>当然可以，我们改一下SQL<br>只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    <span class="comment">-- 判断当前score是否和上一条记录的score相等，</span></div><div class="line">    <span class="comment">-- 如果相等则使用和上一条一样的排名</span></div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn+<span class="number">1</span>) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    <span class="comment">-- 使用pre来保存上一条记录的score</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-04.png-blog.photo" alt="mysql-handbook-05-04"></p>
+<p>上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？</p>
+<p>我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    @rn_1:=@rn_1+<span class="number">1</span> rank_score_1,</div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn_1) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    </div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>,@rn_1:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div></pre></td></tr></table></figure>
+<p>我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-05.png-blog.photo" alt="mysql-handbook-05-05"></p>
+<h2 id="分组排序"><a href="#分组排序" class="headerlink" title="分组排序"></a>分组排序</h2><p>就是给每个分组中的数据，分别进行排名<br>如果有类似rank() over()的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 在postgresql中</span></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> course_name <span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-01.png-blog.photo" alt="mysql-handbook-05-01"></p>
+<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br>这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，<br>如果课程名称一样，则继续排名，如果不一样，则重新开始排名<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> @rn:=<span class="number">0</span>;</div><div class="line"><span class="keyword">set</span> @pre_course:=<span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">if</span>(@pre_course=course_name,@rn:=@rn+<span class="number">1</span>,@rn:=<span class="number">0</span>),</div><div class="line">    @pre_course:= course_name </div><div class="line"><span class="keyword">from</span> t_score </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> course_name,score <span class="keyword">desc</span>;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-91fb3a9a983c21d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分组排序"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MySQL&lt;br&gt;分组排序&lt;/p&gt;
+&lt;p&gt;使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。&lt;/p&gt;
+&lt;p&gt;我们先来看第一个类型的问题，关于排序的问题&lt;/p&gt;
+&lt;h2 id=&quot;排名&quot;&gt;&lt;a href=&quot;#排名&quot; class=&quot;headerlink&quot; title=&quot;排名&quot;&gt;&lt;/a&gt;排名&lt;/h2&gt;&lt;p&gt;就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名&lt;br&gt;在postgresql中可以使用像rank() over()这样的函数&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    course_name,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    s_id,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    score,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;rank&lt;/span&gt;() &lt;span class=&quot;keyword&quot;&gt;over&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;by&lt;/span&gt; score &lt;span class=&quot;keyword&quot;&gt;desc&lt;/span&gt;) rank_score&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    t_score&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo&quot; alt=&quot;mysql-handbook-05-02&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -915,6 +915,41 @@
   </entry>
   
   <entry>
+    <title>MySQL-序(怎样学习MySQL)</title>
+    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/"/>
+    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/</id>
+    <published>2017-09-08T21:00:00.000Z</published>
+    <updated>2017-10-09T17:09:51.402Z</updated>
+    
+    <content type="html"><![CDATA[<p>MySQL<br>怎样学习MySQL</p>
+<p>作为一名BI开发工程师，SQL是必须要掌握的一门技能。<br>数据分析师请参考这篇《数据分析师是否要掌握SQL?》</p>
+<h3 id="SQL是干嘛的呢？"><a href="#SQL是干嘛的呢？" class="headerlink" title="SQL是干嘛的呢？"></a>SQL是干嘛的呢？</h3><p>大街上随便拉个人过来，可能都听说过“大数据”，不管大数据、小数据，他这个数据到底在哪儿呢？其中一种方式，就是存储在关系型数据库中（其他的还有什么非关系型数据库、HDFS等等），就像我们把货物都放在仓库里一样，如果我们想要查看数据库中的数据，就用到了SQL。</p>
+<p>SQL也是一种编程语言，偏底层，所以学起来会枯燥些，不像Tableau那样可视化效果好，可以托拉拽。只要掌握了SQL的基本语法，他就像数学公式一样，直接去套用就行了。<br>SQL的知识点也非常多，我们不需要都记住，要学会查文档、用Google，而且不同的数据库，他的语法可能不太一样，很容易记混。<br>开发人员平时说的SQL脚本，就是一段或者多段SQL或者存储过程。</p>
+<h3 id="怎么学习SQL"><a href="#怎么学习SQL" class="headerlink" title="怎么学习SQL?"></a>怎么学习SQL?</h3><p>随着互联网的发展，现在的学习成本非常的低，网络上的免费资源非常多。<br>评价好些的像w3school的<a href="http://www.w3school.com.cn/sql/index.asp" target="_blank" rel="external">SQL 教程</a><br>在这，就可以了解SQL的基本语法，记住这些，再配合习题练习就算是入门了。</p>
+<p><a href="http://zh.sqlzoo.net/" target="_blank" rel="external">sqlzoo</a>是一个在线的练习网站,上面有很多SQL的练习题，我们可以直接在线写SQL，而且提交后，还会告诉我们对错。</p>
+<p>如果还有时间的话，找一本书《SQL必知必会》、《MySQL必知必会》、《深入浅出SQL》，查漏补缺，可以更好的梳理自己的知识架构。</p>
+<p>SQL就像所有的知识一样，学会不用很容易就忘掉，所以最好可以在工作中多用用，而且一定要记住“实践是检验真理的唯一标准”，SQL一定要多练习、多实践。</p>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>客户端安装及pdf资料：<a href="http://www.jianshu.com/p/3e56600d97de" target="_blank" rel="external">SQL工具及资料</a><br>后面也整理了一些MySQL的知识点<a href="http://yuguiyang.github.io/categories/MySQL/">MySQL分类</a>，欢迎大家访问。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MySQL&lt;br&gt;怎样学习MySQL&lt;/p&gt;
+&lt;p&gt;作为一名BI开发工程师，SQL是必须要掌握的一门技能。&lt;br&gt;数据分析师请参考这篇《数据分析师是否要掌握SQL?》&lt;/p&gt;
+&lt;h3 id=&quot;SQL是干嘛的呢？&quot;&gt;&lt;a href=&quot;#SQL是干嘛的呢？&quot; class=&quot;he
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>读书笔记-数据分析实战(3章)</title>
     <link href="https://yuguiyang.github.io/2017/09/04/reading_notes_data_analysis_02/"/>
     <id>https://yuguiyang.github.io/2017/09/04/reading_notes_data_analysis_02/</id>
@@ -960,9 +995,9 @@
       <category term="读书笔记" scheme="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
       <category term="实例" scheme="https://yuguiyang.github.io/tags/%E5%AE%9E%E4%BE%8B/"/>
     
@@ -1138,132 +1173,11 @@
       <category term="读书笔记" scheme="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
     
+      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
       <category term="实例" scheme="https://yuguiyang.github.io/tags/%E5%AE%9E%E4%BE%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SQL笔试题-连续登录天数</title>
-    <link href="https://yuguiyang.github.io/2017/08/31/data-analyst-interview-sql-03/"/>
-    <id>https://yuguiyang.github.io/2017/08/31/data-analyst-interview-sql-03/</id>
-    <published>2017-08-31T05:11:00.000Z</published>
-    <updated>2017-08-31T07:41:57.077Z</updated>
-    
-    <content type="html"><![CDATA[<p>SQL笔试题</p>
-<blockquote>
-<p>下面的SQL基于PostgreSQL</p>
-</blockquote>
-<h1 id="1-用户连续登录天数"><a href="#1-用户连续登录天数" class="headerlink" title="1.用户连续登录天数"></a>1.用户连续登录天数</h1><h2 id="背景描述"><a href="#背景描述" class="headerlink" title="背景描述"></a>背景描述</h2><p>现在我们有一张用户登录日志表，记录用户每天的登录时间，我们想要统计一下，用户每次连续登录的开始日期和结束日期，以及连续登录天数。</p>
-<table>
-<thead>
-<tr>
-<th>用户ID</th>
-<th>登录日期</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1001</td>
-<td>2017-01-01</td>
-</tr>
-<tr>
-<td>1001</td>
-<td>2017-01-02</td>
-</tr>
-<tr>
-<td>1001</td>
-<td>2017-01-04</td>
-</tr>
-<tr>
-<td>1001</td>
-<td>2017-01-06</td>
-</tr>
-<tr>
-<td>1002</td>
-<td>2017-01-02</td>
-</tr>
-<tr>
-<td>1002</td>
-<td>2017-01-03</td>
-</tr>
-</tbody>
-</table>
-<p>同学们先思考下，整理下思路，如果没有思路或者某几个点不了解，就可以继续往下看了。</p>
-<a id="more"></a>
-<h2 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> interview.tm_login_log</div><div class="line">(</div><div class="line">  user_id <span class="built_in">integer</span>,</div><div class="line">  login_date <span class="built_in">date</span></div><div class="line">)</div><div class="line"><span class="keyword">WITH</span> (</div><div class="line">  OIDS=<span class="literal">FALSE</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="comment">-- 这里的数据是最简化的情况，每个用户每天只有一条登录信息，</span></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'2017-01-01'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'2017-01-02'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'2017-01-04'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'2017-01-05'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'2017-01-06'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'2017-01-07'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'2017-01-08'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'2017-01-09'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'2017-01-10'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'2017-01-12'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'2017-01-13'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'2017-01-15'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">'2017-01-16'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-01'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-02'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-03'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-04'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-05'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-06'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-07'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-08'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-09'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-10'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-11'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-12'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-13'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-16'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_login_log <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">'2017-01-17'</span>);</div></pre></td></tr></table></figure>
-<h2 id="步骤拆解"><a href="#步骤拆解" class="headerlink" title="步骤拆解"></a>步骤拆解</h2><p>我们首先要思考，怎样才算连续登录呢？就是1号登录，2号也登录了，这样就连续2天登录，那我们怎么知道2号他有没有登录呢？<br>一种思路是根据排序来判断：<br>我们来根据日期来排个名<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">	user_id,</div><div class="line">	login_date,</div><div class="line">	row_number() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> user_id <span class="keyword">order</span> <span class="keyword">by</span> login_date) day_rank</div><div class="line"><span class="keyword">from</span> </div><div class="line">	interview.tm_login_log</div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-03-01.png-blog.photo" alt="data-analyst-interview-sql-03-01"></p>
-<p>现在，我们根据用户ID，对他的登录日期做了排序，但是我们还是没有办法知道，他是不是连续的。<br>我们根据这个排序再思考一下，对于一个用户来说，他的登录日期排序已经是连续的了，如果登录日期也是个数字，那我们根据每行的差值，就可以判断登录日期是否连续了。<br>我们换个角度，我们找一个起始日期，来计算一个相差的天数，用它去和排序相对比，就可以了。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">	user_id,</div><div class="line">	login_date,</div><div class="line">	date_part(<span class="string">'day'</span>,login_date::<span class="keyword">timestamp</span> - <span class="keyword">timestamp</span><span class="string">'2017-01-01'</span>) day_interval, <span class="comment">-- 间隔天数</span></div><div class="line">	row_number() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> user_id <span class="keyword">order</span> <span class="keyword">by</span> login_date) day_rank <span class="comment">-- 日期排序</span></div><div class="line"><span class="keyword">from</span> </div><div class="line">	interview.tm_login_log</div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-03-02.png-blog.photo" alt="data-analyst-interview-sql-03-02"></p>
-<p>我们观察下数据，因为日期排序是连续的，我们统计的间隔天数都是一个起始日期，所以，如果登录日期是连续的，那么，排序-间隔天数的差值也应该是一样的</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">	user_id,</div><div class="line">	login_date,</div><div class="line">	date_part(<span class="string">'day'</span>,login_date::<span class="keyword">timestamp</span> - <span class="keyword">timestamp</span><span class="string">'2017-01-01'</span>) day_interval, <span class="comment">-- 间隔天数</span></div><div class="line">	row_number() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> user_id <span class="keyword">order</span> <span class="keyword">by</span> login_date) day_rank, <span class="comment">-- 日期排序</span></div><div class="line">	(</div><div class="line">		row_number() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> user_id <span class="keyword">order</span> <span class="keyword">by</span> login_date)</div><div class="line">	) - (</div><div class="line">		date_part(<span class="string">'day'</span>,login_date::<span class="keyword">timestamp</span> - <span class="keyword">timestamp</span><span class="string">'2017-01-01'</span>)</div><div class="line">	) diff_value</div><div class="line"><span class="keyword">from</span> </div><div class="line">	interview.tm_login_log</div><div class="line">;</div></pre></td></tr></table></figure>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-03-03.png-blog.photo" alt="data-analyst-interview-sql-03-03"></p>
-<p>差值一样的记录，就是连续登录的日期</p>
-<p>好了，连续登录的判断标准，我们已经确定了，下面就是把题目中要的数据查出来即可<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">select</span> </div><div class="line">	user_id,</div><div class="line">	<span class="comment">--diff_value, --差值</span></div><div class="line">	<span class="keyword">min</span>(login_date) start_date, <span class="comment">--开始日期</span></div><div class="line">	<span class="keyword">max</span>(login_date) end_date, <span class="comment">--结束日期</span></div><div class="line">	<span class="keyword">count</span>(<span class="number">1</span>) running_days <span class="comment">--连续登录天数</span></div><div class="line"><span class="keyword">from</span> (</div><div class="line">	<span class="keyword">select</span> </div><div class="line">		user_id,</div><div class="line">		login_date,</div><div class="line">		date_part(<span class="string">'day'</span>,login_date::<span class="keyword">timestamp</span> - <span class="keyword">timestamp</span><span class="string">'2017-01-01'</span>) day_interval, <span class="comment">-- 间隔天数</span></div><div class="line">		row_number() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> user_id <span class="keyword">order</span> <span class="keyword">by</span> login_date) day_rank, <span class="comment">-- 日期排序</span></div><div class="line">		(</div><div class="line">			row_number() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> user_id <span class="keyword">order</span> <span class="keyword">by</span> login_date)</div><div class="line">		) - (</div><div class="line">			date_part(<span class="string">'day'</span>,login_date::<span class="keyword">timestamp</span> - <span class="keyword">timestamp</span><span class="string">'2017-01-01'</span>)</div><div class="line">		) diff_value</div><div class="line">	<span class="keyword">from</span> </div><div class="line">		interview.tm_login_log</div><div class="line">) base</div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span> user_id,diff_value</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> user_id,start_date</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-03-05.png-blog.photo" alt="data-analyst-interview-sql-03-05"></p>
-<h3 id="拓展：获取用户最大的连续登录天数及开始日期和结束日期"><a href="#拓展：获取用户最大的连续登录天数及开始日期和结束日期" class="headerlink" title="拓展：获取用户最大的连续登录天数及开始日期和结束日期"></a>拓展：获取用户最大的连续登录天数及开始日期和结束日期</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">with tmp as (</div><div class="line"><span class="keyword">select</span> </div><div class="line">	user_id,</div><div class="line">	diff_value, <span class="comment">--差值</span></div><div class="line">	<span class="keyword">min</span>(login_date) start_date, <span class="comment">--开始日期</span></div><div class="line">	<span class="keyword">max</span>(login_date) end_date, <span class="comment">--结束日期</span></div><div class="line">	<span class="keyword">count</span>(<span class="number">1</span>) running_days <span class="comment">--连续登录天数</span></div><div class="line"><span class="keyword">from</span> (</div><div class="line">	<span class="keyword">select</span> </div><div class="line">		user_id,</div><div class="line">		login_date,</div><div class="line">		date_part(<span class="string">'day'</span>,login_date::<span class="keyword">timestamp</span> - <span class="keyword">timestamp</span><span class="string">'2017-01-01'</span>) day_interval, <span class="comment">-- 间隔天数</span></div><div class="line">		row_number() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> user_id <span class="keyword">order</span> <span class="keyword">by</span> login_date) day_rank, <span class="comment">-- 日期排序</span></div><div class="line">		(</div><div class="line">			row_number() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> user_id <span class="keyword">order</span> <span class="keyword">by</span> login_date)</div><div class="line">		) - (</div><div class="line">			date_part(<span class="string">'day'</span>,login_date::<span class="keyword">timestamp</span> - <span class="keyword">timestamp</span><span class="string">'2017-01-01'</span>)</div><div class="line">		) diff_value</div><div class="line">	<span class="keyword">from</span> </div><div class="line">		interview.tm_login_log</div><div class="line">) base</div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span> user_id,diff_value</div><div class="line">) </div><div class="line"><span class="keyword">select</span> </div><div class="line">	a.user_id,a.start_date,a.end_date,a.running_days</div><div class="line"><span class="keyword">from</span> </div><div class="line">	tmp a</div><div class="line"><span class="keyword">join</span> (</div><div class="line">	<span class="keyword">select</span> user_id,<span class="keyword">max</span>(running_days) running_days <span class="keyword">from</span> tmp <span class="keyword">group</span> <span class="keyword">by</span> user_id</div><div class="line">) b <span class="keyword">on</span> a.user_id = b.user_id</div><div class="line"><span class="keyword">and</span> a.running_days = b.running_days</div><div class="line">;</div></pre></td></tr></table></figure>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-03-04.png-blog.photo" alt="data-analyst-interview-sql-03-04"></p>
-<h3 id="连续5天登录用户"><a href="#连续5天登录用户" class="headerlink" title="连续5天登录用户"></a>连续5天登录用户</h3><p>这里补充另一个类似的问题，这里，我们想看连续登录5天的用户，使用上面的方法可以实现，这里介绍一个更快的方法：<br>是使用一个函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">向前取n位</div><div class="line">lag(value anyelement [, offset integer [, default anyelement ]])</div><div class="line"></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> (</div><div class="line">	<span class="keyword">select</span> </div><div class="line">		a.user_id,</div><div class="line">		a.login_date,</div><div class="line">		<span class="comment">--5天前的登录日期</span></div><div class="line">		lag(a.login_date,<span class="number">4</span>) <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> a.user_id <span class="keyword">order</span> <span class="keyword">by</span> a.login_date) pre_five_day </div><div class="line">	<span class="keyword">from</span> interview.tm_login_log a </div><div class="line">)x</div><div class="line"><span class="keyword">where</span> date_part(<span class="string">'day'</span>,x.login_date::<span class="keyword">timestamp</span> - pre_five_day::<span class="keyword">timestamp</span>)=<span class="number">4</span></div></pre></td></tr></table></figure></p>
-<p>这样取连续登录的话，比较方便</p>
-<h3 id="思考题：连续7天未登录用户"><a href="#思考题：连续7天未登录用户" class="headerlink" title="思考题：连续7天未登录用户"></a>思考题：连续7天未登录用户</h3><p>这里留一个类似的小问题，大家自行练习下</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>我们简单整理下思路，上面的例子，我认为主要是一个思路的介绍，核心就是我们要找到一个判断连续的方法，找到方法后，SQL自然就一步一步想出来了。<br>上面只是一种思路，一定还有更优的解法，欢迎大家反馈分享。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;SQL笔试题&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;下面的SQL基于PostgreSQL&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;1-用户连续登录天数&quot;&gt;&lt;a href=&quot;#1-用户连续登录天数&quot; class=&quot;headerlink&quot; title=&quot;1.用户连续登录天数&quot;&gt;&lt;/a&gt;1.用户连续登录天数&lt;/h1&gt;&lt;h2 id=&quot;背景描述&quot;&gt;&lt;a href=&quot;#背景描述&quot; class=&quot;headerlink&quot; title=&quot;背景描述&quot;&gt;&lt;/a&gt;背景描述&lt;/h2&gt;&lt;p&gt;现在我们有一张用户登录日志表，记录用户每天的登录时间，我们想要统计一下，用户每次连续登录的开始日期和结束日期，以及连续登录天数。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;用户ID&lt;/th&gt;
-&lt;th&gt;登录日期&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;1001&lt;/td&gt;
-&lt;td&gt;2017-01-01&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1001&lt;/td&gt;
-&lt;td&gt;2017-01-02&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1001&lt;/td&gt;
-&lt;td&gt;2017-01-04&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1001&lt;/td&gt;
-&lt;td&gt;2017-01-06&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1002&lt;/td&gt;
-&lt;td&gt;2017-01-02&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1002&lt;/td&gt;
-&lt;td&gt;2017-01-03&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;同学们先思考下，整理下思路，如果没有思路或者某几个点不了解，就可以继续往下看了。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔试题" scheme="https://yuguiyang.github.io/categories/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
-    
-    
-      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
-    
-      <category term="笔试题" scheme="https://yuguiyang.github.io/tags/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
     
   </entry>
   

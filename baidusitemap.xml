@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/</loc>
+    <lastmod>2017-10-09T17:09:51.402Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL-序(怎样学习MySQL)</title>
+        <pubTime>2017-09-08T21:00:00.000Z</pubTime>
+        
+        <tag>SQL</tag>
+         
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="https://yuguiyang.github.io/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/09/20/Tableau-handbook-06/</loc>
     <lastmod>2017-09-19T16:08:05.729Z</lastmod>
     <data>
@@ -649,9 +671,9 @@
         <title>读书笔记-数据分析实战(3章)</title>
         <pubTime>2017-09-04T15:59:00.000Z</pubTime>
         
-        <tag>读书笔记</tag>
-         
         <tag>数据分析</tag>
+         
+        <tag>读书笔记</tag>
          
         <tag>实例</tag>
          
@@ -673,9 +695,9 @@
         <title>读书笔记-数据分析实战(1、2章)</title>
         <pubTime>2017-08-31T16:59:00.000Z</pubTime>
         
-        <tag>读书笔记</tag>
-         
         <tag>数据分析</tag>
+         
+        <tag>读书笔记</tag>
          
         <tag>实例</tag>
          
@@ -850,9 +872,9 @@
         <title>matplotlib手册(9) - 绘制动画</title>
         <pubTime>2017-08-17T03:11:00.000Z</pubTime>
         
-        <tag>数据可视化</tag>
-         
         <tag>Python</tag>
+         
+        <tag>数据可视化</tag>
          
         <tag>matplotlib</tag>
          

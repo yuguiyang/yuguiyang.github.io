@@ -118,9 +118,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MySQL-分组排序]]></title>
-    <url>%2F2017%2F09%2F09%2Fmysql-handbook-05%2F</url>
-    <content type="text"><![CDATA[MySQL分组排序 使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。 我们先来看第一个类型的问题，关于排序的问题 排名就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名在postgresql中可以使用像rank() over()这样的函数1234567select course_name, s_id, score, rank() over(order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现12345678910select course_name, s_id, score, -- 根据排序规则，每条记录增加1 @rn:=@rn+1 as rank_score -- 初始化变量@rn，从0开始from t_score cross join (select @rn:=0) xorder by score desc; 细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？ 当然可以，我们改一下SQL只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score12345678910111213select course_name, s_id, score, @pre pre_score, -- 判断当前score是否和上一条记录的score相等， -- 如果相等则使用和上一条一样的排名 if(@pre=score ,@rn:=@rn,@rn:=@rn+1) as rank_score, @pre:=score cur_score -- 使用pre来保存上一条记录的scorefrom t_score cross join (select @rn:=0,@pre:=null) xorder by score desc; 上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？ 我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。 1234567891011select course_name, s_id, score, @pre pre_score, @rn_1:=@rn_1+1 rank_score_1, if(@pre=score ,@rn:=@rn,@rn:=@rn_1) as rank_score, @pre:=score cur_score from t_score cross join (select @rn:=0,@pre:=null,@rn_1:=0) xorder by score desc 我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。 分组排序就是给每个分组中的数据，分别进行排名如果有类似rank() over()的函数12345678-- 在postgresql中select course_name, s_id, score, rank() over(partition by course_name order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，如果课程名称一样，则继续排名，如果不一样，则重新开始排名1234567891011set @rn:=0;set @pre_course:=null;select course_name, s_id, score, if(@pre_course=course_name,@rn:=@rn+1,@rn:=0), @pre_course:= course_name from t_score order by course_name,score desc;]]></content>
+    <title><![CDATA[MySQL-regexp]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-04%2F</url>
+    <content type="text"><![CDATA[MySQL正则表达式 在前面，我们了解了like的使用，它可以做一些简单的匹配 在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符 但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。 常用的正则表达式，更多的内容，大家可以百度下 我们就以前面的t_student表为例 查询学生姓路或乔的学生信息12345-- like select *from t_student where s_name like '路%' or s_name like '乔%'-- regexpselect *from t_student where s_name regexp '^(路|乔)' 查询名字是以美结尾的学生信息1select *from t_student where s_name regexp '美$' 查询学生爱好中，有吃肉的学生信息1select *from t_student where s_hobby regexp '吃肉' 查询学生姓乔或者名字中有美字的学生信息1select *from t_student where s_name regexp '(^乔)|美' 小结这里先整理这几个简单的例子，后续会再补充。 可以参考官方的文档练习：https://dev.mysql.com/doc/refman/5.7/en/regexp.html]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -130,9 +130,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MySQL-regexp]]></title>
-    <url>%2F2017%2F09%2F09%2Fmysql-handbook-04%2F</url>
-    <content type="text"><![CDATA[MySQL正则表达式 在前面，我们了解了like的使用，它可以做一些简单的匹配 在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符 但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。 常用的正则表达式，更多的内容，大家可以百度下 我们就以前面的t_student表为例 查询学生姓路或乔的学生信息12345-- like select *from t_student where s_name like '路%' or s_name like '乔%'-- regexpselect *from t_student where s_name regexp '^(路|乔)' 查询名字是以美结尾的学生信息1select *from t_student where s_name regexp '美$' 查询学生爱好中，有吃肉的学生信息1select *from t_student where s_hobby regexp '吃肉' 查询学生姓乔或者名字中有美字的学生信息1select *from t_student where s_name regexp '(^乔)|美' 小结这里先整理这几个简单的例子，后续会再补充。 可以参考官方的文档练习：https://dev.mysql.com/doc/refman/5.7/en/regexp.html]]></content>
+    <title><![CDATA[MySQL-分组排序]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-05%2F</url>
+    <content type="text"><![CDATA[MySQL分组排序 使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。 我们先来看第一个类型的问题，关于排序的问题 排名就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名在postgresql中可以使用像rank() over()这样的函数1234567select course_name, s_id, score, rank() over(order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现12345678910select course_name, s_id, score, -- 根据排序规则，每条记录增加1 @rn:=@rn+1 as rank_score -- 初始化变量@rn，从0开始from t_score cross join (select @rn:=0) xorder by score desc; 细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？ 当然可以，我们改一下SQL只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score12345678910111213select course_name, s_id, score, @pre pre_score, -- 判断当前score是否和上一条记录的score相等， -- 如果相等则使用和上一条一样的排名 if(@pre=score ,@rn:=@rn,@rn:=@rn+1) as rank_score, @pre:=score cur_score -- 使用pre来保存上一条记录的scorefrom t_score cross join (select @rn:=0,@pre:=null) xorder by score desc; 上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？ 我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。 1234567891011select course_name, s_id, score, @pre pre_score, @rn_1:=@rn_1+1 rank_score_1, if(@pre=score ,@rn:=@rn,@rn:=@rn_1) as rank_score, @pre:=score cur_score from t_score cross join (select @rn:=0,@pre:=null,@rn_1:=0) xorder by score desc 我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。 分组排序就是给每个分组中的数据，分别进行排名如果有类似rank() over()的函数12345678-- 在postgresql中select course_name, s_id, score, rank() over(partition by course_name order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，如果课程名称一样，则继续排名，如果不一样，则重新开始排名1234567891011set @rn:=0;set @pre_course:=null;select course_name, s_id, score, if(@pre_course=course_name,@rn:=@rn+1,@rn:=0), @pre_course:= course_name from t_score order by course_name,score desc;]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -191,6 +191,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[MySQL-序(怎样学习MySQL)]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-00%2F</url>
+    <content type="text"><![CDATA[MySQL怎样学习MySQL 作为一名BI开发工程师，SQL是必须要掌握的一门技能。数据分析师请参考这篇《数据分析师是否要掌握SQL?》 SQL是干嘛的呢？大街上随便拉个人过来，可能都听说过“大数据”，不管大数据、小数据，他这个数据到底在哪儿呢？其中一种方式，就是存储在关系型数据库中（其他的还有什么非关系型数据库、HDFS等等），就像我们把货物都放在仓库里一样，如果我们想要查看数据库中的数据，就用到了SQL。 SQL也是一种编程语言，偏底层，所以学起来会枯燥些，不像Tableau那样可视化效果好，可以托拉拽。只要掌握了SQL的基本语法，他就像数学公式一样，直接去套用就行了。SQL的知识点也非常多，我们不需要都记住，要学会查文档、用Google，而且不同的数据库，他的语法可能不太一样，很容易记混。开发人员平时说的SQL脚本，就是一段或者多段SQL或者存储过程。 怎么学习SQL?随着互联网的发展，现在的学习成本非常的低，网络上的免费资源非常多。评价好些的像w3school的SQL 教程在这，就可以了解SQL的基本语法，记住这些，再配合习题练习就算是入门了。 sqlzoo是一个在线的练习网站,上面有很多SQL的练习题，我们可以直接在线写SQL，而且提交后，还会告诉我们对错。 如果还有时间的话，找一本书《SQL必知必会》、《MySQL必知必会》、《深入浅出SQL》，查漏补缺，可以更好的梳理自己的知识架构。 SQL就像所有的知识一样，学会不用很容易就忘掉，所以最好可以在工作中多用用，而且一定要记住“实践是检验真理的唯一标准”，SQL一定要多练习、多实践。 附录客户端安装及pdf资料：SQL工具及资料后面也整理了一些MySQL的知识点MySQL分类，欢迎大家访问。]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[读书笔记-数据分析实战(3章)]]></title>
     <url>%2F2017%2F09%2F04%2Freading_notes_data_analysis_02%2F</url>
     <content type="text"><![CDATA[读书笔记 《数据分析实战》 从第3章开始，都是从一个实际问题出发，套用，前面的数据分析思路，来进行模拟分析。第3章的主题是“销售额为什么会减少？”：一款社交游戏本月的销售额相较于上月有所下滑，于是想调查下滑的原因，来提升销售额。 现状和预期现状肯定是当月销售额下降，预期肯定是保持上升，等于甚至高于上月销售额，这里的话，要确定销售额下降是不是一个问题，因为该社交游戏一直保持稳定增长，所以突然下滑，一定是不正常的， 是一个问题。 发现问题我们明确了现状和预期，需要从中，找出影响最大的因素。上面说到，有3种方法去发现问题： 观察数据大小 数据分解（指标拆解） 数据对比 这一步，也是一个根据经验来提出假设的过程，我们需要从宏观角度，找到可能影响销售额的因素。我感觉，这一步是数据分析切入的点，比较重要，如果这一步没有发现核心问题，那后面的数据收集和分析都会有问题。 书中，在这一步，提出的问题是“商业宣传上存在问题”，对了，这一步，还需要及时和其他部门去沟通，像这种市场推广、商业宣传，本身我们可能不知道，所以，假设后要去确认是否有这样的情况。 数据的收集和加工数据分析解决对策]]></content>
@@ -198,8 +210,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>读书笔记</tag>
         <tag>数据分析</tag>
+        <tag>读书笔记</tag>
         <tag>实例</tag>
       </tags>
   </entry>
@@ -223,8 +235,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>读书笔记</tag>
         <tag>数据分析</tag>
+        <tag>读书笔记</tag>
         <tag>实例</tag>
       </tags>
   </entry>
@@ -297,8 +309,8 @@
         <category>数据可视化-Python&amp;R</category>
       </categories>
       <tags>
-        <tag>数据可视化</tag>
         <tag>Python</tag>
+        <tag>数据可视化</tag>
         <tag>matplotlib</tag>
       </tags>
   </entry>
