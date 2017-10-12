@@ -40,6 +40,96 @@
   </entry>
   
   <entry>
+    <title>MySQL-疑问汇总</title>
+    <link href="https://yuguiyang.github.io/2017/10/12/mysql-handbook-09/"/>
+    <id>https://yuguiyang.github.io/2017/10/12/mysql-handbook-09/</id>
+    <published>2017-10-12T10:00:00.000Z</published>
+    <updated>2017-10-12T10:02:49.045Z</updated>
+    
+    <content type="html"><![CDATA[<p>MySQL<br>疑问汇总</p>
+<p>这里吧同学们遇到的问题都汇总起来，方便大家一起查阅。</p>
+<h3 id="update-at-2017-10-12"><a href="#update-at-2017-10-12" class="headerlink" title="update at 2017-10-12"></a>update at 2017-10-12</h3><ol>
+<li>Workbench的使用<br> 参考：</li>
+<li></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MySQL&lt;br&gt;疑问汇总&lt;/p&gt;
+&lt;p&gt;这里吧同学们遇到的问题都汇总起来，方便大家一起查阅。&lt;/p&gt;
+&lt;h3 id=&quot;update-at-2017-10-12&quot;&gt;&lt;a href=&quot;#update-at-2017-10-12&quot; class=&quot;headerlink&quot; titl
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL-Workbench使用</title>
+    <link href="https://yuguiyang.github.io/2017/10/12/mysql-handbook-08/"/>
+    <id>https://yuguiyang.github.io/2017/10/12/mysql-handbook-08/</id>
+    <published>2017-10-12T08:00:00.000Z</published>
+    <updated>2017-10-12T10:00:18.478Z</updated>
+    
+    <content type="html"><![CDATA[<p>MySQL<br>Workbench使用</p>
+<p>简单介绍下Workbench的使用<br>Workbench是MySQL官方提供的一个可视化管理工具，跨多个平台而且免费的，详情参考<a href="https://www.mysql.com/products/workbench/" target="_blank" rel="external">官网</a>。<br>我们从下载地址下载，安装就行了</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><img src="http://upload-images.jianshu.io/upload_images/76024-7b7ea58cc50de3b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="workbench 安装"><br>可以单独下载，也可以使用提供的一个管理工具统一下载管理，管理工具提供了整个MySQL所有相关组件的统一管理维护，也挺方便。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-f1ad915acdeb4815.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="管理工具"></p>
+<a id="more"></a>
+<p>我们这里就是用独立安装包了，下载完之后安装，可能会失败，因为他有2个依赖要先安装，失败的话，会提示你缺少的依赖。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-e72ac9b47dc55954.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="依赖"></p>
+<p>这里有个小坑，这里说的是.NET Framework 4.5，但实际上需要的是4.5.2貌似不太一样，所以刚刚一直安装失败，注意下就行了<a href="https://www.microsoft.com/en-us/download/details.aspx?id=42642" target="_blank" rel="external">.NET Framework 4.5.2</a></p>
+<p>安装过程就是一路Next就行了，没啥特殊的。<br>安装完之后，我们在桌面或者菜单找到这个</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-df302f1ca148ad08.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>主界面应该是这样：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-464160f15ea2fc02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="主界面"></p>
+<h2 id="新建连接"><a href="#新建连接" class="headerlink" title="新建连接"></a>新建连接</h2><p>我们点击加号，新增一个连接<br><img src="http://upload-images.jianshu.io/upload_images/76024-b965fbf385983a07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建连接"></p>
+<p>在弹出的界面上，输入数据库的连接信息，就可以了，密码下图所示的地方输入</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-084e3359386f57c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="密码"></p>
+<p>输入完成后，我们测试下连接是否正常<br><img src="http://upload-images.jianshu.io/upload_images/76024-e52ac70f136395ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="测试连接"></p>
+<p>都正常后，我们单击OK就好了</p>
+<p>返回主界面后，可以看到我们刚刚新建的连接，我们双击就可以打开这个连接，开始我们的SQL学习了<br><img src="http://upload-images.jianshu.io/upload_images/76024-b9e4445db4c84577.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="成功的连接"></p>
+<h2 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h2><p><img src="http://upload-images.jianshu.io/upload_images/76024-95ed8b3f264f8166.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="主界面介绍"><br>我们目前主要关心的是SQL的学习，所以那些管理功能可以先忽略掉<br>我们主要关注“当前可以使用的数据库”和SQL的编辑界面就OK了</p>
+<p>我们以demo库为例</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-ed56a50a473520b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo库"><br>这里就是demo库中的表，数据库中的数据是以表的形式保存的<br>比如，我们看看学生表的表结构信息，单击这个表旁边的”i”图标</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-4f73aaf40415718f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="表结构"></p>
+<p>右边会显示一个表的信息界面，字段啊，索引啊，触发器之类的，我们这里就看看DDL<br><img src="http://upload-images.jianshu.io/upload_images/76024-74048925f5ad4b09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="表信息"></p>
+<p>这里展示的就是t_student表的表结构信息<br><img src="http://upload-images.jianshu.io/upload_images/76024-a669737616fa7148.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ddl"></p>
+<h2 id="SQL练习"><a href="#SQL练习" class="headerlink" title="SQL练习"></a>SQL练习</h2><p>下面，我们看看，怎样去练习SQL<br>我们回到刚刚的query界面</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-78f35b844bccc1ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="query界面"></p>
+<p>首先，我们要选择我们使用的数据库<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> demo;</div></pre></td></tr></table></figure></p>
+<p>写好SQL，我们单击那个像闪电一样的图标执行，下面的输出窗口会显示执行结果，绿色的对号表示正确执行<br><img src="http://upload-images.jianshu.io/upload_images/76024-8e7af97235422c15.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="use db"></p>
+<p>然后，就可以各种SQL开始练习了<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-e17c39c9930c96af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="select"></p>
+<p>后面，我们就可以参考前面的博客，开始学习吧<a href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-01/">MySQL-基本语法介绍</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MySQL&lt;br&gt;Workbench使用&lt;/p&gt;
+&lt;p&gt;简单介绍下Workbench的使用&lt;br&gt;Workbench是MySQL官方提供的一个可视化管理工具，跨多个平台而且免费的，详情参考&lt;a href=&quot;https://www.mysql.com/products/workbench/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt;。&lt;br&gt;我们从下载地址下载，安装就行了&lt;/p&gt;
+&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-7b7ea58cc50de3b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;workbench 安装&quot;&gt;&lt;br&gt;可以单独下载，也可以使用提供的一个管理工具统一下载管理，管理工具提供了整个MySQL所有相关组件的统一管理维护，也挺方便。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-f1ad915acdeb4815.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;管理工具&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Tableau实例-帕累托图</title>
     <link href="https://yuguiyang.github.io/2017/09/20/Tableau-handbook-06/"/>
     <id>https://yuguiyang.github.io/2017/09/20/Tableau-handbook-06/</id>
@@ -919,12 +1009,13 @@
     <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/"/>
     <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/</id>
     <published>2017-09-08T21:00:00.000Z</published>
-    <updated>2017-10-09T17:09:51.402Z</updated>
+    <updated>2017-10-09T17:12:06.215Z</updated>
     
     <content type="html"><![CDATA[<p>MySQL<br>怎样学习MySQL</p>
 <p>作为一名BI开发工程师，SQL是必须要掌握的一门技能。<br>数据分析师请参考这篇《数据分析师是否要掌握SQL?》</p>
 <h3 id="SQL是干嘛的呢？"><a href="#SQL是干嘛的呢？" class="headerlink" title="SQL是干嘛的呢？"></a>SQL是干嘛的呢？</h3><p>大街上随便拉个人过来，可能都听说过“大数据”，不管大数据、小数据，他这个数据到底在哪儿呢？其中一种方式，就是存储在关系型数据库中（其他的还有什么非关系型数据库、HDFS等等），就像我们把货物都放在仓库里一样，如果我们想要查看数据库中的数据，就用到了SQL。</p>
 <p>SQL也是一种编程语言，偏底层，所以学起来会枯燥些，不像Tableau那样可视化效果好，可以托拉拽。只要掌握了SQL的基本语法，他就像数学公式一样，直接去套用就行了。<br>SQL的知识点也非常多，我们不需要都记住，要学会查文档、用Google，而且不同的数据库，他的语法可能不太一样，很容易记混。<br>开发人员平时说的SQL脚本，就是一段或者多段SQL或者存储过程。</p>
+<a id="more"></a>
 <h3 id="怎么学习SQL"><a href="#怎么学习SQL" class="headerlink" title="怎么学习SQL?"></a>怎么学习SQL?</h3><p>随着互联网的发展，现在的学习成本非常的低，网络上的免费资源非常多。<br>评价好些的像w3school的<a href="http://www.w3school.com.cn/sql/index.asp" target="_blank" rel="external">SQL 教程</a><br>在这，就可以了解SQL的基本语法，记住这些，再配合习题练习就算是入门了。</p>
 <p><a href="http://zh.sqlzoo.net/" target="_blank" rel="external">sqlzoo</a>是一个在线的练习网站,上面有很多SQL的练习题，我们可以直接在线写SQL，而且提交后，还会告诉我们对错。</p>
 <p>如果还有时间的话，找一本书《SQL必知必会》、《MySQL必知必会》、《深入浅出SQL》，查漏补缺，可以更好的梳理自己的知识架构。</p>
@@ -936,7 +1027,8 @@
     
       &lt;p&gt;MySQL&lt;br&gt;怎样学习MySQL&lt;/p&gt;
 &lt;p&gt;作为一名BI开发工程师，SQL是必须要掌握的一门技能。&lt;br&gt;数据分析师请参考这篇《数据分析师是否要掌握SQL?》&lt;/p&gt;
-&lt;h3 id=&quot;SQL是干嘛的呢？&quot;&gt;&lt;a href=&quot;#SQL是干嘛的呢？&quot; class=&quot;he
+&lt;h3 id=&quot;SQL是干嘛的呢？&quot;&gt;&lt;a href=&quot;#SQL是干嘛的呢？&quot; class=&quot;headerlink&quot; title=&quot;SQL是干嘛的呢？&quot;&gt;&lt;/a&gt;SQL是干嘛的呢？&lt;/h3&gt;&lt;p&gt;大街上随便拉个人过来，可能都听说过“大数据”，不管大数据、小数据，他这个数据到底在哪儿呢？其中一种方式，就是存储在关系型数据库中（其他的还有什么非关系型数据库、HDFS等等），就像我们把货物都放在仓库里一样，如果我们想要查看数据库中的数据，就用到了SQL。&lt;/p&gt;
+&lt;p&gt;SQL也是一种编程语言，偏底层，所以学起来会枯燥些，不像Tableau那样可视化效果好，可以托拉拽。只要掌握了SQL的基本语法，他就像数学公式一样，直接去套用就行了。&lt;br&gt;SQL的知识点也非常多，我们不需要都记住，要学会查文档、用Google，而且不同的数据库，他的语法可能不太一样，很容易记混。&lt;br&gt;开发人员平时说的SQL脚本，就是一段或者多段SQL或者存储过程。&lt;/p&gt;
     
     </summary>
     
@@ -989,184 +1081,6 @@
 &lt;/ul&gt;
 &lt;p&gt;这一步，也是一个根据经验来提出假设的过程，我们需要从宏观角度，找到可能影响销售额的因素。&lt;br&gt;我感觉，这一步是数据分析切入的点，比较重要，如果这一步没有发现核心问题，那后面的数据收集和分析都会有问题。&lt;/p&gt;
 &lt;p&gt;书中，在这一步，提出的问题是“商业宣传上存在问题”，对了，这一步，还需要及时和其他部门去沟通，像这种市场推广、商业宣传，本身我们可能不知道，所以，假设后要去确认是否有这样的情况。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="读书笔记" scheme="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
-      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="实例" scheme="https://yuguiyang.github.io/tags/%E5%AE%9E%E4%BE%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据分析案例-购物篮分析</title>
-    <link href="https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/"/>
-    <id>https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/</id>
-    <published>2017-09-01T01:11:00.000Z</published>
-    <updated>2017-09-01T02:36:46.335Z</updated>
-    
-    <content type="html"><![CDATA[<p>数据分析案例</p>
-<blockquote>
-<p>说到数据分析、数据挖掘，我们首先想到的可能就是沃尔玛那个“啤酒与尿布”的故事，它告诉我们，世间万物都有着千丝万缕的联系。这其中使用的数据分析方法就是“关联分析”。</p>
-</blockquote>
-<h1 id="什么是购物篮分析"><a href="#什么是购物篮分析" class="headerlink" title="什么是购物篮分析"></a>什么是购物篮分析</h1><p>购物篮分析（Market Basket Analysis），购物篮就是我们去超市使用的篮子，结账的时候，购物篮中所有的商品都会被一起结算。所谓的购物篮分析就是通过购物篮子所反应的信息来==研究顾客的购买行为==</p>
-<a id="more"></a>
-<p>关联分析要解决的问题是：一群用户购买了很多产品之后，哪些产品同时购买的几率比较高？买A产品的同时，买哪个产品的几率比较高</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-method-01.png-blog.photo" alt="data-analyst-method-01-01"></p>
-<p>这里介绍完概念，暂时还没啥写的，后面再补充下怎样实现，这里会有一个Tableau的简单购物篮分析。</p>
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p>上文的部分理论知识，摘自下面的博客</p>
-<p><a href="http://www.17bigdata.com/%E5%A4%9A%E8%A7%92%E5%BA%A6%E7%9C%8B%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%BB%8F%E5%85%B8%E6%A1%88%E4%BE%8B-%E8%B4%AD%E7%89%A9%E7%AF%AE%E5%88%86%E6%9E%90.html" target="_blank" rel="external">一起大数据</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;数据分析案例&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;说到数据分析、数据挖掘，我们首先想到的可能就是沃尔玛那个“啤酒与尿布”的故事，它告诉我们，世间万物都有着千丝万缕的联系。这其中使用的数据分析方法就是“关联分析”。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;什么是购物篮分析&quot;&gt;&lt;a href=&quot;#什么是购物篮分析&quot; class=&quot;headerlink&quot; title=&quot;什么是购物篮分析&quot;&gt;&lt;/a&gt;什么是购物篮分析&lt;/h1&gt;&lt;p&gt;购物篮分析（Market Basket Analysis），购物篮就是我们去超市使用的篮子，结账的时候，购物篮中所有的商品都会被一起结算。所谓的购物篮分析就是通过购物篮子所反应的信息来==研究顾客的购买行为==&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="数据分析" scheme="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
-    
-      <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
-      <category term="购物篮分析" scheme="https://yuguiyang.github.io/tags/%E8%B4%AD%E7%89%A9%E7%AF%AE%E5%88%86%E6%9E%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>读书笔记-数据分析实战(1、2章)</title>
-    <link href="https://yuguiyang.github.io/2017/09/01/reading_notes_data_analysis_01/"/>
-    <id>https://yuguiyang.github.io/2017/09/01/reading_notes_data_analysis_01/</id>
-    <published>2017-08-31T16:59:00.000Z</published>
-    <updated>2017-09-04T15:43:55.134Z</updated>
-    
-    <content type="html"><![CDATA[<p> 读书笔记</p>
-<blockquote>
-<p>《数据分析实战》 </p>
-</blockquote>
-<h1 id="1-什么是数据科学家"><a href="#1-什么是数据科学家" class="headerlink" title="1. 什么是数据科学家"></a>1. 什么是数据科学家</h1><p>书中通过“什么是数据”和“数据在商业中的应用”，推导出数据科学家的定义。</p>
-<blockquote>
-<p>人们通过观测数据来推测出某种因果关系，再用这种因果关系来预测未来或者控制原因以达到预期的结果。把从事这种工作的人成为数据科学家。<br>– 书中摘录</p>
-</blockquote>
-<p>上面的定义觉得不是很清晰，就百度上找了找：</p>
-<blockquote>
-<p>数据科学家是指能采用科学方法、运用数据挖掘工具对复杂多量的数字、符号、文字、网址、音频或视频等信息进行数字化重现与认识，并能寻找新的数据洞察的工程师或专家(不同于统计学家或分析师)。一个优秀的数据科学家需要具备的素质有：懂数据采集、懂数学算法、懂数学软件、懂数据分析、懂预测分析、懂市场应用、懂决策分析等。<br>– 百度百科</p>
-</blockquote>
-<p>我觉得数据科学家就是对于数据相关的所有门类都有一个整体的认识，感觉是个“杂家”，精通算法、什么深度学习、机器学习、AI之类的都是信手拈来，对我就是神一样的存在了，努力吧，同学。</p>
-<a id="more"></a>
-<h1 id="2-3中类型的数据科学家"><a href="#2-3中类型的数据科学家" class="headerlink" title="2. 3中类型的数据科学家"></a>2. 3中类型的数据科学家</h1><p>书中将数据科学家分成了3类，主要从所在领域分类：</p>
-<ul>
-<li>商业领域出身</li>
-<li>统计学出身</li>
-<li>工程领域出身</li>
-</ul>
-<p>这应该也是数据科学家成长的3条路线，从不同的路线出发，最终殊途同归。当然，这3个领域需要综合，才称得上是合格的数据科学家。</p>
-<p>书中的技能配图，可以瞻仰下</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/reading_notes_data_analysis_01_01.png-blog.photo" alt="reading_notes_data_analysis_01_01.png"></p>
-<h1 id="数据分析的5个流程"><a href="#数据分析的5个流程" class="headerlink" title="数据分析的5个流程"></a>数据分析的5个流程</h1><p>书中，将数据分析分为5个步骤，看完后，感觉很靠谱，真的很实用，这里分享下</p>
-<p>商业数据分析的目的是解决问题，要解决问题，需要使用统计分析、机器学习、数据挖掘等各种方法。</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/reading_notes_data_analysis_01_02.png-blog.photo" alt="reading_notes_data_analysis_01_02.png"></p>
-<h2 id="现状和预期"><a href="#现状和预期" class="headerlink" title="现状和预期"></a>现状和预期</h2><p>首先我们要确认“什么才是数据分析中的问题”。<br>比如，“某种商品销售额下降”，这是一个现象，但它是不是一个问题呢？<br>如果，该产品不是公司主打商品，并且就要下架了，那销售额下降并不是一个问题，或者，该商品处于正常的波动，或是季节、市场环境的外部因素导致的，可能都不是一个问题；<br>相反，如果该商品是公司主打商品，并且没有其他外部因素导致，那销售额下降就是个问题了。</p>
-<p>这里记录下，其实，还需要确认下，销售额取数逻辑是否有问题，确保数据没有问题，并且要知道这个下降是怎么定义的，是和什么商品，或时间段对比发现下降的。</p>
-<p>有对比，才会有差距，既然下降了，说明他心里一定有个预期，即现状和预期之间是有差距的</p>
-<h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><p>有了上面的“现状和预期”，我们需要区别”现象和问题“。<br>像“销售额下降”，“顾客流失”，这都是一个现象，我们需要从中去发现问题</p>
-<table>
-<thead>
-<tr>
-<th>现象</th>
-<th>前提</th>
-<th>预期</th>
-<th>是否有问题</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>销售额下降</td>
-<td>销售额比例低</td>
-<td>维持现状</td>
-<td>无</td>
-</tr>
-<tr>
-<td>销售额下降</td>
-<td>销售额比例高</td>
-<td>将销售额恢复到良好状态</td>
-<td>有</td>
-</tr>
-<tr>
-<td>销售额上升</td>
-<td>广告费用高</td>
-<td>降低广告费用</td>
-<td>有</td>
-</tr>
-<tr>
-<td>销售额上升</td>
-<td>广告费用适当</td>
-<td>维持现状</td>
-<td>无</td>
-</tr>
-</tbody>
-</table>
-<h3 id="从3个角度发现问题"><a href="#从3个角度发现问题" class="headerlink" title="从3个角度发现问题"></a>从3个角度发现问题</h3><p>发现问题的关键是思考并理解现状和预期之间的差距。<br>那怎样发现、理解这个差距呢？</p>
-<h4 id="观察数据大小"><a href="#观察数据大小" class="headerlink" title="观察数据大小"></a>观察数据大小</h4><p>首先考虑有哪些因素会导致这些差距，并明确这些因素的影响程度大小，即找到影响最大的因素。</p>
-<h4 id="将数据分解后观察"><a href="#将数据分解后观察" class="headerlink" title="将数据分解后观察"></a>将数据分解后观察</h4><p>指从多个角度观察发生的现象，分解出构成这种现象的因素。在分解的时候，必须遵循MECE原则：</p>
-<ul>
-<li>Mutually 相互性</li>
-<li>Exclusive 排重性</li>
-<li>Collectively 完整性</li>
-<li>Exhaustive 全面性</li>
-</ul>
-<p>我感觉这个很抽象，不是很理解，书上有一个例子，说的还不错，<br>常用的拆分方法是因数分解，比如：</p>
-<p>销售额=人均销售额*购买人数</p>
-<p>拆解后，找到容易调控的因子，才方面后面去解决问题</p>
-<h4 id="将数据比较后观察"><a href="#将数据比较后观察" class="headerlink" title="将数据比较后观察"></a>将数据比较后观察</h4><p>指的是将发生问题是的数据和没发生问题时的数据相互比较，并找出问题出现的原因。<br>比如，按时间对比，看看同比、环比（使用时间序列）</p>
-<ul>
-<li>昨天和今天比较</li>
-<li>上周和本周比较</li>
-<li><p>同一个商业活动前、后比较</p>
-</li>
-<li><p>与竞争对手数据比较</p>
-</li>
-<li><p>公司内部服务之间利益比较</p>
-</li>
-<li><p>年龄段差异</p>
-</li>
-<li>性别差异</li>
-<li>地域差异</li>
-</ul>
-<h2 id="3-3-数据收集和整理"><a href="#3-3-数据收集和整理" class="headerlink" title="3.3 数据收集和整理"></a>3.3 数据收集和整理</h2><p>通过前面，对现状和预期的对比，发现影响最大的因素后，我们就需要开始收集数据，来验证问题。<br>数据收集的话，还会涉及到怎样去采集数据，比如想要的数据，并没有保存下来。<br>已保存下来的数据，通常会保存在文件、数据库或者是Hadoop（HDFS）中<br>收集完数据，我们就需要对数据进行加工，变成我们后面分析需要的格式，比如使用SQL进行处理，或者Python、R进行整合；我们再加工数据的同时，为了方便我们后面的分析，可能还需要增加一下自定义的变量，比如一些标志位，像“已消费（1），未消费（0）”；或者是一些离散变量，类似于区间段：</p>
-<ul>
-<li>消费金额较大用户（1）</li>
-<li>消费金额一般用户（2）</li>
-<li>消费金额较小用户（3）</li>
-</ul>
-<h2 id="3-4-数据分析"><a href="#3-4-数据分析" class="headerlink" title="3.4 数据分析"></a>3.4 数据分析</h2><p>书中把数据分析按目的，分为两大类：“决策支持和自动化、最优化”。<br>其中，“决策支持”使用简单求和、交叉列表的方式分析，还会涉及预测模型；<br>“自动化、最优化”则涉及机器学习、构建算法。</p>
-<h2 id="3-5-解决对策"><a href="#3-5-解决对策" class="headerlink" title="3.5 解决对策"></a>3.5 解决对策</h2><p>通过上面两种分析思路，我们需要针对分析的结果，来判断是否要采取对应的决策，不同的对策， 又会产生不同的沟通成本。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt; 读书笔记&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;《数据分析实战》 &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;1-什么是数据科学家&quot;&gt;&lt;a href=&quot;#1-什么是数据科学家&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是数据科学家&quot;&gt;&lt;/a&gt;1. 什么是数据科学家&lt;/h1&gt;&lt;p&gt;书中通过“什么是数据”和“数据在商业中的应用”，推导出数据科学家的定义。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;人们通过观测数据来推测出某种因果关系，再用这种因果关系来预测未来或者控制原因以达到预期的结果。把从事这种工作的人成为数据科学家。&lt;br&gt;– 书中摘录&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;上面的定义觉得不是很清晰，就百度上找了找：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;数据科学家是指能采用科学方法、运用数据挖掘工具对复杂多量的数字、符号、文字、网址、音频或视频等信息进行数字化重现与认识，并能寻找新的数据洞察的工程师或专家(不同于统计学家或分析师)。一个优秀的数据科学家需要具备的素质有：懂数据采集、懂数学算法、懂数学软件、懂数据分析、懂预测分析、懂市场应用、懂决策分析等。&lt;br&gt;– 百度百科&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;我觉得数据科学家就是对于数据相关的所有门类都有一个整体的认识，感觉是个“杂家”，精通算法、什么深度学习、机器学习、AI之类的都是信手拈来，对我就是神一样的存在了，努力吧，同学。&lt;/p&gt;
     
     </summary>
     
