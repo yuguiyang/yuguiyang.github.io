@@ -142,9 +142,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MySQL-regexp]]></title>
-    <url>%2F2017%2F09%2F09%2Fmysql-handbook-04%2F</url>
-    <content type="text"><![CDATA[MySQL正则表达式 在前面，我们了解了like的使用，它可以做一些简单的匹配 在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符 但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。 常用的正则表达式，更多的内容，大家可以百度下 我们就以前面的t_student表为例 查询学生姓路或乔的学生信息12345-- like select *from t_student where s_name like '路%' or s_name like '乔%'-- regexpselect *from t_student where s_name regexp '^(路|乔)' 查询名字是以美结尾的学生信息1select *from t_student where s_name regexp '美$' 查询学生爱好中，有吃肉的学生信息1select *from t_student where s_hobby regexp '吃肉' 查询学生姓乔或者名字中有美字的学生信息1select *from t_student where s_name regexp '(^乔)|美' 小结这里先整理这几个简单的例子，后续会再补充。 可以参考官方的文档练习：https://dev.mysql.com/doc/refman/5.7/en/regexp.html]]></content>
+    <title><![CDATA[MySQL-分组排序]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-05%2F</url>
+    <content type="text"><![CDATA[MySQL分组排序 使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。 我们先来看第一个类型的问题，关于排序的问题 排名就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名在postgresql中可以使用像rank() over()这样的函数1234567select course_name, s_id, score, rank() over(order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现12345678910select course_name, s_id, score, -- 根据排序规则，每条记录增加1 @rn:=@rn+1 as rank_score -- 初始化变量@rn，从0开始from t_score cross join (select @rn:=0) xorder by score desc; 细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？ 当然可以，我们改一下SQL只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score12345678910111213select course_name, s_id, score, @pre pre_score, -- 判断当前score是否和上一条记录的score相等， -- 如果相等则使用和上一条一样的排名 if(@pre=score ,@rn:=@rn,@rn:=@rn+1) as rank_score, @pre:=score cur_score -- 使用pre来保存上一条记录的scorefrom t_score cross join (select @rn:=0,@pre:=null) xorder by score desc; 上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？ 我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。 1234567891011select course_name, s_id, score, @pre pre_score, @rn_1:=@rn_1+1 rank_score_1, if(@pre=score ,@rn:=@rn,@rn:=@rn_1) as rank_score, @pre:=score cur_score from t_score cross join (select @rn:=0,@pre:=null,@rn_1:=0) xorder by score desc 我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。 分组排序就是给每个分组中的数据，分别进行排名如果有类似rank() over()的函数12345678-- 在postgresql中select course_name, s_id, score, rank() over(partition by course_name order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，如果课程名称一样，则继续排名，如果不一样，则重新开始排名1234567891011set @rn:=0;set @pre_course:=null;select course_name, s_id, score, if(@pre_course=course_name,@rn:=@rn+1,@rn:=0), @pre_course:= course_name from t_score order by course_name,score desc;]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -154,9 +154,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MySQL-分组排序]]></title>
-    <url>%2F2017%2F09%2F09%2Fmysql-handbook-05%2F</url>
-    <content type="text"><![CDATA[MySQL分组排序 使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。 我们先来看第一个类型的问题，关于排序的问题 排名就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名在postgresql中可以使用像rank() over()这样的函数1234567select course_name, s_id, score, rank() over(order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现12345678910select course_name, s_id, score, -- 根据排序规则，每条记录增加1 @rn:=@rn+1 as rank_score -- 初始化变量@rn，从0开始from t_score cross join (select @rn:=0) xorder by score desc; 细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？ 当然可以，我们改一下SQL只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score12345678910111213select course_name, s_id, score, @pre pre_score, -- 判断当前score是否和上一条记录的score相等， -- 如果相等则使用和上一条一样的排名 if(@pre=score ,@rn:=@rn,@rn:=@rn+1) as rank_score, @pre:=score cur_score -- 使用pre来保存上一条记录的scorefrom t_score cross join (select @rn:=0,@pre:=null) xorder by score desc; 上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？ 我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。 1234567891011select course_name, s_id, score, @pre pre_score, @rn_1:=@rn_1+1 rank_score_1, if(@pre=score ,@rn:=@rn,@rn:=@rn_1) as rank_score, @pre:=score cur_score from t_score cross join (select @rn:=0,@pre:=null,@rn_1:=0) xorder by score desc 我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。 分组排序就是给每个分组中的数据，分别进行排名如果有类似rank() over()的函数12345678-- 在postgresql中select course_name, s_id, score, rank() over(partition by course_name order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，如果课程名称一样，则继续排名，如果不一样，则重新开始排名1234567891011set @rn:=0;set @pre_course:=null;select course_name, s_id, score, if(@pre_course=course_name,@rn:=@rn+1,@rn:=0), @pre_course:= course_name from t_score order by course_name,score desc;]]></content>
+    <title><![CDATA[MySQL-regexp]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-04%2F</url>
+    <content type="text"><![CDATA[MySQL正则表达式 在前面，我们了解了like的使用，它可以做一些简单的匹配 在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符 但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。 常用的正则表达式，更多的内容，大家可以百度下 我们就以前面的t_student表为例 查询学生姓路或乔的学生信息12345-- like select *from t_student where s_name like '路%' or s_name like '乔%'-- regexpselect *from t_student where s_name regexp '^(路|乔)' 查询名字是以美结尾的学生信息1select *from t_student where s_name regexp '美$' 查询学生爱好中，有吃肉的学生信息1select *from t_student where s_hobby regexp '吃肉' 查询学生姓乔或者名字中有美字的学生信息1select *from t_student where s_name regexp '(^乔)|美' 小结这里先整理这几个简单的例子，后续会再补充。 可以参考官方的文档练习：https://dev.mysql.com/doc/refman/5.7/en/regexp.html]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -302,7 +302,7 @@
   </entry>
   <entry>
     <title><![CDATA[词云图之《战狼2》影评]]></title>
-    <url>%2F2017%2F08%2F22%2Fpython-handbook-01%2F</url>
+    <url>%2F2017%2F08%2F22%2Fpython-demo-01%2F</url>
     <content type="text"><![CDATA[下午看了社区里的一篇文章《Python 爬虫实践：《战狼2》豆瓣影评分析》，感谢分享。最近也是在学习爬虫，周末刚好看了词云图，这里就自己也来实现下。 周末的词云图介绍《word_cloud-用Python之作个性化词云图》 豆瓣影评页面分析我们到豆瓣电影模块，选择《战狼2》，找到下面的短评 页面地址：https://movie.douban.com/subject/26363254/comments?status=P 通过FireBug，观察页面，可以发现，评论信息还是很好拿的 然后，我们看看下一页数据是怎么获取的 这里是直接用参数传的，多点几次观察，就会发现规律 这里有个小疑问，他这个参数start，短评每页20条没有问题，但是这个start，并不是0，20,40开始的，会跳跃，不知道为啥，而且，这个limit貌似是假的，我改成100都没用，还是显示20条而且，不登录的话，并不能看完所有的短评，后面会报错，说没有权限。1234567891011121314151617#解析当前页面 def parseCurrentPage(html): soup = BeautifulSoup(html, "html.parser") #获取评论信息 p_comments = soup.select('div#comments div.comment p') p_lines=[] for com in p_comments: p_lines.append(com.contents[0].strip()+'\n') #获取下一页信息，可以通过这个获取数据 p_next = soup.select_one('div#paginator a.next') #print(p_next) print(p_next['href']) return p_lines 生成词云图这里的方法还是和周末的那一篇类似，这里多了一个stopwords的概念，就是剔除了一些没有用的词语，貌似网上可以找到通用的一些，我这里直接根据测试，手动剔除的。 原文是自己使用pandas统计的词频，我这里直接就传给Wordcloud了，后面再试试12345#指定需要提出的词语 stopwords = &#123;u'个',u'一个',u'这个',u'个人',u'不是',u'就是',u'一部',u'这部' ,u'我们',u'所以',u'不会',u'这种',u'没有',u'各种',u'觉得' ,u'真的',u'知道',u'还是',u'但是',u'可以',u'这么',u'因为',u'很多'&#125; print('stopwords',stopwords) 实例代码刚刚看了下导出的评论文件，发现有重复数据，一定是哪里有问题 刚试了下，这个影评的返回结果有毒啊1234https://movie.douban.com/subject/26363254/comments?start=20&amp;limit=20&amp;sort=new_score&amp;status=P和https://movie.douban.com/subject/26363254/comments?start=26&amp;limit=20&amp;sort=new_score&amp;status=P这2个显示的内容居然是一样的。。看来还是得通过每次下一页的href属性去获取下一页地址 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788# -*- coding: utf-8 -*-"""Created on Tue Aug 22 16:13:24 2017@author: yuguiyang"""import osimport urllibfrom bs4 import BeautifulSoupimport jiebafrom wordcloud import WordCloudimport matplotlib.pyplot as pltfile_name = 'douban_movie_zhanlang.txt'#根据URL，获取页面源码def getHtml(url): req = urllib.request.Request(url) page = urllib.request.urlopen(req).read().decode('utf-8') return page#删除文件def clearFile(targetFile): if os.path.exists(targetFile): os.remove(targetFile) #将数据保存到文件def save2file(lines,targetFile): with open(targetFile,'a') as file: file.writelines(lines)#解析当前页面 def parseCurrentPage(html): soup = BeautifulSoup(html, "html.parser") #获取评论信息 p_comments = soup.select('div#comments div.comment p') p_lines=[] for com in p_comments: p_lines.append(com.contents[0].strip()+'\n') #获取下一页信息，可以通过这个获取数据 p_next = soup.select_one('div#paginator a.next') #print(p_next) print(p_next['href']) return p_lines def showWordCloud(targetFile): #指定字体，是为了显示中文 font = r'C:\Windows\Fonts\simsun.ttc' with open(targetFile) as file: comments = file.read() text_cut = jieba.cut(comments , cut_all=False) #指定需要提出的词语 stopwords = &#123;u'个',u'一个',u'这个',u'个人',u'不是',u'就是',u'一部',u'这部' ,u'我们',u'所以',u'不会',u'这种',u'没有',u'各种',u'觉得' ,u'真的',u'知道',u'还是',u'但是',u'可以',u'这么',u'因为',u'很多'&#125; print('stopwords',stopwords) wordcloud = WordCloud(font_path=font,width=800,height=400, background_color='white',stopwords=stopwords ).generate(' '.join(text_cut)) plt.imshow(wordcloud, interpolation='bilinear') plt.axis("off") def main(): url = 'https://movie.douban.com/subject/26363254/comments?start=&#123;0&#125;&amp;limit=20&amp;sort=new_score&amp;status=P' clearFile(file_name) #直接遍历200条评论，这里要注意，超过多少页后，需要登录才可以，这里暂时还没有做，就到200 for i in range(0,200,20): print(url.format(i)) html = getHtml(url.format(i)) movie_comments = parseCurrentPage(html) save2file(movie_comments,file_name) #显示词云图 showWordCloud(file_name)if __name__=='__main__': main()]]></content>
       <categories>
         <category>数据可视化-Python&amp;R</category>
@@ -530,6 +530,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Python基础（3）- lambda表达式]]></title>
+    <url>%2F2017%2F08%2F01%2Fpython-handbook-03%2F</url>
+    <content type="text"><![CDATA[这里简单整理下，lambda表达式相关内容。 什么是lambda表达式lambda表达式，是一个匿名函数，用起来方便快捷一些123456#lambda 参数:操作(参数)fun_add = lambda x: x+1print(fun_add(1))print(fun_add(10)) 这里，一个简单的加1的函数，看起来也很直观1234fun_add = lambda x,y: x+yprint(fun_add(3,4))print(fun_add(8,9)) 这是x+y的函数，的确简洁很多看网上，提到lambda表达式的话，都会提到函数式编程，一些常用的函数，像map,reduce,filter,sorted， map函数map是Python内置的一个函数，接收2个参数，一个函数，一个或多个可迭代参数1234map(func, *iterables) --&gt; map objectMake an iterator that computes the function using arguments fromeach of the iterables. Stops when the shortest iterable is exhausted. 12345678d1 = [1,2,3,4,5]def add(x): return x+10t = map(add , d1)print('原来的list:',d1)print('执行add后的list:',list(t)) 我们定义了一个函数，对传入的参数加10，一个list map把这个函数，作用在每一个list的元素上，这里呢，我们就可以用lambda表达式写，方便又直观1234d1 = [1,2,3,4,5]t = map(lambda x: x+10 , d1)print('原来的list:',d1)print('执行add后的list:',list(t)) 我们也可以传2个list，这里会计算2个list的和1234s1 = [1,2,3]s2 = [4,5,6]t = map(lambda x,y: x+y,s1,s2)print(list(t)) ##[5, 7, 9] reduce函数reduce会将function作用于sequence，function接收2个参数12345678reduce(function, sequence[, initial]) -&gt; valueApply a function of two arguments cumulatively to the items of a sequence,from left to right, so as to reduce the sequence to a single value.For example, reduce(lambda x, y: x+y, [1, 2, 3, 4, 5]) calculates((((1+2)+3)+4)+5). If initial is present, it is placed before the itemsof the sequence in the calculation, and serves as a default when thesequence is empty. 12345t = reduce(lambda x,y: x+y, [1,2,3])print(t) #6，((1+2)+3)=6t = reduce(lambda x,y: x*10+y,[1,2,3])print(t) # ((1*10+2)*10+3)=123 filter函数看名字，就是一个过滤的功能，对每个item调用function，只返回为True的1234| filter(function or None, iterable) --&gt; filter object| | Return an iterator yielding those items of iterable for which function(item)| is true. If function is None, return the items that are true. 12t = filter(lambda x: x&lt;0,range(-5,5))print(list(t)) #[-5, -4, -3, -2, -1]]]></content>
+      <categories>
+        <category>Python-基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Pandas手册（5）- 用pandas完成excel中常见任务]]></title>
     <url>%2F2017%2F08%2F01%2Fpandas-handbook-05%2F</url>
     <content type="text"><![CDATA[PythonPandas 发现了一篇很好的教程，介绍一些Excel中的常用操作，怎样在pandas中实现，很不错，这里学习，顺便分享下。原文地址：用Pandas完成Excel中常见的任务， 这个是翻译的，再原文是：Common Excel Tasks Demonstrated in Pandas 好了，下面，我们开始学习下。 基础数据这个是从网上找的一个成绩单，拿了一部分数据 首先呢，我们想要，在加一列，显示总分，Excel中很方便 在pandas中呢，其实，我们就是需要“数学”，“语文”，“英语”这3列加在一起，我们怎样获取这3列呢？前面，我们说过在DataFrame中，怎样去筛选数据 12345678import pandas as pdimport numpy as npdf = pd.read_excel(r'D:\document\tableau_data\data_stu.xlsx',sheetname=0)print(df)print(df['数学'])print(df['语文']) 那我们只需要新增一列，把已知的3列加起来就行12df['总分'] = df['数学'] + df['语文'] + df['英语']print(df) 也是很方便，按照思路，直接相加就行了下面呢，我们来统计下，数学的总分、语文的总分，就是把每一列的数据都相加 DataFrame中有很多的聚合函数，这里简单介绍下12345678#数学的最大值print(df['数学'].max())#数学的最小值print(df['数学'].min())#数学的平均值print(df['数学'].mean())#数学的总分print(df['数学'].sum()) 这个和SQL里面一样，Excel里也是这样的，他会从这一列中，获取最大值、最小值等等下面，我们算个列的总分1234df['总分'] = df['数学'] + df['语文'] + df['英语']sum_data = df[['数学','语文','英语','总分']].sum()print(sum_data)print(type(sum_data)) 这样，我们构造了一个Series前面呢，我们知道，Series可以初始化一个DataFrame12df2 = pd.DataFrame(sum_data)print(df2) 初始化之后呢，是这样的，但是，结构不太一样，我们可以做一下行列转换12df2 = pd.DataFrame(sum_data).Tprint(df2) 这回样子像一些了，但是DataFrame中，需要保持结构一致，我们还需要填充几列我们可以用到reindex函数，重构一下索引12345DataFrame.reindex(index=None, columns=None, **kwargs)df2 = pd.DataFrame(sum_data).Tdf2 = df2.reindex(columns=df.columns)print(df2) 到了这里，我们只要将这个DataFrame插入到原来的DataFrame中就行了1DataFrame.append(other, ignore_index=False, verify_integrity=False)Append rows of other to the end of this frame, returning a new object. Columns not in this frame are added as new columns. 刚试了下，发现，前面不重构索引的话，也是可以的，这里会自动补全12df3 = df.append(df2,ignore_index=True)print(df3) 原文中还有些模糊匹配的例子，这里就不练习了，下面，我们看个分类汇总的小问题，这里又增加了一个班级列，要不不好测试 Excel里面实现，应该是这样的，在pandas中，我们要使用groupby这个函数1print(df[['班级','数学','语文','英语']].groupby(by=['班级']).sum() ) 原文中，还有一个格式化和rename index的问题，格式化还没搞明白，后面再说下吧1234567DataFrame.rename(index=None, columns=None, **kwargs)df2 = df[['班级','数学','语文','英语']].groupby(by=['班级']).sum()print(df2)df2 = df2.rename(index=&#123;'1班':'1班-汇总','2班':'2班-汇总'&#125;)print(df2) 我们可以通过一个dict，来替换索引的名字 好了，今天的分享就是这些，总结下呢，主要是对DataFrame中函数的理解和使用，还是得多多的练习才可以。 – 这里回头试下那个格式化的问题，刚刚学习了下，可以参考：Python基础（2）- 格式化format 主要就是format那个函数的使用，还有DataFrame中那个applymap的使用1DataFrame.applymap(func)Apply a function to a DataFrame that is intended to operate elementwise, i.e. like doing map(func, series) for each series in the DataFrame 123456789101112131415import pandas as pdimport numpy as npdf = pd.read_excel(r'D:\document\tableau_data\data_stu.xlsx',sheetname=0)print(df)df2 = df[['班级','数学','语文','英语']].groupby(by=['班级']).sum()print(df2)df2 = df2.rename(index=&#123;'1班':'1班-汇总','2班':'2班-汇总'&#125;)print(df2)def score(s): return '@&#123;:.2f&#125;@分'.format(s)df3 = df2.applymap(score)print(df3)]]></content>
@@ -539,6 +550,17 @@
       <tags>
         <tag>Python</tag>
         <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python基础（2）- 格式化format]]></title>
+    <url>%2F2017%2F08%2F01%2Fpython-handbook-02%2F</url>
+    <content type="text"><![CDATA[刚刚在练习pandas的时候，遇到一个格式化的问题，没有太理解，百度了下，这里整理下。str.format()，是一个格式化字符串的函数，很强大 str.format(args, *kwargs) 主要是使用 {}和:这里直接就复制过来了，我们可以通过参数的位置来输出12345678&gt;&gt;&gt;"&#123;&#125; &#123;&#125;".format("hello", "world") # 不设置指定位置，按默认顺序'hello world' &gt;&gt;&gt; "&#123;0&#125; &#123;1&#125;".format("hello", "world") # 设置指定位置'hello world' &gt;&gt;&gt; "&#123;1&#125; &#123;0&#125; &#123;1&#125;".format("hello", "world") # 设置指定位置'world hello world' 我们也可以通过key，value的形式来格式化1234567'name:&#123;name&#125;,age:&#123;age&#125;'.format(name='lufei',age=20)Out[46]: 'name:lufei,age:20'p=['namei',20]'name:&#123;0[0]&#125;,age:&#123;0[1]&#125;'.format(p)Out[51]: 'name:namei,age:20' 填充与对齐 12345678910111213^、&lt;、&gt;分别是居中、左对齐、右对齐，后面带宽度:号后面带填充的字符，只能是一个字符，不指定的话默认是用空格填充#右对齐，长度为8，不够的默认用空格补全'&#123;:&gt;8&#125;'.format('189')Out[52]: ' 189'#右对齐，长度为8，不够的用0补全'&#123;:0&gt;8&#125;'.format('189')Out[53]: '00000189''&#123;:a&gt;8&#125;'.format('189')Out[54]: 'aaaaa189' 数值精度这个说的挺全的，直接截图来吧 参考资料：Python format 格式化函数官方介绍：Format String Syntax飘逸的python - 增强的格式化字符串format函数]]></content>
+      <categories>
+        <category>Python-基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -635,6 +657,17 @@
       <tags>
         <tag>Python</tag>
         <tag>BeautifulSoup</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python基础（1）- 私有变量]]></title>
+    <url>%2F2017%2F04%2F16%2Fpython-handbook-01%2F</url>
+    <content type="text"><![CDATA[今天简单看了看Python中的面向对象的一些教程，简单记录下，和Java中还是有很多类似的看的是这个博客：访问限制 比如我们定义一个Student类一个init构造函数，初始化2个属性，一个名字，一个成绩；还有一个打印函数，输出学生的名字和成绩12345678910111213class Student(object): def __init__(self, name, score): "initial student" self.name = name self.score = score def print_score(self): "print student info" print '%s : %s' %(self.name, self.score)s1 = Student('lufei' , 99)s1.print_score() 了解Java的同学都知道，我们一般定义实体类的话，一般都是private，然后定义get、set方法，如果只是上面的代码，我们就可以随便的调用name和score了我们需要加上限制1234def __init__(self, name, score): "initial student" self.__name = name self.__score = score 我们在变量前面加上“__”就可以了 如果我们要引用的话，就会报错了，同样的，我们也可以加上get、set方法来使用12345678910def get_name(self): return self.__namedef set_name(self,name): self.__name=nameprint s1.get_name()s1.set_name('libai')print s1.get_name() 原文还有很多其他内容，大家可以自行看看，我就简单记录这些]]></content>
+      <categories>
+        <category>Python-基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
