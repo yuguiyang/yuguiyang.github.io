@@ -351,7 +351,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/09/crawler-demo-01/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/15/pandas-handbook-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -370,7 +370,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/09/crawler-demo-01/" itemprop="url">爬虫小实例学习篇-猫眼电影</a></h1>
+                <a class="post-title-link" href="/2017/08/15/pandas-handbook-10/" itemprop="url">Pandas手册（10）- 数据转换</a></h1>
         
 
         <div class="post-meta">
@@ -382,8 +382,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-09T21:59:00+08:00">
-                2017-08-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T08:00:00+08:00">
+                2017-08-15
               </time>
             
 
@@ -405,8 +405,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-爬虫/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-爬虫</span>
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
                   </a>
                 </span>
 
@@ -443,18 +443,20 @@
 
       
         
-          <p>这里参考了论坛里一位同学分享的博客：<a href="https://ask.hellobi.com/blog/JiangYiXin/7660" target="_blank" rel="external">猫眼电影TOP100爬取练习</a>，感谢分享。</p>
-<p>学习要从模仿开始，学习了上面的博客之后，自己做下练习，正好最近看了selenium，就用了这个。</p>
-<p>原作者的正则用的太溜了，等后面有时间再研究下，这里就简单的使用CSS Selector来实现了。</p>
-<p>原文代码很精彩，我这个代码就粗糙很多了，先来个初始版，后面再慢慢优化。</p>
-<p>大体思路和<a href="https://ask.hellobi.com/blog/yuguiyang1990/9172" target="_blank" rel="external">Python基础（7）- Selenium使用</a>  里面的豆瓣读书例子差不多，</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/09/crawler-demo-01/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p>Python<br>Pandas</p>
+<hr>
+<p>这里接着上一篇，继续记录下pandas中数据处理方面的函数</p>
+<h1 id="1-重复数据"><a href="#1-重复数据" class="headerlink" title="1.  重复数据"></a>1.  重复数据</h1><p>结果集中，可能会有重复数据，有函数可以做去重操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#判断数据是否重复</span></div><div class="line">DataFrame.duplicated(subset=<span class="keyword">None</span>, keep=<span class="string">'first'</span>)</div><div class="line">Return boolean Series denoting duplicate rows, optionally only considering certain columns</div><div class="line"></div><div class="line"><span class="comment">#删除重复记录</span></div><div class="line">DataFrame.drop_duplicates(subset=<span class="keyword">None</span>, keep=<span class="string">'first'</span>, inplace=<span class="keyword">False</span>)</div><div class="line">Return DataFrame <span class="keyword">with</span> duplicate rows removed, optionally only considering certain columns</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">data = pd.DataFrame(&#123;<span class="string">'K1'</span>:[<span class="string">'one'</span>]*<span class="number">3</span>+[<span class="string">'two'</span>]*<span class="number">4</span>,<span class="string">'k2'</span>:[<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>]&#125;)</div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">100</span>]: </div><div class="line">    K1  k2</div><div class="line"><span class="number">0</span>  one   <span class="number">1</span></div><div class="line"><span class="number">1</span>  one   <span class="number">1</span></div><div class="line"><span class="number">2</span>  one   <span class="number">2</span></div><div class="line"><span class="number">3</span>  two   <span class="number">3</span></div><div class="line"><span class="number">4</span>  two   <span class="number">3</span></div><div class="line"><span class="number">5</span>  two   <span class="number">4</span></div><div class="line"><span class="number">6</span>  two   <span class="number">4</span></div><div class="line"></div><div class="line"><span class="comment">#keep参数，默认是first，会以第一个为准，后面再出现就是True</span></div><div class="line">data.duplicated()</div><div class="line">Out[<span class="number">103</span>]: </div><div class="line"><span class="number">0</span>    <span class="keyword">False</span></div><div class="line"><span class="number">1</span>     <span class="keyword">True</span></div><div class="line"><span class="number">2</span>    <span class="keyword">False</span></div><div class="line"><span class="number">3</span>    <span class="keyword">False</span></div><div class="line"><span class="number">4</span>     <span class="keyword">True</span></div><div class="line"><span class="number">5</span>    <span class="keyword">False</span></div><div class="line"><span class="number">6</span>     <span class="keyword">True</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line">data.duplicated(keep=<span class="string">'last'</span>)</div><div class="line">Out[<span class="number">116</span>]: </div><div class="line"><span class="number">0</span>     <span class="keyword">True</span></div><div class="line"><span class="number">1</span>    <span class="keyword">False</span></div><div class="line"><span class="number">2</span>    <span class="keyword">False</span></div><div class="line"><span class="number">3</span>     <span class="keyword">True</span></div><div class="line"><span class="number">4</span>    <span class="keyword">False</span></div><div class="line"><span class="number">5</span>     <span class="keyword">True</span></div><div class="line"><span class="number">6</span>    <span class="keyword">False</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line"><span class="comment">#这里drop也是一样的，可以用keep控制保留第一次出现的，还是最后1次出现的</span></div><div class="line">data.drop_duplicates()</div><div class="line">Out[<span class="number">104</span>]: </div><div class="line">    K1  k2</div><div class="line"><span class="number">0</span>  one   <span class="number">1</span></div><div class="line"><span class="number">2</span>  one   <span class="number">2</span></div><div class="line"><span class="number">3</span>  two   <span class="number">3</span></div><div class="line"><span class="number">5</span>  two   <span class="number">4</span></div></pre></td></tr></table></figure>
+<p>这2个函数，默认都是判断全部的列，也可以指定列<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">data[<span class="string">'v1'</span>]=range(<span class="number">7</span>)</div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">118</span>]: </div><div class="line">    K1  k2  v1</div><div class="line"><span class="number">0</span>  one   <span class="number">1</span>   <span class="number">0</span></div><div class="line"><span class="number">1</span>  one   <span class="number">1</span>   <span class="number">1</span></div><div class="line"><span class="number">2</span>  one   <span class="number">2</span>   <span class="number">2</span></div><div class="line"><span class="number">3</span>  two   <span class="number">3</span>   <span class="number">3</span></div><div class="line"><span class="number">4</span>  two   <span class="number">3</span>   <span class="number">4</span></div><div class="line"><span class="number">5</span>  two   <span class="number">4</span>   <span class="number">5</span></div><div class="line"><span class="number">6</span>  two   <span class="number">4</span>   <span class="number">6</span></div><div class="line"></div><div class="line">data.duplicated()</div><div class="line">Out[<span class="number">119</span>]: </div><div class="line"><span class="number">0</span>    <span class="keyword">False</span></div><div class="line"><span class="number">1</span>    <span class="keyword">False</span></div><div class="line"><span class="number">2</span>    <span class="keyword">False</span></div><div class="line"><span class="number">3</span>    <span class="keyword">False</span></div><div class="line"><span class="number">4</span>    <span class="keyword">False</span></div><div class="line"><span class="number">5</span>    <span class="keyword">False</span></div><div class="line"><span class="number">6</span>    <span class="keyword">False</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line">data.duplicated(subset=[<span class="string">'K1'</span>])</div><div class="line">Out[<span class="number">120</span>]: </div><div class="line"><span class="number">0</span>    <span class="keyword">False</span></div><div class="line"><span class="number">1</span>     <span class="keyword">True</span></div><div class="line"><span class="number">2</span>     <span class="keyword">True</span></div><div class="line"><span class="number">3</span>    <span class="keyword">False</span></div><div class="line"><span class="number">4</span>     <span class="keyword">True</span></div><div class="line"><span class="number">5</span>     <span class="keyword">True</span></div><div class="line"><span class="number">6</span>     <span class="keyword">True</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line">data.drop_duplicates(subset=[<span class="string">'K1'</span>])</div><div class="line">Out[<span class="number">121</span>]: </div><div class="line">    K1  k2  v1</div><div class="line"><span class="number">0</span>  one   <span class="number">1</span>   <span class="number">0</span></div><div class="line"><span class="number">3</span>  two   <span class="number">3</span>   <span class="number">3</span></div></pre></td></tr></table></figure></p>
+<h1 id="2-利用函数或映射进行数据转换"><a href="#2-利用函数或映射进行数据转换" class="headerlink" title="2. 利用函数或映射进行数据转换"></a>2. 利用函数或映射进行数据转换</h1><p>有的时候，我们想要对Series和dataframe中的每个元素做些转换，就用到了这个函数，和Python内置的map函数类似<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Series.map(arg, na_action=<span class="keyword">None</span>)</div><div class="line">Map values of Series using input correspondence (which can be a dict, Series, <span class="keyword">or</span> function)</div><div class="line">arg : function, dict, <span class="keyword">or</span> Series</div><div class="line"></div><div class="line">DataFrame.applymap(func)</div><div class="line">Apply a function to a DataFrame that <span class="keyword">is</span> intended to operate elementwise, i.e. like doing map(func, series) <span class="keyword">for</span> each series <span class="keyword">in</span> the DataFrame</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">s1 = pd.Series(range(<span class="number">10</span>))</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">133</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">0</span></div><div class="line"><span class="number">1</span>    <span class="number">1</span></div><div class="line"><span class="number">2</span>    <span class="number">2</span></div><div class="line"><span class="number">3</span>    <span class="number">3</span></div><div class="line"><span class="number">4</span>    <span class="number">4</span></div><div class="line"><span class="number">5</span>    <span class="number">5</span></div><div class="line"><span class="number">6</span>    <span class="number">6</span></div><div class="line"><span class="number">7</span>    <span class="number">7</span></div><div class="line"><span class="number">8</span>    <span class="number">8</span></div><div class="line"><span class="number">9</span>    <span class="number">9</span></div><div class="line">dtype: int32</div><div class="line"></div><div class="line">s1.map(<span class="keyword">lambda</span> x:x+<span class="number">10</span>)</div><div class="line">Out[<span class="number">134</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">10</span></div><div class="line"><span class="number">1</span>    <span class="number">11</span></div><div class="line"><span class="number">2</span>    <span class="number">12</span></div><div class="line"><span class="number">3</span>    <span class="number">13</span></div><div class="line"><span class="number">4</span>    <span class="number">14</span></div><div class="line"><span class="number">5</span>    <span class="number">15</span></div><div class="line"><span class="number">6</span>    <span class="number">16</span></div><div class="line"><span class="number">7</span>    <span class="number">17</span></div><div class="line"><span class="number">8</span>    <span class="number">18</span></div><div class="line"><span class="number">9</span>    <span class="number">19</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s1.map(<span class="keyword">lambda</span> x:x*<span class="number">-1</span>)</div><div class="line">Out[<span class="number">135</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">0</span></div><div class="line"><span class="number">1</span>   <span class="number">-1</span></div><div class="line"><span class="number">2</span>   <span class="number">-2</span></div><div class="line"><span class="number">3</span>   <span class="number">-3</span></div><div class="line"><span class="number">4</span>   <span class="number">-4</span></div><div class="line"><span class="number">5</span>   <span class="number">-5</span></div><div class="line"><span class="number">6</span>   <span class="number">-6</span></div><div class="line"><span class="number">7</span>   <span class="number">-7</span></div><div class="line"><span class="number">8</span>   <span class="number">-8</span></div><div class="line"><span class="number">9</span>   <span class="number">-9</span></div><div class="line">dtype: int64</div></pre></td></tr></table></figure>
+<p>这个map，不单单可以是函数，还可以是 Series或dict<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">x = pd.Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], index=[<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>])</div><div class="line"></div><div class="line">y = pd.Series([<span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="string">'baz'</span>], index=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line"></div><div class="line">x</div><div class="line">Out[<span class="number">142</span>]: </div><div class="line">one      <span class="number">1</span></div><div class="line">two      <span class="number">2</span></div><div class="line">three    <span class="number">3</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">y</div><div class="line">Out[<span class="number">143</span>]: </div><div class="line"><span class="number">1</span>    foo</div><div class="line"><span class="number">2</span>    bar</div><div class="line"><span class="number">3</span>    baz</div><div class="line">dtype: object</div><div class="line"></div><div class="line">x.map(y)</div><div class="line">Out[<span class="number">144</span>]: </div><div class="line">one      foo</div><div class="line">two      bar</div><div class="line">three    baz</div><div class="line">dtype: object</div><div class="line"></div><div class="line">z = &#123;<span class="number">1</span>: <span class="string">'A'</span>, <span class="number">2</span>: <span class="string">'B'</span>, <span class="number">3</span>: <span class="string">'C'</span>&#125;</div><div class="line"></div><div class="line">x.map(z)</div><div class="line">Out[<span class="number">146</span>]: </div><div class="line">one      A</div><div class="line">two      B</div><div class="line">three    C</div><div class="line">dtype: object</div></pre></td></tr></table></figure></p>
+<h1 id="3-替换值"><a href="#3-替换值" class="headerlink" title="3.替换值"></a>3.替换值</h1><p>在字符串中，我们经常会用到replace函数，用来替换指定的值，pandas中也有<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">DataFrame.replace(to_replace=<span class="keyword">None</span>, value=<span class="keyword">None</span>, inplace=<span class="keyword">False</span>, limit=<span class="keyword">None</span>, regex=<span class="keyword">False</span>, method=<span class="string">'pad'</span>, axis=<span class="keyword">None</span>)</div><div class="line">Replace values given <span class="keyword">in</span> ‘to_replace’ <span class="keyword">with</span> ‘value’.</div><div class="line">to_replace : str, regex, list, dict, Series, numeric, <span class="keyword">or</span> <span class="keyword">None</span></div><div class="line"></div><div class="line">Series.replace(to_replace=<span class="keyword">None</span>, value=<span class="keyword">None</span>, inplace=<span class="keyword">False</span>, limit=<span class="keyword">None</span>, regex=<span class="keyword">False</span>, method=<span class="string">'pad'</span>, axis=<span class="keyword">None</span>)</div><div class="line">Replace values given <span class="keyword">in</span> ‘to_replace’ <span class="keyword">with</span> ‘value’.</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">data = pd.Series([<span class="number">1.</span>, <span class="number">-999.</span>, <span class="number">2.</span>, <span class="number">-999.</span>, <span class="number">-1000.</span>, <span class="number">3.</span>])</div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">150</span>]: </div><div class="line"><span class="number">0</span>       <span class="number">1.0</span></div><div class="line"><span class="number">1</span>    <span class="number">-999.0</span></div><div class="line"><span class="number">2</span>       <span class="number">2.0</span></div><div class="line"><span class="number">3</span>    <span class="number">-999.0</span></div><div class="line"><span class="number">4</span>   <span class="number">-1000.0</span></div><div class="line"><span class="number">5</span>       <span class="number">3.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#我们将-999这个异常值替换掉</span></div><div class="line">data.replace(<span class="number">-999</span>,np.nan)</div><div class="line">Out[<span class="number">151</span>]: </div><div class="line"><span class="number">0</span>       <span class="number">1.0</span></div><div class="line"><span class="number">1</span>       NaN</div><div class="line"><span class="number">2</span>       <span class="number">2.0</span></div><div class="line"><span class="number">3</span>       NaN</div><div class="line"><span class="number">4</span>   <span class="number">-1000.0</span></div><div class="line"><span class="number">5</span>       <span class="number">3.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#同时替换多个值，也可以</span></div><div class="line">data.replace([<span class="number">-999</span>,<span class="number">-1000</span>],np.nan)</div><div class="line">Out[<span class="number">152</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">1.0</span></div><div class="line"><span class="number">1</span>    NaN</div><div class="line"><span class="number">2</span>    <span class="number">2.0</span></div><div class="line"><span class="number">3</span>    NaN</div><div class="line"><span class="number">4</span>    NaN</div><div class="line"><span class="number">5</span>    <span class="number">3.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">data.replace([<span class="number">-999</span>,<span class="number">-1000</span>],[np.nan,<span class="number">0</span>])</div><div class="line">Out[<span class="number">153</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">1.0</span></div><div class="line"><span class="number">1</span>    NaN</div><div class="line"><span class="number">2</span>    <span class="number">2.0</span></div><div class="line"><span class="number">3</span>    NaN</div><div class="line"><span class="number">4</span>    <span class="number">0.0</span></div><div class="line"><span class="number">5</span>    <span class="number">3.0</span></div><div class="line">dtype: float64</div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -501,7 +503,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/08/numpy-handbook-04/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/14/the-newest-area-info-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -520,7 +522,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/08/numpy-handbook-04/" itemprop="url">numpy手册(4)-ufunc</a></h1>
+                <a class="post-title-link" href="/2017/08/14/the-newest-area-info-01/" itemprop="url">最新行政区信息获取</a></h1>
         
 
         <div class="post-meta">
@@ -532,8 +534,493 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T21:59:00+08:00">
-                2017-08-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T21:59:00+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这是之前记录的，这里顺便分享下。</p>
+<p>之前想要获取官方的省市区的代码code，就找了下。</p>
+<p>官方地址：<a href="http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/" target="_blank" rel="external">http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/</a></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-01.png-blog.photo" alt="the-newest-area-info-01-01"></p>
+<p>我们可以直接将数据复制到Excel中，简单处理下，导入到数据库中</p>
+<p>里面会有换行，先去个重，然后trim一下，再分列就可以了</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-02.png-blog.photo" alt="the-newest-area-info-01-02"></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-03.png-blog.photo" alt="the-newest-area-info-01-03"></p>
+<p>最后，我们可以将数据组织成我们想要的维度表格式</p>
+<p>————–update at 2017-08-15</p>
+<p>上面呢，我是直接在Excel里面生成insert脚本插入数据库的，但是目前的表使用起来应该不是很方便，这里我们改造下。</p>
+<p>这个区域信息呢，是很常用的一张维度表，通常他可能会是这个样子的<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> base.dm_area</div><div class="line">(</div><div class="line">  area_id <span class="built_in">integer</span>,</div><div class="line">  area_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">50</span>),</div><div class="line">  province_id <span class="built_in">integer</span>,</div><div class="line">  province_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">50</span>),</div><div class="line">  city_id <span class="built_in">integer</span>,</div><div class="line">  city_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">50</span>),</div><div class="line">  country_id <span class="built_in">integer</span>,</div><div class="line">  country_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">50</span>),</div><div class="line">  flevel <span class="built_in">integer</span></div><div class="line">)</div><div class="line"><span class="keyword">WITH</span> (</div><div class="line">  OIDS=<span class="literal">FALSE</span></div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>这里我们就简单处理下，变成这种格式。</p>
+<p>其实一开始的时候，我们可以通过数据的格式区分他是省份、城市、还是区县，下面我们用的是一个套路</p>
+<p>主要是观察法，因为这个code都是有规律的，所以我们处理起来方便很多</p>
+<p>code一共是6位，前两位是省份、中间2位是城市，后2位是区县<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> public.b_area <span class="keyword">where</span> area_id||<span class="string">''</span> <span class="keyword">like</span> <span class="string">'00'</span></div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-04.png-blog.photo" alt="the-newest-area-info-01-04"></p>
+<p>下面，我们来初始化数据<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> base.dm_area(</div><div class="line">            area_id, area_name)</div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span>  public.b_area;      </div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">-- 初始化flevel 1:省份,2:城市,3:区县</span></div><div class="line"><span class="keyword">update</span> base.dm_area <span class="keyword">set</span> flevel=<span class="number">1</span> <span class="keyword">where</span> area_id||<span class="string">''</span> <span class="keyword">like</span> <span class="string">'00'</span>;</div><div class="line"><span class="keyword">update</span> base.dm_area <span class="keyword">set</span> flevel=<span class="number">2</span> <span class="keyword">where</span> area_id||<span class="string">''</span> <span class="keyword">like</span> <span class="string">''</span> <span class="keyword">and</span> flevel <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line"><span class="keyword">update</span> base.dm_area <span class="keyword">set</span> flevel=<span class="number">3</span> <span class="keyword">where</span> flevel <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="comment">-- 更新省份信息</span></div><div class="line"><span class="keyword">update</span> base.dm_area a </div><div class="line"><span class="keyword">set</span> </div><div class="line">	province_id = b.area_id,</div><div class="line">	province_name = b.area_name</div><div class="line"><span class="keyword">from</span> </div><div class="line">	base.dm_area b</div><div class="line"><span class="keyword">where</span> </div><div class="line">	<span class="keyword">left</span>(a.area_id||<span class="string">''</span>,<span class="number">2</span>)=<span class="keyword">left</span>(b.area_id||<span class="string">''</span>,<span class="number">2</span>) <span class="keyword">and</span> b.flevel=<span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="comment">-- 更新城市信息</span></div><div class="line"><span class="keyword">update</span> base.dm_area a </div><div class="line"><span class="keyword">set</span> </div><div class="line">	city_id = c.area_id,</div><div class="line">	city_name = c.area_name	</div><div class="line"><span class="keyword">from</span> </div><div class="line">	base.dm_area c </div><div class="line"><span class="keyword">where</span> </div><div class="line">	<span class="keyword">left</span>(a.area_id||<span class="string">''</span>,<span class="number">4</span>)=<span class="keyword">left</span>(c.area_id||<span class="string">''</span>,<span class="number">4</span>) <span class="keyword">and</span> c.flevel=<span class="number">2</span>;</div><div class="line"></div><div class="line"><span class="comment">-- 更新区县信息</span></div><div class="line"><span class="keyword">update</span> base.dm_area a </div><div class="line"><span class="keyword">set</span> </div><div class="line">	country_id = area_id,</div><div class="line">	country_name = area_name	</div><div class="line"><span class="keyword">where</span> </div><div class="line">	a.flevel=<span class="number">3</span>;</div></pre></td></tr></table></figure></p>
+<p>到这里，flevel=3的数据已经没有问题了，再对省份、城市做些优化就行了<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 补全数据</span></div><div class="line"><span class="keyword">update</span> base.dm_area </div><div class="line"><span class="keyword">set</span> </div><div class="line">	city_id=-area_id,city_name=area_name||<span class="string">'XT'</span>,</div><div class="line">	country_id=-area_id,country_name=area_name||<span class="string">'XT'</span></div><div class="line"><span class="keyword">where</span></div><div class="line">	flevel=<span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="keyword">update</span> base.dm_area </div><div class="line"><span class="keyword">set</span> </div><div class="line">	country_id=-area_id,country_name=area_name||<span class="string">'XT'</span></div><div class="line"><span class="keyword">where</span></div><div class="line">	flevel=<span class="number">2</span>;</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-05.png-blog.photo" alt="the-newest-area-info-01-05"></p>
+<p>好了，我们就处理好这个区域维度了，正常使用的话，估计就用flevel=3的就够了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/14/pandas-handbook-09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/14/pandas-handbook-09/" itemprop="url">Pandas手册（9）- 数据合并与连接</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T08:00:00+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Python<br>Pandas</p>
+<hr>
+<p>这里来看一下，pandas中数据转换与合并的使用方法，刚刚学习了一下，很好用，就跟SQL里面一样。</p>
+<p>#1. 合并数据集<br>就是说，我们有2个数据集，想要将他们合并一下，就是SQL里面的关联查询，pandas里面用一个函数就行了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">DataFrame.merge(right, how=<span class="string">'inner'</span>, on=<span class="keyword">None</span>, left_on=<span class="keyword">None</span>, right_on=<span class="keyword">None</span>, left_index=<span class="keyword">False</span>, right_index=<span class="keyword">False</span>, sort=<span class="keyword">False</span>, suffixes=(<span class="string">'_x'</span>, <span class="string">'_y'</span>), copy=<span class="keyword">True</span>, indicator=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">Merge DataFrame objects by performing a database-style join operation by columns <span class="keyword">or</span> indexes.</div><div class="line"></div><div class="line">If joining columns on columns, the DataFrame indexes will be ignored. Otherwise <span class="keyword">if</span> joining indexes on indexes <span class="keyword">or</span> indexes on a column <span class="keyword">or</span> columns, the index will be passed on.</div></pre></td></tr></table></figure></p>
+<p>熟练掌握几个参数就足够了，下面会依次介绍下<br>小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">a = pd.DataFrame(&#123;<span class="string">'key'</span>:list(<span class="string">'bbccaa'</span>),<span class="string">'data1'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">6</span>)&#125;)</div><div class="line"></div><div class="line">b = pd.DataFrame(&#123;<span class="string">'key'</span>:list(<span class="string">'abc'</span>),<span class="string">'data2'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">3</span>)&#125;)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">18</span>]: </div><div class="line">   data1 key</div><div class="line"><span class="number">0</span>      <span class="number">8</span>   b</div><div class="line"><span class="number">1</span>      <span class="number">0</span>   b</div><div class="line"><span class="number">2</span>      <span class="number">5</span>   c</div><div class="line"><span class="number">3</span>      <span class="number">2</span>   c</div><div class="line"><span class="number">4</span>      <span class="number">3</span>   a</div><div class="line"><span class="number">5</span>      <span class="number">6</span>   a</div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">19</span>]: </div><div class="line">   data2 key</div><div class="line"><span class="number">0</span>      <span class="number">0</span>   a</div><div class="line"><span class="number">1</span>      <span class="number">3</span>   b</div><div class="line"><span class="number">2</span>      <span class="number">2</span>   c</div></pre></td></tr></table></figure></p>
+<p>上面是我们的原始数据集，一个a，一个b，key是相同的字段，可以用来关联，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">a.merge(b)</div><div class="line">Out[<span class="number">20</span>]: </div><div class="line">   data1 key  data2</div><div class="line"><span class="number">0</span>      <span class="number">8</span>   b      <span class="number">3</span></div><div class="line"><span class="number">1</span>      <span class="number">0</span>   b      <span class="number">3</span></div><div class="line"><span class="number">2</span>      <span class="number">5</span>   c      <span class="number">2</span></div><div class="line"><span class="number">3</span>      <span class="number">2</span>   c      <span class="number">2</span></div><div class="line"><span class="number">4</span>      <span class="number">3</span>   a      <span class="number">0</span></div><div class="line"><span class="number">5</span>      <span class="number">6</span>   a      <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<p>这个翻译成SQL，就是a join b on a.key=b.key（因为我们没有指定根据什么字段去关联，所以会使用a、b中名字一样的字段去关联）<br>我们当然可以手动指定关联的字段<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">on : label <span class="keyword">or</span> list</div><div class="line"></div><div class="line">    Field names to join on. Must be found <span class="keyword">in</span> both DataFrames. If on <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">and</span> <span class="keyword">not</span> merging on indexes, then it merges on the intersection of the columns by default.</div><div class="line"></div><div class="line">left_on : label <span class="keyword">or</span> list, <span class="keyword">or</span> array-like</div><div class="line"></div><div class="line">    Field names to join on <span class="keyword">in</span> left DataFrame. Can be a vector <span class="keyword">or</span> list of vectors of the length of the DataFrame to use a particular vector <span class="keyword">as</span> the join key instead of columns</div><div class="line"></div><div class="line">right_on : label <span class="keyword">or</span> list, <span class="keyword">or</span> array-like</div><div class="line"></div><div class="line">    Field names to join on <span class="keyword">in</span> right DataFrame <span class="keyword">or</span> vector/list of vectors per left_on docs</div></pre></td></tr></table></figure></p>
+<p>如果，数据集中，关联字段名称一样，直接使用on就行了，如果不一样，就可以分别使用left_on 和right_on<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">a.merge(b,on=<span class="string">'key'</span>)</div><div class="line">Out[<span class="number">21</span>]: </div><div class="line">   data1 key  data2</div><div class="line"><span class="number">0</span>      <span class="number">8</span>   b      <span class="number">3</span></div><div class="line"><span class="number">1</span>      <span class="number">0</span>   b      <span class="number">3</span></div><div class="line"><span class="number">2</span>      <span class="number">5</span>   c      <span class="number">2</span></div><div class="line"><span class="number">3</span>      <span class="number">2</span>   c      <span class="number">2</span></div><div class="line"><span class="number">4</span>      <span class="number">3</span>   a      <span class="number">0</span></div><div class="line"><span class="number">5</span>      <span class="number">6</span>   a      <span class="number">0</span></div><div class="line"></div><div class="line">a.merge(b,left_on=<span class="string">'key'</span>,right_on=<span class="string">'key'</span>)</div><div class="line">Out[<span class="number">22</span>]: </div><div class="line">   data1 key  data2</div><div class="line"><span class="number">0</span>      <span class="number">8</span>   b      <span class="number">3</span></div><div class="line"><span class="number">1</span>      <span class="number">0</span>   b      <span class="number">3</span></div><div class="line"><span class="number">2</span>      <span class="number">5</span>   c      <span class="number">2</span></div><div class="line"><span class="number">3</span>      <span class="number">2</span>   c      <span class="number">2</span></div><div class="line"><span class="number">4</span>      <span class="number">3</span>   a      <span class="number">0</span></div><div class="line"><span class="number">5</span>      <span class="number">6</span>   a      <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<p>如果关联字段又多个，就指定为数组就行了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">c = pd.DataFrame(&#123;<span class="string">'lkey1'</span>:list(<span class="string">'ab'</span>),<span class="string">'lkey2'</span>:list(<span class="string">'xy'</span>),<span class="string">'ldata1'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">2</span>)&#125;)</div><div class="line"></div><div class="line">d = pd.DataFrame(&#123;<span class="string">'rkey1'</span>:list(<span class="string">'ab'</span>),<span class="string">'rkey2'</span>:list(<span class="string">'xy'</span>),<span class="string">'ldata1'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">2</span>)&#125;)</div><div class="line"></div><div class="line">c</div><div class="line">Out[<span class="number">25</span>]: </div><div class="line">   ldata1 lkey1 lkey2</div><div class="line"><span class="number">0</span>       <span class="number">8</span>     a     x</div><div class="line"><span class="number">1</span>       <span class="number">2</span>     b     y</div><div class="line"></div><div class="line">d</div><div class="line">Out[<span class="number">26</span>]: </div><div class="line">   ldata1 rkey1 rkey2</div><div class="line"><span class="number">0</span>       <span class="number">5</span>     a     x</div><div class="line"><span class="number">1</span>       <span class="number">7</span>     b     y</div><div class="line"></div><div class="line"><span class="comment">#因为找不到名字一样的字段做关联，所以是空的结果（有一个字段是一样的，ldata1，但是都一样，刚刚d的名字忘改了......）</span></div><div class="line"><span class="comment">#正常找不到关联字段，是会报错的</span></div><div class="line">c.merge(d)</div><div class="line">Out[<span class="number">27</span>]: </div><div class="line">Empty DataFrame</div><div class="line">Columns: [ldata1, lkey1, lkey2, rkey1, rkey2]</div><div class="line">Index: []</div><div class="line"></div><div class="line"><span class="comment">#我们将组合建传入，即可</span></div><div class="line">c.merge(d,left_on=[<span class="string">'lkey1'</span>,<span class="string">'lkey2'</span>],right_on=[<span class="string">'rkey1'</span>,<span class="string">'rkey2'</span>])</div><div class="line">Out[<span class="number">28</span>]: </div><div class="line">   ldata1_x lkey1 lkey2  ldata1_y rkey1 rkey2</div><div class="line"><span class="number">0</span>         <span class="number">8</span>     a     x         <span class="number">5</span>     a     x</div><div class="line"><span class="number">1</span>         <span class="number">2</span>     b     y         <span class="number">7</span>     b     y</div><div class="line"></div><div class="line"><span class="comment">#看下结果集，我们会发现，c和d中有一个同名的字段ldata1，这里默认加了后缀 _x，_y来表示区分</span></div><div class="line"><span class="comment">#我们也可以通过参数来指定后缀名称</span></div><div class="line">suffixes : <span class="number">2</span>-length sequence (tuple, list, ...)</div><div class="line"></div><div class="line">    Suffix to apply to overlapping column names <span class="keyword">in</span> the left <span class="keyword">and</span> right side, respectively</div><div class="line"></div><div class="line">c.merge(d,left_on=[<span class="string">'lkey1'</span>,<span class="string">'lkey2'</span>],right_on=[<span class="string">'rkey1'</span>,<span class="string">'rkey2'</span>],suffixes=[<span class="string">'_left'</span>,<span class="string">'_right'</span>])</div><div class="line">Out[<span class="number">29</span>]: </div><div class="line">   ldata1_left lkey1 lkey2  ldata1_right rkey1 rkey2</div><div class="line"><span class="number">0</span>            <span class="number">8</span>     a     x             <span class="number">5</span>     a     x</div><div class="line"><span class="number">1</span>            <span class="number">2</span>     b     y             <span class="number">7</span>     b     y</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-5d5033da0e85c634.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们再看下一个例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">e = pd.DataFrame(&#123;<span class="string">'key'</span>:list(<span class="string">'bbccaadd'</span>),<span class="string">'data'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">8</span>)&#125;)</div><div class="line"></div><div class="line">f = pd.DataFrame(&#123;<span class="string">'key'</span>:list(<span class="string">'abcx'</span>),<span class="string">'data'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">4</span>)&#125;)</div><div class="line"></div><div class="line">e</div><div class="line">Out[<span class="number">32</span>]: </div><div class="line">   data key</div><div class="line"><span class="number">0</span>     <span class="number">4</span>   b</div><div class="line"><span class="number">1</span>     <span class="number">5</span>   b</div><div class="line"><span class="number">2</span>     <span class="number">1</span>   c</div><div class="line"><span class="number">3</span>     <span class="number">2</span>   c</div><div class="line"><span class="number">4</span>     <span class="number">7</span>   a</div><div class="line"><span class="number">5</span>     <span class="number">7</span>   a</div><div class="line"><span class="number">6</span>     <span class="number">7</span>   d</div><div class="line"><span class="number">7</span>     <span class="number">9</span>   d</div><div class="line"></div><div class="line">f</div><div class="line">Out[<span class="number">33</span>]: </div><div class="line">   data key</div><div class="line"><span class="number">0</span>     <span class="number">6</span>   a</div><div class="line"><span class="number">1</span>     <span class="number">9</span>   b</div><div class="line"><span class="number">2</span>     <span class="number">2</span>   c</div><div class="line"><span class="number">3</span>     <span class="number">8</span>   x</div><div class="line"></div><div class="line">e.merge(f,on=<span class="string">'key'</span>)</div><div class="line">Out[<span class="number">34</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>       <span class="number">4</span>   b       <span class="number">9</span></div><div class="line"><span class="number">1</span>       <span class="number">5</span>   b       <span class="number">9</span></div><div class="line"><span class="number">2</span>       <span class="number">1</span>   c       <span class="number">2</span></div><div class="line"><span class="number">3</span>       <span class="number">2</span>   c       <span class="number">2</span></div><div class="line"><span class="number">4</span>       <span class="number">7</span>   a       <span class="number">6</span></div><div class="line"><span class="number">5</span>       <span class="number">7</span>   a       <span class="number">6</span></div></pre></td></tr></table></figure></p>
+<p>熟悉SQL的同学，会发现，上面的结果集市inner join之后的结果，SQL中，还有什么left  join、right join之类的，pandas中也有的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">how : &#123;‘left’, ‘right’, ‘outer’, ‘inner’&#125;, default ‘inner’</div><div class="line"></div><div class="line">        left: use only keys <span class="keyword">from</span> left frame, similar to a SQL left outer join; preserve key order</div><div class="line">        right: use only keys <span class="keyword">from</span> right frame, similar to a SQL right outer join; preserve key order</div><div class="line">        outer: use union of keys <span class="keyword">from</span> both frames, similar to a SQL full outer join; sort keys lexicographically</div><div class="line">        inner: use intersection of keys <span class="keyword">from</span> both frames, similar to a SQL inner join; preserve the order of the left keys</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#左关联，e为主即包含全部数据，不管是否可以和f关联上</span></div><div class="line">e.merge(f,on=<span class="string">'key'</span>,how=<span class="string">'left'</span>)</div><div class="line">Out[<span class="number">35</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>       <span class="number">4</span>   b     <span class="number">9.0</span></div><div class="line"><span class="number">1</span>       <span class="number">5</span>   b     <span class="number">9.0</span></div><div class="line"><span class="number">2</span>       <span class="number">1</span>   c     <span class="number">2.0</span></div><div class="line"><span class="number">3</span>       <span class="number">2</span>   c     <span class="number">2.0</span></div><div class="line"><span class="number">4</span>       <span class="number">7</span>   a     <span class="number">6.0</span></div><div class="line"><span class="number">5</span>       <span class="number">7</span>   a     <span class="number">6.0</span></div><div class="line"><span class="number">6</span>       <span class="number">7</span>   d     NaN</div><div class="line"><span class="number">7</span>       <span class="number">9</span>   d     NaN</div><div class="line"></div><div class="line"><span class="comment">#右为主，即f为主，</span></div><div class="line">e.merge(f,on=<span class="string">'key'</span>,how=<span class="string">'right'</span>)</div><div class="line">Out[<span class="number">36</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>     <span class="number">4.0</span>   b       <span class="number">9</span></div><div class="line"><span class="number">1</span>     <span class="number">5.0</span>   b       <span class="number">9</span></div><div class="line"><span class="number">2</span>     <span class="number">1.0</span>   c       <span class="number">2</span></div><div class="line"><span class="number">3</span>     <span class="number">2.0</span>   c       <span class="number">2</span></div><div class="line"><span class="number">4</span>     <span class="number">7.0</span>   a       <span class="number">6</span></div><div class="line"><span class="number">5</span>     <span class="number">7.0</span>   a       <span class="number">6</span></div><div class="line"><span class="number">6</span>     NaN   x       <span class="number">8</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#所有数据都包含</span></div><div class="line">e.merge(f,on=<span class="string">'key'</span>,how=<span class="string">'outer'</span>)</div><div class="line">Out[<span class="number">37</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>     <span class="number">4.0</span>   b     <span class="number">9.0</span></div><div class="line"><span class="number">1</span>     <span class="number">5.0</span>   b     <span class="number">9.0</span></div><div class="line"><span class="number">2</span>     <span class="number">1.0</span>   c     <span class="number">2.0</span></div><div class="line"><span class="number">3</span>     <span class="number">2.0</span>   c     <span class="number">2.0</span></div><div class="line"><span class="number">4</span>     <span class="number">7.0</span>   a     <span class="number">6.0</span></div><div class="line"><span class="number">5</span>     <span class="number">7.0</span>   a     <span class="number">6.0</span></div><div class="line"><span class="number">6</span>     <span class="number">7.0</span>   d     NaN</div><div class="line"><span class="number">7</span>     <span class="number">9.0</span>   d     NaN</div><div class="line"><span class="number">8</span>     NaN   x     <span class="number">8.0</span></div></pre></td></tr></table></figure>
+<p>前面，我们的例子，都是通过columns来关联的，有的时候，我们可能需要使用index来关联，者就用到了另2个参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">left_index : boolean, default <span class="keyword">False</span></div><div class="line"></div><div class="line">    Use the index <span class="keyword">from</span> the left DataFrame <span class="keyword">as</span> the join key(s). If it <span class="keyword">is</span> a MultiIndex, the number of keys <span class="keyword">in</span> the other DataFrame (either the index <span class="keyword">or</span> a number of columns) must match the number of levels</div><div class="line"></div><div class="line">right_index : boolean, default <span class="keyword">False</span></div><div class="line"></div><div class="line">    Use the index <span class="keyword">from</span> the right DataFrame <span class="keyword">as</span> the join key. Same caveats <span class="keyword">as</span> left_index</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">e</div><div class="line">Out[<span class="number">38</span>]: </div><div class="line">   data key</div><div class="line"><span class="number">0</span>     <span class="number">4</span>   b</div><div class="line"><span class="number">1</span>     <span class="number">5</span>   b</div><div class="line"><span class="number">2</span>     <span class="number">1</span>   c</div><div class="line"><span class="number">3</span>     <span class="number">2</span>   c</div><div class="line"><span class="number">4</span>     <span class="number">7</span>   a</div><div class="line"><span class="number">5</span>     <span class="number">7</span>   a</div><div class="line"><span class="number">6</span>     <span class="number">7</span>   d</div><div class="line"><span class="number">7</span>     <span class="number">9</span>   d</div><div class="line"></div><div class="line">g = pd.DataFrame(&#123;<span class="string">'data'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">3</span>)&#125;,index=list(<span class="string">'abc'</span>))</div><div class="line"></div><div class="line">g</div><div class="line">Out[<span class="number">40</span>]: </div><div class="line">   data</div><div class="line">a     <span class="number">9</span></div><div class="line">b     <span class="number">4</span></div><div class="line">c     <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment">#指定right_index=True，使用index去关联</span></div><div class="line">e.merge(g,left_on=<span class="string">'key'</span>,right_index=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">41</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>       <span class="number">4</span>   b       <span class="number">4</span></div><div class="line"><span class="number">1</span>       <span class="number">5</span>   b       <span class="number">4</span></div><div class="line"><span class="number">2</span>       <span class="number">1</span>   c       <span class="number">0</span></div><div class="line"><span class="number">3</span>       <span class="number">2</span>   c       <span class="number">0</span></div><div class="line"><span class="number">4</span>       <span class="number">7</span>   a       <span class="number">9</span></div><div class="line"><span class="number">5</span>       <span class="number">7</span>   a       <span class="number">9</span></div></pre></td></tr></table></figure>
+<h1 id="2-轴向连接"><a href="#2-轴向连接" class="headerlink" title="2. 轴向连接"></a>2. 轴向连接</h1><p>这里主要是介绍pandas中另一个函数的使用，pd.concat，concat一看上去，感觉是做拼接用的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pandas.concat(objs, axis=<span class="number">0</span>, join=<span class="string">'outer'</span>, join_axes=<span class="keyword">None</span>, ignore_index=<span class="keyword">False</span>, keys=<span class="keyword">None</span>, levels=<span class="keyword">None</span>, names=<span class="keyword">None</span>, verify_integrity=<span class="keyword">False</span>, copy=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">Concatenate pandas objects along a particular axis <span class="keyword">with</span> optional set logic along the other axes.</div><div class="line"></div><div class="line">Can also add a layer of hierarchical indexing on the concatenation axis, which may be useful <span class="keyword">if</span> the labels are the same (<span class="keyword">or</span> overlapping) on the passed axis number.</div></pre></td></tr></table></figure></p>
+<p>我们先来看例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">s1 = pd.Series([<span class="string">'a'</span>, <span class="string">'b'</span>])</div><div class="line"></div><div class="line">s2 = pd.Series([<span class="string">'c'</span>, <span class="string">'d'</span>])</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">51</span>]: </div><div class="line"><span class="number">0</span>    a</div><div class="line"><span class="number">1</span>    b</div><div class="line">dtype: object</div><div class="line"></div><div class="line">s2</div><div class="line">Out[<span class="number">52</span>]: </div><div class="line"><span class="number">0</span>    c</div><div class="line"><span class="number">1</span>    d</div><div class="line">dtype: object</div><div class="line"></div><div class="line">pd.concat([s1,s2])</div><div class="line">Out[<span class="number">53</span>]: </div><div class="line"><span class="number">0</span>    a</div><div class="line"><span class="number">1</span>    b</div><div class="line"><span class="number">0</span>    c</div><div class="line"><span class="number">1</span>    d</div><div class="line">dtype: object</div></pre></td></tr></table></figure></p>
+<p>默认，是按纵轴进行拼接的，我们可以设置<br><img src="http://upload-images.jianshu.io/upload_images/76024-9eb4ea26e7748855.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#横轴进行拼接</span></div><div class="line">pd.concat([s1,s2],axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">54</span>]: </div><div class="line">   <span class="number">0</span>  <span class="number">1</span></div><div class="line"><span class="number">0</span>  a  c</div><div class="line"><span class="number">1</span>  b  d</div></pre></td></tr></table></figure>
+<p>这里要注意下axis=1时，，如果index不一样，拼接的时候，是会合并的，如下面的例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">s1 = pd.Series([<span class="number">0</span>,<span class="number">1</span>],index=[<span class="string">'a'</span>,<span class="string">'b'</span>])</div><div class="line"></div><div class="line">s2 = pd.Series([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],index=[<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>])</div><div class="line"></div><div class="line">s3 = pd.Series([<span class="number">5</span>,<span class="number">6</span>],index=[<span class="string">'f'</span>,<span class="string">'g'</span>])</div><div class="line"></div><div class="line">pd.concat([s1,s2,s3])</div><div class="line">Out[<span class="number">58</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">1</span></div><div class="line">c    <span class="number">2</span></div><div class="line">d    <span class="number">3</span></div><div class="line">e    <span class="number">4</span></div><div class="line">f    <span class="number">5</span></div><div class="line">g    <span class="number">6</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">60</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">1</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s2</div><div class="line">Out[<span class="number">61</span>]: </div><div class="line">c    <span class="number">2</span></div><div class="line">d    <span class="number">3</span></div><div class="line">e    <span class="number">4</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s3</div><div class="line">Out[<span class="number">62</span>]: </div><div class="line">f    <span class="number">5</span></div><div class="line">g    <span class="number">6</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">pd.concat([s1,s2,s3],axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">59</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line">a  <span class="number">0.0</span>  NaN  NaN</div><div class="line">b  <span class="number">1.0</span>  NaN  NaN</div><div class="line">c  NaN  <span class="number">2.0</span>  NaN</div><div class="line">d  NaN  <span class="number">3.0</span>  NaN</div><div class="line">e  NaN  <span class="number">4.0</span>  NaN</div><div class="line">f  NaN  NaN  <span class="number">5.0</span></div><div class="line">g  NaN  NaN  <span class="number">6.0</span></div></pre></td></tr></table></figure></p>
+<p>这里，我们看个常用的参数，join，可以选择是取交集还是并集<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">join : &#123;‘inner’, ‘outer’&#125;, default ‘outer’</div><div class="line"></div><div class="line">    How to handle indexes on other axis(es)</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#他们并没哟并集，所以是空</span></div><div class="line">pd.concat([s1,s2,s3],axis=<span class="number">1</span>,join=<span class="string">'inner'</span>)</div><div class="line">Out[<span class="number">73</span>]: </div><div class="line">Empty DataFrame</div><div class="line">Columns: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]</div><div class="line">Index: []</div><div class="line"></div><div class="line">s4 = pd.concat([s1*<span class="number">5</span>,s3])</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">75</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">1</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s4</div><div class="line">Out[<span class="number">76</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">5</span></div><div class="line">f    <span class="number">5</span></div><div class="line">g    <span class="number">6</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">pd.concat([s1,s4],axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">77</span>]: </div><div class="line">     <span class="number">0</span>  <span class="number">1</span></div><div class="line">a  <span class="number">0.0</span>  <span class="number">0</span></div><div class="line">b  <span class="number">1.0</span>  <span class="number">5</span></div><div class="line">f  NaN  <span class="number">5</span></div><div class="line">g  NaN  <span class="number">6</span></div><div class="line"></div><div class="line"><span class="comment">#只返回了交集部分</span></div><div class="line">pd.concat([s1,s4],axis=<span class="number">1</span>,join=<span class="string">'inner'</span>)</div><div class="line">Out[<span class="number">78</span>]: </div><div class="line">   <span class="number">0</span>  <span class="number">1</span></div><div class="line">a  <span class="number">0</span>  <span class="number">0</span></div><div class="line">b  <span class="number">1</span>  <span class="number">5</span></div></pre></td></tr></table></figure>
+<p>我们也可以指明其他轴要使用的索引，要显示的index<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">join_axes : list of Index objects</div><div class="line"></div><div class="line">    Specific indexes to use <span class="keyword">for</span> the other n - <span class="number">1</span> axes instead of performing inner/outer set logic</div><div class="line"></div><div class="line">pd.concat([s1,s4],axis=<span class="number">1</span>,join_axes=[[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]])</div><div class="line">Out[<span class="number">81</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span></div><div class="line">a  <span class="number">0.0</span>  <span class="number">0.0</span></div><div class="line">b  <span class="number">1.0</span>  <span class="number">5.0</span></div><div class="line">c  NaN  NaN</div><div class="line">d  NaN  NaN</div></pre></td></tr></table></figure></p>
+<h1 id="3-合并重叠数据"><a href="#3-合并重叠数据" class="headerlink" title="3. 合并重叠数据"></a>3. 合并重叠数据</h1><p>这里是另一个函数的使用介绍 combine_first，类似于numpy中where，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DataFrame.combine_first(other)</div><div class="line"></div><div class="line">Combine two DataFrame objects <span class="keyword">and</span> default to non-null values <span class="keyword">in</span> frame calling the method. Result index columns will be the union of the respective indexes <span class="keyword">and</span> columns</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">a = pd.Series([np.nan,<span class="number">2.5</span>,np.nan,<span class="number">3.5</span>,<span class="number">4.5</span>,np.nan]</div><div class="line">                    ,index=[<span class="string">'f'</span>,<span class="string">'e'</span>,<span class="string">'d'</span>,<span class="string">'c'</span>,<span class="string">'b'</span>,<span class="string">'a'</span>])</div><div class="line"></div><div class="line">b = pd.Series(np.arange(len(a),dtype=np.float64)</div><div class="line">                    ,index=[<span class="string">'f'</span>,<span class="string">'e'</span>,<span class="string">'d'</span>,<span class="string">'c'</span>,<span class="string">'b'</span>,<span class="string">'a'</span>])</div><div class="line"></div><div class="line"></div><div class="line">b[<span class="number">-1</span>]=np.nan</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">85</span>]: </div><div class="line">f    NaN</div><div class="line">e    <span class="number">2.5</span></div><div class="line">d    NaN</div><div class="line">c    <span class="number">3.5</span></div><div class="line">b    <span class="number">4.5</span></div><div class="line">a    NaN</div><div class="line">dtype: float64</div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">88</span>]: </div><div class="line">f    <span class="number">0.0</span></div><div class="line">e    <span class="number">1.0</span></div><div class="line">d    <span class="number">2.0</span></div><div class="line">c    <span class="number">3.0</span></div><div class="line">b    <span class="number">4.0</span></div><div class="line">a    NaN</div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#如果a的字段为nan，则用b的数据</span></div><div class="line">np.where(a.isnull(),b,a)</div><div class="line">Out[<span class="number">92</span>]: array([ <span class="number">0.</span> ,  <span class="number">2.5</span>,  <span class="number">2.</span> ,  <span class="number">3.5</span>,  <span class="number">4.5</span>,  nan])</div><div class="line"></div><div class="line"></div><div class="line">a.combine_first(b)</div><div class="line">Out[<span class="number">93</span>]: </div><div class="line">f    <span class="number">0.0</span></div><div class="line">e    <span class="number">2.5</span></div><div class="line">d    <span class="number">2.0</span></div><div class="line">c    <span class="number">3.5</span></div><div class="line">b    <span class="number">4.5</span></div><div class="line">a    NaN</div><div class="line">dtype: float64</div></pre></td></tr></table></figure>
+<p>combine_first还会做数据对齐的操作<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">b[:<span class="number">-2</span>]</div><div class="line">Out[<span class="number">95</span>]: </div><div class="line">f    <span class="number">0.0</span></div><div class="line">e    <span class="number">1.0</span></div><div class="line">d    <span class="number">2.0</span></div><div class="line">c    <span class="number">3.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">a[<span class="number">2</span>:]</div><div class="line">Out[<span class="number">96</span>]: </div><div class="line">d    NaN</div><div class="line">c    <span class="number">3.5</span></div><div class="line">b    <span class="number">4.5</span></div><div class="line">a    NaN</div><div class="line">dtype: float64</div><div class="line"></div><div class="line">b[:<span class="number">-2</span>].combine_first(a[<span class="number">2</span>:])</div><div class="line">Out[<span class="number">94</span>]: </div><div class="line">a    NaN</div><div class="line">b    <span class="number">4.5</span></div><div class="line">c    <span class="number">3.0</span></div><div class="line">d    <span class="number">2.0</span></div><div class="line">e    <span class="number">1.0</span></div><div class="line">f    <span class="number">0.0</span></div><div class="line">dtype: float64</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/12/pandas-handbook-08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/12/pandas-handbook-08/" itemprop="url">Pandas手册（8）- 常见绘图</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T08:00:00+08:00">
+                2017-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Python<br>Pandas</p>
+<hr>
+<p>前面，我们大概了解了matplotlib中基本的绘图方式，现在，我们来看看在pandas中绘图的方式，<br>pandas做好了封装，我们用起来会很方便的。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Series.plot(kind=<span class="string">'line'</span>, ax=<span class="keyword">None</span>, figsize=<span class="keyword">None</span>, use_index=<span class="keyword">True</span>, title=<span class="keyword">None</span>, grid=<span class="keyword">None</span>, legend=<span class="keyword">False</span>, style=<span class="keyword">None</span>, logx=<span class="keyword">False</span>, logy=<span class="keyword">False</span>, loglog=<span class="keyword">False</span>, xticks=<span class="keyword">None</span>, yticks=<span class="keyword">None</span>, xlim=<span class="keyword">None</span>, ylim=<span class="keyword">None</span>, rot=<span class="keyword">None</span>, fontsize=<span class="keyword">None</span>, colormap=<span class="keyword">None</span>, table=<span class="keyword">False</span>, yerr=<span class="keyword">None</span>, xerr=<span class="keyword">None</span>, label=<span class="keyword">None</span>, secondary_y=<span class="keyword">False</span>, **kwds)</div><div class="line"></div><div class="line"><span class="comment">#这个kind可以指定图表类型</span></div><div class="line"></div><div class="line">  ‘line’ : line plot (default)</div><div class="line">  ‘bar’ : vertical bar plot</div><div class="line">  ‘barh’ : horizontal bar plot</div><div class="line">  ‘hist’ : histogram</div><div class="line">  ‘box’ : boxplot</div><div class="line">  ‘kde’ : Kernel Density Estimation plot</div><div class="line">  ‘density’ : same <span class="keyword">as</span> ‘kde’</div><div class="line">  ‘area’ : area plot</div><div class="line">  ‘pie’ : pie plot</div><div class="line"></div><div class="line">DataFrame.plot(x=<span class="keyword">None</span>, y=<span class="keyword">None</span>, kind=<span class="string">'line'</span>, ax=<span class="keyword">None</span>, subplots=<span class="keyword">False</span>, sharex=<span class="keyword">None</span>, sharey=<span class="keyword">False</span>, layout=<span class="keyword">None</span>, figsize=<span class="keyword">None</span>, use_index=<span class="keyword">True</span>, title=<span class="keyword">None</span>, grid=<span class="keyword">None</span>, legend=<span class="keyword">True</span>, style=<span class="keyword">None</span>, logx=<span class="keyword">False</span>, logy=<span class="keyword">False</span>, loglog=<span class="keyword">False</span>, xticks=<span class="keyword">None</span>, yticks=<span class="keyword">None</span>, xlim=<span class="keyword">None</span>, ylim=<span class="keyword">None</span>, rot=<span class="keyword">None</span>, fontsize=<span class="keyword">None</span>, colormap=<span class="keyword">None</span>, table=<span class="keyword">False</span>, yerr=<span class="keyword">None</span>, xerr=<span class="keyword">None</span>, secondary_y=<span class="keyword">False</span>, sort_columns=<span class="keyword">False</span>, **kwds)</div></pre></td></tr></table></figure></p>
+<h1 id="1-线形图"><a href="#1-线形图" class="headerlink" title="1. 线形图"></a>1. 线形图</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">s = pd.Series(np.random.randint(<span class="number">0</span>,<span class="number">100</span>,size=<span class="number">10</span>))</div><div class="line"></div><div class="line">print(s)</div><div class="line"></div><div class="line">s.plot(title=<span class="string">'demo-series'</span>,label=<span class="string">'count'</span>,legend=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-0cd44619c18c3018.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">df = pd.DataFrame(np.random.randn(<span class="number">10</span>,<span class="number">4</span>)*<span class="number">100</span>,index=np.arange(<span class="number">0</span>,<span class="number">100</span>,<span class="number">10</span>),</div><div class="line">                  columns=list(<span class="string">'ABCD'</span>))</div><div class="line"></div><div class="line">print(df)</div><div class="line"></div><div class="line">df.plot()</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-acf476c4d976eb77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>DataFrame绘图的时候，会把每一列单独绘制</p>
+<h1 id="2-柱状图"><a href="#2-柱状图" class="headerlink" title="2. 柱状图"></a>2. 柱状图</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">s = pd.Series(np.random.randint(<span class="number">0</span>,<span class="number">100</span>,size=<span class="number">10</span>))</div><div class="line"></div><div class="line">print(s)</div><div class="line"></div><div class="line">s.plot(title=<span class="string">'demo-series'</span>,label=<span class="string">'line'</span>,legend=<span class="keyword">True</span>)</div><div class="line">s.plot(kind=<span class="string">'bar'</span>,colormap=<span class="string">'Oranges_r'</span>,label=<span class="string">'bar'</span>,legend=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<p>我们设置kind=’bar’，就可以画柱状图了<br><img src="http://upload-images.jianshu.io/upload_images/76024-369847a4c06ef7f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line">df = pd.DataFrame(np.random.randn(<span class="number">10</span>,<span class="number">4</span>)*<span class="number">100</span>,index=np.arange(<span class="number">0</span>,<span class="number">100</span>,<span class="number">10</span>),</div><div class="line">                  columns=list(<span class="string">'ABCD'</span>))</div><div class="line"></div><div class="line">print(df)</div><div class="line"></div><div class="line">f,axes = plt.subplots(<span class="number">2</span>,<span class="number">1</span>)</div><div class="line">df.plot(kind=<span class="string">'bar'</span>,ax=axes[<span class="number">0</span>])</div><div class="line">df.plot(kind=<span class="string">'barh'</span>,ax=axes[<span class="number">1</span>])</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-352e41a192195c39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在pandas里画图非常容易，很多都可以是默认转换，index、columns可以自动转换为x轴、y轴标签<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line">df = pd.DataFrame(np.random.rand(<span class="number">6</span>,<span class="number">4</span>)*<span class="number">10</span>,index=[<span class="string">'one'</span>,<span class="string">'two'</span>,<span class="string">'three'</span>,<span class="string">'four'</span>,<span class="string">'five'</span>,<span class="string">'six'</span>],</div><div class="line">                  columns=list(<span class="string">'ABCD'</span>))</div><div class="line"></div><div class="line">print(df)</div><div class="line"></div><div class="line"><span class="comment">#通过ax参数，可以在不同的subplot上绘图</span></div><div class="line">f,axes = plt.subplots(<span class="number">2</span>,<span class="number">1</span>)</div><div class="line">df.plot(kind=<span class="string">'bar'</span>,ax=axes[<span class="number">0</span>])</div><div class="line">df.plot(kind=<span class="string">'barh'</span>,ax=axes[<span class="number">1</span>])</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-ed173c2b0b5f4629.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在DataFrame中，另一个好用的参数，就是stacked，可以很方便的绘制堆叠图<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.plot(kind=<span class="string">'bar'</span>,ax=axes[<span class="number">0</span>],stacked=<span class="keyword">True</span>)</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-72b533cf816484bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/10/numpy-handbook-05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/10/numpy-handbook-05/" itemprop="url">numpy手册(5)-random模块</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T21:59:00+08:00">
+                2017-08-10
               </time>
             
 
@@ -595,463 +1082,11 @@
         
           <p>Python<br>Numpy知识总结</p>
 <hr>
-<p>这里，我们说下对数组操作的常用函数</p>
-<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><p>我们先说下接收一个参数的一元函数，比如 np.sqrt 开方函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">a = np.arange(<span class="number">10</span>)</div><div class="line"></div><div class="line">np.sqrt(a)</div><div class="line">Out[<span class="number">45</span>]: </div><div class="line">array([ <span class="number">0.</span>        ,  <span class="number">1.</span>        ,  <span class="number">1.41421356</span>,  <span class="number">1.73205081</span>,  <span class="number">2.</span>        ,</div><div class="line">        <span class="number">2.23606798</span>,  <span class="number">2.44948974</span>,  <span class="number">2.64575131</span>,  <span class="number">2.82842712</span>,  <span class="number">3.</span>        ])</div><div class="line"></div><div class="line">a**<span class="number">0.5</span></div><div class="line">Out[<span class="number">46</span>]: </div><div class="line">array([ <span class="number">0.</span>        ,  <span class="number">1.</span>        ,  <span class="number">1.41421356</span>,  <span class="number">1.73205081</span>,  <span class="number">2.</span>        ,</div><div class="line">        <span class="number">2.23606798</span>,  <span class="number">2.44948974</span>,  <span class="number">2.64575131</span>,  <span class="number">2.82842712</span>,  <span class="number">3.</span>        ])</div></pre></td></tr></table></figure></p>
-<p>常用的一元函数<br><img src="http://upload-images.jianshu.io/upload_images/76024-4e51ac598140bce5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常用一元函数"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-fc8bedc9e7685c7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常用一元函数"></p>
-<p>还有些常用的二元函数，比如 add,subtract<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">a = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line"></div><div class="line">b = np.array([<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">49</span>]: array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">50</span>]: array([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</div><div class="line"></div><div class="line">np.add(a,b)</div><div class="line">Out[<span class="number">51</span>]: array([<span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>])</div><div class="line"></div><div class="line">np.subtract(a,b)</div><div class="line">Out[<span class="number">52</span>]: array([<span class="number">-3</span>, <span class="number">-3</span>, <span class="number">-3</span>])</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-49d48098a4dc8dce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常用二元函数"></p>
+<p>numpy的random模块应该很常用，这里整理一下，<br>参考文章：<br><a href="http://www.mamicode.com/info-detail-507676.html" target="_blank" rel="external">http://www.mamicode.com/info-detail-507676.html</a><br><a href="https://docs.scipy.org/doc/numpy/reference/routines.random.html" target="_blank" rel="external">https://docs.scipy.org/doc/numpy/reference/routines.random.html</a></p>
+<h2 id="简单随机数据"><a href="#简单随机数据" class="headerlink" title="简单随机数据"></a>简单随机数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">numpy.random.rand(d0, d1, ..., dn)</div><div class="line">Random values <span class="keyword">in</span> a given shape.</div><div class="line"></div><div class="line">Create an array of the given shape <span class="keyword">and</span> populate it <span class="keyword">with</span> random samples <span class="keyword">from</span> a uniform distribution over [<span class="number">0</span>, <span class="number">1</span>)</div><div class="line">生成给定形状的随机值，随机值在[<span class="number">0</span>,<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">np.random.rand(<span class="number">10</span>)</div><div class="line">Out[<span class="number">2</span>]: </div><div class="line">array([ <span class="number">0.41103285</span>,  <span class="number">0.19043225</span>,  <span class="number">0.30385602</span>,  <span class="number">0.19330136</span>,  <span class="number">0.09727556</span>,</div><div class="line">        <span class="number">0.96518049</span>,  <span class="number">0.29930132</span>,  <span class="number">0.00633969</span>,  <span class="number">0.64269577</span>,  <span class="number">0.79953589</span>])</div><div class="line"></div><div class="line">np.random.rand(<span class="number">2</span>,<span class="number">3</span>)</div><div class="line">Out[<span class="number">3</span>]: </div><div class="line">array([[ <span class="number">0.86213038</span>,  <span class="number">0.56657202</span>,  <span class="number">0.83083843</span>],</div><div class="line">       [ <span class="number">0.48660386</span>,  <span class="number">0.20508572</span>,  <span class="number">0.4927877</span> ]])</div><div class="line"></div><div class="line">np.random.rand(<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>)</div><div class="line">Out[<span class="number">4</span>]: </div><div class="line">array([[[ <span class="number">0.06676746</span>],</div><div class="line">        [ <span class="number">0.55548283</span>],</div><div class="line">        [ <span class="number">0.04411342</span>]],</div><div class="line"></div><div class="line">       [[ <span class="number">0.18659571</span>],</div><div class="line">        [ <span class="number">0.02209355</span>],</div><div class="line">        [ <span class="number">0.83529269</span>]]])</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/08/numpy-handbook-04/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/07/numpy-handbook-03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/07/numpy-handbook-03/" itemprop="url">numpy手册(3)-Datetimes and Timedeltas</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T21:59:00+08:00">
-                2017-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Numpy/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Numpy</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Python<br>Numpy知识总结</p>
-<hr>
-<p>这里说下numpy中日期、时间相关的使用。<br>主要参考：<br><a href="https://docs.scipy.org/doc/numpy-dev/reference/arrays.datetime.html" target="_blank" rel="external">https://docs.scipy.org/doc/numpy-dev/reference/arrays.datetime.html</a></p>
-<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>在numpy中，我们很方便的讲字符串转换成日期类型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">np.datetime64(<span class="string">'2017-08-06'</span>)</div><div class="line">Out[<span class="number">3</span>]: numpy.datetime64(<span class="string">'2017-08-06'</span>)</div><div class="line"></div><div class="line">np.datetime64(<span class="string">'2017-08'</span>)</div><div class="line">Out[<span class="number">4</span>]: numpy.datetime64(<span class="string">'2017-08'</span>)</div><div class="line"></div><div class="line"><span class="comment">#我们可以通过参数，强制将数据格式化为我们想要的粒度</span></div><div class="line">np.datetime64(<span class="string">'2017-08'</span> , <span class="string">'D'</span>)</div><div class="line">Out[<span class="number">5</span>]: numpy.datetime64(<span class="string">'2017-08-01'</span>)</div><div class="line"></div><div class="line">np.datetime64(<span class="string">'2017-08'</span> , <span class="string">'Y'</span>)</div><div class="line">Out[<span class="number">6</span>]: numpy.datetime64(<span class="string">'2017'</span>)</div><div class="line"></div><div class="line">a = np.array([<span class="string">'2017-07-01'</span>,<span class="string">'2017-07-15'</span>,<span class="string">'2017-08-01'</span>] , dtype=np.datetime64)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">10</span>]: array([<span class="string">'2017-07-01'</span>, <span class="string">'2017-07-15'</span>, <span class="string">'2017-08-01'</span>], dtype=<span class="string">'datetime64[D]'</span>)</div><div class="line"></div><div class="line"><span class="comment">#我们也可以使用arange函数初始化数组</span></div><div class="line">b = np.arange(<span class="string">'2017-08-01'</span>,<span class="string">'2017-09-01'</span>,dtype=np.datetime64)</div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">12</span>]: </div><div class="line">array([<span class="string">'2017-08-01'</span>, <span class="string">'2017-08-02'</span>, <span class="string">'2017-08-03'</span>, ..., <span class="string">'2017-08-29'</span>,</div><div class="line">       <span class="string">'2017-08-30'</span>, <span class="string">'2017-08-31'</span>], dtype=<span class="string">'datetime64[D]'</span>)</div></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/07/numpy-handbook-03/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/06/numpy-handbook-02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/06/numpy-handbook-02/" itemprop="url">numpy手册(2)-常用操作杂记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T10:00:00+08:00">
-                2017-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Numpy/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Numpy</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Python<br>Numpy知识总结</p>
-<hr>
-<p>这里记录下numpy常用的一些操作，一些散乱的知识点。</p>
-<h2 id="数组和标量之间的运算"><a href="#数组和标量之间的运算" class="headerlink" title="数组和标量之间的运算"></a>数组和标量之间的运算</h2><p>就是对数组进行批量的运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">a = np.arange(<span class="number">15</span>).reshape(<span class="number">3</span>,<span class="number">5</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">3</span>]: </div><div class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>],</div><div class="line">       [ <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>],</div><div class="line">       [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>]])</div><div class="line"></div><div class="line">a+<span class="number">2</span></div><div class="line">Out[<span class="number">4</span>]: </div><div class="line">array([[ <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>],</div><div class="line">       [ <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>],</div><div class="line">       [<span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>]])</div><div class="line"></div><div class="line">a+a</div><div class="line">Out[<span class="number">5</span>]: </div><div class="line">array([[ <span class="number">0</span>,  <span class="number">2</span>,  <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">8</span>],</div><div class="line">       [<span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>, <span class="number">16</span>, <span class="number">18</span>],</div><div class="line">       [<span class="number">20</span>, <span class="number">22</span>, <span class="number">24</span>, <span class="number">26</span>, <span class="number">28</span>]])</div></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/06/numpy-handbook-02/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/02/numpy-handbook-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/02/numpy-handbook-01/" itemprop="url">numpy手册(1)-ndarray</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T21:59:00+08:00">
-                2017-08-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Numpy/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Numpy</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。</p>
-<h1 id="1-numpy基本介绍"><a href="#1-numpy基本介绍" class="headerlink" title="1.numpy基本介绍"></a>1.numpy基本介绍</h1><blockquote class="blockquote-center"><br>numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。<br>一个用Python实现的科学计算包。<br>from 百度百科<br></blockquote>
-
-<p>numpy有2种基本对象，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ndarray（N-dimensional array object）和 ufunc（universal function object）</div></pre></td></tr></table></figure></p>
-<p>ndarray是存储单一数据类型的多维数组，ufunc是能够对数组进行处理的函数。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/02/numpy-handbook-01/#more" rel="contents">
+            <a class="btn" href="/2017/08/10/numpy-handbook-05/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1093,7 +1128,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1141,7 +1176,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-count">66</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

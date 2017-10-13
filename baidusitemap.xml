@@ -4,6 +4,160 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/08/17/pandas-handbook-12/</loc>
+    <lastmod>2017-10-13T03:42:28.551Z</lastmod>
+    <data>
+        <display>
+        <title>Pandas手册（12）- 时间序列</title>
+        <pubTime>2017-08-17T00:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Pandas</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-Pandas" url="https://yuguiyang.github.io/categories/Python-Pandas/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/16/pandas-handbook-11/</loc>
+    <lastmod>2017-10-13T03:36:12.704Z</lastmod>
+    <data>
+        <display>
+        <title>Pandas手册（11）- groupby</title>
+        <pubTime>2017-08-16T00:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Pandas</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-Pandas" url="https://yuguiyang.github.io/categories/Python-Pandas/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/15/pandas-handbook-10/</loc>
+    <lastmod>2017-10-13T03:21:27.903Z</lastmod>
+    <data>
+        <display>
+        <title>Pandas手册（10）- 数据转换</title>
+        <pubTime>2017-08-15T00:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Pandas</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-Pandas" url="https://yuguiyang.github.io/categories/Python-Pandas/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/14/pandas-handbook-09/</loc>
+    <lastmod>2017-10-13T03:16:03.686Z</lastmod>
+    <data>
+        <display>
+        <title>Pandas手册（9）- 数据合并与连接</title>
+        <pubTime>2017-08-14T00:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Pandas</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-Pandas" url="https://yuguiyang.github.io/categories/Python-Pandas/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/12/pandas-handbook-08/</loc>
+    <lastmod>2017-10-13T03:14:39.744Z</lastmod>
+    <data>
+        <display>
+        <title>Pandas手册（8）- 常见绘图</title>
+        <pubTime>2017-08-12T00:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Pandas</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-Pandas" url="https://yuguiyang.github.io/categories/Python-Pandas/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/08/pandas-handbook-07/</loc>
+    <lastmod>2017-10-13T02:33:24.007Z</lastmod>
+    <data>
+        <display>
+        <title>Pandas手册（7）- pandas数据加载</title>
+        <pubTime>2017-08-08T00:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Pandas</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-Pandas" url="https://yuguiyang.github.io/categories/Python-Pandas/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/07/pandas-handbook-06/</loc>
+    <lastmod>2017-10-13T02:14:31.861Z</lastmod>
+    <data>
+        <display>
+        <title>Pandas手册（6）- 用pandas完成excel中常见任务</title>
+        <pubTime>2017-08-07T00:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Pandas</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-Pandas" url="https://yuguiyang.github.io/categories/Python-Pandas/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/10/12/mysql-handbook-09/</loc>
     <lastmod>2017-10-12T11:15:59.281Z</lastmod>
     <data>

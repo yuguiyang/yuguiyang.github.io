@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta name="baidu-site-verification" content="SESFQwOIqk" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python,Pandas," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="于贵洋的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="PythonPandas  这里来看一下，pandas中数据转换与合并的使用方法，刚刚学习了一下，很好用，就跟SQL里面一样。 #1. 合并数据集就是说，我们有2个数据集，想要将他们合并一下，就是SQL里面的关联查询，pandas里面用一个函数就行了12345DataFrame.merge(right, how=&apos;inner&apos;, on=None, left_on=None, right_on=No">
+<meta name="keywords" content="Python,Pandas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pandas手册（9）- 数据合并与连接">
+<meta property="og:url" content="https://yuguiyang.github.io/2017/08/14/pandas-handbook-09/index.html">
+<meta property="og:site_name" content="于贵洋的博客">
+<meta property="og:description" content="PythonPandas  这里来看一下，pandas中数据转换与合并的使用方法，刚刚学习了一下，很好用，就跟SQL里面一样。 #1. 合并数据集就是说，我们有2个数据集，想要将他们合并一下，就是SQL里面的关联查询，pandas里面用一个函数就行了12345DataFrame.merge(right, how=&apos;inner&apos;, on=None, left_on=None, right_on=No">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-5d5033da0e85c634.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-9eb4ea26e7748855.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-13T03:16:03.686Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pandas手册（9）- 数据合并与连接">
+<meta name="twitter:description" content="PythonPandas  这里来看一下，pandas中数据转换与合并的使用方法，刚刚学习了一下，很好用，就跟SQL里面一样。 #1. 合并数据集就是说，我们有2个数据集，想要将他们合并一下，就是SQL里面的关联查询，pandas里面用一个函数就行了12345DataFrame.merge(right, how=&apos;inner&apos;, on=None, left_on=None, right_on=No">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/76024-5d5033da0e85c634.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yuguiyang.github.io/2017/08/14/pandas-handbook-09/"/>
+
+
+
+
+
+  <title>Pandas手册（9）- 数据合并与连接 | 于贵洋的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?94800eeafa2712714245d902011f7a97";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">于贵洋的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">BI、数据分析</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/14/pandas-handbook-09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Pandas手册（9）- 数据合并与连接</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T08:00:00+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">  本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Python<br>Pandas</p>
+<hr>
+<p>这里来看一下，pandas中数据转换与合并的使用方法，刚刚学习了一下，很好用，就跟SQL里面一样。</p>
+<p>#1. 合并数据集<br>就是说，我们有2个数据集，想要将他们合并一下，就是SQL里面的关联查询，pandas里面用一个函数就行了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">DataFrame.merge(right, how=<span class="string">'inner'</span>, on=<span class="keyword">None</span>, left_on=<span class="keyword">None</span>, right_on=<span class="keyword">None</span>, left_index=<span class="keyword">False</span>, right_index=<span class="keyword">False</span>, sort=<span class="keyword">False</span>, suffixes=(<span class="string">'_x'</span>, <span class="string">'_y'</span>), copy=<span class="keyword">True</span>, indicator=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">Merge DataFrame objects by performing a database-style join operation by columns <span class="keyword">or</span> indexes.</div><div class="line"></div><div class="line">If joining columns on columns, the DataFrame indexes will be ignored. Otherwise <span class="keyword">if</span> joining indexes on indexes <span class="keyword">or</span> indexes on a column <span class="keyword">or</span> columns, the index will be passed on.</div></pre></td></tr></table></figure></p>
+<p>熟练掌握几个参数就足够了，下面会依次介绍下<br>小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">a = pd.DataFrame(&#123;<span class="string">'key'</span>:list(<span class="string">'bbccaa'</span>),<span class="string">'data1'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">6</span>)&#125;)</div><div class="line"></div><div class="line">b = pd.DataFrame(&#123;<span class="string">'key'</span>:list(<span class="string">'abc'</span>),<span class="string">'data2'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">3</span>)&#125;)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">18</span>]: </div><div class="line">   data1 key</div><div class="line"><span class="number">0</span>      <span class="number">8</span>   b</div><div class="line"><span class="number">1</span>      <span class="number">0</span>   b</div><div class="line"><span class="number">2</span>      <span class="number">5</span>   c</div><div class="line"><span class="number">3</span>      <span class="number">2</span>   c</div><div class="line"><span class="number">4</span>      <span class="number">3</span>   a</div><div class="line"><span class="number">5</span>      <span class="number">6</span>   a</div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">19</span>]: </div><div class="line">   data2 key</div><div class="line"><span class="number">0</span>      <span class="number">0</span>   a</div><div class="line"><span class="number">1</span>      <span class="number">3</span>   b</div><div class="line"><span class="number">2</span>      <span class="number">2</span>   c</div></pre></td></tr></table></figure></p>
+<p>上面是我们的原始数据集，一个a，一个b，key是相同的字段，可以用来关联，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">a.merge(b)</div><div class="line">Out[<span class="number">20</span>]: </div><div class="line">   data1 key  data2</div><div class="line"><span class="number">0</span>      <span class="number">8</span>   b      <span class="number">3</span></div><div class="line"><span class="number">1</span>      <span class="number">0</span>   b      <span class="number">3</span></div><div class="line"><span class="number">2</span>      <span class="number">5</span>   c      <span class="number">2</span></div><div class="line"><span class="number">3</span>      <span class="number">2</span>   c      <span class="number">2</span></div><div class="line"><span class="number">4</span>      <span class="number">3</span>   a      <span class="number">0</span></div><div class="line"><span class="number">5</span>      <span class="number">6</span>   a      <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<p>这个翻译成SQL，就是a join b on a.key=b.key（因为我们没有指定根据什么字段去关联，所以会使用a、b中名字一样的字段去关联）<br>我们当然可以手动指定关联的字段<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">on : label <span class="keyword">or</span> list</div><div class="line"></div><div class="line">    Field names to join on. Must be found <span class="keyword">in</span> both DataFrames. If on <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">and</span> <span class="keyword">not</span> merging on indexes, then it merges on the intersection of the columns by default.</div><div class="line"></div><div class="line">left_on : label <span class="keyword">or</span> list, <span class="keyword">or</span> array-like</div><div class="line"></div><div class="line">    Field names to join on <span class="keyword">in</span> left DataFrame. Can be a vector <span class="keyword">or</span> list of vectors of the length of the DataFrame to use a particular vector <span class="keyword">as</span> the join key instead of columns</div><div class="line"></div><div class="line">right_on : label <span class="keyword">or</span> list, <span class="keyword">or</span> array-like</div><div class="line"></div><div class="line">    Field names to join on <span class="keyword">in</span> right DataFrame <span class="keyword">or</span> vector/list of vectors per left_on docs</div></pre></td></tr></table></figure></p>
+<p>如果，数据集中，关联字段名称一样，直接使用on就行了，如果不一样，就可以分别使用left_on 和right_on<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">a.merge(b,on=<span class="string">'key'</span>)</div><div class="line">Out[<span class="number">21</span>]: </div><div class="line">   data1 key  data2</div><div class="line"><span class="number">0</span>      <span class="number">8</span>   b      <span class="number">3</span></div><div class="line"><span class="number">1</span>      <span class="number">0</span>   b      <span class="number">3</span></div><div class="line"><span class="number">2</span>      <span class="number">5</span>   c      <span class="number">2</span></div><div class="line"><span class="number">3</span>      <span class="number">2</span>   c      <span class="number">2</span></div><div class="line"><span class="number">4</span>      <span class="number">3</span>   a      <span class="number">0</span></div><div class="line"><span class="number">5</span>      <span class="number">6</span>   a      <span class="number">0</span></div><div class="line"></div><div class="line">a.merge(b,left_on=<span class="string">'key'</span>,right_on=<span class="string">'key'</span>)</div><div class="line">Out[<span class="number">22</span>]: </div><div class="line">   data1 key  data2</div><div class="line"><span class="number">0</span>      <span class="number">8</span>   b      <span class="number">3</span></div><div class="line"><span class="number">1</span>      <span class="number">0</span>   b      <span class="number">3</span></div><div class="line"><span class="number">2</span>      <span class="number">5</span>   c      <span class="number">2</span></div><div class="line"><span class="number">3</span>      <span class="number">2</span>   c      <span class="number">2</span></div><div class="line"><span class="number">4</span>      <span class="number">3</span>   a      <span class="number">0</span></div><div class="line"><span class="number">5</span>      <span class="number">6</span>   a      <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<p>如果关联字段又多个，就指定为数组就行了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">c = pd.DataFrame(&#123;<span class="string">'lkey1'</span>:list(<span class="string">'ab'</span>),<span class="string">'lkey2'</span>:list(<span class="string">'xy'</span>),<span class="string">'ldata1'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">2</span>)&#125;)</div><div class="line"></div><div class="line">d = pd.DataFrame(&#123;<span class="string">'rkey1'</span>:list(<span class="string">'ab'</span>),<span class="string">'rkey2'</span>:list(<span class="string">'xy'</span>),<span class="string">'ldata1'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">2</span>)&#125;)</div><div class="line"></div><div class="line">c</div><div class="line">Out[<span class="number">25</span>]: </div><div class="line">   ldata1 lkey1 lkey2</div><div class="line"><span class="number">0</span>       <span class="number">8</span>     a     x</div><div class="line"><span class="number">1</span>       <span class="number">2</span>     b     y</div><div class="line"></div><div class="line">d</div><div class="line">Out[<span class="number">26</span>]: </div><div class="line">   ldata1 rkey1 rkey2</div><div class="line"><span class="number">0</span>       <span class="number">5</span>     a     x</div><div class="line"><span class="number">1</span>       <span class="number">7</span>     b     y</div><div class="line"></div><div class="line"><span class="comment">#因为找不到名字一样的字段做关联，所以是空的结果（有一个字段是一样的，ldata1，但是都一样，刚刚d的名字忘改了......）</span></div><div class="line"><span class="comment">#正常找不到关联字段，是会报错的</span></div><div class="line">c.merge(d)</div><div class="line">Out[<span class="number">27</span>]: </div><div class="line">Empty DataFrame</div><div class="line">Columns: [ldata1, lkey1, lkey2, rkey1, rkey2]</div><div class="line">Index: []</div><div class="line"></div><div class="line"><span class="comment">#我们将组合建传入，即可</span></div><div class="line">c.merge(d,left_on=[<span class="string">'lkey1'</span>,<span class="string">'lkey2'</span>],right_on=[<span class="string">'rkey1'</span>,<span class="string">'rkey2'</span>])</div><div class="line">Out[<span class="number">28</span>]: </div><div class="line">   ldata1_x lkey1 lkey2  ldata1_y rkey1 rkey2</div><div class="line"><span class="number">0</span>         <span class="number">8</span>     a     x         <span class="number">5</span>     a     x</div><div class="line"><span class="number">1</span>         <span class="number">2</span>     b     y         <span class="number">7</span>     b     y</div><div class="line"></div><div class="line"><span class="comment">#看下结果集，我们会发现，c和d中有一个同名的字段ldata1，这里默认加了后缀 _x，_y来表示区分</span></div><div class="line"><span class="comment">#我们也可以通过参数来指定后缀名称</span></div><div class="line">suffixes : <span class="number">2</span>-length sequence (tuple, list, ...)</div><div class="line"></div><div class="line">    Suffix to apply to overlapping column names <span class="keyword">in</span> the left <span class="keyword">and</span> right side, respectively</div><div class="line"></div><div class="line">c.merge(d,left_on=[<span class="string">'lkey1'</span>,<span class="string">'lkey2'</span>],right_on=[<span class="string">'rkey1'</span>,<span class="string">'rkey2'</span>],suffixes=[<span class="string">'_left'</span>,<span class="string">'_right'</span>])</div><div class="line">Out[<span class="number">29</span>]: </div><div class="line">   ldata1_left lkey1 lkey2  ldata1_right rkey1 rkey2</div><div class="line"><span class="number">0</span>            <span class="number">8</span>     a     x             <span class="number">5</span>     a     x</div><div class="line"><span class="number">1</span>            <span class="number">2</span>     b     y             <span class="number">7</span>     b     y</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-5d5033da0e85c634.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们再看下一个例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">e = pd.DataFrame(&#123;<span class="string">'key'</span>:list(<span class="string">'bbccaadd'</span>),<span class="string">'data'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">8</span>)&#125;)</div><div class="line"></div><div class="line">f = pd.DataFrame(&#123;<span class="string">'key'</span>:list(<span class="string">'abcx'</span>),<span class="string">'data'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">4</span>)&#125;)</div><div class="line"></div><div class="line">e</div><div class="line">Out[<span class="number">32</span>]: </div><div class="line">   data key</div><div class="line"><span class="number">0</span>     <span class="number">4</span>   b</div><div class="line"><span class="number">1</span>     <span class="number">5</span>   b</div><div class="line"><span class="number">2</span>     <span class="number">1</span>   c</div><div class="line"><span class="number">3</span>     <span class="number">2</span>   c</div><div class="line"><span class="number">4</span>     <span class="number">7</span>   a</div><div class="line"><span class="number">5</span>     <span class="number">7</span>   a</div><div class="line"><span class="number">6</span>     <span class="number">7</span>   d</div><div class="line"><span class="number">7</span>     <span class="number">9</span>   d</div><div class="line"></div><div class="line">f</div><div class="line">Out[<span class="number">33</span>]: </div><div class="line">   data key</div><div class="line"><span class="number">0</span>     <span class="number">6</span>   a</div><div class="line"><span class="number">1</span>     <span class="number">9</span>   b</div><div class="line"><span class="number">2</span>     <span class="number">2</span>   c</div><div class="line"><span class="number">3</span>     <span class="number">8</span>   x</div><div class="line"></div><div class="line">e.merge(f,on=<span class="string">'key'</span>)</div><div class="line">Out[<span class="number">34</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>       <span class="number">4</span>   b       <span class="number">9</span></div><div class="line"><span class="number">1</span>       <span class="number">5</span>   b       <span class="number">9</span></div><div class="line"><span class="number">2</span>       <span class="number">1</span>   c       <span class="number">2</span></div><div class="line"><span class="number">3</span>       <span class="number">2</span>   c       <span class="number">2</span></div><div class="line"><span class="number">4</span>       <span class="number">7</span>   a       <span class="number">6</span></div><div class="line"><span class="number">5</span>       <span class="number">7</span>   a       <span class="number">6</span></div></pre></td></tr></table></figure></p>
+<p>熟悉SQL的同学，会发现，上面的结果集市inner join之后的结果，SQL中，还有什么left  join、right join之类的，pandas中也有的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">how : &#123;‘left’, ‘right’, ‘outer’, ‘inner’&#125;, default ‘inner’</div><div class="line"></div><div class="line">        left: use only keys <span class="keyword">from</span> left frame, similar to a SQL left outer join; preserve key order</div><div class="line">        right: use only keys <span class="keyword">from</span> right frame, similar to a SQL right outer join; preserve key order</div><div class="line">        outer: use union of keys <span class="keyword">from</span> both frames, similar to a SQL full outer join; sort keys lexicographically</div><div class="line">        inner: use intersection of keys <span class="keyword">from</span> both frames, similar to a SQL inner join; preserve the order of the left keys</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#左关联，e为主即包含全部数据，不管是否可以和f关联上</span></div><div class="line">e.merge(f,on=<span class="string">'key'</span>,how=<span class="string">'left'</span>)</div><div class="line">Out[<span class="number">35</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>       <span class="number">4</span>   b     <span class="number">9.0</span></div><div class="line"><span class="number">1</span>       <span class="number">5</span>   b     <span class="number">9.0</span></div><div class="line"><span class="number">2</span>       <span class="number">1</span>   c     <span class="number">2.0</span></div><div class="line"><span class="number">3</span>       <span class="number">2</span>   c     <span class="number">2.0</span></div><div class="line"><span class="number">4</span>       <span class="number">7</span>   a     <span class="number">6.0</span></div><div class="line"><span class="number">5</span>       <span class="number">7</span>   a     <span class="number">6.0</span></div><div class="line"><span class="number">6</span>       <span class="number">7</span>   d     NaN</div><div class="line"><span class="number">7</span>       <span class="number">9</span>   d     NaN</div><div class="line"></div><div class="line"><span class="comment">#右为主，即f为主，</span></div><div class="line">e.merge(f,on=<span class="string">'key'</span>,how=<span class="string">'right'</span>)</div><div class="line">Out[<span class="number">36</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>     <span class="number">4.0</span>   b       <span class="number">9</span></div><div class="line"><span class="number">1</span>     <span class="number">5.0</span>   b       <span class="number">9</span></div><div class="line"><span class="number">2</span>     <span class="number">1.0</span>   c       <span class="number">2</span></div><div class="line"><span class="number">3</span>     <span class="number">2.0</span>   c       <span class="number">2</span></div><div class="line"><span class="number">4</span>     <span class="number">7.0</span>   a       <span class="number">6</span></div><div class="line"><span class="number">5</span>     <span class="number">7.0</span>   a       <span class="number">6</span></div><div class="line"><span class="number">6</span>     NaN   x       <span class="number">8</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#所有数据都包含</span></div><div class="line">e.merge(f,on=<span class="string">'key'</span>,how=<span class="string">'outer'</span>)</div><div class="line">Out[<span class="number">37</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>     <span class="number">4.0</span>   b     <span class="number">9.0</span></div><div class="line"><span class="number">1</span>     <span class="number">5.0</span>   b     <span class="number">9.0</span></div><div class="line"><span class="number">2</span>     <span class="number">1.0</span>   c     <span class="number">2.0</span></div><div class="line"><span class="number">3</span>     <span class="number">2.0</span>   c     <span class="number">2.0</span></div><div class="line"><span class="number">4</span>     <span class="number">7.0</span>   a     <span class="number">6.0</span></div><div class="line"><span class="number">5</span>     <span class="number">7.0</span>   a     <span class="number">6.0</span></div><div class="line"><span class="number">6</span>     <span class="number">7.0</span>   d     NaN</div><div class="line"><span class="number">7</span>     <span class="number">9.0</span>   d     NaN</div><div class="line"><span class="number">8</span>     NaN   x     <span class="number">8.0</span></div></pre></td></tr></table></figure>
+<p>前面，我们的例子，都是通过columns来关联的，有的时候，我们可能需要使用index来关联，者就用到了另2个参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">left_index : boolean, default <span class="keyword">False</span></div><div class="line"></div><div class="line">    Use the index <span class="keyword">from</span> the left DataFrame <span class="keyword">as</span> the join key(s). If it <span class="keyword">is</span> a MultiIndex, the number of keys <span class="keyword">in</span> the other DataFrame (either the index <span class="keyword">or</span> a number of columns) must match the number of levels</div><div class="line"></div><div class="line">right_index : boolean, default <span class="keyword">False</span></div><div class="line"></div><div class="line">    Use the index <span class="keyword">from</span> the right DataFrame <span class="keyword">as</span> the join key. Same caveats <span class="keyword">as</span> left_index</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">e</div><div class="line">Out[<span class="number">38</span>]: </div><div class="line">   data key</div><div class="line"><span class="number">0</span>     <span class="number">4</span>   b</div><div class="line"><span class="number">1</span>     <span class="number">5</span>   b</div><div class="line"><span class="number">2</span>     <span class="number">1</span>   c</div><div class="line"><span class="number">3</span>     <span class="number">2</span>   c</div><div class="line"><span class="number">4</span>     <span class="number">7</span>   a</div><div class="line"><span class="number">5</span>     <span class="number">7</span>   a</div><div class="line"><span class="number">6</span>     <span class="number">7</span>   d</div><div class="line"><span class="number">7</span>     <span class="number">9</span>   d</div><div class="line"></div><div class="line">g = pd.DataFrame(&#123;<span class="string">'data'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">3</span>)&#125;,index=list(<span class="string">'abc'</span>))</div><div class="line"></div><div class="line">g</div><div class="line">Out[<span class="number">40</span>]: </div><div class="line">   data</div><div class="line">a     <span class="number">9</span></div><div class="line">b     <span class="number">4</span></div><div class="line">c     <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment">#指定right_index=True，使用index去关联</span></div><div class="line">e.merge(g,left_on=<span class="string">'key'</span>,right_index=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">41</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>       <span class="number">4</span>   b       <span class="number">4</span></div><div class="line"><span class="number">1</span>       <span class="number">5</span>   b       <span class="number">4</span></div><div class="line"><span class="number">2</span>       <span class="number">1</span>   c       <span class="number">0</span></div><div class="line"><span class="number">3</span>       <span class="number">2</span>   c       <span class="number">0</span></div><div class="line"><span class="number">4</span>       <span class="number">7</span>   a       <span class="number">9</span></div><div class="line"><span class="number">5</span>       <span class="number">7</span>   a       <span class="number">9</span></div></pre></td></tr></table></figure>
+<h1 id="2-轴向连接"><a href="#2-轴向连接" class="headerlink" title="2. 轴向连接"></a>2. 轴向连接</h1><p>这里主要是介绍pandas中另一个函数的使用，pd.concat，concat一看上去，感觉是做拼接用的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pandas.concat(objs, axis=<span class="number">0</span>, join=<span class="string">'outer'</span>, join_axes=<span class="keyword">None</span>, ignore_index=<span class="keyword">False</span>, keys=<span class="keyword">None</span>, levels=<span class="keyword">None</span>, names=<span class="keyword">None</span>, verify_integrity=<span class="keyword">False</span>, copy=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">Concatenate pandas objects along a particular axis <span class="keyword">with</span> optional set logic along the other axes.</div><div class="line"></div><div class="line">Can also add a layer of hierarchical indexing on the concatenation axis, which may be useful <span class="keyword">if</span> the labels are the same (<span class="keyword">or</span> overlapping) on the passed axis number.</div></pre></td></tr></table></figure></p>
+<p>我们先来看例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">s1 = pd.Series([<span class="string">'a'</span>, <span class="string">'b'</span>])</div><div class="line"></div><div class="line">s2 = pd.Series([<span class="string">'c'</span>, <span class="string">'d'</span>])</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">51</span>]: </div><div class="line"><span class="number">0</span>    a</div><div class="line"><span class="number">1</span>    b</div><div class="line">dtype: object</div><div class="line"></div><div class="line">s2</div><div class="line">Out[<span class="number">52</span>]: </div><div class="line"><span class="number">0</span>    c</div><div class="line"><span class="number">1</span>    d</div><div class="line">dtype: object</div><div class="line"></div><div class="line">pd.concat([s1,s2])</div><div class="line">Out[<span class="number">53</span>]: </div><div class="line"><span class="number">0</span>    a</div><div class="line"><span class="number">1</span>    b</div><div class="line"><span class="number">0</span>    c</div><div class="line"><span class="number">1</span>    d</div><div class="line">dtype: object</div></pre></td></tr></table></figure></p>
+<p>默认，是按纵轴进行拼接的，我们可以设置<br><img src="http://upload-images.jianshu.io/upload_images/76024-9eb4ea26e7748855.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#横轴进行拼接</span></div><div class="line">pd.concat([s1,s2],axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">54</span>]: </div><div class="line">   <span class="number">0</span>  <span class="number">1</span></div><div class="line"><span class="number">0</span>  a  c</div><div class="line"><span class="number">1</span>  b  d</div></pre></td></tr></table></figure>
+<p>这里要注意下axis=1时，，如果index不一样，拼接的时候，是会合并的，如下面的例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">s1 = pd.Series([<span class="number">0</span>,<span class="number">1</span>],index=[<span class="string">'a'</span>,<span class="string">'b'</span>])</div><div class="line"></div><div class="line">s2 = pd.Series([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],index=[<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>])</div><div class="line"></div><div class="line">s3 = pd.Series([<span class="number">5</span>,<span class="number">6</span>],index=[<span class="string">'f'</span>,<span class="string">'g'</span>])</div><div class="line"></div><div class="line">pd.concat([s1,s2,s3])</div><div class="line">Out[<span class="number">58</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">1</span></div><div class="line">c    <span class="number">2</span></div><div class="line">d    <span class="number">3</span></div><div class="line">e    <span class="number">4</span></div><div class="line">f    <span class="number">5</span></div><div class="line">g    <span class="number">6</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">60</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">1</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s2</div><div class="line">Out[<span class="number">61</span>]: </div><div class="line">c    <span class="number">2</span></div><div class="line">d    <span class="number">3</span></div><div class="line">e    <span class="number">4</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s3</div><div class="line">Out[<span class="number">62</span>]: </div><div class="line">f    <span class="number">5</span></div><div class="line">g    <span class="number">6</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">pd.concat([s1,s2,s3],axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">59</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line">a  <span class="number">0.0</span>  NaN  NaN</div><div class="line">b  <span class="number">1.0</span>  NaN  NaN</div><div class="line">c  NaN  <span class="number">2.0</span>  NaN</div><div class="line">d  NaN  <span class="number">3.0</span>  NaN</div><div class="line">e  NaN  <span class="number">4.0</span>  NaN</div><div class="line">f  NaN  NaN  <span class="number">5.0</span></div><div class="line">g  NaN  NaN  <span class="number">6.0</span></div></pre></td></tr></table></figure></p>
+<p>这里，我们看个常用的参数，join，可以选择是取交集还是并集<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">join : &#123;‘inner’, ‘outer’&#125;, default ‘outer’</div><div class="line"></div><div class="line">    How to handle indexes on other axis(es)</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#他们并没哟并集，所以是空</span></div><div class="line">pd.concat([s1,s2,s3],axis=<span class="number">1</span>,join=<span class="string">'inner'</span>)</div><div class="line">Out[<span class="number">73</span>]: </div><div class="line">Empty DataFrame</div><div class="line">Columns: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]</div><div class="line">Index: []</div><div class="line"></div><div class="line">s4 = pd.concat([s1*<span class="number">5</span>,s3])</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">75</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">1</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s4</div><div class="line">Out[<span class="number">76</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">5</span></div><div class="line">f    <span class="number">5</span></div><div class="line">g    <span class="number">6</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">pd.concat([s1,s4],axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">77</span>]: </div><div class="line">     <span class="number">0</span>  <span class="number">1</span></div><div class="line">a  <span class="number">0.0</span>  <span class="number">0</span></div><div class="line">b  <span class="number">1.0</span>  <span class="number">5</span></div><div class="line">f  NaN  <span class="number">5</span></div><div class="line">g  NaN  <span class="number">6</span></div><div class="line"></div><div class="line"><span class="comment">#只返回了交集部分</span></div><div class="line">pd.concat([s1,s4],axis=<span class="number">1</span>,join=<span class="string">'inner'</span>)</div><div class="line">Out[<span class="number">78</span>]: </div><div class="line">   <span class="number">0</span>  <span class="number">1</span></div><div class="line">a  <span class="number">0</span>  <span class="number">0</span></div><div class="line">b  <span class="number">1</span>  <span class="number">5</span></div></pre></td></tr></table></figure>
+<p>我们也可以指明其他轴要使用的索引，要显示的index<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">join_axes : list of Index objects</div><div class="line"></div><div class="line">    Specific indexes to use <span class="keyword">for</span> the other n - <span class="number">1</span> axes instead of performing inner/outer set logic</div><div class="line"></div><div class="line">pd.concat([s1,s4],axis=<span class="number">1</span>,join_axes=[[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]])</div><div class="line">Out[<span class="number">81</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span></div><div class="line">a  <span class="number">0.0</span>  <span class="number">0.0</span></div><div class="line">b  <span class="number">1.0</span>  <span class="number">5.0</span></div><div class="line">c  NaN  NaN</div><div class="line">d  NaN  NaN</div></pre></td></tr></table></figure></p>
+<h1 id="3-合并重叠数据"><a href="#3-合并重叠数据" class="headerlink" title="3. 合并重叠数据"></a>3. 合并重叠数据</h1><p>这里是另一个函数的使用介绍 combine_first，类似于numpy中where，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DataFrame.combine_first(other)</div><div class="line"></div><div class="line">Combine two DataFrame objects <span class="keyword">and</span> default to non-null values <span class="keyword">in</span> frame calling the method. Result index columns will be the union of the respective indexes <span class="keyword">and</span> columns</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">a = pd.Series([np.nan,<span class="number">2.5</span>,np.nan,<span class="number">3.5</span>,<span class="number">4.5</span>,np.nan]</div><div class="line">                    ,index=[<span class="string">'f'</span>,<span class="string">'e'</span>,<span class="string">'d'</span>,<span class="string">'c'</span>,<span class="string">'b'</span>,<span class="string">'a'</span>])</div><div class="line"></div><div class="line">b = pd.Series(np.arange(len(a),dtype=np.float64)</div><div class="line">                    ,index=[<span class="string">'f'</span>,<span class="string">'e'</span>,<span class="string">'d'</span>,<span class="string">'c'</span>,<span class="string">'b'</span>,<span class="string">'a'</span>])</div><div class="line"></div><div class="line"></div><div class="line">b[<span class="number">-1</span>]=np.nan</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">85</span>]: </div><div class="line">f    NaN</div><div class="line">e    <span class="number">2.5</span></div><div class="line">d    NaN</div><div class="line">c    <span class="number">3.5</span></div><div class="line">b    <span class="number">4.5</span></div><div class="line">a    NaN</div><div class="line">dtype: float64</div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">88</span>]: </div><div class="line">f    <span class="number">0.0</span></div><div class="line">e    <span class="number">1.0</span></div><div class="line">d    <span class="number">2.0</span></div><div class="line">c    <span class="number">3.0</span></div><div class="line">b    <span class="number">4.0</span></div><div class="line">a    NaN</div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#如果a的字段为nan，则用b的数据</span></div><div class="line">np.where(a.isnull(),b,a)</div><div class="line">Out[<span class="number">92</span>]: array([ <span class="number">0.</span> ,  <span class="number">2.5</span>,  <span class="number">2.</span> ,  <span class="number">3.5</span>,  <span class="number">4.5</span>,  nan])</div><div class="line"></div><div class="line"></div><div class="line">a.combine_first(b)</div><div class="line">Out[<span class="number">93</span>]: </div><div class="line">f    <span class="number">0.0</span></div><div class="line">e    <span class="number">2.5</span></div><div class="line">d    <span class="number">2.0</span></div><div class="line">c    <span class="number">3.5</span></div><div class="line">b    <span class="number">4.5</span></div><div class="line">a    NaN</div><div class="line">dtype: float64</div></pre></td></tr></table></figure>
+<p>combine_first还会做数据对齐的操作<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">b[:<span class="number">-2</span>]</div><div class="line">Out[<span class="number">95</span>]: </div><div class="line">f    <span class="number">0.0</span></div><div class="line">e    <span class="number">1.0</span></div><div class="line">d    <span class="number">2.0</span></div><div class="line">c    <span class="number">3.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">a[<span class="number">2</span>:]</div><div class="line">Out[<span class="number">96</span>]: </div><div class="line">d    NaN</div><div class="line">c    <span class="number">3.5</span></div><div class="line">b    <span class="number">4.5</span></div><div class="line">a    NaN</div><div class="line">dtype: float64</div><div class="line"></div><div class="line">b[:<span class="number">-2</span>].combine_first(a[<span class="number">2</span>:])</div><div class="line">Out[<span class="number">94</span>]: </div><div class="line">a    NaN</div><div class="line">b    <span class="number">4.5</span></div><div class="line">c    <span class="number">3.0</span></div><div class="line">d    <span class="number">2.0</span></div><div class="line">e    <span class="number">1.0</span></div><div class="line">f    <span class="number">0.0</span></div><div class="line">dtype: float64</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="于贵洋 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    于贵洋
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://yuguiyang.github.io/2017/08/14/pandas-handbook-09/" title="Pandas手册（9）- 数据合并与连接">https://yuguiyang.github.io/2017/08/14/pandas-handbook-09/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Pandas/" rel="tag"># Pandas</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/12/pandas-handbook-08/" rel="next" title="Pandas手册（8）- 常见绘图">
+                <i class="fa fa-chevron-left"></i> Pandas手册（8）- 常见绘图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/14/the-newest-area-info-01/" rel="prev" title="最新行政区信息获取">
+                最新行政区信息获取 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="于贵洋" />
+          <p class="site-author-name" itemprop="name">于贵洋</p>
+           
+              <p class="site-description motion-element" itemprop="description">愿你出走半生，归来仍是少年</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yuguiyang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/yuguiyang1990" title="很久之前的CSDN博客" target="_blank">很久之前的CSDN博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-轴向连接"><span class="nav-number">1.</span> <span class="nav-text">2. 轴向连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-合并重叠数据"><span class="nav-number">2.</span> <span class="nav-text">3. 合并重叠数据</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">于贵洋</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">  本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">  本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
