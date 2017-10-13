@@ -78,23 +78,36 @@
 
 
 
-<meta name="description" content="MySQL疑问汇总 这里吧同学们遇到的问题都汇总起来，方便大家一起查阅。 update at 2017-10-121. Workbench、Navicat是干嘛的，和SQL有啥关系？Workbench和Navicat都是数据库管理工具，让我们可以方便快捷的管理和使用数据库。类似的工具有很多，免费的、收费的好多好多，就好像共享单车，ofo、mobike、小蓝单车、小鸣单车……用哪个都可以，看我们的选">
+<meta name="description" content="MySQLWorkbench使用 简单介绍下Workbench的使用Workbench是MySQL官方提供的一个可视化管理工具，跨多个平台而且免费的，详情参考官网。我们从下载地址下载，安装就行了 安装可以单独下载，也可以使用提供的一个管理工具统一下载管理，管理工具提供了整个MySQL所有相关组件的统一管理维护，也挺方便。">
 <meta name="keywords" content="SQL,MySQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL-疑问汇总">
-<meta property="og:url" content="https://yuguiyang.github.io/2017/10/12/mysql-handbook-09/index.html">
+<meta property="og:title" content="MySQL-Workbench使用">
+<meta property="og:url" content="https://yuguiyang.github.io/2017/10/12/mysql-handbook-11/index.html">
 <meta property="og:site_name" content="于贵洋的博客">
-<meta property="og:description" content="MySQL疑问汇总 这里吧同学们遇到的问题都汇总起来，方便大家一起查阅。 update at 2017-10-121. Workbench、Navicat是干嘛的，和SQL有啥关系？Workbench和Navicat都是数据库管理工具，让我们可以方便快捷的管理和使用数据库。类似的工具有很多，免费的、收费的好多好多，就好像共享单车，ofo、mobike、小蓝单车、小鸣单车……用哪个都可以，看我们的选">
+<meta property="og:description" content="MySQLWorkbench使用 简单介绍下Workbench的使用Workbench是MySQL官方提供的一个可视化管理工具，跨多个平台而且免费的，详情参考官网。我们从下载地址下载，安装就行了 安装可以单独下载，也可以使用提供的一个管理工具统一下载管理，管理工具提供了整个MySQL所有相关组件的统一管理维护，也挺方便。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-2f8349a4793e8a7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-a537d0341c36d46f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-5038df8497d11e52.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-6a16efbffe7d9a3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-10-12T11:15:59.281Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-7b7ea58cc50de3b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-f1ad915acdeb4815.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-e72ac9b47dc55954.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-df302f1ca148ad08.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-464160f15ea2fc02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-b965fbf385983a07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-084e3359386f57c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-e52ac70f136395ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-b9e4445db4c84577.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-95ed8b3f264f8166.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-ed56a50a473520b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-4f73aaf40415718f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-74048925f5ad4b09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-a669737616fa7148.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-78f35b844bccc1ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-8e7af97235422c15.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-e17c39c9930c96af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-12T10:00:18.478Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL-疑问汇总">
-<meta name="twitter:description" content="MySQL疑问汇总 这里吧同学们遇到的问题都汇总起来，方便大家一起查阅。 update at 2017-10-121. Workbench、Navicat是干嘛的，和SQL有啥关系？Workbench和Navicat都是数据库管理工具，让我们可以方便快捷的管理和使用数据库。类似的工具有很多，免费的、收费的好多好多，就好像共享单车，ofo、mobike、小蓝单车、小鸣单车……用哪个都可以，看我们的选">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/76024-2f8349a4793e8a7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="MySQL-Workbench使用">
+<meta name="twitter:description" content="MySQLWorkbench使用 简单介绍下Workbench的使用Workbench是MySQL官方提供的一个可视化管理工具，跨多个平台而且免费的，详情参考官网。我们从下载地址下载，安装就行了 安装可以单独下载，也可以使用提供的一个管理工具统一下载管理，管理工具提供了整个MySQL所有相关组件的统一管理维护，也挺方便。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/76024-7b7ea58cc50de3b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -124,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://yuguiyang.github.io/2017/10/12/mysql-handbook-09/"/>
+  <link rel="canonical" href="https://yuguiyang.github.io/2017/10/12/mysql-handbook-11/"/>
 
 
 
 
 
-  <title>MySQL-疑问汇总 | 于贵洋的博客</title>
+  <title>MySQL-Workbench使用 | 于贵洋的博客</title>
   
 
 
@@ -331,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/12/mysql-handbook-09/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/12/mysql-handbook-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -348,7 +361,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">MySQL-疑问汇总</h2>
+          <h2 class="post-title" itemprop="name headline">MySQL-Workbench使用</h2>
         
 
         <div class="post-meta">
@@ -360,7 +373,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T18:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T16:00:00+08:00">
                 2017-10-12
               </time>
             
@@ -401,8 +414,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/12/mysql-handbook-09/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/10/12/mysql-handbook-09/" itemprop="commentsCount"></span>
+                <a href="/2017/10/12/mysql-handbook-11/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/10/12/mysql-handbook-11/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -435,32 +448,37 @@
       
 
       
-        <p>MySQL<br>疑问汇总</p>
-<p>这里吧同学们遇到的问题都汇总起来，方便大家一起查阅。</p>
-<h2 id="update-at-2017-10-12"><a href="#update-at-2017-10-12" class="headerlink" title="update at 2017-10-12"></a>update at 2017-10-12</h2><h3 id="1-Workbench、Navicat是干嘛的，和SQL有啥关系？"><a href="#1-Workbench、Navicat是干嘛的，和SQL有啥关系？" class="headerlink" title="1. Workbench、Navicat是干嘛的，和SQL有啥关系？"></a>1. Workbench、Navicat是干嘛的，和SQL有啥关系？</h3><p>Workbench和Navicat都是数据库管理工具，让我们可以方便快捷的管理和使用数据库。类似的工具有很多，免费的、收费的好多好多，就好像共享单车，ofo、mobike、小蓝单车、小鸣单车……用哪个都可以，看我们的选择了。</p>
-<p>SQL呢？是一种查询语言，虽然和写代码编程有关，但是不用怕，记住九九乘法表，后面就是活学活用了。我们为了和数据库成为好朋友，得多和他聊天吧，但我们和他不是一个星球的，那咋办？巧了，他听得懂SQL，那我们学下SQL，就可以愉快的玩耍了。这里呢，我们还得注意一下，目前市场上在使用的数据库有很多，</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-2f8349a4793e8a7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="dbs"></p>
+        <p>MySQL<br>Workbench使用</p>
+<p>简单介绍下Workbench的使用<br>Workbench是MySQL官方提供的一个可视化管理工具，跨多个平台而且免费的，详情参考<a href="https://www.mysql.com/products/workbench/" target="_blank" rel="external">官网</a>。<br>我们从下载地址下载，安装就行了</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><img src="http://upload-images.jianshu.io/upload_images/76024-7b7ea58cc50de3b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="workbench 安装"><br>可以单独下载，也可以使用提供的一个管理工具统一下载管理，管理工具提供了整个MySQL所有相关组件的统一管理维护，也挺方便。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-f1ad915acdeb4815.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="管理工具"></p>
 <a id="more"></a>
-<p>SQL是一套标准，其他每个数据库都会实现规定的基本功能，然后拓展些自己的语法，所以很不幸，换一个数据库，我们的SQL不一定完全跑的通。<br>但是，只要我们掌握了标准的SQL语法然后针对不同的数据库，关注下特殊语法就可以了（会骑ofo，换了Mobike就不会骑了吗？）</p>
-<p>综上所述，我们是通过管理工具（Workbench、Navicat……）去使用和管理数据库（MySQL…..），在管理工具中，我们使用SQL来和数据库互动。</p>
-<h3 id="2-Workbench的使用"><a href="#2-Workbench的使用" class="headerlink" title="2. Workbench的使用"></a>2. Workbench的使用</h3><p>参考：<a href="http://yuguiyang.github.io/2017/10/12/mysql-handbook-08/">MySQL-Workbench使用</a></p>
-<h3 id="3-sqlzoo第九题"><a href="#3-sqlzoo第九题" class="headerlink" title="3. sqlzoo第九题"></a>3. sqlzoo第九题</h3><p>题目地址: <a href="https://sqlzoo.net/wiki/SELECT_within_SELECT_Tutorial/zh" target="_blank" rel="external">sqlzoo</a><br>首先是关于all的疑问</p>
-<p>关于all可以参考这里先简单了解下：<a href="http://yuguiyang.github.io/2017/09/11/mysql-handbook-08/">MySQL-子查询的使用</a></p>
-<p>SQL这样写是没问题的<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> </div><div class="line">    <span class="keyword">name</span>,</div><div class="line">    continent,</div><div class="line">    population </div><div class="line"><span class="keyword">FROM</span> </div><div class="line">    world x</div><div class="line">    <span class="comment">-- 返回符合条件的所有数据</span></div><div class="line"><span class="keyword">WHERE</span> </div><div class="line">    <span class="comment">-- 使用all，判断该州的所有人口数是否都 &lt;= 25000000</span></div><div class="line">    <span class="number">25000000</span>  &gt;= ALL(</div><div class="line">        <span class="comment">-- 我们使用子查询，获取每一个州的所有人口数</span></div><div class="line">        <span class="keyword">SELECT</span> </div><div class="line">            population </div><div class="line">        <span class="keyword">FROM</span> </div><div class="line">            world y </div><div class="line">        <span class="keyword">WHERE</span>  x.continent =y.continent</div><div class="line">    )</div></pre></td></tr></table></figure></p>
-<ul>
-<li>疑问1： 能不能把这个all放到后面像这样</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-a537d0341c36d46f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>答案是不行的，这个不符合all的使用语法，具体语法参考官方文档：<a href="https://dev.mysql.com/doc/refman/5.7/en/all-subqueries.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/all-subqueries.html</a></p>
-<p>all一定要放在一个比较运算符的后面才行，所以，替换是不符合规范的，会报错<br><img src="http://upload-images.jianshu.io/upload_images/76024-5038df8497d11e52.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li>疑问2：为什么下面的写法不对<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span></div><div class="line">    <span class="keyword">name</span>,</div><div class="line">    continent,</div><div class="line">    population </div><div class="line"><span class="keyword">FROM</span> </div><div class="line">    world </div><div class="line"><span class="keyword">WHERE</span>  </div><div class="line">    <span class="number">25000000</span> &gt;= ALL(</div><div class="line">        <span class="keyword">SELECT</span> </div><div class="line">            <span class="keyword">MAX</span>(population) </div><div class="line">        <span class="keyword">FROM</span> </div><div class="line">            world  </div><div class="line">        <span class="keyword">GROUP</span> <span class="keyword">BY</span> </div><div class="line">            continent </div><div class="line">    )</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>我们分析下题目，他是说要查询出州下面每个城市的人口数都小于等于25000000的记录<br>上面我们就是使用all来实现去判断每个州下面的所有城市的人口数都&lt;= 25000000，现在呢，不想去判断每个城市的人口数了，我只要拿出该州下面最大的人口数，然后判断这个最大值是不是&lt;= 25000000就可以了。<br>思路是对的，但是SQL稍微有些问题<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 要么返回所有记录，要么没有返回记录</span></div><div class="line"><span class="keyword">SELECT</span></div><div class="line">    <span class="keyword">name</span>,</div><div class="line">    continent,</div><div class="line">    population </div><div class="line"><span class="keyword">FROM</span> </div><div class="line">    world </div><div class="line"><span class="keyword">WHERE</span>  </div><div class="line">    <span class="comment">-- 因为主表world和子查询没有关联关系，所以这里的all就变成了“每个州的最大人口数是不是都 &lt;= 25000000</span></div><div class="line">    <span class="comment">-- 也就是说，下面子查询的返回值，如果都是 &lt;= 25000000，那就会返回world表的所有数据；如果有一个州的人口数 &gt;25000000，那就没有记录返回</span></div><div class="line">    <span class="number">25000000</span> &gt;= ALL(</div><div class="line">        <span class="comment">-- 获取每个州，最大的人口数</span></div><div class="line">        <span class="keyword">SELECT</span> </div><div class="line">            <span class="keyword">MAX</span>(population) </div><div class="line">        <span class="keyword">FROM</span> </div><div class="line">            world  </div><div class="line">        <span class="keyword">GROUP</span> <span class="keyword">BY</span> </div><div class="line">            continent </div><div class="line">    )</div></pre></td></tr></table></figure></p>
-<p>所以，我们要做的改动，就是让主表和子查询有关联关系，即判断每一个州的最大值</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-6a16efbffe7d9a3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>不使用all也可以，<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 查询符合条件的州即可</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">name</span>,continent,population <span class="keyword">from</span> world <span class="keyword">where</span> continent <span class="keyword">in</span> (</div><div class="line">    <span class="comment">-- 使用having直接过滤，判断每个州的最大人口是否&lt;= 25000000</span></div><div class="line">    <span class="keyword">select</span> continent <span class="keyword">from</span> world <span class="keyword">group</span> <span class="keyword">by</span> continent <span class="keyword">having</span> <span class="keyword">max</span>(population) &lt;= <span class="number">25000000</span></div><div class="line">)</div></pre></td></tr></table></figure></p>
-<p>好了，这个问题，也写到这，大家可以看看还有没有别的写法。</p>
+<p>我们这里就是用独立安装包了，下载完之后安装，可能会失败，因为他有2个依赖要先安装，失败的话，会提示你缺少的依赖。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-e72ac9b47dc55954.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="依赖"></p>
+<p>这里有个小坑，这里说的是.NET Framework 4.5，但实际上需要的是4.5.2貌似不太一样，所以刚刚一直安装失败，注意下就行了<a href="https://www.microsoft.com/en-us/download/details.aspx?id=42642" target="_blank" rel="external">.NET Framework 4.5.2</a></p>
+<p>安装过程就是一路Next就行了，没啥特殊的。<br>安装完之后，我们在桌面或者菜单找到这个</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-df302f1ca148ad08.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>主界面应该是这样：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-464160f15ea2fc02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="主界面"></p>
+<h2 id="新建连接"><a href="#新建连接" class="headerlink" title="新建连接"></a>新建连接</h2><p>我们点击加号，新增一个连接<br><img src="http://upload-images.jianshu.io/upload_images/76024-b965fbf385983a07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建连接"></p>
+<p>在弹出的界面上，输入数据库的连接信息，就可以了，密码下图所示的地方输入</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-084e3359386f57c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="密码"></p>
+<p>输入完成后，我们测试下连接是否正常<br><img src="http://upload-images.jianshu.io/upload_images/76024-e52ac70f136395ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="测试连接"></p>
+<p>都正常后，我们单击OK就好了</p>
+<p>返回主界面后，可以看到我们刚刚新建的连接，我们双击就可以打开这个连接，开始我们的SQL学习了<br><img src="http://upload-images.jianshu.io/upload_images/76024-b9e4445db4c84577.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="成功的连接"></p>
+<h2 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h2><p><img src="http://upload-images.jianshu.io/upload_images/76024-95ed8b3f264f8166.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="主界面介绍"><br>我们目前主要关心的是SQL的学习，所以那些管理功能可以先忽略掉<br>我们主要关注“当前可以使用的数据库”和SQL的编辑界面就OK了</p>
+<p>我们以demo库为例</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-ed56a50a473520b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo库"><br>这里就是demo库中的表，数据库中的数据是以表的形式保存的<br>比如，我们看看学生表的表结构信息，单击这个表旁边的”i”图标</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-4f73aaf40415718f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="表结构"></p>
+<p>右边会显示一个表的信息界面，字段啊，索引啊，触发器之类的，我们这里就看看DDL<br><img src="http://upload-images.jianshu.io/upload_images/76024-74048925f5ad4b09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="表信息"></p>
+<p>这里展示的就是t_student表的表结构信息<br><img src="http://upload-images.jianshu.io/upload_images/76024-a669737616fa7148.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ddl"></p>
+<h2 id="SQL练习"><a href="#SQL练习" class="headerlink" title="SQL练习"></a>SQL练习</h2><p>下面，我们看看，怎样去练习SQL<br>我们回到刚刚的query界面</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-78f35b844bccc1ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="query界面"></p>
+<p>首先，我们要选择我们使用的数据库<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> demo;</div></pre></td></tr></table></figure></p>
+<p>写好SQL，我们单击那个像闪电一样的图标执行，下面的输出窗口会显示执行结果，绿色的对号表示正确执行<br><img src="http://upload-images.jianshu.io/upload_images/76024-8e7af97235422c15.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="use db"></p>
+<p>然后，就可以各种SQL开始练习了<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-e17c39c9930c96af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="select"></p>
+<p>后面，我们就可以参考前面的博客，开始学习吧<a href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-01/">MySQL-基本语法介绍</a></p>
 
       
     </div>
@@ -489,7 +507,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://yuguiyang.github.io/2017/10/12/mysql-handbook-09/" title="MySQL-疑问汇总">https://yuguiyang.github.io/2017/10/12/mysql-handbook-09/</a>
+    <a href="https://yuguiyang.github.io/2017/10/12/mysql-handbook-11/" title="MySQL-Workbench使用">https://yuguiyang.github.io/2017/10/12/mysql-handbook-11/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -519,8 +537,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/12/mysql-handbook-08/" rel="next" title="MySQL-Workbench使用">
-                <i class="fa fa-chevron-left"></i> MySQL-Workbench使用
+              <a href="/2017/09/20/Tableau-handbook-06/" rel="next" title="Tableau实例-帕累托图">
+                <i class="fa fa-chevron-left"></i> Tableau实例-帕累托图
               </a>
             
           </div>
@@ -529,8 +547,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/31/top/" rel="prev" title="博客迁移整理中(置顶)">
-                博客迁移整理中(置顶) <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/12/mysql-handbook-12/" rel="prev" title="MySQL-疑问汇总">
+                MySQL-疑问汇总 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -705,7 +723,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#update-at-2017-10-12"><span class="nav-number">1.</span> <span class="nav-text">update at 2017-10-12</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Workbench、Navicat是干嘛的，和SQL有啥关系？"><span class="nav-number">1.1.</span> <span class="nav-text">1. Workbench、Navicat是干嘛的，和SQL有啥关系？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Workbench的使用"><span class="nav-number">1.2.</span> <span class="nav-text">2. Workbench的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-sqlzoo第九题"><span class="nav-number">1.3.</span> <span class="nav-text">3. sqlzoo第九题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建连接"><span class="nav-number">2.</span> <span class="nav-text">新建连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能介绍"><span class="nav-number">3.</span> <span class="nav-text">功能介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL练习"><span class="nav-number">4.</span> <span class="nav-text">SQL练习</span></a></li></ol></div>
             
 
           </div>
@@ -936,7 +954,7 @@
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new Gitmint({
-            id: 'http://yuguiyang.github.io', 
+            id: 'https://yuguiyang.github.io', 
             owner: 'yuguiyang',
             repo: 'yuguiyang.github.io',
             
