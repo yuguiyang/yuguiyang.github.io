@@ -550,6 +550,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Python基础（6）- zip]]></title>
+    <url>%2F2017%2F08%2F06%2Fpython-handbook-06%2F</url>
+    <content type="text"><![CDATA[这里记录一个函数的使用，zip123456zip(iter1 [,iter2 [...]]) --&gt; zip objectReturn a zip object whose .__next__() method returns a tuple wherethe i-th element comes from the i-th iterable argument. The .__next__()method continues until the shortest iterable in the argument sequenceis exhausted and then it raises StopIteration. 我们可以传入一个或多个可迭代对象，然后将对应位置的元素封装成一个tuple，然后把所有tuple封装为list返回1234567891011121314151617181920x = [1,2,3]y = [4,5,6]z = zip(x,y)print(z)&lt;zip object at 0x000002D26251F208&gt;print(list(z))[(1, 4), (2, 5), (3, 6)]#在只有一个参数的时候a = zip(x)aOut[8]: &lt;zip at 0x2d261cab588&gt;list(a)Out[9]: [(1,), (2,), (3,)] 如果2个参数的长度不一样，会以较短的为主12345678a = [1,2,3]b = ['ONE', 'TWO', 'THREE', 'FOUR']c = list(zip(a,b))cOut[31]: [(1, 'ONE'), (2, 'TWO'), (3, 'THREE')] 我们使用*，可以看做是unzip的过程12345678x = [1,2,3]y = [4,5,6]z = zip(*zip(x,y))list(z)Out[27]: [(1, 2, 3), (4, 5, 6)] 关于zip，有几个常用的场景，比如矩阵行列转换1234567a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]list(zip(*a))Out[38]: [(1, 4, 7), (2, 5, 8), (3, 6, 9)]list(map(list,zip(*a)))Out[39]: [[1, 4, 7], [2, 5, 8], [3, 6, 9]] 构造字典123456789a = [1,2,3]b = ['one','two','three']list(zip(a,b))Out[42]: [(1, 'one'), (2, 'two'), (3, 'three')]dict(list(zip(a,b)))Out[43]: &#123;1: 'one', 2: 'two', 3: 'three'&#125; 参考博客：http://blog.csdn.net/shomy_liu/article/details/46968651http://www.jb51.net/article/53051.htm]]></content>
+      <categories>
+        <category>Python-基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[numpy手册(2)-常用操作杂记]]></title>
     <url>%2F2017%2F08%2F06%2Fnumpy-handbook-02%2F</url>
     <content type="text"><![CDATA[PythonNumpy知识总结 这里记录下numpy常用的一些操作，一些散乱的知识点。 数组和标量之间的运算就是对数组进行批量的运算123456789101112131415161718192021import numpy as npa = np.arange(15).reshape(3,5)aOut[3]: array([[ 0, 1, 2, 3, 4], [ 5, 6, 7, 8, 9], [10, 11, 12, 13, 14]])a+2Out[4]: array([[ 2, 3, 4, 5, 6], [ 7, 8, 9, 10, 11], [12, 13, 14, 15, 16]])a+aOut[5]: array([[ 0, 2, 4, 6, 8], [10, 12, 14, 16, 18], [20, 22, 24, 26, 28]]) 基本的索引和切片上一篇，我们大概介绍过数组的切片，这里的切片操作都是原数组的一个视图，即原数组变化后，视图也会变化123456789101112131415161718192021222324252627aOut[7]: array([[ 0, 1, 2, 3, 4], [ 5, 6, 7, 8, 9], [10, 11, 12, 13, 14]])a[1]Out[8]: array([5, 6, 7, 8, 9])a[1][2]Out[9]: 7a[1:2]Out[10]: array([[5, 6, 7, 8, 9]])b=a[1:2]a[1:2]=0bOut[13]: array([[0, 0, 0, 0, 0]])aOut[14]: array([[ 0, 1, 2, 3, 4], [ 0, 0, 0, 0, 0], [10, 11, 12, 13, 14]]) 花式索引花式索引，就是利用整数数组进行索引。123456789101112131415161718192021x = np.empty((8,4))for i in range(8): x[i]=i xOut[18]: array([[ 0., 0., 0., 0.], [ 1., 1., 1., 1.], [ 2., 2., 2., 2.], ..., [ 5., 5., 5., 5.], [ 6., 6., 6., 6.], [ 7., 7., 7., 7.]])x[[3,0,5]]Out[19]: array([[ 3., 3., 3., 3.], [ 0., 0., 0., 0.], [ 5., 5., 5., 5.]]) 如果使用负数，会从末尾开始选取1234x[[-1,-2]]Out[20]: array([[ 7., 7., 7., 7.], [ 6., 6., 6., 6.]]) 数组的转置12345678910111213141516xOut[21]: array([[ 0., 0., 0., 0.], [ 1., 1., 1., 1.], [ 2., 2., 2., 2.], ..., [ 5., 5., 5., 5.], [ 6., 6., 6., 6.], [ 7., 7., 7., 7.]])x.TOut[22]: array([[ 0., 1., 2., ..., 5., 6., 7.], [ 0., 1., 2., ..., 5., 6., 7.], [ 0., 1., 2., ..., 5., 6., 7.], [ 0., 1., 2., ..., 5., 6., 7.]]) 上面的主要是轴对换，转置的话，看下这个例子（大学学的矩阵都忘了，得回顾下…） 一开始真迷糊了，找了个解释，明天再研究下这个函数]]></content>
@@ -559,17 +570,6 @@
       <tags>
         <tag>Python</tag>
         <tag>Numpy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Python基础（6）- zip]]></title>
-    <url>%2F2017%2F08%2F06%2Fpython-handbook-06%2F</url>
-    <content type="text"><![CDATA[这里记录一个函数的使用，zip123456zip(iter1 [,iter2 [...]]) --&gt; zip objectReturn a zip object whose .__next__() method returns a tuple wherethe i-th element comes from the i-th iterable argument. The .__next__()method continues until the shortest iterable in the argument sequenceis exhausted and then it raises StopIteration. 我们可以传入一个或多个可迭代对象，然后将对应位置的元素封装成一个tuple，然后把所有tuple封装为list返回1234567891011121314151617181920x = [1,2,3]y = [4,5,6]z = zip(x,y)print(z)&lt;zip object at 0x000002D26251F208&gt;print(list(z))[(1, 4), (2, 5), (3, 6)]#在只有一个参数的时候a = zip(x)aOut[8]: &lt;zip at 0x2d261cab588&gt;list(a)Out[9]: [(1,), (2,), (3,)] 如果2个参数的长度不一样，会以较短的为主12345678a = [1,2,3]b = ['ONE', 'TWO', 'THREE', 'FOUR']c = list(zip(a,b))cOut[31]: [(1, 'ONE'), (2, 'TWO'), (3, 'THREE')] 我们使用*，可以看做是unzip的过程12345678x = [1,2,3]y = [4,5,6]z = zip(*zip(x,y))list(z)Out[27]: [(1, 2, 3), (4, 5, 6)] 关于zip，有几个常用的场景，比如矩阵行列转换1234567a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]list(zip(*a))Out[38]: [(1, 4, 7), (2, 5, 8), (3, 6, 9)]list(map(list,zip(*a)))Out[39]: [[1, 4, 7], [2, 5, 8], [3, 6, 9]] 构造字典123456789a = [1,2,3]b = ['one','two','three']list(zip(a,b))Out[42]: [(1, 'one'), (2, 'two'), (3, 'three')]dict(list(zip(a,b)))Out[43]: &#123;1: 'one', 2: 'two', 3: 'three'&#125; 参考博客：http://blog.csdn.net/shomy_liu/article/details/46968651http://www.jb51.net/article/53051.htm]]></content>
-      <categories>
-        <category>Python-基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -761,6 +761,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[SQLAlchemy手册（四）- 关联查询]]></title>
+    <url>%2F2017%2F04%2F16%2Fpython-database-04%2F</url>
+    <content type="text"><![CDATA[上一回，我们介绍了，常用的单查询SQL，这里，我们介绍下，怎样进行关联查询，就是join的使用数据库使用表信息：t_class t_student t_student表存有t_class表的id，获取学生所属的班级信息1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950# -*- coding: utf-8 -*-from sqlalchemy import MetaData, create_enginefrom sqlalchemy.ext.declarative import declarative_basefrom sqlalchemy import Column, Integer, String, Date, or_, and_from sqlalchemy import ForeignKeyfrom sqlalchemy.orm import relationshipfrom sqlalchemy import text, funcfrom sqlalchemy.orm import sessionmakerimport sysreload(sys)sys.setdefaultencoding('utf-8')Base = declarative_base()engine = create_engine('postgresql://postgres:shishi@localhost:5432/postgres')Session = sessionmaker(bind=engine)session = Session()class StuClass(Base): __tablename__ = 't_class' id = Column(Integer,primary_key=True) class_name = Column(String(10)) def __repr__(self): return "&lt;StuClass(id='%s', name='%s')&gt;" % (self.id, self.class_name)class Student(Base): __tablename__ = 't_student' id = Column(Integer , primary_key=True) stu_name = Column(String(10)) class_id = Column(Integer , ForeignKey('t_class.id')) stuClass = relationship("StuClass") def __repr__(self): return "&lt;Student(id='%s', stu_name='%s', class_id='%s', class_name='%s')&gt;" % (self.id, self.stu_name,self.class_id,self.stuClass.class_name)#使用filter定义2张表的关系for stu, stuc in session.query(Student, StuClass).filter(Student.class_id == StuClass.id).all(): print stu,stuc#使用join需要ForeignKeyfor x in session.query(Student).join(StuClass).filter(StuClass.id == 803).all(): print x 下面，我们再写一个统计班级人数的SQL 用SQLAlchemy来写的话，是这样的12for rs in session.query(StuClass.class_name,func.count('*').label('stu_count')).join(Student).group_by(StuClass.class_name).order_by(StuClass.class_name).all(): print('班级:' + rs[0] + ' 人数：' + str(rs[1])) 好了，同样的功能，我们换成子查询练习下12345 select a.class_name,b.num from t_class aleft join ( select class_id , count(1) num from t_student group by class_id)b on b.class_id = a.idorder by a.class_name 那SQLAlchemy是这样滴：1234 sub = session.query(Student.class_id,func.count('*').label('num')).group_by(Student.class_id).subquery()for sc,num in session.query(StuClass,sub.c.num).outerjoin(sub, StuClass.id == sub.c.class_id).order_by(StuClass.class_name).all(): print sc,num 今天暂时先到这里，后面的话，官网上例子挺全的，大家可以自行练习下，后续也会再整理]]></content>
+      <categories>
+        <category>Python-数据库</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>SQLAlchemy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Python基础（1）- 私有变量]]></title>
     <url>%2F2017%2F04%2F16%2Fpython-handbook-01%2F</url>
     <content type="text"><![CDATA[今天简单看了看Python中的面向对象的一些教程，简单记录下，和Java中还是有很多类似的看的是这个博客：访问限制 比如我们定义一个Student类一个init构造函数，初始化2个属性，一个名字，一个成绩；还有一个打印函数，输出学生的名字和成绩12345678910111213class Student(object): def __init__(self, name, score): "initial student" self.name = name self.score = score def print_score(self): "print student info" print '%s : %s' %(self.name, self.score)s1 = Student('lufei' , 99)s1.print_score() 了解Java的同学都知道，我们一般定义实体类的话，一般都是private，然后定义get、set方法，如果只是上面的代码，我们就可以随便的调用name和score了我们需要加上限制1234def __init__(self, name, score): "initial student" self.__name = name self.__score = score 我们在变量前面加上“__”就可以了 如果我们要引用的话，就会报错了，同样的，我们也可以加上get、set方法来使用12345678910def get_name(self): return self.__namedef set_name(self,name): self.__name=nameprint s1.get_name()s1.set_name('libai')print s1.get_name() 原文还有很多其他内容，大家可以自行看看，我就简单记录这些]]></content>
@@ -769,6 +781,18 @@
       </categories>
       <tags>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SQLAlchemy手册（三）- 常用单查询]]></title>
+    <url>%2F2017%2F04%2F15%2Fpython-database-03%2F</url>
+    <content type="text"><![CDATA[好了，在前面，我们大概了解了SQLAlchemy的使用，日常，我们可能经常会使用些复杂点儿的查询，我们先练习下 #1. common filter这里，官方都有介绍，我们主要参考这里：http://docs.sqlalchemy.org/en/rel_1_1/orm/tutorial.html里面讲的都很清楚，我们这里简单练习下首先是基本的脚本，后面，我们直接写query数据库表： 1234567891011121314151617181920212223242526272829# -*- coding: utf-8 -*-from sqlalchemy import MetaData, create_enginefrom sqlalchemy.ext.declarative import declarative_basefrom sqlalchemy import Column, Integer, String, Datefrom sqlalchemy.orm import sessionmakerimport sysreload(sys)sys.setdefaultencoding('utf-8')Base = declarative_base()class Book(Base): __tablename__ = 't_book' id = Column(Integer,primary_key=True) name = Column(String(10),primary_key=True) publish_date = Column(Date,primary_key=True) def __repr__(self): return "&lt;Book(id='%s', name='%s'" % (self.id, self.name)engine = create_engine('postgresql://postgres:shishi@localhost:5432/postgres')Session = sessionmaker(bind=engine)session = Session() 我们一般的过滤的话，要使用filter这个函数1234567891011print '----：equals'for book in session.query(Book).filter(Book.id==190): print bookprint '----：not equals' for book in session.query(Book).filter(Book.name != 'Java'): print bookprint '----：like'for book in session.query(Book).filter(Book.name.like('白%')): print book 常用的SQL中，我们还有and，or我们需要引入其他类from sqlalchemy import or_, andprint ‘—-：or’for book in session.query(Book).filter(or(Book.name.like(‘白%’),Book.id == 191)):print bookprint ‘—-：and’for book in session.query(Book).filter(and_(Book.name.like(‘白%’),Book.id == 191)):print book 2. 自定义SQL这里，我们使用text，来自定义自己的sql123456789from sqlalchemy import or_, and_print '----：or'for book in session.query(Book).filter(or_(Book.name.like('白%'),Book.id == 191)): print book print '----：and'for book in session.query(Book).filter(and_(Book.name.like('白%'),Book.id == 191)): print book 在SQL中，我们经常会使用参数传递，这里也是可以的123print '-----: param'for book in session.query(Book).filter(text("id=:p_id_1 or id=:p_id_2")).params(p_id_1=192,p_id_2=193).order_by(text("id asc")).all(): print book 到这里，自定义SQL貌似还不够灵活，不能像在数据库中随便写SQL那样，下面，我们再试试另一种方式12345print '-----: custom'for book in session.query(Book).\ from_statement(text("select *from t_book where id = :p_id_1 or id = :p_id_2 ")).\ params(p_id_1=190, p_id_2=191).all(): print book 这下，我们就可以随便写我们的SQL了， 3.聚合函数我们先看看count123456789from sqlalchemy import funcprint '----: count'print session.query(func.count('*')).select_from(Book).scalar()print session.query(func.count(Book.id)).scalar()print '----: group by'for rs in session.query(func.count(Book.id) , Book.name).group_by(Book.name).all(): print rs[1]+' count： '+str(rs[0])]]></content>
+      <categories>
+        <category>Python-数据库</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>SQLAlchemy</tag>
       </tags>
   </entry>
   <entry>
@@ -792,6 +816,30 @@
       </categories>
       <tags>
         <tag>Kettle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SQLAlchemy手册（二）- 增删改查]]></title>
+    <url>%2F2017%2F04%2F13%2Fpython-database-02%2F</url>
+    <content type="text"><![CDATA[好了，这里，我们来看看，怎么使用SQLAlchemy，先从最简单的增删改查来看看，这里我们使用PostgreSQL数据库 1. 连接PG数据库 因为SQLAlchemy底层连接，还是使用这些框架，所以我们想要连接PostgreSQL，还得先安装下这些，这里我们使用psycopg2 不装的话，我们连接时，会报错1pip install psycopg2 安装好后，我们来看看怎样连接PG我们再SQLAlchemy中连接数据库的话，需要使用这个叫做Engine的类，关于介绍我们可以看官方的教程：http://docs.sqlalchemy.org/en/rel_1_1/core/engines.html 他可以适配大部分数据库，大家可以自行尝试下 1234567#!/usr/bin/pythonfrom sqlalchemy import create_engineengine = create_engine('postgresql://postgres:shishi@172.16.201.12:5432/postgres',echo=True)print engine 2. create table/drop table这里，我们来看看怎样用orm的思想去create table、drop table按照orm的思想，这里还有一个MetaData类得看下 这里的示例，我们定义一个table“t_users”,有2个字段，id，user_name123456789101112131415161718#!/usr/bin/pythonfrom sqlalchemy import Table, Column, Integer, String, MetaData, create_engineengine = create_engine('postgresql://postgres:shishi@172.16.201.12:5432/postgres',echo=True)metadata = MetaData()users = Table('t_users',metadata, Column('id',Integer), Column('user_name',String(20)) )#do the drop firstmetadata.drop(engine)#now create the tablemetadata.create(engine) 我们执行下上面，我们create_engine的时候，指定了echo=True，我们就可以看到输出语句了这里的drop，有一个参数，checkfirst=True,默认就是TRUE，会判断该表是否存在，如果存在就执行删除，create也是一样的，会先判断是否存在 我们看看数据库 –晚上又看了看，感觉上面的方法可以使用，但是，貌似不是ORM思想的方法，又看了看官方的文档，自己先试试，明天再接着整理 3. 查询数据好了，上面的Table方式，可以用来创建表，这里参考官方的教程：http://docs.sqlalchemy.org/en/rel_1_1/orm/tutorial.html 3.1 定义Mapping类和Java里的一样，我们得定一些实体类，和数据库中的表做映射123456789from sqlalchemy import Column, Integer, Stringfrom sqlalchemy.ext.declarative import declarative_baseBase = declarative_base()class SomeClass(Base): __tablename__ = 'some_table' id = Column(Integer, primary_key=True) name = Column(String(50)) 像上面这样，我们就定义了一个类，我们来实际写一个看看这里，我们映射了数据库中的“t_users”表，有2个字段，“id”和“user_name” 12345678910111213141516#!/usr/bin/pythonfrom sqlalchemy.ext.declarative import declarative_basefrom sqlalchemy import create_enginefrom sqlalchemy import Column, Integer, StringBase = declarative_base()class User(Base): __tablename__='t_users' id = Column(Integer,primary_key=True) user_name = Column(String(10)) def __repr__(self): return "&lt;User(id='%s', user_name='%s')&gt;" % (self.id, self.user_name) 3.2 session下面，我们就来查询下数据12345678910111213141516171819202122232425#!/usr/bin/pythonfrom sqlalchemy.ext.declarative import declarative_basefrom sqlalchemy import create_enginefrom sqlalchemy.orm import sessionmakerfrom sqlalchemy import Column, Integer, StringBase = declarative_base()class User(Base): __tablename__='t_users' id = Column(Integer,primary_key=True) user_name = Column(String(10)) def __repr__(self): return "&lt;User(id='%s', user_name='%s')&gt;" % (self.id, self.user_name)engine = create_engine('postgresql://postgres:shishi@172.16.201.12:5432/postgres',echo=True)Session = sessionmaker(bind=engine)session = Session()#query all usersuser_list = session.query(User).all()print user_list 上面的话，我们还用到了session，这里的session，暂时理解为，可以开一个事务，处理我们的逻辑，我们执行select的话，也需要这个这里，我们就直接查出所有的记录就可以了 4. insert123new_user = User(id=666,user_name='ayang')session.add(new_user)session.commit() 5.update123456#update the userupdate_user = session.query(User).filter_by(id=666).first()print update_userupdate_user.user_name='apple'session.commit()]]></content>
+      <categories>
+        <category>Python-数据库</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>SQLAlchemy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SQLAlchemy手册（一）-简介及安装]]></title>
+    <url>%2F2017%2F04%2F12%2Fpython-database-01%2F</url>
+    <content type="text"><![CDATA[Python新手，目前学习中，最近发现个叫SQLAlchemy的ORM框架，就是类似Java里面的Hibernate啊，Mybatis啊之类的，这里也简单记录下。官网地址：http://docs.sqlalchemy.org/en/rel_1_1/ 1. SQLAlchemy 介绍这里直接摘一下百度百科的内容，简单说就是ORM框架，更加方便的去和数据库库连接。 2. SQLAlchemy安装熟悉Python的同学应该很擅长这个了，而且官方文档上也有介绍，http://docs.sqlalchemy.org/en/rel_1_1/intro.html#installation 2.1 pip 安装1pip install SQLAlchemy 2.2 setup.py1python setup.py install 家里网速不太好，就直接下了个包，用这种方式安装了，没啥问题 我们引入验证一下好了，第一回，先简单说到这，下一回，我们来看看怎么使用]]></content>
+      <categories>
+        <category>Python-数据库</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>SQLAlchemy</tag>
       </tags>
   </entry>
   <entry>
