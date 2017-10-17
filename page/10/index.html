@@ -325,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/01/pandas-handbook-05/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/07/pandas-handbook-06/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -344,7 +344,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/01/pandas-handbook-05/" itemprop="url">Pandas手册（5）- 用pandas完成excel中常见任务</a></h2>
+                <a class="post-title-link" href="/2017/08/07/pandas-handbook-06/" itemprop="url">Pandas手册（6）- 用pandas完成excel中常见任务</a></h2>
         
 
         <div class="post-meta">
@@ -356,8 +356,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T08:59:00+08:00">
-                2017-08-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T08:00:00+08:00">
+                2017-08-07
               </time>
             
 
@@ -417,20 +417,175 @@
 
       
         
-          <p>Python<br>Pandas</p>
+          
+            <p>Python<br>Pandas</p>
 <hr>
-<p>发现了一篇很好的教程，介绍一些Excel中的常用操作，怎样在pandas中实现，很不错，这里学习，顺便分享下。<br>原文地址：<a href="http://python.jobbole.com/80870/" target="_blank" rel="external">用Pandas完成Excel中常见的任务</a>，</p>
-<p>这个是翻译的，再原文是：<a href="http://pbpython.com/excel-pandas-comp.html" target="_blank" rel="external">Common Excel Tasks Demonstrated in Pandas </a></p>
-<p>好了，下面，我们开始学习下。</p>
-<h1 id="基础数据"><a href="#基础数据" class="headerlink" title="基础数据"></a>基础数据</h1><p>这个是从网上找的一个成绩单，拿了一部分数据</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-fc77ad95f5aeb18d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>首先呢，我们想要，在加一列，显示总分，Excel中很方便<br><img src="http://upload-images.jianshu.io/upload_images/76024-cc298b5d57f6ba58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>在pandas中呢，其实，我们就是需要“数学”，“语文”，“英语”这3列加在一起，我们怎样获取这3列呢？<br>前面，我们说过在DataFrame中，怎样去筛选数据<br><img src="http://upload-images.jianshu.io/upload_images/76024-3c57ffb8a1ecd92f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">df = pd.read_excel(<span class="string">r'D:\document\tableau_data\data_stu.xlsx'</span>,sheetname=<span class="number">0</span>)</div><div class="line"></div><div class="line">print(df)</div><div class="line">print(df[<span class="string">'数学'</span>])</div><div class="line">print(df[<span class="string">'语文'</span>])</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-7d28c7bfc1bde1e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这里整理下pandas常用的操作，为什么要写这个呢？有本书《利用Python进行数据分析》一边看一遍记录下。</p>
+<h1 id="1-重新索引-reindex"><a href="#1-重新索引-reindex" class="headerlink" title="1. 重新索引(reindex)"></a>1. 重新索引(reindex)</h1><p>就是重构一下索引，在重构的同时，我们可以做一些其他操作<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">DataFrame.reindex(index=<span class="keyword">None</span>, columns=<span class="keyword">None</span>, **kwargs)</div><div class="line">Conform DataFrame to new index <span class="keyword">with</span> optional filling logic, placing NA/NaN <span class="keyword">in</span> locations having no value <span class="keyword">in</span> the previous index. A new object <span class="keyword">is</span> produced unless the new index <span class="keyword">is</span> equivalent to the current one <span class="keyword">and</span> copy=<span class="keyword">False</span></div><div class="line"></div><div class="line">Series.reindex(index=<span class="keyword">None</span>, **kwargs)</div><div class="line">Conform Series to new index <span class="keyword">with</span> optional filling logic, placing NA/NaN <span class="keyword">in</span> locations having no value <span class="keyword">in</span> the previous index. A new object <span class="keyword">is</span> produced unless the new index <span class="keyword">is</span> equivalent to the current one <span class="keyword">and</span> copy=<span class="keyword">False</span></div></pre></td></tr></table></figure></p>
+<p>一个小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line">obj = pd.Series([<span class="number">4.5</span>, <span class="number">7.2</span>, <span class="number">-5.3</span>, <span class="number">3.6</span>], index=[<span class="string">'d'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>])</div><div class="line"></div><div class="line">obj</div><div class="line">Out[<span class="number">156</span>]: </div><div class="line">d    <span class="number">4.5</span></div><div class="line">b    <span class="number">7.2</span></div><div class="line">a   <span class="number">-5.3</span></div><div class="line">c    <span class="number">3.6</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#reindex后，没有的值，默认会用NaN填充</span></div><div class="line">obj.reindex([<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>])</div><div class="line">Out[<span class="number">157</span>]: </div><div class="line">a   <span class="number">-5.3</span></div><div class="line">b    <span class="number">7.2</span></div><div class="line">c    <span class="number">3.6</span></div><div class="line">d    <span class="number">4.5</span></div><div class="line">e    NaN</div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#fill_value，常用的参数，表示没有数据时默认填充的值</span></div><div class="line">obj.reindex([<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>] , fill_value=<span class="number">9.9</span>)</div><div class="line">Out[<span class="number">159</span>]: </div><div class="line">a   <span class="number">-5.3</span></div><div class="line">b    <span class="number">7.2</span></div><div class="line">c    <span class="number">3.6</span></div><div class="line">d    <span class="number">4.5</span></div><div class="line">e    <span class="number">9.9</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#method,常用参数，在递增或递减index中，填充空值的方法</span></div><div class="line">obj3 = pd.Series([<span class="string">'blue'</span>, <span class="string">'purple'</span>, <span class="string">'yellow'</span>], index=[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>])</div><div class="line"></div><div class="line">obj3</div><div class="line">Out[<span class="number">165</span>]: </div><div class="line"><span class="number">0</span>      blue</div><div class="line"><span class="number">2</span>    purple</div><div class="line"><span class="number">4</span>    yellow</div><div class="line">dtype: object</div><div class="line"></div><div class="line">obj3.reindex(range(<span class="number">6</span>))</div><div class="line">Out[<span class="number">170</span>]: </div><div class="line"><span class="number">0</span>      blue</div><div class="line"><span class="number">1</span>       NaN</div><div class="line"><span class="number">2</span>    purple</div><div class="line"><span class="number">3</span>       NaN</div><div class="line"><span class="number">4</span>    yellow</div><div class="line"><span class="number">5</span>       NaN</div><div class="line">dtype: object</div><div class="line"></div><div class="line"><span class="comment">#ffill，前向填充</span></div><div class="line">obj3.reindex(range(<span class="number">6</span>),method=<span class="string">'ffill'</span>)</div><div class="line">Out[<span class="number">167</span>]: </div><div class="line"><span class="number">0</span>      blue</div><div class="line"><span class="number">1</span>      blue</div><div class="line"><span class="number">2</span>    purple</div><div class="line"><span class="number">3</span>    purple</div><div class="line"><span class="number">4</span>    yellow</div><div class="line"><span class="number">5</span>    yellow</div><div class="line">dtype: object</div><div class="line"></div><div class="line"><span class="comment">#bfill，后向填充</span></div><div class="line">obj3.reindex(range(<span class="number">6</span>),method=<span class="string">'bfill'</span>)</div><div class="line">Out[<span class="number">171</span>]: </div><div class="line"><span class="number">0</span>      blue</div><div class="line"><span class="number">1</span>    purple</div><div class="line"><span class="number">2</span>    purple</div><div class="line"><span class="number">3</span>    yellow</div><div class="line"><span class="number">4</span>    yellow</div><div class="line"><span class="number">5</span>       NaN</div><div class="line">dtype: object</div></pre></td></tr></table></figure></p>
+<p>对于DataFrame来说，用起来也是差不多的</p>
+<h1 id="2-丢弃指定轴上的项"><a href="#2-丢弃指定轴上的项" class="headerlink" title="2. 丢弃指定轴上的项"></a>2. 丢弃指定轴上的项</h1><p>主要就是drop方法的使用<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DataFrame.drop(labels, axis=<span class="number">0</span>, level=<span class="keyword">None</span>, inplace=<span class="keyword">False</span>, errors=<span class="string">'raise'</span>)</div><div class="line">Return new object <span class="keyword">with</span> labels <span class="keyword">in</span> requested axis removed.</div></pre></td></tr></table></figure></p>
+<p>小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">obj = pd.Series(np.arange(<span class="number">5.</span>), index=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>])</div><div class="line"></div><div class="line">obj</div><div class="line">Out[<span class="number">174</span>]: </div><div class="line">a    <span class="number">0.0</span></div><div class="line">b    <span class="number">1.0</span></div><div class="line">c    <span class="number">2.0</span></div><div class="line">d    <span class="number">3.0</span></div><div class="line">e    <span class="number">4.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">obj.drop(<span class="string">'c'</span>)</div><div class="line">Out[<span class="number">175</span>]: </div><div class="line">a    <span class="number">0.0</span></div><div class="line">b    <span class="number">1.0</span></div><div class="line">d    <span class="number">3.0</span></div><div class="line">e    <span class="number">4.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">obj.drop([<span class="string">'b'</span>,<span class="string">'d'</span>])</div><div class="line">Out[<span class="number">176</span>]: </div><div class="line">a    <span class="number">0.0</span></div><div class="line">c    <span class="number">2.0</span></div><div class="line">e    <span class="number">4.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#DataFrame</span></div><div class="line">data = pd.DataFrame(np.arange(<span class="number">16</span>).reshape((<span class="number">4</span>, <span class="number">4</span>)),</div><div class="line">                 index=[<span class="string">'Ohio'</span>, <span class="string">'Colorado'</span>, <span class="string">'Utah'</span>, <span class="string">'New York'</span>],</div><div class="line">                 columns=[<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>, <span class="string">'four'</span>])</div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">178</span>]: </div><div class="line">          one  two  three  four</div><div class="line">Ohio        <span class="number">0</span>    <span class="number">1</span>      <span class="number">2</span>     <span class="number">3</span></div><div class="line">Colorado    <span class="number">4</span>    <span class="number">5</span>      <span class="number">6</span>     <span class="number">7</span></div><div class="line">Utah        <span class="number">8</span>    <span class="number">9</span>     <span class="number">10</span>    <span class="number">11</span></div><div class="line">New York   <span class="number">12</span>   <span class="number">13</span>     <span class="number">14</span>    <span class="number">15</span></div><div class="line"></div><div class="line"><span class="comment">#默认是横轴，</span></div><div class="line">data.drop([<span class="string">'Ohio'</span>,<span class="string">'Utah'</span>])</div><div class="line">Out[<span class="number">179</span>]: </div><div class="line">          one  two  three  four</div><div class="line">Colorado    <span class="number">4</span>    <span class="number">5</span>      <span class="number">6</span>     <span class="number">7</span></div><div class="line">New York   <span class="number">12</span>   <span class="number">13</span>     <span class="number">14</span>    <span class="number">15</span></div><div class="line"></div><div class="line"><span class="comment">#我们可以指定axis，在columns上删除</span></div><div class="line">data.drop([<span class="string">'two'</span>,<span class="string">'four'</span>],axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">180</span>]: </div><div class="line">          one  three</div><div class="line">Ohio        <span class="number">0</span>      <span class="number">2</span></div><div class="line">Colorado    <span class="number">4</span>      <span class="number">6</span></div><div class="line">Utah        <span class="number">8</span>     <span class="number">10</span></div><div class="line">New York   <span class="number">12</span>     <span class="number">14</span></div></pre></td></tr></table></figure></p>
+<h1 id="3-算术运算和数据对齐"><a href="#3-算术运算和数据对齐" class="headerlink" title="3. 算术运算和数据对齐"></a>3. 算术运算和数据对齐</h1><p>在numpy和pandas中好像都会看到这个词，数据对齐，就是说2个对象在运算的时候，会取一个并集，然后在自动对齐的时候，不重叠的部分就会填充NaN</p>
+<p>小例子先看看<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">s1 = pd.Series([<span class="number">7.3</span>, <span class="number">-2.5</span>, <span class="number">3.4</span>, <span class="number">1.5</span>], index=[<span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>])</div><div class="line"></div><div class="line">s2 = pd.Series([<span class="number">-2.1</span>, <span class="number">3.6</span>, <span class="number">-1.5</span>, <span class="number">4</span>, <span class="number">3.1</span>], index=[<span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>])</div><div class="line"></div><div class="line"><span class="comment">#index不重叠的地方，会填充NaN</span></div><div class="line">s1+s2</div><div class="line">Out[<span class="number">188</span>]: </div><div class="line">a    <span class="number">5.2</span></div><div class="line">c    <span class="number">1.1</span></div><div class="line">d    NaN</div><div class="line">e    <span class="number">0.0</span></div><div class="line">f    NaN</div><div class="line">g    NaN</div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#使用自带的add方法，就可以填充默认值了，这个和我们上面reindex时的思想是一样的</span></div><div class="line"><span class="comment">#Series.add(other, level=None, fill_value=None, axis=0)</span></div><div class="line"></div><div class="line">s1.add(s2,fill_value=<span class="number">0</span>)</div><div class="line">Out[<span class="number">189</span>]: </div><div class="line">a    <span class="number">5.2</span></div><div class="line">c    <span class="number">1.1</span></div><div class="line">d    <span class="number">3.4</span></div><div class="line">e    <span class="number">0.0</span></div><div class="line">f    <span class="number">4.0</span></div><div class="line">g    <span class="number">3.1</span></div><div class="line">dtype: float64</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-8c6371911c04ef6d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="4-DataFrame和Series之间的运算"><a href="#4-DataFrame和Series之间的运算" class="headerlink" title="4.DataFrame和Series之间的运算"></a>4.DataFrame和Series之间的运算</h1><p>这里用到了一个广播的思想，就是指不同形状的数组之间的算术运算的执行方式，很强大的功能，这里，我们先简单了解下。<br>小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">arr = np.arange(<span class="number">12.</span>).reshape((<span class="number">3</span>, <span class="number">4</span>))</div><div class="line"></div><div class="line">arr</div><div class="line">Out[<span class="number">191</span>]: </div><div class="line">array([[  <span class="number">0.</span>,   <span class="number">1.</span>,   <span class="number">2.</span>,   <span class="number">3.</span>],</div><div class="line">       [  <span class="number">4.</span>,   <span class="number">5.</span>,   <span class="number">6.</span>,   <span class="number">7.</span>],</div><div class="line">       [  <span class="number">8.</span>,   <span class="number">9.</span>,  <span class="number">10.</span>,  <span class="number">11.</span>]])</div><div class="line"></div><div class="line">arr[<span class="number">0</span>]</div><div class="line">Out[<span class="number">192</span>]: array([ <span class="number">0.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">3.</span>])</div><div class="line"></div><div class="line"><span class="comment">#3行4列的数组，减1行4列的数组，这就是广播</span></div><div class="line">arr - arr[<span class="number">0</span>]</div><div class="line">Out[<span class="number">193</span>]: </div><div class="line">array([[ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</div><div class="line">       [ <span class="number">4.</span>,  <span class="number">4.</span>,  <span class="number">4.</span>,  <span class="number">4.</span>],</div><div class="line">       [ <span class="number">8.</span>,  <span class="number">8.</span>,  <span class="number">8.</span>,  <span class="number">8.</span>]])</div></pre></td></tr></table></figure></p>
+<p>DataFrame和Series之间的计算也是这样<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">frame = pd.DataFrame(np.arange(<span class="number">12.</span>).reshape((<span class="number">4</span>, <span class="number">3</span>)), columns=list(<span class="string">'bde'</span>),</div><div class="line">                  index=[<span class="string">'Utah'</span>, <span class="string">'Ohio'</span>, <span class="string">'Texas'</span>, <span class="string">'Oregon'</span>])</div><div class="line"></div><div class="line">frame</div><div class="line">Out[<span class="number">195</span>]: </div><div class="line">          b     d     e</div><div class="line">Utah    <span class="number">0.0</span>   <span class="number">1.0</span>   <span class="number">2.0</span></div><div class="line">Ohio    <span class="number">3.0</span>   <span class="number">4.0</span>   <span class="number">5.0</span></div><div class="line">Texas   <span class="number">6.0</span>   <span class="number">7.0</span>   <span class="number">8.0</span></div><div class="line">Oregon  <span class="number">9.0</span>  <span class="number">10.0</span>  <span class="number">11.0</span></div><div class="line"></div><div class="line">s = frame.iloc[<span class="number">0</span>]</div><div class="line"></div><div class="line">s</div><div class="line">Out[<span class="number">197</span>]: </div><div class="line">b    <span class="number">0.0</span></div><div class="line">d    <span class="number">1.0</span></div><div class="line">e    <span class="number">2.0</span></div><div class="line">Name: Utah, dtype: float64</div><div class="line"></div><div class="line">frame - s</div><div class="line">Out[<span class="number">198</span>]: </div><div class="line">          b    d    e</div><div class="line">Utah    <span class="number">0.0</span>  <span class="number">0.0</span>  <span class="number">0.0</span></div><div class="line">Ohio    <span class="number">3.0</span>  <span class="number">3.0</span>  <span class="number">3.0</span></div><div class="line">Texas   <span class="number">6.0</span>  <span class="number">6.0</span>  <span class="number">6.0</span></div><div class="line">Oregon  <span class="number">9.0</span>  <span class="number">9.0</span>  <span class="number">9.0</span></div><div class="line"></div><div class="line">s = pd.Series(range(<span class="number">3</span>),index=list(<span class="string">'abc'</span>))</div><div class="line"></div><div class="line">frame</div><div class="line">Out[<span class="number">223</span>]: </div><div class="line">          b     d     e</div><div class="line">Utah    <span class="number">0.0</span>   <span class="number">1.0</span>   <span class="number">2.0</span></div><div class="line">Ohio    <span class="number">3.0</span>   <span class="number">4.0</span>   <span class="number">5.0</span></div><div class="line">Texas   <span class="number">6.0</span>   <span class="number">7.0</span>   <span class="number">8.0</span></div><div class="line">Oregon  <span class="number">9.0</span>  <span class="number">10.0</span>  <span class="number">11.0</span></div><div class="line"></div><div class="line">s</div><div class="line">Out[<span class="number">224</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">1</span></div><div class="line">c    <span class="number">2</span></div><div class="line">dtype: int32</div><div class="line"></div><div class="line">frame.add(s)</div><div class="line">Out[<span class="number">225</span>]: </div><div class="line">         a     b   c   d   e</div><div class="line">Utah   NaN   <span class="number">1.0</span> NaN NaN NaN</div><div class="line">Ohio   NaN   <span class="number">4.0</span> NaN NaN NaN</div><div class="line">Texas  NaN   <span class="number">7.0</span> NaN NaN NaN</div><div class="line">Oregon NaN  <span class="number">10.0</span> NaN NaN NaN</div><div class="line"></div><div class="line"><span class="comment">#我们可以通过axis控制在哪个方向上去广播</span></div><div class="line">frame.add(s,axis=<span class="number">0</span>)</div><div class="line">Out[<span class="number">227</span>]: </div><div class="line">         b   d   e</div><div class="line">Ohio   NaN NaN NaN</div><div class="line">Oregon NaN NaN NaN</div><div class="line">Texas  NaN NaN NaN</div><div class="line">Utah   NaN NaN NaN</div><div class="line">a      NaN NaN NaN</div><div class="line">b      NaN NaN NaN</div><div class="line">c      NaN NaN NaN</div></pre></td></tr></table></figure></p>
+<p>在这里，不能使用fill_value填充默认值，还不知道为啥，总是报错，说不支持<br><img src="http://upload-images.jianshu.io/upload_images/76024-db50afbaa0b4bcd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="5-函数应用和映射"><a href="#5-函数应用和映射" class="headerlink" title="5. 函数应用和映射"></a>5. 函数应用和映射</h1><p>这里主要是介绍DataFrame中的一个函数使用，apply，就是对DataFrame中的每一个元素执行传入的函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DataFrame.apply(func, axis=<span class="number">0</span>, broadcast=<span class="keyword">False</span>, raw=<span class="keyword">False</span>, reduce=<span class="keyword">None</span>, args=(), **kwds)</div><div class="line">Applies function along input axis of DataFrame.</div></pre></td></tr></table></figure></p>
+<p>小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">f = <span class="keyword">lambda</span> x: x+<span class="number">10</span></div><div class="line"></div><div class="line"><span class="comment">#每一个单元格都会加10</span></div><div class="line">frame.apply(f)</div><div class="line">Out[<span class="number">230</span>]: </div><div class="line">           b     d     e</div><div class="line">Utah    <span class="number">10.0</span>  <span class="number">11.0</span>  <span class="number">12.0</span></div><div class="line">Ohio    <span class="number">13.0</span>  <span class="number">14.0</span>  <span class="number">15.0</span></div><div class="line">Texas   <span class="number">16.0</span>  <span class="number">17.0</span>  <span class="number">18.0</span></div><div class="line">Oregon  <span class="number">19.0</span>  <span class="number">20.0</span>  <span class="number">21.0</span></div><div class="line"></div><div class="line"></div><div class="line">f = <span class="keyword">lambda</span> x: x.max() - x.min()</div><div class="line"></div><div class="line">frame.apply(f)</div><div class="line">Out[<span class="number">232</span>]: </div><div class="line">b    <span class="number">9.0</span></div><div class="line">d    <span class="number">9.0</span></div><div class="line">e    <span class="number">9.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#我们可以指定轴，去执行函数</span></div><div class="line">frame.apply(f,axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">233</span>]: </div><div class="line">Utah      <span class="number">2.0</span></div><div class="line">Ohio      <span class="number">2.0</span></div><div class="line">Texas     <span class="number">2.0</span></div><div class="line">Oregon    <span class="number">2.0</span></div><div class="line">dtype: float64</div></pre></td></tr></table></figure></p>
+<p>这里还有一个applymap函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DataFrame.applymap(func)</div><div class="line"></div><div class="line">Apply a function to a DataFrame that <span class="keyword">is</span> intended to operate elementwise, i.e. like doing map(func, series) <span class="keyword">for</span> each series <span class="keyword">in</span> the DataFrame</div></pre></td></tr></table></figure></p>
+<p>这里得注意下，这2个函数的区别；<br>目前的理解是，applymap是元素级的，apply在轴上进行操作（貌似不太顺，等明白了再记录下）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">f = <span class="keyword">lambda</span> x: <span class="string">'$&#123;:,.3f&#125;'</span>.format(x)</div><div class="line"></div><div class="line">frame</div><div class="line">Out[<span class="number">237</span>]: </div><div class="line">          b     d     e</div><div class="line">Utah    <span class="number">0.0</span>   <span class="number">1.0</span>   <span class="number">2.0</span></div><div class="line">Ohio    <span class="number">3.0</span>   <span class="number">4.0</span>   <span class="number">5.0</span></div><div class="line">Texas   <span class="number">6.0</span>   <span class="number">7.0</span>   <span class="number">8.0</span></div><div class="line">Oregon  <span class="number">9.0</span>  <span class="number">10.0</span>  <span class="number">11.0</span></div><div class="line"></div><div class="line"><span class="comment">#前面，我们有用过，格式化内容的</span></div><div class="line">frame.applymap(f)</div><div class="line">Out[<span class="number">238</span>]: </div><div class="line">             b        d        e</div><div class="line">Utah    $<span class="number">0.000</span>   $<span class="number">1.000</span>   $<span class="number">2.000</span></div><div class="line">Ohio    $<span class="number">3.000</span>   $<span class="number">4.000</span>   $<span class="number">5.000</span></div><div class="line">Texas   $<span class="number">6.000</span>   $<span class="number">7.000</span>   $<span class="number">8.000</span></div><div class="line">Oregon  $<span class="number">9.000</span>  $<span class="number">10.000</span>  $<span class="number">11.000</span></div></pre></td></tr></table></figure></p>
+<h1 id="6-处理缺失数据"><a href="#6-处理缺失数据" class="headerlink" title="6.处理缺失数据"></a>6.处理缺失数据</h1><p>在pandas中处理缺失数据非常容易，pandas使用浮点值NaN（Not a Number）表示缺失值。<br>前面，我们说过使用isnull来判断是否有NaN值<br>小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">a = pd.Series([<span class="string">'one'</span>,<span class="string">'two'</span>,np.nan,<span class="string">'three'</span>])</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">240</span>]: </div><div class="line"><span class="number">0</span>      one</div><div class="line"><span class="number">1</span>      two</div><div class="line"><span class="number">2</span>      NaN</div><div class="line"><span class="number">3</span>    three</div><div class="line">dtype: object</div><div class="line"></div><div class="line">a.isnull()</div><div class="line">Out[<span class="number">241</span>]: </div><div class="line"><span class="number">0</span>    <span class="keyword">False</span></div><div class="line"><span class="number">1</span>    <span class="keyword">False</span></div><div class="line"><span class="number">2</span>     <span class="keyword">True</span></div><div class="line"><span class="number">3</span>    <span class="keyword">False</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line">a.notnull()</div><div class="line">Out[<span class="number">242</span>]: </div><div class="line"><span class="number">0</span>     <span class="keyword">True</span></div><div class="line"><span class="number">1</span>     <span class="keyword">True</span></div><div class="line"><span class="number">2</span>    <span class="keyword">False</span></div><div class="line"><span class="number">3</span>     <span class="keyword">True</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line"><span class="comment">#Python内置的None也会被当做NaN处理</span></div><div class="line">a[<span class="number">4</span>]=<span class="keyword">None</span></div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">247</span>]: </div><div class="line"><span class="number">0</span>      one</div><div class="line"><span class="number">1</span>      two</div><div class="line"><span class="number">2</span>      NaN</div><div class="line"><span class="number">3</span>    three</div><div class="line"><span class="number">4</span>     <span class="keyword">None</span></div><div class="line">dtype: object</div><div class="line"></div><div class="line">a.isnull()</div><div class="line">Out[<span class="number">248</span>]: </div><div class="line"><span class="number">0</span>    <span class="keyword">False</span></div><div class="line"><span class="number">1</span>    <span class="keyword">False</span></div><div class="line"><span class="number">2</span>     <span class="keyword">True</span></div><div class="line"><span class="number">3</span>    <span class="keyword">False</span></div><div class="line"><span class="number">4</span>     <span class="keyword">True</span></div><div class="line">dtype: bool</div></pre></td></tr></table></figure></p>
+<p>对于这种数据，我们要怎样处理呢？有的时候，我们可能会初始化为默认值，或者直接剔除掉<br>我们可以使用dropna函数来剔除掉，或者布尔类型索引<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">DataFrame.dropna(axis=<span class="number">0</span>, how=<span class="string">'any'</span>, thresh=<span class="keyword">None</span>, subset=<span class="keyword">None</span>, inplace=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">249</span>]: </div><div class="line"><span class="number">0</span>      one</div><div class="line"><span class="number">1</span>      two</div><div class="line"><span class="number">2</span>      NaN</div><div class="line"><span class="number">3</span>    three</div><div class="line"><span class="number">4</span>     <span class="keyword">None</span></div><div class="line">dtype: object</div><div class="line"></div><div class="line">a.dropna()</div><div class="line">Out[<span class="number">250</span>]: </div><div class="line"><span class="number">0</span>      one</div><div class="line"><span class="number">1</span>      two</div><div class="line"><span class="number">3</span>    three</div><div class="line">dtype: object</div><div class="line"></div><div class="line">a[a.notnull()]</div><div class="line">Out[<span class="number">251</span>]: </div><div class="line"><span class="number">0</span>      one</div><div class="line"><span class="number">1</span>      two</div><div class="line"><span class="number">3</span>    three</div><div class="line">dtype: object</div><div class="line"></div><div class="line"><span class="comment">##dataframe</span></div><div class="line"></div><div class="line">data = pd.DataFrame([[<span class="number">1.</span>, <span class="number">6.5</span>, <span class="number">3.</span>], [<span class="number">1.</span>, np.nan, np.nan],</div><div class="line">                  [np.nan, np.nan, np.nan], [np.nan, <span class="number">6.5</span>, <span class="number">3.</span>]])</div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">254</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">0</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">1</span>  <span class="number">1.0</span>  NaN  NaN</div><div class="line"><span class="number">2</span>  NaN  NaN  NaN</div><div class="line"><span class="number">3</span>  NaN  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"></div><div class="line"><span class="comment">#默认的话，会将行、列含有NaN的都剔除掉</span></div><div class="line">data.dropna()</div><div class="line">Out[<span class="number">255</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">0</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"></div><div class="line"><span class="comment">#我们可以使用参数how来控制</span></div><div class="line">how : &#123;‘any’, ‘all’&#125;</div><div class="line"></div><div class="line">        any : <span class="keyword">if</span> any NA values are present, drop that label</div><div class="line">        all : <span class="keyword">if</span> all values are NA, drop that label</div><div class="line"></div><div class="line">data.dropna(how=<span class="string">'all'</span>)</div><div class="line">Out[<span class="number">257</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">0</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">1</span>  <span class="number">1.0</span>  NaN  NaN</div><div class="line"><span class="number">3</span>  NaN  <span class="number">6.5</span>  <span class="number">3.0</span></div></pre></td></tr></table></figure></p>
+<p>有的时候，我们想要做填充而不是剔除，像我们前面使用的参数fill_value<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">DataFrame.fillna(value=<span class="keyword">None</span>, method=<span class="keyword">None</span>, axis=<span class="keyword">None</span>, inplace=<span class="keyword">False</span>, limit=<span class="keyword">None</span>, downcast=<span class="keyword">None</span>, **kwargs)</div><div class="line">Fill NA/NaN values using the specified method</div><div class="line">method : &#123;‘backfill’, ‘bfill’, ‘pad’, ‘ffill’, <span class="keyword">None</span>&#125;, default <span class="keyword">None</span></div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">261</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">0</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">1</span>  <span class="number">1.0</span>  NaN  NaN</div><div class="line"><span class="number">2</span>  NaN  NaN  NaN</div><div class="line"><span class="number">3</span>  NaN  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"></div><div class="line">data.fillna(<span class="number">9.9</span>)</div><div class="line">Out[<span class="number">259</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">0</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">1</span>  <span class="number">1.0</span>  <span class="number">9.9</span>  <span class="number">9.9</span></div><div class="line"><span class="number">2</span>  <span class="number">9.9</span>  <span class="number">9.9</span>  <span class="number">9.9</span></div><div class="line"><span class="number">3</span>  <span class="number">9.9</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"></div><div class="line"><span class="comment">#使用method，和前面reindex的时候是一个道理</span></div><div class="line">data.fillna(method=<span class="string">'ffill'</span>)</div><div class="line">Out[<span class="number">262</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">0</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">1</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">2</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">3</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/06/numpy-handbook-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/numpy-handbook-02/" itemprop="url">numpy手册(2)-常用操作杂记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T10:00:00+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Numpy/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Numpy</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Python<br>Numpy知识总结</p>
+<hr>
+<p>这里记录下numpy常用的一些操作，一些散乱的知识点。</p>
+<h2 id="数组和标量之间的运算"><a href="#数组和标量之间的运算" class="headerlink" title="数组和标量之间的运算"></a>数组和标量之间的运算</h2><p>就是对数组进行批量的运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">a = np.arange(<span class="number">15</span>).reshape(<span class="number">3</span>,<span class="number">5</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">3</span>]: </div><div class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>],</div><div class="line">       [ <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>],</div><div class="line">       [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>]])</div><div class="line"></div><div class="line">a+<span class="number">2</span></div><div class="line">Out[<span class="number">4</span>]: </div><div class="line">array([[ <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>],</div><div class="line">       [ <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>],</div><div class="line">       [<span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>]])</div><div class="line"></div><div class="line">a+a</div><div class="line">Out[<span class="number">5</span>]: </div><div class="line">array([[ <span class="number">0</span>,  <span class="number">2</span>,  <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">8</span>],</div><div class="line">       [<span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>, <span class="number">16</span>, <span class="number">18</span>],</div><div class="line">       [<span class="number">20</span>, <span class="number">22</span>, <span class="number">24</span>, <span class="number">26</span>, <span class="number">28</span>]])</div></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/01/pandas-handbook-05/#more" rel="contents">
+            <a class="btn" href="/2017/08/06/numpy-handbook-02/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -481,7 +636,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/01/python-handbook-02/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/06/python-handbook-06/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -500,7 +655,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/01/python-handbook-02/" itemprop="url">Python基础（2）- 格式化format</a></h2>
+                <a class="post-title-link" href="/2017/08/06/python-handbook-06/" itemprop="url">Python基础（6）- zip</a></h2>
         
 
         <div class="post-meta">
@@ -512,8 +667,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T08:00:00+08:00">
-                2017-08-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T10:00:00+08:00">
+                2017-08-06
               </time>
             
 
@@ -574,16 +729,180 @@
       
         
           
-            <p>刚刚在练习pandas的时候，遇到一个格式化的问题，没有太理解，百度了下，这里整理下。<br>str.format()，是一个格式化字符串的函数，很强大</p>
-<blockquote>
-<p>str.format(<em>args, *</em>kwargs)</p>
+            <p>这里记录一个函数的使用，zip<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">zip(iter1 [,iter2 [...]]) --&gt; zip object</div><div class="line"></div><div class="line">Return a zip object whose .__next__() method returns a tuple where</div><div class="line">the i-th element comes <span class="keyword">from</span> the i-th iterable argument.  The .__next__()</div><div class="line">method continues until the shortest iterable <span class="keyword">in</span> the argument sequence</div><div class="line"><span class="keyword">is</span> exhausted <span class="keyword">and</span> then it raises StopIteration.</div></pre></td></tr></table></figure></p>
+<p>我们可以传入一个或多个可迭代对象，然后将对应位置的元素封装成一个tuple，然后把所有tuple封装为list返回<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"></div><div class="line">y = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line"></div><div class="line">z = zip(x,y)</div><div class="line"></div><div class="line">print(z)</div><div class="line">&lt;zip object at <span class="number">0x000002D26251F208</span>&gt;</div><div class="line"></div><div class="line">print(list(z))</div><div class="line">[(<span class="number">1</span>, <span class="number">4</span>), (<span class="number">2</span>, <span class="number">5</span>), (<span class="number">3</span>, <span class="number">6</span>)]</div><div class="line"></div><div class="line"><span class="comment">#在只有一个参数的时候</span></div><div class="line">a = zip(x)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">8</span>]: &lt;zip at <span class="number">0x2d261cab588</span>&gt;</div><div class="line"></div><div class="line">list(a)</div><div class="line">Out[<span class="number">9</span>]: [(<span class="number">1</span>,), (<span class="number">2</span>,), (<span class="number">3</span>,)]</div></pre></td></tr></table></figure></p>
+<p>如果2个参数的长度不一样，会以较短的为主<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"></div><div class="line">b = [<span class="string">'ONE'</span>, <span class="string">'TWO'</span>, <span class="string">'THREE'</span>, <span class="string">'FOUR'</span>]</div><div class="line"></div><div class="line">c = list(zip(a,b))</div><div class="line"></div><div class="line">c</div><div class="line">Out[<span class="number">31</span>]: [(<span class="number">1</span>, <span class="string">'ONE'</span>), (<span class="number">2</span>, <span class="string">'TWO'</span>), (<span class="number">3</span>, <span class="string">'THREE'</span>)]</div></pre></td></tr></table></figure></p>
+<p>我们使用*，可以看做是unzip的过程<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"></div><div class="line">y = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line"></div><div class="line">z = zip(*zip(x,y))</div><div class="line"></div><div class="line">list(z)</div><div class="line">Out[<span class="number">27</span>]: [(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), (<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)]</div></pre></td></tr></table></figure></p>
+<p>关于zip，有几个常用的场景，比如矩阵行列转换<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">a = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]]</div><div class="line"></div><div class="line">list(zip(*a))</div><div class="line">Out[<span class="number">38</span>]: [(<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>), (<span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>), (<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>)]</div><div class="line"></div><div class="line">list(map(list,zip(*a)))</div><div class="line">Out[<span class="number">39</span>]: [[<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>], [<span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>], [<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>]]</div></pre></td></tr></table></figure></p>
+<p>构造字典<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"></div><div class="line">b = [<span class="string">'one'</span>,<span class="string">'two'</span>,<span class="string">'three'</span>]</div><div class="line"></div><div class="line">list(zip(a,b))</div><div class="line">Out[<span class="number">42</span>]: [(<span class="number">1</span>, <span class="string">'one'</span>), (<span class="number">2</span>, <span class="string">'two'</span>), (<span class="number">3</span>, <span class="string">'three'</span>)]</div><div class="line"></div><div class="line">dict(list(zip(a,b)))</div><div class="line">Out[<span class="number">43</span>]: &#123;<span class="number">1</span>: <span class="string">'one'</span>, <span class="number">2</span>: <span class="string">'two'</span>, <span class="number">3</span>: <span class="string">'three'</span>&#125;</div></pre></td></tr></table></figure></p>
+<p>参考博客：<br><a href="http://blog.csdn.net/shomy_liu/article/details/46968651" target="_blank" rel="external">http://blog.csdn.net/shomy_liu/article/details/46968651</a><br><a href="http://www.jb51.net/article/53051.htm" target="_blank" rel="external">http://www.jb51.net/article/53051.htm</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/05/python-handbook-05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/05/python-handbook-05/" itemprop="url">Python基础（5）- csv</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-05T12:00:00+08:00">
+                2017-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这里简单介绍下Python中的csv模块，应该蛮常用的。<br>和csv有关，一定要回合打开文件这类操作有关，这里先看下这个open函数<br>官方文档：<a href="https://docs.python.org/3/library/functions.html#open" target="_blank" rel="external">https://docs.python.org/3/library/functions.html#open</a></p>
+<h1 id="1-open"><a href="#1-open" class="headerlink" title="1.open"></a>1.open</h1><blockquote>
+<p>open(file, mode=’r’, buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)Open file and return a corresponding file object. If the file cannot be opened, an OSError is raised.</p>
 </blockquote>
-<p>主要是使用 {}和:<br>这里直接就复制过来了，我们可以通过参数的位置来输出<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;<span class="string">"&#123;&#125; &#123;&#125;"</span>.format(<span class="string">"hello"</span>, <span class="string">"world"</span>)    <span class="comment"># 不设置指定位置，按默认顺序</span></div><div class="line"><span class="string">'hello world'</span></div><div class="line"> </div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"&#123;0&#125; &#123;1&#125;"</span>.format(<span class="string">"hello"</span>, <span class="string">"world"</span>)  <span class="comment"># 设置指定位置</span></div><div class="line"><span class="string">'hello world'</span></div><div class="line"> </div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"&#123;1&#125; &#123;0&#125; &#123;1&#125;"</span>.format(<span class="string">"hello"</span>, <span class="string">"world"</span>)  <span class="comment"># 设置指定位置</span></div><div class="line"><span class="string">'world hello world'</span></div></pre></td></tr></table></figure></p>
-<p>我们也可以通过key，value的形式来格式化<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="string">'name:&#123;name&#125;,age:&#123;age&#125;'</span>.format(name=<span class="string">'lufei'</span>,age=<span class="number">20</span>)</div><div class="line">Out[<span class="number">46</span>]: <span class="string">'name:lufei,age:20'</span></div><div class="line"></div><div class="line">p=[<span class="string">'namei'</span>,<span class="number">20</span>]</div><div class="line"></div><div class="line"><span class="string">'name:&#123;0[0]&#125;,age:&#123;0[1]&#125;'</span>.format(p)</div><div class="line">Out[<span class="number">51</span>]: <span class="string">'name:namei,age:20'</span></div></pre></td></tr></table></figure></p>
-<p>填充与对齐<br><img src="http://upload-images.jianshu.io/upload_images/76024-cd49b83bff170fa1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">^、&lt;、&gt;分别是居中、左对齐、右对齐，后面带宽度</div><div class="line">:号后面带填充的字符，只能是一个字符，不指定的话默认是用空格填充</div><div class="line"></div><div class="line"><span class="comment">#右对齐，长度为8，不够的默认用空格补全</span></div><div class="line"><span class="string">'&#123;:&gt;8&#125;'</span>.format(<span class="string">'189'</span>)</div><div class="line">Out[<span class="number">52</span>]: <span class="string">'     189'</span></div><div class="line"></div><div class="line"><span class="comment">#右对齐，长度为8，不够的用0补全</span></div><div class="line"><span class="string">'&#123;:0&gt;8&#125;'</span>.format(<span class="string">'189'</span>)</div><div class="line">Out[<span class="number">53</span>]: <span class="string">'00000189'</span></div><div class="line"></div><div class="line"><span class="string">'&#123;:a&gt;8&#125;'</span>.format(<span class="string">'189'</span>)</div><div class="line">Out[<span class="number">54</span>]: <span class="string">'aaaaa189'</span></div></pre></td></tr></table></figure>
-<p>数值精度<br>这个说的挺全的，直接截图来吧<br><img src="http://upload-images.jianshu.io/upload_images/76024-0040730729b50966.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>参考资料：<br><a href="http://www.runoob.com/python/att-string-format.html" target="_blank" rel="external">Python format 格式化函数</a><br>官方介绍：<a href="https://docs.python.org/2/library/string.html#formatstrings" target="_blank" rel="external">Format String Syntax</a><br><a href="http://blog.csdn.net/handsomekang/article/details/9183303" target="_blank" rel="external">飘逸的python - 增强的格式化字符串format函数 </a></p>
+<p>file，就是我们要打开的文件地址；<br>mode，就是打开的方式，默认是只读文本（’rt’)</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-6b900cd2865a1c71.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-2dbd703eb2d9b406.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>newline，和换行符有关，在网上找了个资料：<a href="https://www.zhihu.com/question/19751023" target="_blank" rel="external">https://www.zhihu.com/question/19751023</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-5729473610100cb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>换行符看起来有点儿乱，以后如果一段问题了再研究下。<br>下面，我们先来看看csv</p>
+<h1 id="2-csv-reader"><a href="#2-csv-reader" class="headerlink" title="2. csv.reader"></a>2. csv.reader</h1><blockquote>
+<p>csv.reader(csvfile, dialect=’excel’, **fmtparams)Return a reader object which will iterate over lines in the given csvfile.</p>
+</blockquote>
+<p>我们的csv文件是这样的<br><img src="http://upload-images.jianshu.io/upload_images/76024-247a9d0b9b1d4f0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> csv</div><div class="line"></div><div class="line"><span class="keyword">with</span> open(<span class="string">r'D:\document\python_demo\employee_data.csv'</span>) <span class="keyword">as</span> csvfile:</div><div class="line">    emp_reader = csv.reader(csvfile)</div><div class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> emp_reader:</div><div class="line">        print(row)</div><div class="line"></div><div class="line"><span class="comment">##</span></div><div class="line">runfile(<span class="string">'D:/document/python_demo/demo_open.py'</span>, wdir=<span class="string">'D:/document/python_demo'</span>)</div><div class="line">[<span class="string">'lufei'</span>, <span class="string">'20'</span>, <span class="string">'leader'</span>, <span class="string">'onepiece'</span>, <span class="string">'100'</span>]</div><div class="line">[<span class="string">'namei'</span>, <span class="string">'19'</span>, <span class="string">'teacher'</span>, <span class="string">'onepiece'</span>, <span class="string">'999'</span>]</div></pre></td></tr></table></figure>
+<p>就csv文件来说，会有几个特点，比如字段之间的分隔符，换行符等，我们使用上面的dialect来指定<br>如果我们，现在将分隔符，替换为^<br><img src="http://upload-images.jianshu.io/upload_images/76024-d2d41da40334e1cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们再次执行，就无法正确分割数据了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">runfile(<span class="string">'D:/document/python_demo/demo_open.py'</span>, wdir=<span class="string">'D:/document/python_demo'</span>)</div><div class="line">[<span class="string">'lufei^20^leader^onepiece^100'</span>]</div><div class="line">[<span class="string">'namei^19^teacher^onepiece^999'</span>]</div></pre></td></tr></table></figure></p>
+<p>我们修改下代码，加上delimiter就行了，详情参考官网：<a href="https://docs.python.org/3/library/csv.html#csv-fmt-params" target="_blank" rel="external">https://docs.python.org/3/library/csv.html#csv-fmt-params</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> csv</div><div class="line"></div><div class="line"><span class="keyword">with</span> open(<span class="string">r'D:\document\python_demo\employee_data.csv'</span>) <span class="keyword">as</span> csvfile:</div><div class="line">    emp_reader = csv.reader(csvfile,delimiter=<span class="string">'^'</span>)</div><div class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> emp_reader:</div><div class="line">        print(row)</div><div class="line"></div><div class="line"><span class="comment">##</span></div><div class="line">runfile(<span class="string">'D:/document/python_demo/demo_open.py'</span>, wdir=<span class="string">'D:/document/python_demo'</span>)</div><div class="line">[<span class="string">'lufei'</span>, <span class="string">'20'</span>, <span class="string">'leader'</span>, <span class="string">'onepiece'</span>, <span class="string">'100'</span>]</div><div class="line">[<span class="string">'namei'</span>, <span class="string">'19'</span>, <span class="string">'teacher'</span>, <span class="string">'onepiece'</span>, <span class="string">'999'</span>]</div></pre></td></tr></table></figure>
+<p>这时候，如果我们的数据中，含有分隔符，我们需要再加上封闭符，一般都会使用双引号，这里使用参数quotechar指定，默认是双引号<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">csv data:</div><div class="line">lufei^<span class="number">20</span>^leader^$one^_^piece$^<span class="number">100</span></div><div class="line">namei^<span class="number">19</span>^teacher^onepiece^<span class="number">999</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> csv</div><div class="line"></div><div class="line"><span class="keyword">with</span> open(<span class="string">r'D:\document\python_demo\employee_data.csv'</span>) <span class="keyword">as</span> csvfile:</div><div class="line">    emp_reader = csv.reader(csvfile,delimiter=<span class="string">'^'</span>,quotechar=<span class="string">'$'</span>)</div><div class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> emp_reader:</div><div class="line">        print(row)</div><div class="line"></div><div class="line"></div><div class="line">result:</div><div class="line">runfile(<span class="string">'D:/document/python_demo/demo_open.py'</span>, wdir=<span class="string">'D:/document/python_demo'</span>)</div><div class="line">[<span class="string">'lufei'</span>, <span class="string">'20'</span>, <span class="string">'leader'</span>, <span class="string">'one^_^piece'</span>, <span class="string">'100'</span>]</div><div class="line">[<span class="string">'namei'</span>, <span class="string">'19'</span>, <span class="string">'teacher'</span>, <span class="string">'onepiece'</span>, <span class="string">'999'</span>]</div></pre></td></tr></table></figure></p>
+<h1 id="3-csv-writer"><a href="#3-csv-writer" class="headerlink" title="3.csv.writer"></a>3.csv.writer</h1><blockquote>
+<p>csv.writer(csvfile, dialect=’excel’, **fmtparams)Return a writer object responsible for converting the user’s data into delimited strings on the given file-like object. csvfile can be any object with a write() method.</p>
+</blockquote>
+<p>这里的用法都差不多，我们简单举个小例子，用官网的例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> open(<span class="string">'eggs.csv'</span>, <span class="string">'w'</span>, newline=<span class="string">''</span>) <span class="keyword">as</span> csvfile:</div><div class="line">    spamwriter = csv.writer(csvfile, delimiter=<span class="string">' '</span>,</div><div class="line">                            quotechar=<span class="string">'|'</span>, quoting=csv.QUOTE_MINIMAL)</div><div class="line">    spamwriter.writerow([<span class="string">'Spam'</span>] * <span class="number">5</span> + [<span class="string">'Baked Beans'</span>])</div><div class="line">    spamwriter.writerow([<span class="string">'Spam'</span>, <span class="string">'Lovely |Spam'</span>, <span class="string">'Wonderful Spam'</span>]) </div><div class="line"></div><div class="line">result：</div><div class="line">|Spam| |Spam| |Spam| |Spam| |Spam| |Baked Beans|</div><div class="line">|Spam| |Lovely ||Spam| |Wonderful Spam|</div></pre></td></tr></table></figure></p>
+<p>这里用到了另一个参数：quoting，这个参数是针对quotechar来说的，<br>quotechar在ETL工具中叫做封闭符，是为了防止字段内容中出现分割符，我们需要区分到底是分隔符，还是字段内容，所以需要根据quotechar去判断；<br>quoting则是控制在什么情况下使用封闭符，他有几个选项<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">csv.QUOTE_ALL <span class="comment">#所有字段都添加封闭符</span></div><div class="line">csv.QUOTE_NONNUMERIC <span class="comment">#在非数值字段加封闭符</span></div><div class="line">csv.QUOTE_NONE <span class="comment">#所有字段都不加</span></div><div class="line">csv.QUOTE_MINIMAL <span class="comment">#只在出现分隔符的字段旁加封闭符，默认</span></div></pre></td></tr></table></figure></p>
+<p>好了，csv的就简单分享到这里了。</p>
 
           
         
@@ -632,7 +951,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/07/31/pandas-handbook-04/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/05/python-handbook-04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -651,7 +970,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/31/pandas-handbook-04/" itemprop="url">Pandas手册（4）- 对数据进行筛选和排序</a></h2>
+                <a class="post-title-link" href="/2017/08/05/python-handbook-04/" itemprop="url">Python基础（4）- collections</a></h2>
         
 
         <div class="post-meta">
@@ -663,8 +982,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T21:59:00+08:00">
-                2017-07-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-05T10:00:00+08:00">
+                2017-08-05
               </time>
             
 
@@ -686,8 +1005,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Pandas</span>
+                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-基础</span>
                   </a>
                 </span>
 
@@ -724,327 +1043,39 @@
 
       
         
-          <p>Python<br>Pandas</p>
-<hr>
-<p>前几天看了篇教程：<a href="http://bluewhale.cc/2016-08-06/use-pandas-filter-and-sort.html" target="_blank" rel="external">使用Pandas对数据进行筛选和排序</a></p>
-<p>里面主要介绍了，我们在使用Pandas时，对数据进行筛选和排序的介绍<br>这里简单总结分享下自己。</p>
-<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><p>可能是版本的问题，原文中的sort函数没有了，变成了2个常用的函数 sort_index和sort_value</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">DataFrame.sort_index(axis=<span class="number">0</span>, level=<span class="keyword">None</span>, ascending=<span class="keyword">True</span>, inplace=<span class="keyword">False</span>, kind=<span class="string">'quicksort'</span>, na_position=<span class="string">'last'</span>, sort_remaining=<span class="keyword">True</span>, by=<span class="keyword">None</span>)</div><div class="line">Sort object by labels (along an axis)</div><div class="line"></div><div class="line">DataFrame.sort_values(by, axis=<span class="number">0</span>, ascending=<span class="keyword">True</span>, inplace=<span class="keyword">False</span>, kind=<span class="string">'quicksort'</span>, na_position=<span class="string">'last'</span>)</div><div class="line">Sort by the values along either axis</div></pre></td></tr></table></figure>
-<p>sort_index：按照索引排序，及列标签或行标签，axis=0是列标签，axis=1是行标签<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">df3 = pd.DataFrame(np.random.randn(<span class="number">6</span>,<span class="number">4</span>),</div><div class="line">                   index=list(range(<span class="number">0</span>,<span class="number">12</span>,<span class="number">2</span>)),</div><div class="line">                   columns=list(range(<span class="number">0</span>,<span class="number">8</span>,<span class="number">2</span>)))</div><div class="line"></div><div class="line">print(df3)</div><div class="line">print(df3.sort_index(axis=<span class="number">0</span>,ascending=<span class="keyword">False</span>))</div><div class="line">print(df3.sort_index(axis=<span class="number">1</span>,ascending=<span class="keyword">False</span>))</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-66d497e63d83a214.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>sort_value：按值进行排序，这个估计用的会多些，按数据内容进行排序<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">print(df3)</div><div class="line">print(df3.sort_values(by=[<span class="number">0</span>],axis=<span class="number">0</span>,ascending=<span class="keyword">True</span>))</div><div class="line">print(df3.sort_values(by=[<span class="number">2</span>],axis=<span class="number">0</span>,ascending=<span class="keyword">False</span>))</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-2b887473b56dc8d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/31/pandas-handbook-04/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/07/31/pandas-handbook-03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/31/pandas-handbook-03/" itemprop="url">Pandas手册（3）- DataFrame-Selection By Label/Position</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T14:59:00+08:00">
-                2017-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
+          
+            <p>昨天用到了这个collections模块，挺好用的，这里记录下。<br>官网介绍：<a href="https://docs.python.org/3/library/collections.html" target="_blank" rel="external">https://docs.python.org/3/library/collections.html</a><br>博客：<a href="https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001411031239400f7181f65f33a4623bc42276a605debf6000" target="_blank" rel="external">廖雪峰的博客</a><br>这里介绍些好玩儿的例子。</p>
+<h1 id="namedtuple"><a href="#namedtuple" class="headerlink" title="namedtuple"></a>namedtuple</h1><blockquote>
+<p>collections.namedtuple(typename, field_names, *, verbose=False, rename=False, module=None)<br>Returns a new tuple subclass named typename. The new subclass is used to create tuple-like objects that have fields accessible by attribute lookup as well as being indexable and iterable. Instances of the subclass also have a helpful docstring (with typename and field_names) and a helpful <strong>repr</strong>() method which lists the tuple contents in a name=value format.</p>
+</blockquote>
+<p>namedtuple是一个工厂函数，返回一个自定义的tuple类，可读性更强些。<br>通常我们使用tuple的时候，像这样<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">point_a = <span class="number">1</span>,<span class="number">3</span></div><div class="line"></div><div class="line">point_b = <span class="number">2</span>,<span class="number">6</span></div><div class="line"></div><div class="line">point_a</div><div class="line">Out[<span class="number">37</span>]: (<span class="number">1</span>, <span class="number">3</span>)</div><div class="line"></div><div class="line">point_b</div><div class="line">Out[<span class="number">38</span>]: (<span class="number">2</span>, <span class="number">6</span>)</div><div class="line"></div><div class="line">point_a[<span class="number">0</span>]</div><div class="line">Out[<span class="number">39</span>]: <span class="number">1</span></div><div class="line"></div><div class="line">point_a[<span class="number">1</span>]</div><div class="line">Out[<span class="number">40</span>]: <span class="number">3</span></div></pre></td></tr></table></figure></p>
+<p>我们是那个namedtuple就可以这样了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> namedtuple</div><div class="line"></div><div class="line">Point = namedtuple(<span class="string">'Point'</span>,[<span class="string">'x'</span>,<span class="string">'y'</span>])</div><div class="line"></div><div class="line">point_a = Point(<span class="number">2</span>,<span class="number">2</span>)</div><div class="line"></div><div class="line">point_b = Point(<span class="number">3</span>,<span class="number">3</span>)</div><div class="line"></div><div class="line">point_a</div><div class="line">Out[<span class="number">45</span>]: Point(x=<span class="number">2</span>, y=<span class="number">2</span>)</div><div class="line"></div><div class="line">point_b</div><div class="line">Out[<span class="number">46</span>]: Point(x=<span class="number">3</span>, y=<span class="number">3</span>)</div><div class="line"></div><div class="line">point_a.x</div><div class="line">Out[<span class="number">47</span>]: <span class="number">2</span></div><div class="line"></div><div class="line">point_b.y</div><div class="line">Out[<span class="number">48</span>]: <span class="number">3</span></div></pre></td></tr></table></figure></p>
+<p>这样使用一个坐标位置，是不是可读性更强呢，而且用起来也很方便<br>我们可以看看这个Point是怎样定义的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">print(point_a._source)</div><div class="line"><span class="keyword">from</span> builtins <span class="keyword">import</span> property <span class="keyword">as</span> _property, tuple <span class="keyword">as</span> _tuple</div><div class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> itemgetter <span class="keyword">as</span> _itemgetter</div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span><span class="params">(tuple)</span>:</span></div><div class="line">    <span class="string">'Point(x, y)'</span></div><div class="line"></div><div class="line">    __slots__ = ()</div><div class="line"></div><div class="line">    _fields = (<span class="string">'x'</span>, <span class="string">'y'</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(_cls, x, y)</span>:</span></div><div class="line">        <span class="string">'Create new instance of Point(x, y)'</span></div><div class="line">        <span class="keyword">return</span> _tuple.__new__(_cls, (x, y))</div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_make</span><span class="params">(cls, iterable, new=tuple.__new__, len=len)</span>:</span></div><div class="line">        <span class="string">'Make a new Point object from a sequence or iterable'</span></div><div class="line">        result = new(cls, iterable)</div><div class="line">        <span class="keyword">if</span> len(result) != <span class="number">2</span>:</div><div class="line">            <span class="keyword">raise</span> TypeError(<span class="string">'Expected 2 arguments, got %d'</span> % len(result))</div><div class="line">        <span class="keyword">return</span> result</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_replace</span><span class="params">(_self, **kwds)</span>:</span></div><div class="line">        <span class="string">'Return a new Point object replacing specified fields with new values'</span></div><div class="line">        result = _self._make(map(kwds.pop, (<span class="string">'x'</span>, <span class="string">'y'</span>), _self))</div><div class="line">        <span class="keyword">if</span> kwds:</div><div class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'Got unexpected field names: %r'</span> % list(kwds))</div><div class="line">        <span class="keyword">return</span> result</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">'Return a nicely formatted representation string'</span></div><div class="line">        <span class="keyword">return</span> self.__class__.__name__ + <span class="string">'(x=%r, y=%r)'</span> % self</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_asdict</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">'Return a new OrderedDict which maps field names to their values.'</span></div><div class="line">        <span class="keyword">return</span> OrderedDict(zip(self._fields, self))</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getnewargs__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">'Return self as a plain tuple.  Used by copy and pickle.'</span></div><div class="line">        <span class="keyword">return</span> tuple(self)</div><div class="line"></div><div class="line">    x = _property(_itemgetter(<span class="number">0</span>), doc=<span class="string">'Alias for field number 0'</span>)</div><div class="line"></div><div class="line">    y = _property(_itemgetter(<span class="number">1</span>), doc=<span class="string">'Alias for field number 1'</span>)</div></pre></td></tr></table></figure></p>
+<p>下面还有个更好用的地方，我们再读取CSV或者数据库的时候，会返回结果集，这个时候用起来更方便，比如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> csv</div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> namedtuple</div><div class="line">       </div><div class="line">EmployeeRecord = namedtuple(<span class="string">'EmployeeRecord'</span>, <span class="string">'name, age, title, department, paygrade'</span>)</div><div class="line"><span class="keyword">for</span> emp <span class="keyword">in</span> map(EmployeeRecord._make, csv.reader(open(<span class="string">r'D:\document\python_demo\employee_data.csv'</span>))):</div><div class="line">    print(emp.name, emp.title)</div><div class="line">    print(<span class="string">'emp:'</span>,emp)</div><div class="line"></div><div class="line"></div><div class="line">runfile(<span class="string">'D:/document/python_demo/demo_hi.py'</span>, wdir=<span class="string">'D:/document/python_demo'</span>)</div><div class="line">lufei leader</div><div class="line">emp: EmployeeRecord(name=<span class="string">'lufei'</span>, age=<span class="string">'20'</span>, title=<span class="string">'leader'</span>, department=<span class="string">'onepiece'</span>, paygrade=<span class="string">'100'</span>)</div><div class="line">namei teacher</div><div class="line">emp: EmployeeRecord(name=<span class="string">'namei'</span>, age=<span class="string">'19'</span>, title=<span class="string">'teacher'</span>, department=<span class="string">'onepiece'</span>, paygrade=<span class="string">'999'</span>)</div></pre></td></tr></table></figure></p>
+<p>_make<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">somenamedtuple._make(iterable)</div><div class="line">Class method that makes a new instance <span class="keyword">from</span> an existing sequence <span class="keyword">or</span> iterable.</div></pre></td></tr></table></figure></p>
+<h1 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h1><p>我们使用list的时候，用下标查找很快，数据量大的时候，插入删除比较慢，deque是为了高效实现插入和删除的双向队列。</p>
+<blockquote>
+<p>deque:double-ended queue</p>
+<p>class collections.deque([iterable[, maxlen]])<br>Returns a new deque object initialized left-to-right (using append()) with data from iterable. If iterable is not specified, the new deque is empty.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</div><div class="line"></div><div class="line">a = deque(list(<span class="string">'abcdef'</span>))</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">80</span>]: deque([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>])</div><div class="line"></div><div class="line">a.append(<span class="string">'x'</span>)</div><div class="line"></div><div class="line">a.append(<span class="string">'y'</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">83</span>]: deque([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'x'</span>, <span class="string">'y'</span>])</div><div class="line"></div><div class="line">a.appendleft(<span class="string">'w'</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">85</span>]: deque([<span class="string">'w'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'x'</span>, <span class="string">'y'</span>])</div><div class="line"></div><div class="line">a.pop()</div><div class="line">Out[<span class="number">86</span>]: <span class="string">'y'</span></div><div class="line"></div><div class="line">a.popleft()</div><div class="line">Out[<span class="number">87</span>]: <span class="string">'w'</span></div></pre></td></tr></table></figure>
+<p>这里扩展了很多方便的函数，appendleft(),popleft()等等</p>
+<h1 id="defaultdict"><a href="#defaultdict" class="headerlink" title="defaultdict"></a>defaultdict</h1><p>可以设置默认值的dict，平时我们使用dict的时候，如果key不存在，会报错</p>
+<blockquote>
+<p>class collections.defaultdict([default_factory[, …]])<br>Returns a new dictionary-like object. defaultdict is a subclass of the built-in dict class. It overrides one method and adds one writable instance variable. The remaining functionality is the same as for the dict class and is not documented here.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">a = &#123;<span class="string">'name'</span>:<span class="string">'lufe'</span>,<span class="string">'age'</span>:<span class="number">20</span>&#125;</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">105</span>]: &#123;<span class="string">'age'</span>: <span class="number">20</span>, <span class="string">'name'</span>: <span class="string">'lufe'</span>&#125;</div><div class="line"></div><div class="line">a[<span class="string">'name'</span>]</div><div class="line">Out[<span class="number">106</span>]: <span class="string">'lufe'</span></div><div class="line"></div><div class="line">a[<span class="string">'age'</span>]</div><div class="line">Out[<span class="number">107</span>]: <span class="number">20</span></div><div class="line"></div><div class="line">a[<span class="string">'score'</span>]</div><div class="line">Traceback (most recent call last):</div><div class="line"></div><div class="line">  File <span class="string">"&lt;ipython-input-108-99f54e089332&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    a[<span class="string">'score'</span>]</div><div class="line"></div><div class="line">KeyError: <span class="string">'score'</span></div></pre></td></tr></table></figure>
+<p>我们使用defaultdict就可以避免这个错误<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"></div><div class="line">b = defaultdict(int)</div><div class="line"></div><div class="line">b[<span class="string">'name'</span>]=<span class="string">'lufei'</span></div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">123</span>]: defaultdict(int, &#123;<span class="string">'name'</span>: <span class="string">'lufei'</span>&#125;)</div><div class="line"></div><div class="line">b[<span class="string">'age'</span>]</div><div class="line">Out[<span class="number">124</span>]: <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<p>这里我们设置默认是int型，默认值为0<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">x = defaultdict(<span class="number">0</span>)</div><div class="line">Traceback (most recent call last):</div><div class="line"></div><div class="line">  File <span class="string">"&lt;ipython-input-125-dd2052e23af0&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    x = defaultdict(<span class="number">0</span>)</div><div class="line"></div><div class="line">TypeError: first argument must be callable <span class="keyword">or</span> <span class="keyword">None</span></div><div class="line"></div><div class="line"></div><div class="line">x = defaultdict(<span class="keyword">lambda</span> : <span class="number">100</span>)</div><div class="line"></div><div class="line">x</div><div class="line">Out[<span class="number">127</span>]: defaultdict(&lt;function __main__.&lt;<span class="keyword">lambda</span>&gt;&gt;, &#123;&#125;)</div><div class="line"></div><div class="line">x[<span class="string">'name'</span>]</div><div class="line">Out[<span class="number">128</span>]: <span class="number">100</span></div></pre></td></tr></table></figure></p>
+<h1 id="Counter"><a href="#Counter" class="headerlink" title="Counter"></a>Counter</h1><p>是一个简单的计数器，</p>
+<blockquote>
+<p>class collections.Counter([iterable-or-mapping])<br>A Counter is a dict subclass for counting hashable objects. It is an unordered collection where elements are stored as dictionary keys and their counts are stored as dictionary values. Counts are allowed to be any integer value including zero or negative counts. The Counter class is similar to bags or multisets in other languages.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</div><div class="line"></div><div class="line">cnt = Counter([<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>, <span class="string">'blue'</span>])</div><div class="line"></div><div class="line">cnt</div><div class="line">Out[<span class="number">131</span>]: Counter(&#123;<span class="string">'blue'</span>: <span class="number">3</span>, <span class="string">'green'</span>: <span class="number">1</span>, <span class="string">'red'</span>: <span class="number">2</span>&#125;)</div><div class="line"></div><div class="line">cnt.most_common(<span class="number">1</span>)</div><div class="line">Out[<span class="number">132</span>]: [(<span class="string">'blue'</span>, <span class="number">3</span>)]</div><div class="line"></div><div class="line">cnt.most_common(<span class="number">-1</span>)</div><div class="line">Out[<span class="number">133</span>]: []</div><div class="line"></div><div class="line">cnt.elements</div><div class="line">Out[<span class="number">134</span>]: &lt;bound method Counter.elements of Counter(&#123;<span class="string">'blue'</span>: <span class="number">3</span>, <span class="string">'red'</span>: <span class="number">2</span>, <span class="string">'green'</span>: <span class="number">1</span>&#125;)&gt;</div><div class="line"></div><div class="line">cnt.most_common(<span class="number">3</span>)[:<span class="number">-2</span>:<span class="number">-1</span>]</div><div class="line">Out[<span class="number">137</span>]: [(<span class="string">'green'</span>, <span class="number">1</span>)]</div></pre></td></tr></table></figure>
+<p>这个most_common最好用了感觉，根据次数进行排名</p>
+<p>当然，collections中还有很多其他的好用的类，我们可以参考官方文档。</p>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Pandas</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Python<br>Pandas</p>
-<hr>
-<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>这里主要介绍下，在DataFrame中一些筛选的操作，常用的有下面这些<br><img src="http://upload-images.jianshu.io/upload_images/76024-b0e3643a3e1474d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>熟练掌握上面的几个方法，操作DataFrame应该就足够了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">d = &#123;<span class="string">'one'</span> : pd.Series([<span class="number">1.</span>, <span class="number">2.</span>, <span class="number">3.</span>], index=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]),</div><div class="line">     <span class="string">'two'</span> : pd.Series([<span class="number">1.</span>, <span class="number">2.</span>, <span class="number">3.</span>, <span class="number">4.</span>], index=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>])&#125;</div><div class="line"></div><div class="line">df = pd.DataFrame(d)</div><div class="line"></div><div class="line">print(<span class="string">'原始数据：\n'</span>,df)</div><div class="line"></div><div class="line">print(<span class="string">'index 为a的数据：\n'</span>,df.loc[<span class="string">'a'</span>])</div><div class="line">print(<span class="string">'index下标为2的数据：\n'</span>, df.iloc[<span class="number">2</span>])</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-b0d90b7a325bbccf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/31/pandas-handbook-03/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/07/31/pandas-handbook-02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/31/pandas-handbook-02/" itemprop="url">Pandas手册（2）- DataFrame</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T10:59:00+08:00">
-                2017-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Pandas</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Python<br>Pandas</p>
-<hr>
-<h1 id="序"><a href="#序" class="headerlink" title="序"></a>序</h1><p>DataFrame是2维的标签数组，可以把他当成电子表格（Excel），数据库里的表，a dict of Series。<br>DataFrame初始化，也可以有不同的输入，<br><img src="http://upload-images.jianshu.io/upload_images/76024-073017a299104340.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>在Series中呢，我们有一个index的概念，在DataFrame中，我们除了index，还有一个columns的概念<br>index：行标签<br>columns：列标签</p>
-<h1 id="DataFrame初始化"><a href="#DataFrame初始化" class="headerlink" title="DataFrame初始化"></a>DataFrame初始化</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">pandas</span>.<span class="title">DataFrame</span><span class="params">(data=None, index=None, columns=None, dtype=None, copy=False)</span></span></div></pre></td></tr></table></figure>
-<p>我们看到，这里有data，index，columns<br>我们可以只初始化data，其他都默认<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">df = pd.DataFrame(np.random.randn(<span class="number">5</span>))</div><div class="line"></div><div class="line">print(df)</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-1db821829c7e1f2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>我们看到，index，依然是下标从0开始，columns呢，也是从0开始的<br>我们可以，初始化index，和columns<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df = pd.DataFrame(np.random.randn(<span class="number">5</span>),index=[<span class="string">'i1'</span>,<span class="string">'i2'</span>,<span class="string">'i3'</span>,<span class="string">'i4'</span>,<span class="string">'i5'</span>],</div><div class="line">                  columns=[<span class="string">'a'</span>])</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-37b7dc717f96f875.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/31/pandas-handbook-02/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1082,7 +1113,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1132,7 +1163,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1154,7 +1185,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

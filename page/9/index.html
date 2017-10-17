@@ -325,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/06/numpy-handbook-02/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/09/crawler-demo-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -344,7 +344,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/06/numpy-handbook-02/" itemprop="url">numpy手册(2)-常用操作杂记</a></h2>
+                <a class="post-title-link" href="/2017/08/09/crawler-demo-01/" itemprop="url">爬虫小实例学习篇-猫眼电影</a></h2>
         
 
         <div class="post-meta">
@@ -356,8 +356,158 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T10:00:00+08:00">
-                2017-08-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-09T21:59:00+08:00">
+                2017-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-爬虫/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-爬虫</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>这里参考了论坛里一位同学分享的博客：<a href="https://ask.hellobi.com/blog/JiangYiXin/7660" target="_blank" rel="external">猫眼电影TOP100爬取练习</a>，感谢分享。</p>
+<p>学习要从模仿开始，学习了上面的博客之后，自己做下练习，正好最近看了selenium，就用了这个。</p>
+<p>原作者的正则用的太溜了，等后面有时间再研究下，这里就简单的使用CSS Selector来实现了。</p>
+<p>原文代码很精彩，我这个代码就粗糙很多了，先来个初始版，后面再慢慢优化。</p>
+<p>大体思路和<a href="https://ask.hellobi.com/blog/yuguiyang1990/9172" target="_blank" rel="external">Python基础（7）- Selenium使用</a>  里面的豆瓣读书例子差不多，</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/09/crawler-demo-01/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/08/numpy-handbook-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/08/numpy-handbook-04/" itemprop="url">numpy手册(4)-ufunc</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T21:59:00+08:00">
+                2017-08-08
               </time>
             
 
@@ -419,11 +569,15 @@
         
           <p>Python<br>Numpy知识总结</p>
 <hr>
-<p>这里记录下numpy常用的一些操作，一些散乱的知识点。</p>
-<h2 id="数组和标量之间的运算"><a href="#数组和标量之间的运算" class="headerlink" title="数组和标量之间的运算"></a>数组和标量之间的运算</h2><p>就是对数组进行批量的运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">a = np.arange(<span class="number">15</span>).reshape(<span class="number">3</span>,<span class="number">5</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">3</span>]: </div><div class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>],</div><div class="line">       [ <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>],</div><div class="line">       [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>]])</div><div class="line"></div><div class="line">a+<span class="number">2</span></div><div class="line">Out[<span class="number">4</span>]: </div><div class="line">array([[ <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>],</div><div class="line">       [ <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>],</div><div class="line">       [<span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>]])</div><div class="line"></div><div class="line">a+a</div><div class="line">Out[<span class="number">5</span>]: </div><div class="line">array([[ <span class="number">0</span>,  <span class="number">2</span>,  <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">8</span>],</div><div class="line">       [<span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>, <span class="number">16</span>, <span class="number">18</span>],</div><div class="line">       [<span class="number">20</span>, <span class="number">22</span>, <span class="number">24</span>, <span class="number">26</span>, <span class="number">28</span>]])</div></pre></td></tr></table></figure></p>
+<p>这里，我们说下对数组操作的常用函数</p>
+<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><p>我们先说下接收一个参数的一元函数，比如 np.sqrt 开方函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">a = np.arange(<span class="number">10</span>)</div><div class="line"></div><div class="line">np.sqrt(a)</div><div class="line">Out[<span class="number">45</span>]: </div><div class="line">array([ <span class="number">0.</span>        ,  <span class="number">1.</span>        ,  <span class="number">1.41421356</span>,  <span class="number">1.73205081</span>,  <span class="number">2.</span>        ,</div><div class="line">        <span class="number">2.23606798</span>,  <span class="number">2.44948974</span>,  <span class="number">2.64575131</span>,  <span class="number">2.82842712</span>,  <span class="number">3.</span>        ])</div><div class="line"></div><div class="line">a**<span class="number">0.5</span></div><div class="line">Out[<span class="number">46</span>]: </div><div class="line">array([ <span class="number">0.</span>        ,  <span class="number">1.</span>        ,  <span class="number">1.41421356</span>,  <span class="number">1.73205081</span>,  <span class="number">2.</span>        ,</div><div class="line">        <span class="number">2.23606798</span>,  <span class="number">2.44948974</span>,  <span class="number">2.64575131</span>,  <span class="number">2.82842712</span>,  <span class="number">3.</span>        ])</div></pre></td></tr></table></figure></p>
+<p>常用的一元函数<br><img src="http://upload-images.jianshu.io/upload_images/76024-4e51ac598140bce5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常用一元函数"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-fc8bedc9e7685c7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常用一元函数"></p>
+<p>还有些常用的二元函数，比如 add,subtract<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">a = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line"></div><div class="line">b = np.array([<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">49</span>]: array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">50</span>]: array([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</div><div class="line"></div><div class="line">np.add(a,b)</div><div class="line">Out[<span class="number">51</span>]: array([<span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>])</div><div class="line"></div><div class="line">np.subtract(a,b)</div><div class="line">Out[<span class="number">52</span>]: array([<span class="number">-3</span>, <span class="number">-3</span>, <span class="number">-3</span>])</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-49d48098a4dc8dce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常用二元函数"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/06/numpy-handbook-02/#more" rel="contents">
+            <a class="btn" href="/2017/08/08/numpy-handbook-04/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -474,7 +628,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/02/numpy-handbook-01/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/08/pandas-handbook-07/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -493,7 +647,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/02/numpy-handbook-01/" itemprop="url">numpy手册(1)-ndarray</a></h2>
+                <a class="post-title-link" href="/2017/08/08/pandas-handbook-07/" itemprop="url">Pandas手册（7）- pandas数据加载</a></h2>
         
 
         <div class="post-meta">
@@ -505,8 +659,163 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T21:59:00+08:00">
-                2017-08-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T08:00:00+08:00">
+                2017-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Python<br>Pandas</p>
+<hr>
+<p>这里整理下，pandas中数据加载的几个方法，前面，我们也有用过，read_csv，下面，我们整理下</p>
+<h1 id="1-pandas读取数据方法"><a href="#1-pandas读取数据方法" class="headerlink" title="1.pandas读取数据方法"></a>1.pandas读取数据方法</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pandas.read_csv(filepath_or_buffer, sep=<span class="string">', '</span>, delimiter=<span class="keyword">None</span>, header=<span class="string">'infer'</span>, names=<span class="keyword">None</span>, index_col=<span class="keyword">None</span>, usecols=<span class="keyword">None</span>, squeeze=<span class="keyword">False</span>, prefix=<span class="keyword">None</span>, mangle_dupe_cols=<span class="keyword">True</span>, dtype=<span class="keyword">None</span>, engine=<span class="keyword">None</span>, converters=<span class="keyword">None</span>, true_values=<span class="keyword">None</span>, false_values=<span class="keyword">None</span>, skipinitialspace=<span class="keyword">False</span>, skiprows=<span class="keyword">None</span>, nrows=<span class="keyword">None</span>, na_values=<span class="keyword">None</span>, keep_default_na=<span class="keyword">True</span>, na_filter=<span class="keyword">True</span>, verbose=<span class="keyword">False</span>, skip_blank_lines=<span class="keyword">True</span>, parse_dates=<span class="keyword">False</span>, infer_datetime_format=<span class="keyword">False</span>, keep_date_col=<span class="keyword">False</span>, date_parser=<span class="keyword">None</span>, dayfirst=<span class="keyword">False</span>, iterator=<span class="keyword">False</span>, chunksize=<span class="keyword">None</span>, compression=<span class="string">'infer'</span>, thousands=<span class="keyword">None</span>, decimal=<span class="string">b'.'</span>, lineterminator=<span class="keyword">None</span>, quotechar=<span class="string">'"'</span>, quoting=<span class="number">0</span>, escapechar=<span class="keyword">None</span>, comment=<span class="keyword">None</span>, encoding=<span class="keyword">None</span>, dialect=<span class="keyword">None</span>, tupleize_cols=<span class="keyword">False</span>, error_bad_lines=<span class="keyword">True</span>, warn_bad_lines=<span class="keyword">True</span>, skipfooter=<span class="number">0</span>, skip_footer=<span class="number">0</span>, doublequote=<span class="keyword">True</span>, delim_whitespace=<span class="keyword">False</span>, as_recarray=<span class="keyword">False</span>, compact_ints=<span class="keyword">False</span>, use_unsigned=<span class="keyword">False</span>, low_memory=<span class="keyword">True</span>, buffer_lines=<span class="keyword">None</span>, memory_map=<span class="keyword">False</span>, float_precision=<span class="keyword">None</span>)</div></pre></td></tr></table></figure>
+<p>我们可以看到这个参数非常多，基本上可以解决我们文件读取时的常见问题。<br><img src="http://upload-images.jianshu.io/upload_images/76024-38b35e9c69e92c9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>下面就是小例子<br>csv文件内容是这样的：数据以逗号分隔，没有其他特殊的情况<br><img src="http://upload-images.jianshu.io/upload_images/76024-cd35f6f858de5ec0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"></div><div class="line">df = pd.read_csv(<span class="string">r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv'</span>)</div><div class="line"><span class="comment">#使用read_table需要，手动指定下分隔符</span></div><div class="line"><span class="comment">#df = pd.read_table(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',sep=',')</span></div><div class="line"></div><div class="line">print(df)</div><div class="line">print(df.index)</div><div class="line">print(df.columns)</div><div class="line"></div><div class="line">runfile(<span class="string">'D:/document/python_demo/pandas_csv.py'</span>, wdir=<span class="string">'D:/document/python_demo'</span>)</div><div class="line">   a   b   c   d message</div><div class="line"><span class="number">0</span>  <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span>   hello</div><div class="line"><span class="number">1</span>  <span class="number">5</span>   <span class="number">6</span>   <span class="number">7</span>   <span class="number">8</span>   world</div><div class="line"><span class="number">2</span>  <span class="number">9</span>  <span class="number">10</span>  <span class="number">11</span>  <span class="number">12</span>     foo</div><div class="line"></div><div class="line">RangeIndex(start=<span class="number">0</span>, stop=<span class="number">3</span>, step=<span class="number">1</span>)</div><div class="line">Index([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'message'</span>], dtype=<span class="string">'object'</span>)</div></pre></td></tr></table></figure>
+<p>我们可以看到，这里默认把第一行当做columns了，我们可以通过header=None，来自动指定标题<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">df = pd.read_csv(<span class="string">r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv'</span>,header=<span class="keyword">None</span>)</div><div class="line"></div><div class="line">   <span class="number">0</span>   <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>        <span class="number">4</span></div><div class="line"><span class="number">0</span>  a   b   c   d  message</div><div class="line"><span class="number">1</span>  <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span>    hello</div><div class="line"><span class="number">2</span>  <span class="number">5</span>   <span class="number">6</span>   <span class="number">7</span>   <span class="number">8</span>    world</div><div class="line"><span class="number">3</span>  <span class="number">9</span>  <span class="number">10</span>  <span class="number">11</span>  <span class="number">12</span>      foo</div><div class="line">RangeIndex(start=<span class="number">0</span>, stop=<span class="number">4</span>, step=<span class="number">1</span>)</div><div class="line">Int64Index([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], dtype=<span class="string">'int64'</span>)</div><div class="line"></div><div class="line"><span class="comment">#通过names，来自定义columns</span></div><div class="line">df = pd.read_csv(<span class="string">r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv'</span>,header=<span class="keyword">None</span>,names=list(<span class="string">'opqrxy'</span>))</div><div class="line"></div><div class="line">   o   p   q   r        x   y</div><div class="line"><span class="number">0</span>  a   b   c   d  message NaN</div><div class="line"><span class="number">1</span>  <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span>    hello NaN</div><div class="line"><span class="number">2</span>  <span class="number">5</span>   <span class="number">6</span>   <span class="number">7</span>   <span class="number">8</span>    world NaN</div><div class="line"><span class="number">3</span>  <span class="number">9</span>  <span class="number">10</span>  <span class="number">11</span>  <span class="number">12</span>      foo NaN</div><div class="line">RangeIndex(start=<span class="number">0</span>, stop=<span class="number">4</span>, step=<span class="number">1</span>)</div><div class="line">Index([<span class="string">'o'</span>, <span class="string">'p'</span>, <span class="string">'q'</span>, <span class="string">'r'</span>, <span class="string">'x'</span>, <span class="string">'y'</span>], dtype=<span class="string">'object'</span>)</div></pre></td></tr></table></figure></p>
+<p>现在的行索引是自动初始化的，我们可以指定存在的列为索引<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">path = <span class="string">r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv'</span></div><div class="line">df = pd.read_csv(path,header=<span class="keyword">None</span>,</div><div class="line">                 names=list(<span class="string">'opqrxy'</span>),</div><div class="line">                 index_col=<span class="string">'x'</span>)</div><div class="line"></div><div class="line">         o   p   q   r   y</div><div class="line">x                         </div><div class="line">message  a   b   c   d NaN</div><div class="line">hello    <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span> NaN</div><div class="line">world    <span class="number">5</span>   <span class="number">6</span>   <span class="number">7</span>   <span class="number">8</span> NaN</div><div class="line">foo      <span class="number">9</span>  <span class="number">10</span>  <span class="number">11</span>  <span class="number">12</span> NaN</div><div class="line">Index([<span class="string">'message'</span>, <span class="string">'hello'</span>, <span class="string">'world'</span>, <span class="string">'foo'</span>], dtype=<span class="string">'object'</span>, name=<span class="string">'x'</span>)</div><div class="line">Index([<span class="string">'o'</span>, <span class="string">'p'</span>, <span class="string">'q'</span>, <span class="string">'r'</span>, <span class="string">'y'</span>], dtype=<span class="string">'object'</span>)</div></pre></td></tr></table></figure></p>
+<p>比如，有这样一份数据，字段间是通过一个或多个空格来分隔的<br><img src="http://upload-images.jianshu.io/upload_images/76024-1ae3e0efa2d84fd3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们直接使用read_csv去读取，会发现，列索引有些不友好，我们可以使用正则表达式去分隔<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">df = pd.read_csv(path)</div><div class="line">               A         B         C</div><div class="line"><span class="number">0</span>  aaa <span class="number">-0.264438</span> <span class="number">-1.026059</span> <span class="number">-0.619500</span></div><div class="line"><span class="number">1</span>  bbb  <span class="number">0.927272</span>  <span class="number">0.302904</span> <span class="number">-0.032399</span></div><div class="line"><span class="number">2</span>  ccc <span class="number">-0.264273</span> <span class="number">-0.386314</span> <span class="number">-0.217601</span></div><div class="line"><span class="number">3</span>  ddd <span class="number">-0.871858</span> <span class="number">-0.348382</span>  <span class="number">1.100491</span></div><div class="line">RangeIndex(start=<span class="number">0</span>, stop=<span class="number">4</span>, step=<span class="number">1</span>)</div><div class="line">Index([<span class="string">'            A         B         C'</span>], dtype=<span class="string">'object'</span>)</div><div class="line"></div><div class="line"><span class="comment">#\s表示空格，+表示1个或多个，就是说分隔符是1个或多个空格</span></div><div class="line">df = pd.read_table(path,sep=<span class="string">'\s+'</span>)</div><div class="line">            A         B         C</div><div class="line">aaa <span class="number">-0.264438</span> <span class="number">-1.026059</span> <span class="number">-0.619500</span></div><div class="line">bbb  <span class="number">0.927272</span>  <span class="number">0.302904</span> <span class="number">-0.032399</span></div><div class="line">ccc <span class="number">-0.264273</span> <span class="number">-0.386314</span> <span class="number">-0.217601</span></div><div class="line">ddd <span class="number">-0.871858</span> <span class="number">-0.348382</span>  <span class="number">1.100491</span></div><div class="line">Index([<span class="string">'aaa'</span>, <span class="string">'bbb'</span>, <span class="string">'ccc'</span>, <span class="string">'ddd'</span>], dtype=<span class="string">'object'</span>)</div><div class="line">Index([<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>], dtype=<span class="string">'object'</span>)</div></pre></td></tr></table></figure></p>
+<p>还有很多其他常用的参数，比如skiprows，可以跳过指定行<br>下面，再说个填充缺失值的方法，na_values可以将其他我们指定的值也当成NaN处理<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">na_values : scalar, str, list-like, <span class="keyword">or</span> dict, default <span class="keyword">None</span></div><div class="line"></div><div class="line">    Additional strings to recognize <span class="keyword">as</span> NA/NaN. If dict passed, specific per-column NA values. By default the following values are interpreted <span class="keyword">as</span> NaN: ‘’, ‘<span class="comment">#N/A’, ‘#N/A N/A’, ‘#NA’, ‘-1.#IND’, ‘-1.#QNAN’, ‘-NaN’, ‘-nan’, ‘1.#IND’, ‘1.#QNAN’, ‘N/A’, ‘NA’, ‘NULL’, ‘NaN’, ‘nan’`.</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#原始数据是这样的，</span></div><div class="line">  something  a   b     c   d message</div><div class="line"><span class="number">0</span>       one  <span class="number">1</span>   <span class="number">2</span>   <span class="number">3.0</span>   <span class="number">4</span>     NaN</div><div class="line"><span class="number">1</span>       two  <span class="number">5</span>   <span class="number">6</span>   NaN   <span class="number">8</span>   world</div><div class="line"><span class="number">2</span>     three  <span class="number">9</span>  <span class="number">10</span>  <span class="number">11.0</span>  <span class="number">12</span>     foo</div><div class="line"></div><div class="line"><span class="comment">#这里，我们将1，2，4也当成NaN值处理</span></div><div class="line">df = pd.read_csv(path,na_values=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>])</div><div class="line"></div><div class="line"><span class="comment">#加载后，数据就会变成这样</span></div><div class="line">  something    a     b     c     d message</div><div class="line"><span class="number">0</span>       one  NaN   NaN   <span class="number">3.0</span>   NaN     NaN</div><div class="line"><span class="number">1</span>       two  <span class="number">5.0</span>   <span class="number">6.0</span>   NaN   <span class="number">8.0</span>   world</div><div class="line"><span class="number">2</span>     three  <span class="number">9.0</span>  <span class="number">10.0</span>  <span class="number">11.0</span>  <span class="number">12.0</span>     foo</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#我们还可以用一个dict来对不同的列指定NaN值</span></div><div class="line">df = pd.read_csv(path,na_values=&#123;<span class="string">'something'</span>:[<span class="string">'one'</span>,<span class="string">'three'</span>],<span class="string">'d'</span>:[<span class="number">8</span>,<span class="number">12</span>]&#125;)</div><div class="line"></div><div class="line">  something  a   b     c    d message</div><div class="line"><span class="number">0</span>       NaN  <span class="number">1</span>   <span class="number">2</span>   <span class="number">3.0</span>  <span class="number">4.0</span>     NaN</div><div class="line"><span class="number">1</span>       two  <span class="number">5</span>   <span class="number">6</span>   NaN  NaN   world</div><div class="line"><span class="number">2</span>       NaN  <span class="number">9</span>  <span class="number">10</span>  <span class="number">11.0</span>  NaN     foo</div></pre></td></tr></table></figure></p>
+<p>#2.pandas导出数据<br>我们使用read_csv读取数据，处理完之后，我们可能还需要将数据存储起来，还有一个to_csv的函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">DataFrame.to_csv(path_or_buf=<span class="keyword">None</span>, sep=<span class="string">', '</span>, na_rep=<span class="string">''</span>, float_format=<span class="keyword">None</span>, columns=<span class="keyword">None</span>, header=<span class="keyword">True</span>, index=<span class="keyword">True</span>, index_label=<span class="keyword">None</span>, mode=<span class="string">'w'</span>, encoding=<span class="keyword">None</span>, compression=<span class="keyword">None</span>, quoting=<span class="keyword">None</span>, quotechar=<span class="string">'"'</span>, line_terminator=<span class="string">'\n'</span>, chunksize=<span class="keyword">None</span>, tupleize_cols=<span class="keyword">False</span>, date_format=<span class="keyword">None</span>, doublequote=<span class="keyword">True</span>, escapechar=<span class="keyword">None</span>, decimal=<span class="string">'.'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">##我们就使用这份数据，先读取后，再保存</span></div><div class="line">something,a,b,c,d,message</div><div class="line">one,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,NA</div><div class="line">two,<span class="number">5</span>,<span class="number">6</span>,,<span class="number">8</span>,world</div><div class="line">three,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,foo</div><div class="line"></div><div class="line">df.to_csv(sys.stdout,sep=<span class="string">'^'</span>)</div><div class="line">^something^a^b^c^d^message</div><div class="line"><span class="number">0</span>^one^<span class="number">1</span>^<span class="number">2</span>^<span class="number">3.0</span>^<span class="number">4</span>^</div><div class="line"><span class="number">1</span>^two^<span class="number">5</span>^<span class="number">6</span>^^<span class="number">8</span>^world</div><div class="line"><span class="number">2</span>^three^<span class="number">9</span>^<span class="number">10</span>^<span class="number">11.0</span>^<span class="number">12</span>^foo</div><div class="line"></div><div class="line"><span class="comment">#我们看到这个输出，发现，NaN值，导出时，转为了空字符串，这里呢，我们可以手工指定</span></div><div class="line">na_rep : string, default ‘’</div><div class="line"></div><div class="line">df.to_csv(sys.stdout,sep=<span class="string">'^'</span>,na_rep=<span class="string">'NaN'</span>)</div><div class="line">^something^a^b^c^d^message</div><div class="line"><span class="number">0</span>^one^<span class="number">1</span>^<span class="number">2</span>^<span class="number">3.0</span>^<span class="number">4</span>^NaN</div><div class="line"><span class="number">1</span>^two^<span class="number">5</span>^<span class="number">6</span>^NaN^<span class="number">8</span>^world</div><div class="line"><span class="number">2</span>^three^<span class="number">9</span>^<span class="number">10</span>^<span class="number">11.0</span>^<span class="number">12</span>^foo</div><div class="line"></div><div class="line"><span class="comment">#有时候，行列标签可能也不需要，我们也可以禁用</span></div><div class="line">df.to_csv(sys.stdout,sep=<span class="string">'^'</span>,na_rep=<span class="string">'NaN'</span>,index=<span class="keyword">False</span>,header=<span class="keyword">False</span>)</div><div class="line">one^<span class="number">1</span>^<span class="number">2</span>^<span class="number">3.0</span>^<span class="number">4</span>^NaN</div><div class="line">two^<span class="number">5</span>^<span class="number">6</span>^NaN^<span class="number">8</span>^world</div><div class="line">three^<span class="number">9</span>^<span class="number">10</span>^<span class="number">11.0</span>^<span class="number">12</span>^foo</div></pre></td></tr></table></figure></p>
+<p>#3.附录<br>pandas中还有其他的加载数据方式，像读取HTML，JSON，xml等等，常用的可能还是和数据库取连接，这块后面会再补充，这里就先到这里。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/07/numpy-handbook-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/07/numpy-handbook-03/" itemprop="url">numpy手册(3)-Datetimes and Timedeltas</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T21:59:00+08:00">
+                2017-08-07
               </time>
             
 
@@ -566,14 +875,13 @@
 
       
         
-          <p>前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。</p>
-<h1 id="1-numpy基本介绍"><a href="#1-numpy基本介绍" class="headerlink" title="1.numpy基本介绍"></a>1.numpy基本介绍</h1><blockquote class="blockquote-center"><br>numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。<br>一个用Python实现的科学计算包。<br>from 百度百科<br></blockquote>
-
-<p>numpy有2种基本对象，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ndarray（N-dimensional array object）和 ufunc（universal function object）</div></pre></td></tr></table></figure></p>
-<p>ndarray是存储单一数据类型的多维数组，ufunc是能够对数组进行处理的函数。</p>
+          <p>Python<br>Numpy知识总结</p>
+<hr>
+<p>这里说下numpy中日期、时间相关的使用。<br>主要参考：<br><a href="https://docs.scipy.org/doc/numpy-dev/reference/arrays.datetime.html" target="_blank" rel="external">https://docs.scipy.org/doc/numpy-dev/reference/arrays.datetime.html</a></p>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>在numpy中，我们很方便的讲字符串转换成日期类型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">np.datetime64(<span class="string">'2017-08-06'</span>)</div><div class="line">Out[<span class="number">3</span>]: numpy.datetime64(<span class="string">'2017-08-06'</span>)</div><div class="line"></div><div class="line">np.datetime64(<span class="string">'2017-08'</span>)</div><div class="line">Out[<span class="number">4</span>]: numpy.datetime64(<span class="string">'2017-08'</span>)</div><div class="line"></div><div class="line"><span class="comment">#我们可以通过参数，强制将数据格式化为我们想要的粒度</span></div><div class="line">np.datetime64(<span class="string">'2017-08'</span> , <span class="string">'D'</span>)</div><div class="line">Out[<span class="number">5</span>]: numpy.datetime64(<span class="string">'2017-08-01'</span>)</div><div class="line"></div><div class="line">np.datetime64(<span class="string">'2017-08'</span> , <span class="string">'Y'</span>)</div><div class="line">Out[<span class="number">6</span>]: numpy.datetime64(<span class="string">'2017'</span>)</div><div class="line"></div><div class="line">a = np.array([<span class="string">'2017-07-01'</span>,<span class="string">'2017-07-15'</span>,<span class="string">'2017-08-01'</span>] , dtype=np.datetime64)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">10</span>]: array([<span class="string">'2017-07-01'</span>, <span class="string">'2017-07-15'</span>, <span class="string">'2017-08-01'</span>], dtype=<span class="string">'datetime64[D]'</span>)</div><div class="line"></div><div class="line"><span class="comment">#我们也可以使用arange函数初始化数组</span></div><div class="line">b = np.arange(<span class="string">'2017-08-01'</span>,<span class="string">'2017-09-01'</span>,dtype=np.datetime64)</div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">12</span>]: </div><div class="line">array([<span class="string">'2017-08-01'</span>, <span class="string">'2017-08-02'</span>, <span class="string">'2017-08-03'</span>, ..., <span class="string">'2017-08-29'</span>,</div><div class="line">       <span class="string">'2017-08-30'</span>, <span class="string">'2017-08-31'</span>], dtype=<span class="string">'datetime64[D]'</span>)</div></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/02/numpy-handbook-01/#more" rel="contents">
+            <a class="btn" href="/2017/08/07/numpy-handbook-03/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -624,7 +932,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/01/cognos-doc-main/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/07/python-handbook-07/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -643,7 +951,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/01/cognos-doc-main/" itemprop="url">Cognos资料汇总贴</a></h2>
+                <a class="post-title-link" href="/2017/08/07/python-handbook-07/" itemprop="url">Python基础（7）- Selenium使用</a></h2>
         
 
         <div class="post-meta">
@@ -655,309 +963,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T21:59:00+08:00">
-                2017-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据可视化-Cognos/" itemprop="url" rel="index">
-                    <span itemprop="name">数据可视化-Cognos</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>以前搞过Cognos，写过很多基础的教程，应该是14年的样子，都在CSDN上，这里贴个汇总贴吧，想要看的同学可以去看看，希望有帮助。</p>
-<p>ReportStudio入门教程：<a href="http://blog.csdn.net/column/details/ygy-reportstudio.html" target="_blank" rel="external">http://blog.csdn.net/column/details/ygy-reportstudio.html</a></p>
-<p>Framework Manage入门教程：<a href="http://blog.csdn.net/column/details/ygy-frameworkmanager.html" target="_blank" rel="external">http://blog.csdn.net/column/details/ygy-frameworkmanager.html</a></p>
-<p>Cognos函数手册：<a href="http://blog.csdn.net/column/details/ygy-cognos-function.html" target="_blank" rel="external">http://blog.csdn.net/column/details/ygy-cognos-function.html</a></p>
-<p>Cognos相关的其他资料（主页不同的类别下看看）：<a href="http://blog.csdn.net/yuguiyang1990" target="_blank" rel="external">http://blog.csdn.net/yuguiyang1990</a></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/cognos-doc-main.png-blog.photo" alt="cognos-doc-main.png"></p>
-<p>好了，感兴趣的同学，可以自行去看看，好久不搞了，估计有疑问也解决不了了…</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/01/Tableau-handbook-04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/01/Tableau-handbook-04/" itemprop="url">小白学习Tableau-购物篮分析</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T10:57:00+08:00">
-                2017-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tableau/" itemprop="url" rel="index">
-                    <span itemprop="name">Tableau</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Tableau实例</p>
-<blockquote>
-<p>关于购物篮的介绍可以参考<a href="https://yuguiyang.github.io/2017/09/01/data-analyst-method-01/">数据分析案例-购物篮分析</a></p>
-</blockquote>
-<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>我们想要分析的是顾客在购买商品的时候，哪些商品会同时购买。</p>
-<p>下面，我们直接开始开发Tableau</p>
-<h1 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h1><p>我们就是用Tableau默认自带的“示例-超市”</p>
-<h1 id="拖入两张订单表"><a href="#拖入两张订单表" class="headerlink" title="拖入两张订单表"></a>拖入两张订单表</h1><p>因为我们需要分析的是每个顾客，在购买A商品的时候，还会购买哪些商品。只使用一张订单表，不是很容易看出来，所以我们需要拖入2张订单表，以此来更方便的处理数据。<br>因为我们要分析的是每个顾客，所以我们使用顾客ID去关联</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/01/Tableau-handbook-04/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/01/python-handbook-03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/01/python-handbook-03/" itemprop="url">Python基础（3）- lambda表达式</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T10:00:00+08:00">
-                2017-08-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T10:00:00+08:00">
+                2017-08-07
               </time>
             
 
@@ -1018,19 +1025,29 @@
       
         
           
-            <p>这里简单整理下，lambda表达式相关内容。</p>
-<h1 id="什么是lambda表达式"><a href="#什么是lambda表达式" class="headerlink" title="什么是lambda表达式"></a>什么是lambda表达式</h1><p>lambda表达式，是一个匿名函数，用起来方便快捷一些<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#lambda 参数:操作(参数)</span></div><div class="line"></div><div class="line">fun_add = <span class="keyword">lambda</span> x: x+<span class="number">1</span></div><div class="line"></div><div class="line">print(fun_add(<span class="number">1</span>))</div><div class="line">print(fun_add(<span class="number">10</span>))</div></pre></td></tr></table></figure></p>
-<p>这里，一个简单的加1的函数，看起来也很直观<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fun_add = <span class="keyword">lambda</span> x,y: x+y</div><div class="line"></div><div class="line">print(fun_add(<span class="number">3</span>,<span class="number">4</span>))</div><div class="line">print(fun_add(<span class="number">8</span>,<span class="number">9</span>))</div></pre></td></tr></table></figure></p>
-<p>这是x+y的函数，的确简洁很多<br>看网上，提到lambda表达式的话，都会提到函数式编程，一些常用的函数，像map,reduce,filter,sorted，</p>
-<h1 id="map函数"><a href="#map函数" class="headerlink" title="map函数"></a>map函数</h1><p>map是Python内置的一个函数，接收2个参数，一个函数，一个或多个可迭代参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">map(func, *iterables) --&gt; map object</div><div class="line"></div><div class="line">Make an iterator that computes the function using arguments <span class="keyword">from</span></div><div class="line">each of the iterables.  Stops when the shortest iterable <span class="keyword">is</span> exhausted.</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">d1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x)</span>:</span></div><div class="line">    <span class="keyword">return</span> x+<span class="number">10</span></div><div class="line"></div><div class="line">t = map(add , d1)</div><div class="line">print(<span class="string">'原来的list:'</span>,d1)</div><div class="line">print(<span class="string">'执行add后的list:'</span>,list(t))</div></pre></td></tr></table></figure>
-<p>我们定义了一个函数，对传入的参数加10，一个list<br><img src="http://upload-images.jianshu.io/upload_images/76024-8893ba955b9085cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>map把这个函数，作用在每一个list的元素上，<br>这里呢，我们就可以用lambda表达式写，方便又直观<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">d1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line">t = map(<span class="keyword">lambda</span> x: x+<span class="number">10</span> , d1)</div><div class="line">print(<span class="string">'原来的list:'</span>,d1)</div><div class="line">print(<span class="string">'执行add后的list:'</span>,list(t))</div></pre></td></tr></table></figure></p>
-<p>我们也可以传2个list，这里会计算2个list的和<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">s1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line">s2 = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line">t = map(<span class="keyword">lambda</span> x,y: x+y,s1,s2)</div><div class="line">print(list(t)) <span class="comment">##[5, 7, 9]</span></div></pre></td></tr></table></figure></p>
-<h1 id="reduce函数"><a href="#reduce函数" class="headerlink" title="reduce函数"></a>reduce函数</h1><p>reduce会将function作用于sequence，function接收2个参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">reduce(function, sequence[, initial]) -&gt; value</div><div class="line"></div><div class="line">Apply a function of two arguments cumulatively to the items of a sequence,</div><div class="line"><span class="keyword">from</span> left to right, so <span class="keyword">as</span> to reduce the sequence to a single value.</div><div class="line">For example, reduce(<span class="keyword">lambda</span> x, y: x+y, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]) calculates</div><div class="line">((((<span class="number">1</span>+<span class="number">2</span>)+<span class="number">3</span>)+<span class="number">4</span>)+<span class="number">5</span>).  If initial <span class="keyword">is</span> present, it <span class="keyword">is</span> placed before the items</div><div class="line">of the sequence <span class="keyword">in</span> the calculation, <span class="keyword">and</span> serves <span class="keyword">as</span> a default when the</div><div class="line">sequence <span class="keyword">is</span> empty.</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">t = reduce(<span class="keyword">lambda</span> x,y: x+y, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line">print(t)   <span class="comment">#6，((1+2)+3)=6</span></div><div class="line"></div><div class="line">t = reduce(<span class="keyword">lambda</span> x,y: x*<span class="number">10</span>+y,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line">print(t) <span class="comment"># ((1*10+2)*10+3)=123</span></div></pre></td></tr></table></figure>
-<h1 id="filter函数"><a href="#filter函数" class="headerlink" title="filter函数"></a>filter函数</h1><p>看名字，就是一个过滤的功能，对每个item调用function，只返回为True的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">|  filter(function or None, iterable) --&gt; filter object</div><div class="line">|  </div><div class="line">|  Return an iterator yielding those items of iterable <span class="keyword">for</span> which function(item)</div><div class="line">|  <span class="keyword">is</span> true. If function <span class="keyword">is</span> <span class="keyword">None</span>, <span class="keyword">return</span> the items that are true.</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">t = filter(<span class="keyword">lambda</span> x: x&lt;<span class="number">0</span>,range(<span class="number">-5</span>,<span class="number">5</span>))</div><div class="line">print(list(t)) <span class="comment">#[-5, -4, -3, -2, -1]</span></div></pre></td></tr></table></figure>
+            <p>以前搞Java的时候，知道Selenium是做自动化测试的，后来发现搞爬虫也会用到Selenium，这里就和Python整合方面，简单学习下。</p>
+<h1 id="1-什么是Selenium"><a href="#1-什么是Selenium" class="headerlink" title="1. 什么是Selenium"></a>1. 什么是Selenium</h1><blockquote>
+<p>Selenium是一个用于Web应用程序测试的工具。Selenium测试直接运行在浏览器中，就像真正的用户在操作一样。支持的浏览器包括IE（7, 8, 9, 10, 11），Mozilla Firefox，Safari，Google Chrome，Opera等。这个工具的主要功能包括：测试与浏览器的兼容性——测试你的应用程序看是否能够很好得工作在不同浏览器和操作系统之上。测试系统功能——创建回归测试检验软件功能和用户需求。支持自动录制动作和自动生成 .Net、Java、Perl等不同语言的测试脚本。–百度百科</p>
+</blockquote>
+<p>官网地址：<a href="http://www.seleniumhq.org/" target="_blank" rel="external">http://www.seleniumhq.org/</a><br>因为Selenium可以录制不同的动作，模拟操作，和Python结合以后，在爬取数据的时候就很方便，所以下面我们来看看需要怎样配置。</p>
+<p>#2. 安装配置</p>
+<h2 id="2-1火狐浏览器插件安装"><a href="#2-1火狐浏览器插件安装" class="headerlink" title="2.1火狐浏览器插件安装"></a>2.1火狐浏览器插件安装</h2><p>插件地址：<a href="https://addons.mozilla.org/en-US/firefox/addon/selenium-ide/" target="_blank" rel="external">https://addons.mozilla.org/en-US/firefox/addon/selenium-ide/</a><br><img src="http://upload-images.jianshu.io/upload_images/76024-fb51bbc84930a80a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>安装之后，我们可以直接在浏览器中使用Selenium<br><img src="http://upload-images.jianshu.io/upload_images/76024-cd0adde7e4935c6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="2-2火狐浏览器driver下载"><a href="#2-2火狐浏览器driver下载" class="headerlink" title="2.2火狐浏览器driver下载"></a>2.2火狐浏览器driver下载</h2><p>这个再后面会用到，地址：<a href="https://github.com/mozilla/geckodriver/releases" target="_blank" rel="external">https://github.com/mozilla/geckodriver/releases</a><br>WebDriver是Selenium的API，我们用Python集成开发会很方便，这个下载后，需要放到Path路径下</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-ab2854acd301d3b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-2e9ae39edd468860.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><img src="http://upload-images.jianshu.io/upload_images/76024-7061f3c7d3934ab7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="2-3Python安装Selenium模块"><a href="#2-3Python安装Selenium模块" class="headerlink" title="2.3Python安装Selenium模块"></a>2.3Python安装Selenium模块</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install selenium</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-48b11d9d6b8a53ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="3-示例代码"><a href="#3-示例代码" class="headerlink" title="3.示例代码"></a>3.示例代码</h1><p>我们先来看一个简单的例子，我们打开火狐浏览器，然后让浏览器加载一个URL<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"></div><div class="line">browser = webdriver.Firefox()</div><div class="line">browser.get(<span class="string">'http://www.baidu.com/'</span>)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">error 信息：</div><div class="line">  File <span class="string">"D:\Users\yugui\Anaconda3\lib\site-packages\selenium\webdriver\common\service.py"</span>, line <span class="number">81</span>, <span class="keyword">in</span> start</div><div class="line">    os.path.basename(self.path), self.start_error_message)</div><div class="line"></div><div class="line">WebDriverException: <span class="string">'geckodriver'</span> executable needs to be <span class="keyword">in</span> PATH.</div></pre></td></tr></table></figure></p>
+<p>刚开始可能会报错，这是因为我们上面的那个driver没有加到PATH。<br>加到PATH后，再次执行，就可打开浏览器了<br><img src="http://upload-images.jianshu.io/upload_images/76024-9cceb324c62e349e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>再来看一个略复杂的例子：<br>这是官方中的例子：<a href="http://www.seleniumhq.org/docs/03_webdriver.jsp#selenium-webdriver" target="_blank" rel="external">http://www.seleniumhq.org/docs/03_webdriver.jsp#selenium-webdriver</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> selenium.common.exceptions <span class="keyword">import</span> TimeoutException</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait <span class="comment"># available since 2.4.0</span></div><div class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC <span class="comment"># available since 2.26.0</span></div><div class="line"></div><div class="line"><span class="comment">#1.打开浏览器</span></div><div class="line">browser = webdriver.Firefox()</div><div class="line"><span class="comment">#2.浏览器加载地址</span></div><div class="line">browser.get(<span class="string">'https://www.baidu.com/'</span>)</div><div class="line"><span class="comment">#3.输出浏览器标题</span></div><div class="line">print(browser.title)</div><div class="line"><span class="comment">#4.一个断言，浏览器标题中包含'百度'关键字</span></div><div class="line"><span class="keyword">assert</span> <span class="string">'百度'</span> <span class="keyword">in</span> browser.title</div><div class="line"></div><div class="line"><span class="comment">#5.根据ID，获取搜索框</span></div><div class="line">elem = browser.find_element_by_id(<span class="string">'kw'</span>)</div><div class="line"><span class="comment">#模拟输入Python，进行搜索</span></div><div class="line">elem.send_keys(<span class="string">'python'</span>)</div><div class="line">elem.submit()</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="comment"># 等待浏览器刷新，返回我们的搜索结果</span></div><div class="line">    WebDriverWait(browser, <span class="number">10</span>).until(EC.title_contains(<span class="string">"python"</span>))</div><div class="line"></div><div class="line">    <span class="comment"># 输出当前浏览器的标题</span></div><div class="line">    print(browser.title)</div><div class="line"></div><div class="line"><span class="keyword">finally</span>:</div><div class="line">    <span class="comment"># 关闭浏览器</span></div><div class="line">    browser.quit()</div></pre></td></tr></table></figure></p>
+<p>执行后，我们会看到，打开浏览器，然后搜索‘Python’，返回搜索结果后会关闭。</p>
+<h1 id="4-获取控件的方式"><a href="#4-获取控件的方式" class="headerlink" title="4.获取控件的方式"></a>4.获取控件的方式</h1><p>在上面的例子中，我们使用了find_element_by_id，就是通过标签的id来获取元素<br>这个和JS里面的差不多，还有很多其他的方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#by id</span></div><div class="line"><span class="comment">#&lt;div id="coolestWidgetEvah"&gt;...&lt;/div&gt;</span></div><div class="line">find_element_by_id(id_)</div><div class="line"></div><div class="line">element = driver.find_element_by_id(<span class="string">"coolestWidgetEvah"</span>)</div><div class="line"></div><div class="line"><span class="comment">#by class name</span></div><div class="line"><span class="comment">#&lt;div class="cheese"&gt;&lt;span&gt;Cheddar&lt;/span&gt;&lt;/div&gt;&lt;div class="cheese"&gt;&lt;span&gt;Gouda&lt;/span&gt;&lt;/div&gt;</span></div><div class="line">find_element_by_class_name(name)</div><div class="line"></div><div class="line">cheeses = driver.find_elements_by_class_name(<span class="string">"cheese"</span>)</div></pre></td></tr></table></figure></p>
+<p>论坛里这篇博客写的很好：<a href="https://ask.hellobi.com/blog/cuiqingcai/8411" target="_blank" rel="external">Python3中Selenium使用方法 </a></p>
+<h1 id="5-实例练习"><a href="#5-实例练习" class="headerlink" title="5. 实例练习"></a>5. 实例练习</h1><p>这里顺便写个小例子，练习下，我们方位豆瓣读书，然后搜索关键字，将所有的书都打印出来<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</div><div class="line"><span class="keyword">from</span> selenium.common.exceptions <span class="keyword">import</span> NoSuchElementException</div><div class="line"></div><div class="line"><span class="comment">#打开浏览器</span></div><div class="line">browser = webdriver.Firefox()</div><div class="line"><span class="comment">#设置等待时长，最长等待10s</span></div><div class="line">wait = WebDriverWait(browser,<span class="number">10</span>)</div><div class="line"></div><div class="line"><span class="comment">#打开URL</span></div><div class="line">browser.get(<span class="string">'https://book.douban.com/'</span>)</div><div class="line"></div><div class="line"><span class="comment">#输出浏览器标题</span></div><div class="line">print(<span class="string">'browser title: '</span>,browser.title)</div><div class="line"></div><div class="line"><span class="comment">#获取搜索框</span></div><div class="line">inp_query = wait.until(EC.presence_of_element_located((By.ID,<span class="string">'inp-query'</span>)))</div><div class="line">inp_query.send_keys(<span class="string">'onepiece'</span>)</div><div class="line"><span class="comment">#可以直接提交，或者获取提交按钮再提交</span></div><div class="line">inp_query.submit()</div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">#获取提交按钮</span></div><div class="line"><span class="string">inp_btn =  browser.find_element_by_class_name('inp-btn').find_element_by_tag_name('input')</span></div><div class="line"><span class="string">inp_btn.click()</span></div><div class="line"><span class="string">'''</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_current_page</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">'-----------------------------------'</span>)</div><div class="line">    print(<span class="string">'current url: '</span>,browser.current_url)</div><div class="line">    </div><div class="line">    <span class="comment">#&lt;ul class="subject-list"&gt;</span></div><div class="line">    rs = wait.until(EC.presence_of_element_located((By.CLASS_NAME,<span class="string">'subject-list'</span>)))</div><div class="line">    book_list = rs.find_elements_by_tag_name(<span class="string">'li'</span>)</div><div class="line">    print(<span class="string">'current page total book: '</span>,len(book_list))</div><div class="line">    print(<span class="string">'info:'</span>,browser.find_element_by_class_name(<span class="string">'trr'</span>).text)</div><div class="line">    </div><div class="line">    <span class="comment">#输出书的名字</span></div><div class="line">    <span class="keyword">for</span> book <span class="keyword">in</span> book_list:</div><div class="line">        print(book.find_element_by_tag_name(<span class="string">'h2'</span>).text)</div><div class="line">    </div><div class="line">    print(<span class="string">'-----------------------------------'</span>)</div><div class="line">    </div><div class="line">    <span class="comment">#进入下一页</span></div><div class="line">    show_next_page()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_next_page</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment">#获取下一页的标签</span></div><div class="line">    <span class="comment">#&lt;span class="next"&gt;</span></div><div class="line">    span_next = wait.until(EC.presence_of_element_located((By.CLASS_NAME,<span class="string">'next'</span>)))</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="comment">#获取span中的a标签</span></div><div class="line">        a_next = span_next.find_element_by_tag_name(<span class="string">'a'</span>)</div><div class="line">        a_next.click()</div><div class="line">        </div><div class="line">        show_current_page()</div><div class="line">    <span class="keyword">except</span> NoSuchElementException:</div><div class="line">        <span class="comment">#已经没有下一页，可以退出了</span></div><div class="line">        print(<span class="string">'now print all pages.'</span>)</div><div class="line">    <span class="keyword">finally</span>:</div><div class="line">        browser.quit()</div><div class="line">       </div><div class="line">show_current_page()  </div><div class="line"><span class="comment">#time.sleep(10)</span></div><div class="line"><span class="comment">#退出</span></div><div class="line">browser.quit()</div></pre></td></tr></table></figure></p>
+<p>这里的元素获取方式，不是最佳的，代码还得继续优化，这个下一页挺好玩儿的，<br><img src="http://upload-images.jianshu.io/upload_images/76024-9db2013729e34b9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>刚刚简单优化了下代码，主要改了些元素选择的方式，更直接了：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</div><div class="line"><span class="keyword">from</span> selenium.common.exceptions <span class="keyword">import</span> TimeoutException</div><div class="line"></div><div class="line"><span class="comment">#打开浏览器</span></div><div class="line">browser = webdriver.Firefox()</div><div class="line"><span class="comment">#设置等待时长，最长等待10s</span></div><div class="line">wait = WebDriverWait(browser,<span class="number">10</span>)</div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment">#打开URL</span></div><div class="line">    browser.get(<span class="string">'https://book.douban.com/'</span>)</div><div class="line">    </div><div class="line">    <span class="comment">#输出浏览器标题</span></div><div class="line">    print(<span class="string">'browser title: '</span>,browser.title)</div><div class="line">    </div><div class="line">    <span class="comment">#获取搜索框</span></div><div class="line">    inp_query = wait.until(EC.presence_of_element_located((By.ID,<span class="string">'inp-query'</span>)))</div><div class="line">    inp_query.send_keys(<span class="string">'onepiece'</span>)</div><div class="line">    <span class="comment">#可以直接提交，或者获取提交按钮再提交</span></div><div class="line">    inp_query.submit()</div><div class="line">    </div><div class="line">    show_current_page()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_current_page</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">'-----------------------------------'</span>)</div><div class="line">    print(<span class="string">'current url: '</span>,browser.current_url)</div><div class="line">    </div><div class="line">    <span class="comment">#搜索结果-汇总信息</span></div><div class="line">    page_info = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,<span class="string">'div.article div.trr'</span>)))</div><div class="line">    print(<span class="string">'info: '</span>,page_info.text)</div><div class="line">    </div><div class="line">    <span class="comment">#搜索结果-书籍列表</span></div><div class="line">    book_list = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR,<span class="string">'div.article ul.subject-list li.subject-item'</span>)))</div><div class="line">    </div><div class="line">    print(<span class="string">'current page total book: '</span>,len(book_list))</div><div class="line">    <span class="keyword">for</span> book <span class="keyword">in</span> book_list:</div><div class="line">        print(book.find_element_by_tag_name(<span class="string">'h2'</span>).text)</div><div class="line">    </div><div class="line">    print(<span class="string">'-----------------------------------'</span>)</div><div class="line"></div><div class="line">    <span class="comment">#进入下一页</span></div><div class="line">    show_next_page()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_next_page</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="comment">#获取下一页的标签</span></div><div class="line">        a_next = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,<span class="string">'div.article div.paginator span.next a'</span>)))</div><div class="line">        a_next.click()</div><div class="line">        show_current_page()</div><div class="line">    <span class="keyword">except</span> TimeoutException:</div><div class="line">        print(<span class="string">'超时了.'</span>)</div><div class="line">        span_next = EC.invisibility_of_element_located((By.CSS_SELECTOR,<span class="string">'div.article div.paginator span.next'</span>))</div><div class="line">        <span class="keyword">if</span> span_next:</div><div class="line">            print(<span class="string">'now print all pages.'</span>)</div><div class="line">        <span class="keyword">else</span> :</div><div class="line">            <span class="comment">#真的超时，重试一次</span></div><div class="line">            show_next_page()</div><div class="line">    <span class="keyword">finally</span>:</div><div class="line">        browser.quit()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure></p>
+
           
         
       
@@ -1069,7 +1086,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1119,7 +1136,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1141,7 +1158,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

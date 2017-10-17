@@ -4,6 +4,190 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/08/23/python-handbook-12/</loc>
+    <lastmod>2017-10-17T07:28:12.772Z</lastmod>
+    <data>
+        <display>
+        <title>Python基础（10）- 时间函数小记</title>
+        <pubTime>2017-08-23T02:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-基础" url="https://yuguiyang.github.io/categories/Python-%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/19/python-handbook-10/</loc>
+    <lastmod>2017-10-17T07:27:34.117Z</lastmod>
+    <data>
+        <display>
+        <title>Python异常（1）- module 'urllib' has no attribute 'urlopen'</title>
+        <pubTime>2017-08-19T02:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>异常</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-基础" url="https://yuguiyang.github.io/categories/Python-%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/19/python-handbook-11/</loc>
+    <lastmod>2017-10-17T07:25:02.588Z</lastmod>
+    <data>
+        <display>
+        <title>Python中文分词-jieba</title>
+        <pubTime>2017-08-19T02:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>分词</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-基础" url="https://yuguiyang.github.io/categories/Python-%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/18/python-handbook-09/</loc>
+    <lastmod>2017-10-17T07:03:05.864Z</lastmod>
+    <data>
+        <display>
+        <title>Python基础（9）- 排序技巧</title>
+        <pubTime>2017-08-18T02:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-基础" url="https://yuguiyang.github.io/categories/Python-%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/10/python-handbook-08/</loc>
+    <lastmod>2017-10-17T06:58:06.155Z</lastmod>
+    <data>
+        <display>
+        <title>Python基础（8）- 关键字yield</title>
+        <pubTime>2017-08-10T02:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-基础" url="https://yuguiyang.github.io/categories/Python-%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/07/python-handbook-07/</loc>
+    <lastmod>2017-10-17T06:53:11.290Z</lastmod>
+    <data>
+        <display>
+        <title>Python基础（7）- Selenium使用</title>
+        <pubTime>2017-08-07T02:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-基础" url="https://yuguiyang.github.io/categories/Python-%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/06/python-handbook-06/</loc>
+    <lastmod>2017-10-17T06:47:22.923Z</lastmod>
+    <data>
+        <display>
+        <title>Python基础（6）- zip</title>
+        <pubTime>2017-08-06T02:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-基础" url="https://yuguiyang.github.io/categories/Python-%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/05/python-handbook-05/</loc>
+    <lastmod>2017-10-17T06:43:57.234Z</lastmod>
+    <data>
+        <display>
+        <title>Python基础（5）- csv</title>
+        <pubTime>2017-08-05T04:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-基础" url="https://yuguiyang.github.io/categories/Python-%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/05/python-handbook-04/</loc>
+    <lastmod>2017-10-17T06:38:46.706Z</lastmod>
+    <data>
+        <display>
+        <title>Python基础（4）- collections</title>
+        <pubTime>2017-08-05T02:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-基础" url="https://yuguiyang.github.io/categories/Python-%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/08/01/python-handbook-03/</loc>
     <lastmod>2017-10-13T16:29:42.342Z</lastmod>
     <data>
