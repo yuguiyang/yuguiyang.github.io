@@ -325,6 +325,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/08/pandas-handbook-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/08/pandas-handbook-07/" itemprop="url">Pandas手册（7）- pandas数据加载</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T08:00:00+08:00">
+                2017-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Python<br>Pandas</p>
+<hr>
+<p>这里整理下，pandas中数据加载的几个方法，前面，我们也有用过，read_csv，下面，我们整理下</p>
+<h1 id="1-pandas读取数据方法"><a href="#1-pandas读取数据方法" class="headerlink" title="1.pandas读取数据方法"></a>1.pandas读取数据方法</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pandas.read_csv(filepath_or_buffer, sep=<span class="string">', '</span>, delimiter=<span class="keyword">None</span>, header=<span class="string">'infer'</span>, names=<span class="keyword">None</span>, index_col=<span class="keyword">None</span>, usecols=<span class="keyword">None</span>, squeeze=<span class="keyword">False</span>, prefix=<span class="keyword">None</span>, mangle_dupe_cols=<span class="keyword">True</span>, dtype=<span class="keyword">None</span>, engine=<span class="keyword">None</span>, converters=<span class="keyword">None</span>, true_values=<span class="keyword">None</span>, false_values=<span class="keyword">None</span>, skipinitialspace=<span class="keyword">False</span>, skiprows=<span class="keyword">None</span>, nrows=<span class="keyword">None</span>, na_values=<span class="keyword">None</span>, keep_default_na=<span class="keyword">True</span>, na_filter=<span class="keyword">True</span>, verbose=<span class="keyword">False</span>, skip_blank_lines=<span class="keyword">True</span>, parse_dates=<span class="keyword">False</span>, infer_datetime_format=<span class="keyword">False</span>, keep_date_col=<span class="keyword">False</span>, date_parser=<span class="keyword">None</span>, dayfirst=<span class="keyword">False</span>, iterator=<span class="keyword">False</span>, chunksize=<span class="keyword">None</span>, compression=<span class="string">'infer'</span>, thousands=<span class="keyword">None</span>, decimal=<span class="string">b'.'</span>, lineterminator=<span class="keyword">None</span>, quotechar=<span class="string">'"'</span>, quoting=<span class="number">0</span>, escapechar=<span class="keyword">None</span>, comment=<span class="keyword">None</span>, encoding=<span class="keyword">None</span>, dialect=<span class="keyword">None</span>, tupleize_cols=<span class="keyword">False</span>, error_bad_lines=<span class="keyword">True</span>, warn_bad_lines=<span class="keyword">True</span>, skipfooter=<span class="number">0</span>, skip_footer=<span class="number">0</span>, doublequote=<span class="keyword">True</span>, delim_whitespace=<span class="keyword">False</span>, as_recarray=<span class="keyword">False</span>, compact_ints=<span class="keyword">False</span>, use_unsigned=<span class="keyword">False</span>, low_memory=<span class="keyword">True</span>, buffer_lines=<span class="keyword">None</span>, memory_map=<span class="keyword">False</span>, float_precision=<span class="keyword">None</span>)</div></pre></td></tr></table></figure>
+<p>我们可以看到这个参数非常多，基本上可以解决我们文件读取时的常见问题。<br><img src="http://upload-images.jianshu.io/upload_images/76024-38b35e9c69e92c9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>下面就是小例子<br>csv文件内容是这样的：数据以逗号分隔，没有其他特殊的情况<br><img src="http://upload-images.jianshu.io/upload_images/76024-cd35f6f858de5ec0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"></div><div class="line">df = pd.read_csv(<span class="string">r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv'</span>)</div><div class="line"><span class="comment">#使用read_table需要，手动指定下分隔符</span></div><div class="line"><span class="comment">#df = pd.read_table(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',sep=',')</span></div><div class="line"></div><div class="line">print(df)</div><div class="line">print(df.index)</div><div class="line">print(df.columns)</div><div class="line"></div><div class="line">runfile(<span class="string">'D:/document/python_demo/pandas_csv.py'</span>, wdir=<span class="string">'D:/document/python_demo'</span>)</div><div class="line">   a   b   c   d message</div><div class="line"><span class="number">0</span>  <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span>   hello</div><div class="line"><span class="number">1</span>  <span class="number">5</span>   <span class="number">6</span>   <span class="number">7</span>   <span class="number">8</span>   world</div><div class="line"><span class="number">2</span>  <span class="number">9</span>  <span class="number">10</span>  <span class="number">11</span>  <span class="number">12</span>     foo</div><div class="line"></div><div class="line">RangeIndex(start=<span class="number">0</span>, stop=<span class="number">3</span>, step=<span class="number">1</span>)</div><div class="line">Index([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'message'</span>], dtype=<span class="string">'object'</span>)</div></pre></td></tr></table></figure>
+<p>我们可以看到，这里默认把第一行当做columns了，我们可以通过header=None，来自动指定标题<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">df = pd.read_csv(<span class="string">r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv'</span>,header=<span class="keyword">None</span>)</div><div class="line"></div><div class="line">   <span class="number">0</span>   <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>        <span class="number">4</span></div><div class="line"><span class="number">0</span>  a   b   c   d  message</div><div class="line"><span class="number">1</span>  <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span>    hello</div><div class="line"><span class="number">2</span>  <span class="number">5</span>   <span class="number">6</span>   <span class="number">7</span>   <span class="number">8</span>    world</div><div class="line"><span class="number">3</span>  <span class="number">9</span>  <span class="number">10</span>  <span class="number">11</span>  <span class="number">12</span>      foo</div><div class="line">RangeIndex(start=<span class="number">0</span>, stop=<span class="number">4</span>, step=<span class="number">1</span>)</div><div class="line">Int64Index([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], dtype=<span class="string">'int64'</span>)</div><div class="line"></div><div class="line"><span class="comment">#通过names，来自定义columns</span></div><div class="line">df = pd.read_csv(<span class="string">r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv'</span>,header=<span class="keyword">None</span>,names=list(<span class="string">'opqrxy'</span>))</div><div class="line"></div><div class="line">   o   p   q   r        x   y</div><div class="line"><span class="number">0</span>  a   b   c   d  message NaN</div><div class="line"><span class="number">1</span>  <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span>    hello NaN</div><div class="line"><span class="number">2</span>  <span class="number">5</span>   <span class="number">6</span>   <span class="number">7</span>   <span class="number">8</span>    world NaN</div><div class="line"><span class="number">3</span>  <span class="number">9</span>  <span class="number">10</span>  <span class="number">11</span>  <span class="number">12</span>      foo NaN</div><div class="line">RangeIndex(start=<span class="number">0</span>, stop=<span class="number">4</span>, step=<span class="number">1</span>)</div><div class="line">Index([<span class="string">'o'</span>, <span class="string">'p'</span>, <span class="string">'q'</span>, <span class="string">'r'</span>, <span class="string">'x'</span>, <span class="string">'y'</span>], dtype=<span class="string">'object'</span>)</div></pre></td></tr></table></figure></p>
+<p>现在的行索引是自动初始化的，我们可以指定存在的列为索引<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">path = <span class="string">r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv'</span></div><div class="line">df = pd.read_csv(path,header=<span class="keyword">None</span>,</div><div class="line">                 names=list(<span class="string">'opqrxy'</span>),</div><div class="line">                 index_col=<span class="string">'x'</span>)</div><div class="line"></div><div class="line">         o   p   q   r   y</div><div class="line">x                         </div><div class="line">message  a   b   c   d NaN</div><div class="line">hello    <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span> NaN</div><div class="line">world    <span class="number">5</span>   <span class="number">6</span>   <span class="number">7</span>   <span class="number">8</span> NaN</div><div class="line">foo      <span class="number">9</span>  <span class="number">10</span>  <span class="number">11</span>  <span class="number">12</span> NaN</div><div class="line">Index([<span class="string">'message'</span>, <span class="string">'hello'</span>, <span class="string">'world'</span>, <span class="string">'foo'</span>], dtype=<span class="string">'object'</span>, name=<span class="string">'x'</span>)</div><div class="line">Index([<span class="string">'o'</span>, <span class="string">'p'</span>, <span class="string">'q'</span>, <span class="string">'r'</span>, <span class="string">'y'</span>], dtype=<span class="string">'object'</span>)</div></pre></td></tr></table></figure></p>
+<p>比如，有这样一份数据，字段间是通过一个或多个空格来分隔的<br><img src="http://upload-images.jianshu.io/upload_images/76024-1ae3e0efa2d84fd3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们直接使用read_csv去读取，会发现，列索引有些不友好，我们可以使用正则表达式去分隔<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">df = pd.read_csv(path)</div><div class="line">               A         B         C</div><div class="line"><span class="number">0</span>  aaa <span class="number">-0.264438</span> <span class="number">-1.026059</span> <span class="number">-0.619500</span></div><div class="line"><span class="number">1</span>  bbb  <span class="number">0.927272</span>  <span class="number">0.302904</span> <span class="number">-0.032399</span></div><div class="line"><span class="number">2</span>  ccc <span class="number">-0.264273</span> <span class="number">-0.386314</span> <span class="number">-0.217601</span></div><div class="line"><span class="number">3</span>  ddd <span class="number">-0.871858</span> <span class="number">-0.348382</span>  <span class="number">1.100491</span></div><div class="line">RangeIndex(start=<span class="number">0</span>, stop=<span class="number">4</span>, step=<span class="number">1</span>)</div><div class="line">Index([<span class="string">'            A         B         C'</span>], dtype=<span class="string">'object'</span>)</div><div class="line"></div><div class="line"><span class="comment">#\s表示空格，+表示1个或多个，就是说分隔符是1个或多个空格</span></div><div class="line">df = pd.read_table(path,sep=<span class="string">'\s+'</span>)</div><div class="line">            A         B         C</div><div class="line">aaa <span class="number">-0.264438</span> <span class="number">-1.026059</span> <span class="number">-0.619500</span></div><div class="line">bbb  <span class="number">0.927272</span>  <span class="number">0.302904</span> <span class="number">-0.032399</span></div><div class="line">ccc <span class="number">-0.264273</span> <span class="number">-0.386314</span> <span class="number">-0.217601</span></div><div class="line">ddd <span class="number">-0.871858</span> <span class="number">-0.348382</span>  <span class="number">1.100491</span></div><div class="line">Index([<span class="string">'aaa'</span>, <span class="string">'bbb'</span>, <span class="string">'ccc'</span>, <span class="string">'ddd'</span>], dtype=<span class="string">'object'</span>)</div><div class="line">Index([<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>], dtype=<span class="string">'object'</span>)</div></pre></td></tr></table></figure></p>
+<p>还有很多其他常用的参数，比如skiprows，可以跳过指定行<br>下面，再说个填充缺失值的方法，na_values可以将其他我们指定的值也当成NaN处理<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">na_values : scalar, str, list-like, <span class="keyword">or</span> dict, default <span class="keyword">None</span></div><div class="line"></div><div class="line">    Additional strings to recognize <span class="keyword">as</span> NA/NaN. If dict passed, specific per-column NA values. By default the following values are interpreted <span class="keyword">as</span> NaN: ‘’, ‘<span class="comment">#N/A’, ‘#N/A N/A’, ‘#NA’, ‘-1.#IND’, ‘-1.#QNAN’, ‘-NaN’, ‘-nan’, ‘1.#IND’, ‘1.#QNAN’, ‘N/A’, ‘NA’, ‘NULL’, ‘NaN’, ‘nan’`.</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#原始数据是这样的，</span></div><div class="line">  something  a   b     c   d message</div><div class="line"><span class="number">0</span>       one  <span class="number">1</span>   <span class="number">2</span>   <span class="number">3.0</span>   <span class="number">4</span>     NaN</div><div class="line"><span class="number">1</span>       two  <span class="number">5</span>   <span class="number">6</span>   NaN   <span class="number">8</span>   world</div><div class="line"><span class="number">2</span>     three  <span class="number">9</span>  <span class="number">10</span>  <span class="number">11.0</span>  <span class="number">12</span>     foo</div><div class="line"></div><div class="line"><span class="comment">#这里，我们将1，2，4也当成NaN值处理</span></div><div class="line">df = pd.read_csv(path,na_values=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>])</div><div class="line"></div><div class="line"><span class="comment">#加载后，数据就会变成这样</span></div><div class="line">  something    a     b     c     d message</div><div class="line"><span class="number">0</span>       one  NaN   NaN   <span class="number">3.0</span>   NaN     NaN</div><div class="line"><span class="number">1</span>       two  <span class="number">5.0</span>   <span class="number">6.0</span>   NaN   <span class="number">8.0</span>   world</div><div class="line"><span class="number">2</span>     three  <span class="number">9.0</span>  <span class="number">10.0</span>  <span class="number">11.0</span>  <span class="number">12.0</span>     foo</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#我们还可以用一个dict来对不同的列指定NaN值</span></div><div class="line">df = pd.read_csv(path,na_values=&#123;<span class="string">'something'</span>:[<span class="string">'one'</span>,<span class="string">'three'</span>],<span class="string">'d'</span>:[<span class="number">8</span>,<span class="number">12</span>]&#125;)</div><div class="line"></div><div class="line">  something  a   b     c    d message</div><div class="line"><span class="number">0</span>       NaN  <span class="number">1</span>   <span class="number">2</span>   <span class="number">3.0</span>  <span class="number">4.0</span>     NaN</div><div class="line"><span class="number">1</span>       two  <span class="number">5</span>   <span class="number">6</span>   NaN  NaN   world</div><div class="line"><span class="number">2</span>       NaN  <span class="number">9</span>  <span class="number">10</span>  <span class="number">11.0</span>  NaN     foo</div></pre></td></tr></table></figure></p>
+<p>#2.pandas导出数据<br>我们使用read_csv读取数据，处理完之后，我们可能还需要将数据存储起来，还有一个to_csv的函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">DataFrame.to_csv(path_or_buf=<span class="keyword">None</span>, sep=<span class="string">', '</span>, na_rep=<span class="string">''</span>, float_format=<span class="keyword">None</span>, columns=<span class="keyword">None</span>, header=<span class="keyword">True</span>, index=<span class="keyword">True</span>, index_label=<span class="keyword">None</span>, mode=<span class="string">'w'</span>, encoding=<span class="keyword">None</span>, compression=<span class="keyword">None</span>, quoting=<span class="keyword">None</span>, quotechar=<span class="string">'"'</span>, line_terminator=<span class="string">'\n'</span>, chunksize=<span class="keyword">None</span>, tupleize_cols=<span class="keyword">False</span>, date_format=<span class="keyword">None</span>, doublequote=<span class="keyword">True</span>, escapechar=<span class="keyword">None</span>, decimal=<span class="string">'.'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">##我们就使用这份数据，先读取后，再保存</span></div><div class="line">something,a,b,c,d,message</div><div class="line">one,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,NA</div><div class="line">two,<span class="number">5</span>,<span class="number">6</span>,,<span class="number">8</span>,world</div><div class="line">three,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,foo</div><div class="line"></div><div class="line">df.to_csv(sys.stdout,sep=<span class="string">'^'</span>)</div><div class="line">^something^a^b^c^d^message</div><div class="line"><span class="number">0</span>^one^<span class="number">1</span>^<span class="number">2</span>^<span class="number">3.0</span>^<span class="number">4</span>^</div><div class="line"><span class="number">1</span>^two^<span class="number">5</span>^<span class="number">6</span>^^<span class="number">8</span>^world</div><div class="line"><span class="number">2</span>^three^<span class="number">9</span>^<span class="number">10</span>^<span class="number">11.0</span>^<span class="number">12</span>^foo</div><div class="line"></div><div class="line"><span class="comment">#我们看到这个输出，发现，NaN值，导出时，转为了空字符串，这里呢，我们可以手工指定</span></div><div class="line">na_rep : string, default ‘’</div><div class="line"></div><div class="line">df.to_csv(sys.stdout,sep=<span class="string">'^'</span>,na_rep=<span class="string">'NaN'</span>)</div><div class="line">^something^a^b^c^d^message</div><div class="line"><span class="number">0</span>^one^<span class="number">1</span>^<span class="number">2</span>^<span class="number">3.0</span>^<span class="number">4</span>^NaN</div><div class="line"><span class="number">1</span>^two^<span class="number">5</span>^<span class="number">6</span>^NaN^<span class="number">8</span>^world</div><div class="line"><span class="number">2</span>^three^<span class="number">9</span>^<span class="number">10</span>^<span class="number">11.0</span>^<span class="number">12</span>^foo</div><div class="line"></div><div class="line"><span class="comment">#有时候，行列标签可能也不需要，我们也可以禁用</span></div><div class="line">df.to_csv(sys.stdout,sep=<span class="string">'^'</span>,na_rep=<span class="string">'NaN'</span>,index=<span class="keyword">False</span>,header=<span class="keyword">False</span>)</div><div class="line">one^<span class="number">1</span>^<span class="number">2</span>^<span class="number">3.0</span>^<span class="number">4</span>^NaN</div><div class="line">two^<span class="number">5</span>^<span class="number">6</span>^NaN^<span class="number">8</span>^world</div><div class="line">three^<span class="number">9</span>^<span class="number">10</span>^<span class="number">11.0</span>^<span class="number">12</span>^foo</div></pre></td></tr></table></figure></p>
+<p>#3.附录<br>pandas中还有其他的加载数据方式，像读取HTML，JSON，xml等等，常用的可能还是和数据库取连接，这块后面会再补充，这里就先到这里。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/07/numpy-handbook-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -934,160 +1089,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/06/numpy-handbook-02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/06/numpy-handbook-02/" itemprop="url">numpy手册(2)-常用操作杂记</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T10:00:00+08:00">
-                2017-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Numpy/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Numpy</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Python<br>Numpy知识总结</p>
-<hr>
-<p>这里记录下numpy常用的一些操作，一些散乱的知识点。</p>
-<h2 id="数组和标量之间的运算"><a href="#数组和标量之间的运算" class="headerlink" title="数组和标量之间的运算"></a>数组和标量之间的运算</h2><p>就是对数组进行批量的运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">a = np.arange(<span class="number">15</span>).reshape(<span class="number">3</span>,<span class="number">5</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">3</span>]: </div><div class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>],</div><div class="line">       [ <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>],</div><div class="line">       [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>]])</div><div class="line"></div><div class="line">a+<span class="number">2</span></div><div class="line">Out[<span class="number">4</span>]: </div><div class="line">array([[ <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>],</div><div class="line">       [ <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>],</div><div class="line">       [<span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>]])</div><div class="line"></div><div class="line">a+a</div><div class="line">Out[<span class="number">5</span>]: </div><div class="line">array([[ <span class="number">0</span>,  <span class="number">2</span>,  <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">8</span>],</div><div class="line">       [<span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>, <span class="number">16</span>, <span class="number">18</span>],</div><div class="line">       [<span class="number">20</span>, <span class="number">22</span>, <span class="number">24</span>, <span class="number">26</span>, <span class="number">28</span>]])</div></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/06/numpy-handbook-02/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1137,7 +1143,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">86</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
