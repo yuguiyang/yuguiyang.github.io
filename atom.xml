@@ -40,6 +40,42 @@
   </entry>
   
   <entry>
+    <title>数据分析师是否需要掌握SQL？</title>
+    <link href="https://yuguiyang.github.io/2017/10/18/jotting-03/"/>
+    <id>https://yuguiyang.github.io/2017/10/18/jotting-03/</id>
+    <published>2017-10-18T12:00:00.000Z</published>
+    <updated>2017-10-18T11:44:06.540Z</updated>
+    
+    <content type="html"><![CDATA[<p>前面，我们分析了一下数据分析师的前景<a href="https://yuguiyang.github.io/2017/10/18/jotting-02/">要不要找一份数据分析的工作？</a></p>
+<p>这里，我们研究下，数据分析师是否需要掌握SQL。</p>
+<h1 id="什么是数据分析师？"><a href="#什么是数据分析师？" class="headerlink" title="什么是数据分析师？"></a>什么是数据分析师？</h1><p>我们从字面来理解，数据分析师=数据+分析+师</p>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，<br>没有数据支撑的分析报告，一定是异想天开。<br>数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。<br>外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；<br>内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。<br>这个分析一定要基于业务，脱离业务的分析是没有任何价值的。</p>
+<h1 id="真的要掌握SQL吗？"><a href="#真的要掌握SQL吗？" class="headerlink" title="真的要掌握SQL吗？"></a>真的要掌握SQL吗？</h1><p>上面，我们说了，分析公司内部的数据，需要使用SQL，行业内的其他公司是不是也是这样呢？<br>前面，我们爬取了拉勾网的数据，这里，我们就可以通过招聘数据证明一下，数据分析师是否需要掌握SQL</p>
+<p>我们根据岗位需求的标签和岗位描述来判断是否需要掌握SQL<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">IF (</div><div class="line">    CONTAINS(upper([position_lables]),'SQL')</div><div class="line">    OR </div><div class="line">    CONTAINS(upper([job_desc]),'SQL')</div><div class="line">    )</div><div class="line">THEN '是'</div><div class="line">ELSE '否'</div><div class="line"><span class="keyword">END</span></div></pre></td></tr></table></figure></p>
+<p>就岗位数量来看，每个城市的岗位中，需要掌握SQL的岗位都超过50%<br><img src="http://upload-images.jianshu.io/upload_images/76024-f393f5f9b08e057c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>就算SQL不是数据分析师必备的技能，掌握了SQL，你就多了50%的机会，我们再来看下，哪些公司的岗位需要掌握SQL呢</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-4257c5cbbff62bab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这些都是互联网知名的企业，跟着他们走没有问题。</p>
+<p>总上所述，掌握了SQL，不会吃亏，不会上当，不说啦，我得学习SQL去了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前面，我们分析了一下数据分析师的前景&lt;a href=&quot;https://yuguiyang.github.io/2017/10/18/jotting-02/&quot;&gt;要不要找一份数据分析的工作？&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里，我们研究下，数据分析师是否需要掌握SQL。&lt;/p&gt;
+&lt;h1
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>要不要找一份数据分析的工作？</title>
     <link href="https://yuguiyang.github.io/2017/10/18/jotting-02/"/>
     <id>https://yuguiyang.github.io/2017/10/18/jotting-02/</id>
@@ -1100,43 +1136,6 @@
 &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-4e9a9e1bce14c574.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;新建连接&quot;&gt;&lt;br&gt;在这里，输入数据库地址、用户名、密码等等就行了。&lt;/p&gt;
 &lt;p&gt;这一个一个圆柱形的，就是一个数据库实例，下面那些电子表格图标的就是表，数据就存储在表中。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-cfabf6503b213d37.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;数据库及表&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
-    
-    
-      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL-序(怎样学习MySQL)</title>
-    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/"/>
-    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/</id>
-    <published>2017-09-08T21:00:00.000Z</published>
-    <updated>2017-10-09T17:12:06.215Z</updated>
-    
-    <content type="html"><![CDATA[<p>MySQL<br>怎样学习MySQL</p>
-<p>作为一名BI开发工程师，SQL是必须要掌握的一门技能。<br>数据分析师请参考这篇《数据分析师是否要掌握SQL?》</p>
-<h3 id="SQL是干嘛的呢？"><a href="#SQL是干嘛的呢？" class="headerlink" title="SQL是干嘛的呢？"></a>SQL是干嘛的呢？</h3><p>大街上随便拉个人过来，可能都听说过“大数据”，不管大数据、小数据，他这个数据到底在哪儿呢？其中一种方式，就是存储在关系型数据库中（其他的还有什么非关系型数据库、HDFS等等），就像我们把货物都放在仓库里一样，如果我们想要查看数据库中的数据，就用到了SQL。</p>
-<p>SQL也是一种编程语言，偏底层，所以学起来会枯燥些，不像Tableau那样可视化效果好，可以托拉拽。只要掌握了SQL的基本语法，他就像数学公式一样，直接去套用就行了。<br>SQL的知识点也非常多，我们不需要都记住，要学会查文档、用Google，而且不同的数据库，他的语法可能不太一样，很容易记混。<br>开发人员平时说的SQL脚本，就是一段或者多段SQL或者存储过程。</p>
-<a id="more"></a>
-<h3 id="怎么学习SQL"><a href="#怎么学习SQL" class="headerlink" title="怎么学习SQL?"></a>怎么学习SQL?</h3><p>随着互联网的发展，现在的学习成本非常的低，网络上的免费资源非常多。<br>评价好些的像w3school的<a href="http://www.w3school.com.cn/sql/index.asp" target="_blank" rel="external">SQL 教程</a><br>在这，就可以了解SQL的基本语法，记住这些，再配合习题练习就算是入门了。</p>
-<p><a href="http://zh.sqlzoo.net/" target="_blank" rel="external">sqlzoo</a>是一个在线的练习网站,上面有很多SQL的练习题，我们可以直接在线写SQL，而且提交后，还会告诉我们对错。</p>
-<p>如果还有时间的话，找一本书《SQL必知必会》、《MySQL必知必会》、《深入浅出SQL》，查漏补缺，可以更好的梳理自己的知识架构。</p>
-<p>SQL就像所有的知识一样，学会不用很容易就忘掉，所以最好可以在工作中多用用，而且一定要记住“实践是检验真理的唯一标准”，SQL一定要多练习、多实践。</p>
-<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>客户端安装及pdf资料：<a href="http://www.jianshu.com/p/3e56600d97de" target="_blank" rel="external">SQL工具及资料</a><br>后面也整理了一些MySQL的知识点<a href="http://yuguiyang.github.io/categories/MySQL/">MySQL分类</a>，欢迎大家访问。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;MySQL&lt;br&gt;怎样学习MySQL&lt;/p&gt;
-&lt;p&gt;作为一名BI开发工程师，SQL是必须要掌握的一门技能。&lt;br&gt;数据分析师请参考这篇《数据分析师是否要掌握SQL?》&lt;/p&gt;
-&lt;h3 id=&quot;SQL是干嘛的呢？&quot;&gt;&lt;a href=&quot;#SQL是干嘛的呢？&quot; class=&quot;headerlink&quot; title=&quot;SQL是干嘛的呢？&quot;&gt;&lt;/a&gt;SQL是干嘛的呢？&lt;/h3&gt;&lt;p&gt;大街上随便拉个人过来，可能都听说过“大数据”，不管大数据、小数据，他这个数据到底在哪儿呢？其中一种方式，就是存储在关系型数据库中（其他的还有什么非关系型数据库、HDFS等等），就像我们把货物都放在仓库里一样，如果我们想要查看数据库中的数据，就用到了SQL。&lt;/p&gt;
-&lt;p&gt;SQL也是一种编程语言，偏底层，所以学起来会枯燥些，不像Tableau那样可视化效果好，可以托拉拽。只要掌握了SQL的基本语法，他就像数学公式一样，直接去套用就行了。&lt;br&gt;SQL的知识点也非常多，我们不需要都记住，要学会查文档、用Google，而且不同的数据库，他的语法可能不太一样，很容易记混。&lt;br&gt;开发人员平时说的SQL脚本，就是一段或者多段SQL或者存储过程。&lt;/p&gt;
     
     </summary>
     

@@ -467,6 +467,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/18/jotting-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/18/jotting-03/" itemprop="url">数据分析师是否需要掌握SQL？</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T20:00:00+08:00">
+                2017-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>前面，我们分析了一下数据分析师的前景<a href="https://yuguiyang.github.io/2017/10/18/jotting-02/">要不要找一份数据分析的工作？</a></p>
+<p>这里，我们研究下，数据分析师是否需要掌握SQL。</p>
+<h1 id="什么是数据分析师？"><a href="#什么是数据分析师？" class="headerlink" title="什么是数据分析师？"></a>什么是数据分析师？</h1><p>我们从字面来理解，数据分析师=数据+分析+师</p>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，<br>没有数据支撑的分析报告，一定是异想天开。<br>数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。<br>外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；<br>内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。<br>这个分析一定要基于业务，脱离业务的分析是没有任何价值的。</p>
+<h1 id="真的要掌握SQL吗？"><a href="#真的要掌握SQL吗？" class="headerlink" title="真的要掌握SQL吗？"></a>真的要掌握SQL吗？</h1><p>上面，我们说了，分析公司内部的数据，需要使用SQL，行业内的其他公司是不是也是这样呢？<br>前面，我们爬取了拉勾网的数据，这里，我们就可以通过招聘数据证明一下，数据分析师是否需要掌握SQL</p>
+<p>我们根据岗位需求的标签和岗位描述来判断是否需要掌握SQL<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">IF (</div><div class="line">    CONTAINS(upper([position_lables]),'SQL')</div><div class="line">    OR </div><div class="line">    CONTAINS(upper([job_desc]),'SQL')</div><div class="line">    )</div><div class="line">THEN '是'</div><div class="line">ELSE '否'</div><div class="line"><span class="keyword">END</span></div></pre></td></tr></table></figure></p>
+<p>就岗位数量来看，每个城市的岗位中，需要掌握SQL的岗位都超过50%<br><img src="http://upload-images.jianshu.io/upload_images/76024-f393f5f9b08e057c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>就算SQL不是数据分析师必备的技能，掌握了SQL，你就多了50%的机会，我们再来看下，哪些公司的岗位需要掌握SQL呢</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-4257c5cbbff62bab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这些都是互联网知名的企业，跟着他们走没有问题。</p>
+<p>总上所述，掌握了SQL，不会吃亏，不会上当，不说啦，我得学习SQL去了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/18/jotting-02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -906,159 +1059,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/09/20/Tableau-handbook-06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/20/Tableau-handbook-06/" itemprop="url">Tableau实例-帕累托图</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T10:00:00+08:00">
-                2017-09-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tableau/" itemprop="url" rel="index">
-                    <span itemprop="name">Tableau</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Tableau实例<br>帕累托图</p>
-<p>前面，我们了解了<a href="https://yuguiyang.github.io/2017/09/18/jotting-01/">《帕累托的故事》</a> 和 <a href="https://yuguiyang.github.io//2017/09/18/analysis-method-01/">二八定律与长尾理论</a>，这里，我们学习下，在Tableau中，如何适用Tableau来绘制帕累托图。</p>
-<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>数据源：官方数据源“示例-超市”<br>因为，帕累托分布，主要是20%的商品可以产生80%的价值，所以，我们可以使用示例数据中的订单数据，来看看订单的销量是否符合帕累托分布。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-b95435afb86c9e6f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据源"></p>
-<h1 id="初级-每个类别的销售额分布"><a href="#初级-每个类别的销售额分布" class="headerlink" title="初级-每个类别的销售额分布"></a>初级-每个类别的销售额分布</h1><p>我们先来研究下，看产品的类别销售额是否符合帕累托分布，帕累托图有一个柱形图，有一个折线图，<br>柱形图，表示每个类别的销售额，而折线图表示每个类别的销售额占比</p>
-<p>柱形图就直接使用子类别和销售额就行了<br><img src="http://upload-images.jianshu.io/upload_images/76024-d8b12c89ef4325c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="每个类别的销售额"></p>
-<p>然后，我们实现折线图<br>在行中，再拖一个销售额</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-15ceac91c846b724.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/20/Tableau-handbook-06/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1113,7 +1113,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

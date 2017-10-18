@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/</loc>
+    
+    <lastmod>2017-10-18T11:52:13.977Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuguiyang.github.io/2017/10/18/jotting-03/</loc>
+    
+    <lastmod>2017-10-18T11:44:06.540Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://yuguiyang.github.io/2017/10/18/jotting-02/</loc>
     
     <lastmod>2017-10-18T10:06:31.150Z</lastmod>
@@ -187,13 +201,6 @@
     <loc>https://yuguiyang.github.io/2017/10/12/mysql-handbook-11/</loc>
     
     <lastmod>2017-10-12T10:00:18.478Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/</loc>
-    
-    <lastmod>2017-10-09T17:12:06.215Z</lastmod>
     
   </url>
   

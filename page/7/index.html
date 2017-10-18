@@ -325,6 +325,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/19/python-handbook-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/19/python-handbook-10/" itemprop="url">Python异常（1）- module 'urllib' has no attribute 'urlopen'</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T10:00:00+08:00">
+                2017-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天想复习下BeautifulSoup，就把之前的代码拿过来测试，发现报错了<br><img src="http://upload-images.jianshu.io/upload_images/76024-e01a18d402a6796b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#加载网址，获取当前页面</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTML</span><span class="params">(url)</span> :</span></div><div class="line">    page = urllib.urlopen(url)</div><div class="line">    html = page.read()</div><div class="line">    <span class="keyword">return</span> html</div><div class="line"></div><div class="line">html = getHTML(<span class="string">'https://movie.douban.com/top250'</span>)</div><div class="line">soup = BeautifulSoup(html, <span class="string">"html.parser"</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">for</span> img <span class="keyword">in</span> soup.find_all(<span class="string">'img'</span>):</div><div class="line">    print(img.get(<span class="string">'src'</span>))</div></pre></td></tr></table></figure>
+<p>查了下，发下是Python3中，需要引入的模块变了<br>改一下就可以了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">urllib.request.urlopen(url)</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/18/python-handbook-09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -936,169 +1080,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/16/pandas-handbook-11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/16/pandas-handbook-11/" itemprop="url">Pandas手册（11）- groupby</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-16T08:00:00+08:00">
-                2017-08-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Pandas</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Python<br>Pandas</p>
-<hr>
-<p>这里，我们整理下pandas中关于groupby的使用，和SQL中一样，就是对数据进行聚合<br>可以参考官方：<br><a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" target="_blank" rel="external">http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.groupby.html</a><br><a href="http://pandas.pydata.org/pandas-docs/stable/groupby.html" target="_blank" rel="external">http://pandas.pydata.org/pandas-docs/stable/groupby.html</a></p>
-<h1 id="1-groupby基本使用"><a href="#1-groupby基本使用" class="headerlink" title="1. groupby基本使用"></a>1. groupby基本使用</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DataFrame.groupby(by=<span class="keyword">None</span>, axis=<span class="number">0</span>, level=<span class="keyword">None</span>, as_index=<span class="keyword">True</span>, sort=<span class="keyword">True</span>, group_keys=<span class="keyword">True</span>, squeeze=<span class="keyword">False</span>, **kwargs)</div><div class="line">Group series using mapper (dict <span class="keyword">or</span> key function, apply given function to group, <span class="keyword">return</span> result <span class="keyword">as</span> series) <span class="keyword">or</span> by a series of columns.</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">df = pd.DataFrame(&#123;<span class="string">'key1'</span> : [<span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>],</div><div class="line">                <span class="string">'key2'</span> : [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'one'</span>],</div><div class="line">                <span class="string">'data1'</span> : np.random.randint(<span class="number">0</span>,<span class="number">10</span>,<span class="number">5</span>),</div><div class="line">                <span class="string">'data2'</span> : np.random.randint(<span class="number">0</span>,<span class="number">10</span>,<span class="number">5</span>)&#125;)</div><div class="line"></div><div class="line">df</div><div class="line">Out[<span class="number">158</span>]: </div><div class="line">   data1  data2 key1 key2</div><div class="line"><span class="number">0</span>      <span class="number">2</span>      <span class="number">4</span>    a  one</div><div class="line"><span class="number">1</span>      <span class="number">3</span>      <span class="number">8</span>    a  two</div><div class="line"><span class="number">2</span>      <span class="number">6</span>      <span class="number">5</span>    b  one</div><div class="line"><span class="number">3</span>      <span class="number">7</span>      <span class="number">3</span>    b  two</div><div class="line"><span class="number">4</span>      <span class="number">7</span>      <span class="number">6</span>    a  one</div></pre></td></tr></table></figure>
-<p>我们现在，根据key1来groupby<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a = df.groupby(by=[<span class="string">'key1'</span>])</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">170</span>]: &lt;pandas.core.groupby.DataFrameGroupBy object at <span class="number">0x000000000B8317F0</span>&gt;</div></pre></td></tr></table></figure></p>
-<p>我们可以看到，返回值是一个DataFrameGroupBy对象，这只是一个中间数据，还没有进行真正的聚合<br>这里有一个概念”split-apply-combine”，拆分-应用-合并，感觉和MapReduce的概念差不多，这个的groupby就是做了拆分<br>我们可以遍历DataFrameGroupBy，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> a:</div><div class="line">    print(<span class="string">'k:'</span>,k)</div><div class="line">    print(<span class="string">'v:'</span>,v)</div><div class="line">    </div><div class="line">k: a</div><div class="line">v:    data1  data2 key1 key2</div><div class="line"><span class="number">0</span>      <span class="number">2</span>      <span class="number">4</span>    a  one</div><div class="line"><span class="number">1</span>      <span class="number">3</span>      <span class="number">8</span>    a  two</div><div class="line"><span class="number">4</span>      <span class="number">7</span>      <span class="number">6</span>    a  one</div><div class="line">k: b</div><div class="line">v:    data1  data2 key1 key2</div><div class="line"><span class="number">2</span>      <span class="number">6</span>      <span class="number">5</span>    b  one</div><div class="line"><span class="number">3</span>      <span class="number">7</span>      <span class="number">3</span>    b  two</div></pre></td></tr></table></figure></p>
-<p>这个就是将内容进行了拆分,当我们在调用统计函数时，才会执行应用和合并<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">a.sum()</div><div class="line">Out[<span class="number">172</span>]: </div><div class="line">      data1  data2</div><div class="line">key1              </div><div class="line">a        <span class="number">12</span>     <span class="number">18</span></div><div class="line">b        <span class="number">13</span>      <span class="number">8</span></div><div class="line"></div><div class="line">a.size()</div><div class="line">Out[<span class="number">173</span>]: </div><div class="line">key1</div><div class="line">a    <span class="number">3</span></div><div class="line">b    <span class="number">2</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">a.count()</div><div class="line">Out[<span class="number">174</span>]: </div><div class="line">      data1  data2  key2</div><div class="line">key1                    </div><div class="line">a         <span class="number">3</span>      <span class="number">3</span>     <span class="number">3</span></div><div class="line">b         <span class="number">2</span>      <span class="number">2</span>     <span class="number">2</span></div><div class="line"></div><div class="line">a.max()</div><div class="line">Out[<span class="number">175</span>]: </div><div class="line">      data1  data2 key2</div><div class="line">key1                   </div><div class="line">a         <span class="number">7</span>      <span class="number">8</span>  two</div><div class="line">b         <span class="number">7</span>      <span class="number">5</span>  two</div><div class="line"></div><div class="line">a.mean()</div><div class="line">Out[<span class="number">176</span>]: </div><div class="line">      data1  data2</div><div class="line">key1              </div><div class="line">a       <span class="number">4.0</span>    <span class="number">6.0</span></div><div class="line">b       <span class="number">6.5</span>    <span class="number">4.0</span></div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-8d628f36b617eb8e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>我们可以按2个值进行聚合<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">df</div><div class="line">Out[<span class="number">188</span>]: </div><div class="line">   data1  data2 key1 key2</div><div class="line"><span class="number">0</span>      <span class="number">2</span>      <span class="number">4</span>    a  one</div><div class="line"><span class="number">1</span>      <span class="number">3</span>      <span class="number">8</span>    a  two</div><div class="line"><span class="number">2</span>      <span class="number">6</span>      <span class="number">5</span>    b  one</div><div class="line"><span class="number">3</span>      <span class="number">7</span>      <span class="number">3</span>    b  two</div><div class="line"><span class="number">4</span>      <span class="number">7</span>      <span class="number">6</span>    a  one</div><div class="line"></div><div class="line">df.groupby(by=[<span class="string">'key1'</span>,<span class="string">'key2'</span>]).sum()</div><div class="line">Out[<span class="number">189</span>]: </div><div class="line">           data1  data2</div><div class="line">key1 key2              </div><div class="line">a    one       <span class="number">9</span>     <span class="number">10</span></div><div class="line">     two       <span class="number">3</span>      <span class="number">8</span></div><div class="line">b    one       <span class="number">6</span>      <span class="number">5</span></div><div class="line">     two       <span class="number">7</span>      <span class="number">3</span></div></pre></td></tr></table></figure></p>
-<p>默认的话，会将数值类型的字段做聚合，我们也可以选择<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">df.groupby(by=[<span class="string">'key1'</span>,<span class="string">'key2'</span>])[<span class="string">'data1'</span>].sum()</div><div class="line">Out[<span class="number">190</span>]: </div><div class="line">key1  key2</div><div class="line">a     one     <span class="number">9</span></div><div class="line">      two     <span class="number">3</span></div><div class="line">b     one     <span class="number">6</span></div><div class="line">      two     <span class="number">7</span></div><div class="line">Name: data1, dtype: int32</div><div class="line"></div><div class="line">df.groupby(by=[<span class="string">'key1'</span>,<span class="string">'key2'</span>])[<span class="string">'data1'</span>,<span class="string">'data2'</span>].sum()</div><div class="line">Out[<span class="number">191</span>]: </div><div class="line">           data1  data2</div><div class="line">key1 key2              </div><div class="line">a    one       <span class="number">9</span>     <span class="number">10</span></div><div class="line">     two       <span class="number">3</span>      <span class="number">8</span></div><div class="line">b    one       <span class="number">6</span>      <span class="number">5</span></div><div class="line">     two       <span class="number">7</span>      <span class="number">3</span></div></pre></td></tr></table></figure></p>
-<p>下面的写法也是同样的，前面我们是直接传入的列名，这里我们传入series也可以<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">df.groupby(by=df[<span class="string">'key1'</span>]).sum()</div><div class="line">Out[<span class="number">197</span>]: </div><div class="line">      data1  data2</div><div class="line">key1              </div><div class="line">a        <span class="number">12</span>     <span class="number">18</span></div><div class="line">b        <span class="number">13</span>      <span class="number">8</span></div><div class="line"></div><div class="line">df.groupby(by=[df[<span class="string">'key1'</span>],df[<span class="string">'key2'</span>]]).sum()</div><div class="line">Out[<span class="number">198</span>]: </div><div class="line">           data1  data2</div><div class="line">key1 key2              </div><div class="line">a    one       <span class="number">9</span>     <span class="number">10</span></div><div class="line">     two       <span class="number">3</span>      <span class="number">8</span></div><div class="line">b    one       <span class="number">6</span>      <span class="number">5</span></div><div class="line">     two       <span class="number">7</span>      <span class="number">3</span></div></pre></td></tr></table></figure></p>
-<p>上面我们传入的都是当前df的序列，这里也可以传入新的，这里只要长度符合就行了，感觉就是把它当成新列来处理<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">df.groupby(by=[<span class="string">'lufei'</span>,<span class="string">'lufei'</span>,<span class="string">'lufei'</span>,<span class="string">'lufei'</span>,<span class="string">'namei'</span>]).sum()</div><div class="line">Out[<span class="number">199</span>]: </div><div class="line">       data1  data2</div><div class="line">lufei     <span class="number">18</span>     <span class="number">20</span></div><div class="line">namei      <span class="number">7</span>      <span class="number">6</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">by : mapping, function, str, <span class="keyword">or</span> iterable</div><div class="line"></div><div class="line">    Used to determine the groups <span class="keyword">for</span> the groupby. If by <span class="keyword">is</span> a function, it’s called on each value of the object’s index. If a dict <span class="keyword">or</span> Series <span class="keyword">is</span> passed, the Series <span class="keyword">or</span> dict VALUES will be used to determine the groups (the Series’ values are first aligned; see .align() method). If an ndarray <span class="keyword">is</span> passed, the values are used <span class="keyword">as</span>-<span class="keyword">is</span> determine the groups. A str <span class="keyword">or</span> list of strs may be passed to group by the columns <span class="keyword">in</span> self</div></pre></td></tr></table></figure>
-<p>这个by参数，还可以接收一个dict，像这样：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">df</div><div class="line">Out[<span class="number">204</span>]: </div><div class="line">   data1  data2 key1 key2</div><div class="line"><span class="number">0</span>      <span class="number">2</span>      <span class="number">4</span>    a  one</div><div class="line"><span class="number">1</span>      <span class="number">3</span>      <span class="number">8</span>    a  two</div><div class="line"><span class="number">2</span>      <span class="number">6</span>      <span class="number">5</span>    b  one</div><div class="line"><span class="number">3</span>      <span class="number">7</span>      <span class="number">3</span>    b  two</div><div class="line"><span class="number">4</span>      <span class="number">7</span>      <span class="number">6</span>    a  one</div><div class="line"></div><div class="line">df.index</div><div class="line">Out[<span class="number">205</span>]: RangeIndex(start=<span class="number">0</span>, stop=<span class="number">5</span>, step=<span class="number">1</span>)</div><div class="line"></div><div class="line">df</div><div class="line">Out[<span class="number">206</span>]: </div><div class="line">   data1  data2 key1 key2</div><div class="line"><span class="number">0</span>      <span class="number">2</span>      <span class="number">4</span>    a  one</div><div class="line"><span class="number">1</span>      <span class="number">3</span>      <span class="number">8</span>    a  two</div><div class="line"><span class="number">2</span>      <span class="number">6</span>      <span class="number">5</span>    b  one</div><div class="line"><span class="number">3</span>      <span class="number">7</span>      <span class="number">3</span>    b  two</div><div class="line"><span class="number">4</span>      <span class="number">7</span>      <span class="number">6</span>    a  one</div><div class="line"></div><div class="line"><span class="comment">#默认是根据啊axis=0，所以groupby之前会先将index和dict进行映射，</span></div><div class="line">df.groupby(&#123;<span class="number">0</span>:<span class="string">'a'</span>,<span class="number">1</span>:<span class="string">'a'</span>,<span class="number">2</span>:<span class="string">'a'</span>,<span class="number">3</span>:<span class="string">'a'</span>,<span class="number">4</span>:<span class="string">'a'</span>&#125;).sum()</div><div class="line">Out[<span class="number">207</span>]: </div><div class="line">   data1  data2</div><div class="line">a     <span class="number">25</span>     <span class="number">26</span></div></pre></td></tr></table></figure></p>
-<p>这里，对于series也是一样的，series也有index，<br>更厉害的是，这里还可以使用函数进行分组，函数会在各个索引值上调用一次，然后根据返回值来用作分组名称<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">df</div><div class="line">Out[<span class="number">216</span>]: </div><div class="line">   data1  data2 key1 key2</div><div class="line"><span class="number">0</span>      <span class="number">2</span>      <span class="number">4</span>    a  one</div><div class="line"><span class="number">1</span>      <span class="number">3</span>      <span class="number">8</span>    a  two</div><div class="line"><span class="number">2</span>      <span class="number">6</span>      <span class="number">5</span>    b  one</div><div class="line"><span class="number">3</span>      <span class="number">7</span>      <span class="number">3</span>    b  two</div><div class="line"><span class="number">4</span>      <span class="number">7</span>      <span class="number">6</span>    a  one</div><div class="line"></div><div class="line"><span class="comment">#会把每一个index的值加10，然后再聚合</span></div><div class="line">df.groupby(<span class="keyword">lambda</span> x:x+<span class="number">10</span>).sum()</div><div class="line">Out[<span class="number">217</span>]: </div><div class="line">    data1  data2</div><div class="line"><span class="number">10</span>      <span class="number">2</span>      <span class="number">4</span></div><div class="line"><span class="number">11</span>      <span class="number">3</span>      <span class="number">8</span></div><div class="line"><span class="number">12</span>      <span class="number">6</span>      <span class="number">5</span></div><div class="line"><span class="number">13</span>      <span class="number">7</span>      <span class="number">3</span></div><div class="line"><span class="number">14</span>      <span class="number">7</span>      <span class="number">6</span></div></pre></td></tr></table></figure></p>
-<p>—————update at 2017-08-23<br>这里继续整理下pandas中groupby的使用</p>
-<h1 id="2-面向列的多函数应用"><a href="#2-面向列的多函数应用" class="headerlink" title="2. 面向列的多函数应用"></a>2. 面向列的多函数应用</h1><p> 上面，我们再对列做聚合的时候，都是使用使用统一的函数，比如sum(),count(),都是一起的，<br>在pandas中，我们可以同时调用多个函数，主要是使用agg<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">DataFrameGroupBy.agg(arg, *args, **kwargs)</div><div class="line">Aggregate using callable, string, dict, <span class="keyword">or</span> list of string/callables</div><div class="line"></div><div class="line">func : callable, string, dictionary, <span class="keyword">or</span> list of string/callables</div><div class="line"></div><div class="line">    Function to use <span class="keyword">for</span> aggregating the data. If a function, must either work when passed a DataFrame <span class="keyword">or</span> when passed to DataFrame.apply. For a DataFrame, can <span class="keyword">pass</span> a dict, <span class="keyword">if</span> the keys are DataFrame column names.</div><div class="line"></div><div class="line">    Accepted Combinations are:</div><div class="line"></div><div class="line">        string function name</div><div class="line">        function</div><div class="line">        list of functions</div><div class="line">        dict of column names -&gt; functions (or list of functions)</div></pre></td></tr></table></figure></p>
-<p>小栗子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">df = pd.DataFrame(&#123;<span class="string">'A'</span>: [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>],</div><div class="line">                    <span class="string">'B'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</div><div class="line">                    <span class="string">'C'</span>: np.random.randn(<span class="number">4</span>)&#125;)</div><div class="line"></div><div class="line">df</div><div class="line">Out[<span class="number">64</span>]: </div><div class="line">   A  B         C</div><div class="line"><span class="number">0</span>  <span class="number">1</span>  <span class="number">1</span>  <span class="number">0.433076</span></div><div class="line"><span class="number">1</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">0.509764</span></div><div class="line"><span class="number">2</span>  <span class="number">2</span>  <span class="number">3</span> <span class="number">-1.091318</span></div><div class="line"><span class="number">3</span>  <span class="number">2</span>  <span class="number">4</span> <span class="number">-0.696079</span></div><div class="line"></div><div class="line"></div><div class="line">df.groupby(by=[<span class="string">'A'</span>]).min()</div><div class="line">Out[<span class="number">65</span>]: </div><div class="line">   B         C</div><div class="line">A             </div><div class="line"><span class="number">1</span>  <span class="number">1</span>  <span class="number">0.433076</span></div><div class="line"><span class="number">2</span>  <span class="number">3</span> <span class="number">-1.091318</span></div><div class="line"></div><div class="line"><span class="comment">#使用agg，调用min函数，和直接调用时等价的</span></div><div class="line">df.groupby(by=[<span class="string">'A'</span>]).agg(<span class="string">'min'</span>)</div><div class="line">Out[<span class="number">66</span>]: </div><div class="line">   B         C</div><div class="line">A             </div><div class="line"><span class="number">1</span>  <span class="number">1</span>  <span class="number">0.433076</span></div><div class="line"><span class="number">2</span>  <span class="number">3</span> <span class="number">-1.091318</span></div><div class="line"></div><div class="line"><span class="comment">#还可以传入一个函数数组，同时调用min和max</span></div><div class="line">df.groupby(by=[<span class="string">'A'</span>]).agg([<span class="string">'min'</span>,<span class="string">'max'</span>])</div><div class="line">Out[<span class="number">67</span>]: </div><div class="line">    B             C          </div><div class="line">  min max       min       max</div><div class="line">A                            </div><div class="line"><span class="number">1</span>   <span class="number">1</span>   <span class="number">2</span>  <span class="number">0.433076</span>  <span class="number">0.509764</span></div><div class="line"><span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span> <span class="number">-1.091318</span> <span class="number">-0.696079</span></div><div class="line"></div><div class="line">df.groupby(by=[<span class="string">'A'</span>])[<span class="string">'B'</span>].agg([<span class="string">'min'</span>,<span class="string">'max'</span>])</div><div class="line">Out[<span class="number">68</span>]: </div><div class="line">   min  max</div><div class="line">A          </div><div class="line"><span class="number">1</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">2</span>    <span class="number">3</span>    <span class="number">4</span></div><div class="line"></div><div class="line"><span class="comment">#还可以通过传入一个dict，来对不同的列做不同的操作，列名为key，func为value</span></div><div class="line">df.groupby(by=[<span class="string">'A'</span>]).agg(&#123;<span class="string">'B'</span>:[<span class="string">'min'</span>,<span class="string">'max'</span>],<span class="string">'C'</span>:[<span class="string">'sum'</span>]&#125;)</div><div class="line">Out[<span class="number">69</span>]: </div><div class="line">    B             C</div><div class="line">  min max       sum</div><div class="line">A                  </div><div class="line"><span class="number">1</span>   <span class="number">1</span>   <span class="number">2</span>  <span class="number">0.942840</span></div><div class="line"><span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span> <span class="number">-1.787397</span></div></pre></td></tr></table></figure></p>
-<p>上面，我们传入函数，默认会用我们的函数名来做列名，但，有时我们想要自定义，<br>我们通过传入一个（name,function）的列表<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">df.groupby(by=[<span class="string">'A'</span>]).agg([(<span class="string">'the_min_data'</span>,<span class="string">'min'</span>),(<span class="string">'the_max_data'</span>,<span class="string">'max'</span>)])</div><div class="line">Out[<span class="number">73</span>]: </div><div class="line">             B                         C             </div><div class="line">  the_min_data the_max_data the_min_data the_max_data</div><div class="line">A                                                    </div><div class="line"><span class="number">1</span>            <span class="number">1</span>            <span class="number">2</span>     <span class="number">0.433076</span>     <span class="number">0.509764</span></div><div class="line"><span class="number">2</span>            <span class="number">3</span>            <span class="number">4</span>    <span class="number">-1.091318</span>    <span class="number">-0.696079</span></div><div class="line"></div><div class="line"><span class="comment">#可以随意组合</span></div><div class="line">df.groupby(by=[<span class="string">'A'</span>]).agg(&#123;<span class="string">'B'</span>:[<span class="string">'min'</span>,<span class="string">'max'</span>],<span class="string">'C'</span>:[(<span class="string">'hey_sum'</span>,<span class="string">'sum'</span>)]&#125;)</div><div class="line">Out[<span class="number">74</span>]: </div><div class="line">    B             C</div><div class="line">  min max   hey_sum</div><div class="line">A                  </div><div class="line"><span class="number">1</span>   <span class="number">1</span>   <span class="number">2</span>  <span class="number">0.942840</span></div><div class="line"><span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span> <span class="number">-1.787397</span></div></pre></td></tr></table></figure></p>
-<h1 id="3-已无索引形式返回聚合数据"><a href="#3-已无索引形式返回聚合数据" class="headerlink" title="3. 已无索引形式返回聚合数据"></a>3. 已无索引形式返回聚合数据</h1><p>前面，我们groupby之后，都是用聚合建来当做index，我们可以通过参数as_index=False,来取消<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#会默认生成一个新index</span></div><div class="line">df.groupby(by=[<span class="string">'A'</span>,<span class="string">'B'</span>],as_index=<span class="keyword">False</span>).max()</div><div class="line">Out[<span class="number">80</span>]: </div><div class="line">   A  B         C</div><div class="line"><span class="number">0</span>  <span class="number">1</span>  <span class="number">1</span>  <span class="number">0.433076</span></div><div class="line"><span class="number">1</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">0.509764</span></div><div class="line"><span class="number">2</span>  <span class="number">2</span>  <span class="number">3</span> <span class="number">-1.091318</span></div><div class="line"><span class="number">3</span>  <span class="number">2</span>  <span class="number">4</span> <span class="number">-0.696079</span></div><div class="line"></div><div class="line"></div><div class="line">df.groupby(by=[<span class="string">'A'</span>,<span class="string">'B'</span>],as_index=<span class="keyword">True</span>).max()</div><div class="line">Out[<span class="number">81</span>]: </div><div class="line">            C</div><div class="line">A B          </div><div class="line"><span class="number">1</span> <span class="number">1</span>  <span class="number">0.433076</span></div><div class="line">  <span class="number">2</span>  <span class="number">0.509764</span></div><div class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">-1.091318</span></div><div class="line">  <span class="number">4</span> <span class="number">-0.696079</span></div></pre></td></tr></table></figure></p>
-<p>做了练习之后，这里发现，直接调用函数是好用的，但是，如果使用agg来调用，是不好用的这个参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">df.groupby(by=[<span class="string">'A'</span>,<span class="string">'B'</span>],as_index=<span class="keyword">False</span>).agg([<span class="string">'min'</span>,<span class="string">'max'</span>])</div><div class="line">Out[<span class="number">79</span>]: </div><div class="line">            C          </div><div class="line">          min       max</div><div class="line">A B                    </div><div class="line"><span class="number">1</span> <span class="number">1</span>  <span class="number">0.433076</span>  <span class="number">0.433076</span></div><div class="line">  <span class="number">2</span>  <span class="number">0.509764</span>  <span class="number">0.509764</span></div><div class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">-1.091318</span> <span class="number">-1.091318</span></div><div class="line">  <span class="number">4</span> <span class="number">-0.696079</span> <span class="number">-0.696079</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1153,7 +1134,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

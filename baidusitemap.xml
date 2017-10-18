@@ -4,6 +4,48 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/</loc>
+    <lastmod>2017-10-18T11:52:13.977Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL-序(怎样学习MySQL)</title>
+        <pubTime>2017-09-08T21:00:00.000Z</pubTime>
+        
+        <tag>SQL</tag>
+         
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="https://yuguiyang.github.io/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/10/18/jotting-03/</loc>
+    <lastmod>2017-10-18T11:44:06.540Z</lastmod>
+    <data>
+        <display>
+        <title>数据分析师是否需要掌握SQL？</title>
+        <pubTime>2017-10-18T12:00:00.000Z</pubTime>
+        
+        <tag>随笔</tag>
+         
+         
+           
+             
+              <breadCrumb title="随笔" url="https://yuguiyang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/10/18/jotting-02/</loc>
     <lastmod>2017-10-18T10:06:31.150Z</lastmod>
     <data>
@@ -562,28 +604,6 @@
         <display>
         <title>MySQL-Workbench使用</title>
         <pubTime>2017-10-12T08:00:00.000Z</pubTime>
-        
-        <tag>SQL</tag>
-         
-        <tag>MySQL</tag>
-         
-         
-           
-             
-              <breadCrumb title="MySQL" url="https://yuguiyang.github.io/categories/MySQL/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/</loc>
-    <lastmod>2017-10-09T17:12:06.215Z</lastmod>
-    <data>
-        <display>
-        <title>MySQL-序(怎样学习MySQL)</title>
-        <pubTime>2017-09-08T21:00:00.000Z</pubTime>
         
         <tag>SQL</tag>
          
