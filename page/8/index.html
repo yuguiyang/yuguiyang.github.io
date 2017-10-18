@@ -325,6 +325,158 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/15/pandas-handbook-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/15/pandas-handbook-10/" itemprop="url">Pandas手册（10）- 数据转换</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T08:00:00+08:00">
+                2017-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Python<br>Pandas</p>
+<hr>
+<p>这里接着上一篇，继续记录下pandas中数据处理方面的函数</p>
+<h1 id="1-重复数据"><a href="#1-重复数据" class="headerlink" title="1.  重复数据"></a>1.  重复数据</h1><p>结果集中，可能会有重复数据，有函数可以做去重操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#判断数据是否重复</span></div><div class="line">DataFrame.duplicated(subset=<span class="keyword">None</span>, keep=<span class="string">'first'</span>)</div><div class="line">Return boolean Series denoting duplicate rows, optionally only considering certain columns</div><div class="line"></div><div class="line"><span class="comment">#删除重复记录</span></div><div class="line">DataFrame.drop_duplicates(subset=<span class="keyword">None</span>, keep=<span class="string">'first'</span>, inplace=<span class="keyword">False</span>)</div><div class="line">Return DataFrame <span class="keyword">with</span> duplicate rows removed, optionally only considering certain columns</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">data = pd.DataFrame(&#123;<span class="string">'K1'</span>:[<span class="string">'one'</span>]*<span class="number">3</span>+[<span class="string">'two'</span>]*<span class="number">4</span>,<span class="string">'k2'</span>:[<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>]&#125;)</div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">100</span>]: </div><div class="line">    K1  k2</div><div class="line"><span class="number">0</span>  one   <span class="number">1</span></div><div class="line"><span class="number">1</span>  one   <span class="number">1</span></div><div class="line"><span class="number">2</span>  one   <span class="number">2</span></div><div class="line"><span class="number">3</span>  two   <span class="number">3</span></div><div class="line"><span class="number">4</span>  two   <span class="number">3</span></div><div class="line"><span class="number">5</span>  two   <span class="number">4</span></div><div class="line"><span class="number">6</span>  two   <span class="number">4</span></div><div class="line"></div><div class="line"><span class="comment">#keep参数，默认是first，会以第一个为准，后面再出现就是True</span></div><div class="line">data.duplicated()</div><div class="line">Out[<span class="number">103</span>]: </div><div class="line"><span class="number">0</span>    <span class="keyword">False</span></div><div class="line"><span class="number">1</span>     <span class="keyword">True</span></div><div class="line"><span class="number">2</span>    <span class="keyword">False</span></div><div class="line"><span class="number">3</span>    <span class="keyword">False</span></div><div class="line"><span class="number">4</span>     <span class="keyword">True</span></div><div class="line"><span class="number">5</span>    <span class="keyword">False</span></div><div class="line"><span class="number">6</span>     <span class="keyword">True</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line">data.duplicated(keep=<span class="string">'last'</span>)</div><div class="line">Out[<span class="number">116</span>]: </div><div class="line"><span class="number">0</span>     <span class="keyword">True</span></div><div class="line"><span class="number">1</span>    <span class="keyword">False</span></div><div class="line"><span class="number">2</span>    <span class="keyword">False</span></div><div class="line"><span class="number">3</span>     <span class="keyword">True</span></div><div class="line"><span class="number">4</span>    <span class="keyword">False</span></div><div class="line"><span class="number">5</span>     <span class="keyword">True</span></div><div class="line"><span class="number">6</span>    <span class="keyword">False</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line"><span class="comment">#这里drop也是一样的，可以用keep控制保留第一次出现的，还是最后1次出现的</span></div><div class="line">data.drop_duplicates()</div><div class="line">Out[<span class="number">104</span>]: </div><div class="line">    K1  k2</div><div class="line"><span class="number">0</span>  one   <span class="number">1</span></div><div class="line"><span class="number">2</span>  one   <span class="number">2</span></div><div class="line"><span class="number">3</span>  two   <span class="number">3</span></div><div class="line"><span class="number">5</span>  two   <span class="number">4</span></div></pre></td></tr></table></figure>
+<p>这2个函数，默认都是判断全部的列，也可以指定列<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">data[<span class="string">'v1'</span>]=range(<span class="number">7</span>)</div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">118</span>]: </div><div class="line">    K1  k2  v1</div><div class="line"><span class="number">0</span>  one   <span class="number">1</span>   <span class="number">0</span></div><div class="line"><span class="number">1</span>  one   <span class="number">1</span>   <span class="number">1</span></div><div class="line"><span class="number">2</span>  one   <span class="number">2</span>   <span class="number">2</span></div><div class="line"><span class="number">3</span>  two   <span class="number">3</span>   <span class="number">3</span></div><div class="line"><span class="number">4</span>  two   <span class="number">3</span>   <span class="number">4</span></div><div class="line"><span class="number">5</span>  two   <span class="number">4</span>   <span class="number">5</span></div><div class="line"><span class="number">6</span>  two   <span class="number">4</span>   <span class="number">6</span></div><div class="line"></div><div class="line">data.duplicated()</div><div class="line">Out[<span class="number">119</span>]: </div><div class="line"><span class="number">0</span>    <span class="keyword">False</span></div><div class="line"><span class="number">1</span>    <span class="keyword">False</span></div><div class="line"><span class="number">2</span>    <span class="keyword">False</span></div><div class="line"><span class="number">3</span>    <span class="keyword">False</span></div><div class="line"><span class="number">4</span>    <span class="keyword">False</span></div><div class="line"><span class="number">5</span>    <span class="keyword">False</span></div><div class="line"><span class="number">6</span>    <span class="keyword">False</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line">data.duplicated(subset=[<span class="string">'K1'</span>])</div><div class="line">Out[<span class="number">120</span>]: </div><div class="line"><span class="number">0</span>    <span class="keyword">False</span></div><div class="line"><span class="number">1</span>     <span class="keyword">True</span></div><div class="line"><span class="number">2</span>     <span class="keyword">True</span></div><div class="line"><span class="number">3</span>    <span class="keyword">False</span></div><div class="line"><span class="number">4</span>     <span class="keyword">True</span></div><div class="line"><span class="number">5</span>     <span class="keyword">True</span></div><div class="line"><span class="number">6</span>     <span class="keyword">True</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line">data.drop_duplicates(subset=[<span class="string">'K1'</span>])</div><div class="line">Out[<span class="number">121</span>]: </div><div class="line">    K1  k2  v1</div><div class="line"><span class="number">0</span>  one   <span class="number">1</span>   <span class="number">0</span></div><div class="line"><span class="number">3</span>  two   <span class="number">3</span>   <span class="number">3</span></div></pre></td></tr></table></figure></p>
+<h1 id="2-利用函数或映射进行数据转换"><a href="#2-利用函数或映射进行数据转换" class="headerlink" title="2. 利用函数或映射进行数据转换"></a>2. 利用函数或映射进行数据转换</h1><p>有的时候，我们想要对Series和dataframe中的每个元素做些转换，就用到了这个函数，和Python内置的map函数类似<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Series.map(arg, na_action=<span class="keyword">None</span>)</div><div class="line">Map values of Series using input correspondence (which can be a dict, Series, <span class="keyword">or</span> function)</div><div class="line">arg : function, dict, <span class="keyword">or</span> Series</div><div class="line"></div><div class="line">DataFrame.applymap(func)</div><div class="line">Apply a function to a DataFrame that <span class="keyword">is</span> intended to operate elementwise, i.e. like doing map(func, series) <span class="keyword">for</span> each series <span class="keyword">in</span> the DataFrame</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">s1 = pd.Series(range(<span class="number">10</span>))</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">133</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">0</span></div><div class="line"><span class="number">1</span>    <span class="number">1</span></div><div class="line"><span class="number">2</span>    <span class="number">2</span></div><div class="line"><span class="number">3</span>    <span class="number">3</span></div><div class="line"><span class="number">4</span>    <span class="number">4</span></div><div class="line"><span class="number">5</span>    <span class="number">5</span></div><div class="line"><span class="number">6</span>    <span class="number">6</span></div><div class="line"><span class="number">7</span>    <span class="number">7</span></div><div class="line"><span class="number">8</span>    <span class="number">8</span></div><div class="line"><span class="number">9</span>    <span class="number">9</span></div><div class="line">dtype: int32</div><div class="line"></div><div class="line">s1.map(<span class="keyword">lambda</span> x:x+<span class="number">10</span>)</div><div class="line">Out[<span class="number">134</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">10</span></div><div class="line"><span class="number">1</span>    <span class="number">11</span></div><div class="line"><span class="number">2</span>    <span class="number">12</span></div><div class="line"><span class="number">3</span>    <span class="number">13</span></div><div class="line"><span class="number">4</span>    <span class="number">14</span></div><div class="line"><span class="number">5</span>    <span class="number">15</span></div><div class="line"><span class="number">6</span>    <span class="number">16</span></div><div class="line"><span class="number">7</span>    <span class="number">17</span></div><div class="line"><span class="number">8</span>    <span class="number">18</span></div><div class="line"><span class="number">9</span>    <span class="number">19</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s1.map(<span class="keyword">lambda</span> x:x*<span class="number">-1</span>)</div><div class="line">Out[<span class="number">135</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">0</span></div><div class="line"><span class="number">1</span>   <span class="number">-1</span></div><div class="line"><span class="number">2</span>   <span class="number">-2</span></div><div class="line"><span class="number">3</span>   <span class="number">-3</span></div><div class="line"><span class="number">4</span>   <span class="number">-4</span></div><div class="line"><span class="number">5</span>   <span class="number">-5</span></div><div class="line"><span class="number">6</span>   <span class="number">-6</span></div><div class="line"><span class="number">7</span>   <span class="number">-7</span></div><div class="line"><span class="number">8</span>   <span class="number">-8</span></div><div class="line"><span class="number">9</span>   <span class="number">-9</span></div><div class="line">dtype: int64</div></pre></td></tr></table></figure>
+<p>这个map，不单单可以是函数，还可以是 Series或dict<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">x = pd.Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], index=[<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>])</div><div class="line"></div><div class="line">y = pd.Series([<span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="string">'baz'</span>], index=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line"></div><div class="line">x</div><div class="line">Out[<span class="number">142</span>]: </div><div class="line">one      <span class="number">1</span></div><div class="line">two      <span class="number">2</span></div><div class="line">three    <span class="number">3</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">y</div><div class="line">Out[<span class="number">143</span>]: </div><div class="line"><span class="number">1</span>    foo</div><div class="line"><span class="number">2</span>    bar</div><div class="line"><span class="number">3</span>    baz</div><div class="line">dtype: object</div><div class="line"></div><div class="line">x.map(y)</div><div class="line">Out[<span class="number">144</span>]: </div><div class="line">one      foo</div><div class="line">two      bar</div><div class="line">three    baz</div><div class="line">dtype: object</div><div class="line"></div><div class="line">z = &#123;<span class="number">1</span>: <span class="string">'A'</span>, <span class="number">2</span>: <span class="string">'B'</span>, <span class="number">3</span>: <span class="string">'C'</span>&#125;</div><div class="line"></div><div class="line">x.map(z)</div><div class="line">Out[<span class="number">146</span>]: </div><div class="line">one      A</div><div class="line">two      B</div><div class="line">three    C</div><div class="line">dtype: object</div></pre></td></tr></table></figure></p>
+<h1 id="3-替换值"><a href="#3-替换值" class="headerlink" title="3.替换值"></a>3.替换值</h1><p>在字符串中，我们经常会用到replace函数，用来替换指定的值，pandas中也有<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">DataFrame.replace(to_replace=<span class="keyword">None</span>, value=<span class="keyword">None</span>, inplace=<span class="keyword">False</span>, limit=<span class="keyword">None</span>, regex=<span class="keyword">False</span>, method=<span class="string">'pad'</span>, axis=<span class="keyword">None</span>)</div><div class="line">Replace values given <span class="keyword">in</span> ‘to_replace’ <span class="keyword">with</span> ‘value’.</div><div class="line">to_replace : str, regex, list, dict, Series, numeric, <span class="keyword">or</span> <span class="keyword">None</span></div><div class="line"></div><div class="line">Series.replace(to_replace=<span class="keyword">None</span>, value=<span class="keyword">None</span>, inplace=<span class="keyword">False</span>, limit=<span class="keyword">None</span>, regex=<span class="keyword">False</span>, method=<span class="string">'pad'</span>, axis=<span class="keyword">None</span>)</div><div class="line">Replace values given <span class="keyword">in</span> ‘to_replace’ <span class="keyword">with</span> ‘value’.</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">data = pd.Series([<span class="number">1.</span>, <span class="number">-999.</span>, <span class="number">2.</span>, <span class="number">-999.</span>, <span class="number">-1000.</span>, <span class="number">3.</span>])</div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">150</span>]: </div><div class="line"><span class="number">0</span>       <span class="number">1.0</span></div><div class="line"><span class="number">1</span>    <span class="number">-999.0</span></div><div class="line"><span class="number">2</span>       <span class="number">2.0</span></div><div class="line"><span class="number">3</span>    <span class="number">-999.0</span></div><div class="line"><span class="number">4</span>   <span class="number">-1000.0</span></div><div class="line"><span class="number">5</span>       <span class="number">3.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#我们将-999这个异常值替换掉</span></div><div class="line">data.replace(<span class="number">-999</span>,np.nan)</div><div class="line">Out[<span class="number">151</span>]: </div><div class="line"><span class="number">0</span>       <span class="number">1.0</span></div><div class="line"><span class="number">1</span>       NaN</div><div class="line"><span class="number">2</span>       <span class="number">2.0</span></div><div class="line"><span class="number">3</span>       NaN</div><div class="line"><span class="number">4</span>   <span class="number">-1000.0</span></div><div class="line"><span class="number">5</span>       <span class="number">3.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#同时替换多个值，也可以</span></div><div class="line">data.replace([<span class="number">-999</span>,<span class="number">-1000</span>],np.nan)</div><div class="line">Out[<span class="number">152</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">1.0</span></div><div class="line"><span class="number">1</span>    NaN</div><div class="line"><span class="number">2</span>    <span class="number">2.0</span></div><div class="line"><span class="number">3</span>    NaN</div><div class="line"><span class="number">4</span>    NaN</div><div class="line"><span class="number">5</span>    <span class="number">3.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">data.replace([<span class="number">-999</span>,<span class="number">-1000</span>],[np.nan,<span class="number">0</span>])</div><div class="line">Out[<span class="number">153</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">1.0</span></div><div class="line"><span class="number">1</span>    NaN</div><div class="line"><span class="number">2</span>    <span class="number">2.0</span></div><div class="line"><span class="number">3</span>    NaN</div><div class="line"><span class="number">4</span>    <span class="number">0.0</span></div><div class="line"><span class="number">5</span>    <span class="number">3.0</span></div><div class="line">dtype: float64</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/14/the-newest-area-info-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -946,168 +1098,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/10/python-handbook-08/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/10/python-handbook-08/" itemprop="url">Python基础（8）- 关键字yield</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T10:00:00+08:00">
-                2017-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>前几天遇到了这个yield，不知道是干嘛的，这里学习整理下，主要参考了：<br><a href="https://ask.hellobi.com/blog/pythoneer/7476" target="_blank" rel="external">如何理解Python关键字yield </a><br><a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014317793224211f408912d9c04f2eac4d2af0d5d3d7b2000" target="_blank" rel="external">Python高级特性</a></p>
-<p>上面介绍的都很好，这里就根据自己的理解，简单整理下。</p>
-<p>#1. 什么是迭代</p>
-<blockquote>
-<p>常见的list、tuple等集合，我们会通过遍历，比如for循环来获取每一个元素，这就是迭代。这些可以遍历的对象，也叫做可迭代对象</p>
-</blockquote>
-<p>小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line">print(a)</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</div><div class="line">    print(i)</div><div class="line">    </div><div class="line">b = <span class="string">'abcd'</span></div><div class="line">print(b)</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> b:</div><div class="line">    print(i)</div><div class="line">    </div><div class="line">c = &#123;<span class="string">'name'</span>:<span class="string">'lufei'</span>,<span class="string">'age'</span>:<span class="number">20</span>&#125;</div><div class="line">print(c)</div><div class="line"><span class="keyword">for</span> k <span class="keyword">in</span> c:</div><div class="line">    print(k)</div><div class="line"><span class="keyword">for</span> v <span class="keyword">in</span> c.values():</div><div class="line">    print(v)</div><div class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> c.items():</div><div class="line">    print(k,v)</div><div class="line"></div><div class="line"><span class="comment">#out</span></div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line">abcd</div><div class="line">a</div><div class="line">b</div><div class="line">c</div><div class="line">d</div><div class="line">&#123;<span class="string">'name'</span>: <span class="string">'lufei'</span>, <span class="string">'age'</span>: <span class="number">20</span>&#125;</div><div class="line">name</div><div class="line">age</div><div class="line">lufei</div><div class="line"><span class="number">20</span></div><div class="line">name lufei</div><div class="line">age <span class="number">20</span></div></pre></td></tr></table></figure></p>
-<p>我们怎样判断一个对象是否可以去迭代呢？可以使用collections模块的Iterable<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">print(type(a),isinstance(a,Iterable))</div><div class="line">print(type(b),isinstance(b,Iterable))</div><div class="line">print(type(c),isinstance(c,Iterable))</div><div class="line">print(type(<span class="number">123</span>),isinstance(<span class="number">123</span>,Iterable))</div><div class="line"></div><div class="line"><span class="comment">#out</span></div><div class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">list</span>'&gt; <span class="title">True</span></span></div><div class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">str</span>'&gt; <span class="title">True</span></span></div><div class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">dict</span>'&gt; <span class="title">True</span></span></div><div class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">int</span>'&gt; <span class="title">False</span></span></div></pre></td></tr></table></figure></p>
-<h1 id="2-列表生成式-List-Comprehensions"><a href="#2-列表生成式-List-Comprehensions" class="headerlink" title="2. 列表生成式(List Comprehensions)"></a>2. 列表生成式(List Comprehensions)</h1><p>一个非常简单的方式来生成list，像这样：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">range(<span class="number">10</span>)</div><div class="line">Out[<span class="number">56</span>]: range(<span class="number">0</span>, <span class="number">10</span>)</div><div class="line"></div><div class="line">list(range(<span class="number">10</span>))</div><div class="line">Out[<span class="number">57</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</div><div class="line"></div><div class="line">list(x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>))</div><div class="line">Out[<span class="number">58</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</div><div class="line"></div><div class="line">list(x*x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>))</div><div class="line">Out[<span class="number">59</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>, <span class="number">36</span>, <span class="number">49</span>, <span class="number">64</span>, <span class="number">81</span>]</div><div class="line"></div><div class="line">[x*x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">3</span>)]</div><div class="line">Out[<span class="number">60</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>]</div><div class="line"></div><div class="line"><span class="comment">#上面的for后面还可以加上if判断</span></div><div class="line">[x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>) <span class="keyword">if</span> x&gt;<span class="number">5</span>]</div><div class="line">Out[<span class="number">61</span>]: [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</div><div class="line"></div><div class="line"><span class="comment">#for循环也可以嵌套</span></div><div class="line">[x+y <span class="keyword">for</span> x <span class="keyword">in</span> <span class="string">'abc'</span> <span class="keyword">for</span> y <span class="keyword">in</span> <span class="string">'xyz'</span>]</div><div class="line">Out[<span class="number">62</span>]: [<span class="string">'ax'</span>, <span class="string">'ay'</span>, <span class="string">'az'</span>, <span class="string">'bx'</span>, <span class="string">'by'</span>, <span class="string">'bz'</span>, <span class="string">'cx'</span>, <span class="string">'cy'</span>, <span class="string">'cz'</span>]</div></pre></td></tr></table></figure></p>
-<h1 id="3-迭代器"><a href="#3-迭代器" class="headerlink" title="3.迭代器"></a>3.迭代器</h1><p>  前面，我们说了for循环和可迭代对象，像这种可以使用for循环不断取出先一个元素的对象，就叫做迭代器（Iterator）。迭代器不单单可以使用for循环来遍历，<br>还可以使用next()函数不断获取下一个元素，当没有下一个元素时，会抛出StopIteration异常。<br>我们可以使用collections模块的Iterator来判断一个对象是否为迭代器</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Iterator</div><div class="line"></div><div class="line">isinstance([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],Iterator)</div><div class="line">Out[<span class="number">2</span>]: <span class="keyword">False</span></div><div class="line"></div><div class="line">isinstance(<span class="string">'abc'</span>,Iterator)</div><div class="line">Out[<span class="number">3</span>]: <span class="keyword">False</span></div><div class="line"></div><div class="line">isinstance(&#123;<span class="string">'name'</span>:<span class="string">'lufei'</span>,<span class="string">'age'</span>:<span class="number">20</span>&#125;,Iterator)</div><div class="line">Out[<span class="number">4</span>]: <span class="keyword">False</span></div></pre></td></tr></table></figure>
-<p>创建一个迭代器有3中方式：</p>
-<ul>
-<li>为对象创建 <strong>iter</strong>()和<strong>next</strong>()方法</li>
-<li>内置的iter()可以将可迭代对象转换为迭代器</li>
-<li>生成器</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"></div><div class="line">type(iter(a))</div><div class="line">Out[<span class="number">6</span>]: list_iterator</div><div class="line"></div><div class="line">isinstance(iter(a),Iterator)</div><div class="line">Out[<span class="number">7</span>]: <span class="keyword">True</span></div></pre></td></tr></table></figure>
-<h1 id="4-生成器"><a href="#4-生成器" class="headerlink" title="4. 生成器"></a>4. 生成器</h1><p>上面，我们使用list()或者[]，很简单方便的生成了一个列表，只要我们将[]替换为()，就创建一个一个generator。生成器可以一边循环，一边计算生成下一个元素，而不是像list一样，一下生成所有的数据。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">(x+y <span class="keyword">for</span> x <span class="keyword">in</span> <span class="string">'abc'</span> <span class="keyword">for</span> y <span class="keyword">in</span> <span class="string">'xyz'</span>)</div><div class="line">Out[<span class="number">63</span>]: &lt;generator object &lt;genexpr&gt; at <span class="number">0x0000021AE0FC9D58</span>&gt;</div><div class="line"></div><div class="line">a = (x+y <span class="keyword">for</span> x <span class="keyword">in</span> <span class="string">'abc'</span> <span class="keyword">for</span> y <span class="keyword">in</span> <span class="string">'xyz'</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">66</span>]: &lt;generator object &lt;genexpr&gt; at <span class="number">0x0000021AE0FC9518</span>&gt;</div><div class="line"></div><div class="line">isinstance(a,Iterator)</div><div class="line">Out[<span class="number">67</span>]: <span class="keyword">True</span></div></pre></td></tr></table></figure></p>
-<p>通常，我们使用yield语句可以返回一个生成器，很多例子，这里都是举一个斐波那契数列<br>yield类似return，只不过他返回的是生成器，调用了next()之后，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fab</span><span class="params">(n)</span>:</span></div><div class="line">    a,b,i = <span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span></div><div class="line">    <span class="keyword">while</span> i&lt;n:</div><div class="line">        print(b)</div><div class="line">        a,b = b,a+b</div><div class="line">        i+=<span class="number">1</span></div><div class="line"></div><div class="line">fab(<span class="number">5</span>)</div><div class="line"></div><div class="line"><span class="comment">#out</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">5</span></div><div class="line"></div><div class="line"><span class="comment">#使用yield改造</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fab</span><span class="params">(n)</span>:</span></div><div class="line">    a,b,i = <span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span></div><div class="line">    <span class="keyword">while</span> i&lt;n:</div><div class="line">        <span class="keyword">yield</span> b</div><div class="line">        a,b = b,a+b</div><div class="line">        i+=<span class="number">1</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> fab(<span class="number">5</span>):</div><div class="line">    print(i)</div></pre></td></tr></table></figure></p>
-<p>我们调用fab的时候，执行到yield，会返回一个生成器，当调用next()后，程序会回到yield停止的地方继续往下执行<br>这样，就是每次只生成当前元素，而不是一下子生成所有的元素；<br>当然，for循环替我们调用了next()，并处理了StopIteration异常。<br>好了，梳理好上面这些概念，到yield这里，其实还好，平时在理解下，多用用，好，就到这。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1162,7 +1152,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1184,7 +1174,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

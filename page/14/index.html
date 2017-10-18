@@ -325,6 +325,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/16/python-database-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/16/python-database-04/" itemprop="url">SQLAlchemy手册（四）- 关联查询</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-16T10:00:00+08:00">
+                2017-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>上一回，我们介绍了，常用的单查询SQL，这里，我们介绍下，怎样进行关联查询，就是join的使用<br>数据库使用表信息：<br>t_class<br><img src="http://upload-images.jianshu.io/upload_images/76024-ef7520ec11c905d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>t_student<br><img src="http://upload-images.jianshu.io/upload_images/76024-2e40b06a15566531.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>t_student表存有t_class表的id，获取学生所属的班级信息<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> MetaData, create_engine</div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, Date, or_, and_</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> ForeignKey</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> relationship</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> text, func</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line">engine = create_engine(<span class="string">'postgresql://postgres:shishi@localhost:5432/postgres'</span>)</div><div class="line">Session = sessionmaker(bind=engine)</div><div class="line"></div><div class="line">session = Session()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StuClass</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'t_class'</span></div><div class="line"></div><div class="line"></div><div class="line">    id = Column(Integer,primary_key=<span class="keyword">True</span>)</div><div class="line">    class_name = Column(String(<span class="number">10</span>))</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"&lt;StuClass(id='%s', name='%s')&gt;"</span> % (self.id, self.class_name)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'t_student'</span></div><div class="line"></div><div class="line">    id = Column(Integer , primary_key=<span class="keyword">True</span>)</div><div class="line">    stu_name = Column(String(<span class="number">10</span>))</div><div class="line">    class_id = Column(Integer , ForeignKey(<span class="string">'t_class.id'</span>))</div><div class="line"></div><div class="line">    stuClass = relationship(<span class="string">"StuClass"</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"&lt;Student(id='%s', stu_name='%s', class_id='%s', class_name='%s')&gt;"</span> % (self.id, self.stu_name,self.class_id,self.stuClass.class_name)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#使用filter定义2张表的关系</span></div><div class="line"><span class="keyword">for</span> stu, stuc <span class="keyword">in</span> session.query(Student, StuClass).filter(Student.class_id == StuClass.id).all():</div><div class="line">    <span class="keyword">print</span> stu,stuc</div><div class="line"></div><div class="line"><span class="comment">#使用join需要ForeignKey</span></div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> session.query(Student).join(StuClass).filter(StuClass.id == <span class="number">803</span>).all():</div><div class="line">    <span class="keyword">print</span> x</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-fc458339c2d78ba8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>下面，我们再写一个统计班级人数的SQL<br><img src="http://upload-images.jianshu.io/upload_images/76024-8b65477439073d47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>用SQLAlchemy来写的话，是这样的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> rs <span class="keyword">in</span> session.query(StuClass.class_name,func.count(<span class="string">'*'</span>).label(<span class="string">'stu_count'</span>)).join(Student).group_by(StuClass.class_name).order_by(StuClass.class_name).all():</div><div class="line">    print(<span class="string">'班级:'</span> + rs[<span class="number">0</span>] + <span class="string">' 人数：'</span> + str(rs[<span class="number">1</span>]))</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-be088e8ba847918f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>好了，同样的功能，我们换成子查询练习下<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">select</span> a.class_name,b.num <span class="keyword">from</span> t_class a</div><div class="line"><span class="keyword">left</span> <span class="keyword">join</span> (</div><div class="line">    <span class="keyword">select</span> class_id , <span class="keyword">count</span>(<span class="number">1</span>) <span class="keyword">num</span> <span class="keyword">from</span> t_student <span class="keyword">group</span> <span class="keyword">by</span> class_id</div><div class="line">)b <span class="keyword">on</span> b.class_id = a.id</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> a.class_name</div></pre></td></tr></table></figure></p>
+<p>那SQLAlchemy是这样滴：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> sub = session.query(Student.class_id,func.count(<span class="string">'*'</span>).label(<span class="string">'num'</span>)).group_by(Student.class_id).subquery()</div><div class="line"></div><div class="line"><span class="keyword">for</span> sc,num <span class="keyword">in</span> session.query(StuClass,sub.c.num).outerjoin(sub, StuClass.id == sub.c.class_id).order_by(StuClass.class_name).all():</div><div class="line">    <span class="keyword">print</span> sc,num</div></pre></td></tr></table></figure></p>
+<p>今天暂时先到这里，后面的话，官网上例子挺全的，大家可以自行练习下，后续也会再整理</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/16/python-handbook-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -903,171 +1054,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/13/python-database-02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/13/python-database-02/" itemprop="url">SQLAlchemy手册（二）- 增删改查</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-13T10:00:00+08:00">
-                2017-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-数据库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>好了，这里，我们来看看，怎么使用SQLAlchemy，先从最简单的增删改查来看看，这里我们使用PostgreSQL数据库</p>
-<h1 id="1-连接PG数据库"><a href="#1-连接PG数据库" class="headerlink" title="1. 连接PG数据库"></a>1. 连接PG数据库</h1><p><img src="http://upload-images.jianshu.io/upload_images/76024-6b93949a41c73de0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>因为SQLAlchemy底层连接，还是使用这些框架，所以我们想要连接PostgreSQL，还得先安装下这些，这里我们使用psycopg2<br><img src="http://upload-images.jianshu.io/upload_images/76024-f06e472df6b056b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>不装的话，我们连接时，会报错<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install psycopg2</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-40b4e6d434365f85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>安装好后，我们来看看怎样连接PG<br>我们再SQLAlchemy中连接数据库的话，需要使用这个叫做Engine的类，<br>关于介绍我们可以看官方的教程：<a href="http://docs.sqlalchemy.org/en/rel_1_1/core/engines.html" target="_blank" rel="external">http://docs.sqlalchemy.org/en/rel_1_1/core/engines.html</a><br><img src="http://upload-images.jianshu.io/upload_images/76024-af61c4fc6caa6fdb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>他可以适配大部分数据库，大家可以自行尝试下<br><img src="http://upload-images.jianshu.io/upload_images/76024-a83f56d963afee9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</div><div class="line"></div><div class="line">engine = create_engine(<span class="string">'postgresql://postgres:shishi@172.16.201.12:5432/postgres'</span>,echo=<span class="keyword">True</span>)</div><div class="line"></div><div class="line"><span class="keyword">print</span> engine</div></pre></td></tr></table></figure>
-<h1 id="2-create-table-drop-table"><a href="#2-create-table-drop-table" class="headerlink" title="2. create table/drop table"></a>2. create table/drop table</h1><p>这里，我们来看看怎样用orm的思想去create table、drop table<br>按照orm的思想，这里还有一个MetaData类得看下<br><img src="http://upload-images.jianshu.io/upload_images/76024-7046c83fd79175e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这里的示例，我们定义一个table“t_users”,有2个字段，id，user_name<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Table, Column, Integer, String, MetaData, create_engine</div><div class="line"></div><div class="line">engine = create_engine(<span class="string">'postgresql://postgres:shishi@172.16.201.12:5432/postgres'</span>,echo=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">metadata = MetaData()</div><div class="line"></div><div class="line">users = Table(<span class="string">'t_users'</span>,metadata,</div><div class="line">                Column(<span class="string">'id'</span>,Integer),</div><div class="line">                Column(<span class="string">'user_name'</span>,String(<span class="number">20</span>))</div><div class="line">        )</div><div class="line"></div><div class="line"><span class="comment">#do the drop first</span></div><div class="line">metadata.drop(engine)</div><div class="line"></div><div class="line"><span class="comment">#now create the table</span></div><div class="line">metadata.create(engine)</div></pre></td></tr></table></figure></p>
-<p>我们执行下<br>上面，我们create_engine的时候，指定了echo=True，我们就可以看到输出语句了<br>这里的drop，有一个参数，checkfirst=True<br>,默认就是TRUE，会判断该表是否存在，如果存在就执行删除，create也是一样的，会先判断是否存在<br><img src="http://upload-images.jianshu.io/upload_images/76024-f12075d0f342650a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>我们看看数据库<br><img src="http://upload-images.jianshu.io/upload_images/76024-488a5c91b77b5c1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>–晚上又看了看，感觉上面的方法可以使用，但是，貌似不是ORM思想的方法，又看了看官方的文档，自己先试试，明天再接着整理</p>
-<h1 id="3-查询数据"><a href="#3-查询数据" class="headerlink" title="3. 查询数据"></a>3. 查询数据</h1><p>好了，上面的Table方式，可以用来创建表，这里<br>参考官方的教程：<a href="http://docs.sqlalchemy.org/en/rel_1_1/orm/tutorial.html" target="_blank" rel="external">http://docs.sqlalchemy.org/en/rel_1_1/orm/tutorial.html</a></p>
-<h2 id="3-1-定义Mapping类"><a href="#3-1-定义Mapping类" class="headerlink" title="3.1 定义Mapping类"></a>3.1 定义Mapping类</h2><p>和Java里的一样，我们得定一些实体类，和数据库中的表做映射<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String</div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'some_table'</span></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    name =  Column(String(<span class="number">50</span>))</div></pre></td></tr></table></figure></p>
-<p>像上面这样，我们就定义了一个类，我们来实际写一个看看<br>这里，我们映射了数据库中的“t_users”表，有2个字段，“id”和“user_name”<br><img src="http://upload-images.jianshu.io/upload_images/76024-0968f5858c5022f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></div><div class="line">        __tablename__=<span class="string">'t_users'</span></div><div class="line"></div><div class="line">        id = Column(Integer,primary_key=<span class="keyword">True</span>)</div><div class="line">        user_name = Column(String(<span class="number">10</span>))</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">                <span class="keyword">return</span> <span class="string">"&lt;User(id='%s', user_name='%s')&gt;"</span> % (self.id, self.user_name)</div></pre></td></tr></table></figure>
-<h2 id="3-2-session"><a href="#3-2-session" class="headerlink" title="3.2 session"></a>3.2 session</h2><p>下面，我们就来查询下数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></div><div class="line">        __tablename__=<span class="string">'t_users'</span></div><div class="line"></div><div class="line">        id = Column(Integer,primary_key=<span class="keyword">True</span>)</div><div class="line">        user_name = Column(String(<span class="number">10</span>))</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">                <span class="keyword">return</span> <span class="string">"&lt;User(id='%s', user_name='%s')&gt;"</span> % (self.id, self.user_name)</div><div class="line"></div><div class="line">engine = create_engine(<span class="string">'postgresql://postgres:shishi@172.16.201.12:5432/postgres'</span>,echo=<span class="keyword">True</span>)</div><div class="line">Session = sessionmaker(bind=engine)</div><div class="line">session = Session()</div><div class="line"></div><div class="line"><span class="comment">#query all users</span></div><div class="line">user_list = session.query(User).all()</div><div class="line"><span class="keyword">print</span> user_list</div></pre></td></tr></table></figure></p>
-<p>上面的话，我们还用到了session，这里的session，暂时理解为，可以开一个事务，处理我们的逻辑，我们执行select的话，也需要这个<br>这里，我们就直接查出所有的记录就可以了</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-8d556afb02c09342.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
-<h1 id="4-insert"><a href="#4-insert" class="headerlink" title="4. insert"></a>4. insert</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">new_user = User(id=<span class="number">666</span>,user_name=<span class="string">'ayang'</span>)</div><div class="line">session.add(new_user)</div><div class="line">session.commit()</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-9072ff2803b1d2f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h1 id="5-update"><a href="#5-update" class="headerlink" title="5.update"></a>5.update</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#update the user</span></div><div class="line">update_user = session.query(User).filter_by(id=<span class="number">666</span>).first()</div><div class="line"><span class="keyword">print</span> update_user</div><div class="line"></div><div class="line">update_user.user_name=<span class="string">'apple'</span></div><div class="line">session.commit()</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-73e8a819df387063.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1122,7 +1108,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1144,7 +1130,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
