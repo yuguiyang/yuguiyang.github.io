@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-1ce469095a15b9ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-5750eafd236d2745.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-608826b1e0bb4648.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-10-20T01:47:31.161Z">
+<meta property="og:updated_time" content="2017-10-20T01:51:49.411Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL-每周练习(2017-10-20)">
 <meta name="twitter:description" content="MySQL每周练习 本周我们来一道数据处理的练习题。 数据背景不知道大家学会爬虫了没，拉勾网的数据大家会爬取了吗？这道题和拉勾网有关哦。假设你已经学会爬取数据了，可以将数据爬取下来，数据可能是这个样子(demo库中的tm_lagou_data表)：1234567891011121314151617CREATE TABLE `tm_lagou_data` (  `city` varchar(20)">
@@ -442,7 +442,8 @@
 <p>在Python中，我们没有过多的处理，数据是这个样子的<br><img src="http://upload-images.jianshu.io/upload_images/76024-81e13eefdf889f63.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>这一次呢，我们只需要关注一个字段即可company_industry，这是公司所属行业<br>这个行业呢，一般会有多个，像上海的这个挖财网，就是互联网+金融，有2个标签，中间是逗号分隔符</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/76024-ab333f17e91f01ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>###原始数据：<br>tm_lagou_data表中，company_industry（所属行业）字段可能会有多个值，并用逗号分隔<br><img src="http://upload-images.jianshu.io/upload_images/76024-1ce469095a15b9ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<a id="more"></a>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><h3 id="原始数据："><a href="#原始数据：" class="headerlink" title="原始数据："></a>原始数据：</h3><p>tm_lagou_data表中，company_industry（所属行业）字段可能会有多个值，并用逗号分隔<br><img src="http://upload-images.jianshu.io/upload_images/76024-1ce469095a15b9ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>我们的目的是把这个字段拆分，变成下面这样的数据</p>
 <h3 id="处理后数据："><a href="#处理后数据：" class="headerlink" title="处理后数据："></a>处理后数据：</h3><p><img src="http://upload-images.jianshu.io/upload_images/76024-5750eafd236d2745.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>为了解决上面的问题，我们需要掌握的知识点如下：</p>
@@ -697,7 +698,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据背景"><span class="nav-number">1.</span> <span class="nav-text">数据背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">2.</span> <span class="nav-text">问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#处理后数据："><span class="nav-number">2.1.</span> <span class="nav-text">处理后数据：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点"><span class="nav-number">3.</span> <span class="nav-text">知识点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附"><span class="nav-number">4.</span> <span class="nav-text">附</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据背景"><span class="nav-number">1.</span> <span class="nav-text">数据背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">2.</span> <span class="nav-text">问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原始数据："><span class="nav-number">2.1.</span> <span class="nav-text">原始数据：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理后数据："><span class="nav-number">2.2.</span> <span class="nav-text">处理后数据：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点"><span class="nav-number">3.</span> <span class="nav-text">知识点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附"><span class="nav-number">4.</span> <span class="nav-text">附</span></a></li></ol></div>
             
 
           </div>

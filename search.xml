@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[MySQL-每周练习(2017-10-20)]]></title>
     <url>%2F2017%2F10%2F18%2Fmysql-handbook-13%2F</url>
-    <content type="text"><![CDATA[MySQL每周练习 本周我们来一道数据处理的练习题。 数据背景不知道大家学会爬虫了没，拉勾网的数据大家会爬取了吗？这道题和拉勾网有关哦。假设你已经学会爬取数据了，可以将数据爬取下来，数据可能是这个样子(demo库中的tm_lagou_data表)：1234567891011121314151617CREATE TABLE `tm_lagou_data` ( `city` varchar(20) DEFAULT NULL COMMENT '城市', `company_short_name` varchar(100) DEFAULT NULL COMMENT '公司简称', `company_full_name` varchar(200) DEFAULT NULL COMMENT '公司全称', `company_industry` varchar(100) DEFAULT NULL COMMENT '所属行业', `company_location` varchar(100) DEFAULT NULL COMMENT '工作地点', `position_advantage` varchar(100) DEFAULT NULL COMMENT '岗位特点', `position_salary` varchar(20) DEFAULT NULL COMMENT '薪资', `position_workyear` varchar(20) DEFAULT NULL COMMENT '工作经验', `position_name` varchar(50) DEFAULT NULL COMMENT '职位名称', `position_first_type` varchar(100) DEFAULT NULL COMMENT '岗位类型-大类', `position_second_type` varchar(100) DEFAULT NULL COMMENT '岗位类型-小类', `position_lables` varchar(100) DEFAULT NULL COMMENT '岗位标签', `position_id` varchar(20) DEFAULT NULL COMMENT '岗位ID', `create_time` datetime DEFAULT NULL COMMENT '发布时间', `job_desc` text comment '岗位描述') ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='拉勾网-数据分析数据'; 在Python中，我们没有过多的处理，数据是这个样子的 这一次呢，我们只需要关注一个字段即可company_industry，这是公司所属行业这个行业呢，一般会有多个，像上海的这个挖财网，就是互联网+金融，有2个标签，中间是逗号分隔符 问题描述###原始数据：tm_lagou_data表中，company_industry（所属行业）字段可能会有多个值，并用逗号分隔 我们的目的是把这个字段拆分，变成下面这样的数据 处理后数据： 知识点为了解决上面的问题，我们需要掌握的知识点如下： 多表关联:MySQL-关联查询Mysql 连接的使用 字符串函数: https://dev.mysql.com/doc/refman/5.7/en/string-functions.html 附有了拆分后的数据，我们就可以看数据分析师的行业分布，哪个行业招的数据分析师最多，哪个行业招的最少了。]]></content>
+    <content type="text"><![CDATA[MySQL每周练习 本周我们来一道数据处理的练习题。 数据背景不知道大家学会爬虫了没，拉勾网的数据大家会爬取了吗？这道题和拉勾网有关哦。假设你已经学会爬取数据了，可以将数据爬取下来，数据可能是这个样子(demo库中的tm_lagou_data表)：1234567891011121314151617CREATE TABLE `tm_lagou_data` ( `city` varchar(20) DEFAULT NULL COMMENT '城市', `company_short_name` varchar(100) DEFAULT NULL COMMENT '公司简称', `company_full_name` varchar(200) DEFAULT NULL COMMENT '公司全称', `company_industry` varchar(100) DEFAULT NULL COMMENT '所属行业', `company_location` varchar(100) DEFAULT NULL COMMENT '工作地点', `position_advantage` varchar(100) DEFAULT NULL COMMENT '岗位特点', `position_salary` varchar(20) DEFAULT NULL COMMENT '薪资', `position_workyear` varchar(20) DEFAULT NULL COMMENT '工作经验', `position_name` varchar(50) DEFAULT NULL COMMENT '职位名称', `position_first_type` varchar(100) DEFAULT NULL COMMENT '岗位类型-大类', `position_second_type` varchar(100) DEFAULT NULL COMMENT '岗位类型-小类', `position_lables` varchar(100) DEFAULT NULL COMMENT '岗位标签', `position_id` varchar(20) DEFAULT NULL COMMENT '岗位ID', `create_time` datetime DEFAULT NULL COMMENT '发布时间', `job_desc` text comment '岗位描述') ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='拉勾网-数据分析数据'; 在Python中，我们没有过多的处理，数据是这个样子的 这一次呢，我们只需要关注一个字段即可company_industry，这是公司所属行业这个行业呢，一般会有多个，像上海的这个挖财网，就是互联网+金融，有2个标签，中间是逗号分隔符 问题描述原始数据：tm_lagou_data表中，company_industry（所属行业）字段可能会有多个值，并用逗号分隔 我们的目的是把这个字段拆分，变成下面这样的数据 处理后数据： 知识点为了解决上面的问题，我们需要掌握的知识点如下： 多表关联:MySQL-关联查询Mysql 连接的使用 字符串函数: https://dev.mysql.com/doc/refman/5.7/en/string-functions.html 附有了拆分后的数据，我们就可以看数据分析师的行业分布，哪个行业招的数据分析师最多，哪个行业招的最少了。]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -360,18 +360,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python异常（1）- module 'urllib' has no attribute 'urlopen']]></title>
-    <url>%2F2017%2F08%2F19%2Fpython-handbook-10%2F</url>
-    <content type="text"><![CDATA[今天想复习下BeautifulSoup，就把之前的代码拿过来测试，发现报错了 12345678910111213141516import urllibfrom bs4 import BeautifulSoup#加载网址，获取当前页面def getHTML(url) : page = urllib.urlopen(url) html = page.read() return htmlhtml = getHTML('https://movie.douban.com/top250')soup = BeautifulSoup(html, "html.parser")for img in soup.find_all('img'): print(img.get('src')) 查了下，发下是Python3中，需要引入的模块变了改一下就可以了1urllib.request.urlopen(url)]]></content>
-      <categories>
-        <category>Python-基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>异常</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Python中文分词-jieba]]></title>
     <url>%2F2017%2F08%2F19%2Fpython-handbook-11%2F</url>
     <content type="text"><![CDATA[刚刚在看Python的词云图，想要显示中文的时候，需要做一个分词，这里我们学习下jieba分词。 1. jieba中文分词jieba是Python中文分词的一个组件 github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba) 支持三种分词模式：精确模式，试图将句子最精确地切开，适合文本分析；全模式，把句子中所有的可以成词的词语都扫描出来, 速度非常快，但是不能解决歧义；搜索引擎模式，在精确模式的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词。支持繁体分词支持自定义词典MIT 授权协议 安装：1pip install jieba 官网上的小实例12345678910111213import jiebaseg_list = jieba.cut("我来到北京清华大学", cut_all=True)print("Full Mode: " + "/ ".join(seg_list)) # 全模式seg_list = jieba.cut("我来到北京清华大学", cut_all=False)print("Default Mode: " + "/ ".join(seg_list)) # 精确模式seg_list = jieba.cut("他来到了网易杭研大厦") # 默认是精确模式print(", ".join(seg_list))seg_list = jieba.cut_for_search("小明硕士毕业于中国科学院计算所，后在日本京都大学深造") # 搜索引擎模式print(", ".join(seg_list)) 12345678Building prefix dict from the default dictionary ...Dumping model to file cache C:\Users\YUGUIY~1\AppData\Local\Temp\jieba.cacheLoading model cost 0.884 seconds.Prefix dict has been built succesfully.Full Mode: 我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学Default Mode: 我/ 来到/ 北京/ 清华大学他, 来到, 了, 网易, 杭研, 大厦小明, 硕士, 毕业, 于, 中国, 科学, 学院, 科学院, 中国科学院, 计算, 计算所, ，, 后, 在, 日本, 京都, 大学, 日本京都大学, 深造 到这里，想要的功能其实已经足够了，官网还有很多其他的介绍内容，很强大，后面需要的时候，再来补充，接着回去改那个词云的了先。]]></content>
@@ -381,6 +369,18 @@
       <tags>
         <tag>Python</tag>
         <tag>分词</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python异常（1）- module 'urllib' has no attribute 'urlopen']]></title>
+    <url>%2F2017%2F08%2F19%2Fpython-handbook-10%2F</url>
+    <content type="text"><![CDATA[今天想复习下BeautifulSoup，就把之前的代码拿过来测试，发现报错了 12345678910111213141516import urllibfrom bs4 import BeautifulSoup#加载网址，获取当前页面def getHTML(url) : page = urllib.urlopen(url) html = page.read() return htmlhtml = getHTML('https://movie.douban.com/top250')soup = BeautifulSoup(html, "html.parser")for img in soup.find_all('img'): print(img.get('src')) 查了下，发下是Python3中，需要引入的模块变了改一下就可以了1urllib.request.urlopen(url)]]></content>
+      <categories>
+        <category>Python-基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>异常</tag>
       </tags>
   </entry>
   <entry>
