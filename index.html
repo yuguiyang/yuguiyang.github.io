@@ -467,6 +467,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/18/mysql-handbook-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/18/mysql-handbook-13/" itemprop="url">MySQL-每周练习(2017-10-20)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T20:00:00+08:00">
+                2017-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>MySQL<br>每周练习</p>
+<p>本周我们来一道数据处理的练习题。</p>
+<h2 id="数据背景"><a href="#数据背景" class="headerlink" title="数据背景"></a>数据背景</h2><p>不知道大家学会爬虫了没，拉勾网的数据大家会爬取了吗？这道题和拉勾网有关哦。<br>假设你已经学会爬取数据了，可以将数据爬取下来，数据可能是这个样子(demo库中的tm_lagou_data表)：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`tm_lagou_data`</span> (</div><div class="line">  <span class="string">`city`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'城市'</span>,</div><div class="line">  <span class="string">`company_short_name`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'公司简称'</span>,</div><div class="line">  <span class="string">`company_full_name`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'公司全称'</span>,</div><div class="line">  <span class="string">`company_industry`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'所属行业'</span>,</div><div class="line">  <span class="string">`company_location`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'工作地点'</span>,</div><div class="line">  <span class="string">`position_advantage`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'岗位特点'</span>,</div><div class="line">  <span class="string">`position_salary`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'薪资'</span>,</div><div class="line">  <span class="string">`position_workyear`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'工作经验'</span>,</div><div class="line">  <span class="string">`position_name`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'职位名称'</span>,</div><div class="line">  <span class="string">`position_first_type`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'岗位类型-大类'</span>,</div><div class="line">  <span class="string">`position_second_type`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'岗位类型-小类'</span>,</div><div class="line">  <span class="string">`position_lables`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'岗位标签'</span>,</div><div class="line">  <span class="string">`position_id`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'岗位ID'</span>,</div><div class="line">  <span class="string">`create_time`</span> datetime <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'发布时间'</span>,</div><div class="line">  <span class="string">`job_desc`</span> <span class="built_in">text</span> <span class="keyword">comment</span> <span class="string">'岗位描述'</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COMMENT</span>=<span class="string">'拉勾网-数据分析数据'</span>;</div></pre></td></tr></table></figure></p>
+<p>在Python中，我们没有过多的处理，数据是这个样子的<br><img src="http://upload-images.jianshu.io/upload_images/76024-81e13eefdf889f63.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这一次呢，我们只需要关注一个字段即可company_industry，这是公司所属行业<br>这个行业呢，一般会有多个，像上海的这个挖财网，就是互联网+金融，有2个标签，中间是逗号分隔符</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-ab333f17e91f01ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>###原始数据：<br>tm_lagou_data表中，company_industry（所属行业）字段可能会有多个值，并用逗号分隔<br><img src="http://upload-images.jianshu.io/upload_images/76024-1ce469095a15b9ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们的目的是把这个字段拆分，变成下面这样的数据</p>
+<h3 id="处理后数据："><a href="#处理后数据：" class="headerlink" title="处理后数据："></a>处理后数据：</h3><p><img src="http://upload-images.jianshu.io/upload_images/76024-5750eafd236d2745.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>为了解决上面的问题，我们需要掌握的知识点如下：</p>
+<ul>
+<li><p>多表关联:<br><a href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-03/">MySQL-关联查询</a><br><a href="http://www.runoob.com/mysql/mysql-join.html" target="_blank" rel="external">Mysql 连接的使用</a></p>
+</li>
+<li><p>字符串函数: <a href="https://dev.mysql.com/doc/refman/5.7/en/string-functions.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/string-functions.html</a></p>
+</li>
+</ul>
+<h2 id="附"><a href="#附" class="headerlink" title="附"></a>附</h2><p>有了拆分后的数据，我们就可以看数据分析师的行业分布，哪个行业招的数据分析师最多，哪个行业招的最少了。<br><img src="http://upload-images.jianshu.io/upload_images/76024-608826b1e0bb4648.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/18/jotting-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -574,156 +732,6 @@
 <p>总上所述，掌握了SQL，不会吃亏，不会上当，不说啦，我得学习SQL去了。</p>
 
           
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/18/mysql-handbook-13/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/18/mysql-handbook-13/" itemprop="url">MySQL-每周练习(2017-10-20)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T20:00:00+08:00">
-                2017-10-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index">
-                    <span itemprop="name">MySQL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>MySQL<br>每周练习</p>
-<p>本周我们来一道数据处理的练习题。</p>
-<p>还记得，小甲在周末培训的爬虫嘛，不知道大家学会了没，拉勾网的数据大家会爬取了吗？这道题和拉勾网有关哦。</p>
-<p>#数据背景<br>假设你已经学会爬取数据了，可以将数据爬取下来，数据可能是这个样子(demo库中的tm_lagou_data表)：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`tm_lagou_data`</span> (</div><div class="line">  <span class="string">`city`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'城市'</span>,</div><div class="line">  <span class="string">`company_short_name`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'公司简称'</span>,</div><div class="line">  <span class="string">`company_full_name`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'公司全称'</span>,</div><div class="line">  <span class="string">`company_industry`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'所属行业'</span>,</div><div class="line">  <span class="string">`company_location`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'工作地点'</span>,</div><div class="line">  <span class="string">`position_advantage`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'岗位特点'</span>,</div><div class="line">  <span class="string">`position_salary`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'薪资'</span>,</div><div class="line">  <span class="string">`position_workyear`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'工作经验'</span>,</div><div class="line">  <span class="string">`position_name`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'职位名称'</span>,</div><div class="line">  <span class="string">`position_first_type`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'岗位类型-大类'</span>,</div><div class="line">  <span class="string">`position_second_type`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'岗位类型-小类'</span>,</div><div class="line">  <span class="string">`position_lables`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'岗位标签'</span>,</div><div class="line">  <span class="string">`position_id`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'岗位ID'</span>,</div><div class="line">  <span class="string">`create_time`</span> datetime <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'发布时间'</span>,</div><div class="line">  <span class="string">`job_desc`</span> <span class="built_in">text</span> <span class="keyword">comment</span> <span class="string">'岗位描述'</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COMMENT</span>=<span class="string">'拉勾网-数据分析数据'</span>;</div></pre></td></tr></table></figure></p>
-<p>在Python中，我们没有过多的处理<br><img src="http://upload-images.jianshu.io/upload_images/76024-81e13eefdf889f63.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/18/mysql-handbook-13/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
