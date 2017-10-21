@@ -474,6 +474,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/06/python-handbook-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/python-handbook-06/" itemprop="url">Python基础（6）- zip</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T10:00:00+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这里记录一个函数的使用，zip<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">zip(iter1 [,iter2 [...]]) --&gt; zip object</div><div class="line"></div><div class="line">Return a zip object whose .__next__() method returns a tuple where</div><div class="line">the i-th element comes <span class="keyword">from</span> the i-th iterable argument.  The .__next__()</div><div class="line">method continues until the shortest iterable <span class="keyword">in</span> the argument sequence</div><div class="line"><span class="keyword">is</span> exhausted <span class="keyword">and</span> then it raises StopIteration.</div></pre></td></tr></table></figure></p>
+<p>我们可以传入一个或多个可迭代对象，然后将对应位置的元素封装成一个tuple，然后把所有tuple封装为list返回<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"></div><div class="line">y = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line"></div><div class="line">z = zip(x,y)</div><div class="line"></div><div class="line">print(z)</div><div class="line">&lt;zip object at <span class="number">0x000002D26251F208</span>&gt;</div><div class="line"></div><div class="line">print(list(z))</div><div class="line">[(<span class="number">1</span>, <span class="number">4</span>), (<span class="number">2</span>, <span class="number">5</span>), (<span class="number">3</span>, <span class="number">6</span>)]</div><div class="line"></div><div class="line"><span class="comment">#在只有一个参数的时候</span></div><div class="line">a = zip(x)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">8</span>]: &lt;zip at <span class="number">0x2d261cab588</span>&gt;</div><div class="line"></div><div class="line">list(a)</div><div class="line">Out[<span class="number">9</span>]: [(<span class="number">1</span>,), (<span class="number">2</span>,), (<span class="number">3</span>,)]</div></pre></td></tr></table></figure></p>
+<p>如果2个参数的长度不一样，会以较短的为主<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"></div><div class="line">b = [<span class="string">'ONE'</span>, <span class="string">'TWO'</span>, <span class="string">'THREE'</span>, <span class="string">'FOUR'</span>]</div><div class="line"></div><div class="line">c = list(zip(a,b))</div><div class="line"></div><div class="line">c</div><div class="line">Out[<span class="number">31</span>]: [(<span class="number">1</span>, <span class="string">'ONE'</span>), (<span class="number">2</span>, <span class="string">'TWO'</span>), (<span class="number">3</span>, <span class="string">'THREE'</span>)]</div></pre></td></tr></table></figure></p>
+<p>我们使用*，可以看做是unzip的过程<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"></div><div class="line">y = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line"></div><div class="line">z = zip(*zip(x,y))</div><div class="line"></div><div class="line">list(z)</div><div class="line">Out[<span class="number">27</span>]: [(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), (<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)]</div></pre></td></tr></table></figure></p>
+<p>关于zip，有几个常用的场景，比如矩阵行列转换<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">a = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]]</div><div class="line"></div><div class="line">list(zip(*a))</div><div class="line">Out[<span class="number">38</span>]: [(<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>), (<span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>), (<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>)]</div><div class="line"></div><div class="line">list(map(list,zip(*a)))</div><div class="line">Out[<span class="number">39</span>]: [[<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>], [<span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>], [<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>]]</div></pre></td></tr></table></figure></p>
+<p>构造字典<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"></div><div class="line">b = [<span class="string">'one'</span>,<span class="string">'two'</span>,<span class="string">'three'</span>]</div><div class="line"></div><div class="line">list(zip(a,b))</div><div class="line">Out[<span class="number">42</span>]: [(<span class="number">1</span>, <span class="string">'one'</span>), (<span class="number">2</span>, <span class="string">'two'</span>), (<span class="number">3</span>, <span class="string">'three'</span>)]</div><div class="line"></div><div class="line">dict(list(zip(a,b)))</div><div class="line">Out[<span class="number">43</span>]: &#123;<span class="number">1</span>: <span class="string">'one'</span>, <span class="number">2</span>: <span class="string">'two'</span>, <span class="number">3</span>: <span class="string">'three'</span>&#125;</div></pre></td></tr></table></figure></p>
+<p>参考博客：<br><a href="http://blog.csdn.net/shomy_liu/article/details/46968651" target="_blank" rel="external">http://blog.csdn.net/shomy_liu/article/details/46968651</a><br><a href="http://www.jb51.net/article/53051.htm" target="_blank" rel="external">http://www.jb51.net/article/53051.htm</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/05/python-handbook-05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -949,154 +1097,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/01/cognos-doc-main/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/01/cognos-doc-main/" itemprop="url">Cognos资料汇总贴</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T21:59:00+08:00">
-                2017-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据可视化-Cognos/" itemprop="url" rel="index">
-                    <span itemprop="name">数据可视化-Cognos</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>以前搞过Cognos，写过很多基础的教程，应该是14年的样子，都在CSDN上，这里贴个汇总贴吧，想要看的同学可以去看看，希望有帮助。</p>
-<p>ReportStudio入门教程：<a href="http://blog.csdn.net/column/details/ygy-reportstudio.html" target="_blank" rel="external">http://blog.csdn.net/column/details/ygy-reportstudio.html</a></p>
-<p>Framework Manage入门教程：<a href="http://blog.csdn.net/column/details/ygy-frameworkmanager.html" target="_blank" rel="external">http://blog.csdn.net/column/details/ygy-frameworkmanager.html</a></p>
-<p>Cognos函数手册：<a href="http://blog.csdn.net/column/details/ygy-cognos-function.html" target="_blank" rel="external">http://blog.csdn.net/column/details/ygy-cognos-function.html</a></p>
-<p>Cognos相关的其他资料（主页不同的类别下看看）：<a href="http://blog.csdn.net/yuguiyang1990" target="_blank" rel="external">http://blog.csdn.net/yuguiyang1990</a></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/cognos-doc-main.png-blog.photo" alt="cognos-doc-main.png"></p>
-<p>好了，感兴趣的同学，可以自行去看看，好久不搞了，估计有疑问也解决不了了…</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1151,7 +1151,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

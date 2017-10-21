@@ -12,6 +12,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[MySQL-每周练习答案(2017-10-20)]]></title>
+    <url>%2F2017%2F10%2F21%2Fmysql-handbook-14%2F</url>
+    <content type="text"><![CDATA[MySQL每周练习答案 这里和大家分享下本周练习题的一种解题思路 将题目简化一下，其实就是实现这样一个功能： 我们将使用逗号分隔的数据，拆分为多行数据，熟悉MySQL的同学，可能会想到，这有点儿像group_concat函数，但这是他的逆过程 测试数据1234567891011create table tm_company( company_name varchar(10), company_industry varchar(20));insert into tm_company(company_name,company_industry) values('A公司','移动互联网,金融');insert into tm_company(company_name,company_industry) values('B公司','移动互联网');insert into tm_company(company_name,company_industry) values('C公司','教育,招聘,魔法');select *from tm_company; 解决方案我们先来思考这样一个问题，怎样才能把用逗号分隔的数据拆分呢？这里需要了解MySQL的字符串函数https://dev.mysql.com/doc/refman/5.7/en/string-functions.html SUBSTRING_INDEX找一下，会发现这个函数，挺符合我们需求的 SUBSTRING_INDEX(str,delim,count)str 就是我们要分隔的字符串delim 就是我们的分隔符当count为正数时，我们从左侧开始截取，截止到delim第count次出现时；当count为负数时，则从右侧开始 1234mysql&gt; SELECT SUBSTRING_INDEX('www.mysql.com', '.', 2); -&gt; 'www.mysql'mysql&gt; SELECT SUBSTRING_INDEX('www.mysql.com', '.', -2); -&gt; 'mysql.com' 我们来试一下1234567select company_name, substring_index(company_industry,',',1), substring_index(company_industry,',',2), substring_index(company_industry,',',-1)from tm_company; 看上去，好像接近我们想要的数据，但还是有些问题比如，我们需要判断到底要分隔几次，那该怎样判断要分隔几次呢？其实就是看有几个逗号，那怎样判断有几个逗号呢？好像并没有判断字符出现次数的函数，但我们可以绕个弯来实现像这样，我们把逗号都替换掉，看数据长度减少了多少，就可以了123456select company_name, company_industry, length(company_industry)-length(replace(company_industry,',',''))from tm_company; 我们再来观察下这个数据 1个逗号的时候，我们需要拆分2次 0个逗号的时候，我们需要拆分1次 2个逗号的时候，我们需要拆分3次 我们以C公司的数据来测试下1234select substring_index('教育,招聘,魔法',',',1), substring_index('教育,招聘,魔法',',',2), substring_index('教育,招聘,魔法',',',3) 我们观察下，会发现，最右边的数据就是我们想要的 1234select substring_index(substring_index('教育,招聘,魔法',',',1),',',-1), substring_index(substring_index('教育,招聘,魔法',',',2),',',-1), substring_index(substring_index('教育,招聘,魔法',',',3),',',-1) 哎，好像是了嘛，数据现在已经分隔好了，现在的问题，好像变成了列转行 列转行因为我们的数据是动态分隔的，所以，做列转行的话，不能用之前的方法，可能需要使用另一种方法我们看下上面分隔的时候，使用的下标，是自增的，而且和逗号的数量也有关畅想一下（估计是经验），可以这样来做1234567select *from ( select 0 as id union select 1 union select 2 union select 3 union select 4) base 通常，我们会创建一张基础表，来方便使用。我们可以这个数据来表示逗号的数量，然后这样 123456789101112131415select a.company_name, a.company_industry, substring_index(substring_index(a.company_industry,',',b.id+1),',',-1)from tm_company a join ( select 0 as id union select 1 union select 2 union select 3 union select 4) b on b.id &lt;= length(a.company_industry)-length(replace(a.company_industry,',',''))order by a.company_name; 好了，完成，我们通过1对多的关系，进行了列转行，再配合substring_index函数，我们就完成了上面的问题。 先这样，大家先理解下，欢迎反馈。]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MySQL-每周练习(2017-10-20)]]></title>
     <url>%2F2017%2F10%2F18%2Fmysql-handbook-13%2F</url>
     <content type="text"><![CDATA[MySQL每周练习 本周我们来一道数据处理的练习题。 数据背景不知道大家学会爬虫了没，拉勾网的数据大家会爬取了吗？这道题和拉勾网有关哦。假设你已经学会爬取数据了，可以将数据爬取下来，数据可能是这个样子(demo库中的tm_lagou_data表)：1234567891011121314151617CREATE TABLE `tm_lagou_data` ( `city` varchar(20) DEFAULT NULL COMMENT '城市', `company_short_name` varchar(100) DEFAULT NULL COMMENT '公司简称', `company_full_name` varchar(200) DEFAULT NULL COMMENT '公司全称', `company_industry` varchar(100) DEFAULT NULL COMMENT '所属行业', `company_location` varchar(100) DEFAULT NULL COMMENT '工作地点', `position_advantage` varchar(100) DEFAULT NULL COMMENT '岗位特点', `position_salary` varchar(20) DEFAULT NULL COMMENT '薪资', `position_workyear` varchar(20) DEFAULT NULL COMMENT '工作经验', `position_name` varchar(50) DEFAULT NULL COMMENT '职位名称', `position_first_type` varchar(100) DEFAULT NULL COMMENT '岗位类型-大类', `position_second_type` varchar(100) DEFAULT NULL COMMENT '岗位类型-小类', `position_lables` varchar(100) DEFAULT NULL COMMENT '岗位标签', `position_id` varchar(20) DEFAULT NULL COMMENT '岗位ID', `create_time` datetime DEFAULT NULL COMMENT '发布时间', `job_desc` text comment '岗位描述') ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='拉勾网-数据分析数据'; 在Python中，我们没有过多的处理，数据是这个样子的 这一次呢，我们只需要关注一个字段即可company_industry，这是公司所属行业这个行业呢，一般会有多个，像上海的这个挖财网，就是互联网+金融，有2个标签，中间是逗号分隔符 问题描述原始数据：tm_lagou_data表中，company_industry（所属行业）字段可能会有多个值，并用逗号分隔 我们的目的是把这个字段拆分，变成下面这样的数据 处理后数据： 知识点为了解决上面的问题，我们需要掌握的知识点如下： 多表关联:MySQL-关联查询Mysql 连接的使用 字符串函数: https://dev.mysql.com/doc/refman/5.7/en/string-functions.html 附有了拆分后的数据，我们就可以看数据分析师的行业分布，哪个行业招的数据分析师最多，哪个行业招的最少了。]]></content>
@@ -177,9 +189,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MySQL-分组排序]]></title>
-    <url>%2F2017%2F09%2F09%2Fmysql-handbook-05%2F</url>
-    <content type="text"><![CDATA[MySQL分组排序 使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。 我们先来看第一个类型的问题，关于排序的问题 排名就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名在postgresql中可以使用像rank() over()这样的函数1234567select course_name, s_id, score, rank() over(order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现12345678910select course_name, s_id, score, -- 根据排序规则，每条记录增加1 @rn:=@rn+1 as rank_score -- 初始化变量@rn，从0开始from t_score cross join (select @rn:=0) xorder by score desc; 细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？ 当然可以，我们改一下SQL只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score12345678910111213select course_name, s_id, score, @pre pre_score, -- 判断当前score是否和上一条记录的score相等， -- 如果相等则使用和上一条一样的排名 if(@pre=score ,@rn:=@rn,@rn:=@rn+1) as rank_score, @pre:=score cur_score -- 使用pre来保存上一条记录的scorefrom t_score cross join (select @rn:=0,@pre:=null) xorder by score desc; 上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？ 我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。 1234567891011select course_name, s_id, score, @pre pre_score, @rn_1:=@rn_1+1 rank_score_1, if(@pre=score ,@rn:=@rn,@rn:=@rn_1) as rank_score, @pre:=score cur_score from t_score cross join (select @rn:=0,@pre:=null,@rn_1:=0) xorder by score desc 我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。 分组排序就是给每个分组中的数据，分别进行排名如果有类似rank() over()的函数12345678-- 在postgresql中select course_name, s_id, score, rank() over(partition by course_name order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，如果课程名称一样，则继续排名，如果不一样，则重新开始排名1234567891011set @rn:=0;set @pre_course:=null;select course_name, s_id, score, if(@pre_course=course_name,@rn:=@rn+1,@rn:=0), @pre_course:= course_name from t_score order by course_name,score desc;]]></content>
+    <title><![CDATA[MySQL-regexp]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-04%2F</url>
+    <content type="text"><![CDATA[MySQL正则表达式 在前面，我们了解了like的使用，它可以做一些简单的匹配 在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符 但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。 常用的正则表达式，更多的内容，大家可以百度下 我们就以前面的t_student表为例 查询学生姓路或乔的学生信息12345-- like select *from t_student where s_name like '路%' or s_name like '乔%'-- regexpselect *from t_student where s_name regexp '^(路|乔)' 查询名字是以美结尾的学生信息1select *from t_student where s_name regexp '美$' 查询学生爱好中，有吃肉的学生信息1select *from t_student where s_hobby regexp '吃肉' 查询学生姓乔或者名字中有美字的学生信息1select *from t_student where s_name regexp '(^乔)|美' 小结这里先整理这几个简单的例子，后续会再补充。 可以参考官方的文档练习：https://dev.mysql.com/doc/refman/5.7/en/regexp.html]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -189,9 +201,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MySQL-regexp]]></title>
-    <url>%2F2017%2F09%2F09%2Fmysql-handbook-04%2F</url>
-    <content type="text"><![CDATA[MySQL正则表达式 在前面，我们了解了like的使用，它可以做一些简单的匹配 在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符 但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。 常用的正则表达式，更多的内容，大家可以百度下 我们就以前面的t_student表为例 查询学生姓路或乔的学生信息12345-- like select *from t_student where s_name like '路%' or s_name like '乔%'-- regexpselect *from t_student where s_name regexp '^(路|乔)' 查询名字是以美结尾的学生信息1select *from t_student where s_name regexp '美$' 查询学生爱好中，有吃肉的学生信息1select *from t_student where s_hobby regexp '吃肉' 查询学生姓乔或者名字中有美字的学生信息1select *from t_student where s_name regexp '(^乔)|美' 小结这里先整理这几个简单的例子，后续会再补充。 可以参考官方的文档练习：https://dev.mysql.com/doc/refman/5.7/en/regexp.html]]></content>
+    <title><![CDATA[MySQL-分组排序]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-05%2F</url>
+    <content type="text"><![CDATA[MySQL分组排序 使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。 我们先来看第一个类型的问题，关于排序的问题 排名就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名在postgresql中可以使用像rank() over()这样的函数1234567select course_name, s_id, score, rank() over(order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现12345678910select course_name, s_id, score, -- 根据排序规则，每条记录增加1 @rn:=@rn+1 as rank_score -- 初始化变量@rn，从0开始from t_score cross join (select @rn:=0) xorder by score desc; 细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？ 当然可以，我们改一下SQL只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score12345678910111213select course_name, s_id, score, @pre pre_score, -- 判断当前score是否和上一条记录的score相等， -- 如果相等则使用和上一条一样的排名 if(@pre=score ,@rn:=@rn,@rn:=@rn+1) as rank_score, @pre:=score cur_score -- 使用pre来保存上一条记录的scorefrom t_score cross join (select @rn:=0,@pre:=null) xorder by score desc; 上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？ 我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。 1234567891011select course_name, s_id, score, @pre pre_score, @rn_1:=@rn_1+1 rank_score_1, if(@pre=score ,@rn:=@rn,@rn:=@rn_1) as rank_score, @pre:=score cur_score from t_score cross join (select @rn:=0,@pre:=null,@rn_1:=0) xorder by score desc 我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。 分组排序就是给每个分组中的数据，分别进行排名如果有类似rank() over()的函数12345678-- 在postgresql中select course_name, s_id, score, rank() over(partition by course_name order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，如果课程名称一样，则继续排名，如果不一样，则重新开始排名1234567891011set @rn:=0;set @pre_course:=null;select course_name, s_id, score, if(@pre_course=course_name,@rn:=@rn+1,@rn:=0), @pre_course:= course_name from t_score order by course_name,score desc;]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -585,17 +597,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python基础（6）- zip]]></title>
-    <url>%2F2017%2F08%2F06%2Fpython-handbook-06%2F</url>
-    <content type="text"><![CDATA[这里记录一个函数的使用，zip123456zip(iter1 [,iter2 [...]]) --&gt; zip objectReturn a zip object whose .__next__() method returns a tuple wherethe i-th element comes from the i-th iterable argument. The .__next__()method continues until the shortest iterable in the argument sequenceis exhausted and then it raises StopIteration. 我们可以传入一个或多个可迭代对象，然后将对应位置的元素封装成一个tuple，然后把所有tuple封装为list返回1234567891011121314151617181920x = [1,2,3]y = [4,5,6]z = zip(x,y)print(z)&lt;zip object at 0x000002D26251F208&gt;print(list(z))[(1, 4), (2, 5), (3, 6)]#在只有一个参数的时候a = zip(x)aOut[8]: &lt;zip at 0x2d261cab588&gt;list(a)Out[9]: [(1,), (2,), (3,)] 如果2个参数的长度不一样，会以较短的为主12345678a = [1,2,3]b = ['ONE', 'TWO', 'THREE', 'FOUR']c = list(zip(a,b))cOut[31]: [(1, 'ONE'), (2, 'TWO'), (3, 'THREE')] 我们使用*，可以看做是unzip的过程12345678x = [1,2,3]y = [4,5,6]z = zip(*zip(x,y))list(z)Out[27]: [(1, 2, 3), (4, 5, 6)] 关于zip，有几个常用的场景，比如矩阵行列转换1234567a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]list(zip(*a))Out[38]: [(1, 4, 7), (2, 5, 8), (3, 6, 9)]list(map(list,zip(*a)))Out[39]: [[1, 4, 7], [2, 5, 8], [3, 6, 9]] 构造字典123456789a = [1,2,3]b = ['one','two','three']list(zip(a,b))Out[42]: [(1, 'one'), (2, 'two'), (3, 'three')]dict(list(zip(a,b)))Out[43]: &#123;1: 'one', 2: 'two', 3: 'three'&#125; 参考博客：http://blog.csdn.net/shomy_liu/article/details/46968651http://www.jb51.net/article/53051.htm]]></content>
-      <categories>
-        <category>Python-基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[numpy手册(2)-常用操作杂记]]></title>
     <url>%2F2017%2F08%2F06%2Fnumpy-handbook-02%2F</url>
     <content type="text"><![CDATA[PythonNumpy知识总结 这里记录下numpy常用的一些操作，一些散乱的知识点。 数组和标量之间的运算就是对数组进行批量的运算123456789101112131415161718192021import numpy as npa = np.arange(15).reshape(3,5)aOut[3]: array([[ 0, 1, 2, 3, 4], [ 5, 6, 7, 8, 9], [10, 11, 12, 13, 14]])a+2Out[4]: array([[ 2, 3, 4, 5, 6], [ 7, 8, 9, 10, 11], [12, 13, 14, 15, 16]])a+aOut[5]: array([[ 0, 2, 4, 6, 8], [10, 12, 14, 16, 18], [20, 22, 24, 26, 28]]) 基本的索引和切片上一篇，我们大概介绍过数组的切片，这里的切片操作都是原数组的一个视图，即原数组变化后，视图也会变化123456789101112131415161718192021222324252627aOut[7]: array([[ 0, 1, 2, 3, 4], [ 5, 6, 7, 8, 9], [10, 11, 12, 13, 14]])a[1]Out[8]: array([5, 6, 7, 8, 9])a[1][2]Out[9]: 7a[1:2]Out[10]: array([[5, 6, 7, 8, 9]])b=a[1:2]a[1:2]=0bOut[13]: array([[0, 0, 0, 0, 0]])aOut[14]: array([[ 0, 1, 2, 3, 4], [ 0, 0, 0, 0, 0], [10, 11, 12, 13, 14]]) 花式索引花式索引，就是利用整数数组进行索引。123456789101112131415161718192021x = np.empty((8,4))for i in range(8): x[i]=i xOut[18]: array([[ 0., 0., 0., 0.], [ 1., 1., 1., 1.], [ 2., 2., 2., 2.], ..., [ 5., 5., 5., 5.], [ 6., 6., 6., 6.], [ 7., 7., 7., 7.]])x[[3,0,5]]Out[19]: array([[ 3., 3., 3., 3.], [ 0., 0., 0., 0.], [ 5., 5., 5., 5.]]) 如果使用负数，会从末尾开始选取1234x[[-1,-2]]Out[20]: array([[ 7., 7., 7., 7.], [ 6., 6., 6., 6.]]) 数组的转置12345678910111213141516xOut[21]: array([[ 0., 0., 0., 0.], [ 1., 1., 1., 1.], [ 2., 2., 2., 2.], ..., [ 5., 5., 5., 5.], [ 6., 6., 6., 6.], [ 7., 7., 7., 7.]])x.TOut[22]: array([[ 0., 1., 2., ..., 5., 6., 7.], [ 0., 1., 2., ..., 5., 6., 7.], [ 0., 1., 2., ..., 5., 6., 7.], [ 0., 1., 2., ..., 5., 6., 7.]]) 上面的主要是轴对换，转置的话，看下这个例子（大学学的矩阵都忘了，得回顾下…） 一开始真迷糊了，找了个解释，明天再研究下这个函数]]></content>
@@ -605,6 +606,17 @@
       <tags>
         <tag>Python</tag>
         <tag>Numpy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python基础（6）- zip]]></title>
+    <url>%2F2017%2F08%2F06%2Fpython-handbook-06%2F</url>
+    <content type="text"><![CDATA[这里记录一个函数的使用，zip123456zip(iter1 [,iter2 [...]]) --&gt; zip objectReturn a zip object whose .__next__() method returns a tuple wherethe i-th element comes from the i-th iterable argument. The .__next__()method continues until the shortest iterable in the argument sequenceis exhausted and then it raises StopIteration. 我们可以传入一个或多个可迭代对象，然后将对应位置的元素封装成一个tuple，然后把所有tuple封装为list返回1234567891011121314151617181920x = [1,2,3]y = [4,5,6]z = zip(x,y)print(z)&lt;zip object at 0x000002D26251F208&gt;print(list(z))[(1, 4), (2, 5), (3, 6)]#在只有一个参数的时候a = zip(x)aOut[8]: &lt;zip at 0x2d261cab588&gt;list(a)Out[9]: [(1,), (2,), (3,)] 如果2个参数的长度不一样，会以较短的为主12345678a = [1,2,3]b = ['ONE', 'TWO', 'THREE', 'FOUR']c = list(zip(a,b))cOut[31]: [(1, 'ONE'), (2, 'TWO'), (3, 'THREE')] 我们使用*，可以看做是unzip的过程12345678x = [1,2,3]y = [4,5,6]z = zip(*zip(x,y))list(z)Out[27]: [(1, 2, 3), (4, 5, 6)] 关于zip，有几个常用的场景，比如矩阵行列转换1234567a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]list(zip(*a))Out[38]: [(1, 4, 7), (2, 5, 8), (3, 6, 9)]list(map(list,zip(*a)))Out[39]: [[1, 4, 7], [2, 5, 8], [3, 6, 9]] 构造字典123456789a = [1,2,3]b = ['one','two','three']list(zip(a,b))Out[42]: [(1, 'one'), (2, 'two'), (3, 'three')]dict(list(zip(a,b)))Out[43]: &#123;1: 'one', 2: 'two', 3: 'three'&#125; 参考博客：http://blog.csdn.net/shomy_liu/article/details/46968651http://www.jb51.net/article/53051.htm]]></content>
+      <categories>
+        <category>Python-基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>

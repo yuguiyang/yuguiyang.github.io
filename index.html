@@ -467,6 +467,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/21/mysql-handbook-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/21/mysql-handbook-14/" itemprop="url">MySQL-每周练习答案(2017-10-20)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-21T10:00:00+08:00">
+                2017-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>MySQL<br>每周练习答案</p>
+<p>这里和大家分享下本周练习题的一种解题思路</p>
+<p>将题目简化一下，其实就是实现这样一个功能：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-ca0606de4cf51b9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们将使用逗号分隔的数据，拆分为多行数据，熟悉MySQL的同学，可能会想到，这有点儿像group_concat函数，但这是他的逆过程</p>
+<h1 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> tm_company(</div><div class="line">  company_name <span class="built_in">varchar</span>(<span class="number">10</span>),</div><div class="line">  company_industry <span class="built_in">varchar</span>(<span class="number">20</span>)</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_company(company_name,company_industry) <span class="keyword">values</span>(<span class="string">'A公司'</span>,<span class="string">'移动互联网,金融'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_company(company_name,company_industry) <span class="keyword">values</span>(<span class="string">'B公司'</span>,<span class="string">'移动互联网'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_company(company_name,company_industry) <span class="keyword">values</span>(<span class="string">'C公司'</span>,<span class="string">'教育,招聘,魔法'</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> tm_company;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-bf06fbffe9d157cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>我们先来思考这样一个问题，怎样才能把用逗号分隔的数据拆分呢？<br>这里需要了解MySQL的字符串函数<br><a href="https://dev.mysql.com/doc/refman/5.7/en/string-functions.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/string-functions.html</a></p>
+<h2 id="SUBSTRING-INDEX"><a href="#SUBSTRING-INDEX" class="headerlink" title="SUBSTRING_INDEX"></a>SUBSTRING_INDEX</h2><p>找一下，会发现这个函数，挺符合我们需求的</p>
+<blockquote>
+<p>SUBSTRING_INDEX(<em>str</em>,<em>delim</em>,<em>count</em>)<br>str 就是我们要分隔的字符串<br>delim 就是我们的分隔符<br>当count为正数时，我们从左侧开始截取，截止到delim第count次出现时；当count为负数时，则从右侧开始</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; SELECT SUBSTRING_INDEX('www.mysql.com', '.', 2);</div><div class="line">        -&gt; 'www.mysql'</div><div class="line">mysql&gt; SELECT SUBSTRING_INDEX('www.mysql.com', '.', -2);</div><div class="line">        -&gt; 'mysql.com'</div></pre></td></tr></table></figure>
+<p>我们来试一下<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">  company_name,</div><div class="line">  substring_index(company_industry,<span class="string">','</span>,<span class="number">1</span>),</div><div class="line">  substring_index(company_industry,<span class="string">','</span>,<span class="number">2</span>),</div><div class="line">  substring_index(company_industry,<span class="string">','</span>,<span class="number">-1</span>)</div><div class="line"><span class="keyword">from</span> </div><div class="line">  tm_company;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-eb162bd666ee8368.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>看上去，好像接近我们想要的数据，但还是有些问题<br>比如，我们需要判断到底要分隔几次，那该怎样判断要分隔几次呢？<br>其实就是看有几个逗号，那怎样判断有几个逗号呢？<br>好像并没有判断字符出现次数的函数，但我们可以绕个弯来实现<br>像这样，我们把逗号都替换掉，看数据长度减少了多少，就可以了<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">  company_name,</div><div class="line">  company_industry,</div><div class="line">  <span class="keyword">length</span>(company_industry)-<span class="keyword">length</span>(<span class="keyword">replace</span>(company_industry,<span class="string">','</span>,<span class="string">''</span>))</div><div class="line"><span class="keyword">from</span> </div><div class="line">  tm_company;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-e65e298575bffd74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们再来观察下这个数据</p>
+<ul>
+<li>1个逗号的时候，我们需要拆分2次</li>
+<li>0个逗号的时候，我们需要拆分1次</li>
+<li>2个逗号的时候，我们需要拆分3次</li>
+</ul>
+<p>我们以C公司的数据来测试下<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">  substring_index(<span class="string">'教育,招聘,魔法'</span>,<span class="string">','</span>,<span class="number">1</span>),</div><div class="line">  substring_index(<span class="string">'教育,招聘,魔法'</span>,<span class="string">','</span>,<span class="number">2</span>),</div><div class="line">  substring_index(<span class="string">'教育,招聘,魔法'</span>,<span class="string">','</span>,<span class="number">3</span>)</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-86ec73757e705d3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们观察下，会发现，最右边的数据就是我们想要的</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-393d09ca01679d14.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">  substring_index(substring_index(<span class="string">'教育,招聘,魔法'</span>,<span class="string">','</span>,<span class="number">1</span>),<span class="string">','</span>,<span class="number">-1</span>),</div><div class="line">  substring_index(substring_index(<span class="string">'教育,招聘,魔法'</span>,<span class="string">','</span>,<span class="number">2</span>),<span class="string">','</span>,<span class="number">-1</span>),</div><div class="line">  substring_index(substring_index(<span class="string">'教育,招聘,魔法'</span>,<span class="string">','</span>,<span class="number">3</span>),<span class="string">','</span>,<span class="number">-1</span>)</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-133c11eae3d4de52.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>哎，好像是了嘛，数据现在已经分隔好了，现在的问题，好像变成了列转行</p>
+<h2 id="列转行"><a href="#列转行" class="headerlink" title="列转行"></a>列转行</h2><p>因为我们的数据是动态分隔的，所以，做列转行的话，不能用之前的方法，可能需要使用另一种方法<br>我们看下上面分隔的时候，使用的下标，是自增的，而且和逗号的数量也有关<br>畅想一下（估计是经验），可以这样来做<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> (</div><div class="line">  <span class="keyword">select</span> <span class="number">0</span> <span class="keyword">as</span> <span class="keyword">id</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">2</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">3</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">4</span></div><div class="line">) base</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-8630ef5582431d9a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>通常，我们会创建一张基础表，来方便使用。<br>我们可以这个数据来表示逗号的数量，然后这样</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">  a.company_name,</div><div class="line">  a.company_industry,</div><div class="line">  substring_index(substring_index(a.company_industry,<span class="string">','</span>,b.id+<span class="number">1</span>),<span class="string">','</span>,<span class="number">-1</span>)</div><div class="line"><span class="keyword">from</span> </div><div class="line">  tm_company a </div><div class="line"><span class="keyword">join</span> (</div><div class="line">  <span class="keyword">select</span> <span class="number">0</span> <span class="keyword">as</span> <span class="keyword">id</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">2</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">3</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">4</span></div><div class="line">) b <span class="keyword">on</span> b.id &lt;= <span class="keyword">length</span>(a.company_industry)-<span class="keyword">length</span>(<span class="keyword">replace</span>(a.company_industry,<span class="string">','</span>,<span class="string">''</span>))</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> </div><div class="line">  a.company_name;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-1446b4feeb773cae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>好了，完成，我们通过1对多的关系，进行了列转行，再配合substring_index函数，我们就完成了上面的问题。</p>
+<p>先这样，大家先理解下，欢迎反馈。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/18/mysql-handbook-13/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -710,21 +887,18 @@
 
       
         
-          
-            <p>前面，我们分析了一下数据分析师的前景<a href="https://yuguiyang.github.io/2017/10/18/jotting-02/">要不要找一份数据分析的工作？</a></p>
+          <p>前面，我们分析了一下数据分析师的前景<a href="https://yuguiyang.github.io/2017/10/18/jotting-02/">要不要找一份数据分析的工作？</a></p>
 <p>这里，我们研究下，数据分析师是否需要掌握SQL。</p>
 <h1 id="什么是数据分析师？"><a href="#什么是数据分析师？" class="headerlink" title="什么是数据分析师？"></a>什么是数据分析师？</h1><p>我们从字面来理解，数据分析师=数据+分析+师</p>
 <h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，<br>没有数据支撑的分析报告，一定是异想天开。<br>数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。<br>外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；<br>内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。<br>这个分析一定要基于业务，脱离业务的分析是没有任何价值的。</p>
-<h1 id="真的要掌握SQL吗？"><a href="#真的要掌握SQL吗？" class="headerlink" title="真的要掌握SQL吗？"></a>真的要掌握SQL吗？</h1><p>上面，我们说了，分析公司内部的数据，需要使用SQL，行业内的其他公司是不是也是这样呢？<br>前面，我们爬取了拉勾网的数据，这里，我们就可以通过招聘数据证明一下，数据分析师是否需要掌握SQL</p>
-<p>我们根据岗位需求的标签和岗位描述来判断是否需要掌握SQL<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">IF (</div><div class="line">    CONTAINS(upper([position_lables]),'SQL')</div><div class="line">    OR </div><div class="line">    CONTAINS(upper([job_desc]),'SQL')</div><div class="line">    )</div><div class="line">THEN '是'</div><div class="line">ELSE '否'</div><div class="line"><span class="keyword">END</span></div></pre></td></tr></table></figure></p>
-<p>就岗位数量来看，每个城市的岗位中，需要掌握SQL的岗位都超过50%<br><img src="http://upload-images.jianshu.io/upload_images/76024-f393f5f9b08e057c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>就算SQL不是数据分析师必备的技能，掌握了SQL，你就多了50%的机会，我们再来看下，哪些公司的岗位需要掌握SQL呢</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-4257c5cbbff62bab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这些都是互联网知名的企业，跟着他们走没有问题。</p>
-<p>总上所述，掌握了SQL，不会吃亏，不会上当，不说啦，我得学习SQL去了。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/18/jotting-03/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -910,157 +1084,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/12/mysql-handbook-12/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/12/mysql-handbook-12/" itemprop="url">MySQL-疑问汇总</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T18:00:00+08:00">
-                2017-10-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index">
-                    <span itemprop="name">MySQL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>MySQL<br>疑问汇总</p>
-<p>这里吧同学们遇到的问题都汇总起来，方便大家一起查阅。</p>
-<h2 id="update-at-2017-10-13"><a href="#update-at-2017-10-13" class="headerlink" title="update at 2017-10-13"></a>update at 2017-10-13</h2><h3 id="Workbench安装问题"><a href="#Workbench安装问题" class="headerlink" title="Workbench安装问题"></a>Workbench安装问题</h3><p>昨天就说过Workbench的安装问题，具体的可以往下看，这里记录一个类似问题<br>因为安装Workbench需要一些依赖先安装，比如那个.NET Framework，官网上提供的连接地址应该没有修改，如果直接跳转去下载，应该是.NET FRAMEWORK４.５的，但实际安装的时候，是需要4.5.2的</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-dffabb12e4e55bb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>而且在安装4.5的时候，可能还会遇到这样的情况，说本地已经安装过了，所以去下载4.5.2就可以了，<br><img src="http://upload-images.jianshu.io/upload_images/76024-5a3b8ff3e217c3c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>后面经过同学的验证，就是这样解决的，没有问题。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/12/mysql-handbook-12/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1115,7 +1138,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

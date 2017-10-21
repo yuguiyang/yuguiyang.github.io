@@ -40,6 +40,69 @@
   </entry>
   
   <entry>
+    <title>MySQL-每周练习答案(2017-10-20)</title>
+    <link href="https://yuguiyang.github.io/2017/10/21/mysql-handbook-14/"/>
+    <id>https://yuguiyang.github.io/2017/10/21/mysql-handbook-14/</id>
+    <published>2017-10-21T02:00:00.000Z</published>
+    <updated>2017-10-21T03:34:05.428Z</updated>
+    
+    <content type="html"><![CDATA[<p>MySQL<br>每周练习答案</p>
+<p>这里和大家分享下本周练习题的一种解题思路</p>
+<p>将题目简化一下，其实就是实现这样一个功能：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-ca0606de4cf51b9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们将使用逗号分隔的数据，拆分为多行数据，熟悉MySQL的同学，可能会想到，这有点儿像group_concat函数，但这是他的逆过程</p>
+<h1 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> tm_company(</div><div class="line">  company_name <span class="built_in">varchar</span>(<span class="number">10</span>),</div><div class="line">  company_industry <span class="built_in">varchar</span>(<span class="number">20</span>)</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_company(company_name,company_industry) <span class="keyword">values</span>(<span class="string">'A公司'</span>,<span class="string">'移动互联网,金融'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_company(company_name,company_industry) <span class="keyword">values</span>(<span class="string">'B公司'</span>,<span class="string">'移动互联网'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_company(company_name,company_industry) <span class="keyword">values</span>(<span class="string">'C公司'</span>,<span class="string">'教育,招聘,魔法'</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> tm_company;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-bf06fbffe9d157cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>我们先来思考这样一个问题，怎样才能把用逗号分隔的数据拆分呢？<br>这里需要了解MySQL的字符串函数<br><a href="https://dev.mysql.com/doc/refman/5.7/en/string-functions.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/string-functions.html</a></p>
+<h2 id="SUBSTRING-INDEX"><a href="#SUBSTRING-INDEX" class="headerlink" title="SUBSTRING_INDEX"></a>SUBSTRING_INDEX</h2><p>找一下，会发现这个函数，挺符合我们需求的</p>
+<blockquote>
+<p>SUBSTRING_INDEX(<em>str</em>,<em>delim</em>,<em>count</em>)<br>str 就是我们要分隔的字符串<br>delim 就是我们的分隔符<br>当count为正数时，我们从左侧开始截取，截止到delim第count次出现时；当count为负数时，则从右侧开始</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; SELECT SUBSTRING_INDEX('www.mysql.com', '.', 2);</div><div class="line">        -&gt; 'www.mysql'</div><div class="line">mysql&gt; SELECT SUBSTRING_INDEX('www.mysql.com', '.', -2);</div><div class="line">        -&gt; 'mysql.com'</div></pre></td></tr></table></figure>
+<p>我们来试一下<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">  company_name,</div><div class="line">  substring_index(company_industry,<span class="string">','</span>,<span class="number">1</span>),</div><div class="line">  substring_index(company_industry,<span class="string">','</span>,<span class="number">2</span>),</div><div class="line">  substring_index(company_industry,<span class="string">','</span>,<span class="number">-1</span>)</div><div class="line"><span class="keyword">from</span> </div><div class="line">  tm_company;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-eb162bd666ee8368.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>看上去，好像接近我们想要的数据，但还是有些问题<br>比如，我们需要判断到底要分隔几次，那该怎样判断要分隔几次呢？<br>其实就是看有几个逗号，那怎样判断有几个逗号呢？<br>好像并没有判断字符出现次数的函数，但我们可以绕个弯来实现<br>像这样，我们把逗号都替换掉，看数据长度减少了多少，就可以了<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">  company_name,</div><div class="line">  company_industry,</div><div class="line">  <span class="keyword">length</span>(company_industry)-<span class="keyword">length</span>(<span class="keyword">replace</span>(company_industry,<span class="string">','</span>,<span class="string">''</span>))</div><div class="line"><span class="keyword">from</span> </div><div class="line">  tm_company;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-e65e298575bffd74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们再来观察下这个数据</p>
+<ul>
+<li>1个逗号的时候，我们需要拆分2次</li>
+<li>0个逗号的时候，我们需要拆分1次</li>
+<li>2个逗号的时候，我们需要拆分3次</li>
+</ul>
+<p>我们以C公司的数据来测试下<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">  substring_index(<span class="string">'教育,招聘,魔法'</span>,<span class="string">','</span>,<span class="number">1</span>),</div><div class="line">  substring_index(<span class="string">'教育,招聘,魔法'</span>,<span class="string">','</span>,<span class="number">2</span>),</div><div class="line">  substring_index(<span class="string">'教育,招聘,魔法'</span>,<span class="string">','</span>,<span class="number">3</span>)</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-86ec73757e705d3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们观察下，会发现，最右边的数据就是我们想要的</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-393d09ca01679d14.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">  substring_index(substring_index(<span class="string">'教育,招聘,魔法'</span>,<span class="string">','</span>,<span class="number">1</span>),<span class="string">','</span>,<span class="number">-1</span>),</div><div class="line">  substring_index(substring_index(<span class="string">'教育,招聘,魔法'</span>,<span class="string">','</span>,<span class="number">2</span>),<span class="string">','</span>,<span class="number">-1</span>),</div><div class="line">  substring_index(substring_index(<span class="string">'教育,招聘,魔法'</span>,<span class="string">','</span>,<span class="number">3</span>),<span class="string">','</span>,<span class="number">-1</span>)</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-133c11eae3d4de52.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>哎，好像是了嘛，数据现在已经分隔好了，现在的问题，好像变成了列转行</p>
+<h2 id="列转行"><a href="#列转行" class="headerlink" title="列转行"></a>列转行</h2><p>因为我们的数据是动态分隔的，所以，做列转行的话，不能用之前的方法，可能需要使用另一种方法<br>我们看下上面分隔的时候，使用的下标，是自增的，而且和逗号的数量也有关<br>畅想一下（估计是经验），可以这样来做<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> (</div><div class="line">  <span class="keyword">select</span> <span class="number">0</span> <span class="keyword">as</span> <span class="keyword">id</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">2</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">3</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">4</span></div><div class="line">) base</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-8630ef5582431d9a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>通常，我们会创建一张基础表，来方便使用。<br>我们可以这个数据来表示逗号的数量，然后这样</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">  a.company_name,</div><div class="line">  a.company_industry,</div><div class="line">  substring_index(substring_index(a.company_industry,<span class="string">','</span>,b.id+<span class="number">1</span>),<span class="string">','</span>,<span class="number">-1</span>)</div><div class="line"><span class="keyword">from</span> </div><div class="line">  tm_company a </div><div class="line"><span class="keyword">join</span> (</div><div class="line">  <span class="keyword">select</span> <span class="number">0</span> <span class="keyword">as</span> <span class="keyword">id</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">2</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">3</span></div><div class="line">  <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">4</span></div><div class="line">) b <span class="keyword">on</span> b.id &lt;= <span class="keyword">length</span>(a.company_industry)-<span class="keyword">length</span>(<span class="keyword">replace</span>(a.company_industry,<span class="string">','</span>,<span class="string">''</span>))</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> </div><div class="line">  a.company_name;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-1446b4feeb773cae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>好了，完成，我们通过1对多的关系，进行了列转行，再配合substring_index函数，我们就完成了上面的问题。</p>
+<p>先这样，大家先理解下，欢迎反馈。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MySQL&lt;br&gt;每周练习答案&lt;/p&gt;
+&lt;p&gt;这里和大家分享下本周练习题的一种解题思路&lt;/p&gt;
+&lt;p&gt;将题目简化一下，其实就是实现这样一个功能：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/7
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MySQL-每周练习(2017-10-20)</title>
     <link href="https://yuguiyang.github.io/2017/10/18/mysql-handbook-13/"/>
     <id>https://yuguiyang.github.io/2017/10/18/mysql-handbook-13/</id>
@@ -91,13 +154,14 @@
     <link href="https://yuguiyang.github.io/2017/10/18/jotting-03/"/>
     <id>https://yuguiyang.github.io/2017/10/18/jotting-03/</id>
     <published>2017-10-18T12:00:00.000Z</published>
-    <updated>2017-10-18T11:44:06.540Z</updated>
+    <updated>2017-10-20T01:53:06.893Z</updated>
     
     <content type="html"><![CDATA[<p>前面，我们分析了一下数据分析师的前景<a href="https://yuguiyang.github.io/2017/10/18/jotting-02/">要不要找一份数据分析的工作？</a></p>
 <p>这里，我们研究下，数据分析师是否需要掌握SQL。</p>
 <h1 id="什么是数据分析师？"><a href="#什么是数据分析师？" class="headerlink" title="什么是数据分析师？"></a>什么是数据分析师？</h1><p>我们从字面来理解，数据分析师=数据+分析+师</p>
 <h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，<br>没有数据支撑的分析报告，一定是异想天开。<br>数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。<br>外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；<br>内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。<br>这个分析一定要基于业务，脱离业务的分析是没有任何价值的。</p>
+<a id="more"></a>
 <h1 id="真的要掌握SQL吗？"><a href="#真的要掌握SQL吗？" class="headerlink" title="真的要掌握SQL吗？"></a>真的要掌握SQL吗？</h1><p>上面，我们说了，分析公司内部的数据，需要使用SQL，行业内的其他公司是不是也是这样呢？<br>前面，我们爬取了拉勾网的数据，这里，我们就可以通过招聘数据证明一下，数据分析师是否需要掌握SQL</p>
 <p>我们根据岗位需求的标签和岗位描述来判断是否需要掌握SQL<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">IF (</div><div class="line">    CONTAINS(upper([position_lables]),'SQL')</div><div class="line">    OR </div><div class="line">    CONTAINS(upper([job_desc]),'SQL')</div><div class="line">    )</div><div class="line">THEN '是'</div><div class="line">ELSE '否'</div><div class="line"><span class="keyword">END</span></div></pre></td></tr></table></figure></p>
 <p>就岗位数量来看，每个城市的岗位中，需要掌握SQL的岗位都超过50%<br><img src="http://upload-images.jianshu.io/upload_images/76024-f393f5f9b08e057c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
@@ -111,7 +175,9 @@
     
       &lt;p&gt;前面，我们分析了一下数据分析师的前景&lt;a href=&quot;https://yuguiyang.github.io/2017/10/18/jotting-02/&quot;&gt;要不要找一份数据分析的工作？&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;这里，我们研究下，数据分析师是否需要掌握SQL。&lt;/p&gt;
-&lt;h1
+&lt;h1 id=&quot;什么是数据分析师？&quot;&gt;&lt;a href=&quot;#什么是数据分析师？&quot; class=&quot;headerlink&quot; title=&quot;什么是数据分析师？&quot;&gt;&lt;/a&gt;什么是数据分析师？&lt;/h1&gt;&lt;p&gt;我们从字面来理解，数据分析师=数据+分析+师&lt;/p&gt;
+&lt;h2 id=&quot;数据&quot;&gt;&lt;a href=&quot;#数据&quot; class=&quot;headerlink&quot; title=&quot;数据&quot;&gt;&lt;/a&gt;数据&lt;/h2&gt;&lt;p&gt;对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，&lt;br&gt;没有数据支撑的分析报告，一定是异想天开。&lt;br&gt;数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。&lt;br&gt;外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；&lt;br&gt;内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。&lt;/p&gt;
+&lt;h2 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析&quot;&gt;&lt;/a&gt;分析&lt;/h2&gt;&lt;p&gt;有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。&lt;br&gt;这个分析一定要基于业务，脱离业务的分析是没有任何价值的。&lt;/p&gt;
     
     </summary>
     
@@ -848,54 +914,6 @@
   </entry>
   
   <entry>
-    <title>MySQL-分组排序</title>
-    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/"/>
-    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/</id>
-    <published>2017-09-09T04:00:00.000Z</published>
-    <updated>2017-09-11T09:04:45.018Z</updated>
-    
-    <content type="html"><![CDATA[<p>MySQL<br>分组排序</p>
-<p>使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。</p>
-<p>我们先来看第一个类型的问题，关于排序的问题</p>
-<h2 id="排名"><a href="#排名" class="headerlink" title="排名"></a>排名</h2><p>就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名<br>在postgresql中可以使用像rank() over()这样的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo" alt="mysql-handbook-05-02"></p>
-<a id="more"></a>
-<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="comment">-- 根据排序规则，每条记录增加1</span></div><div class="line">    @rn:=@rn+<span class="number">1</span> <span class="keyword">as</span> rank_score</div><div class="line">    <span class="comment">-- 初始化变量@rn，从0开始</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-03.png-blog.photo" alt="mysql-handbook-05-03"></p>
-<p>细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？</p>
-<p>当然可以，我们改一下SQL<br>只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    <span class="comment">-- 判断当前score是否和上一条记录的score相等，</span></div><div class="line">    <span class="comment">-- 如果相等则使用和上一条一样的排名</span></div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn+<span class="number">1</span>) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    <span class="comment">-- 使用pre来保存上一条记录的score</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-04.png-blog.photo" alt="mysql-handbook-05-04"></p>
-<p>上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？</p>
-<p>我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    @rn_1:=@rn_1+<span class="number">1</span> rank_score_1,</div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn_1) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    </div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>,@rn_1:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div></pre></td></tr></table></figure>
-<p>我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-05.png-blog.photo" alt="mysql-handbook-05-05"></p>
-<h2 id="分组排序"><a href="#分组排序" class="headerlink" title="分组排序"></a>分组排序</h2><p>就是给每个分组中的数据，分别进行排名<br>如果有类似rank() over()的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 在postgresql中</span></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> course_name <span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-01.png-blog.photo" alt="mysql-handbook-05-01"></p>
-<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br>这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，<br>如果课程名称一样，则继续排名，如果不一样，则重新开始排名<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> @rn:=<span class="number">0</span>;</div><div class="line"><span class="keyword">set</span> @pre_course:=<span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">if</span>(@pre_course=course_name,@rn:=@rn+<span class="number">1</span>,@rn:=<span class="number">0</span>),</div><div class="line">    @pre_course:= course_name </div><div class="line"><span class="keyword">from</span> t_score </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> course_name,score <span class="keyword">desc</span>;</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-91fb3a9a983c21d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分组排序"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;MySQL&lt;br&gt;分组排序&lt;/p&gt;
-&lt;p&gt;使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。&lt;/p&gt;
-&lt;p&gt;我们先来看第一个类型的问题，关于排序的问题&lt;/p&gt;
-&lt;h2 id=&quot;排名&quot;&gt;&lt;a href=&quot;#排名&quot; class=&quot;headerlink&quot; title=&quot;排名&quot;&gt;&lt;/a&gt;排名&lt;/h2&gt;&lt;p&gt;就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名&lt;br&gt;在postgresql中可以使用像rank() over()这样的函数&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    course_name,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    s_id,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    score,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;rank&lt;/span&gt;() &lt;span class=&quot;keyword&quot;&gt;over&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;by&lt;/span&gt; score &lt;span class=&quot;keyword&quot;&gt;desc&lt;/span&gt;) rank_score&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    t_score&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo&quot; alt=&quot;mysql-handbook-05-02&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
-    
-    
-      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
     <title>MySQL-regexp</title>
     <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/"/>
     <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/</id>
@@ -932,6 +950,54 @@
 &lt;/blockquote&gt;
 &lt;p&gt;但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。&lt;/p&gt;
 &lt;p&gt;常用的正则表达式，更多的内容，大家可以百度下&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-01.png-blog.photo&quot; alt=&quot;mysql-handbook-04-01&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL-分组排序</title>
+    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/"/>
+    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/</id>
+    <published>2017-09-09T04:00:00.000Z</published>
+    <updated>2017-09-11T09:04:45.018Z</updated>
+    
+    <content type="html"><![CDATA[<p>MySQL<br>分组排序</p>
+<p>使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。</p>
+<p>我们先来看第一个类型的问题，关于排序的问题</p>
+<h2 id="排名"><a href="#排名" class="headerlink" title="排名"></a>排名</h2><p>就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名<br>在postgresql中可以使用像rank() over()这样的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo" alt="mysql-handbook-05-02"></p>
+<a id="more"></a>
+<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="comment">-- 根据排序规则，每条记录增加1</span></div><div class="line">    @rn:=@rn+<span class="number">1</span> <span class="keyword">as</span> rank_score</div><div class="line">    <span class="comment">-- 初始化变量@rn，从0开始</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-03.png-blog.photo" alt="mysql-handbook-05-03"></p>
+<p>细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？</p>
+<p>当然可以，我们改一下SQL<br>只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    <span class="comment">-- 判断当前score是否和上一条记录的score相等，</span></div><div class="line">    <span class="comment">-- 如果相等则使用和上一条一样的排名</span></div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn+<span class="number">1</span>) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    <span class="comment">-- 使用pre来保存上一条记录的score</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-04.png-blog.photo" alt="mysql-handbook-05-04"></p>
+<p>上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？</p>
+<p>我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    @rn_1:=@rn_1+<span class="number">1</span> rank_score_1,</div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn_1) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    </div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>,@rn_1:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div></pre></td></tr></table></figure>
+<p>我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-05.png-blog.photo" alt="mysql-handbook-05-05"></p>
+<h2 id="分组排序"><a href="#分组排序" class="headerlink" title="分组排序"></a>分组排序</h2><p>就是给每个分组中的数据，分别进行排名<br>如果有类似rank() over()的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 在postgresql中</span></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> course_name <span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-01.png-blog.photo" alt="mysql-handbook-05-01"></p>
+<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br>这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，<br>如果课程名称一样，则继续排名，如果不一样，则重新开始排名<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> @rn:=<span class="number">0</span>;</div><div class="line"><span class="keyword">set</span> @pre_course:=<span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">if</span>(@pre_course=course_name,@rn:=@rn+<span class="number">1</span>,@rn:=<span class="number">0</span>),</div><div class="line">    @pre_course:= course_name </div><div class="line"><span class="keyword">from</span> t_score </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> course_name,score <span class="keyword">desc</span>;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-91fb3a9a983c21d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分组排序"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MySQL&lt;br&gt;分组排序&lt;/p&gt;
+&lt;p&gt;使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。&lt;/p&gt;
+&lt;p&gt;我们先来看第一个类型的问题，关于排序的问题&lt;/p&gt;
+&lt;h2 id=&quot;排名&quot;&gt;&lt;a href=&quot;#排名&quot; class=&quot;headerlink&quot; title=&quot;排名&quot;&gt;&lt;/a&gt;排名&lt;/h2&gt;&lt;p&gt;就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名&lt;br&gt;在postgresql中可以使用像rank() over()这样的函数&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    course_name,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    s_id,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    score,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;rank&lt;/span&gt;() &lt;span class=&quot;keyword&quot;&gt;over&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;by&lt;/span&gt; score &lt;span class=&quot;keyword&quot;&gt;desc&lt;/span&gt;) rank_score&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    t_score&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo&quot; alt=&quot;mysql-handbook-05-02&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -1052,53 +1118,6 @@
 &lt;p&gt;主键（Primary Key）：可以唯一确定一条记录的字段，比如学生表中的学生ID，生活中我们的身份证号&lt;br&gt;外键（Foreign Key）：指向另一张表的主键，比如学生表中的班级ID，班级ID是班级表中的主键，但在学生表中是外键&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;主键和外键可以在建表的时候指定，他可以在数据库层面，控制你的数据的完整性、一致性。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
-    
-    
-      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL-中文排序</title>
-    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-02/"/>
-    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-02/</id>
-    <published>2017-09-09T01:00:00.000Z</published>
-    <updated>2017-09-09T10:50:41.221Z</updated>
-    
-    <content type="html"><![CDATA[<p>MySQL<br>中文排序</p>
-<p>测试数据参考：<a href="http://yuguiyang.github.io/2017/09/09/mysql-handbook-01/">http://yuguiyang.github.io/2017/09/09/mysql-handbook-01/</a></p>
-<p>以前还真没有关注这个中文排序的问题，这里记录下。</p>
-<p>一张学生表<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student;</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-26480895de68e815.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="学生表"></p>
-<p>我们根据s_name来排序<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">order</span> <span class="keyword">by</span> s_name;</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-0f5ecf1f3512536d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="根据s_name排序"></p>
-<p>这里的中文排序，是不对的，应该是由于字符集的问题，一般情况下，数据库中的编码都是使用UTF-8的，所以，对于中文会有问题。</p>
-<p>从网上找到2中解决办法</p>
-<a id="more"></a>
-<h2 id="create-table的时候加上binary属性（经测试，不好用）"><a href="#create-table的时候加上binary属性（经测试，不好用）" class="headerlink" title="create table的时候加上binary属性（经测试，不好用）"></a>create table的时候加上binary属性（经测试，不好用）</h2><p>注意下s_name字段，我们添加了binary属性<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t_student_test`</span> (</div><div class="line">  <span class="string">`s_id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'学生ID'</span>,</div><div class="line">  <span class="string">`s_name`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="built_in">binary</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'学生姓名'</span>,</div><div class="line">  <span class="string">`s_gender`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'学生性别 0-男,1-女'</span>,</div><div class="line">  <span class="string">`s_birthday`</span> <span class="built_in">date</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'出生日期'</span>,</div><div class="line">  <span class="string">`s_hobby`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'爱好'</span>,</div><div class="line">  <span class="string">`c_id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'班级ID'</span></div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COMMENT</span>=<span class="string">'学生表'</span>;</div></pre></td></tr></table></figure></p>
-<p>这里，我试验是失败的，中文排序依然不对</p>
-<h2 id="在order-by-后面，使用-convert函数"><a href="#在order-by-后面，使用-convert函数" class="headerlink" title="在order by 后面，使用 convert函数"></a>在order by 后面，使用 convert函数</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">convert</span>(s_name <span class="keyword">using</span> gbk);</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-27d3391d7061ae9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="中文排序"></p>
-<p>使用convert函数是可以的，没有问题</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;MySQL&lt;br&gt;中文排序&lt;/p&gt;
-&lt;p&gt;测试数据参考：&lt;a href=&quot;http://yuguiyang.github.io/2017/09/09/mysql-handbook-01/&quot;&gt;http://yuguiyang.github.io/2017/09/09/mysql-handbook-01/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;以前还真没有关注这个中文排序的问题，这里记录下。&lt;/p&gt;
-&lt;p&gt;一张学生表&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; *&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; t_student;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-26480895de68e815.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;学生表&quot;&gt;&lt;/p&gt;
-&lt;p&gt;我们根据s_name来排序&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; *&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; t_student &lt;span class=&quot;keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;by&lt;/span&gt; s_name;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-0f5ecf1f3512536d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;根据s_name排序&quot;&gt;&lt;/p&gt;
-&lt;p&gt;这里的中文排序，是不对的，应该是由于字符集的问题，一般情况下，数据库中的编码都是使用UTF-8的，所以，对于中文会有问题。&lt;/p&gt;
-&lt;p&gt;从网上找到2中解决办法&lt;/p&gt;
     
     </summary>
     
