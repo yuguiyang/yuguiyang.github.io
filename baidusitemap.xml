@@ -4,8 +4,288 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/08/19/visual-handbook-02/</loc>
+    <lastmod>2017-10-21T05:42:46.258Z</lastmod>
+    <data>
+        <display>
+        <title>word_cloud-用Python之作个性化词云图</title>
+        <pubTime>2017-08-19T00:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>词云</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/12/matplotlib-handbook-08/</loc>
+    <lastmod>2017-10-21T05:28:05.238Z</lastmod>
+    <data>
+        <display>
+        <title>matplotlib手册(8) - 绘图知识点杂记</title>
+        <pubTime>2017-08-12T12:11:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>matplotlib</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/12/matplotlib-handbook-07/</loc>
+    <lastmod>2017-10-21T05:23:06.750Z</lastmod>
+    <data>
+        <display>
+        <title>matplotlib手册(7) - 折线图和曲线图</title>
+        <pubTime>2017-08-12T00:11:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>matplotlib</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/11/matplotlib-handbook-06/</loc>
+    <lastmod>2017-10-21T04:55:44.393Z</lastmod>
+    <data>
+        <display>
+        <title>matplotlib手册(6) - 水平条形图</title>
+        <pubTime>2017-08-11T12:11:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>matplotlib</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/11/matplotlib-handbook-05/</loc>
+    <lastmod>2017-10-21T04:51:54.856Z</lastmod>
+    <data>
+        <display>
+        <title>matplotlib手册(5) - 柱状图</title>
+        <pubTime>2017-08-11T00:11:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>matplotlib</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/08/matplotlib-handbook-01/</loc>
+    <lastmod>2017-10-21T04:47:17.917Z</lastmod>
+    <data>
+        <display>
+        <title>matplotlib手册(1)-pyplot使用</title>
+        <pubTime>2017-08-08T00:11:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>matplotlib</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/10/matplotlib-handbook-04/</loc>
+    <lastmod>2017-10-21T04:37:10.719Z</lastmod>
+    <data>
+        <display>
+        <title>matplotlib手册(4)-中文乱码</title>
+        <pubTime>2017-08-10T12:11:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>matplotlib</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/10/matplotlib-handbook-03/</loc>
+    <lastmod>2017-10-21T04:32:27.918Z</lastmod>
+    <data>
+        <display>
+        <title>matplotlib手册(3)-pyplot文本相关函数使用</title>
+        <pubTime>2017-08-10T00:11:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>matplotlib</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/09/matplotlib-handbook-02/</loc>
+    <lastmod>2017-10-21T04:17:36.742Z</lastmod>
+    <data>
+        <display>
+        <title>matplotlib手册(2)-pyplot.figure</title>
+        <pubTime>2017-08-09T00:11:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>数据可视化</tag>
+         
+        <tag>matplotlib</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/08/visual-handbook-01/</loc>
+    <lastmod>2017-10-21T04:02:44.781Z</lastmod>
+    <data>
+        <display>
+        <title>使用Spyder不弹出画图面板</title>
+        <pubTime>2017-08-08T00:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Spyder</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化-Python&amp;R" url="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96-Python-R/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/19/crawler-demo-03/</loc>
+    <lastmod>2017-10-21T03:48:30.167Z</lastmod>
+    <data>
+        <display>
+        <title>爬虫小实例-拉勾网数据分析岗位</title>
+        <pubTime>2017-08-19T02:59:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>爬虫</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-爬虫" url="https://yuguiyang.github.io/categories/Python-%E7%88%AC%E8%99%AB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/08/15/crawler-demo-02/</loc>
+    <lastmod>2017-10-21T03:44:25.723Z</lastmod>
+    <data>
+        <display>
+        <title>爬虫小实例-1688物流信息之发货地信息获取</title>
+        <pubTime>2017-08-15T02:59:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>爬虫</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python-爬虫" url="https://yuguiyang.github.io/categories/Python-%E7%88%AC%E8%99%AB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/10/21/mysql-handbook-14/</loc>
-    <lastmod>2017-10-21T03:34:05.428Z</lastmod>
+    <lastmod>2017-10-21T03:34:22.297Z</lastmod>
     <data>
         <display>
         <title>MySQL-每周练习答案(2017-10-20)</title>
@@ -726,7 +1006,7 @@
 
     
   <url>
-    <loc>https://yuguiyang.github.io/2017/08/18/matplotlib-handbook-01/</loc>
+    <loc>https://yuguiyang.github.io/2017/08/18/matplotlib-handbook-10/</loc>
     <lastmod>2017-09-16T18:04:41.765Z</lastmod>
     <data>
         <display>
@@ -748,7 +1028,7 @@
 
     
   <url>
-    <loc>https://yuguiyang.github.io/2017/08/22/python-demo-01/</loc>
+    <loc>https://yuguiyang.github.io/2017/08/22/visual-handbook-03/</loc>
     <lastmod>2017-09-16T17:56:19.602Z</lastmod>
     <data>
         <display>
@@ -1503,7 +1783,7 @@
 
     
   <url>
-    <loc>https://yuguiyang.github.io/2017/08/17/matplotlib-base-flash-09/</loc>
+    <loc>https://yuguiyang.github.io/2017/08/17/matplotlib-handbook-09/</loc>
     <lastmod>2017-08-31T05:00:22.933Z</lastmod>
     <data>
         <display>

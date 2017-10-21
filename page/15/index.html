@@ -325,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/15/python-database-03/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/01/pandas-handbook-05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -344,7 +344,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/15/python-database-03/" itemprop="url">SQLAlchemy手册（三）- 常用单查询</a></h2>
+                <a class="post-title-link" href="/2017/08/01/pandas-handbook-05/" itemprop="url">Pandas手册（5）- 用pandas完成excel中常见任务</a></h2>
         
 
         <div class="post-meta">
@@ -356,8 +356,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T10:00:00+08:00">
-                2017-04-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T08:59:00+08:00">
+                2017-08-01
               </time>
             
 
@@ -379,8 +379,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-数据库</span>
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
                   </a>
                 </span>
 
@@ -417,165 +417,20 @@
 
       
         
-          
-            <p>好了，在前面，我们大概了解了SQLAlchemy的使用，日常，我们可能经常会使用些复杂点儿的查询，我们先练习下</p>
-<p>#1. common filter<br>这里，官方都有介绍，我们主要参考这里：<a href="http://docs.sqlalchemy.org/en/rel_1_1/orm/tutorial.html" target="_blank" rel="external">http://docs.sqlalchemy.org/en/rel_1_1/orm/tutorial.html</a><br>里面讲的都很清楚，我们这里简单练习下<br>首先是基本的脚本，后面，我们直接写query<br>数据库表：<br><img src="http://upload-images.jianshu.io/upload_images/76024-fe7972eaa875902a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> MetaData, create_engine</div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, Date</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'t_book'</span></div><div class="line"></div><div class="line"></div><div class="line">    id = Column(Integer,primary_key=<span class="keyword">True</span>)</div><div class="line">    name = Column(String(<span class="number">10</span>),primary_key=<span class="keyword">True</span>)</div><div class="line">    publish_date = Column(Date,primary_key=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"&lt;Book(id='%s', name='%s'"</span> % (self.id, self.name)</div><div class="line"></div><div class="line"></div><div class="line">engine = create_engine(<span class="string">'postgresql://postgres:shishi@localhost:5432/postgres'</span>)</div><div class="line">Session = sessionmaker(bind=engine)</div><div class="line"></div><div class="line">session = Session()</div></pre></td></tr></table></figure>
-<p>我们一般的过滤的话，要使用filter这个函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'----：equals'</span></div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).filter(Book.id==<span class="number">190</span>):</div><div class="line">    <span class="keyword">print</span> book</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'----：not equals'</span> </div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).filter(Book.name != <span class="string">'Java'</span>):</div><div class="line">    <span class="keyword">print</span> book</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'----：like'</span></div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).filter(Book.name.like(<span class="string">'白%'</span>)):</div><div class="line">    <span class="keyword">print</span> book</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-321f22e2757d7ce1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>常用的SQL中，我们还有and，or<br>我们需要引入其他类<br>from sqlalchemy import or_, and<em>print ‘—-：or’for book in session.query(Book).filter(or</em>(Book.name.like(‘白%’),Book.id == 191)):print bookprint ‘—-：and’for book in session.query(Book).filter(and_(Book.name.like(‘白%’),Book.id == 191)):print book</p>
-<h1 id="2-自定义SQL"><a href="#2-自定义SQL" class="headerlink" title="2. 自定义SQL"></a>2. 自定义SQL</h1><p>这里，我们使用text，来自定义自己的sql<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> or_, and_</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'----：or'</span></div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).filter(or_(Book.name.like(<span class="string">'白%'</span>),Book.id == <span class="number">191</span>)):</div><div class="line">    <span class="keyword">print</span> book  </div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'----：and'</span></div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).filter(and_(Book.name.like(<span class="string">'白%'</span>),Book.id == <span class="number">191</span>)):</div><div class="line">    <span class="keyword">print</span> book</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-e3fa39479ff43724.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>在SQL中，我们经常会使用参数传递，这里也是可以的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'-----: param'</span></div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).filter(text(<span class="string">"id=:p_id_1 or id=:p_id_2"</span>)).params(p_id_1=<span class="number">192</span>,p_id_2=<span class="number">193</span>).order_by(text(<span class="string">"id asc"</span>)).all():</div><div class="line">    <span class="keyword">print</span> book</div></pre></td></tr></table></figure></p>
-<p>到这里，自定义SQL貌似还不够灵活，不能像在数据库中随便写SQL那样，下面，我们再试试另一种方式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'-----: custom'</span></div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).\</div><div class="line">        from_statement(text(<span class="string">"select *from t_book where id = :p_id_1 or id = :p_id_2 "</span>)).\</div><div class="line">        params(p_id_1=<span class="number">190</span>, p_id_2=<span class="number">191</span>).all():</div><div class="line">    <span class="keyword">print</span> book</div></pre></td></tr></table></figure></p>
-<p>这下，我们就可以随便写我们的SQL了，</p>
-<h1 id="3-聚合函数"><a href="#3-聚合函数" class="headerlink" title="3.聚合函数"></a>3.聚合函数</h1><p>我们先看看count<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> func</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'----: count'</span></div><div class="line"><span class="keyword">print</span> session.query(func.count(<span class="string">'*'</span>)).select_from(Book).scalar()</div><div class="line"><span class="keyword">print</span> session.query(func.count(Book.id)).scalar()</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'----: group by'</span></div><div class="line"><span class="keyword">for</span> rs <span class="keyword">in</span> session.query(func.count(Book.id) , Book.name).group_by(Book.name).all():</div><div class="line">    <span class="keyword">print</span> rs[<span class="number">1</span>]+<span class="string">' count： '</span>+str(rs[<span class="number">0</span>])</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-da1b53e56723ddf8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/14/bs-handbook-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/14/bs-handbook-01/" itemprop="url">BeautifulSoup教程（1） - 简介及安装</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-14T21:59:00+08:00">
-                2017-04-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-爬虫/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-爬虫</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近在学习Python，按照一些博客练习爬虫，最简单的步骤，就是访问一个主页，根据正则表达式去获取我们想要的标签数据；</p>
-<p>比如这样：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#加载网址，获取当前页面</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTML</span><span class="params">(url)</span> :</span></div><div class="line">	page = urllib.urlopen(url)</div><div class="line">	html = page.read()</div><div class="line">	<span class="keyword">return</span> html</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getImage</span><span class="params">(html)</span> :</span></div><div class="line">	reg = <span class="string">r'src="(.+?\.jpg)"'</span></div><div class="line">	reg2 = <span class="string">r'&lt;img alt="(.+?)" src="(.+?\.jpg)'</span></div><div class="line">	image_reg = re.compile(reg2)</div><div class="line">	img_list = re.findall(image_reg,html)</div></pre></td></tr></table></figure></p>
+          <p>Python<br>Pandas</p>
+<hr>
+<p>发现了一篇很好的教程，介绍一些Excel中的常用操作，怎样在pandas中实现，很不错，这里学习，顺便分享下。<br>原文地址：<a href="http://python.jobbole.com/80870/" target="_blank" rel="external">用Pandas完成Excel中常见的任务</a>，</p>
+<p>这个是翻译的，再原文是：<a href="http://pbpython.com/excel-pandas-comp.html" target="_blank" rel="external">Common Excel Tasks Demonstrated in Pandas </a></p>
+<p>好了，下面，我们开始学习下。</p>
+<h1 id="基础数据"><a href="#基础数据" class="headerlink" title="基础数据"></a>基础数据</h1><p>这个是从网上找的一个成绩单，拿了一部分数据</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-fc77ad95f5aeb18d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>首先呢，我们想要，在加一列，显示总分，Excel中很方便<br><img src="http://upload-images.jianshu.io/upload_images/76024-cc298b5d57f6ba58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在pandas中呢，其实，我们就是需要“数学”，“语文”，“英语”这3列加在一起，我们怎样获取这3列呢？<br>前面，我们说过在DataFrame中，怎样去筛选数据<br><img src="http://upload-images.jianshu.io/upload_images/76024-3c57ffb8a1ecd92f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">df = pd.read_excel(<span class="string">r'D:\document\tableau_data\data_stu.xlsx'</span>,sheetname=<span class="number">0</span>)</div><div class="line"></div><div class="line">print(df)</div><div class="line">print(df[<span class="string">'数学'</span>])</div><div class="line">print(df[<span class="string">'语文'</span>])</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-7d28c7bfc1bde1e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/04/14/bs-handbook-01/#more" rel="contents">
+            <a class="btn" href="/2017/08/01/pandas-handbook-05/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -626,7 +481,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/14/Kettle-handbook-12/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/01/python-handbook-02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -645,7 +500,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/14/Kettle-handbook-12/" itemprop="url">Kettle手册（十二）- 控件使用-从步骤插入数据</a></h2>
+                <a class="post-title-link" href="/2017/08/01/python-handbook-02/" itemprop="url">Python基础（2）- 格式化format</a></h2>
         
 
         <div class="post-meta">
@@ -657,8 +512,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-14T11:24:44+08:00">
-                2017-04-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T08:00:00+08:00">
+                2017-08-01
               </time>
             
 
@@ -680,8 +535,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
-                    <span itemprop="name">ETL-Kettle</span>
+                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-基础</span>
                   </a>
                 </span>
 
@@ -719,7 +574,16 @@
       
         
           
-            <p>这里介绍一个控件的小功能，也是最近才发现的，之前在“表输入”中要使用参数的话，一般都是使用变量，<br>其实，还有个功能也可以尝试使用<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-01.png-blog.photo" alt="Kettle-handbook-12-01.png"><br>整体流程就是这样，我们第一个 query_paramter，就是查询了我们想设置的参数<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-02.png-blog.photo" alt="Kettle-handbook-12-02.png"><br>然后，就是我们真正需要的，我们再表输入中，使用 “?”来占位，然后“从步骤插入数据”，选择上一个步骤，然后会将数据替换占位符<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-03.png-blog.photo" alt="Kettle-handbook-12-03.png"><br>最后，我们将文件导出即可，奥对了，我们可以改成日志控件，直接输出查看<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-04.png-blog.photo" alt="Kettle-handbook-12-04.png"><br>刚刚，上面还有一个“执行每一行”，这个就是，如果我们有多个参数，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-05.png-blog.photo" alt="Kettle-handbook-12-05.png"><br>就可以使用这个参数了，很方便，好了，就介绍到这里先。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-06.png-blog.photo" alt="Kettle-handbook-12-06.png"></p>
+            <p>刚刚在练习pandas的时候，遇到一个格式化的问题，没有太理解，百度了下，这里整理下。<br>str.format()，是一个格式化字符串的函数，很强大</p>
+<blockquote>
+<p>str.format(<em>args, *</em>kwargs)</p>
+</blockquote>
+<p>主要是使用 {}和:<br>这里直接就复制过来了，我们可以通过参数的位置来输出<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;<span class="string">"&#123;&#125; &#123;&#125;"</span>.format(<span class="string">"hello"</span>, <span class="string">"world"</span>)    <span class="comment"># 不设置指定位置，按默认顺序</span></div><div class="line"><span class="string">'hello world'</span></div><div class="line"> </div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"&#123;0&#125; &#123;1&#125;"</span>.format(<span class="string">"hello"</span>, <span class="string">"world"</span>)  <span class="comment"># 设置指定位置</span></div><div class="line"><span class="string">'hello world'</span></div><div class="line"> </div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"&#123;1&#125; &#123;0&#125; &#123;1&#125;"</span>.format(<span class="string">"hello"</span>, <span class="string">"world"</span>)  <span class="comment"># 设置指定位置</span></div><div class="line"><span class="string">'world hello world'</span></div></pre></td></tr></table></figure></p>
+<p>我们也可以通过key，value的形式来格式化<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="string">'name:&#123;name&#125;,age:&#123;age&#125;'</span>.format(name=<span class="string">'lufei'</span>,age=<span class="number">20</span>)</div><div class="line">Out[<span class="number">46</span>]: <span class="string">'name:lufei,age:20'</span></div><div class="line"></div><div class="line">p=[<span class="string">'namei'</span>,<span class="number">20</span>]</div><div class="line"></div><div class="line"><span class="string">'name:&#123;0[0]&#125;,age:&#123;0[1]&#125;'</span>.format(p)</div><div class="line">Out[<span class="number">51</span>]: <span class="string">'name:namei,age:20'</span></div></pre></td></tr></table></figure></p>
+<p>填充与对齐<br><img src="http://upload-images.jianshu.io/upload_images/76024-cd49b83bff170fa1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">^、&lt;、&gt;分别是居中、左对齐、右对齐，后面带宽度</div><div class="line">:号后面带填充的字符，只能是一个字符，不指定的话默认是用空格填充</div><div class="line"></div><div class="line"><span class="comment">#右对齐，长度为8，不够的默认用空格补全</span></div><div class="line"><span class="string">'&#123;:&gt;8&#125;'</span>.format(<span class="string">'189'</span>)</div><div class="line">Out[<span class="number">52</span>]: <span class="string">'     189'</span></div><div class="line"></div><div class="line"><span class="comment">#右对齐，长度为8，不够的用0补全</span></div><div class="line"><span class="string">'&#123;:0&gt;8&#125;'</span>.format(<span class="string">'189'</span>)</div><div class="line">Out[<span class="number">53</span>]: <span class="string">'00000189'</span></div><div class="line"></div><div class="line"><span class="string">'&#123;:a&gt;8&#125;'</span>.format(<span class="string">'189'</span>)</div><div class="line">Out[<span class="number">54</span>]: <span class="string">'aaaaa189'</span></div></pre></td></tr></table></figure>
+<p>数值精度<br>这个说的挺全的，直接截图来吧<br><img src="http://upload-images.jianshu.io/upload_images/76024-0040730729b50966.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>参考资料：<br><a href="http://www.runoob.com/python/att-string-format.html" target="_blank" rel="external">Python format 格式化函数</a><br>官方介绍：<a href="https://docs.python.org/2/library/string.html#formatstrings" target="_blank" rel="external">Format String Syntax</a><br><a href="http://blog.csdn.net/handsomekang/article/details/9183303" target="_blank" rel="external">飘逸的python - 增强的格式化字符串format函数 </a></p>
 
           
         
@@ -768,7 +632,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/13/python-database-02/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/07/31/pandas-handbook-04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -787,7 +651,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/13/python-database-02/" itemprop="url">SQLAlchemy手册（二）- 增删改查</a></h2>
+                <a class="post-title-link" href="/2017/07/31/pandas-handbook-04/" itemprop="url">Pandas手册（4）- 对数据进行筛选和排序</a></h2>
         
 
         <div class="post-meta">
@@ -799,8 +663,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-13T10:00:00+08:00">
-                2017-04-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T21:59:00+08:00">
+                2017-07-31
               </time>
             
 
@@ -822,8 +686,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-数据库</span>
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
                   </a>
                 </span>
 
@@ -860,33 +724,23 @@
 
       
         
-          
-            <p>好了，这里，我们来看看，怎么使用SQLAlchemy，先从最简单的增删改查来看看，这里我们使用PostgreSQL数据库</p>
-<h1 id="1-连接PG数据库"><a href="#1-连接PG数据库" class="headerlink" title="1. 连接PG数据库"></a>1. 连接PG数据库</h1><p><img src="http://upload-images.jianshu.io/upload_images/76024-6b93949a41c73de0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>因为SQLAlchemy底层连接，还是使用这些框架，所以我们想要连接PostgreSQL，还得先安装下这些，这里我们使用psycopg2<br><img src="http://upload-images.jianshu.io/upload_images/76024-f06e472df6b056b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>不装的话，我们连接时，会报错<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install psycopg2</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-40b4e6d434365f85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>安装好后，我们来看看怎样连接PG<br>我们再SQLAlchemy中连接数据库的话，需要使用这个叫做Engine的类，<br>关于介绍我们可以看官方的教程：<a href="http://docs.sqlalchemy.org/en/rel_1_1/core/engines.html" target="_blank" rel="external">http://docs.sqlalchemy.org/en/rel_1_1/core/engines.html</a><br><img src="http://upload-images.jianshu.io/upload_images/76024-af61c4fc6caa6fdb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>他可以适配大部分数据库，大家可以自行尝试下<br><img src="http://upload-images.jianshu.io/upload_images/76024-a83f56d963afee9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</div><div class="line"></div><div class="line">engine = create_engine(<span class="string">'postgresql://postgres:shishi@172.16.201.12:5432/postgres'</span>,echo=<span class="keyword">True</span>)</div><div class="line"></div><div class="line"><span class="keyword">print</span> engine</div></pre></td></tr></table></figure>
-<h1 id="2-create-table-drop-table"><a href="#2-create-table-drop-table" class="headerlink" title="2. create table/drop table"></a>2. create table/drop table</h1><p>这里，我们来看看怎样用orm的思想去create table、drop table<br>按照orm的思想，这里还有一个MetaData类得看下<br><img src="http://upload-images.jianshu.io/upload_images/76024-7046c83fd79175e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这里的示例，我们定义一个table“t_users”,有2个字段，id，user_name<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Table, Column, Integer, String, MetaData, create_engine</div><div class="line"></div><div class="line">engine = create_engine(<span class="string">'postgresql://postgres:shishi@172.16.201.12:5432/postgres'</span>,echo=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">metadata = MetaData()</div><div class="line"></div><div class="line">users = Table(<span class="string">'t_users'</span>,metadata,</div><div class="line">                Column(<span class="string">'id'</span>,Integer),</div><div class="line">                Column(<span class="string">'user_name'</span>,String(<span class="number">20</span>))</div><div class="line">        )</div><div class="line"></div><div class="line"><span class="comment">#do the drop first</span></div><div class="line">metadata.drop(engine)</div><div class="line"></div><div class="line"><span class="comment">#now create the table</span></div><div class="line">metadata.create(engine)</div></pre></td></tr></table></figure></p>
-<p>我们执行下<br>上面，我们create_engine的时候，指定了echo=True，我们就可以看到输出语句了<br>这里的drop，有一个参数，checkfirst=True<br>,默认就是TRUE，会判断该表是否存在，如果存在就执行删除，create也是一样的，会先判断是否存在<br><img src="http://upload-images.jianshu.io/upload_images/76024-f12075d0f342650a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>我们看看数据库<br><img src="http://upload-images.jianshu.io/upload_images/76024-488a5c91b77b5c1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>–晚上又看了看，感觉上面的方法可以使用，但是，貌似不是ORM思想的方法，又看了看官方的文档，自己先试试，明天再接着整理</p>
-<h1 id="3-查询数据"><a href="#3-查询数据" class="headerlink" title="3. 查询数据"></a>3. 查询数据</h1><p>好了，上面的Table方式，可以用来创建表，这里<br>参考官方的教程：<a href="http://docs.sqlalchemy.org/en/rel_1_1/orm/tutorial.html" target="_blank" rel="external">http://docs.sqlalchemy.org/en/rel_1_1/orm/tutorial.html</a></p>
-<h2 id="3-1-定义Mapping类"><a href="#3-1-定义Mapping类" class="headerlink" title="3.1 定义Mapping类"></a>3.1 定义Mapping类</h2><p>和Java里的一样，我们得定一些实体类，和数据库中的表做映射<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String</div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'some_table'</span></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    name =  Column(String(<span class="number">50</span>))</div></pre></td></tr></table></figure></p>
-<p>像上面这样，我们就定义了一个类，我们来实际写一个看看<br>这里，我们映射了数据库中的“t_users”表，有2个字段，“id”和“user_name”<br><img src="http://upload-images.jianshu.io/upload_images/76024-0968f5858c5022f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></div><div class="line">        __tablename__=<span class="string">'t_users'</span></div><div class="line"></div><div class="line">        id = Column(Integer,primary_key=<span class="keyword">True</span>)</div><div class="line">        user_name = Column(String(<span class="number">10</span>))</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">                <span class="keyword">return</span> <span class="string">"&lt;User(id='%s', user_name='%s')&gt;"</span> % (self.id, self.user_name)</div></pre></td></tr></table></figure>
-<h2 id="3-2-session"><a href="#3-2-session" class="headerlink" title="3.2 session"></a>3.2 session</h2><p>下面，我们就来查询下数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></div><div class="line">        __tablename__=<span class="string">'t_users'</span></div><div class="line"></div><div class="line">        id = Column(Integer,primary_key=<span class="keyword">True</span>)</div><div class="line">        user_name = Column(String(<span class="number">10</span>))</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">                <span class="keyword">return</span> <span class="string">"&lt;User(id='%s', user_name='%s')&gt;"</span> % (self.id, self.user_name)</div><div class="line"></div><div class="line">engine = create_engine(<span class="string">'postgresql://postgres:shishi@172.16.201.12:5432/postgres'</span>,echo=<span class="keyword">True</span>)</div><div class="line">Session = sessionmaker(bind=engine)</div><div class="line">session = Session()</div><div class="line"></div><div class="line"><span class="comment">#query all users</span></div><div class="line">user_list = session.query(User).all()</div><div class="line"><span class="keyword">print</span> user_list</div></pre></td></tr></table></figure></p>
-<p>上面的话，我们还用到了session，这里的session，暂时理解为，可以开一个事务，处理我们的逻辑，我们执行select的话，也需要这个<br>这里，我们就直接查出所有的记录就可以了</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-8d556afb02c09342.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
-<h1 id="4-insert"><a href="#4-insert" class="headerlink" title="4. insert"></a>4. insert</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">new_user = User(id=<span class="number">666</span>,user_name=<span class="string">'ayang'</span>)</div><div class="line">session.add(new_user)</div><div class="line">session.commit()</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-9072ff2803b1d2f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h1 id="5-update"><a href="#5-update" class="headerlink" title="5.update"></a>5.update</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#update the user</span></div><div class="line">update_user = session.query(User).filter_by(id=<span class="number">666</span>).first()</div><div class="line"><span class="keyword">print</span> update_user</div><div class="line"></div><div class="line">update_user.user_name=<span class="string">'apple'</span></div><div class="line">session.commit()</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-73e8a819df387063.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-
-          
+          <p>Python<br>Pandas</p>
+<hr>
+<p>前几天看了篇教程：<a href="http://bluewhale.cc/2016-08-06/use-pandas-filter-and-sort.html" target="_blank" rel="external">使用Pandas对数据进行筛选和排序</a></p>
+<p>里面主要介绍了，我们在使用Pandas时，对数据进行筛选和排序的介绍<br>这里简单总结分享下自己。</p>
+<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><p>可能是版本的问题，原文中的sort函数没有了，变成了2个常用的函数 sort_index和sort_value</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">DataFrame.sort_index(axis=<span class="number">0</span>, level=<span class="keyword">None</span>, ascending=<span class="keyword">True</span>, inplace=<span class="keyword">False</span>, kind=<span class="string">'quicksort'</span>, na_position=<span class="string">'last'</span>, sort_remaining=<span class="keyword">True</span>, by=<span class="keyword">None</span>)</div><div class="line">Sort object by labels (along an axis)</div><div class="line"></div><div class="line">DataFrame.sort_values(by, axis=<span class="number">0</span>, ascending=<span class="keyword">True</span>, inplace=<span class="keyword">False</span>, kind=<span class="string">'quicksort'</span>, na_position=<span class="string">'last'</span>)</div><div class="line">Sort by the values along either axis</div></pre></td></tr></table></figure>
+<p>sort_index：按照索引排序，及列标签或行标签，axis=0是列标签，axis=1是行标签<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">df3 = pd.DataFrame(np.random.randn(<span class="number">6</span>,<span class="number">4</span>),</div><div class="line">                   index=list(range(<span class="number">0</span>,<span class="number">12</span>,<span class="number">2</span>)),</div><div class="line">                   columns=list(range(<span class="number">0</span>,<span class="number">8</span>,<span class="number">2</span>)))</div><div class="line"></div><div class="line">print(df3)</div><div class="line">print(df3.sort_index(axis=<span class="number">0</span>,ascending=<span class="keyword">False</span>))</div><div class="line">print(df3.sort_index(axis=<span class="number">1</span>,ascending=<span class="keyword">False</span>))</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-66d497e63d83a214.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>sort_value：按值进行排序，这个估计用的会多些，按数据内容进行排序<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">print(df3)</div><div class="line">print(df3.sort_values(by=[<span class="number">0</span>],axis=<span class="number">0</span>,ascending=<span class="keyword">True</span>))</div><div class="line">print(df3.sort_values(by=[<span class="number">2</span>],axis=<span class="number">0</span>,ascending=<span class="keyword">False</span>))</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-2b887473b56dc8d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/31/pandas-handbook-04/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -933,7 +787,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/12/python-database-01/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/07/31/pandas-handbook-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -952,7 +806,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/12/python-database-01/" itemprop="url">SQLAlchemy手册（一）-简介及安装</a></h2>
+                <a class="post-title-link" href="/2017/07/31/pandas-handbook-03/" itemprop="url">Pandas手册（3）- DataFrame-Selection By Label/Position</a></h2>
         
 
         <div class="post-meta">
@@ -964,8 +818,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T10:00:00+08:00">
-                2017-04-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T14:59:00+08:00">
+                2017-07-31
               </time>
             
 
@@ -987,8 +841,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-数据库</span>
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
                   </a>
                 </span>
 
@@ -1025,16 +879,172 @@
 
       
         
-          
-            <p>Python新手，目前学习中，最近发现个叫SQLAlchemy的ORM框架，就是类似Java里面的Hibernate啊，Mybatis啊之类的，这里也简单记录下。<br>官网地址：<a href="http://docs.sqlalchemy.org/en/rel_1_1/" target="_blank" rel="external">http://docs.sqlalchemy.org/en/rel_1_1/</a></p>
-<h1 id="1-SQLAlchemy-介绍"><a href="#1-SQLAlchemy-介绍" class="headerlink" title="1. SQLAlchemy 介绍"></a>1. SQLAlchemy 介绍</h1><p>这里直接摘一下百度百科的内容，简单说就是ORM框架，更加方便的去和数据库库连接。<br><img src="http://upload-images.jianshu.io/upload_images/76024-e41d2dccabfa775d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h1 id="2-SQLAlchemy安装"><a href="#2-SQLAlchemy安装" class="headerlink" title="2. SQLAlchemy安装"></a>2. SQLAlchemy安装</h1><p>熟悉Python的同学应该很擅长这个了，而且官方文档上也有介绍，<a href="http://docs.sqlalchemy.org/en/rel_1_1/intro.html#installation" target="_blank" rel="external">http://docs.sqlalchemy.org/en/rel_1_1/intro.html#installation</a></p>
-<h2 id="2-1-pip-安装"><a href="#2-1-pip-安装" class="headerlink" title="2.1 pip 安装"></a>2.1 pip 安装</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install SQLAlchemy</div></pre></td></tr></table></figure>
-<h2 id="2-2-setup-py"><a href="#2-2-setup-py" class="headerlink" title="2.2 setup.py"></a>2.2 setup.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python setup.py install</div></pre></td></tr></table></figure>
-<p>家里网速不太好，就直接下了个包，用这种方式安装了，没啥问题<br><img src="http://upload-images.jianshu.io/upload_images/76024-72dc94f96ab47245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>我们引入验证一下<br><img src="http://upload-images.jianshu.io/upload_images/76024-ee4627473e05f0e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>好了，第一回，先简单说到这，下一回，我们来看看怎么使用</p>
+          <p>Python<br>Pandas</p>
+<hr>
+<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>这里主要介绍下，在DataFrame中一些筛选的操作，常用的有下面这些<br><img src="http://upload-images.jianshu.io/upload_images/76024-b0e3643a3e1474d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>熟练掌握上面的几个方法，操作DataFrame应该就足够了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">d = &#123;<span class="string">'one'</span> : pd.Series([<span class="number">1.</span>, <span class="number">2.</span>, <span class="number">3.</span>], index=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]),</div><div class="line">     <span class="string">'two'</span> : pd.Series([<span class="number">1.</span>, <span class="number">2.</span>, <span class="number">3.</span>, <span class="number">4.</span>], index=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>])&#125;</div><div class="line"></div><div class="line">df = pd.DataFrame(d)</div><div class="line"></div><div class="line">print(<span class="string">'原始数据：\n'</span>,df)</div><div class="line"></div><div class="line">print(<span class="string">'index 为a的数据：\n'</span>,df.loc[<span class="string">'a'</span>])</div><div class="line">print(<span class="string">'index下标为2的数据：\n'</span>, df.iloc[<span class="number">2</span>])</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-b0d90b7a325bbccf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/31/pandas-handbook-03/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/07/31/pandas-handbook-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/31/pandas-handbook-02/" itemprop="url">Pandas手册（2）- DataFrame</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T10:59:00+08:00">
+                2017-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Python<br>Pandas</p>
+<hr>
+<h1 id="序"><a href="#序" class="headerlink" title="序"></a>序</h1><p>DataFrame是2维的标签数组，可以把他当成电子表格（Excel），数据库里的表，a dict of Series。<br>DataFrame初始化，也可以有不同的输入，<br><img src="http://upload-images.jianshu.io/upload_images/76024-073017a299104340.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在Series中呢，我们有一个index的概念，在DataFrame中，我们除了index，还有一个columns的概念<br>index：行标签<br>columns：列标签</p>
+<h1 id="DataFrame初始化"><a href="#DataFrame初始化" class="headerlink" title="DataFrame初始化"></a>DataFrame初始化</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">pandas</span>.<span class="title">DataFrame</span><span class="params">(data=None, index=None, columns=None, dtype=None, copy=False)</span></span></div></pre></td></tr></table></figure>
+<p>我们看到，这里有data，index，columns<br>我们可以只初始化data，其他都默认<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">df = pd.DataFrame(np.random.randn(<span class="number">5</span>))</div><div class="line"></div><div class="line">print(df)</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-1db821829c7e1f2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们看到，index，依然是下标从0开始，columns呢，也是从0开始的<br>我们可以，初始化index，和columns<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df = pd.DataFrame(np.random.randn(<span class="number">5</span>),index=[<span class="string">'i1'</span>,<span class="string">'i2'</span>,<span class="string">'i3'</span>,<span class="string">'i4'</span>,<span class="string">'i5'</span>],</div><div class="line">                  columns=[<span class="string">'a'</span>])</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-37b7dc717f96f875.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/31/pandas-handbook-02/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1072,7 +1082,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1122,7 +1132,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1144,7 +1154,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

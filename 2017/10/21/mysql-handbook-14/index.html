@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-133c11eae3d4de52.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-8630ef5582431d9a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/76024-1446b4feeb773cae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-10-21T03:34:05.428Z">
+<meta property="og:updated_time" content="2017-10-21T03:34:22.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL-每周练习答案(2017-10-20)">
 <meta name="twitter:description" content="MySQL每周练习答案 这里和大家分享下本周练习题的一种解题思路 将题目简化一下，其实就是实现这样一个功能：  我们将使用逗号分隔的数据，拆分为多行数据，熟悉MySQL的同学，可能会想到，这有点儿像group_concat函数，但这是他的逆过程 测试数据1234567891011create table tm_company(  company_name varchar(10),  company">
@@ -447,6 +447,7 @@
 <p>我们将使用逗号分隔的数据，拆分为多行数据，熟悉MySQL的同学，可能会想到，这有点儿像group_concat函数，但这是他的逆过程</p>
 <h1 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> tm_company(</div><div class="line">  company_name <span class="built_in">varchar</span>(<span class="number">10</span>),</div><div class="line">  company_industry <span class="built_in">varchar</span>(<span class="number">20</span>)</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_company(company_name,company_industry) <span class="keyword">values</span>(<span class="string">'A公司'</span>,<span class="string">'移动互联网,金融'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_company(company_name,company_industry) <span class="keyword">values</span>(<span class="string">'B公司'</span>,<span class="string">'移动互联网'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_company(company_name,company_industry) <span class="keyword">values</span>(<span class="string">'C公司'</span>,<span class="string">'教育,招聘,魔法'</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> tm_company;</div></pre></td></tr></table></figure>
 <p><img src="http://upload-images.jianshu.io/upload_images/76024-bf06fbffe9d157cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<a id="more"></a>
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>我们先来思考这样一个问题，怎样才能把用逗号分隔的数据拆分呢？<br>这里需要了解MySQL的字符串函数<br><a href="https://dev.mysql.com/doc/refman/5.7/en/string-functions.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/string-functions.html</a></p>
 <h2 id="SUBSTRING-INDEX"><a href="#SUBSTRING-INDEX" class="headerlink" title="SUBSTRING_INDEX"></a>SUBSTRING_INDEX</h2><p>找一下，会发现这个函数，挺符合我们需求的</p>
 <blockquote>
@@ -534,8 +535,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/18/mysql-handbook-13/" rel="next" title="MySQL-每周练习(2017-10-20)">
-                <i class="fa fa-chevron-left"></i> MySQL-每周练习(2017-10-20)
+              <a href="/2017/10/18/jotting-03/" rel="next" title="数据分析师是否需要掌握SQL？">
+                <i class="fa fa-chevron-left"></i> 数据分析师是否需要掌握SQL？
               </a>
             
           </div>
@@ -634,7 +635,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -656,7 +657,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

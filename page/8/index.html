@@ -325,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/17/matplotlib-base-flash-09/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/18/python-handbook-09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -344,7 +344,313 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/17/matplotlib-base-flash-09/" itemprop="url">matplotlib手册(9) - 绘制动画</a></h2>
+                <a class="post-title-link" href="/2017/08/18/python-handbook-09/" itemprop="url">Python基础（9）- 排序技巧</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-18T10:00:00+08:00">
+                2017-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>通常，我们排序的时候，我们可以使用系统内置的sorted函数或list自带的sort函数。<br>参考文章：<a href="http://www.jb51.net/article/57678.htm" target="_blank" rel="external">http://www.jb51.net/article/57678.htm</a><br><a href="https://docs.python.org/3/library/stdtypes.html?highlight=sort#list.sort" target="_blank" rel="external">https://docs.python.org/3/library/stdtypes.html?highlight=sort#list.sort</a></p>
+<h1 id="1-list-sort"><a href="#1-list-sort" class="headerlink" title="1. list.sort"></a>1. list.sort</h1><blockquote>
+<p>sort(*, key=None, reverse=False)This method sorts the list in place, using only &lt; comparisons between items. Exceptions are not suppressed - if any comparison operations fail, the entire sort operation will fail (and the list will likely be left in a partially modified state).</p>
+</blockquote>
+<p>sort是就地排序<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">list1 = [<span class="number">66</span>, <span class="number">48</span>, <span class="number">28</span>, <span class="number">69</span>, <span class="number">86</span>, <span class="number">96</span>, <span class="number">89</span>, <span class="number">37</span>, <span class="number">56</span>, <span class="number">33</span>]</div><div class="line"></div><div class="line">list1</div><div class="line">Out[<span class="number">93</span>]: [<span class="number">66</span>, <span class="number">48</span>, <span class="number">28</span>, <span class="number">69</span>, <span class="number">86</span>, <span class="number">96</span>, <span class="number">89</span>, <span class="number">37</span>, <span class="number">56</span>, <span class="number">33</span>]</div><div class="line"></div><div class="line">list1.sort()</div><div class="line"></div><div class="line">list1</div><div class="line">Out[<span class="number">95</span>]: [<span class="number">28</span>, <span class="number">33</span>, <span class="number">37</span>, <span class="number">48</span>, <span class="number">56</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">86</span>, <span class="number">89</span>, <span class="number">96</span>]</div><div class="line"></div><div class="line"><span class="comment">#默认是升序，可以使用reverse降序</span></div><div class="line">list1.sort(reverse=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">list1</div><div class="line">Out[<span class="number">97</span>]: [<span class="number">96</span>, <span class="number">89</span>, <span class="number">86</span>, <span class="number">69</span>, <span class="number">66</span>, <span class="number">56</span>, <span class="number">48</span>, <span class="number">37</span>, <span class="number">33</span>, <span class="number">28</span>]</div></pre></td></tr></table></figure></p>
+<p>key可以传入一个函数，会作用于每一个element，返回值会作为排序键</p>
+<blockquote>
+<p>key specifies a function of one argument that is used to extract a comparison key from each list element (for example, key=str.lower). The key corresponding to each item in the list is calculated once and then used for the entire sorting process. The default value of None means that list items are sorted directly without calculating a separate key value.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">list2=list(<span class="string">'AckjehLhct'</span>)</div><div class="line"></div><div class="line">list2</div><div class="line">Out[<span class="number">99</span>]: [<span class="string">'A'</span>, <span class="string">'c'</span>, <span class="string">'k'</span>, <span class="string">'j'</span>, <span class="string">'e'</span>, <span class="string">'h'</span>, <span class="string">'L'</span>, <span class="string">'h'</span>, <span class="string">'c'</span>, <span class="string">'t'</span>]</div><div class="line"></div><div class="line">list2.sort()</div><div class="line"></div><div class="line">list2</div><div class="line">Out[<span class="number">101</span>]: [<span class="string">'A'</span>, <span class="string">'L'</span>, <span class="string">'c'</span>, <span class="string">'c'</span>, <span class="string">'e'</span>, <span class="string">'h'</span>, <span class="string">'h'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="string">'t'</span>]</div><div class="line"></div><div class="line">list2.sort(key=str.lower)</div><div class="line"></div><div class="line">list2</div><div class="line">Out[<span class="number">103</span>]: [<span class="string">'A'</span>, <span class="string">'c'</span>, <span class="string">'c'</span>, <span class="string">'e'</span>, <span class="string">'h'</span>, <span class="string">'h'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="string">'L'</span>, <span class="string">'t'</span>]</div></pre></td></tr></table></figure>
+<h1 id="2-sorted"><a href="#2-sorted" class="headerlink" title="2. sorted"></a>2. sorted</h1><blockquote>
+<p>sorted(iterable, *, key=None, reverse=False)Return a new sorted list from the items in iterable</p>
+</blockquote>
+<p>sorted是返回一个排序后的新list，使用方式基本一样，只是<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">list3 = [<span class="number">84</span>, <span class="number">57</span>, <span class="number">15</span>, <span class="number">84</span>, <span class="number">40</span>, <span class="number">37</span>, <span class="number">66</span>, <span class="number">45</span>, <span class="number">11</span>, <span class="number">95</span>]</div><div class="line"></div><div class="line">list3</div><div class="line">Out[<span class="number">107</span>]: [<span class="number">84</span>, <span class="number">57</span>, <span class="number">15</span>, <span class="number">84</span>, <span class="number">40</span>, <span class="number">37</span>, <span class="number">66</span>, <span class="number">45</span>, <span class="number">11</span>, <span class="number">95</span>]</div><div class="line"></div><div class="line">sorted(list3)</div><div class="line">Out[<span class="number">108</span>]: [<span class="number">11</span>, <span class="number">15</span>, <span class="number">37</span>, <span class="number">40</span>, <span class="number">45</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">84</span>, <span class="number">84</span>, <span class="number">95</span>]</div><div class="line"></div><div class="line">sorted(list3,reverse=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">109</span>]: [<span class="number">95</span>, <span class="number">84</span>, <span class="number">84</span>, <span class="number">66</span>, <span class="number">57</span>, <span class="number">45</span>, <span class="number">40</span>, <span class="number">37</span>, <span class="number">15</span>, <span class="number">11</span>]</div></pre></td></tr></table></figure></p>
+<p>sorted方法对所有的可迭代对象都有效<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sorted(&#123;<span class="number">3</span>:<span class="string">'a'</span>,<span class="number">1</span>:<span class="string">'z'</span>,<span class="number">5</span>:<span class="string">'b'</span>,<span class="number">2</span>:<span class="string">'c'</span>&#125;)</div><div class="line">Out[<span class="number">110</span>]: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure></p>
+<p>使用sorted还能对复杂对象进行排序<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">l_op=[(<span class="string">'namei'</span>,<span class="number">20</span>,<span class="string">'a'</span>),(<span class="string">'lufei'</span>,<span class="number">19</span>,<span class="string">'c'</span>),(<span class="string">'qiaoba'</span>,<span class="number">15</span>,<span class="string">'b'</span>)]</div><div class="line"></div><div class="line">l_op</div><div class="line">Out[<span class="number">112</span>]: [(<span class="string">'namei'</span>, <span class="number">20</span>, <span class="string">'a'</span>), (<span class="string">'lufei'</span>, <span class="number">19</span>, <span class="string">'c'</span>), (<span class="string">'qiaoba'</span>, <span class="number">15</span>, <span class="string">'b'</span>)]</div><div class="line"></div><div class="line"><span class="comment">#默认是按照每一个tuple的第一个元素来排序的</span></div><div class="line">sorted(l_op)</div><div class="line">Out[<span class="number">113</span>]: [(<span class="string">'lufei'</span>, <span class="number">19</span>, <span class="string">'c'</span>), (<span class="string">'namei'</span>, <span class="number">20</span>, <span class="string">'a'</span>), (<span class="string">'qiaoba'</span>, <span class="number">15</span>, <span class="string">'b'</span>)]</div><div class="line"></div><div class="line"></div><div class="line">sorted(l_op,key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>])</div><div class="line">Out[<span class="number">114</span>]: [(<span class="string">'lufei'</span>, <span class="number">19</span>, <span class="string">'c'</span>), (<span class="string">'namei'</span>, <span class="number">20</span>, <span class="string">'a'</span>), (<span class="string">'qiaoba'</span>, <span class="number">15</span>, <span class="string">'b'</span>)]</div><div class="line"></div><div class="line"><span class="comment">#我们可以通过key函数，来指定要使用的排序键，</span></div><div class="line">sorted(l_op,key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>])</div><div class="line">Out[<span class="number">115</span>]: [(<span class="string">'qiaoba'</span>, <span class="number">15</span>, <span class="string">'b'</span>), (<span class="string">'lufei'</span>, <span class="number">19</span>, <span class="string">'c'</span>), (<span class="string">'namei'</span>, <span class="number">20</span>, <span class="string">'a'</span>)]</div><div class="line"></div><div class="line">sorted(l_op,key=<span class="keyword">lambda</span> x: x[<span class="number">2</span>],reverse=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">116</span>]: [(<span class="string">'lufei'</span>, <span class="number">19</span>, <span class="string">'c'</span>), (<span class="string">'qiaoba'</span>, <span class="number">15</span>, <span class="string">'b'</span>), (<span class="string">'namei'</span>, <span class="number">20</span>, <span class="string">'a'</span>)]</div><div class="line"></div><div class="line">sorted(l_op,key=<span class="keyword">lambda</span> x: x[<span class="number">2</span>])</div><div class="line">Out[<span class="number">117</span>]: [(<span class="string">'namei'</span>, <span class="number">20</span>, <span class="string">'a'</span>), (<span class="string">'qiaoba'</span>, <span class="number">15</span>, <span class="string">'b'</span>), (<span class="string">'lufei'</span>, <span class="number">19</span>, <span class="string">'c'</span>)]</div></pre></td></tr></table></figure></p>
+<p>对于自定义的对象也是可以的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span>:</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,id,name)</span>:</span></div><div class="line">        self.id=id</div><div class="line">        self.name=name</div><div class="line">        </div><div class="line"></div><div class="line">p1 = People(<span class="number">10</span>,<span class="string">'lufei'</span>)</div><div class="line">p2 = People(<span class="number">5</span>,<span class="string">'namei'</span>)</div><div class="line">p3 = People(<span class="number">15</span>,<span class="string">'qiaoba'</span>)</div><div class="line"></div><div class="line"><span class="comment">#指定我们要排序的字段就行了</span></div><div class="line"><span class="keyword">for</span> p <span class="keyword">in</span> sorted([p1,p2,p3],key=<span class="keyword">lambda</span> p: p.id):</div><div class="line">    print(p.id,p.name)</div><div class="line"></div><div class="line"><span class="comment">#out:</span></div><div class="line"><span class="number">5</span> namei</div><div class="line"><span class="number">10</span> lufei</div><div class="line"><span class="number">15</span> qiaoba</div><div class="line"></div><div class="line"><span class="keyword">for</span> p <span class="keyword">in</span> sorted([p1,p2,p3],key=<span class="keyword">lambda</span> p: p.name):</div><div class="line">    print(p.id,p.name)</div><div class="line"></div><div class="line"><span class="comment">#out:</span></div><div class="line"><span class="number">10</span> lufei</div><div class="line"><span class="number">5</span> namei</div><div class="line"><span class="number">15</span> qiaoba</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/18/matplotlib-handbook-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/18/matplotlib-handbook-10/" itemprop="url">matplotlib手册(10)-用pyplot实现“房间里100个人玩游戏的例子”</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-18T08:00:00+08:00">
+                2017-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据可视化-Python-R/" itemprop="url" rel="index">
+                    <span itemprop="name">数据可视化-Python&R</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>之前有篇文章，说房间里有100个人，每人100块钱，的那个<br>原文介绍：<a href="https://mp.weixin.qq.com/s?__biz=MjM5MDI1ODUyMA==&amp;mid=2672939083&amp;idx=2&amp;sn=646721af2fb38c9d0ce85f32eb353c36&amp;chksm=bce2f47c8b957d6ab60bc715b7d99c36491da71c4f24dd8509e943d061d416c69ced309a5179#rd" target="_blank" rel="external">用数据分析告诉你这个世界很有意思</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-476568183e907845.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>觉得挺有意思的，昨天发现pyplot也可以绘制动画，就来试试，主要是实现动画效果，其他的暂时先不考虑了<br>目前跑起来是可以，就是比较慢，还没找到原因<br>整体想法，就是<br>x轴表示玩家的序号，财富值用y轴来表示</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/18/matplotlib-handbook-10/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/17/matplotlib-handbook-09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/17/matplotlib-handbook-09/" itemprop="url">matplotlib手册(9) - 绘制动画</a></h2>
         
 
         <div class="post-meta">
@@ -429,7 +735,7 @@
 <h1 id="1-FuncAnimation"><a href="#1-FuncAnimation" class="headerlink" title="1. FuncAnimation"></a>1. FuncAnimation</h1><p>函数介绍及主要参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">matplotlib</span>.<span class="title">animation</span>.<span class="title">FuncAnimation</span><span class="params">(fig, func, frames=None, init_func=None, fargs=None, save_count=None, **kwargs)</span></span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class"><span class="title">fig</span> :</span> matplotlib.figure.Figure</div><div class="line">func : callable</div><div class="line">frames : iterable, int, generator function, <span class="keyword">or</span> <span class="keyword">None</span>, optional</div><div class="line">init_func : callable, optional</div><div class="line">fargs : tuple <span class="keyword">or</span> <span class="keyword">None</span>, optional</div><div class="line">interval : number, optional</div><div class="line"></div><div class="line">repeat_delay : number, optional</div><div class="line">repeat : bool, optional</div></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/17/matplotlib-base-flash-09/#more" rel="contents">
+            <a class="btn" href="/2017/08/17/matplotlib-handbook-09/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -793,325 +1099,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/15/pandas-handbook-10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/15/pandas-handbook-10/" itemprop="url">Pandas手册（10）- 数据转换</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T08:00:00+08:00">
-                2017-08-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Pandas</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Python<br>Pandas</p>
-<hr>
-<p>这里接着上一篇，继续记录下pandas中数据处理方面的函数</p>
-<h1 id="1-重复数据"><a href="#1-重复数据" class="headerlink" title="1.  重复数据"></a>1.  重复数据</h1><p>结果集中，可能会有重复数据，有函数可以做去重操作</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#判断数据是否重复</span></div><div class="line">DataFrame.duplicated(subset=<span class="keyword">None</span>, keep=<span class="string">'first'</span>)</div><div class="line">Return boolean Series denoting duplicate rows, optionally only considering certain columns</div><div class="line"></div><div class="line"><span class="comment">#删除重复记录</span></div><div class="line">DataFrame.drop_duplicates(subset=<span class="keyword">None</span>, keep=<span class="string">'first'</span>, inplace=<span class="keyword">False</span>)</div><div class="line">Return DataFrame <span class="keyword">with</span> duplicate rows removed, optionally only considering certain columns</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">data = pd.DataFrame(&#123;<span class="string">'K1'</span>:[<span class="string">'one'</span>]*<span class="number">3</span>+[<span class="string">'two'</span>]*<span class="number">4</span>,<span class="string">'k2'</span>:[<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>]&#125;)</div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">100</span>]: </div><div class="line">    K1  k2</div><div class="line"><span class="number">0</span>  one   <span class="number">1</span></div><div class="line"><span class="number">1</span>  one   <span class="number">1</span></div><div class="line"><span class="number">2</span>  one   <span class="number">2</span></div><div class="line"><span class="number">3</span>  two   <span class="number">3</span></div><div class="line"><span class="number">4</span>  two   <span class="number">3</span></div><div class="line"><span class="number">5</span>  two   <span class="number">4</span></div><div class="line"><span class="number">6</span>  two   <span class="number">4</span></div><div class="line"></div><div class="line"><span class="comment">#keep参数，默认是first，会以第一个为准，后面再出现就是True</span></div><div class="line">data.duplicated()</div><div class="line">Out[<span class="number">103</span>]: </div><div class="line"><span class="number">0</span>    <span class="keyword">False</span></div><div class="line"><span class="number">1</span>     <span class="keyword">True</span></div><div class="line"><span class="number">2</span>    <span class="keyword">False</span></div><div class="line"><span class="number">3</span>    <span class="keyword">False</span></div><div class="line"><span class="number">4</span>     <span class="keyword">True</span></div><div class="line"><span class="number">5</span>    <span class="keyword">False</span></div><div class="line"><span class="number">6</span>     <span class="keyword">True</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line">data.duplicated(keep=<span class="string">'last'</span>)</div><div class="line">Out[<span class="number">116</span>]: </div><div class="line"><span class="number">0</span>     <span class="keyword">True</span></div><div class="line"><span class="number">1</span>    <span class="keyword">False</span></div><div class="line"><span class="number">2</span>    <span class="keyword">False</span></div><div class="line"><span class="number">3</span>     <span class="keyword">True</span></div><div class="line"><span class="number">4</span>    <span class="keyword">False</span></div><div class="line"><span class="number">5</span>     <span class="keyword">True</span></div><div class="line"><span class="number">6</span>    <span class="keyword">False</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line"><span class="comment">#这里drop也是一样的，可以用keep控制保留第一次出现的，还是最后1次出现的</span></div><div class="line">data.drop_duplicates()</div><div class="line">Out[<span class="number">104</span>]: </div><div class="line">    K1  k2</div><div class="line"><span class="number">0</span>  one   <span class="number">1</span></div><div class="line"><span class="number">2</span>  one   <span class="number">2</span></div><div class="line"><span class="number">3</span>  two   <span class="number">3</span></div><div class="line"><span class="number">5</span>  two   <span class="number">4</span></div></pre></td></tr></table></figure>
-<p>这2个函数，默认都是判断全部的列，也可以指定列<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">data[<span class="string">'v1'</span>]=range(<span class="number">7</span>)</div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">118</span>]: </div><div class="line">    K1  k2  v1</div><div class="line"><span class="number">0</span>  one   <span class="number">1</span>   <span class="number">0</span></div><div class="line"><span class="number">1</span>  one   <span class="number">1</span>   <span class="number">1</span></div><div class="line"><span class="number">2</span>  one   <span class="number">2</span>   <span class="number">2</span></div><div class="line"><span class="number">3</span>  two   <span class="number">3</span>   <span class="number">3</span></div><div class="line"><span class="number">4</span>  two   <span class="number">3</span>   <span class="number">4</span></div><div class="line"><span class="number">5</span>  two   <span class="number">4</span>   <span class="number">5</span></div><div class="line"><span class="number">6</span>  two   <span class="number">4</span>   <span class="number">6</span></div><div class="line"></div><div class="line">data.duplicated()</div><div class="line">Out[<span class="number">119</span>]: </div><div class="line"><span class="number">0</span>    <span class="keyword">False</span></div><div class="line"><span class="number">1</span>    <span class="keyword">False</span></div><div class="line"><span class="number">2</span>    <span class="keyword">False</span></div><div class="line"><span class="number">3</span>    <span class="keyword">False</span></div><div class="line"><span class="number">4</span>    <span class="keyword">False</span></div><div class="line"><span class="number">5</span>    <span class="keyword">False</span></div><div class="line"><span class="number">6</span>    <span class="keyword">False</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line">data.duplicated(subset=[<span class="string">'K1'</span>])</div><div class="line">Out[<span class="number">120</span>]: </div><div class="line"><span class="number">0</span>    <span class="keyword">False</span></div><div class="line"><span class="number">1</span>     <span class="keyword">True</span></div><div class="line"><span class="number">2</span>     <span class="keyword">True</span></div><div class="line"><span class="number">3</span>    <span class="keyword">False</span></div><div class="line"><span class="number">4</span>     <span class="keyword">True</span></div><div class="line"><span class="number">5</span>     <span class="keyword">True</span></div><div class="line"><span class="number">6</span>     <span class="keyword">True</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line">data.drop_duplicates(subset=[<span class="string">'K1'</span>])</div><div class="line">Out[<span class="number">121</span>]: </div><div class="line">    K1  k2  v1</div><div class="line"><span class="number">0</span>  one   <span class="number">1</span>   <span class="number">0</span></div><div class="line"><span class="number">3</span>  two   <span class="number">3</span>   <span class="number">3</span></div></pre></td></tr></table></figure></p>
-<h1 id="2-利用函数或映射进行数据转换"><a href="#2-利用函数或映射进行数据转换" class="headerlink" title="2. 利用函数或映射进行数据转换"></a>2. 利用函数或映射进行数据转换</h1><p>有的时候，我们想要对Series和dataframe中的每个元素做些转换，就用到了这个函数，和Python内置的map函数类似<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Series.map(arg, na_action=<span class="keyword">None</span>)</div><div class="line">Map values of Series using input correspondence (which can be a dict, Series, <span class="keyword">or</span> function)</div><div class="line">arg : function, dict, <span class="keyword">or</span> Series</div><div class="line"></div><div class="line">DataFrame.applymap(func)</div><div class="line">Apply a function to a DataFrame that <span class="keyword">is</span> intended to operate elementwise, i.e. like doing map(func, series) <span class="keyword">for</span> each series <span class="keyword">in</span> the DataFrame</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">s1 = pd.Series(range(<span class="number">10</span>))</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">133</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">0</span></div><div class="line"><span class="number">1</span>    <span class="number">1</span></div><div class="line"><span class="number">2</span>    <span class="number">2</span></div><div class="line"><span class="number">3</span>    <span class="number">3</span></div><div class="line"><span class="number">4</span>    <span class="number">4</span></div><div class="line"><span class="number">5</span>    <span class="number">5</span></div><div class="line"><span class="number">6</span>    <span class="number">6</span></div><div class="line"><span class="number">7</span>    <span class="number">7</span></div><div class="line"><span class="number">8</span>    <span class="number">8</span></div><div class="line"><span class="number">9</span>    <span class="number">9</span></div><div class="line">dtype: int32</div><div class="line"></div><div class="line">s1.map(<span class="keyword">lambda</span> x:x+<span class="number">10</span>)</div><div class="line">Out[<span class="number">134</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">10</span></div><div class="line"><span class="number">1</span>    <span class="number">11</span></div><div class="line"><span class="number">2</span>    <span class="number">12</span></div><div class="line"><span class="number">3</span>    <span class="number">13</span></div><div class="line"><span class="number">4</span>    <span class="number">14</span></div><div class="line"><span class="number">5</span>    <span class="number">15</span></div><div class="line"><span class="number">6</span>    <span class="number">16</span></div><div class="line"><span class="number">7</span>    <span class="number">17</span></div><div class="line"><span class="number">8</span>    <span class="number">18</span></div><div class="line"><span class="number">9</span>    <span class="number">19</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s1.map(<span class="keyword">lambda</span> x:x*<span class="number">-1</span>)</div><div class="line">Out[<span class="number">135</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">0</span></div><div class="line"><span class="number">1</span>   <span class="number">-1</span></div><div class="line"><span class="number">2</span>   <span class="number">-2</span></div><div class="line"><span class="number">3</span>   <span class="number">-3</span></div><div class="line"><span class="number">4</span>   <span class="number">-4</span></div><div class="line"><span class="number">5</span>   <span class="number">-5</span></div><div class="line"><span class="number">6</span>   <span class="number">-6</span></div><div class="line"><span class="number">7</span>   <span class="number">-7</span></div><div class="line"><span class="number">8</span>   <span class="number">-8</span></div><div class="line"><span class="number">9</span>   <span class="number">-9</span></div><div class="line">dtype: int64</div></pre></td></tr></table></figure>
-<p>这个map，不单单可以是函数，还可以是 Series或dict<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">x = pd.Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], index=[<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>])</div><div class="line"></div><div class="line">y = pd.Series([<span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="string">'baz'</span>], index=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line"></div><div class="line">x</div><div class="line">Out[<span class="number">142</span>]: </div><div class="line">one      <span class="number">1</span></div><div class="line">two      <span class="number">2</span></div><div class="line">three    <span class="number">3</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">y</div><div class="line">Out[<span class="number">143</span>]: </div><div class="line"><span class="number">1</span>    foo</div><div class="line"><span class="number">2</span>    bar</div><div class="line"><span class="number">3</span>    baz</div><div class="line">dtype: object</div><div class="line"></div><div class="line">x.map(y)</div><div class="line">Out[<span class="number">144</span>]: </div><div class="line">one      foo</div><div class="line">two      bar</div><div class="line">three    baz</div><div class="line">dtype: object</div><div class="line"></div><div class="line">z = &#123;<span class="number">1</span>: <span class="string">'A'</span>, <span class="number">2</span>: <span class="string">'B'</span>, <span class="number">3</span>: <span class="string">'C'</span>&#125;</div><div class="line"></div><div class="line">x.map(z)</div><div class="line">Out[<span class="number">146</span>]: </div><div class="line">one      A</div><div class="line">two      B</div><div class="line">three    C</div><div class="line">dtype: object</div></pre></td></tr></table></figure></p>
-<h1 id="3-替换值"><a href="#3-替换值" class="headerlink" title="3.替换值"></a>3.替换值</h1><p>在字符串中，我们经常会用到replace函数，用来替换指定的值，pandas中也有<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">DataFrame.replace(to_replace=<span class="keyword">None</span>, value=<span class="keyword">None</span>, inplace=<span class="keyword">False</span>, limit=<span class="keyword">None</span>, regex=<span class="keyword">False</span>, method=<span class="string">'pad'</span>, axis=<span class="keyword">None</span>)</div><div class="line">Replace values given <span class="keyword">in</span> ‘to_replace’ <span class="keyword">with</span> ‘value’.</div><div class="line">to_replace : str, regex, list, dict, Series, numeric, <span class="keyword">or</span> <span class="keyword">None</span></div><div class="line"></div><div class="line">Series.replace(to_replace=<span class="keyword">None</span>, value=<span class="keyword">None</span>, inplace=<span class="keyword">False</span>, limit=<span class="keyword">None</span>, regex=<span class="keyword">False</span>, method=<span class="string">'pad'</span>, axis=<span class="keyword">None</span>)</div><div class="line">Replace values given <span class="keyword">in</span> ‘to_replace’ <span class="keyword">with</span> ‘value’.</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">data = pd.Series([<span class="number">1.</span>, <span class="number">-999.</span>, <span class="number">2.</span>, <span class="number">-999.</span>, <span class="number">-1000.</span>, <span class="number">3.</span>])</div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">150</span>]: </div><div class="line"><span class="number">0</span>       <span class="number">1.0</span></div><div class="line"><span class="number">1</span>    <span class="number">-999.0</span></div><div class="line"><span class="number">2</span>       <span class="number">2.0</span></div><div class="line"><span class="number">3</span>    <span class="number">-999.0</span></div><div class="line"><span class="number">4</span>   <span class="number">-1000.0</span></div><div class="line"><span class="number">5</span>       <span class="number">3.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#我们将-999这个异常值替换掉</span></div><div class="line">data.replace(<span class="number">-999</span>,np.nan)</div><div class="line">Out[<span class="number">151</span>]: </div><div class="line"><span class="number">0</span>       <span class="number">1.0</span></div><div class="line"><span class="number">1</span>       NaN</div><div class="line"><span class="number">2</span>       <span class="number">2.0</span></div><div class="line"><span class="number">3</span>       NaN</div><div class="line"><span class="number">4</span>   <span class="number">-1000.0</span></div><div class="line"><span class="number">5</span>       <span class="number">3.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#同时替换多个值，也可以</span></div><div class="line">data.replace([<span class="number">-999</span>,<span class="number">-1000</span>],np.nan)</div><div class="line">Out[<span class="number">152</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">1.0</span></div><div class="line"><span class="number">1</span>    NaN</div><div class="line"><span class="number">2</span>    <span class="number">2.0</span></div><div class="line"><span class="number">3</span>    NaN</div><div class="line"><span class="number">4</span>    NaN</div><div class="line"><span class="number">5</span>    <span class="number">3.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">data.replace([<span class="number">-999</span>,<span class="number">-1000</span>],[np.nan,<span class="number">0</span>])</div><div class="line">Out[<span class="number">153</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">1.0</span></div><div class="line"><span class="number">1</span>    NaN</div><div class="line"><span class="number">2</span>    <span class="number">2.0</span></div><div class="line"><span class="number">3</span>    NaN</div><div class="line"><span class="number">4</span>    <span class="number">0.0</span></div><div class="line"><span class="number">5</span>    <span class="number">3.0</span></div><div class="line">dtype: float64</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/14/the-newest-area-info-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/14/the-newest-area-info-01/" itemprop="url">最新行政区信息获取</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T21:59:00+08:00">
-                2017-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这是之前记录的，这里顺便分享下。</p>
-<p>之前想要获取官方的省市区的代码code，就找了下。</p>
-<p>官方地址：<a href="http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/" target="_blank" rel="external">http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/</a></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-01.png-blog.photo" alt="the-newest-area-info-01-01"></p>
-<p>我们可以直接将数据复制到Excel中，简单处理下，导入到数据库中</p>
-<p>里面会有换行，先去个重，然后trim一下，再分列就可以了</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-02.png-blog.photo" alt="the-newest-area-info-01-02"></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-03.png-blog.photo" alt="the-newest-area-info-01-03"></p>
-<p>最后，我们可以将数据组织成我们想要的维度表格式</p>
-<p>————–update at 2017-08-15</p>
-<p>上面呢，我是直接在Excel里面生成insert脚本插入数据库的，但是目前的表使用起来应该不是很方便，这里我们改造下。</p>
-<p>这个区域信息呢，是很常用的一张维度表，通常他可能会是这个样子的<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> base.dm_area</div><div class="line">(</div><div class="line">  area_id <span class="built_in">integer</span>,</div><div class="line">  area_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">50</span>),</div><div class="line">  province_id <span class="built_in">integer</span>,</div><div class="line">  province_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">50</span>),</div><div class="line">  city_id <span class="built_in">integer</span>,</div><div class="line">  city_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">50</span>),</div><div class="line">  country_id <span class="built_in">integer</span>,</div><div class="line">  country_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">50</span>),</div><div class="line">  flevel <span class="built_in">integer</span></div><div class="line">)</div><div class="line"><span class="keyword">WITH</span> (</div><div class="line">  OIDS=<span class="literal">FALSE</span></div><div class="line">);</div></pre></td></tr></table></figure></p>
-<p>这里我们就简单处理下，变成这种格式。</p>
-<p>其实一开始的时候，我们可以通过数据的格式区分他是省份、城市、还是区县，下面我们用的是一个套路</p>
-<p>主要是观察法，因为这个code都是有规律的，所以我们处理起来方便很多</p>
-<p>code一共是6位，前两位是省份、中间2位是城市，后2位是区县<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> public.b_area <span class="keyword">where</span> area_id||<span class="string">''</span> <span class="keyword">like</span> <span class="string">'00'</span></div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-04.png-blog.photo" alt="the-newest-area-info-01-04"></p>
-<p>下面，我们来初始化数据<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> base.dm_area(</div><div class="line">            area_id, area_name)</div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span>  public.b_area;      </div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">-- 初始化flevel 1:省份,2:城市,3:区县</span></div><div class="line"><span class="keyword">update</span> base.dm_area <span class="keyword">set</span> flevel=<span class="number">1</span> <span class="keyword">where</span> area_id||<span class="string">''</span> <span class="keyword">like</span> <span class="string">'00'</span>;</div><div class="line"><span class="keyword">update</span> base.dm_area <span class="keyword">set</span> flevel=<span class="number">2</span> <span class="keyword">where</span> area_id||<span class="string">''</span> <span class="keyword">like</span> <span class="string">''</span> <span class="keyword">and</span> flevel <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line"><span class="keyword">update</span> base.dm_area <span class="keyword">set</span> flevel=<span class="number">3</span> <span class="keyword">where</span> flevel <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="comment">-- 更新省份信息</span></div><div class="line"><span class="keyword">update</span> base.dm_area a </div><div class="line"><span class="keyword">set</span> </div><div class="line">	province_id = b.area_id,</div><div class="line">	province_name = b.area_name</div><div class="line"><span class="keyword">from</span> </div><div class="line">	base.dm_area b</div><div class="line"><span class="keyword">where</span> </div><div class="line">	<span class="keyword">left</span>(a.area_id||<span class="string">''</span>,<span class="number">2</span>)=<span class="keyword">left</span>(b.area_id||<span class="string">''</span>,<span class="number">2</span>) <span class="keyword">and</span> b.flevel=<span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="comment">-- 更新城市信息</span></div><div class="line"><span class="keyword">update</span> base.dm_area a </div><div class="line"><span class="keyword">set</span> </div><div class="line">	city_id = c.area_id,</div><div class="line">	city_name = c.area_name	</div><div class="line"><span class="keyword">from</span> </div><div class="line">	base.dm_area c </div><div class="line"><span class="keyword">where</span> </div><div class="line">	<span class="keyword">left</span>(a.area_id||<span class="string">''</span>,<span class="number">4</span>)=<span class="keyword">left</span>(c.area_id||<span class="string">''</span>,<span class="number">4</span>) <span class="keyword">and</span> c.flevel=<span class="number">2</span>;</div><div class="line"></div><div class="line"><span class="comment">-- 更新区县信息</span></div><div class="line"><span class="keyword">update</span> base.dm_area a </div><div class="line"><span class="keyword">set</span> </div><div class="line">	country_id = area_id,</div><div class="line">	country_name = area_name	</div><div class="line"><span class="keyword">where</span> </div><div class="line">	a.flevel=<span class="number">3</span>;</div></pre></td></tr></table></figure></p>
-<p>到这里，flevel=3的数据已经没有问题了，再对省份、城市做些优化就行了<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 补全数据</span></div><div class="line"><span class="keyword">update</span> base.dm_area </div><div class="line"><span class="keyword">set</span> </div><div class="line">	city_id=-area_id,city_name=area_name||<span class="string">'XT'</span>,</div><div class="line">	country_id=-area_id,country_name=area_name||<span class="string">'XT'</span></div><div class="line"><span class="keyword">where</span></div><div class="line">	flevel=<span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="keyword">update</span> base.dm_area </div><div class="line"><span class="keyword">set</span> </div><div class="line">	country_id=-area_id,country_name=area_name||<span class="string">'XT'</span></div><div class="line"><span class="keyword">where</span></div><div class="line">	flevel=<span class="number">2</span>;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/the-newest-area-info-01-05.png-blog.photo" alt="the-newest-area-info-01-05"></p>
-<p>好了，我们就处理好这个区域维度了，正常使用的话，估计就用flevel=3的就够了</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1161,7 +1153,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1183,7 +1175,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

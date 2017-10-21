@@ -325,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/03/29/Kettle-handbook-06/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/16/python-database-04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -344,7 +344,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/29/Kettle-handbook-06/" itemprop="url">Kettle手册（六）- Hop小记</a></h2>
+                <a class="post-title-link" href="/2017/04/16/python-database-04/" itemprop="url">SQLAlchemy手册（四）- 关联查询</a></h2>
         
 
         <div class="post-meta">
@@ -356,8 +356,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-29T22:24:44+08:00">
-                2017-03-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-16T10:00:00+08:00">
+                2017-04-16
               </time>
             
 
@@ -379,8 +379,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
-                    <span itemprop="name">ETL-Kettle</span>
+                  <a href="/categories/Python-数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-数据库</span>
                   </a>
                 </span>
 
@@ -417,10 +417,464 @@
 
       
         
-          <h1 id="1-什么是Hop"><a href="#1-什么是Hop" class="headerlink" title="1. 什么是Hop"></a>1. 什么是Hop</h1><p>在我们前面，使用Kettle过程中，控件与控件之间的连线，这里，我们详细介绍下它，它在Kettle中叫Hop（跳）。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-01.png-blog.photo" alt="Kettle-handbook-06-01.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-02.png-blog.photo" alt="Kettle-handbook-06-02.png"></p>
+          
+            <p>上一回，我们介绍了，常用的单查询SQL，这里，我们介绍下，怎样进行关联查询，就是join的使用<br>数据库使用表信息：<br>t_class<br><img src="http://upload-images.jianshu.io/upload_images/76024-ef7520ec11c905d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>t_student<br><img src="http://upload-images.jianshu.io/upload_images/76024-2e40b06a15566531.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>t_student表存有t_class表的id，获取学生所属的班级信息<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> MetaData, create_engine</div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, Date, or_, and_</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> ForeignKey</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> relationship</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> text, func</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line">engine = create_engine(<span class="string">'postgresql://postgres:shishi@localhost:5432/postgres'</span>)</div><div class="line">Session = sessionmaker(bind=engine)</div><div class="line"></div><div class="line">session = Session()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StuClass</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'t_class'</span></div><div class="line"></div><div class="line"></div><div class="line">    id = Column(Integer,primary_key=<span class="keyword">True</span>)</div><div class="line">    class_name = Column(String(<span class="number">10</span>))</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"&lt;StuClass(id='%s', name='%s')&gt;"</span> % (self.id, self.class_name)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'t_student'</span></div><div class="line"></div><div class="line">    id = Column(Integer , primary_key=<span class="keyword">True</span>)</div><div class="line">    stu_name = Column(String(<span class="number">10</span>))</div><div class="line">    class_id = Column(Integer , ForeignKey(<span class="string">'t_class.id'</span>))</div><div class="line"></div><div class="line">    stuClass = relationship(<span class="string">"StuClass"</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"&lt;Student(id='%s', stu_name='%s', class_id='%s', class_name='%s')&gt;"</span> % (self.id, self.stu_name,self.class_id,self.stuClass.class_name)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#使用filter定义2张表的关系</span></div><div class="line"><span class="keyword">for</span> stu, stuc <span class="keyword">in</span> session.query(Student, StuClass).filter(Student.class_id == StuClass.id).all():</div><div class="line">    <span class="keyword">print</span> stu,stuc</div><div class="line"></div><div class="line"><span class="comment">#使用join需要ForeignKey</span></div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> session.query(Student).join(StuClass).filter(StuClass.id == <span class="number">803</span>).all():</div><div class="line">    <span class="keyword">print</span> x</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-fc458339c2d78ba8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>下面，我们再写一个统计班级人数的SQL<br><img src="http://upload-images.jianshu.io/upload_images/76024-8b65477439073d47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>用SQLAlchemy来写的话，是这样的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> rs <span class="keyword">in</span> session.query(StuClass.class_name,func.count(<span class="string">'*'</span>).label(<span class="string">'stu_count'</span>)).join(Student).group_by(StuClass.class_name).order_by(StuClass.class_name).all():</div><div class="line">    print(<span class="string">'班级:'</span> + rs[<span class="number">0</span>] + <span class="string">' 人数：'</span> + str(rs[<span class="number">1</span>]))</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-be088e8ba847918f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>好了，同样的功能，我们换成子查询练习下<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">select</span> a.class_name,b.num <span class="keyword">from</span> t_class a</div><div class="line"><span class="keyword">left</span> <span class="keyword">join</span> (</div><div class="line">    <span class="keyword">select</span> class_id , <span class="keyword">count</span>(<span class="number">1</span>) <span class="keyword">num</span> <span class="keyword">from</span> t_student <span class="keyword">group</span> <span class="keyword">by</span> class_id</div><div class="line">)b <span class="keyword">on</span> b.class_id = a.id</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> a.class_name</div></pre></td></tr></table></figure></p>
+<p>那SQLAlchemy是这样滴：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> sub = session.query(Student.class_id,func.count(<span class="string">'*'</span>).label(<span class="string">'num'</span>)).group_by(Student.class_id).subquery()</div><div class="line"></div><div class="line"><span class="keyword">for</span> sc,num <span class="keyword">in</span> session.query(StuClass,sub.c.num).outerjoin(sub, StuClass.id == sub.c.class_id).order_by(StuClass.class_name).all():</div><div class="line">    <span class="keyword">print</span> sc,num</div></pre></td></tr></table></figure></p>
+<p>今天暂时先到这里，后面的话，官网上例子挺全的，大家可以自行练习下，后续也会再整理</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/16/python-handbook-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/16/python-handbook-01/" itemprop="url">Python基础（1）- 私有变量</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-16T08:00:00+08:00">
+                2017-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天简单看了看Python中的面向对象的一些教程，简单记录下，和Java中还是有很多类似的<br>看的是这个博客：<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386820042500060e2921830a4adf94fb31bcea8d6f5c000" target="_blank" rel="external">访问限制</a></p>
+<p>比如我们定义一个Student类<br>一个<strong>init</strong>构造函数，初始化2个属性，一个名字，一个成绩；<br>还有一个打印函数，输出学生的名字和成绩<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, score)</span>:</span></div><div class="line">        <span class="string">"initial student"</span></div><div class="line">        self.name = name</div><div class="line">        self.score = score</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_score</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"print student info"</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'%s : %s'</span> %(self.name, self.score)</div><div class="line"></div><div class="line">s1 = Student(<span class="string">'lufei'</span> , <span class="number">99</span>)</div><div class="line">s1.print_score()</div></pre></td></tr></table></figure></p>
+<p>了解Java的同学都知道，我们一般定义实体类的话，一般都是private，然后定义get、set方法，<br>如果只是上面的代码，我们就可以随便的调用name和score了<br>我们需要加上限制<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, score)</span>:</span></div><div class="line">    <span class="string">"initial student"</span></div><div class="line">    self.__name = name</div><div class="line">    self.__score = score</div></pre></td></tr></table></figure></p>
+<p>我们在变量前面加上“__”就可以了<br><img src="http://upload-images.jianshu.io/upload_images/76024-ec3f050156f7071c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>如果我们要引用的话，就会报错了，同样的，我们也可以加上get、set方法来使用<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_name</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.__name</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_name</span><span class="params">(self,name)</span>:</span></div><div class="line">    self.__name=name</div><div class="line"></div><div class="line"><span class="keyword">print</span> s1.get_name()</div><div class="line"></div><div class="line">s1.set_name(<span class="string">'libai'</span>)</div><div class="line"><span class="keyword">print</span> s1.get_name()</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-e48108c2d2e25785.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>原文还有很多其他内容，大家可以自行看看，我就简单记录这些</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/15/python-database-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/15/python-database-03/" itemprop="url">SQLAlchemy手册（三）- 常用单查询</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T10:00:00+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>好了，在前面，我们大概了解了SQLAlchemy的使用，日常，我们可能经常会使用些复杂点儿的查询，我们先练习下</p>
+<p>#1. common filter<br>这里，官方都有介绍，我们主要参考这里：<a href="http://docs.sqlalchemy.org/en/rel_1_1/orm/tutorial.html" target="_blank" rel="external">http://docs.sqlalchemy.org/en/rel_1_1/orm/tutorial.html</a><br>里面讲的都很清楚，我们这里简单练习下<br>首先是基本的脚本，后面，我们直接写query<br>数据库表：<br><img src="http://upload-images.jianshu.io/upload_images/76024-fe7972eaa875902a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> MetaData, create_engine</div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, Date</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'t_book'</span></div><div class="line"></div><div class="line"></div><div class="line">    id = Column(Integer,primary_key=<span class="keyword">True</span>)</div><div class="line">    name = Column(String(<span class="number">10</span>),primary_key=<span class="keyword">True</span>)</div><div class="line">    publish_date = Column(Date,primary_key=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"&lt;Book(id='%s', name='%s'"</span> % (self.id, self.name)</div><div class="line"></div><div class="line"></div><div class="line">engine = create_engine(<span class="string">'postgresql://postgres:shishi@localhost:5432/postgres'</span>)</div><div class="line">Session = sessionmaker(bind=engine)</div><div class="line"></div><div class="line">session = Session()</div></pre></td></tr></table></figure>
+<p>我们一般的过滤的话，要使用filter这个函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'----：equals'</span></div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).filter(Book.id==<span class="number">190</span>):</div><div class="line">    <span class="keyword">print</span> book</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'----：not equals'</span> </div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).filter(Book.name != <span class="string">'Java'</span>):</div><div class="line">    <span class="keyword">print</span> book</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'----：like'</span></div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).filter(Book.name.like(<span class="string">'白%'</span>)):</div><div class="line">    <span class="keyword">print</span> book</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-321f22e2757d7ce1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>常用的SQL中，我们还有and，or<br>我们需要引入其他类<br>from sqlalchemy import or_, and<em>print ‘—-：or’for book in session.query(Book).filter(or</em>(Book.name.like(‘白%’),Book.id == 191)):print bookprint ‘—-：and’for book in session.query(Book).filter(and_(Book.name.like(‘白%’),Book.id == 191)):print book</p>
+<h1 id="2-自定义SQL"><a href="#2-自定义SQL" class="headerlink" title="2. 自定义SQL"></a>2. 自定义SQL</h1><p>这里，我们使用text，来自定义自己的sql<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> or_, and_</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'----：or'</span></div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).filter(or_(Book.name.like(<span class="string">'白%'</span>),Book.id == <span class="number">191</span>)):</div><div class="line">    <span class="keyword">print</span> book  </div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'----：and'</span></div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).filter(and_(Book.name.like(<span class="string">'白%'</span>),Book.id == <span class="number">191</span>)):</div><div class="line">    <span class="keyword">print</span> book</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-e3fa39479ff43724.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在SQL中，我们经常会使用参数传递，这里也是可以的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'-----: param'</span></div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).filter(text(<span class="string">"id=:p_id_1 or id=:p_id_2"</span>)).params(p_id_1=<span class="number">192</span>,p_id_2=<span class="number">193</span>).order_by(text(<span class="string">"id asc"</span>)).all():</div><div class="line">    <span class="keyword">print</span> book</div></pre></td></tr></table></figure></p>
+<p>到这里，自定义SQL貌似还不够灵活，不能像在数据库中随便写SQL那样，下面，我们再试试另一种方式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'-----: custom'</span></div><div class="line"><span class="keyword">for</span> book <span class="keyword">in</span> session.query(Book).\</div><div class="line">        from_statement(text(<span class="string">"select *from t_book where id = :p_id_1 or id = :p_id_2 "</span>)).\</div><div class="line">        params(p_id_1=<span class="number">190</span>, p_id_2=<span class="number">191</span>).all():</div><div class="line">    <span class="keyword">print</span> book</div></pre></td></tr></table></figure></p>
+<p>这下，我们就可以随便写我们的SQL了，</p>
+<h1 id="3-聚合函数"><a href="#3-聚合函数" class="headerlink" title="3.聚合函数"></a>3.聚合函数</h1><p>我们先看看count<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> func</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'----: count'</span></div><div class="line"><span class="keyword">print</span> session.query(func.count(<span class="string">'*'</span>)).select_from(Book).scalar()</div><div class="line"><span class="keyword">print</span> session.query(func.count(Book.id)).scalar()</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'----: group by'</span></div><div class="line"><span class="keyword">for</span> rs <span class="keyword">in</span> session.query(func.count(Book.id) , Book.name).group_by(Book.name).all():</div><div class="line">    <span class="keyword">print</span> rs[<span class="number">1</span>]+<span class="string">' count： '</span>+str(rs[<span class="number">0</span>])</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-da1b53e56723ddf8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/14/bs-handbook-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/14/bs-handbook-01/" itemprop="url">BeautifulSoup教程（1） - 简介及安装</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-14T21:59:00+08:00">
+                2017-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-爬虫/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-爬虫</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近在学习Python，按照一些博客练习爬虫，最简单的步骤，就是访问一个主页，根据正则表达式去获取我们想要的标签数据；</p>
+<p>比如这样：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#加载网址，获取当前页面</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTML</span><span class="params">(url)</span> :</span></div><div class="line">	page = urllib.urlopen(url)</div><div class="line">	html = page.read()</div><div class="line">	<span class="keyword">return</span> html</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getImage</span><span class="params">(html)</span> :</span></div><div class="line">	reg = <span class="string">r'src="(.+?\.jpg)"'</span></div><div class="line">	reg2 = <span class="string">r'&lt;img alt="(.+?)" src="(.+?\.jpg)'</span></div><div class="line">	image_reg = re.compile(reg2)</div><div class="line">	img_list = re.findall(image_reg,html)</div></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/29/Kettle-handbook-06/#more" rel="contents">
+            <a class="btn" href="/2017/04/14/bs-handbook-01/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -471,7 +925,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/03/28/Kettle-handbook-05/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/04/14/Kettle-handbook-12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -490,7 +944,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/28/Kettle-handbook-05/" itemprop="url">Kettle手册（五）- 实例-增量同步数据</a></h2>
+                <a class="post-title-link" href="/2017/04/14/Kettle-handbook-12/" itemprop="url">Kettle手册（十二）- 控件使用-从步骤插入数据</a></h2>
         
 
         <div class="post-meta">
@@ -502,8 +956,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T23:30:44+08:00">
-                2017-03-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-14T11:24:44+08:00">
+                2017-04-14
               </time>
             
 
@@ -563,461 +1017,10 @@
 
       
         
-          <p>综合前面的几个例子，我们这里来是实现下增量数据的同步。<br>这里只是分享一种方法，实际工作中，还会有其他更好的方案。<br>增量同步的整体思路一般就是：首先拿到这张表的增量数据，怎么拿增量呢，源表需要有一个时间字段，代表该条记录的最新更新时间（及只要该条记录变化，该时间字段就会更新），当然有时间字段最好了，没有的话，可能需要做全表对比之类的操作；正常情况下，业务系统的表中都是有主键的，我们拿到增量数据之后，需要判断该记录的新插入的，还是更新的记录，如果是更新记录，我们需要先将数据加载到中间表，然后，根据主键将目标表中已存在的数据删除，最后再将本次的增量数据插入到目标表。</p>
-<h2 id="1-配置表的设计（元数据表）"><a href="#1-配置表的设计（元数据表）" class="headerlink" title="1.配置表的设计（元数据表）"></a>1.配置表的设计（元数据表）</h2><p>首先我们需要一张配置表，来保存我们要增量同步的表的基本信息<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">--元数据表</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> tm_etl_table(</div><div class="line">	table_name <span class="built_in">varchar</span>(<span class="number">50</span>), <span class="comment">--表名</span></div><div class="line">	is_run <span class="built_in">int</span> , <span class="comment">--调度状态</span></div><div class="line">	update_time <span class="keyword">timestamp</span>,<span class="comment">--表数据更新时间</span></div><div class="line">	etl_insert_time <span class="keyword">timestamp</span> <span class="comment">--记录更新时间</span></div><div class="line">);</div></pre></td></tr></table></figure></p>
-<p>我们初始化一条记录，我们就以这张ods_tm_book表<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-01.png-blog.photo" alt="Kettle-handbook-05-01.png"><br>一些基础表准备</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/28/Kettle-handbook-05/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/03/28/Kettle-handbook-04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/28/Kettle-handbook-04/" itemprop="url">Kettle手册（四）- 变量的使用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T23:24:44+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
+          
+            <p>这里介绍一个控件的小功能，也是最近才发现的，之前在“表输入”中要使用参数的话，一般都是使用变量，<br>其实，还有个功能也可以尝试使用<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-01.png-blog.photo" alt="Kettle-handbook-12-01.png"><br>整体流程就是这样，我们第一个 query_paramter，就是查询了我们想设置的参数<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-02.png-blog.photo" alt="Kettle-handbook-12-02.png"><br>然后，就是我们真正需要的，我们再表输入中，使用 “?”来占位，然后“从步骤插入数据”，选择上一个步骤，然后会将数据替换占位符<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-03.png-blog.photo" alt="Kettle-handbook-12-03.png"><br>最后，我们将文件导出即可，奥对了，我们可以改成日志控件，直接输出查看<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-04.png-blog.photo" alt="Kettle-handbook-12-04.png"><br>刚刚，上面还有一个“执行每一行”，这个就是，如果我们有多个参数，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-05.png-blog.photo" alt="Kettle-handbook-12-05.png"><br>就可以使用这个参数了，很方便，好了，就介绍到这里先。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-12-06.png-blog.photo" alt="Kettle-handbook-12-06.png"></p>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
-                    <span itemprop="name">ETL-Kettle</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>我们在这一回，介绍下，Kettle中全局变量的使用，我们前面说过的配置文件，其实就是配置全局变量的地方<br><a href="2017/03/27/Kettle-handbook-03/">Kettle手册（三）- 配置文件的使用及密码加密 </a></p>
-<div class="note primary"><h2 id="1-全局变量"><a href="#1-全局变量" class="headerlink" title="1. 全局变量"></a>1. 全局变量</h2></div>
-<p>就是我们上面说的kettle.properties文件，我们在里面定义的变量，我们可以在所有的转换或者作业中获得到，比如，我们前面，说的数据库参数<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-04-01.png-blog.photo" alt="Kettle-handbook-04-01.png"><br>之前，我们已经在数据库连接中测试过，是可以，这里，我们输出下这个变量，看看</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/28/Kettle-handbook-04/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/03/28/Kettle-handbook-03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/28/Kettle-handbook-03/" itemprop="url">Kettle手册（三）- 配置文件的使用及密码加密</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T22:24:44+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
-                    <span itemprop="name">ETL-Kettle</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>好了，我们上一回，练习了一个从数据库导出数据到Excel的例子，我们想一下，如果有很多个转换，我们没链接一次数据库，是不是都需要重复的输入那些数据库地址啊，数据库啊，用户名啊之类的。其实是不用的，我们可以使用变量的方式，写在配置文件中，下面，我们来看看。而且，我们平时开发，都有开发环境、UAT环境、生产环境，连接的地址都不一样，也不可能手动的去修改。</p>
-<div class="note primary"><h2 id="1-Kettle的配置文件"><a href="#1-Kettle的配置文件" class="headerlink" title="1. Kettle的配置文件"></a>1. Kettle的配置文件</h2></div>
-<p>配置文件在哪呢？Windows下，是再当前用户的目录下，一般再C盘，Users下面，有一个当前用户的文件夹，下面有.kettle文件夹<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-01.png-blog.photo" alt="Kettle-handbook-03-01.png"><br>进入之后，我们会看到一个kettle.properties的文件，我们的数据库配置信息，就可以放在这里，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-03-02.png-blog.photo" alt="Kettle-handbook-03-02.png"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/28/Kettle-handbook-03/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/03/27/Kettle-handbook-02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/27/Kettle-handbook-02/" itemprop="url">Kettle手册（二）- 将数据导出为Excel</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T23:24:44+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
-                    <span itemprop="name">ETL-Kettle</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>好了，我们先来看第一个例子，就是怎样将数据库中的数据，导出为Excel。<br>平时，如果我们需要将数据导出Excel的话，我们可能会直接复制，然后粘贴出来，但是数据量大的话，就不好用了；<br>或者使用Java等开发语言，写代码，导出Excel；或者一些数据库连接工具自带的导出功能。<br>其实，我们用Kettle的话，还是很方便的，但是平时用下来，Kettle的这个功能还是有些缺陷的，比如导出Excel2007+的时候，经常会报错，我一直也没有解决，这次记录博客顺便研究看看。</p>
-<div class="note primary"><h1 id="1-Kettle的下载及使用"><a href="#1-Kettle的下载及使用" class="headerlink" title="1. Kettle的下载及使用"></a>1. Kettle的下载及使用</h1></div>
-<p>正式开始之前，我们简单说下Kettle的安装配置啥的，Kettle是绿色的，下载之后，直接运行就可以了<br>刚刚在网上下了个最新版的，后面，我们就是用这个7.0版本介绍官网地址：<a href="http://community.pentaho.com/projects/data-integration/" target="_blank" rel="external">Kettle官网</a></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-02-01.png-blog.photo" alt="Kettle-handbook-02-01.png"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/27/Kettle-handbook-02/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1055,7 +1058,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1105,7 +1108,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1127,7 +1130,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

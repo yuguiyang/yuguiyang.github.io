@@ -325,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/22/python-demo-01/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/22/visual-handbook-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -344,7 +344,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/22/python-demo-01/" itemprop="url">词云图之《战狼2》影评</a></h2>
+                <a class="post-title-link" href="/2017/08/22/visual-handbook-03/" itemprop="url">词云图之《战狼2》影评</a></h2>
         
 
         <div class="post-meta">
@@ -426,11 +426,314 @@
 <p>这里是直接用参数传的，多点几次观察，就会发现规律<br><img src="http://upload-images.jianshu.io/upload_images/76024-b1aebe6f9e64b91a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/22/python-demo-01/#more" rel="contents">
+            <a class="btn" href="/2017/08/22/visual-handbook-03/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/19/crawler-demo-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/19/crawler-demo-03/" itemprop="url">爬虫小实例-拉勾网数据分析岗位</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T10:59:00+08:00">
+                2017-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-爬虫/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-爬虫</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>周末没事，想看看最近的职位招聘情况，就用拉勾网为例，练习下爬虫</p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>首先去拉勾网的主页去观察下，<br>当前的搜索页面URL：<br><img src="http://upload-images.jianshu.io/upload_images/76024-fc8b0bd6bcccdf00.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-03a015b3dcc76e7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>观察下源码，发现结构很清晰，解析起来应该很方便，再通过下一页去遍历即可<br><img src="http://upload-images.jianshu.io/upload_images/76024-0df54ae90bd507a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>通过上面的，我们直接去解析应该是足够了，我们再看下他的请求信息，会找到这样一个post，<br>很明显，这个pn应该就是页码（多查询几次观察下可以确认）<br><img src="http://upload-images.jianshu.io/upload_images/76024-b695c6dd9f6a5d57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这个应该就是查询的请求，看看结果集，就是我们想要的数据<br><img src="http://upload-images.jianshu.io/upload_images/76024-e3f313171718e676.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>所以，如果我们直接去请求json数据，然后解析下就行了</p>
+<h1 id="要注意的小问题"><a href="#要注意的小问题" class="headerlink" title="要注意的小问题"></a>要注意的小问题</h1><p>写的时候，主要遇到几个问题，</p>
+<ul>
+<li><p>2.1 直接请求的话，不行，会被拦截，关于拉勾网，网上的例子很多，这里测试的时候，只要加上header就行了，其他的不需要<br>headers = {‘User-Agent’:r’Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:55.0) Gecko/20100101 Firefox/55.0’,’Referer’:r’<a href="https://www.lagou.com/jobs/list_%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90?labelWords=&amp;fromSearch=true&amp;suginput&#39;,&#39;Host&#39;:&#39;www.lagou.com&#39;}" target="_blank" rel="external">https://www.lagou.com/jobs/list_%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90?labelWords=&amp;fromSearch=true&amp;suginput&#39;,&#39;Host&#39;:&#39;www.lagou.com&#39;}</a></p>
+</li>
+<li><p>2.2 json的结果集中，有总条数和每页条数，根据这2点，我们可以算出总页数</p>
+</li>
+<li>2.3 解析json就行了</li>
+<li>2.4 在 循环的时候，sleep了5秒，因为一直查询偶尔会报错，估计是被拦截了</li>
+</ul>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>下面分享下，第一版代码，后面再优化：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="string">"""</span></div><div class="line"><span class="string">Created on Sat Aug 19 15:22:20 2017</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">@author: yuguiyang</span></div><div class="line"><span class="string">"""</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> math</div><div class="line"><span class="keyword">import</span> csv</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line">total_page = <span class="number">1</span></div><div class="line">current_page = <span class="number">1</span></div><div class="line"></div><div class="line"><span class="comment">#更新结果集的总页数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_total_page</span><span class="params">(page_size,totalCount)</span>:</span></div><div class="line">    <span class="keyword">global</span> total_page</div><div class="line">    </div><div class="line">    total_page = math.ceil(totalCount/page_size)</div><div class="line">    </div><div class="line"></div><div class="line"><span class="comment">#解析HTML页面</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_html</span><span class="params">(url,headers,post_data)</span>:</span></div><div class="line">    post_data = urllib.parse.urlencode(post_data).encode(<span class="string">'utf-8'</span>)</div><div class="line">    req = urllib.request.Request(url,headers=headers,data=post_data)</div><div class="line">    page = urllib.request.urlopen(req)</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> page.read().decode(<span class="string">'utf-8'</span>)</div><div class="line">    </div><div class="line"><span class="comment">#解析返回的json数据</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_result</span><span class="params">(html)</span>:</span></div><div class="line">    data_json = json.loads(html)</div><div class="line">    print(data_json[<span class="string">'content'</span>][<span class="string">'pageNo'</span>])</div><div class="line">    </div><div class="line">    <span class="comment">#第一页的话，更新下总页数</span></div><div class="line">    <span class="keyword">if</span> data_json[<span class="string">'content'</span>][<span class="string">'pageNo'</span>] == <span class="number">1</span> :</div><div class="line">        update_total_page(data_json[<span class="string">'content'</span>][<span class="string">'pageSize'</span>],data_json[<span class="string">'content'</span>][<span class="string">'positionResult'</span>][<span class="string">'totalCount'</span>])</div><div class="line"></div><div class="line">    <span class="comment">#将结果保存到csv文件</span></div><div class="line">    <span class="keyword">with</span> open(<span class="string">'lagou_shujufenxi_data.csv'</span>,<span class="string">'a'</span>,newline=<span class="string">''</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> csvfile:</div><div class="line">        csv_writer = csv.writer(csvfile,quotechar=<span class="string">'"'</span>,quoting=csv.QUOTE_MINIMAL)</div><div class="line">        <span class="comment">#在第一页的时候，写入标题</span></div><div class="line">        <span class="keyword">if</span> data_json[<span class="string">'content'</span>][<span class="string">'pageNo'</span>] == <span class="number">1</span> :</div><div class="line">            csv_writer.writerow([<span class="string">'公司简称'</span>,<span class="string">'公司全称'</span>,<span class="string">'所属行业'</span>,<span class="string">'工作地点'</span>,<span class="string">'职位特点'</span>,<span class="string">'薪资'</span>,<span class="string">'经验'</span>,<span class="string">'职位名称'</span>,<span class="string">'firstType'</span>,<span class="string">'secondType'</span>])</div><div class="line">        </div><div class="line">        <span class="comment">#遍历招聘信息</span></div><div class="line">        <span class="keyword">for</span> job <span class="keyword">in</span> data_json[<span class="string">'content'</span>][<span class="string">'positionResult'</span>][<span class="string">'result'</span>]:</div><div class="line">            line = []</div><div class="line">            line.append(job[<span class="string">'companyShortName'</span>])</div><div class="line">            line.append(job[<span class="string">'companyFullName'</span>])</div><div class="line">            line.append(job[<span class="string">'industryField'</span>])</div><div class="line">            line.append(job[<span class="string">'district'</span>])</div><div class="line">            line.append(job[<span class="string">'positionAdvantage'</span>])</div><div class="line">            line.append(job[<span class="string">'salary'</span>])</div><div class="line">            line.append(job[<span class="string">'workYear'</span>])</div><div class="line">            line.append(job[<span class="string">'positionName'</span>])</div><div class="line">            line.append(job[<span class="string">'firstType'</span>])</div><div class="line">            line.append(job[<span class="string">'secondType'</span>])</div><div class="line">            </div><div class="line">            csv_writer.writerow(line)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    headers = &#123;</div><div class="line">            <span class="string">'User-Agent'</span>:<span class="string">r'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:55.0) Gecko/20100101 Firefox/55.0'</span>,</div><div class="line">            <span class="string">'Referer'</span>:<span class="string">r'https://www.lagou.com/jobs/list_%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90?labelWords=&amp;fromSearch=true&amp;suginput'</span>,</div><div class="line">            <span class="string">'Host'</span>:<span class="string">'www.lagou.com'</span></div><div class="line">            &#125;</div><div class="line">            </div><div class="line">    url = <span class="string">'https://www.lagou.com/jobs/positionAjax.json'</span></div><div class="line">    </div><div class="line">    <span class="comment">#判断要导出的文件是否存在</span></div><div class="line">    <span class="keyword">if</span> os.path.exists(<span class="string">r'lagou_shujufenxi_data.csv'</span>):</div><div class="line">        print(<span class="string">'hey,delete the file'</span>)</div><div class="line">        os.remove(<span class="string">r'lagou_shujufenxi_data.csv'</span>)</div><div class="line">    </div><div class="line">    <span class="comment">#循环所有页数，取导出数据    </span></div><div class="line">    <span class="keyword">while</span> current_page &lt;= total_page:</div><div class="line">        <span class="comment">#post参数,每次修改页码就行了</span></div><div class="line">        post_data = &#123;<span class="string">'city'</span>:<span class="string">'上海'</span>,<span class="string">'isSchoolJob'</span>:<span class="string">'0'</span>,<span class="string">'needAddtionalResult'</span>:<span class="string">'false'</span>,<span class="string">'kd'</span>:<span class="string">'数据分析'</span>,<span class="string">'pn'</span>:current_page&#125;</div><div class="line">        <span class="comment">#解析每一个页面</span></div><div class="line">        html = parse_html(url ,headers, post_data)</div><div class="line">        <span class="comment">#处理获取的json数据</span></div><div class="line">        parse_result(html)</div><div class="line">        </div><div class="line">        <span class="comment">#当前页码加1</span></div><div class="line">        current_page += <span class="number">1</span></div><div class="line">        </div><div class="line">        <span class="comment">#这里sleep5秒，不停一下，偶尔会报错</span></div><div class="line">        time.sleep(<span class="number">5</span>)</div><div class="line">    </div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-1ef832b0e7739e96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/19/python-handbook-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/19/python-handbook-10/" itemprop="url">Python异常（1）- module 'urllib' has no attribute 'urlopen'</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T10:00:00+08:00">
+                2017-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天想复习下BeautifulSoup，就把之前的代码拿过来测试，发现报错了<br><img src="http://upload-images.jianshu.io/upload_images/76024-e01a18d402a6796b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#加载网址，获取当前页面</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTML</span><span class="params">(url)</span> :</span></div><div class="line">    page = urllib.urlopen(url)</div><div class="line">    html = page.read()</div><div class="line">    <span class="keyword">return</span> html</div><div class="line"></div><div class="line">html = getHTML(<span class="string">'https://movie.douban.com/top250'</span>)</div><div class="line">soup = BeautifulSoup(html, <span class="string">"html.parser"</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">for</span> img <span class="keyword">in</span> soup.find_all(<span class="string">'img'</span>):</div><div class="line">    print(img.get(<span class="string">'src'</span>))</div></pre></td></tr></table></figure>
+<p>查了下，发下是Python3中，需要引入的模块变了<br>改一下就可以了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">urllib.request.urlopen(url)</div></pre></td></tr></table></figure></p>
+
+          
         
       
     </div>
@@ -628,7 +931,7 @@ github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba)
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/19/python-handbook-10/">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/19/visual-handbook-02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -647,7 +950,7 @@ github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba)
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/19/python-handbook-10/" itemprop="url">Python异常（1）- module 'urllib' has no attribute 'urlopen'</a></h2>
+                <a class="post-title-link" href="/2017/08/19/visual-handbook-02/" itemprop="url">word_cloud-用Python之作个性化词云图</a></h2>
         
 
         <div class="post-meta">
@@ -659,310 +962,8 @@ github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba)
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T10:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T08:00:00+08:00">
                 2017-08-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天想复习下BeautifulSoup，就把之前的代码拿过来测试，发现报错了<br><img src="http://upload-images.jianshu.io/upload_images/76024-e01a18d402a6796b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#加载网址，获取当前页面</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTML</span><span class="params">(url)</span> :</span></div><div class="line">    page = urllib.urlopen(url)</div><div class="line">    html = page.read()</div><div class="line">    <span class="keyword">return</span> html</div><div class="line"></div><div class="line">html = getHTML(<span class="string">'https://movie.douban.com/top250'</span>)</div><div class="line">soup = BeautifulSoup(html, <span class="string">"html.parser"</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">for</span> img <span class="keyword">in</span> soup.find_all(<span class="string">'img'</span>):</div><div class="line">    print(img.get(<span class="string">'src'</span>))</div></pre></td></tr></table></figure>
-<p>查了下，发下是Python3中，需要引入的模块变了<br>改一下就可以了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">urllib.request.urlopen(url)</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/18/python-handbook-09/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/18/python-handbook-09/" itemprop="url">Python基础（9）- 排序技巧</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-18T10:00:00+08:00">
-                2017-08-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>通常，我们排序的时候，我们可以使用系统内置的sorted函数或list自带的sort函数。<br>参考文章：<a href="http://www.jb51.net/article/57678.htm" target="_blank" rel="external">http://www.jb51.net/article/57678.htm</a><br><a href="https://docs.python.org/3/library/stdtypes.html?highlight=sort#list.sort" target="_blank" rel="external">https://docs.python.org/3/library/stdtypes.html?highlight=sort#list.sort</a></p>
-<h1 id="1-list-sort"><a href="#1-list-sort" class="headerlink" title="1. list.sort"></a>1. list.sort</h1><blockquote>
-<p>sort(*, key=None, reverse=False)This method sorts the list in place, using only &lt; comparisons between items. Exceptions are not suppressed - if any comparison operations fail, the entire sort operation will fail (and the list will likely be left in a partially modified state).</p>
-</blockquote>
-<p>sort是就地排序<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">list1 = [<span class="number">66</span>, <span class="number">48</span>, <span class="number">28</span>, <span class="number">69</span>, <span class="number">86</span>, <span class="number">96</span>, <span class="number">89</span>, <span class="number">37</span>, <span class="number">56</span>, <span class="number">33</span>]</div><div class="line"></div><div class="line">list1</div><div class="line">Out[<span class="number">93</span>]: [<span class="number">66</span>, <span class="number">48</span>, <span class="number">28</span>, <span class="number">69</span>, <span class="number">86</span>, <span class="number">96</span>, <span class="number">89</span>, <span class="number">37</span>, <span class="number">56</span>, <span class="number">33</span>]</div><div class="line"></div><div class="line">list1.sort()</div><div class="line"></div><div class="line">list1</div><div class="line">Out[<span class="number">95</span>]: [<span class="number">28</span>, <span class="number">33</span>, <span class="number">37</span>, <span class="number">48</span>, <span class="number">56</span>, <span class="number">66</span>, <span class="number">69</span>, <span class="number">86</span>, <span class="number">89</span>, <span class="number">96</span>]</div><div class="line"></div><div class="line"><span class="comment">#默认是升序，可以使用reverse降序</span></div><div class="line">list1.sort(reverse=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">list1</div><div class="line">Out[<span class="number">97</span>]: [<span class="number">96</span>, <span class="number">89</span>, <span class="number">86</span>, <span class="number">69</span>, <span class="number">66</span>, <span class="number">56</span>, <span class="number">48</span>, <span class="number">37</span>, <span class="number">33</span>, <span class="number">28</span>]</div></pre></td></tr></table></figure></p>
-<p>key可以传入一个函数，会作用于每一个element，返回值会作为排序键</p>
-<blockquote>
-<p>key specifies a function of one argument that is used to extract a comparison key from each list element (for example, key=str.lower). The key corresponding to each item in the list is calculated once and then used for the entire sorting process. The default value of None means that list items are sorted directly without calculating a separate key value.</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">list2=list(<span class="string">'AckjehLhct'</span>)</div><div class="line"></div><div class="line">list2</div><div class="line">Out[<span class="number">99</span>]: [<span class="string">'A'</span>, <span class="string">'c'</span>, <span class="string">'k'</span>, <span class="string">'j'</span>, <span class="string">'e'</span>, <span class="string">'h'</span>, <span class="string">'L'</span>, <span class="string">'h'</span>, <span class="string">'c'</span>, <span class="string">'t'</span>]</div><div class="line"></div><div class="line">list2.sort()</div><div class="line"></div><div class="line">list2</div><div class="line">Out[<span class="number">101</span>]: [<span class="string">'A'</span>, <span class="string">'L'</span>, <span class="string">'c'</span>, <span class="string">'c'</span>, <span class="string">'e'</span>, <span class="string">'h'</span>, <span class="string">'h'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="string">'t'</span>]</div><div class="line"></div><div class="line">list2.sort(key=str.lower)</div><div class="line"></div><div class="line">list2</div><div class="line">Out[<span class="number">103</span>]: [<span class="string">'A'</span>, <span class="string">'c'</span>, <span class="string">'c'</span>, <span class="string">'e'</span>, <span class="string">'h'</span>, <span class="string">'h'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="string">'L'</span>, <span class="string">'t'</span>]</div></pre></td></tr></table></figure>
-<h1 id="2-sorted"><a href="#2-sorted" class="headerlink" title="2. sorted"></a>2. sorted</h1><blockquote>
-<p>sorted(iterable, *, key=None, reverse=False)Return a new sorted list from the items in iterable</p>
-</blockquote>
-<p>sorted是返回一个排序后的新list，使用方式基本一样，只是<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">list3 = [<span class="number">84</span>, <span class="number">57</span>, <span class="number">15</span>, <span class="number">84</span>, <span class="number">40</span>, <span class="number">37</span>, <span class="number">66</span>, <span class="number">45</span>, <span class="number">11</span>, <span class="number">95</span>]</div><div class="line"></div><div class="line">list3</div><div class="line">Out[<span class="number">107</span>]: [<span class="number">84</span>, <span class="number">57</span>, <span class="number">15</span>, <span class="number">84</span>, <span class="number">40</span>, <span class="number">37</span>, <span class="number">66</span>, <span class="number">45</span>, <span class="number">11</span>, <span class="number">95</span>]</div><div class="line"></div><div class="line">sorted(list3)</div><div class="line">Out[<span class="number">108</span>]: [<span class="number">11</span>, <span class="number">15</span>, <span class="number">37</span>, <span class="number">40</span>, <span class="number">45</span>, <span class="number">57</span>, <span class="number">66</span>, <span class="number">84</span>, <span class="number">84</span>, <span class="number">95</span>]</div><div class="line"></div><div class="line">sorted(list3,reverse=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">109</span>]: [<span class="number">95</span>, <span class="number">84</span>, <span class="number">84</span>, <span class="number">66</span>, <span class="number">57</span>, <span class="number">45</span>, <span class="number">40</span>, <span class="number">37</span>, <span class="number">15</span>, <span class="number">11</span>]</div></pre></td></tr></table></figure></p>
-<p>sorted方法对所有的可迭代对象都有效<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sorted(&#123;<span class="number">3</span>:<span class="string">'a'</span>,<span class="number">1</span>:<span class="string">'z'</span>,<span class="number">5</span>:<span class="string">'b'</span>,<span class="number">2</span>:<span class="string">'c'</span>&#125;)</div><div class="line">Out[<span class="number">110</span>]: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure></p>
-<p>使用sorted还能对复杂对象进行排序<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">l_op=[(<span class="string">'namei'</span>,<span class="number">20</span>,<span class="string">'a'</span>),(<span class="string">'lufei'</span>,<span class="number">19</span>,<span class="string">'c'</span>),(<span class="string">'qiaoba'</span>,<span class="number">15</span>,<span class="string">'b'</span>)]</div><div class="line"></div><div class="line">l_op</div><div class="line">Out[<span class="number">112</span>]: [(<span class="string">'namei'</span>, <span class="number">20</span>, <span class="string">'a'</span>), (<span class="string">'lufei'</span>, <span class="number">19</span>, <span class="string">'c'</span>), (<span class="string">'qiaoba'</span>, <span class="number">15</span>, <span class="string">'b'</span>)]</div><div class="line"></div><div class="line"><span class="comment">#默认是按照每一个tuple的第一个元素来排序的</span></div><div class="line">sorted(l_op)</div><div class="line">Out[<span class="number">113</span>]: [(<span class="string">'lufei'</span>, <span class="number">19</span>, <span class="string">'c'</span>), (<span class="string">'namei'</span>, <span class="number">20</span>, <span class="string">'a'</span>), (<span class="string">'qiaoba'</span>, <span class="number">15</span>, <span class="string">'b'</span>)]</div><div class="line"></div><div class="line"></div><div class="line">sorted(l_op,key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>])</div><div class="line">Out[<span class="number">114</span>]: [(<span class="string">'lufei'</span>, <span class="number">19</span>, <span class="string">'c'</span>), (<span class="string">'namei'</span>, <span class="number">20</span>, <span class="string">'a'</span>), (<span class="string">'qiaoba'</span>, <span class="number">15</span>, <span class="string">'b'</span>)]</div><div class="line"></div><div class="line"><span class="comment">#我们可以通过key函数，来指定要使用的排序键，</span></div><div class="line">sorted(l_op,key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>])</div><div class="line">Out[<span class="number">115</span>]: [(<span class="string">'qiaoba'</span>, <span class="number">15</span>, <span class="string">'b'</span>), (<span class="string">'lufei'</span>, <span class="number">19</span>, <span class="string">'c'</span>), (<span class="string">'namei'</span>, <span class="number">20</span>, <span class="string">'a'</span>)]</div><div class="line"></div><div class="line">sorted(l_op,key=<span class="keyword">lambda</span> x: x[<span class="number">2</span>],reverse=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">116</span>]: [(<span class="string">'lufei'</span>, <span class="number">19</span>, <span class="string">'c'</span>), (<span class="string">'qiaoba'</span>, <span class="number">15</span>, <span class="string">'b'</span>), (<span class="string">'namei'</span>, <span class="number">20</span>, <span class="string">'a'</span>)]</div><div class="line"></div><div class="line">sorted(l_op,key=<span class="keyword">lambda</span> x: x[<span class="number">2</span>])</div><div class="line">Out[<span class="number">117</span>]: [(<span class="string">'namei'</span>, <span class="number">20</span>, <span class="string">'a'</span>), (<span class="string">'qiaoba'</span>, <span class="number">15</span>, <span class="string">'b'</span>), (<span class="string">'lufei'</span>, <span class="number">19</span>, <span class="string">'c'</span>)]</div></pre></td></tr></table></figure></p>
-<p>对于自定义的对象也是可以的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span>:</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,id,name)</span>:</span></div><div class="line">        self.id=id</div><div class="line">        self.name=name</div><div class="line">        </div><div class="line"></div><div class="line">p1 = People(<span class="number">10</span>,<span class="string">'lufei'</span>)</div><div class="line">p2 = People(<span class="number">5</span>,<span class="string">'namei'</span>)</div><div class="line">p3 = People(<span class="number">15</span>,<span class="string">'qiaoba'</span>)</div><div class="line"></div><div class="line"><span class="comment">#指定我们要排序的字段就行了</span></div><div class="line"><span class="keyword">for</span> p <span class="keyword">in</span> sorted([p1,p2,p3],key=<span class="keyword">lambda</span> p: p.id):</div><div class="line">    print(p.id,p.name)</div><div class="line"></div><div class="line"><span class="comment">#out:</span></div><div class="line"><span class="number">5</span> namei</div><div class="line"><span class="number">10</span> lufei</div><div class="line"><span class="number">15</span> qiaoba</div><div class="line"></div><div class="line"><span class="keyword">for</span> p <span class="keyword">in</span> sorted([p1,p2,p3],key=<span class="keyword">lambda</span> p: p.name):</div><div class="line">    print(p.id,p.name)</div><div class="line"></div><div class="line"><span class="comment">#out:</span></div><div class="line"><span class="number">10</span> lufei</div><div class="line"><span class="number">5</span> namei</div><div class="line"><span class="number">15</span> qiaoba</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/18/matplotlib-handbook-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/18/matplotlib-handbook-01/" itemprop="url">matplotlib手册(10)-用pyplot实现“房间里100个人玩游戏的例子”</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-18T08:00:00+08:00">
-                2017-08-18
               </time>
             
 
@@ -1022,12 +1023,16 @@ github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba)
 
       
         
-          <p>之前有篇文章，说房间里有100个人，每人100块钱，的那个<br>原文介绍：<a href="https://mp.weixin.qq.com/s?__biz=MjM5MDI1ODUyMA==&amp;mid=2672939083&amp;idx=2&amp;sn=646721af2fb38c9d0ce85f32eb353c36&amp;chksm=bce2f47c8b957d6ab60bc715b7d99c36491da71c4f24dd8509e943d061d416c69ced309a5179#rd" target="_blank" rel="external">用数据分析告诉你这个世界很有意思</a></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-476568183e907845.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>觉得挺有意思的，昨天发现pyplot也可以绘制动画，就来试试，主要是实现动画效果，其他的暂时先不考虑了<br>目前跑起来是可以，就是比较慢，还没找到原因<br>整体想法，就是<br>x轴表示玩家的序号，财富值用y轴来表示</p>
+          <p>网上有很多制作词云的网站，我们使用Python也可以很方便的制作，这里，我们就简单学习下。</p>
+<h1 id="1-word-cloud"><a href="#1-word-cloud" class="headerlink" title="1. word_cloud"></a>1. word_cloud</h1><p>GitHub地址：<a href="https://github.com/amueller/word_cloud" target="_blank" rel="external">https://github.com/amueller/word_cloud</a><br>首先我们需要安装，正常来说，直接就执行<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install wordcloud</div></pre></td></tr></table></figure></p>
+<p>即可，但是，我这个是在Windows平台，安装的时候，提示什么少了，需要去下载个编译器的，报错信息后面有URL，<br><img src="http://upload-images.jianshu.io/upload_images/76024-9b3fbbba0bcbfc4a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>这里忘记记下来了，遇到的同学，直接去下载下应该就行了</p>
+<blockquote>
+<p>error: Microsoft Visual C++ 14.0 is required</p>
+</blockquote>
+<p>这里，我从网上找了另一个方法解决<br>去这个网站：<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#wordcloud" target="_blank" rel="external">http://www.lfd.uci.edu/~gohlke/pythonlibs/#wordcloud</a><br>找到指定的版本下载就行了</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/18/matplotlib-handbook-01/#more" rel="contents">
+            <a class="btn" href="/2017/08/19/visual-handbook-02/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1069,7 +1074,7 @@ github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba)
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1119,7 +1124,7 @@ github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1141,7 +1146,7 @@ github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba)
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
