@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[博客迁移整理中(置顶)]]></title>
+    <title><![CDATA[愿人生从容(置顶)]]></title>
     <url>%2F2017%2F12%2F31%2Ftop%2F</url>
-    <content type="text"><![CDATA[Hi，欢迎访问我的博客。最近正在迁移文章到这里，不定时更新中，请期待。]]></content>
+    <content type="text"><![CDATA[Hi，欢迎访问我的博客。 在这里分享BI、数据分析等相关的技术内容；个人随笔、感悟。 欢迎和我交流分享。 愿你出走半生，归来仍是少年。]]></content>
       <categories>
         <category>随笔</category>
       </categories>
       <tags>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[常见图表-直方图]]></title>
+    <url>%2F2017%2F10%2F25%2Fstatistics-handbook-02%2F</url>
+    <content type="text"><![CDATA[常见图表介绍及实例 什么是直方图 直方图(Histogram)又称质量分布图。是一种统计报告图，由一系列高度不等的纵向条纹或线段表示数据分布的情况。 一般用横轴表示数据类型，纵轴表示分布情况。为了构建直方图，第一步是将值的范围分段，即将整个值的范围分成一系列间隔，然后计算每个间隔中有多少值。 这些值通常被指定为连续的，不重叠的变量间隔。 间隔必须相邻，并且通常是（但不是必须的）相等的大小。 直方图一开始可能是应用在工业生产领域，来做质量评估，判断生产稳定性 组数：在统计数据时，我们把数据按照不同的范围分成几个组，分成的组的个数称为组数。组距：每一组两个端点的差。 作用（优势） 显示数据波动状态 直观的表达数据分布趋势 方便找到应该关注的点 绘制方法– from 百度百科 ①集中和记录数据，求出其最大值和最小值。数据的数量应在100个以上，在数量不多的情况下，至少也应在 50个以上。 我们把分成组的个数称为组数，每一个组的两个端点的差称为组距。②将数据分成若干组，并做好记号。分组的数量在5－12之间较为适宜。③计算组距的宽度。用最大值和最小值之差去除组数，求出组距的宽度。④计算各组的界限位。各组的界限位可以从第一组开始依次计算，第一组的下界为最小值减去最小测定单位的一半，第一组的上界为其下界值加上组距。第二组的下界限位为第一组的上界限值，第二组的下界限值加上组距，就是第二组的上界限位，依此类推。⑤统计各组数据出现频数，作频数分布表。⑥作直方图。以组距为底长，以频数为高，作各组的矩形图。 实例假设我们有公司所有部门的KPI完成情况，如下图： 我们想要了解公司的整体运营情况，用图表来看会更直观，这就正好用上了直方图，来看公司在每一个区间的分布情况；我们以0.3为组距，分成5个组（数据是随机生成的，貌似有点儿不太靠谱，如果公司的KPI完成率是这样，我觉得KPI定义会稍微有问题，基本上都没达标啊） 然后，我们在Excel中，创建一个图表，就可以直观的看到KPI的完成情况分布了]]></content>
+      <categories>
+        <category>统计知识</category>
+      </categories>
+      <tags>
+        <tag>统计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[平均数小记]]></title>
+    <url>%2F2017%2F10%2F24%2Fstatistics-handbook-01%2F</url>
+    <content type="text"><![CDATA[我们日常生活中，经常会遇到平均数像什么平均工资，平均身高，平均成绩之类的，曾经在课上学习的相关知识估计早就忘记了，这里我们就来回顾下。(下面部分介绍及例子摘自百度百科) 基本概念算术平均数(arithmetic mean)通常我们说的平均数都是“算术平均数”：平均成绩、平均身高、平均收入… 一组数据中所有数据之和再除以这组数据的个数，他反映一组数据的集中趋势– 百度百科 加权算术平均数 加权平均值即将各数值乘以相应的权数，然后加总求和得到总体值，再除以总的单位数。 这个表示每个数据都有一个权重，也比较常见，比如： 通常我们再绩效考核中，有自评、领导评价，领导的评价一般权重较高， 最后的84分（90*40%+80*60%）是本月的绩效评分 中位数(median) 中位数是指将数据按大小顺序排列起来，形成一个数列，居于数列中间位置的那个数据 当一组数据中有极端值时，”中位数”比“算术平均数”可以更好的表示平均水平下面是一组学生的数学成绩，看“算术平均数”的话，平均分是63勉强超过了及格线，看上去可能还好，但实际上呢？这组学生大部分人都没有及格，都在50分一下，是因为有2名学生考了100分，整体拉高了平均成绩；而中位数就就49分，已经大大低于60分了，可以更直观的表现该组学生的一个整体成绩，还需要多多关注数学的学习。 这就比较类似“被平均”的情况，光看平均分是及格了，但实际上，大多数学生并没有好好的掌握这次数学考试的内容，普通的学生被2个学霸平均了。 就平均收入来说，新闻上经常会出现哪个城市的平均工资是多少，同比增长了多少，每次看到这样的数据，都会觉得自己拖了后腿。首先社会财富的分配本身就不是均匀的，根据二八定律，社会上20%的人掌握着80%的财富，一平均数据很好看，而实际上贫富分化依然很严重。 众数 众数是指一组数据中出现次数最多的那个数据，一组数据可以有多个众数，也可以没有众数。 以上面成绩的数据为例，众数就是100，他代表了这组数据的一个峰值，对于我们想看整体情况，没有太多参考意义。 在其他一些场景下，智库百科上有这样一个例子： 从表中可以看到，25.5厘米的鞋号销售量最多，如果我们计算算术平均数，则平均号码为25.65厘米，而这个号码显然是没有实际意义的，而直接用25.5厘米作为顾客对男皮鞋所需尺寸的集中趋势既便捷又符合实际。 几何平均数 几何平均数是n个变量值连乘积的n次方根 这个平时用的好像比较少，他主要用在计算比率、平均速度等，他受极端值影响比“算术平均数”小，还以上面考试成绩为例，他的几何平均数是59 百度上有这样一个例子： 就平均数的话，还有很多其他的内容，这里暂时不举例了，后面用到了再说 对比中位数与平均数与众数这里的平均数指“算术平均数” 平均数主要表示数据整体水平，容易受极端数据影响 中位数表示数据的中等水平 众数反映的是一组数据中的集中程度，日常遇到的什么“最佳”、“最受欢迎”等等，都是众数的概念]]></content>
+      <categories>
+        <category>统计基础</category>
+      </categories>
+      <tags>
+        <tag>统计</tag>
       </tags>
   </entry>
   <entry>
@@ -281,8 +303,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>数据分析</tag>
         <tag>读书笔记</tag>
+        <tag>数据分析</tag>
         <tag>实例</tag>
       </tags>
   </entry>
@@ -306,8 +328,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>数据分析</tag>
         <tag>读书笔记</tag>
+        <tag>数据分析</tag>
         <tag>实例</tag>
       </tags>
   </entry>
@@ -384,18 +406,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python异常（1）- module 'urllib' has no attribute 'urlopen']]></title>
-    <url>%2F2017%2F08%2F19%2Fpython-handbook-10%2F</url>
-    <content type="text"><![CDATA[今天想复习下BeautifulSoup，就把之前的代码拿过来测试，发现报错了 12345678910111213141516import urllibfrom bs4 import BeautifulSoup#加载网址，获取当前页面def getHTML(url) : page = urllib.urlopen(url) html = page.read() return htmlhtml = getHTML('https://movie.douban.com/top250')soup = BeautifulSoup(html, "html.parser")for img in soup.find_all('img'): print(img.get('src')) 查了下，发下是Python3中，需要引入的模块变了改一下就可以了1urllib.request.urlopen(url)]]></content>
-      <categories>
-        <category>Python-基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>异常</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Python中文分词-jieba]]></title>
     <url>%2F2017%2F08%2F19%2Fpython-handbook-11%2F</url>
     <content type="text"><![CDATA[刚刚在看Python的词云图，想要显示中文的时候，需要做一个分词，这里我们学习下jieba分词。 1. jieba中文分词jieba是Python中文分词的一个组件 github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba) 支持三种分词模式：精确模式，试图将句子最精确地切开，适合文本分析；全模式，把句子中所有的可以成词的词语都扫描出来, 速度非常快，但是不能解决歧义；搜索引擎模式，在精确模式的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词。支持繁体分词支持自定义词典MIT 授权协议 安装：1pip install jieba 官网上的小实例12345678910111213import jiebaseg_list = jieba.cut("我来到北京清华大学", cut_all=True)print("Full Mode: " + "/ ".join(seg_list)) # 全模式seg_list = jieba.cut("我来到北京清华大学", cut_all=False)print("Default Mode: " + "/ ".join(seg_list)) # 精确模式seg_list = jieba.cut("他来到了网易杭研大厦") # 默认是精确模式print(", ".join(seg_list))seg_list = jieba.cut_for_search("小明硕士毕业于中国科学院计算所，后在日本京都大学深造") # 搜索引擎模式print(", ".join(seg_list)) 12345678Building prefix dict from the default dictionary ...Dumping model to file cache C:\Users\YUGUIY~1\AppData\Local\Temp\jieba.cacheLoading model cost 0.884 seconds.Prefix dict has been built succesfully.Full Mode: 我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学Default Mode: 我/ 来到/ 北京/ 清华大学他, 来到, 了, 网易, 杭研, 大厦小明, 硕士, 毕业, 于, 中国, 科学, 学院, 科学院, 中国科学院, 计算, 计算所, ，, 后, 在, 日本, 京都, 大学, 日本京都大学, 深造 到这里，想要的功能其实已经足够了，官网还有很多其他的介绍内容，很强大，后面需要的时候，再来补充，接着回去改那个词云的了先。]]></content>
@@ -405,6 +415,18 @@
       <tags>
         <tag>Python</tag>
         <tag>分词</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python异常（1）- module 'urllib' has no attribute 'urlopen']]></title>
+    <url>%2F2017%2F08%2F19%2Fpython-handbook-10%2F</url>
+    <content type="text"><![CDATA[今天想复习下BeautifulSoup，就把之前的代码拿过来测试，发现报错了 12345678910111213141516import urllibfrom bs4 import BeautifulSoup#加载网址，获取当前页面def getHTML(url) : page = urllib.urlopen(url) html = page.read() return htmlhtml = getHTML('https://movie.douban.com/top250')soup = BeautifulSoup(html, "html.parser")for img in soup.find_all('img'): print(img.get('src')) 查了下，发下是Python3中，需要引入的模块变了改一下就可以了1urllib.request.urlopen(url)]]></content>
+      <categories>
+        <category>Python-基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>异常</tag>
       </tags>
   </entry>
   <entry>
@@ -690,18 +712,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Pandas手册（7）- pandas数据加载]]></title>
-    <url>%2F2017%2F08%2F08%2Fpandas-handbook-07%2F</url>
-    <content type="text"><![CDATA[PythonPandas 这里整理下，pandas中数据加载的几个方法，前面，我们也有用过，read_csv，下面，我们整理下 1.pandas读取数据方法1pandas.read_csv(filepath_or_buffer, sep=', ', delimiter=None, header='infer', names=None, index_col=None, usecols=None, squeeze=False, prefix=None, mangle_dupe_cols=True, dtype=None, engine=None, converters=None, true_values=None, false_values=None, skipinitialspace=False, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False, iterator=False, chunksize=None, compression='infer', thousands=None, decimal=b'.', lineterminator=None, quotechar='"', quoting=0, escapechar=None, comment=None, encoding=None, dialect=None, tupleize_cols=False, error_bad_lines=True, warn_bad_lines=True, skipfooter=0, skip_footer=0, doublequote=True, delim_whitespace=False, as_recarray=False, compact_ints=False, use_unsigned=False, low_memory=True, buffer_lines=None, memory_map=False, float_precision=None) 我们可以看到这个参数非常多，基本上可以解决我们文件读取时的常见问题。 下面就是小例子csv文件内容是这样的：数据以逗号分隔，没有其他特殊的情况 123456789101112131415161718import pandas as pddf = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv')#使用read_table需要，手动指定下分隔符#df = pd.read_table(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',sep=',')print(df)print(df.index)print(df.columns)runfile('D:/document/python_demo/pandas_csv.py', wdir='D:/document/python_demo') a b c d message0 1 2 3 4 hello1 5 6 7 8 world2 9 10 11 12 fooRangeIndex(start=0, stop=3, step=1)Index(['a', 'b', 'c', 'd', 'message'], dtype='object') 我们可以看到，这里默认把第一行当做columns了，我们可以通过header=None，来自动指定标题1234567891011121314151617181920df = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',header=None) 0 1 2 3 40 a b c d message1 1 2 3 4 hello2 5 6 7 8 world3 9 10 11 12 fooRangeIndex(start=0, stop=4, step=1)Int64Index([0, 1, 2, 3, 4], dtype='int64')#通过names，来自定义columnsdf = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',header=None,names=list('opqrxy')) o p q r x y0 a b c d message NaN1 1 2 3 4 hello NaN2 5 6 7 8 world NaN3 9 10 11 12 foo NaNRangeIndex(start=0, stop=4, step=1)Index(['o', 'p', 'q', 'r', 'x', 'y'], dtype='object') 现在的行索引是自动初始化的，我们可以指定存在的列为索引12345678910111213path = r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv'df = pd.read_csv(path,header=None, names=list('opqrxy'), index_col='x') o p q r yx message a b c d NaNhello 1 2 3 4 NaNworld 5 6 7 8 NaNfoo 9 10 11 12 NaNIndex(['message', 'hello', 'world', 'foo'], dtype='object', name='x')Index(['o', 'p', 'q', 'r', 'y'], dtype='object') 比如，有这样一份数据，字段间是通过一个或多个空格来分隔的 我们直接使用read_csv去读取，会发现，列索引有些不友好，我们可以使用正则表达式去分隔123456789101112131415161718df = pd.read_csv(path) A B C0 aaa -0.264438 -1.026059 -0.6195001 bbb 0.927272 0.302904 -0.0323992 ccc -0.264273 -0.386314 -0.2176013 ddd -0.871858 -0.348382 1.100491RangeIndex(start=0, stop=4, step=1)Index([' A B C'], dtype='object')#\s表示空格，+表示1个或多个，就是说分隔符是1个或多个空格df = pd.read_table(path,sep='\s+') A B Caaa -0.264438 -1.026059 -0.619500bbb 0.927272 0.302904 -0.032399ccc -0.264273 -0.386314 -0.217601ddd -0.871858 -0.348382 1.100491Index(['aaa', 'bbb', 'ccc', 'ddd'], dtype='object')Index(['A', 'B', 'C'], dtype='object') 还有很多其他常用的参数，比如skiprows，可以跳过指定行下面，再说个填充缺失值的方法，na_values可以将其他我们指定的值也当成NaN处理12345678910111213141516171819202122232425262728na_values : scalar, str, list-like, or dict, default None Additional strings to recognize as NA/NaN. If dict passed, specific per-column NA values. By default the following values are interpreted as NaN: ‘’, ‘#N/A’, ‘#N/A N/A’, ‘#NA’, ‘-1.#IND’, ‘-1.#QNAN’, ‘-NaN’, ‘-nan’, ‘1.#IND’, ‘1.#QNAN’, ‘N/A’, ‘NA’, ‘NULL’, ‘NaN’, ‘nan’`.#原始数据是这样的， something a b c d message0 one 1 2 3.0 4 NaN1 two 5 6 NaN 8 world2 three 9 10 11.0 12 foo#这里，我们将1，2，4也当成NaN值处理df = pd.read_csv(path,na_values=[1,2,4])#加载后，数据就会变成这样 something a b c d message0 one NaN NaN 3.0 NaN NaN1 two 5.0 6.0 NaN 8.0 world2 three 9.0 10.0 11.0 12.0 foo#我们还可以用一个dict来对不同的列指定NaN值df = pd.read_csv(path,na_values=&#123;'something':['one','three'],'d':[8,12]&#125;) something a b c d message0 NaN 1 2 3.0 4.0 NaN1 two 5 6 NaN NaN world2 NaN 9 10 11.0 NaN foo #2.pandas导出数据我们使用read_csv读取数据，处理完之后，我们可能还需要将数据存储起来，还有一个to_csv的函数1234567891011121314151617181920212223242526272829DataFrame.to_csv(path_or_buf=None, sep=', ', na_rep='', float_format=None, columns=None, header=True, index=True, index_label=None, mode='w', encoding=None, compression=None, quoting=None, quotechar='"', line_terminator='\n', chunksize=None, tupleize_cols=False, date_format=None, doublequote=True, escapechar=None, decimal='.')##我们就使用这份数据，先读取后，再保存something,a,b,c,d,messageone,1,2,3,4,NAtwo,5,6,,8,worldthree,9,10,11,12,foodf.to_csv(sys.stdout,sep='^')^something^a^b^c^d^message0^one^1^2^3.0^4^1^two^5^6^^8^world2^three^9^10^11.0^12^foo#我们看到这个输出，发现，NaN值，导出时，转为了空字符串，这里呢，我们可以手工指定na_rep : string, default ‘’df.to_csv(sys.stdout,sep='^',na_rep='NaN')^something^a^b^c^d^message0^one^1^2^3.0^4^NaN1^two^5^6^NaN^8^world2^three^9^10^11.0^12^foo#有时候，行列标签可能也不需要，我们也可以禁用df.to_csv(sys.stdout,sep='^',na_rep='NaN',index=False,header=False)one^1^2^3.0^4^NaNtwo^5^6^NaN^8^worldthree^9^10^11.0^12^foo #3.附录pandas中还有其他的加载数据方式，像读取HTML，JSON，xml等等，常用的可能还是和数据库取连接，这块后面会再补充，这里就先到这里。]]></content>
-      <categories>
-        <category>Python-Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Pandas</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[使用Spyder不弹出画图面板]]></title>
     <url>%2F2017%2F08%2F08%2Fvisual-handbook-01%2F</url>
     <content type="text"><![CDATA[最近练习Python都是在Spyder中开发，很方便，今天练习matplotlib的时候，发现，绘制的图片显示在out中1234import matplotlib.pyplot as pltplt.plot([1,2,3,4])plt.ylabel('some numbers')plt.show() 依稀记得之前在IPython中执行的时候，是单独弹出一个面板的，就百度了下，找到了解决方法我们在Tools-&gt;Preferences-&gt; 修改完以后，我们需要重启下Spyder重启后，再次执行，就可以看到那个单独的窗口了。]]></content>
@@ -711,6 +721,18 @@
       <tags>
         <tag>Python</tag>
         <tag>Spyder</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Pandas手册（7）- pandas数据加载]]></title>
+    <url>%2F2017%2F08%2F08%2Fpandas-handbook-07%2F</url>
+    <content type="text"><![CDATA[PythonPandas 这里整理下，pandas中数据加载的几个方法，前面，我们也有用过，read_csv，下面，我们整理下 1.pandas读取数据方法1pandas.read_csv(filepath_or_buffer, sep=', ', delimiter=None, header='infer', names=None, index_col=None, usecols=None, squeeze=False, prefix=None, mangle_dupe_cols=True, dtype=None, engine=None, converters=None, true_values=None, false_values=None, skipinitialspace=False, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False, iterator=False, chunksize=None, compression='infer', thousands=None, decimal=b'.', lineterminator=None, quotechar='"', quoting=0, escapechar=None, comment=None, encoding=None, dialect=None, tupleize_cols=False, error_bad_lines=True, warn_bad_lines=True, skipfooter=0, skip_footer=0, doublequote=True, delim_whitespace=False, as_recarray=False, compact_ints=False, use_unsigned=False, low_memory=True, buffer_lines=None, memory_map=False, float_precision=None) 我们可以看到这个参数非常多，基本上可以解决我们文件读取时的常见问题。 下面就是小例子csv文件内容是这样的：数据以逗号分隔，没有其他特殊的情况 123456789101112131415161718import pandas as pddf = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv')#使用read_table需要，手动指定下分隔符#df = pd.read_table(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',sep=',')print(df)print(df.index)print(df.columns)runfile('D:/document/python_demo/pandas_csv.py', wdir='D:/document/python_demo') a b c d message0 1 2 3 4 hello1 5 6 7 8 world2 9 10 11 12 fooRangeIndex(start=0, stop=3, step=1)Index(['a', 'b', 'c', 'd', 'message'], dtype='object') 我们可以看到，这里默认把第一行当做columns了，我们可以通过header=None，来自动指定标题1234567891011121314151617181920df = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',header=None) 0 1 2 3 40 a b c d message1 1 2 3 4 hello2 5 6 7 8 world3 9 10 11 12 fooRangeIndex(start=0, stop=4, step=1)Int64Index([0, 1, 2, 3, 4], dtype='int64')#通过names，来自定义columnsdf = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',header=None,names=list('opqrxy')) o p q r x y0 a b c d message NaN1 1 2 3 4 hello NaN2 5 6 7 8 world NaN3 9 10 11 12 foo NaNRangeIndex(start=0, stop=4, step=1)Index(['o', 'p', 'q', 'r', 'x', 'y'], dtype='object') 现在的行索引是自动初始化的，我们可以指定存在的列为索引12345678910111213path = r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv'df = pd.read_csv(path,header=None, names=list('opqrxy'), index_col='x') o p q r yx message a b c d NaNhello 1 2 3 4 NaNworld 5 6 7 8 NaNfoo 9 10 11 12 NaNIndex(['message', 'hello', 'world', 'foo'], dtype='object', name='x')Index(['o', 'p', 'q', 'r', 'y'], dtype='object') 比如，有这样一份数据，字段间是通过一个或多个空格来分隔的 我们直接使用read_csv去读取，会发现，列索引有些不友好，我们可以使用正则表达式去分隔123456789101112131415161718df = pd.read_csv(path) A B C0 aaa -0.264438 -1.026059 -0.6195001 bbb 0.927272 0.302904 -0.0323992 ccc -0.264273 -0.386314 -0.2176013 ddd -0.871858 -0.348382 1.100491RangeIndex(start=0, stop=4, step=1)Index([' A B C'], dtype='object')#\s表示空格，+表示1个或多个，就是说分隔符是1个或多个空格df = pd.read_table(path,sep='\s+') A B Caaa -0.264438 -1.026059 -0.619500bbb 0.927272 0.302904 -0.032399ccc -0.264273 -0.386314 -0.217601ddd -0.871858 -0.348382 1.100491Index(['aaa', 'bbb', 'ccc', 'ddd'], dtype='object')Index(['A', 'B', 'C'], dtype='object') 还有很多其他常用的参数，比如skiprows，可以跳过指定行下面，再说个填充缺失值的方法，na_values可以将其他我们指定的值也当成NaN处理12345678910111213141516171819202122232425262728na_values : scalar, str, list-like, or dict, default None Additional strings to recognize as NA/NaN. If dict passed, specific per-column NA values. By default the following values are interpreted as NaN: ‘’, ‘#N/A’, ‘#N/A N/A’, ‘#NA’, ‘-1.#IND’, ‘-1.#QNAN’, ‘-NaN’, ‘-nan’, ‘1.#IND’, ‘1.#QNAN’, ‘N/A’, ‘NA’, ‘NULL’, ‘NaN’, ‘nan’`.#原始数据是这样的， something a b c d message0 one 1 2 3.0 4 NaN1 two 5 6 NaN 8 world2 three 9 10 11.0 12 foo#这里，我们将1，2，4也当成NaN值处理df = pd.read_csv(path,na_values=[1,2,4])#加载后，数据就会变成这样 something a b c d message0 one NaN NaN 3.0 NaN NaN1 two 5.0 6.0 NaN 8.0 world2 three 9.0 10.0 11.0 12.0 foo#我们还可以用一个dict来对不同的列指定NaN值df = pd.read_csv(path,na_values=&#123;'something':['one','three'],'d':[8,12]&#125;) something a b c d message0 NaN 1 2 3.0 4.0 NaN1 two 5 6 NaN NaN world2 NaN 9 10 11.0 NaN foo #2.pandas导出数据我们使用read_csv读取数据，处理完之后，我们可能还需要将数据存储起来，还有一个to_csv的函数1234567891011121314151617181920212223242526272829DataFrame.to_csv(path_or_buf=None, sep=', ', na_rep='', float_format=None, columns=None, header=True, index=True, index_label=None, mode='w', encoding=None, compression=None, quoting=None, quotechar='"', line_terminator='\n', chunksize=None, tupleize_cols=False, date_format=None, doublequote=True, escapechar=None, decimal='.')##我们就使用这份数据，先读取后，再保存something,a,b,c,d,messageone,1,2,3,4,NAtwo,5,6,,8,worldthree,9,10,11,12,foodf.to_csv(sys.stdout,sep='^')^something^a^b^c^d^message0^one^1^2^3.0^4^1^two^5^6^^8^world2^three^9^10^11.0^12^foo#我们看到这个输出，发现，NaN值，导出时，转为了空字符串，这里呢，我们可以手工指定na_rep : string, default ‘’df.to_csv(sys.stdout,sep='^',na_rep='NaN')^something^a^b^c^d^message0^one^1^2^3.0^4^NaN1^two^5^6^NaN^8^world2^three^9^10^11.0^12^foo#有时候，行列标签可能也不需要，我们也可以禁用df.to_csv(sys.stdout,sep='^',na_rep='NaN',index=False,header=False)one^1^2^3.0^4^NaNtwo^5^6^NaN^8^worldthree^9^10^11.0^12^foo #3.附录pandas中还有其他的加载数据方式，像读取HTML，JSON，xml等等，常用的可能还是和数据库取连接，这块后面会再补充，这里就先到这里。]]></content>
+      <categories>
+        <category>Python-Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Pandas</tag>
       </tags>
   </entry>
   <entry>
@@ -749,17 +771,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python基础（6）- zip]]></title>
-    <url>%2F2017%2F08%2F06%2Fpython-handbook-06%2F</url>
-    <content type="text"><![CDATA[这里记录一个函数的使用，zip123456zip(iter1 [,iter2 [...]]) --&gt; zip objectReturn a zip object whose .__next__() method returns a tuple wherethe i-th element comes from the i-th iterable argument. The .__next__()method continues until the shortest iterable in the argument sequenceis exhausted and then it raises StopIteration. 我们可以传入一个或多个可迭代对象，然后将对应位置的元素封装成一个tuple，然后把所有tuple封装为list返回1234567891011121314151617181920x = [1,2,3]y = [4,5,6]z = zip(x,y)print(z)&lt;zip object at 0x000002D26251F208&gt;print(list(z))[(1, 4), (2, 5), (3, 6)]#在只有一个参数的时候a = zip(x)aOut[8]: &lt;zip at 0x2d261cab588&gt;list(a)Out[9]: [(1,), (2,), (3,)] 如果2个参数的长度不一样，会以较短的为主12345678a = [1,2,3]b = ['ONE', 'TWO', 'THREE', 'FOUR']c = list(zip(a,b))cOut[31]: [(1, 'ONE'), (2, 'TWO'), (3, 'THREE')] 我们使用*，可以看做是unzip的过程12345678x = [1,2,3]y = [4,5,6]z = zip(*zip(x,y))list(z)Out[27]: [(1, 2, 3), (4, 5, 6)] 关于zip，有几个常用的场景，比如矩阵行列转换1234567a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]list(zip(*a))Out[38]: [(1, 4, 7), (2, 5, 8), (3, 6, 9)]list(map(list,zip(*a)))Out[39]: [[1, 4, 7], [2, 5, 8], [3, 6, 9]] 构造字典123456789a = [1,2,3]b = ['one','two','three']list(zip(a,b))Out[42]: [(1, 'one'), (2, 'two'), (3, 'three')]dict(list(zip(a,b)))Out[43]: &#123;1: 'one', 2: 'two', 3: 'three'&#125; 参考博客：http://blog.csdn.net/shomy_liu/article/details/46968651http://www.jb51.net/article/53051.htm]]></content>
-      <categories>
-        <category>Python-基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[numpy手册(2)-常用操作杂记]]></title>
     <url>%2F2017%2F08%2F06%2Fnumpy-handbook-02%2F</url>
     <content type="text"><![CDATA[PythonNumpy知识总结 这里记录下numpy常用的一些操作，一些散乱的知识点。 数组和标量之间的运算就是对数组进行批量的运算123456789101112131415161718192021import numpy as npa = np.arange(15).reshape(3,5)aOut[3]: array([[ 0, 1, 2, 3, 4], [ 5, 6, 7, 8, 9], [10, 11, 12, 13, 14]])a+2Out[4]: array([[ 2, 3, 4, 5, 6], [ 7, 8, 9, 10, 11], [12, 13, 14, 15, 16]])a+aOut[5]: array([[ 0, 2, 4, 6, 8], [10, 12, 14, 16, 18], [20, 22, 24, 26, 28]]) 基本的索引和切片上一篇，我们大概介绍过数组的切片，这里的切片操作都是原数组的一个视图，即原数组变化后，视图也会变化123456789101112131415161718192021222324252627aOut[7]: array([[ 0, 1, 2, 3, 4], [ 5, 6, 7, 8, 9], [10, 11, 12, 13, 14]])a[1]Out[8]: array([5, 6, 7, 8, 9])a[1][2]Out[9]: 7a[1:2]Out[10]: array([[5, 6, 7, 8, 9]])b=a[1:2]a[1:2]=0bOut[13]: array([[0, 0, 0, 0, 0]])aOut[14]: array([[ 0, 1, 2, 3, 4], [ 0, 0, 0, 0, 0], [10, 11, 12, 13, 14]]) 花式索引花式索引，就是利用整数数组进行索引。123456789101112131415161718192021x = np.empty((8,4))for i in range(8): x[i]=i xOut[18]: array([[ 0., 0., 0., 0.], [ 1., 1., 1., 1.], [ 2., 2., 2., 2.], ..., [ 5., 5., 5., 5.], [ 6., 6., 6., 6.], [ 7., 7., 7., 7.]])x[[3,0,5]]Out[19]: array([[ 3., 3., 3., 3.], [ 0., 0., 0., 0.], [ 5., 5., 5., 5.]]) 如果使用负数，会从末尾开始选取1234x[[-1,-2]]Out[20]: array([[ 7., 7., 7., 7.], [ 6., 6., 6., 6.]]) 数组的转置12345678910111213141516xOut[21]: array([[ 0., 0., 0., 0.], [ 1., 1., 1., 1.], [ 2., 2., 2., 2.], ..., [ 5., 5., 5., 5.], [ 6., 6., 6., 6.], [ 7., 7., 7., 7.]])x.TOut[22]: array([[ 0., 1., 2., ..., 5., 6., 7.], [ 0., 1., 2., ..., 5., 6., 7.], [ 0., 1., 2., ..., 5., 6., 7.], [ 0., 1., 2., ..., 5., 6., 7.]]) 上面的主要是轴对换，转置的话，看下这个例子（大学学的矩阵都忘了，得回顾下…） 一开始真迷糊了，找了个解释，明天再研究下这个函数]]></content>
@@ -769,6 +780,17 @@
       <tags>
         <tag>Python</tag>
         <tag>Numpy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python基础（6）- zip]]></title>
+    <url>%2F2017%2F08%2F06%2Fpython-handbook-06%2F</url>
+    <content type="text"><![CDATA[这里记录一个函数的使用，zip123456zip(iter1 [,iter2 [...]]) --&gt; zip objectReturn a zip object whose .__next__() method returns a tuple wherethe i-th element comes from the i-th iterable argument. The .__next__()method continues until the shortest iterable in the argument sequenceis exhausted and then it raises StopIteration. 我们可以传入一个或多个可迭代对象，然后将对应位置的元素封装成一个tuple，然后把所有tuple封装为list返回1234567891011121314151617181920x = [1,2,3]y = [4,5,6]z = zip(x,y)print(z)&lt;zip object at 0x000002D26251F208&gt;print(list(z))[(1, 4), (2, 5), (3, 6)]#在只有一个参数的时候a = zip(x)aOut[8]: &lt;zip at 0x2d261cab588&gt;list(a)Out[9]: [(1,), (2,), (3,)] 如果2个参数的长度不一样，会以较短的为主12345678a = [1,2,3]b = ['ONE', 'TWO', 'THREE', 'FOUR']c = list(zip(a,b))cOut[31]: [(1, 'ONE'), (2, 'TWO'), (3, 'THREE')] 我们使用*，可以看做是unzip的过程12345678x = [1,2,3]y = [4,5,6]z = zip(*zip(x,y))list(z)Out[27]: [(1, 2, 3), (4, 5, 6)] 关于zip，有几个常用的场景，比如矩阵行列转换1234567a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]list(zip(*a))Out[38]: [(1, 4, 7), (2, 5, 8), (3, 6, 9)]list(map(list,zip(*a)))Out[39]: [[1, 4, 7], [2, 5, 8], [3, 6, 9]] 构造字典123456789a = [1,2,3]b = ['one','two','three']list(zip(a,b))Out[42]: [(1, 'one'), (2, 'two'), (3, 'three')]dict(list(zip(a,b)))Out[43]: &#123;1: 'one', 2: 'two', 3: 'three'&#125; 参考博客：http://blog.csdn.net/shomy_liu/article/details/46968651http://www.jb51.net/article/53051.htm]]></content>
+      <categories>
+        <category>Python-基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>

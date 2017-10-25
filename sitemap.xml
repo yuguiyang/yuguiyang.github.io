@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yuguiyang.github.io/2017/10/24/statistics-handbook-01/</loc>
+    
+    <lastmod>2017-10-25T08:53:53.382Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuguiyang.github.io/2017/10/25/statistics-handbook-02/</loc>
+    
+    <lastmod>2017-10-25T08:52:55.525Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuguiyang.github.io/2017/12/31/top/</loc>
+    
+    <lastmod>2017-10-25T06:38:40.097Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://yuguiyang.github.io/2017/08/19/visual-handbook-02/</loc>
     
     <lastmod>2017-10-21T05:42:46.258Z</lastmod>
@@ -579,13 +600,6 @@
     <loc>https://yuguiyang.github.io/2017/08/17/matplotlib-handbook-09/</loc>
     
     <lastmod>2017-08-31T05:00:22.933Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuguiyang.github.io/2017/12/31/top/</loc>
-    
-    <lastmod>2017-08-29T14:48:43.744Z</lastmod>
     
   </url>
   

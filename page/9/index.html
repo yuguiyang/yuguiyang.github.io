@@ -325,6 +325,332 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/17/pandas-handbook-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/17/pandas-handbook-12/" itemprop="url">Pandas手册（12）- 时间序列</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-17T08:00:00+08:00">
+                2017-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Python<br>Pandas</p>
+<hr>
+<p>在数据分析中，时间序列应该很常见，这里，我们看看在pandas里面的使用</p>
+<h1 id="1-日期和时间数据类型"><a href="#1-日期和时间数据类型" class="headerlink" title="1. 日期和时间数据类型"></a>1. 日期和时间数据类型</h1><p>经常使用的datetime，time，及calendar模块<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"></div><div class="line">now = datetime.now()</div><div class="line"></div><div class="line">now</div><div class="line">Out[<span class="number">33</span>]: datetime.datetime(<span class="number">2017</span>, <span class="number">8</span>, <span class="number">18</span>, <span class="number">9</span>, <span class="number">43</span>, <span class="number">46</span>, <span class="number">360886</span>)</div><div class="line"></div><div class="line">now.year</div><div class="line">Out[<span class="number">34</span>]: <span class="number">2017</span></div><div class="line"></div><div class="line">now.month</div><div class="line">Out[<span class="number">35</span>]: <span class="number">8</span></div><div class="line"></div><div class="line">now.day</div><div class="line">Out[<span class="number">36</span>]: <span class="number">18</span></div></pre></td></tr></table></figure></p>
+<p>datetime.timedelta表示2个datetime对象的时间差<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">a = datetime(<span class="number">2018</span>,<span class="number">8</span>,<span class="number">18</span>) - datetime(<span class="number">2018</span>,<span class="number">8</span>,<span class="number">17</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">38</span>]: datetime.timedelta(<span class="number">1</span>)</div><div class="line"></div><div class="line">a.days</div><div class="line">Out[<span class="number">39</span>]: <span class="number">1</span></div><div class="line"></div><div class="line">a.seconds</div><div class="line">Out[<span class="number">40</span>]: <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">datetime</span>.<span class="title">timedelta</span><span class="params">(days=<span class="number">0</span>, seconds=<span class="number">0</span>, microseconds=<span class="number">0</span>, milliseconds=<span class="number">0</span>, minutes=<span class="number">0</span>, hours=<span class="number">0</span>, weeks=<span class="number">0</span>)</span></span></div><div class="line">A timedelta object represents a duration, the difference between two dates or times.</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-2334b8c861235fd7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们可以给datetime加上或者减去一个或多个timedelta<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</div><div class="line"></div><div class="line">start = datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">18</span>)</div><div class="line"></div><div class="line">start + timedelta(days=<span class="number">-12</span>)</div><div class="line">Out[<span class="number">44</span>]: datetime.datetime(<span class="number">2017</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">0</span>, <span class="number">0</span>)</div><div class="line"></div><div class="line">start + timedelta(seconds=<span class="number">600</span>)</div><div class="line">Out[<span class="number">45</span>]: datetime.datetime(<span class="number">2017</span>, <span class="number">8</span>, <span class="number">18</span>, <span class="number">0</span>, <span class="number">10</span>)</div></pre></td></tr></table></figure></p>
+<h1 id="2-日期转换"><a href="#2-日期转换" class="headerlink" title="2. 日期转换"></a>2. 日期转换</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pandas.to_datetime(arg, errors=<span class="string">'raise'</span>, dayfirst=<span class="keyword">False</span>, yearfirst=<span class="keyword">False</span>, utc=<span class="keyword">None</span>, box=<span class="keyword">True</span>, format=<span class="keyword">None</span>, exact=<span class="keyword">True</span>, unit=<span class="keyword">None</span>, infer_datetime_format=<span class="keyword">False</span>, origin=<span class="string">'unix'</span>)</div></pre></td></tr></table></figure>
+<p>dayfirst参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#比如有时候，我们的格式，可能是day在前面，默认的话，会转换为 月/日/年</span></div><div class="line">pd.to_datetime([<span class="string">'06/08/2017'</span>,<span class="string">'07/08/2017'</span>])</div><div class="line">Out[<span class="number">29</span>]: DatetimeIndex([<span class="string">'2017-06-08'</span>, <span class="string">'2017-07-08'</span>], dtype=<span class="string">'datetime64[ns]'</span>, freq=<span class="keyword">None</span>)</div><div class="line"></div><div class="line"><span class="comment">#使用dayfirst，指定日期，日/月/年</span></div><div class="line">pd.to_datetime([<span class="string">'06/08/2017'</span>,<span class="string">'07/08/2017'</span>],dayfirst=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">30</span>]: DatetimeIndex([<span class="string">'2017-08-06'</span>, <span class="string">'2017-08-07'</span>], dtype=<span class="string">'datetime64[ns]'</span>, freq=<span class="keyword">None</span>)</div></pre></td></tr></table></figure></p>
+<p>我们可以将一个包含日期信息的DataFrame封装成datetime<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">df = pd.DataFrame(&#123;<span class="string">'year'</span>: [<span class="number">2015</span>, <span class="number">2016</span>],</div><div class="line">                       <span class="string">'month'</span>: [<span class="number">2</span>, <span class="number">3</span>],</div><div class="line">                       <span class="string">'day'</span>: [<span class="number">4</span>, <span class="number">5</span>]&#125;)</div><div class="line"></div><div class="line">df</div><div class="line">Out[<span class="number">32</span>]: </div><div class="line">   day  month  year</div><div class="line"><span class="number">0</span>    <span class="number">4</span>      <span class="number">2</span>  <span class="number">2015</span></div><div class="line"><span class="number">1</span>    <span class="number">5</span>      <span class="number">3</span>  <span class="number">2016</span></div><div class="line"></div><div class="line">pd.to_datetime(df)</div><div class="line">Out[<span class="number">33</span>]: </div><div class="line"><span class="number">0</span>   <span class="number">2015</span><span class="number">-02</span><span class="number">-04</span></div><div class="line"><span class="number">1</span>   <span class="number">2016</span><span class="number">-03</span><span class="number">-05</span></div><div class="line">dtype: datetime64[ns]</div></pre></td></tr></table></figure></p>
+<p>这样转换的时候，是一定需要，最少满足年月日3列，不然会报错</p>
+<blockquote>
+<p>ValueError: to assemble mappings requires at least that [year, month, day] be specified: [day,month] is missing</p>
+</blockquote>
+<p>errors参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">errors : &#123;‘ignore’, ‘<span class="keyword">raise</span>’, ‘coerce’&#125;, default ‘<span class="keyword">raise</span>’</div><div class="line"></div><div class="line">       If ‘<span class="keyword">raise</span>’, then invalid parsing will <span class="keyword">raise</span> an exception</div><div class="line">       If ‘coerce’, then invalid parsing will be set <span class="keyword">as</span> NaT</div><div class="line">       If ‘ignore’, then invalid parsing will <span class="keyword">return</span> the input</div></pre></td></tr></table></figure></p>
+<p>如果一个日期不符合规范，默认是会报错的，我们可以通过errors参数来控制<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">pd.to_datetime(<span class="string">'13/13/2017'</span>)</div><div class="line">ValueError: month must be <span class="keyword">in</span> <span class="number">1.</span><span class="number">.12</span></div><div class="line"></div><div class="line">pd.to_datetime(<span class="string">'13/13/2017'</span>,errors=<span class="string">'ignore'</span>)</div><div class="line">Out[<span class="number">38</span>]: <span class="string">'13/13/2017'</span></div><div class="line"></div><div class="line">pd.to_datetime(<span class="string">'13/13/2017'</span>,errors=<span class="string">'coerce'</span>)</div><div class="line">Out[<span class="number">39</span>]: NaT</div></pre></td></tr></table></figure></p>
+<p>这个NaT，就是Not a Time，在时间序列里面表示NA值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">pd.to_datetime(<span class="number">1</span>)</div><div class="line">Out[<span class="number">21</span>]: Timestamp(<span class="string">'1970-01-01 00:00:00.000000001'</span>)</div><div class="line"></div><div class="line">pd.to_datetime(<span class="number">10</span>)</div><div class="line">Out[<span class="number">22</span>]: Timestamp(<span class="string">'1970-01-01 00:00:00.000000010'</span>)</div><div class="line"></div><div class="line">s1 = pd.Series([<span class="string">'2017-01-01'</span>,<span class="string">'2017-02-01'</span>,<span class="string">'2017-03-01'</span>]*<span class="number">3</span>)</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">24</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">2017</span><span class="number">-01</span><span class="number">-01</span></div><div class="line"><span class="number">1</span>    <span class="number">2017</span><span class="number">-02</span><span class="number">-01</span></div><div class="line"><span class="number">2</span>    <span class="number">2017</span><span class="number">-03</span><span class="number">-01</span></div><div class="line"><span class="number">3</span>    <span class="number">2017</span><span class="number">-01</span><span class="number">-01</span></div><div class="line"><span class="number">4</span>    <span class="number">2017</span><span class="number">-02</span><span class="number">-01</span></div><div class="line"><span class="number">5</span>    <span class="number">2017</span><span class="number">-03</span><span class="number">-01</span></div><div class="line"><span class="number">6</span>    <span class="number">2017</span><span class="number">-01</span><span class="number">-01</span></div><div class="line"><span class="number">7</span>    <span class="number">2017</span><span class="number">-02</span><span class="number">-01</span></div><div class="line"><span class="number">8</span>    <span class="number">2017</span><span class="number">-03</span><span class="number">-01</span></div><div class="line">dtype: object</div><div class="line"></div><div class="line">pd.to_datetime(s1)</div><div class="line">Out[<span class="number">25</span>]: </div><div class="line"><span class="number">0</span>   <span class="number">2017</span><span class="number">-01</span><span class="number">-01</span></div><div class="line"><span class="number">1</span>   <span class="number">2017</span><span class="number">-02</span><span class="number">-01</span></div><div class="line"><span class="number">2</span>   <span class="number">2017</span><span class="number">-03</span><span class="number">-01</span></div><div class="line"><span class="number">3</span>   <span class="number">2017</span><span class="number">-01</span><span class="number">-01</span></div><div class="line"><span class="number">4</span>   <span class="number">2017</span><span class="number">-02</span><span class="number">-01</span></div><div class="line"><span class="number">5</span>   <span class="number">2017</span><span class="number">-03</span><span class="number">-01</span></div><div class="line"><span class="number">6</span>   <span class="number">2017</span><span class="number">-01</span><span class="number">-01</span></div><div class="line"><span class="number">7</span>   <span class="number">2017</span><span class="number">-02</span><span class="number">-01</span></div><div class="line"><span class="number">8</span>   <span class="number">2017</span><span class="number">-03</span><span class="number">-01</span></div><div class="line">dtype: datetime64[ns]</div></pre></td></tr></table></figure></p>
+<h1 id="3-时间序列基础"><a href="#3-时间序列基础" class="headerlink" title="3. 时间序列基础"></a>3. 时间序列基础</h1><p>最基本的时间序列类型，就是以时间戳为索引的Series<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">s = pd.Series(np.random.randn(<span class="number">3</span>),index=[datetime(<span class="number">2018</span>,<span class="number">8</span>,<span class="number">1</span>),datetime(<span class="number">2018</span>,<span class="number">8</span>,<span class="number">2</span>),datetime(<span class="number">2018</span>,<span class="number">8</span>,<span class="number">3</span>)])</div><div class="line"></div><div class="line">s</div><div class="line">Out[<span class="number">52</span>]: </div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-01</span>    <span class="number">0.360137</span></div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-02</span>    <span class="number">1.422533</span></div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-03</span>   <span class="number">-1.079172</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">s.index</div><div class="line">Out[<span class="number">53</span>]: DatetimeIndex([<span class="string">'2018-08-01'</span>, <span class="string">'2018-08-02'</span>, <span class="string">'2018-08-03'</span>], dtype=<span class="string">'datetime64[ns]'</span>, freq=<span class="keyword">None</span>)</div><div class="line"></div><div class="line">type(s)</div><div class="line">Out[<span class="number">54</span>]: pandas.core.series.Series</div></pre></td></tr></table></figure></p>
+<p>不同索引的时间序列之间的算术运算会按时间自动对齐<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">s+s[<span class="number">1</span>:]</div><div class="line">Out[<span class="number">56</span>]: </div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-01</span>         NaN</div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-02</span>    <span class="number">2.845066</span></div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-03</span>   <span class="number">-2.158345</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">s</div><div class="line">Out[<span class="number">57</span>]: </div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-01</span>    <span class="number">0.360137</span></div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-02</span>    <span class="number">1.422533</span></div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-03</span>   <span class="number">-1.079172</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">s[<span class="number">1</span>:]</div><div class="line">Out[<span class="number">58</span>]: </div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-02</span>    <span class="number">1.422533</span></div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-03</span>   <span class="number">-1.079172</span></div><div class="line">dtype: float64</div></pre></td></tr></table></figure></p>
+<h1 id="4-索引、选取、子集构造"><a href="#4-索引、选取、子集构造" class="headerlink" title="4. 索引、选取、子集构造"></a>4. 索引、选取、子集构造</h1><p>对于时间序列的处理，有很方便的方式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">longer_ts = pd.Series(np.random.randn(<span class="number">1000</span>),</div><div class="line">                   index=pd.date_range(<span class="string">'1/1/2000'</span>, periods=<span class="number">1000</span>))</div><div class="line"></div><div class="line">longer_ts.head()</div><div class="line">Out[<span class="number">76</span>]: </div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-01</span>   <span class="number">-0.617652</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-02</span>    <span class="number">1.331210</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-03</span>    <span class="number">0.351012</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-04</span>   <span class="number">-1.686123</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-05</span>   <span class="number">-0.426614</span></div><div class="line">Freq: D, dtype: float64</div><div class="line"></div><div class="line">longer_ts[<span class="string">'2000-01-01'</span>:<span class="string">'2000-01-04'</span>]</div><div class="line">Out[<span class="number">77</span>]: </div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-01</span>   <span class="number">-0.617652</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-02</span>    <span class="number">1.331210</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-03</span>    <span class="number">0.351012</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-04</span>   <span class="number">-1.686123</span></div><div class="line">Freq: D, dtype: float64</div><div class="line"></div><div class="line">longer_ts[<span class="string">'01/01/2000'</span>:<span class="string">'01/04/2000'</span>]</div><div class="line">Out[<span class="number">78</span>]: </div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-01</span>   <span class="number">-0.617652</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-02</span>    <span class="number">1.331210</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-03</span>    <span class="number">0.351012</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-04</span>   <span class="number">-1.686123</span></div><div class="line">Freq: D, dtype: float64</div></pre></td></tr></table></figure></p>
+<p>对于DataFrame来说，也是一样的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pandas.date_range(start=<span class="keyword">None</span>, end=<span class="keyword">None</span>, periods=<span class="keyword">None</span>, freq=<span class="string">'D'</span>, tz=<span class="keyword">None</span>, normalize=<span class="keyword">False</span>, name=<span class="keyword">None</span>, closed=<span class="keyword">None</span>, **kwargs)</div><div class="line">Return a fixed frequency datetime index, <span class="keyword">with</span> day (calendar) <span class="keyword">as</span> the default frequency</div><div class="line"></div><div class="line">freq参数可以参考网址：http://pandas.pydata.org/pandas-docs/stable/timeseries.html<span class="comment">#offset-aliases</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#从2017-01-01开始，每个周三，生成100个</span></div><div class="line">dates = pd.date_range(<span class="string">'1/1/2017'</span>, periods=<span class="number">100</span>, freq=<span class="string">'W-WED'</span>)</div><div class="line">long_df = pd.DataFrame(np.random.randn(<span class="number">100</span>, <span class="number">4</span>),</div><div class="line">                    index=dates,</div><div class="line">                    columns=[<span class="string">'Colorado'</span>, <span class="string">'Texas'</span>, <span class="string">'New York'</span>, <span class="string">'Ohio'</span>])</div><div class="line"></div><div class="line">long_df.head()</div><div class="line">Out[<span class="number">92</span>]: </div><div class="line">            Colorado     Texas  New York      Ohio</div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-04</span> <span class="number">-1.061954</span>  <span class="number">0.324256</span>  <span class="number">1.532633</span> <span class="number">-0.310599</span></div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-11</span>  <span class="number">1.211990</span> <span class="number">-0.241169</span> <span class="number">-0.488018</span> <span class="number">-0.473085</span></div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-18</span>  <span class="number">0.112726</span> <span class="number">-0.021406</span> <span class="number">-0.903449</span> <span class="number">-1.191892</span></div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-25</span>  <span class="number">0.247537</span> <span class="number">-0.086301</span>  <span class="number">1.252001</span>  <span class="number">1.119687</span></div><div class="line"><span class="number">2017</span><span class="number">-02</span><span class="number">-01</span> <span class="number">-0.058160</span> <span class="number">-0.856956</span> <span class="number">-0.783473</span>  <span class="number">0.081420</span></div><div class="line"></div><div class="line"><span class="comment">#选取1月份所有数据</span></div><div class="line">long_df.loc[<span class="string">'2017-01'</span>]</div><div class="line">Out[<span class="number">94</span>]: </div><div class="line">            Colorado     Texas  New York      Ohio</div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-04</span> <span class="number">-1.061954</span>  <span class="number">0.324256</span>  <span class="number">1.532633</span> <span class="number">-0.310599</span></div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-11</span>  <span class="number">1.211990</span> <span class="number">-0.241169</span> <span class="number">-0.488018</span> <span class="number">-0.473085</span></div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-18</span>  <span class="number">0.112726</span> <span class="number">-0.021406</span> <span class="number">-0.903449</span> <span class="number">-1.191892</span></div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-25</span>  <span class="number">0.247537</span> <span class="number">-0.086301</span>  <span class="number">1.252001</span>  <span class="number">1.119687</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/16/pandas-handbook-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/16/pandas-handbook-11/" itemprop="url">Pandas手册（11）- groupby</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-16T08:00:00+08:00">
+                2017-08-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Python<br>Pandas</p>
+<hr>
+<p>这里，我们整理下pandas中关于groupby的使用，和SQL中一样，就是对数据进行聚合<br>可以参考官方：<br><a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" target="_blank" rel="external">http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.groupby.html</a><br><a href="http://pandas.pydata.org/pandas-docs/stable/groupby.html" target="_blank" rel="external">http://pandas.pydata.org/pandas-docs/stable/groupby.html</a></p>
+<h1 id="1-groupby基本使用"><a href="#1-groupby基本使用" class="headerlink" title="1. groupby基本使用"></a>1. groupby基本使用</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DataFrame.groupby(by=<span class="keyword">None</span>, axis=<span class="number">0</span>, level=<span class="keyword">None</span>, as_index=<span class="keyword">True</span>, sort=<span class="keyword">True</span>, group_keys=<span class="keyword">True</span>, squeeze=<span class="keyword">False</span>, **kwargs)</div><div class="line">Group series using mapper (dict <span class="keyword">or</span> key function, apply given function to group, <span class="keyword">return</span> result <span class="keyword">as</span> series) <span class="keyword">or</span> by a series of columns.</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">df = pd.DataFrame(&#123;<span class="string">'key1'</span> : [<span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>],</div><div class="line">                <span class="string">'key2'</span> : [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'one'</span>],</div><div class="line">                <span class="string">'data1'</span> : np.random.randint(<span class="number">0</span>,<span class="number">10</span>,<span class="number">5</span>),</div><div class="line">                <span class="string">'data2'</span> : np.random.randint(<span class="number">0</span>,<span class="number">10</span>,<span class="number">5</span>)&#125;)</div><div class="line"></div><div class="line">df</div><div class="line">Out[<span class="number">158</span>]: </div><div class="line">   data1  data2 key1 key2</div><div class="line"><span class="number">0</span>      <span class="number">2</span>      <span class="number">4</span>    a  one</div><div class="line"><span class="number">1</span>      <span class="number">3</span>      <span class="number">8</span>    a  two</div><div class="line"><span class="number">2</span>      <span class="number">6</span>      <span class="number">5</span>    b  one</div><div class="line"><span class="number">3</span>      <span class="number">7</span>      <span class="number">3</span>    b  two</div><div class="line"><span class="number">4</span>      <span class="number">7</span>      <span class="number">6</span>    a  one</div></pre></td></tr></table></figure>
+<p>我们现在，根据key1来groupby<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a = df.groupby(by=[<span class="string">'key1'</span>])</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">170</span>]: &lt;pandas.core.groupby.DataFrameGroupBy object at <span class="number">0x000000000B8317F0</span>&gt;</div></pre></td></tr></table></figure></p>
+<p>我们可以看到，返回值是一个DataFrameGroupBy对象，这只是一个中间数据，还没有进行真正的聚合<br>这里有一个概念”split-apply-combine”，拆分-应用-合并，感觉和MapReduce的概念差不多，这个的groupby就是做了拆分<br>我们可以遍历DataFrameGroupBy，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> a:</div><div class="line">    print(<span class="string">'k:'</span>,k)</div><div class="line">    print(<span class="string">'v:'</span>,v)</div><div class="line">    </div><div class="line">k: a</div><div class="line">v:    data1  data2 key1 key2</div><div class="line"><span class="number">0</span>      <span class="number">2</span>      <span class="number">4</span>    a  one</div><div class="line"><span class="number">1</span>      <span class="number">3</span>      <span class="number">8</span>    a  two</div><div class="line"><span class="number">4</span>      <span class="number">7</span>      <span class="number">6</span>    a  one</div><div class="line">k: b</div><div class="line">v:    data1  data2 key1 key2</div><div class="line"><span class="number">2</span>      <span class="number">6</span>      <span class="number">5</span>    b  one</div><div class="line"><span class="number">3</span>      <span class="number">7</span>      <span class="number">3</span>    b  two</div></pre></td></tr></table></figure></p>
+<p>这个就是将内容进行了拆分,当我们在调用统计函数时，才会执行应用和合并<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">a.sum()</div><div class="line">Out[<span class="number">172</span>]: </div><div class="line">      data1  data2</div><div class="line">key1              </div><div class="line">a        <span class="number">12</span>     <span class="number">18</span></div><div class="line">b        <span class="number">13</span>      <span class="number">8</span></div><div class="line"></div><div class="line">a.size()</div><div class="line">Out[<span class="number">173</span>]: </div><div class="line">key1</div><div class="line">a    <span class="number">3</span></div><div class="line">b    <span class="number">2</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">a.count()</div><div class="line">Out[<span class="number">174</span>]: </div><div class="line">      data1  data2  key2</div><div class="line">key1                    </div><div class="line">a         <span class="number">3</span>      <span class="number">3</span>     <span class="number">3</span></div><div class="line">b         <span class="number">2</span>      <span class="number">2</span>     <span class="number">2</span></div><div class="line"></div><div class="line">a.max()</div><div class="line">Out[<span class="number">175</span>]: </div><div class="line">      data1  data2 key2</div><div class="line">key1                   </div><div class="line">a         <span class="number">7</span>      <span class="number">8</span>  two</div><div class="line">b         <span class="number">7</span>      <span class="number">5</span>  two</div><div class="line"></div><div class="line">a.mean()</div><div class="line">Out[<span class="number">176</span>]: </div><div class="line">      data1  data2</div><div class="line">key1              </div><div class="line">a       <span class="number">4.0</span>    <span class="number">6.0</span></div><div class="line">b       <span class="number">6.5</span>    <span class="number">4.0</span></div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-8d628f36b617eb8e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们可以按2个值进行聚合<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">df</div><div class="line">Out[<span class="number">188</span>]: </div><div class="line">   data1  data2 key1 key2</div><div class="line"><span class="number">0</span>      <span class="number">2</span>      <span class="number">4</span>    a  one</div><div class="line"><span class="number">1</span>      <span class="number">3</span>      <span class="number">8</span>    a  two</div><div class="line"><span class="number">2</span>      <span class="number">6</span>      <span class="number">5</span>    b  one</div><div class="line"><span class="number">3</span>      <span class="number">7</span>      <span class="number">3</span>    b  two</div><div class="line"><span class="number">4</span>      <span class="number">7</span>      <span class="number">6</span>    a  one</div><div class="line"></div><div class="line">df.groupby(by=[<span class="string">'key1'</span>,<span class="string">'key2'</span>]).sum()</div><div class="line">Out[<span class="number">189</span>]: </div><div class="line">           data1  data2</div><div class="line">key1 key2              </div><div class="line">a    one       <span class="number">9</span>     <span class="number">10</span></div><div class="line">     two       <span class="number">3</span>      <span class="number">8</span></div><div class="line">b    one       <span class="number">6</span>      <span class="number">5</span></div><div class="line">     two       <span class="number">7</span>      <span class="number">3</span></div></pre></td></tr></table></figure></p>
+<p>默认的话，会将数值类型的字段做聚合，我们也可以选择<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">df.groupby(by=[<span class="string">'key1'</span>,<span class="string">'key2'</span>])[<span class="string">'data1'</span>].sum()</div><div class="line">Out[<span class="number">190</span>]: </div><div class="line">key1  key2</div><div class="line">a     one     <span class="number">9</span></div><div class="line">      two     <span class="number">3</span></div><div class="line">b     one     <span class="number">6</span></div><div class="line">      two     <span class="number">7</span></div><div class="line">Name: data1, dtype: int32</div><div class="line"></div><div class="line">df.groupby(by=[<span class="string">'key1'</span>,<span class="string">'key2'</span>])[<span class="string">'data1'</span>,<span class="string">'data2'</span>].sum()</div><div class="line">Out[<span class="number">191</span>]: </div><div class="line">           data1  data2</div><div class="line">key1 key2              </div><div class="line">a    one       <span class="number">9</span>     <span class="number">10</span></div><div class="line">     two       <span class="number">3</span>      <span class="number">8</span></div><div class="line">b    one       <span class="number">6</span>      <span class="number">5</span></div><div class="line">     two       <span class="number">7</span>      <span class="number">3</span></div></pre></td></tr></table></figure></p>
+<p>下面的写法也是同样的，前面我们是直接传入的列名，这里我们传入series也可以<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">df.groupby(by=df[<span class="string">'key1'</span>]).sum()</div><div class="line">Out[<span class="number">197</span>]: </div><div class="line">      data1  data2</div><div class="line">key1              </div><div class="line">a        <span class="number">12</span>     <span class="number">18</span></div><div class="line">b        <span class="number">13</span>      <span class="number">8</span></div><div class="line"></div><div class="line">df.groupby(by=[df[<span class="string">'key1'</span>],df[<span class="string">'key2'</span>]]).sum()</div><div class="line">Out[<span class="number">198</span>]: </div><div class="line">           data1  data2</div><div class="line">key1 key2              </div><div class="line">a    one       <span class="number">9</span>     <span class="number">10</span></div><div class="line">     two       <span class="number">3</span>      <span class="number">8</span></div><div class="line">b    one       <span class="number">6</span>      <span class="number">5</span></div><div class="line">     two       <span class="number">7</span>      <span class="number">3</span></div></pre></td></tr></table></figure></p>
+<p>上面我们传入的都是当前df的序列，这里也可以传入新的，这里只要长度符合就行了，感觉就是把它当成新列来处理<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">df.groupby(by=[<span class="string">'lufei'</span>,<span class="string">'lufei'</span>,<span class="string">'lufei'</span>,<span class="string">'lufei'</span>,<span class="string">'namei'</span>]).sum()</div><div class="line">Out[<span class="number">199</span>]: </div><div class="line">       data1  data2</div><div class="line">lufei     <span class="number">18</span>     <span class="number">20</span></div><div class="line">namei      <span class="number">7</span>      <span class="number">6</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">by : mapping, function, str, <span class="keyword">or</span> iterable</div><div class="line"></div><div class="line">    Used to determine the groups <span class="keyword">for</span> the groupby. If by <span class="keyword">is</span> a function, it’s called on each value of the object’s index. If a dict <span class="keyword">or</span> Series <span class="keyword">is</span> passed, the Series <span class="keyword">or</span> dict VALUES will be used to determine the groups (the Series’ values are first aligned; see .align() method). If an ndarray <span class="keyword">is</span> passed, the values are used <span class="keyword">as</span>-<span class="keyword">is</span> determine the groups. A str <span class="keyword">or</span> list of strs may be passed to group by the columns <span class="keyword">in</span> self</div></pre></td></tr></table></figure>
+<p>这个by参数，还可以接收一个dict，像这样：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">df</div><div class="line">Out[<span class="number">204</span>]: </div><div class="line">   data1  data2 key1 key2</div><div class="line"><span class="number">0</span>      <span class="number">2</span>      <span class="number">4</span>    a  one</div><div class="line"><span class="number">1</span>      <span class="number">3</span>      <span class="number">8</span>    a  two</div><div class="line"><span class="number">2</span>      <span class="number">6</span>      <span class="number">5</span>    b  one</div><div class="line"><span class="number">3</span>      <span class="number">7</span>      <span class="number">3</span>    b  two</div><div class="line"><span class="number">4</span>      <span class="number">7</span>      <span class="number">6</span>    a  one</div><div class="line"></div><div class="line">df.index</div><div class="line">Out[<span class="number">205</span>]: RangeIndex(start=<span class="number">0</span>, stop=<span class="number">5</span>, step=<span class="number">1</span>)</div><div class="line"></div><div class="line">df</div><div class="line">Out[<span class="number">206</span>]: </div><div class="line">   data1  data2 key1 key2</div><div class="line"><span class="number">0</span>      <span class="number">2</span>      <span class="number">4</span>    a  one</div><div class="line"><span class="number">1</span>      <span class="number">3</span>      <span class="number">8</span>    a  two</div><div class="line"><span class="number">2</span>      <span class="number">6</span>      <span class="number">5</span>    b  one</div><div class="line"><span class="number">3</span>      <span class="number">7</span>      <span class="number">3</span>    b  two</div><div class="line"><span class="number">4</span>      <span class="number">7</span>      <span class="number">6</span>    a  one</div><div class="line"></div><div class="line"><span class="comment">#默认是根据啊axis=0，所以groupby之前会先将index和dict进行映射，</span></div><div class="line">df.groupby(&#123;<span class="number">0</span>:<span class="string">'a'</span>,<span class="number">1</span>:<span class="string">'a'</span>,<span class="number">2</span>:<span class="string">'a'</span>,<span class="number">3</span>:<span class="string">'a'</span>,<span class="number">4</span>:<span class="string">'a'</span>&#125;).sum()</div><div class="line">Out[<span class="number">207</span>]: </div><div class="line">   data1  data2</div><div class="line">a     <span class="number">25</span>     <span class="number">26</span></div></pre></td></tr></table></figure></p>
+<p>这里，对于series也是一样的，series也有index，<br>更厉害的是，这里还可以使用函数进行分组，函数会在各个索引值上调用一次，然后根据返回值来用作分组名称<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">df</div><div class="line">Out[<span class="number">216</span>]: </div><div class="line">   data1  data2 key1 key2</div><div class="line"><span class="number">0</span>      <span class="number">2</span>      <span class="number">4</span>    a  one</div><div class="line"><span class="number">1</span>      <span class="number">3</span>      <span class="number">8</span>    a  two</div><div class="line"><span class="number">2</span>      <span class="number">6</span>      <span class="number">5</span>    b  one</div><div class="line"><span class="number">3</span>      <span class="number">7</span>      <span class="number">3</span>    b  two</div><div class="line"><span class="number">4</span>      <span class="number">7</span>      <span class="number">6</span>    a  one</div><div class="line"></div><div class="line"><span class="comment">#会把每一个index的值加10，然后再聚合</span></div><div class="line">df.groupby(<span class="keyword">lambda</span> x:x+<span class="number">10</span>).sum()</div><div class="line">Out[<span class="number">217</span>]: </div><div class="line">    data1  data2</div><div class="line"><span class="number">10</span>      <span class="number">2</span>      <span class="number">4</span></div><div class="line"><span class="number">11</span>      <span class="number">3</span>      <span class="number">8</span></div><div class="line"><span class="number">12</span>      <span class="number">6</span>      <span class="number">5</span></div><div class="line"><span class="number">13</span>      <span class="number">7</span>      <span class="number">3</span></div><div class="line"><span class="number">14</span>      <span class="number">7</span>      <span class="number">6</span></div></pre></td></tr></table></figure></p>
+<p>—————update at 2017-08-23<br>这里继续整理下pandas中groupby的使用</p>
+<h1 id="2-面向列的多函数应用"><a href="#2-面向列的多函数应用" class="headerlink" title="2. 面向列的多函数应用"></a>2. 面向列的多函数应用</h1><p> 上面，我们再对列做聚合的时候，都是使用使用统一的函数，比如sum(),count(),都是一起的，<br>在pandas中，我们可以同时调用多个函数，主要是使用agg<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">DataFrameGroupBy.agg(arg, *args, **kwargs)</div><div class="line">Aggregate using callable, string, dict, <span class="keyword">or</span> list of string/callables</div><div class="line"></div><div class="line">func : callable, string, dictionary, <span class="keyword">or</span> list of string/callables</div><div class="line"></div><div class="line">    Function to use <span class="keyword">for</span> aggregating the data. If a function, must either work when passed a DataFrame <span class="keyword">or</span> when passed to DataFrame.apply. For a DataFrame, can <span class="keyword">pass</span> a dict, <span class="keyword">if</span> the keys are DataFrame column names.</div><div class="line"></div><div class="line">    Accepted Combinations are:</div><div class="line"></div><div class="line">        string function name</div><div class="line">        function</div><div class="line">        list of functions</div><div class="line">        dict of column names -&gt; functions (or list of functions)</div></pre></td></tr></table></figure></p>
+<p>小栗子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">df = pd.DataFrame(&#123;<span class="string">'A'</span>: [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>],</div><div class="line">                    <span class="string">'B'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</div><div class="line">                    <span class="string">'C'</span>: np.random.randn(<span class="number">4</span>)&#125;)</div><div class="line"></div><div class="line">df</div><div class="line">Out[<span class="number">64</span>]: </div><div class="line">   A  B         C</div><div class="line"><span class="number">0</span>  <span class="number">1</span>  <span class="number">1</span>  <span class="number">0.433076</span></div><div class="line"><span class="number">1</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">0.509764</span></div><div class="line"><span class="number">2</span>  <span class="number">2</span>  <span class="number">3</span> <span class="number">-1.091318</span></div><div class="line"><span class="number">3</span>  <span class="number">2</span>  <span class="number">4</span> <span class="number">-0.696079</span></div><div class="line"></div><div class="line"></div><div class="line">df.groupby(by=[<span class="string">'A'</span>]).min()</div><div class="line">Out[<span class="number">65</span>]: </div><div class="line">   B         C</div><div class="line">A             </div><div class="line"><span class="number">1</span>  <span class="number">1</span>  <span class="number">0.433076</span></div><div class="line"><span class="number">2</span>  <span class="number">3</span> <span class="number">-1.091318</span></div><div class="line"></div><div class="line"><span class="comment">#使用agg，调用min函数，和直接调用时等价的</span></div><div class="line">df.groupby(by=[<span class="string">'A'</span>]).agg(<span class="string">'min'</span>)</div><div class="line">Out[<span class="number">66</span>]: </div><div class="line">   B         C</div><div class="line">A             </div><div class="line"><span class="number">1</span>  <span class="number">1</span>  <span class="number">0.433076</span></div><div class="line"><span class="number">2</span>  <span class="number">3</span> <span class="number">-1.091318</span></div><div class="line"></div><div class="line"><span class="comment">#还可以传入一个函数数组，同时调用min和max</span></div><div class="line">df.groupby(by=[<span class="string">'A'</span>]).agg([<span class="string">'min'</span>,<span class="string">'max'</span>])</div><div class="line">Out[<span class="number">67</span>]: </div><div class="line">    B             C          </div><div class="line">  min max       min       max</div><div class="line">A                            </div><div class="line"><span class="number">1</span>   <span class="number">1</span>   <span class="number">2</span>  <span class="number">0.433076</span>  <span class="number">0.509764</span></div><div class="line"><span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span> <span class="number">-1.091318</span> <span class="number">-0.696079</span></div><div class="line"></div><div class="line">df.groupby(by=[<span class="string">'A'</span>])[<span class="string">'B'</span>].agg([<span class="string">'min'</span>,<span class="string">'max'</span>])</div><div class="line">Out[<span class="number">68</span>]: </div><div class="line">   min  max</div><div class="line">A          </div><div class="line"><span class="number">1</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">2</span>    <span class="number">3</span>    <span class="number">4</span></div><div class="line"></div><div class="line"><span class="comment">#还可以通过传入一个dict，来对不同的列做不同的操作，列名为key，func为value</span></div><div class="line">df.groupby(by=[<span class="string">'A'</span>]).agg(&#123;<span class="string">'B'</span>:[<span class="string">'min'</span>,<span class="string">'max'</span>],<span class="string">'C'</span>:[<span class="string">'sum'</span>]&#125;)</div><div class="line">Out[<span class="number">69</span>]: </div><div class="line">    B             C</div><div class="line">  min max       sum</div><div class="line">A                  </div><div class="line"><span class="number">1</span>   <span class="number">1</span>   <span class="number">2</span>  <span class="number">0.942840</span></div><div class="line"><span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span> <span class="number">-1.787397</span></div></pre></td></tr></table></figure></p>
+<p>上面，我们传入函数，默认会用我们的函数名来做列名，但，有时我们想要自定义，<br>我们通过传入一个（name,function）的列表<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">df.groupby(by=[<span class="string">'A'</span>]).agg([(<span class="string">'the_min_data'</span>,<span class="string">'min'</span>),(<span class="string">'the_max_data'</span>,<span class="string">'max'</span>)])</div><div class="line">Out[<span class="number">73</span>]: </div><div class="line">             B                         C             </div><div class="line">  the_min_data the_max_data the_min_data the_max_data</div><div class="line">A                                                    </div><div class="line"><span class="number">1</span>            <span class="number">1</span>            <span class="number">2</span>     <span class="number">0.433076</span>     <span class="number">0.509764</span></div><div class="line"><span class="number">2</span>            <span class="number">3</span>            <span class="number">4</span>    <span class="number">-1.091318</span>    <span class="number">-0.696079</span></div><div class="line"></div><div class="line"><span class="comment">#可以随意组合</span></div><div class="line">df.groupby(by=[<span class="string">'A'</span>]).agg(&#123;<span class="string">'B'</span>:[<span class="string">'min'</span>,<span class="string">'max'</span>],<span class="string">'C'</span>:[(<span class="string">'hey_sum'</span>,<span class="string">'sum'</span>)]&#125;)</div><div class="line">Out[<span class="number">74</span>]: </div><div class="line">    B             C</div><div class="line">  min max   hey_sum</div><div class="line">A                  </div><div class="line"><span class="number">1</span>   <span class="number">1</span>   <span class="number">2</span>  <span class="number">0.942840</span></div><div class="line"><span class="number">2</span>   <span class="number">3</span>   <span class="number">4</span> <span class="number">-1.787397</span></div></pre></td></tr></table></figure></p>
+<h1 id="3-已无索引形式返回聚合数据"><a href="#3-已无索引形式返回聚合数据" class="headerlink" title="3. 已无索引形式返回聚合数据"></a>3. 已无索引形式返回聚合数据</h1><p>前面，我们groupby之后，都是用聚合建来当做index，我们可以通过参数as_index=False,来取消<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#会默认生成一个新index</span></div><div class="line">df.groupby(by=[<span class="string">'A'</span>,<span class="string">'B'</span>],as_index=<span class="keyword">False</span>).max()</div><div class="line">Out[<span class="number">80</span>]: </div><div class="line">   A  B         C</div><div class="line"><span class="number">0</span>  <span class="number">1</span>  <span class="number">1</span>  <span class="number">0.433076</span></div><div class="line"><span class="number">1</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">0.509764</span></div><div class="line"><span class="number">2</span>  <span class="number">2</span>  <span class="number">3</span> <span class="number">-1.091318</span></div><div class="line"><span class="number">3</span>  <span class="number">2</span>  <span class="number">4</span> <span class="number">-0.696079</span></div><div class="line"></div><div class="line"></div><div class="line">df.groupby(by=[<span class="string">'A'</span>,<span class="string">'B'</span>],as_index=<span class="keyword">True</span>).max()</div><div class="line">Out[<span class="number">81</span>]: </div><div class="line">            C</div><div class="line">A B          </div><div class="line"><span class="number">1</span> <span class="number">1</span>  <span class="number">0.433076</span></div><div class="line">  <span class="number">2</span>  <span class="number">0.509764</span></div><div class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">-1.091318</span></div><div class="line">  <span class="number">4</span> <span class="number">-0.696079</span></div></pre></td></tr></table></figure></p>
+<p>做了练习之后，这里发现，直接调用函数是好用的，但是，如果使用agg来调用，是不好用的这个参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">df.groupby(by=[<span class="string">'A'</span>,<span class="string">'B'</span>],as_index=<span class="keyword">False</span>).agg([<span class="string">'min'</span>,<span class="string">'max'</span>])</div><div class="line">Out[<span class="number">79</span>]: </div><div class="line">            C          </div><div class="line">          min       max</div><div class="line">A B                    </div><div class="line"><span class="number">1</span> <span class="number">1</span>  <span class="number">0.433076</span>  <span class="number">0.433076</span></div><div class="line">  <span class="number">2</span>  <span class="number">0.509764</span>  <span class="number">0.509764</span></div><div class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">-1.091318</span> <span class="number">-1.091318</span></div><div class="line">  <span class="number">4</span> <span class="number">-0.696079</span> <span class="number">-0.696079</span></div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/15/crawler-demo-02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -775,328 +1101,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/14/pandas-handbook-09/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/14/pandas-handbook-09/" itemprop="url">Pandas手册（9）- 数据合并与连接</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T08:00:00+08:00">
-                2017-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Pandas</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Python<br>Pandas</p>
-<hr>
-<p>这里来看一下，pandas中数据转换与合并的使用方法，刚刚学习了一下，很好用，就跟SQL里面一样。</p>
-<p>#1. 合并数据集<br>就是说，我们有2个数据集，想要将他们合并一下，就是SQL里面的关联查询，pandas里面用一个函数就行了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">DataFrame.merge(right, how=<span class="string">'inner'</span>, on=<span class="keyword">None</span>, left_on=<span class="keyword">None</span>, right_on=<span class="keyword">None</span>, left_index=<span class="keyword">False</span>, right_index=<span class="keyword">False</span>, sort=<span class="keyword">False</span>, suffixes=(<span class="string">'_x'</span>, <span class="string">'_y'</span>), copy=<span class="keyword">True</span>, indicator=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">Merge DataFrame objects by performing a database-style join operation by columns <span class="keyword">or</span> indexes.</div><div class="line"></div><div class="line">If joining columns on columns, the DataFrame indexes will be ignored. Otherwise <span class="keyword">if</span> joining indexes on indexes <span class="keyword">or</span> indexes on a column <span class="keyword">or</span> columns, the index will be passed on.</div></pre></td></tr></table></figure></p>
-<p>熟练掌握几个参数就足够了，下面会依次介绍下<br>小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">a = pd.DataFrame(&#123;<span class="string">'key'</span>:list(<span class="string">'bbccaa'</span>),<span class="string">'data1'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">6</span>)&#125;)</div><div class="line"></div><div class="line">b = pd.DataFrame(&#123;<span class="string">'key'</span>:list(<span class="string">'abc'</span>),<span class="string">'data2'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">3</span>)&#125;)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">18</span>]: </div><div class="line">   data1 key</div><div class="line"><span class="number">0</span>      <span class="number">8</span>   b</div><div class="line"><span class="number">1</span>      <span class="number">0</span>   b</div><div class="line"><span class="number">2</span>      <span class="number">5</span>   c</div><div class="line"><span class="number">3</span>      <span class="number">2</span>   c</div><div class="line"><span class="number">4</span>      <span class="number">3</span>   a</div><div class="line"><span class="number">5</span>      <span class="number">6</span>   a</div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">19</span>]: </div><div class="line">   data2 key</div><div class="line"><span class="number">0</span>      <span class="number">0</span>   a</div><div class="line"><span class="number">1</span>      <span class="number">3</span>   b</div><div class="line"><span class="number">2</span>      <span class="number">2</span>   c</div></pre></td></tr></table></figure></p>
-<p>上面是我们的原始数据集，一个a，一个b，key是相同的字段，可以用来关联，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">a.merge(b)</div><div class="line">Out[<span class="number">20</span>]: </div><div class="line">   data1 key  data2</div><div class="line"><span class="number">0</span>      <span class="number">8</span>   b      <span class="number">3</span></div><div class="line"><span class="number">1</span>      <span class="number">0</span>   b      <span class="number">3</span></div><div class="line"><span class="number">2</span>      <span class="number">5</span>   c      <span class="number">2</span></div><div class="line"><span class="number">3</span>      <span class="number">2</span>   c      <span class="number">2</span></div><div class="line"><span class="number">4</span>      <span class="number">3</span>   a      <span class="number">0</span></div><div class="line"><span class="number">5</span>      <span class="number">6</span>   a      <span class="number">0</span></div></pre></td></tr></table></figure></p>
-<p>这个翻译成SQL，就是a join b on a.key=b.key（因为我们没有指定根据什么字段去关联，所以会使用a、b中名字一样的字段去关联）<br>我们当然可以手动指定关联的字段<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">on : label <span class="keyword">or</span> list</div><div class="line"></div><div class="line">    Field names to join on. Must be found <span class="keyword">in</span> both DataFrames. If on <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">and</span> <span class="keyword">not</span> merging on indexes, then it merges on the intersection of the columns by default.</div><div class="line"></div><div class="line">left_on : label <span class="keyword">or</span> list, <span class="keyword">or</span> array-like</div><div class="line"></div><div class="line">    Field names to join on <span class="keyword">in</span> left DataFrame. Can be a vector <span class="keyword">or</span> list of vectors of the length of the DataFrame to use a particular vector <span class="keyword">as</span> the join key instead of columns</div><div class="line"></div><div class="line">right_on : label <span class="keyword">or</span> list, <span class="keyword">or</span> array-like</div><div class="line"></div><div class="line">    Field names to join on <span class="keyword">in</span> right DataFrame <span class="keyword">or</span> vector/list of vectors per left_on docs</div></pre></td></tr></table></figure></p>
-<p>如果，数据集中，关联字段名称一样，直接使用on就行了，如果不一样，就可以分别使用left_on 和right_on<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">a.merge(b,on=<span class="string">'key'</span>)</div><div class="line">Out[<span class="number">21</span>]: </div><div class="line">   data1 key  data2</div><div class="line"><span class="number">0</span>      <span class="number">8</span>   b      <span class="number">3</span></div><div class="line"><span class="number">1</span>      <span class="number">0</span>   b      <span class="number">3</span></div><div class="line"><span class="number">2</span>      <span class="number">5</span>   c      <span class="number">2</span></div><div class="line"><span class="number">3</span>      <span class="number">2</span>   c      <span class="number">2</span></div><div class="line"><span class="number">4</span>      <span class="number">3</span>   a      <span class="number">0</span></div><div class="line"><span class="number">5</span>      <span class="number">6</span>   a      <span class="number">0</span></div><div class="line"></div><div class="line">a.merge(b,left_on=<span class="string">'key'</span>,right_on=<span class="string">'key'</span>)</div><div class="line">Out[<span class="number">22</span>]: </div><div class="line">   data1 key  data2</div><div class="line"><span class="number">0</span>      <span class="number">8</span>   b      <span class="number">3</span></div><div class="line"><span class="number">1</span>      <span class="number">0</span>   b      <span class="number">3</span></div><div class="line"><span class="number">2</span>      <span class="number">5</span>   c      <span class="number">2</span></div><div class="line"><span class="number">3</span>      <span class="number">2</span>   c      <span class="number">2</span></div><div class="line"><span class="number">4</span>      <span class="number">3</span>   a      <span class="number">0</span></div><div class="line"><span class="number">5</span>      <span class="number">6</span>   a      <span class="number">0</span></div></pre></td></tr></table></figure></p>
-<p>如果关联字段又多个，就指定为数组就行了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">c = pd.DataFrame(&#123;<span class="string">'lkey1'</span>:list(<span class="string">'ab'</span>),<span class="string">'lkey2'</span>:list(<span class="string">'xy'</span>),<span class="string">'ldata1'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">2</span>)&#125;)</div><div class="line"></div><div class="line">d = pd.DataFrame(&#123;<span class="string">'rkey1'</span>:list(<span class="string">'ab'</span>),<span class="string">'rkey2'</span>:list(<span class="string">'xy'</span>),<span class="string">'ldata1'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">2</span>)&#125;)</div><div class="line"></div><div class="line">c</div><div class="line">Out[<span class="number">25</span>]: </div><div class="line">   ldata1 lkey1 lkey2</div><div class="line"><span class="number">0</span>       <span class="number">8</span>     a     x</div><div class="line"><span class="number">1</span>       <span class="number">2</span>     b     y</div><div class="line"></div><div class="line">d</div><div class="line">Out[<span class="number">26</span>]: </div><div class="line">   ldata1 rkey1 rkey2</div><div class="line"><span class="number">0</span>       <span class="number">5</span>     a     x</div><div class="line"><span class="number">1</span>       <span class="number">7</span>     b     y</div><div class="line"></div><div class="line"><span class="comment">#因为找不到名字一样的字段做关联，所以是空的结果（有一个字段是一样的，ldata1，但是都一样，刚刚d的名字忘改了......）</span></div><div class="line"><span class="comment">#正常找不到关联字段，是会报错的</span></div><div class="line">c.merge(d)</div><div class="line">Out[<span class="number">27</span>]: </div><div class="line">Empty DataFrame</div><div class="line">Columns: [ldata1, lkey1, lkey2, rkey1, rkey2]</div><div class="line">Index: []</div><div class="line"></div><div class="line"><span class="comment">#我们将组合建传入，即可</span></div><div class="line">c.merge(d,left_on=[<span class="string">'lkey1'</span>,<span class="string">'lkey2'</span>],right_on=[<span class="string">'rkey1'</span>,<span class="string">'rkey2'</span>])</div><div class="line">Out[<span class="number">28</span>]: </div><div class="line">   ldata1_x lkey1 lkey2  ldata1_y rkey1 rkey2</div><div class="line"><span class="number">0</span>         <span class="number">8</span>     a     x         <span class="number">5</span>     a     x</div><div class="line"><span class="number">1</span>         <span class="number">2</span>     b     y         <span class="number">7</span>     b     y</div><div class="line"></div><div class="line"><span class="comment">#看下结果集，我们会发现，c和d中有一个同名的字段ldata1，这里默认加了后缀 _x，_y来表示区分</span></div><div class="line"><span class="comment">#我们也可以通过参数来指定后缀名称</span></div><div class="line">suffixes : <span class="number">2</span>-length sequence (tuple, list, ...)</div><div class="line"></div><div class="line">    Suffix to apply to overlapping column names <span class="keyword">in</span> the left <span class="keyword">and</span> right side, respectively</div><div class="line"></div><div class="line">c.merge(d,left_on=[<span class="string">'lkey1'</span>,<span class="string">'lkey2'</span>],right_on=[<span class="string">'rkey1'</span>,<span class="string">'rkey2'</span>],suffixes=[<span class="string">'_left'</span>,<span class="string">'_right'</span>])</div><div class="line">Out[<span class="number">29</span>]: </div><div class="line">   ldata1_left lkey1 lkey2  ldata1_right rkey1 rkey2</div><div class="line"><span class="number">0</span>            <span class="number">8</span>     a     x             <span class="number">5</span>     a     x</div><div class="line"><span class="number">1</span>            <span class="number">2</span>     b     y             <span class="number">7</span>     b     y</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-5d5033da0e85c634.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>我们再看下一个例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">e = pd.DataFrame(&#123;<span class="string">'key'</span>:list(<span class="string">'bbccaadd'</span>),<span class="string">'data'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">8</span>)&#125;)</div><div class="line"></div><div class="line">f = pd.DataFrame(&#123;<span class="string">'key'</span>:list(<span class="string">'abcx'</span>),<span class="string">'data'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">4</span>)&#125;)</div><div class="line"></div><div class="line">e</div><div class="line">Out[<span class="number">32</span>]: </div><div class="line">   data key</div><div class="line"><span class="number">0</span>     <span class="number">4</span>   b</div><div class="line"><span class="number">1</span>     <span class="number">5</span>   b</div><div class="line"><span class="number">2</span>     <span class="number">1</span>   c</div><div class="line"><span class="number">3</span>     <span class="number">2</span>   c</div><div class="line"><span class="number">4</span>     <span class="number">7</span>   a</div><div class="line"><span class="number">5</span>     <span class="number">7</span>   a</div><div class="line"><span class="number">6</span>     <span class="number">7</span>   d</div><div class="line"><span class="number">7</span>     <span class="number">9</span>   d</div><div class="line"></div><div class="line">f</div><div class="line">Out[<span class="number">33</span>]: </div><div class="line">   data key</div><div class="line"><span class="number">0</span>     <span class="number">6</span>   a</div><div class="line"><span class="number">1</span>     <span class="number">9</span>   b</div><div class="line"><span class="number">2</span>     <span class="number">2</span>   c</div><div class="line"><span class="number">3</span>     <span class="number">8</span>   x</div><div class="line"></div><div class="line">e.merge(f,on=<span class="string">'key'</span>)</div><div class="line">Out[<span class="number">34</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>       <span class="number">4</span>   b       <span class="number">9</span></div><div class="line"><span class="number">1</span>       <span class="number">5</span>   b       <span class="number">9</span></div><div class="line"><span class="number">2</span>       <span class="number">1</span>   c       <span class="number">2</span></div><div class="line"><span class="number">3</span>       <span class="number">2</span>   c       <span class="number">2</span></div><div class="line"><span class="number">4</span>       <span class="number">7</span>   a       <span class="number">6</span></div><div class="line"><span class="number">5</span>       <span class="number">7</span>   a       <span class="number">6</span></div></pre></td></tr></table></figure></p>
-<p>熟悉SQL的同学，会发现，上面的结果集市inner join之后的结果，SQL中，还有什么left  join、right join之类的，pandas中也有的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">how : &#123;‘left’, ‘right’, ‘outer’, ‘inner’&#125;, default ‘inner’</div><div class="line"></div><div class="line">        left: use only keys <span class="keyword">from</span> left frame, similar to a SQL left outer join; preserve key order</div><div class="line">        right: use only keys <span class="keyword">from</span> right frame, similar to a SQL right outer join; preserve key order</div><div class="line">        outer: use union of keys <span class="keyword">from</span> both frames, similar to a SQL full outer join; sort keys lexicographically</div><div class="line">        inner: use intersection of keys <span class="keyword">from</span> both frames, similar to a SQL inner join; preserve the order of the left keys</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#左关联，e为主即包含全部数据，不管是否可以和f关联上</span></div><div class="line">e.merge(f,on=<span class="string">'key'</span>,how=<span class="string">'left'</span>)</div><div class="line">Out[<span class="number">35</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>       <span class="number">4</span>   b     <span class="number">9.0</span></div><div class="line"><span class="number">1</span>       <span class="number">5</span>   b     <span class="number">9.0</span></div><div class="line"><span class="number">2</span>       <span class="number">1</span>   c     <span class="number">2.0</span></div><div class="line"><span class="number">3</span>       <span class="number">2</span>   c     <span class="number">2.0</span></div><div class="line"><span class="number">4</span>       <span class="number">7</span>   a     <span class="number">6.0</span></div><div class="line"><span class="number">5</span>       <span class="number">7</span>   a     <span class="number">6.0</span></div><div class="line"><span class="number">6</span>       <span class="number">7</span>   d     NaN</div><div class="line"><span class="number">7</span>       <span class="number">9</span>   d     NaN</div><div class="line"></div><div class="line"><span class="comment">#右为主，即f为主，</span></div><div class="line">e.merge(f,on=<span class="string">'key'</span>,how=<span class="string">'right'</span>)</div><div class="line">Out[<span class="number">36</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>     <span class="number">4.0</span>   b       <span class="number">9</span></div><div class="line"><span class="number">1</span>     <span class="number">5.0</span>   b       <span class="number">9</span></div><div class="line"><span class="number">2</span>     <span class="number">1.0</span>   c       <span class="number">2</span></div><div class="line"><span class="number">3</span>     <span class="number">2.0</span>   c       <span class="number">2</span></div><div class="line"><span class="number">4</span>     <span class="number">7.0</span>   a       <span class="number">6</span></div><div class="line"><span class="number">5</span>     <span class="number">7.0</span>   a       <span class="number">6</span></div><div class="line"><span class="number">6</span>     NaN   x       <span class="number">8</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#所有数据都包含</span></div><div class="line">e.merge(f,on=<span class="string">'key'</span>,how=<span class="string">'outer'</span>)</div><div class="line">Out[<span class="number">37</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>     <span class="number">4.0</span>   b     <span class="number">9.0</span></div><div class="line"><span class="number">1</span>     <span class="number">5.0</span>   b     <span class="number">9.0</span></div><div class="line"><span class="number">2</span>     <span class="number">1.0</span>   c     <span class="number">2.0</span></div><div class="line"><span class="number">3</span>     <span class="number">2.0</span>   c     <span class="number">2.0</span></div><div class="line"><span class="number">4</span>     <span class="number">7.0</span>   a     <span class="number">6.0</span></div><div class="line"><span class="number">5</span>     <span class="number">7.0</span>   a     <span class="number">6.0</span></div><div class="line"><span class="number">6</span>     <span class="number">7.0</span>   d     NaN</div><div class="line"><span class="number">7</span>     <span class="number">9.0</span>   d     NaN</div><div class="line"><span class="number">8</span>     NaN   x     <span class="number">8.0</span></div></pre></td></tr></table></figure>
-<p>前面，我们的例子，都是通过columns来关联的，有的时候，我们可能需要使用index来关联，者就用到了另2个参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">left_index : boolean, default <span class="keyword">False</span></div><div class="line"></div><div class="line">    Use the index <span class="keyword">from</span> the left DataFrame <span class="keyword">as</span> the join key(s). If it <span class="keyword">is</span> a MultiIndex, the number of keys <span class="keyword">in</span> the other DataFrame (either the index <span class="keyword">or</span> a number of columns) must match the number of levels</div><div class="line"></div><div class="line">right_index : boolean, default <span class="keyword">False</span></div><div class="line"></div><div class="line">    Use the index <span class="keyword">from</span> the right DataFrame <span class="keyword">as</span> the join key. Same caveats <span class="keyword">as</span> left_index</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">e</div><div class="line">Out[<span class="number">38</span>]: </div><div class="line">   data key</div><div class="line"><span class="number">0</span>     <span class="number">4</span>   b</div><div class="line"><span class="number">1</span>     <span class="number">5</span>   b</div><div class="line"><span class="number">2</span>     <span class="number">1</span>   c</div><div class="line"><span class="number">3</span>     <span class="number">2</span>   c</div><div class="line"><span class="number">4</span>     <span class="number">7</span>   a</div><div class="line"><span class="number">5</span>     <span class="number">7</span>   a</div><div class="line"><span class="number">6</span>     <span class="number">7</span>   d</div><div class="line"><span class="number">7</span>     <span class="number">9</span>   d</div><div class="line"></div><div class="line">g = pd.DataFrame(&#123;<span class="string">'data'</span>:np.random.randint(<span class="number">0</span>,<span class="number">10</span>,size=<span class="number">3</span>)&#125;,index=list(<span class="string">'abc'</span>))</div><div class="line"></div><div class="line">g</div><div class="line">Out[<span class="number">40</span>]: </div><div class="line">   data</div><div class="line">a     <span class="number">9</span></div><div class="line">b     <span class="number">4</span></div><div class="line">c     <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment">#指定right_index=True，使用index去关联</span></div><div class="line">e.merge(g,left_on=<span class="string">'key'</span>,right_index=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">41</span>]: </div><div class="line">   data_x key  data_y</div><div class="line"><span class="number">0</span>       <span class="number">4</span>   b       <span class="number">4</span></div><div class="line"><span class="number">1</span>       <span class="number">5</span>   b       <span class="number">4</span></div><div class="line"><span class="number">2</span>       <span class="number">1</span>   c       <span class="number">0</span></div><div class="line"><span class="number">3</span>       <span class="number">2</span>   c       <span class="number">0</span></div><div class="line"><span class="number">4</span>       <span class="number">7</span>   a       <span class="number">9</span></div><div class="line"><span class="number">5</span>       <span class="number">7</span>   a       <span class="number">9</span></div></pre></td></tr></table></figure>
-<h1 id="2-轴向连接"><a href="#2-轴向连接" class="headerlink" title="2. 轴向连接"></a>2. 轴向连接</h1><p>这里主要是介绍pandas中另一个函数的使用，pd.concat，concat一看上去，感觉是做拼接用的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pandas.concat(objs, axis=<span class="number">0</span>, join=<span class="string">'outer'</span>, join_axes=<span class="keyword">None</span>, ignore_index=<span class="keyword">False</span>, keys=<span class="keyword">None</span>, levels=<span class="keyword">None</span>, names=<span class="keyword">None</span>, verify_integrity=<span class="keyword">False</span>, copy=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">Concatenate pandas objects along a particular axis <span class="keyword">with</span> optional set logic along the other axes.</div><div class="line"></div><div class="line">Can also add a layer of hierarchical indexing on the concatenation axis, which may be useful <span class="keyword">if</span> the labels are the same (<span class="keyword">or</span> overlapping) on the passed axis number.</div></pre></td></tr></table></figure></p>
-<p>我们先来看例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">s1 = pd.Series([<span class="string">'a'</span>, <span class="string">'b'</span>])</div><div class="line"></div><div class="line">s2 = pd.Series([<span class="string">'c'</span>, <span class="string">'d'</span>])</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">51</span>]: </div><div class="line"><span class="number">0</span>    a</div><div class="line"><span class="number">1</span>    b</div><div class="line">dtype: object</div><div class="line"></div><div class="line">s2</div><div class="line">Out[<span class="number">52</span>]: </div><div class="line"><span class="number">0</span>    c</div><div class="line"><span class="number">1</span>    d</div><div class="line">dtype: object</div><div class="line"></div><div class="line">pd.concat([s1,s2])</div><div class="line">Out[<span class="number">53</span>]: </div><div class="line"><span class="number">0</span>    a</div><div class="line"><span class="number">1</span>    b</div><div class="line"><span class="number">0</span>    c</div><div class="line"><span class="number">1</span>    d</div><div class="line">dtype: object</div></pre></td></tr></table></figure></p>
-<p>默认，是按纵轴进行拼接的，我们可以设置<br><img src="http://upload-images.jianshu.io/upload_images/76024-9eb4ea26e7748855.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#横轴进行拼接</span></div><div class="line">pd.concat([s1,s2],axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">54</span>]: </div><div class="line">   <span class="number">0</span>  <span class="number">1</span></div><div class="line"><span class="number">0</span>  a  c</div><div class="line"><span class="number">1</span>  b  d</div></pre></td></tr></table></figure>
-<p>这里要注意下axis=1时，，如果index不一样，拼接的时候，是会合并的，如下面的例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">s1 = pd.Series([<span class="number">0</span>,<span class="number">1</span>],index=[<span class="string">'a'</span>,<span class="string">'b'</span>])</div><div class="line"></div><div class="line">s2 = pd.Series([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],index=[<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>])</div><div class="line"></div><div class="line">s3 = pd.Series([<span class="number">5</span>,<span class="number">6</span>],index=[<span class="string">'f'</span>,<span class="string">'g'</span>])</div><div class="line"></div><div class="line">pd.concat([s1,s2,s3])</div><div class="line">Out[<span class="number">58</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">1</span></div><div class="line">c    <span class="number">2</span></div><div class="line">d    <span class="number">3</span></div><div class="line">e    <span class="number">4</span></div><div class="line">f    <span class="number">5</span></div><div class="line">g    <span class="number">6</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">60</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">1</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s2</div><div class="line">Out[<span class="number">61</span>]: </div><div class="line">c    <span class="number">2</span></div><div class="line">d    <span class="number">3</span></div><div class="line">e    <span class="number">4</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s3</div><div class="line">Out[<span class="number">62</span>]: </div><div class="line">f    <span class="number">5</span></div><div class="line">g    <span class="number">6</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">pd.concat([s1,s2,s3],axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">59</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line">a  <span class="number">0.0</span>  NaN  NaN</div><div class="line">b  <span class="number">1.0</span>  NaN  NaN</div><div class="line">c  NaN  <span class="number">2.0</span>  NaN</div><div class="line">d  NaN  <span class="number">3.0</span>  NaN</div><div class="line">e  NaN  <span class="number">4.0</span>  NaN</div><div class="line">f  NaN  NaN  <span class="number">5.0</span></div><div class="line">g  NaN  NaN  <span class="number">6.0</span></div></pre></td></tr></table></figure></p>
-<p>这里，我们看个常用的参数，join，可以选择是取交集还是并集<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">join : &#123;‘inner’, ‘outer’&#125;, default ‘outer’</div><div class="line"></div><div class="line">    How to handle indexes on other axis(es)</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#他们并没哟并集，所以是空</span></div><div class="line">pd.concat([s1,s2,s3],axis=<span class="number">1</span>,join=<span class="string">'inner'</span>)</div><div class="line">Out[<span class="number">73</span>]: </div><div class="line">Empty DataFrame</div><div class="line">Columns: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]</div><div class="line">Index: []</div><div class="line"></div><div class="line">s4 = pd.concat([s1*<span class="number">5</span>,s3])</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">75</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">1</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">s4</div><div class="line">Out[<span class="number">76</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">5</span></div><div class="line">f    <span class="number">5</span></div><div class="line">g    <span class="number">6</span></div><div class="line">dtype: int64</div><div class="line"></div><div class="line">pd.concat([s1,s4],axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">77</span>]: </div><div class="line">     <span class="number">0</span>  <span class="number">1</span></div><div class="line">a  <span class="number">0.0</span>  <span class="number">0</span></div><div class="line">b  <span class="number">1.0</span>  <span class="number">5</span></div><div class="line">f  NaN  <span class="number">5</span></div><div class="line">g  NaN  <span class="number">6</span></div><div class="line"></div><div class="line"><span class="comment">#只返回了交集部分</span></div><div class="line">pd.concat([s1,s4],axis=<span class="number">1</span>,join=<span class="string">'inner'</span>)</div><div class="line">Out[<span class="number">78</span>]: </div><div class="line">   <span class="number">0</span>  <span class="number">1</span></div><div class="line">a  <span class="number">0</span>  <span class="number">0</span></div><div class="line">b  <span class="number">1</span>  <span class="number">5</span></div></pre></td></tr></table></figure>
-<p>我们也可以指明其他轴要使用的索引，要显示的index<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">join_axes : list of Index objects</div><div class="line"></div><div class="line">    Specific indexes to use <span class="keyword">for</span> the other n - <span class="number">1</span> axes instead of performing inner/outer set logic</div><div class="line"></div><div class="line">pd.concat([s1,s4],axis=<span class="number">1</span>,join_axes=[[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]])</div><div class="line">Out[<span class="number">81</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span></div><div class="line">a  <span class="number">0.0</span>  <span class="number">0.0</span></div><div class="line">b  <span class="number">1.0</span>  <span class="number">5.0</span></div><div class="line">c  NaN  NaN</div><div class="line">d  NaN  NaN</div></pre></td></tr></table></figure></p>
-<h1 id="3-合并重叠数据"><a href="#3-合并重叠数据" class="headerlink" title="3. 合并重叠数据"></a>3. 合并重叠数据</h1><p>这里是另一个函数的使用介绍 combine_first，类似于numpy中where，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DataFrame.combine_first(other)</div><div class="line"></div><div class="line">Combine two DataFrame objects <span class="keyword">and</span> default to non-null values <span class="keyword">in</span> frame calling the method. Result index columns will be the union of the respective indexes <span class="keyword">and</span> columns</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">a = pd.Series([np.nan,<span class="number">2.5</span>,np.nan,<span class="number">3.5</span>,<span class="number">4.5</span>,np.nan]</div><div class="line">                    ,index=[<span class="string">'f'</span>,<span class="string">'e'</span>,<span class="string">'d'</span>,<span class="string">'c'</span>,<span class="string">'b'</span>,<span class="string">'a'</span>])</div><div class="line"></div><div class="line">b = pd.Series(np.arange(len(a),dtype=np.float64)</div><div class="line">                    ,index=[<span class="string">'f'</span>,<span class="string">'e'</span>,<span class="string">'d'</span>,<span class="string">'c'</span>,<span class="string">'b'</span>,<span class="string">'a'</span>])</div><div class="line"></div><div class="line"></div><div class="line">b[<span class="number">-1</span>]=np.nan</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">85</span>]: </div><div class="line">f    NaN</div><div class="line">e    <span class="number">2.5</span></div><div class="line">d    NaN</div><div class="line">c    <span class="number">3.5</span></div><div class="line">b    <span class="number">4.5</span></div><div class="line">a    NaN</div><div class="line">dtype: float64</div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">88</span>]: </div><div class="line">f    <span class="number">0.0</span></div><div class="line">e    <span class="number">1.0</span></div><div class="line">d    <span class="number">2.0</span></div><div class="line">c    <span class="number">3.0</span></div><div class="line">b    <span class="number">4.0</span></div><div class="line">a    NaN</div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#如果a的字段为nan，则用b的数据</span></div><div class="line">np.where(a.isnull(),b,a)</div><div class="line">Out[<span class="number">92</span>]: array([ <span class="number">0.</span> ,  <span class="number">2.5</span>,  <span class="number">2.</span> ,  <span class="number">3.5</span>,  <span class="number">4.5</span>,  nan])</div><div class="line"></div><div class="line"></div><div class="line">a.combine_first(b)</div><div class="line">Out[<span class="number">93</span>]: </div><div class="line">f    <span class="number">0.0</span></div><div class="line">e    <span class="number">2.5</span></div><div class="line">d    <span class="number">2.0</span></div><div class="line">c    <span class="number">3.5</span></div><div class="line">b    <span class="number">4.5</span></div><div class="line">a    NaN</div><div class="line">dtype: float64</div></pre></td></tr></table></figure>
-<p>combine_first还会做数据对齐的操作<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">b[:<span class="number">-2</span>]</div><div class="line">Out[<span class="number">95</span>]: </div><div class="line">f    <span class="number">0.0</span></div><div class="line">e    <span class="number">1.0</span></div><div class="line">d    <span class="number">2.0</span></div><div class="line">c    <span class="number">3.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">a[<span class="number">2</span>:]</div><div class="line">Out[<span class="number">96</span>]: </div><div class="line">d    NaN</div><div class="line">c    <span class="number">3.5</span></div><div class="line">b    <span class="number">4.5</span></div><div class="line">a    NaN</div><div class="line">dtype: float64</div><div class="line"></div><div class="line">b[:<span class="number">-2</span>].combine_first(a[<span class="number">2</span>:])</div><div class="line">Out[<span class="number">94</span>]: </div><div class="line">a    NaN</div><div class="line">b    <span class="number">4.5</span></div><div class="line">c    <span class="number">3.0</span></div><div class="line">d    <span class="number">2.0</span></div><div class="line">e    <span class="number">1.0</span></div><div class="line">f    <span class="number">0.0</span></div><div class="line">dtype: float64</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/12/matplotlib-handbook-08/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/12/matplotlib-handbook-08/" itemprop="url">matplotlib手册(8) - 绘图知识点杂记</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T20:11:00+08:00">
-                2017-08-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据可视化-Python-R/" itemprop="url" rel="index">
-                    <span itemprop="name">数据可视化-Python&R</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>matplotlib手册(8)</p>
-<p>这里会整理些matplotlib绘图的小知识点，可能比较杂。</p>
-<h1 id="1-subplot"><a href="#1-subplot" class="headerlink" title="1. subplot"></a>1. subplot</h1><p>前面，我们有简单的说过subplot，通过他，我们可以在一个figure上，分割多个区域分别去绘图，<br>这里说一个最常用的方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">matplotlib.pyplot.subplots(nrows=<span class="number">1</span>, ncols=<span class="number">1</span>, sharex=<span class="keyword">False</span>, sharey=<span class="keyword">False</span>, squeeze=<span class="keyword">True</span>, subplot_kw=<span class="keyword">None</span>, gridspec_kw=<span class="keyword">None</span>, **fig_kw)</div><div class="line"></div><div class="line">Create a figure <span class="keyword">and</span> a set of subplots</div><div class="line">This utility wrapper makes it convenient to create common layouts of subplots, including the enclosing figure object, <span class="keyword">in</span> a single call</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line"><span class="comment">#初始化2行2列的figure</span></div><div class="line">f,axes = plt.subplots(<span class="number">2</span>,<span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment">#这样通过下标可以快速的获取axes</span></div><div class="line">axes[<span class="number">0</span>,<span class="number">1</span>].hist(np.random.randn(<span class="number">100</span>),bins=<span class="number">20</span>)</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure>
-<p>我们还可以设置，是否共享x轴y轴<br><img src="http://upload-images.jianshu.io/upload_images/76024-b75713146d6e2e88.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/12/matplotlib-handbook-08/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1146,7 +1155,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">101</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1157,7 +1166,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1168,7 +1177,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
