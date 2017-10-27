@@ -46,6 +46,68 @@
   </entry>
   
   <entry>
+    <title>读书笔记-数据化运营(1章）</title>
+    <link href="https://yuguiyang.github.io/2017/10/27/reading_notes_data_analysis_03/"/>
+    <id>https://yuguiyang.github.io/2017/10/27/reading_notes_data_analysis_03/</id>
+    <published>2017-10-27T04:00:00.000Z</published>
+    <updated>2017-10-27T09:19:51.789Z</updated>
+    
+    <content type="html"><![CDATA[<p>读书笔记<br>数据化运营速成手册<br>第一章</p>
+<blockquote>
+<p>这本书，大概翻了一遍，感觉还不错，作者结合自身经验从实际问题角度出发给我们介绍了数据化运营、数据分析，书中图表、分析模型都是基于Excel的，不需要学习其他的工具，对于我们上手来说很简单。后面就让我们跟随作者的脚步，一步一步来学习下。</p>
+</blockquote>
+<p>对于数据分析、数据化运营来说，最终的表现形式可能是一份数据分析报告，都说“字不如表，表不如图”，所以报告中可能会是各种图表，然而，是不是所有的报告或者需求都需要使用图表呢？这是我们首先要判断的问题。</p>
+<h1 id="真的要做图吗？"><a href="#真的要做图吗？" class="headerlink" title="真的要做图吗？"></a>真的要做图吗？</h1><p>我们拿到一个需求，面对收集好的数据，我们首先要思考的是：真的要做图吗？<br>有时候，文字报告或者一个表格的表达效果会比图表好得多。<br>我们最终的目的，其实是准确传达信息或者解决业务方的疑问，不要盲目的认为图表一定是最好的。</p>
+<ul>
+<li>短期内了解性需求<br>一些临时性的了解某个指标实际情况的需求：“近一个月的日活、上个月的支出”，我们只要提供准确的数据就好了。</li>
+<li>多维度相互组合的需求<br>这里说的就是指标涉及的维度比较多，用图表没有办法准确的传达信息，作者有举一个具体的例子:<blockquote>
+<p>老板说他想看上个月各个城市中VIP客户和非VIP客户数量的对比和同比上上月的情况。</p>
+</blockquote>
+</li>
+</ul>
+<p>基础数据是这样的<br><img src="http://upload-images.jianshu.io/upload_images/76024-46e93f4cc19defb6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>转化成图表可能会是这样，图看上去还不错<br><img src="http://upload-images.jianshu.io/upload_images/76024-1fbf0a3c87784de8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>上面的折线图用的不太妥，折线图一般可能用在时间序列上或者具有演进关系的，而地区之间并没有这种演进关系，当然，我们可以改一下图表：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-84ed7d36adb63d83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这样虽然满足了，但是图的效果差些，而且，如果老板又要增加一个VIP用户占比情况，图表就没法好好表达了，所以，最直接的，我们就是使用一个表格来展现数据</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-7b16315088c01213.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>当然，可以再好看些，像这样：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-a2e1c306c3ea2660.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><p>图表传达的信息有限<br>我们要用正确的图表表达正确的理念，每种图表都有他擅长表达的领域；如果一些观点不能用图表完全表达出来，一定要放弃使用图表</p>
+</li>
+<li><p>数据间存在复杂逻辑<br>这里说的其实也是不能用图表完全表达观点的情况，有时候，数据集之间可能互相影响，互为因果，这里作者举了一个用户行为路径转化的例子</p>
+</li>
+</ul>
+<h1 id="图表的基本构成"><a href="#图表的基本构成" class="headerlink" title="图表的基本构成"></a>图表的基本构成</h1><p>排除上面几种情况，最后确定要做图表的话，我们就要了解图表的基本特征，这里作者主要介绍了图表的基本元素</p>
+<ul>
+<li>坐标轴</li>
+<li>图例的位置</li>
+<li>辅助线</li>
+<li>数据标签等等<br>这里就不详细介绍了，后面，我们再具体的图标中，再介绍</li>
+</ul>
+<h1 id="控制图标中的信息量"><a href="#控制图标中的信息量" class="headerlink" title="控制图标中的信息量"></a>控制图标中的信息量</h1><p>在最开始，我们就要注意，图标中表达的内容一定要直观，简单，不要融合太多的指标，指标多了以后，就会产生混淆，产生误解。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;读书笔记&lt;br&gt;数据化运营速成手册&lt;br&gt;第一章&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这本书，大概翻了一遍，感觉还不错，作者结合自身经验从实际问题角度出发给我们介绍了数据化运营、数据分析，书中图表、分析模型都是基于Excel的，不需要学习其他的工具，对于我们上手来说很简
+    
+    </summary>
+    
+      <category term="读书笔记" scheme="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="实例" scheme="https://yuguiyang.github.io/tags/%E5%AE%9E%E4%BE%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>常见图表-直方图</title>
     <link href="https://yuguiyang.github.io/2017/10/25/statistics-handbook-02/"/>
     <id>https://yuguiyang.github.io/2017/10/25/statistics-handbook-02/</id>
@@ -245,45 +307,6 @@
   </entry>
   
   <entry>
-    <title>数据分析师是否需要掌握SQL？</title>
-    <link href="https://yuguiyang.github.io/2017/10/18/jotting-03/"/>
-    <id>https://yuguiyang.github.io/2017/10/18/jotting-03/</id>
-    <published>2017-10-18T12:00:00.000Z</published>
-    <updated>2017-10-20T01:53:06.893Z</updated>
-    
-    <content type="html"><![CDATA[<p>前面，我们分析了一下数据分析师的前景<a href="https://yuguiyang.github.io/2017/10/18/jotting-02/">要不要找一份数据分析的工作？</a></p>
-<p>这里，我们研究下，数据分析师是否需要掌握SQL。</p>
-<h1 id="什么是数据分析师？"><a href="#什么是数据分析师？" class="headerlink" title="什么是数据分析师？"></a>什么是数据分析师？</h1><p>我们从字面来理解，数据分析师=数据+分析+师</p>
-<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，<br>没有数据支撑的分析报告，一定是异想天开。<br>数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。<br>外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；<br>内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。<br>这个分析一定要基于业务，脱离业务的分析是没有任何价值的。</p>
-<a id="more"></a>
-<h1 id="真的要掌握SQL吗？"><a href="#真的要掌握SQL吗？" class="headerlink" title="真的要掌握SQL吗？"></a>真的要掌握SQL吗？</h1><p>上面，我们说了，分析公司内部的数据，需要使用SQL，行业内的其他公司是不是也是这样呢？<br>前面，我们爬取了拉勾网的数据，这里，我们就可以通过招聘数据证明一下，数据分析师是否需要掌握SQL</p>
-<p>我们根据岗位需求的标签和岗位描述来判断是否需要掌握SQL<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">IF (</div><div class="line">    CONTAINS(upper([position_lables]),'SQL')</div><div class="line">    OR </div><div class="line">    CONTAINS(upper([job_desc]),'SQL')</div><div class="line">    )</div><div class="line">THEN '是'</div><div class="line">ELSE '否'</div><div class="line"><span class="keyword">END</span></div></pre></td></tr></table></figure></p>
-<p>就岗位数量来看，每个城市的岗位中，需要掌握SQL的岗位都超过50%<br><img src="http://upload-images.jianshu.io/upload_images/76024-f393f5f9b08e057c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>就算SQL不是数据分析师必备的技能，掌握了SQL，你就多了50%的机会，我们再来看下，哪些公司的岗位需要掌握SQL呢</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-4257c5cbbff62bab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这些都是互联网知名的企业，跟着他们走没有问题。</p>
-<p>总上所述，掌握了SQL，不会吃亏，不会上当，不说啦，我得学习SQL去了。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;前面，我们分析了一下数据分析师的前景&lt;a href=&quot;https://yuguiyang.github.io/2017/10/18/jotting-02/&quot;&gt;要不要找一份数据分析的工作？&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这里，我们研究下，数据分析师是否需要掌握SQL。&lt;/p&gt;
-&lt;h1 id=&quot;什么是数据分析师？&quot;&gt;&lt;a href=&quot;#什么是数据分析师？&quot; class=&quot;headerlink&quot; title=&quot;什么是数据分析师？&quot;&gt;&lt;/a&gt;什么是数据分析师？&lt;/h1&gt;&lt;p&gt;我们从字面来理解，数据分析师=数据+分析+师&lt;/p&gt;
-&lt;h2 id=&quot;数据&quot;&gt;&lt;a href=&quot;#数据&quot; class=&quot;headerlink&quot; title=&quot;数据&quot;&gt;&lt;/a&gt;数据&lt;/h2&gt;&lt;p&gt;对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，&lt;br&gt;没有数据支撑的分析报告，一定是异想天开。&lt;br&gt;数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。&lt;br&gt;外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；&lt;br&gt;内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。&lt;/p&gt;
-&lt;h2 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析&quot;&gt;&lt;/a&gt;分析&lt;/h2&gt;&lt;p&gt;有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。&lt;br&gt;这个分析一定要基于业务，脱离业务的分析是没有任何价值的。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://yuguiyang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="随笔" scheme="https://yuguiyang.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
     <title>MySQL-每周练习(2017-10-20)</title>
     <link href="https://yuguiyang.github.io/2017/10/18/mysql-handbook-13/"/>
     <id>https://yuguiyang.github.io/2017/10/18/mysql-handbook-13/</id>
@@ -327,6 +350,45 @@
       <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
     
       <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据分析师是否需要掌握SQL？</title>
+    <link href="https://yuguiyang.github.io/2017/10/18/jotting-03/"/>
+    <id>https://yuguiyang.github.io/2017/10/18/jotting-03/</id>
+    <published>2017-10-18T12:00:00.000Z</published>
+    <updated>2017-10-20T01:53:06.893Z</updated>
+    
+    <content type="html"><![CDATA[<p>前面，我们分析了一下数据分析师的前景<a href="https://yuguiyang.github.io/2017/10/18/jotting-02/">要不要找一份数据分析的工作？</a></p>
+<p>这里，我们研究下，数据分析师是否需要掌握SQL。</p>
+<h1 id="什么是数据分析师？"><a href="#什么是数据分析师？" class="headerlink" title="什么是数据分析师？"></a>什么是数据分析师？</h1><p>我们从字面来理解，数据分析师=数据+分析+师</p>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，<br>没有数据支撑的分析报告，一定是异想天开。<br>数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。<br>外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；<br>内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。<br>这个分析一定要基于业务，脱离业务的分析是没有任何价值的。</p>
+<a id="more"></a>
+<h1 id="真的要掌握SQL吗？"><a href="#真的要掌握SQL吗？" class="headerlink" title="真的要掌握SQL吗？"></a>真的要掌握SQL吗？</h1><p>上面，我们说了，分析公司内部的数据，需要使用SQL，行业内的其他公司是不是也是这样呢？<br>前面，我们爬取了拉勾网的数据，这里，我们就可以通过招聘数据证明一下，数据分析师是否需要掌握SQL</p>
+<p>我们根据岗位需求的标签和岗位描述来判断是否需要掌握SQL<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">IF (</div><div class="line">    CONTAINS(upper([position_lables]),'SQL')</div><div class="line">    OR </div><div class="line">    CONTAINS(upper([job_desc]),'SQL')</div><div class="line">    )</div><div class="line">THEN '是'</div><div class="line">ELSE '否'</div><div class="line"><span class="keyword">END</span></div></pre></td></tr></table></figure></p>
+<p>就岗位数量来看，每个城市的岗位中，需要掌握SQL的岗位都超过50%<br><img src="http://upload-images.jianshu.io/upload_images/76024-f393f5f9b08e057c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>就算SQL不是数据分析师必备的技能，掌握了SQL，你就多了50%的机会，我们再来看下，哪些公司的岗位需要掌握SQL呢</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-4257c5cbbff62bab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这些都是互联网知名的企业，跟着他们走没有问题。</p>
+<p>总上所述，掌握了SQL，不会吃亏，不会上当，不说啦，我得学习SQL去了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前面，我们分析了一下数据分析师的前景&lt;a href=&quot;https://yuguiyang.github.io/2017/10/18/jotting-02/&quot;&gt;要不要找一份数据分析的工作？&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里，我们研究下，数据分析师是否需要掌握SQL。&lt;/p&gt;
+&lt;h1 id=&quot;什么是数据分析师？&quot;&gt;&lt;a href=&quot;#什么是数据分析师？&quot; class=&quot;headerlink&quot; title=&quot;什么是数据分析师？&quot;&gt;&lt;/a&gt;什么是数据分析师？&lt;/h1&gt;&lt;p&gt;我们从字面来理解，数据分析师=数据+分析+师&lt;/p&gt;
+&lt;h2 id=&quot;数据&quot;&gt;&lt;a href=&quot;#数据&quot; class=&quot;headerlink&quot; title=&quot;数据&quot;&gt;&lt;/a&gt;数据&lt;/h2&gt;&lt;p&gt;对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，&lt;br&gt;没有数据支撑的分析报告，一定是异想天开。&lt;br&gt;数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。&lt;br&gt;外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；&lt;br&gt;内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。&lt;/p&gt;
+&lt;h2 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析&quot;&gt;&lt;/a&gt;分析&lt;/h2&gt;&lt;p&gt;有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。&lt;br&gt;这个分析一定要基于业务，脱离业务的分析是没有任何价值的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -1091,55 +1153,6 @@
 &lt;p&gt;我们先来看第一个类型的问题，关于排序的问题&lt;/p&gt;
 &lt;h2 id=&quot;排名&quot;&gt;&lt;a href=&quot;#排名&quot; class=&quot;headerlink&quot; title=&quot;排名&quot;&gt;&lt;/a&gt;排名&lt;/h2&gt;&lt;p&gt;就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名&lt;br&gt;在postgresql中可以使用像rank() over()这样的函数&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    course_name,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    s_id,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    score,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;rank&lt;/span&gt;() &lt;span class=&quot;keyword&quot;&gt;over&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;by&lt;/span&gt; score &lt;span class=&quot;keyword&quot;&gt;desc&lt;/span&gt;) rank_score&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    t_score&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo&quot; alt=&quot;mysql-handbook-05-02&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
-    
-    
-      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL-regexp</title>
-    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/"/>
-    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/</id>
-    <published>2017-09-09T04:00:00.000Z</published>
-    <updated>2017-09-09T15:44:03.148Z</updated>
-    
-    <content type="html"><![CDATA[<p>MySQL<br>正则表达式</p>
-<p>在前面，我们了解了like的使用，它可以做一些简单的匹配</p>
-<blockquote>
-<p>在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符</p>
-</blockquote>
-<p>但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。</p>
-<p>常用的正则表达式，更多的内容，大家可以百度下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-01.png-blog.photo" alt="mysql-handbook-04-01"></p>
-<a id="more"></a>
-<p>我们就以前面的t_student表为例</p>
-<h2 id="查询学生姓路或乔的学生信息"><a href="#查询学生姓路或乔的学生信息" class="headerlink" title="查询学生姓路或乔的学生信息"></a>查询学生姓路或乔的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- like </span></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name <span class="keyword">like</span> <span class="string">'路%'</span> <span class="keyword">or</span> s_name <span class="keyword">like</span> <span class="string">'乔%'</span></div><div class="line"></div><div class="line"><span class="comment">-- regexp</span></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name regexp <span class="string">'^(路|乔)'</span></div></pre></td></tr></table></figure>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-02.png-blog.photo" alt="mysql-handbook-04-02"></p>
-<h2 id="查询名字是以美结尾的学生信息"><a href="#查询名字是以美结尾的学生信息" class="headerlink" title="查询名字是以美结尾的学生信息"></a>查询名字是以美结尾的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name regexp <span class="string">'美$'</span></div></pre></td></tr></table></figure>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-03.png-blog.photo" alt="mysql-handbook-04-03"></p>
-<h2 id="查询学生爱好中，有吃肉的学生信息"><a href="#查询学生爱好中，有吃肉的学生信息" class="headerlink" title="查询学生爱好中，有吃肉的学生信息"></a>查询学生爱好中，有吃肉的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_hobby regexp <span class="string">'吃肉'</span></div></pre></td></tr></table></figure>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-04.png-blog.photo" alt="mysql-handbook-04-04"></p>
-<h2 id="查询学生姓乔或者名字中有美字的学生信息"><a href="#查询学生姓乔或者名字中有美字的学生信息" class="headerlink" title="查询学生姓乔或者名字中有美字的学生信息"></a>查询学生姓乔或者名字中有美字的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name regexp <span class="string">'(^乔)|美'</span></div></pre></td></tr></table></figure>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-05.png-blog.photo" alt="mysql-handbook-04-05"></p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这里先整理这几个简单的例子，后续会再补充。</p>
-<p>可以参考官方的文档练习：<a href="https://dev.mysql.com/doc/refman/5.7/en/regexp.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/regexp.html</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;MySQL&lt;br&gt;正则表达式&lt;/p&gt;
-&lt;p&gt;在前面，我们了解了like的使用，它可以做一些简单的匹配&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。&lt;/p&gt;
-&lt;p&gt;常用的正则表达式，更多的内容，大家可以百度下&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-01.png-blog.photo&quot; alt=&quot;mysql-handbook-04-01&quot;&gt;&lt;/p&gt;
     
     </summary>
     

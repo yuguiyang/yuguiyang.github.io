@@ -470,6 +470,181 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/27/reading_notes_data_analysis_03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/27/reading_notes_data_analysis_03/" itemprop="url">读书笔记-数据化运营(1章）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T12:00:00+08:00">
+                2017-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>读书笔记<br>数据化运营速成手册<br>第一章</p>
+<blockquote>
+<p>这本书，大概翻了一遍，感觉还不错，作者结合自身经验从实际问题角度出发给我们介绍了数据化运营、数据分析，书中图表、分析模型都是基于Excel的，不需要学习其他的工具，对于我们上手来说很简单。后面就让我们跟随作者的脚步，一步一步来学习下。</p>
+</blockquote>
+<p>对于数据分析、数据化运营来说，最终的表现形式可能是一份数据分析报告，都说“字不如表，表不如图”，所以报告中可能会是各种图表，然而，是不是所有的报告或者需求都需要使用图表呢？这是我们首先要判断的问题。</p>
+<h1 id="真的要做图吗？"><a href="#真的要做图吗？" class="headerlink" title="真的要做图吗？"></a>真的要做图吗？</h1><p>我们拿到一个需求，面对收集好的数据，我们首先要思考的是：真的要做图吗？<br>有时候，文字报告或者一个表格的表达效果会比图表好得多。<br>我们最终的目的，其实是准确传达信息或者解决业务方的疑问，不要盲目的认为图表一定是最好的。</p>
+<ul>
+<li>短期内了解性需求<br>一些临时性的了解某个指标实际情况的需求：“近一个月的日活、上个月的支出”，我们只要提供准确的数据就好了。</li>
+<li>多维度相互组合的需求<br>这里说的就是指标涉及的维度比较多，用图表没有办法准确的传达信息，作者有举一个具体的例子:<blockquote>
+<p>老板说他想看上个月各个城市中VIP客户和非VIP客户数量的对比和同比上上月的情况。</p>
+</blockquote>
+</li>
+</ul>
+<p>基础数据是这样的<br><img src="http://upload-images.jianshu.io/upload_images/76024-46e93f4cc19defb6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>转化成图表可能会是这样，图看上去还不错<br><img src="http://upload-images.jianshu.io/upload_images/76024-1fbf0a3c87784de8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>上面的折线图用的不太妥，折线图一般可能用在时间序列上或者具有演进关系的，而地区之间并没有这种演进关系，当然，我们可以改一下图表：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-84ed7d36adb63d83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这样虽然满足了，但是图的效果差些，而且，如果老板又要增加一个VIP用户占比情况，图表就没法好好表达了，所以，最直接的，我们就是使用一个表格来展现数据</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-7b16315088c01213.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>当然，可以再好看些，像这样：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-a2e1c306c3ea2660.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><p>图表传达的信息有限<br>我们要用正确的图表表达正确的理念，每种图表都有他擅长表达的领域；如果一些观点不能用图表完全表达出来，一定要放弃使用图表</p>
+</li>
+<li><p>数据间存在复杂逻辑<br>这里说的其实也是不能用图表完全表达观点的情况，有时候，数据集之间可能互相影响，互为因果，这里作者举了一个用户行为路径转化的例子</p>
+</li>
+</ul>
+<h1 id="图表的基本构成"><a href="#图表的基本构成" class="headerlink" title="图表的基本构成"></a>图表的基本构成</h1><p>排除上面几种情况，最后确定要做图表的话，我们就要了解图表的基本特征，这里作者主要介绍了图表的基本元素</p>
+<ul>
+<li>坐标轴</li>
+<li>图例的位置</li>
+<li>辅助线</li>
+<li>数据标签等等<br>这里就不详细介绍了，后面，我们再具体的图标中，再介绍</li>
+</ul>
+<h1 id="控制图标中的信息量"><a href="#控制图标中的信息量" class="headerlink" title="控制图标中的信息量"></a>控制图标中的信息量</h1><p>在最开始，我们就要注意，图标中表达的内容一定要直观，简单，不要融合太多的指标，指标多了以后，就会产生混淆，产生误解。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/25/statistics-handbook-02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -924,156 +1099,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/18/jotting-03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/18/jotting-03/" itemprop="url">数据分析师是否需要掌握SQL？</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T20:00:00+08:00">
-                2017-10-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>前面，我们分析了一下数据分析师的前景<a href="https://yuguiyang.github.io/2017/10/18/jotting-02/">要不要找一份数据分析的工作？</a></p>
-<p>这里，我们研究下，数据分析师是否需要掌握SQL。</p>
-<h1 id="什么是数据分析师？"><a href="#什么是数据分析师？" class="headerlink" title="什么是数据分析师？"></a>什么是数据分析师？</h1><p>我们从字面来理解，数据分析师=数据+分析+师</p>
-<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，<br>没有数据支撑的分析报告，一定是异想天开。<br>数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。<br>外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；<br>内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。<br>这个分析一定要基于业务，脱离业务的分析是没有任何价值的。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/18/jotting-03/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1128,7 +1153,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">101</span>
+                  <span class="site-state-item-count">102</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
