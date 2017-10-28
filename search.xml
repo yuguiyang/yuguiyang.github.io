@@ -12,7 +12,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[常见图表-散点图]]></title>
+    <title><![CDATA[常见图表-柱形图]]></title>
     <url>%2F2017%2F10%2F28%2Fstatistics-handbook-04%2F</url>
     <content type="text"><![CDATA[常见图表介绍及实例 本篇为阅读笔记《数据化运营速成手册》 柱形图是我们非常常用的一种图表，竖着放叫柱形图，横着放就是条形图，把柱子分割成几块就成了累加柱形图，柱形图的目的就是为了对比，下面从几个方面介绍下柱形图的使用。 利用累加柱形图对比数据结构的变化累加柱形图，可能也叫堆叠柱状图，像这样： 上图的例子是说一家公司运营策略的改变前后，运营成本的对比图，通过累加柱形图，非常直观的表现出各个部分成本的变化。 我们可以快速得到一些信息： 公司运营成本有显著下降 公司运营思路有重大调整原来重挽回，现在重拉新和促活 基础成本有所下降 多指标组合对比当我们想要在多个指标上进行对比时，像这样查看新签约数和续约数2个指标， 这里使用要注意，分组数据不能太多，如果有10个部门，就不会表达出台清晰的观点；那我们就可以使用条形图，分开查看单个指标。 这个还不是最直观的，我们可以用均值，把他改成双向条形图 这样更直观一些上图，我们将每组数据都减去平均值，然后就形成了正负的数据，优劣显示非常明显（Excel里这个图，那个标签的位置，一直没找到让他显示在左边，找了好久 ）]]></content>
       <categories>
@@ -30,8 +30,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>数据分析</tag>
         <tag>读书笔记</tag>
+        <tag>数据分析</tag>
         <tag>实例</tag>
       </tags>
   </entry>
@@ -54,8 +54,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>数据分析</tag>
         <tag>读书笔记</tag>
+        <tag>数据分析</tag>
         <tag>实例</tag>
       </tags>
   </entry>
@@ -259,9 +259,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MySQL-分组排序]]></title>
-    <url>%2F2017%2F09%2F09%2Fmysql-handbook-05%2F</url>
-    <content type="text"><![CDATA[MySQL分组排序 使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。 我们先来看第一个类型的问题，关于排序的问题 排名就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名在postgresql中可以使用像rank() over()这样的函数1234567select course_name, s_id, score, rank() over(order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现12345678910select course_name, s_id, score, -- 根据排序规则，每条记录增加1 @rn:=@rn+1 as rank_score -- 初始化变量@rn，从0开始from t_score cross join (select @rn:=0) xorder by score desc; 细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？ 当然可以，我们改一下SQL只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score12345678910111213select course_name, s_id, score, @pre pre_score, -- 判断当前score是否和上一条记录的score相等， -- 如果相等则使用和上一条一样的排名 if(@pre=score ,@rn:=@rn,@rn:=@rn+1) as rank_score, @pre:=score cur_score -- 使用pre来保存上一条记录的scorefrom t_score cross join (select @rn:=0,@pre:=null) xorder by score desc; 上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？ 我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。 1234567891011select course_name, s_id, score, @pre pre_score, @rn_1:=@rn_1+1 rank_score_1, if(@pre=score ,@rn:=@rn,@rn:=@rn_1) as rank_score, @pre:=score cur_score from t_score cross join (select @rn:=0,@pre:=null,@rn_1:=0) xorder by score desc 我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。 分组排序就是给每个分组中的数据，分别进行排名如果有类似rank() over()的函数12345678-- 在postgresql中select course_name, s_id, score, rank() over(partition by course_name order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，如果课程名称一样，则继续排名，如果不一样，则重新开始排名1234567891011set @rn:=0;set @pre_course:=null;select course_name, s_id, score, if(@pre_course=course_name,@rn:=@rn+1,@rn:=0), @pre_course:= course_name from t_score order by course_name,score desc;]]></content>
+    <title><![CDATA[MySQL-regexp]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-04%2F</url>
+    <content type="text"><![CDATA[MySQL正则表达式 在前面，我们了解了like的使用，它可以做一些简单的匹配 在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符 但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。 常用的正则表达式，更多的内容，大家可以百度下 我们就以前面的t_student表为例 查询学生姓路或乔的学生信息12345-- like select *from t_student where s_name like '路%' or s_name like '乔%'-- regexpselect *from t_student where s_name regexp '^(路|乔)' 查询名字是以美结尾的学生信息1select *from t_student where s_name regexp '美$' 查询学生爱好中，有吃肉的学生信息1select *from t_student where s_hobby regexp '吃肉' 查询学生姓乔或者名字中有美字的学生信息1select *from t_student where s_name regexp '(^乔)|美' 小结这里先整理这几个简单的例子，后续会再补充。 可以参考官方的文档练习：https://dev.mysql.com/doc/refman/5.7/en/regexp.html]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -271,9 +271,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MySQL-regexp]]></title>
-    <url>%2F2017%2F09%2F09%2Fmysql-handbook-04%2F</url>
-    <content type="text"><![CDATA[MySQL正则表达式 在前面，我们了解了like的使用，它可以做一些简单的匹配 在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符 但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。 常用的正则表达式，更多的内容，大家可以百度下 我们就以前面的t_student表为例 查询学生姓路或乔的学生信息12345-- like select *from t_student where s_name like '路%' or s_name like '乔%'-- regexpselect *from t_student where s_name regexp '^(路|乔)' 查询名字是以美结尾的学生信息1select *from t_student where s_name regexp '美$' 查询学生爱好中，有吃肉的学生信息1select *from t_student where s_hobby regexp '吃肉' 查询学生姓乔或者名字中有美字的学生信息1select *from t_student where s_name regexp '(^乔)|美' 小结这里先整理这几个简单的例子，后续会再补充。 可以参考官方的文档练习：https://dev.mysql.com/doc/refman/5.7/en/regexp.html]]></content>
+    <title><![CDATA[MySQL-分组排序]]></title>
+    <url>%2F2017%2F09%2F09%2Fmysql-handbook-05%2F</url>
+    <content type="text"><![CDATA[MySQL分组排序 使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。 我们先来看第一个类型的问题，关于排序的问题 排名就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名在postgresql中可以使用像rank() over()这样的函数1234567select course_name, s_id, score, rank() over(order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现12345678910select course_name, s_id, score, -- 根据排序规则，每条记录增加1 @rn:=@rn+1 as rank_score -- 初始化变量@rn，从0开始from t_score cross join (select @rn:=0) xorder by score desc; 细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？ 当然可以，我们改一下SQL只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score12345678910111213select course_name, s_id, score, @pre pre_score, -- 判断当前score是否和上一条记录的score相等， -- 如果相等则使用和上一条一样的排名 if(@pre=score ,@rn:=@rn,@rn:=@rn+1) as rank_score, @pre:=score cur_score -- 使用pre来保存上一条记录的scorefrom t_score cross join (select @rn:=0,@pre:=null) xorder by score desc; 上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？ 我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。 1234567891011select course_name, s_id, score, @pre pre_score, @rn_1:=@rn_1+1 rank_score_1, if(@pre=score ,@rn:=@rn,@rn:=@rn_1) as rank_score, @pre:=score cur_score from t_score cross join (select @rn:=0,@pre:=null,@rn_1:=0) xorder by score desc 我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。 分组排序就是给每个分组中的数据，分别进行排名如果有类似rank() over()的函数12345678-- 在postgresql中select course_name, s_id, score, rank() over(partition by course_name order by score desc) rank_scorefrom t_score 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，如果课程名称一样，则继续排名，如果不一样，则重新开始排名1234567891011set @rn:=0;set @pre_course:=null;select course_name, s_id, score, if(@pre_course=course_name,@rn:=@rn+1,@rn:=0), @pre_course:= course_name from t_score order by course_name,score desc;]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -351,8 +351,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>数据分析</tag>
         <tag>读书笔记</tag>
+        <tag>数据分析</tag>
         <tag>实例</tag>
       </tags>
   </entry>
@@ -376,8 +376,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>数据分析</tag>
         <tag>读书笔记</tag>
+        <tag>数据分析</tag>
         <tag>实例</tag>
       </tags>
   </entry>
@@ -454,18 +454,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python中文分词-jieba]]></title>
-    <url>%2F2017%2F08%2F19%2Fpython-handbook-11%2F</url>
-    <content type="text"><![CDATA[刚刚在看Python的词云图，想要显示中文的时候，需要做一个分词，这里我们学习下jieba分词。 1. jieba中文分词jieba是Python中文分词的一个组件 github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba) 支持三种分词模式：精确模式，试图将句子最精确地切开，适合文本分析；全模式，把句子中所有的可以成词的词语都扫描出来, 速度非常快，但是不能解决歧义；搜索引擎模式，在精确模式的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词。支持繁体分词支持自定义词典MIT 授权协议 安装：1pip install jieba 官网上的小实例12345678910111213import jiebaseg_list = jieba.cut("我来到北京清华大学", cut_all=True)print("Full Mode: " + "/ ".join(seg_list)) # 全模式seg_list = jieba.cut("我来到北京清华大学", cut_all=False)print("Default Mode: " + "/ ".join(seg_list)) # 精确模式seg_list = jieba.cut("他来到了网易杭研大厦") # 默认是精确模式print(", ".join(seg_list))seg_list = jieba.cut_for_search("小明硕士毕业于中国科学院计算所，后在日本京都大学深造") # 搜索引擎模式print(", ".join(seg_list)) 12345678Building prefix dict from the default dictionary ...Dumping model to file cache C:\Users\YUGUIY~1\AppData\Local\Temp\jieba.cacheLoading model cost 0.884 seconds.Prefix dict has been built succesfully.Full Mode: 我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学Default Mode: 我/ 来到/ 北京/ 清华大学他, 来到, 了, 网易, 杭研, 大厦小明, 硕士, 毕业, 于, 中国, 科学, 学院, 科学院, 中国科学院, 计算, 计算所, ，, 后, 在, 日本, 京都, 大学, 日本京都大学, 深造 到这里，想要的功能其实已经足够了，官网还有很多其他的介绍内容，很强大，后面需要的时候，再来补充，接着回去改那个词云的了先。]]></content>
-      <categories>
-        <category>Python-基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>分词</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Python异常（1）- module 'urllib' has no attribute 'urlopen']]></title>
     <url>%2F2017%2F08%2F19%2Fpython-handbook-10%2F</url>
     <content type="text"><![CDATA[今天想复习下BeautifulSoup，就把之前的代码拿过来测试，发现报错了 12345678910111213141516import urllibfrom bs4 import BeautifulSoup#加载网址，获取当前页面def getHTML(url) : page = urllib.urlopen(url) html = page.read() return htmlhtml = getHTML('https://movie.douban.com/top250')soup = BeautifulSoup(html, "html.parser")for img in soup.find_all('img'): print(img.get('src')) 查了下，发下是Python3中，需要引入的模块变了改一下就可以了1urllib.request.urlopen(url)]]></content>
@@ -475,6 +463,18 @@
       <tags>
         <tag>Python</tag>
         <tag>异常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python中文分词-jieba]]></title>
+    <url>%2F2017%2F08%2F19%2Fpython-handbook-11%2F</url>
+    <content type="text"><![CDATA[刚刚在看Python的词云图，想要显示中文的时候，需要做一个分词，这里我们学习下jieba分词。 1. jieba中文分词jieba是Python中文分词的一个组件 github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba) 支持三种分词模式：精确模式，试图将句子最精确地切开，适合文本分析；全模式，把句子中所有的可以成词的词语都扫描出来, 速度非常快，但是不能解决歧义；搜索引擎模式，在精确模式的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词。支持繁体分词支持自定义词典MIT 授权协议 安装：1pip install jieba 官网上的小实例12345678910111213import jiebaseg_list = jieba.cut("我来到北京清华大学", cut_all=True)print("Full Mode: " + "/ ".join(seg_list)) # 全模式seg_list = jieba.cut("我来到北京清华大学", cut_all=False)print("Default Mode: " + "/ ".join(seg_list)) # 精确模式seg_list = jieba.cut("他来到了网易杭研大厦") # 默认是精确模式print(", ".join(seg_list))seg_list = jieba.cut_for_search("小明硕士毕业于中国科学院计算所，后在日本京都大学深造") # 搜索引擎模式print(", ".join(seg_list)) 12345678Building prefix dict from the default dictionary ...Dumping model to file cache C:\Users\YUGUIY~1\AppData\Local\Temp\jieba.cacheLoading model cost 0.884 seconds.Prefix dict has been built succesfully.Full Mode: 我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学Default Mode: 我/ 来到/ 北京/ 清华大学他, 来到, 了, 网易, 杭研, 大厦小明, 硕士, 毕业, 于, 中国, 科学, 学院, 科学院, 中国科学院, 计算, 计算所, ，, 后, 在, 日本, 京都, 大学, 日本京都大学, 深造 到这里，想要的功能其实已经足够了，官网还有很多其他的介绍内容，很强大，后面需要的时候，再来补充，接着回去改那个词云的了先。]]></content>
+      <categories>
+        <category>Python-基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>分词</tag>
       </tags>
   </entry>
   <entry>
