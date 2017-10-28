@@ -325,6 +325,168 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/07/pandas-handbook-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/07/pandas-handbook-06/" itemprop="url">Pandas手册（6）- 用pandas完成excel中常见任务</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T08:00:00+08:00">
+                2017-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Pandas</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Python<br>Pandas</p>
+<hr>
+<p>这里整理下pandas常用的操作，为什么要写这个呢？有本书《利用Python进行数据分析》一边看一遍记录下。</p>
+<h1 id="1-重新索引-reindex"><a href="#1-重新索引-reindex" class="headerlink" title="1. 重新索引(reindex)"></a>1. 重新索引(reindex)</h1><p>就是重构一下索引，在重构的同时，我们可以做一些其他操作<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">DataFrame.reindex(index=<span class="keyword">None</span>, columns=<span class="keyword">None</span>, **kwargs)</div><div class="line">Conform DataFrame to new index <span class="keyword">with</span> optional filling logic, placing NA/NaN <span class="keyword">in</span> locations having no value <span class="keyword">in</span> the previous index. A new object <span class="keyword">is</span> produced unless the new index <span class="keyword">is</span> equivalent to the current one <span class="keyword">and</span> copy=<span class="keyword">False</span></div><div class="line"></div><div class="line">Series.reindex(index=<span class="keyword">None</span>, **kwargs)</div><div class="line">Conform Series to new index <span class="keyword">with</span> optional filling logic, placing NA/NaN <span class="keyword">in</span> locations having no value <span class="keyword">in</span> the previous index. A new object <span class="keyword">is</span> produced unless the new index <span class="keyword">is</span> equivalent to the current one <span class="keyword">and</span> copy=<span class="keyword">False</span></div></pre></td></tr></table></figure></p>
+<p>一个小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line">obj = pd.Series([<span class="number">4.5</span>, <span class="number">7.2</span>, <span class="number">-5.3</span>, <span class="number">3.6</span>], index=[<span class="string">'d'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>])</div><div class="line"></div><div class="line">obj</div><div class="line">Out[<span class="number">156</span>]: </div><div class="line">d    <span class="number">4.5</span></div><div class="line">b    <span class="number">7.2</span></div><div class="line">a   <span class="number">-5.3</span></div><div class="line">c    <span class="number">3.6</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#reindex后，没有的值，默认会用NaN填充</span></div><div class="line">obj.reindex([<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>])</div><div class="line">Out[<span class="number">157</span>]: </div><div class="line">a   <span class="number">-5.3</span></div><div class="line">b    <span class="number">7.2</span></div><div class="line">c    <span class="number">3.6</span></div><div class="line">d    <span class="number">4.5</span></div><div class="line">e    NaN</div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#fill_value，常用的参数，表示没有数据时默认填充的值</span></div><div class="line">obj.reindex([<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>] , fill_value=<span class="number">9.9</span>)</div><div class="line">Out[<span class="number">159</span>]: </div><div class="line">a   <span class="number">-5.3</span></div><div class="line">b    <span class="number">7.2</span></div><div class="line">c    <span class="number">3.6</span></div><div class="line">d    <span class="number">4.5</span></div><div class="line">e    <span class="number">9.9</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#method,常用参数，在递增或递减index中，填充空值的方法</span></div><div class="line">obj3 = pd.Series([<span class="string">'blue'</span>, <span class="string">'purple'</span>, <span class="string">'yellow'</span>], index=[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>])</div><div class="line"></div><div class="line">obj3</div><div class="line">Out[<span class="number">165</span>]: </div><div class="line"><span class="number">0</span>      blue</div><div class="line"><span class="number">2</span>    purple</div><div class="line"><span class="number">4</span>    yellow</div><div class="line">dtype: object</div><div class="line"></div><div class="line">obj3.reindex(range(<span class="number">6</span>))</div><div class="line">Out[<span class="number">170</span>]: </div><div class="line"><span class="number">0</span>      blue</div><div class="line"><span class="number">1</span>       NaN</div><div class="line"><span class="number">2</span>    purple</div><div class="line"><span class="number">3</span>       NaN</div><div class="line"><span class="number">4</span>    yellow</div><div class="line"><span class="number">5</span>       NaN</div><div class="line">dtype: object</div><div class="line"></div><div class="line"><span class="comment">#ffill，前向填充</span></div><div class="line">obj3.reindex(range(<span class="number">6</span>),method=<span class="string">'ffill'</span>)</div><div class="line">Out[<span class="number">167</span>]: </div><div class="line"><span class="number">0</span>      blue</div><div class="line"><span class="number">1</span>      blue</div><div class="line"><span class="number">2</span>    purple</div><div class="line"><span class="number">3</span>    purple</div><div class="line"><span class="number">4</span>    yellow</div><div class="line"><span class="number">5</span>    yellow</div><div class="line">dtype: object</div><div class="line"></div><div class="line"><span class="comment">#bfill，后向填充</span></div><div class="line">obj3.reindex(range(<span class="number">6</span>),method=<span class="string">'bfill'</span>)</div><div class="line">Out[<span class="number">171</span>]: </div><div class="line"><span class="number">0</span>      blue</div><div class="line"><span class="number">1</span>    purple</div><div class="line"><span class="number">2</span>    purple</div><div class="line"><span class="number">3</span>    yellow</div><div class="line"><span class="number">4</span>    yellow</div><div class="line"><span class="number">5</span>       NaN</div><div class="line">dtype: object</div></pre></td></tr></table></figure></p>
+<p>对于DataFrame来说，用起来也是差不多的</p>
+<h1 id="2-丢弃指定轴上的项"><a href="#2-丢弃指定轴上的项" class="headerlink" title="2. 丢弃指定轴上的项"></a>2. 丢弃指定轴上的项</h1><p>主要就是drop方法的使用<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DataFrame.drop(labels, axis=<span class="number">0</span>, level=<span class="keyword">None</span>, inplace=<span class="keyword">False</span>, errors=<span class="string">'raise'</span>)</div><div class="line">Return new object <span class="keyword">with</span> labels <span class="keyword">in</span> requested axis removed.</div></pre></td></tr></table></figure></p>
+<p>小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">obj = pd.Series(np.arange(<span class="number">5.</span>), index=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>])</div><div class="line"></div><div class="line">obj</div><div class="line">Out[<span class="number">174</span>]: </div><div class="line">a    <span class="number">0.0</span></div><div class="line">b    <span class="number">1.0</span></div><div class="line">c    <span class="number">2.0</span></div><div class="line">d    <span class="number">3.0</span></div><div class="line">e    <span class="number">4.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">obj.drop(<span class="string">'c'</span>)</div><div class="line">Out[<span class="number">175</span>]: </div><div class="line">a    <span class="number">0.0</span></div><div class="line">b    <span class="number">1.0</span></div><div class="line">d    <span class="number">3.0</span></div><div class="line">e    <span class="number">4.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">obj.drop([<span class="string">'b'</span>,<span class="string">'d'</span>])</div><div class="line">Out[<span class="number">176</span>]: </div><div class="line">a    <span class="number">0.0</span></div><div class="line">c    <span class="number">2.0</span></div><div class="line">e    <span class="number">4.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#DataFrame</span></div><div class="line">data = pd.DataFrame(np.arange(<span class="number">16</span>).reshape((<span class="number">4</span>, <span class="number">4</span>)),</div><div class="line">                 index=[<span class="string">'Ohio'</span>, <span class="string">'Colorado'</span>, <span class="string">'Utah'</span>, <span class="string">'New York'</span>],</div><div class="line">                 columns=[<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>, <span class="string">'four'</span>])</div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">178</span>]: </div><div class="line">          one  two  three  four</div><div class="line">Ohio        <span class="number">0</span>    <span class="number">1</span>      <span class="number">2</span>     <span class="number">3</span></div><div class="line">Colorado    <span class="number">4</span>    <span class="number">5</span>      <span class="number">6</span>     <span class="number">7</span></div><div class="line">Utah        <span class="number">8</span>    <span class="number">9</span>     <span class="number">10</span>    <span class="number">11</span></div><div class="line">New York   <span class="number">12</span>   <span class="number">13</span>     <span class="number">14</span>    <span class="number">15</span></div><div class="line"></div><div class="line"><span class="comment">#默认是横轴，</span></div><div class="line">data.drop([<span class="string">'Ohio'</span>,<span class="string">'Utah'</span>])</div><div class="line">Out[<span class="number">179</span>]: </div><div class="line">          one  two  three  four</div><div class="line">Colorado    <span class="number">4</span>    <span class="number">5</span>      <span class="number">6</span>     <span class="number">7</span></div><div class="line">New York   <span class="number">12</span>   <span class="number">13</span>     <span class="number">14</span>    <span class="number">15</span></div><div class="line"></div><div class="line"><span class="comment">#我们可以指定axis，在columns上删除</span></div><div class="line">data.drop([<span class="string">'two'</span>,<span class="string">'four'</span>],axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">180</span>]: </div><div class="line">          one  three</div><div class="line">Ohio        <span class="number">0</span>      <span class="number">2</span></div><div class="line">Colorado    <span class="number">4</span>      <span class="number">6</span></div><div class="line">Utah        <span class="number">8</span>     <span class="number">10</span></div><div class="line">New York   <span class="number">12</span>     <span class="number">14</span></div></pre></td></tr></table></figure></p>
+<h1 id="3-算术运算和数据对齐"><a href="#3-算术运算和数据对齐" class="headerlink" title="3. 算术运算和数据对齐"></a>3. 算术运算和数据对齐</h1><p>在numpy和pandas中好像都会看到这个词，数据对齐，就是说2个对象在运算的时候，会取一个并集，然后在自动对齐的时候，不重叠的部分就会填充NaN</p>
+<p>小例子先看看<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">s1 = pd.Series([<span class="number">7.3</span>, <span class="number">-2.5</span>, <span class="number">3.4</span>, <span class="number">1.5</span>], index=[<span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>])</div><div class="line"></div><div class="line">s2 = pd.Series([<span class="number">-2.1</span>, <span class="number">3.6</span>, <span class="number">-1.5</span>, <span class="number">4</span>, <span class="number">3.1</span>], index=[<span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>])</div><div class="line"></div><div class="line"><span class="comment">#index不重叠的地方，会填充NaN</span></div><div class="line">s1+s2</div><div class="line">Out[<span class="number">188</span>]: </div><div class="line">a    <span class="number">5.2</span></div><div class="line">c    <span class="number">1.1</span></div><div class="line">d    NaN</div><div class="line">e    <span class="number">0.0</span></div><div class="line">f    NaN</div><div class="line">g    NaN</div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#使用自带的add方法，就可以填充默认值了，这个和我们上面reindex时的思想是一样的</span></div><div class="line"><span class="comment">#Series.add(other, level=None, fill_value=None, axis=0)</span></div><div class="line"></div><div class="line">s1.add(s2,fill_value=<span class="number">0</span>)</div><div class="line">Out[<span class="number">189</span>]: </div><div class="line">a    <span class="number">5.2</span></div><div class="line">c    <span class="number">1.1</span></div><div class="line">d    <span class="number">3.4</span></div><div class="line">e    <span class="number">0.0</span></div><div class="line">f    <span class="number">4.0</span></div><div class="line">g    <span class="number">3.1</span></div><div class="line">dtype: float64</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-8c6371911c04ef6d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="4-DataFrame和Series之间的运算"><a href="#4-DataFrame和Series之间的运算" class="headerlink" title="4.DataFrame和Series之间的运算"></a>4.DataFrame和Series之间的运算</h1><p>这里用到了一个广播的思想，就是指不同形状的数组之间的算术运算的执行方式，很强大的功能，这里，我们先简单了解下。<br>小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">arr = np.arange(<span class="number">12.</span>).reshape((<span class="number">3</span>, <span class="number">4</span>))</div><div class="line"></div><div class="line">arr</div><div class="line">Out[<span class="number">191</span>]: </div><div class="line">array([[  <span class="number">0.</span>,   <span class="number">1.</span>,   <span class="number">2.</span>,   <span class="number">3.</span>],</div><div class="line">       [  <span class="number">4.</span>,   <span class="number">5.</span>,   <span class="number">6.</span>,   <span class="number">7.</span>],</div><div class="line">       [  <span class="number">8.</span>,   <span class="number">9.</span>,  <span class="number">10.</span>,  <span class="number">11.</span>]])</div><div class="line"></div><div class="line">arr[<span class="number">0</span>]</div><div class="line">Out[<span class="number">192</span>]: array([ <span class="number">0.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">3.</span>])</div><div class="line"></div><div class="line"><span class="comment">#3行4列的数组，减1行4列的数组，这就是广播</span></div><div class="line">arr - arr[<span class="number">0</span>]</div><div class="line">Out[<span class="number">193</span>]: </div><div class="line">array([[ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</div><div class="line">       [ <span class="number">4.</span>,  <span class="number">4.</span>,  <span class="number">4.</span>,  <span class="number">4.</span>],</div><div class="line">       [ <span class="number">8.</span>,  <span class="number">8.</span>,  <span class="number">8.</span>,  <span class="number">8.</span>]])</div></pre></td></tr></table></figure></p>
+<p>DataFrame和Series之间的计算也是这样<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">frame = pd.DataFrame(np.arange(<span class="number">12.</span>).reshape((<span class="number">4</span>, <span class="number">3</span>)), columns=list(<span class="string">'bde'</span>),</div><div class="line">                  index=[<span class="string">'Utah'</span>, <span class="string">'Ohio'</span>, <span class="string">'Texas'</span>, <span class="string">'Oregon'</span>])</div><div class="line"></div><div class="line">frame</div><div class="line">Out[<span class="number">195</span>]: </div><div class="line">          b     d     e</div><div class="line">Utah    <span class="number">0.0</span>   <span class="number">1.0</span>   <span class="number">2.0</span></div><div class="line">Ohio    <span class="number">3.0</span>   <span class="number">4.0</span>   <span class="number">5.0</span></div><div class="line">Texas   <span class="number">6.0</span>   <span class="number">7.0</span>   <span class="number">8.0</span></div><div class="line">Oregon  <span class="number">9.0</span>  <span class="number">10.0</span>  <span class="number">11.0</span></div><div class="line"></div><div class="line">s = frame.iloc[<span class="number">0</span>]</div><div class="line"></div><div class="line">s</div><div class="line">Out[<span class="number">197</span>]: </div><div class="line">b    <span class="number">0.0</span></div><div class="line">d    <span class="number">1.0</span></div><div class="line">e    <span class="number">2.0</span></div><div class="line">Name: Utah, dtype: float64</div><div class="line"></div><div class="line">frame - s</div><div class="line">Out[<span class="number">198</span>]: </div><div class="line">          b    d    e</div><div class="line">Utah    <span class="number">0.0</span>  <span class="number">0.0</span>  <span class="number">0.0</span></div><div class="line">Ohio    <span class="number">3.0</span>  <span class="number">3.0</span>  <span class="number">3.0</span></div><div class="line">Texas   <span class="number">6.0</span>  <span class="number">6.0</span>  <span class="number">6.0</span></div><div class="line">Oregon  <span class="number">9.0</span>  <span class="number">9.0</span>  <span class="number">9.0</span></div><div class="line"></div><div class="line">s = pd.Series(range(<span class="number">3</span>),index=list(<span class="string">'abc'</span>))</div><div class="line"></div><div class="line">frame</div><div class="line">Out[<span class="number">223</span>]: </div><div class="line">          b     d     e</div><div class="line">Utah    <span class="number">0.0</span>   <span class="number">1.0</span>   <span class="number">2.0</span></div><div class="line">Ohio    <span class="number">3.0</span>   <span class="number">4.0</span>   <span class="number">5.0</span></div><div class="line">Texas   <span class="number">6.0</span>   <span class="number">7.0</span>   <span class="number">8.0</span></div><div class="line">Oregon  <span class="number">9.0</span>  <span class="number">10.0</span>  <span class="number">11.0</span></div><div class="line"></div><div class="line">s</div><div class="line">Out[<span class="number">224</span>]: </div><div class="line">a    <span class="number">0</span></div><div class="line">b    <span class="number">1</span></div><div class="line">c    <span class="number">2</span></div><div class="line">dtype: int32</div><div class="line"></div><div class="line">frame.add(s)</div><div class="line">Out[<span class="number">225</span>]: </div><div class="line">         a     b   c   d   e</div><div class="line">Utah   NaN   <span class="number">1.0</span> NaN NaN NaN</div><div class="line">Ohio   NaN   <span class="number">4.0</span> NaN NaN NaN</div><div class="line">Texas  NaN   <span class="number">7.0</span> NaN NaN NaN</div><div class="line">Oregon NaN  <span class="number">10.0</span> NaN NaN NaN</div><div class="line"></div><div class="line"><span class="comment">#我们可以通过axis控制在哪个方向上去广播</span></div><div class="line">frame.add(s,axis=<span class="number">0</span>)</div><div class="line">Out[<span class="number">227</span>]: </div><div class="line">         b   d   e</div><div class="line">Ohio   NaN NaN NaN</div><div class="line">Oregon NaN NaN NaN</div><div class="line">Texas  NaN NaN NaN</div><div class="line">Utah   NaN NaN NaN</div><div class="line">a      NaN NaN NaN</div><div class="line">b      NaN NaN NaN</div><div class="line">c      NaN NaN NaN</div></pre></td></tr></table></figure></p>
+<p>在这里，不能使用fill_value填充默认值，还不知道为啥，总是报错，说不支持<br><img src="http://upload-images.jianshu.io/upload_images/76024-db50afbaa0b4bcd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="5-函数应用和映射"><a href="#5-函数应用和映射" class="headerlink" title="5. 函数应用和映射"></a>5. 函数应用和映射</h1><p>这里主要是介绍DataFrame中的一个函数使用，apply，就是对DataFrame中的每一个元素执行传入的函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DataFrame.apply(func, axis=<span class="number">0</span>, broadcast=<span class="keyword">False</span>, raw=<span class="keyword">False</span>, reduce=<span class="keyword">None</span>, args=(), **kwds)</div><div class="line">Applies function along input axis of DataFrame.</div></pre></td></tr></table></figure></p>
+<p>小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">f = <span class="keyword">lambda</span> x: x+<span class="number">10</span></div><div class="line"></div><div class="line"><span class="comment">#每一个单元格都会加10</span></div><div class="line">frame.apply(f)</div><div class="line">Out[<span class="number">230</span>]: </div><div class="line">           b     d     e</div><div class="line">Utah    <span class="number">10.0</span>  <span class="number">11.0</span>  <span class="number">12.0</span></div><div class="line">Ohio    <span class="number">13.0</span>  <span class="number">14.0</span>  <span class="number">15.0</span></div><div class="line">Texas   <span class="number">16.0</span>  <span class="number">17.0</span>  <span class="number">18.0</span></div><div class="line">Oregon  <span class="number">19.0</span>  <span class="number">20.0</span>  <span class="number">21.0</span></div><div class="line"></div><div class="line"></div><div class="line">f = <span class="keyword">lambda</span> x: x.max() - x.min()</div><div class="line"></div><div class="line">frame.apply(f)</div><div class="line">Out[<span class="number">232</span>]: </div><div class="line">b    <span class="number">9.0</span></div><div class="line">d    <span class="number">9.0</span></div><div class="line">e    <span class="number">9.0</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line"><span class="comment">#我们可以指定轴，去执行函数</span></div><div class="line">frame.apply(f,axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">233</span>]: </div><div class="line">Utah      <span class="number">2.0</span></div><div class="line">Ohio      <span class="number">2.0</span></div><div class="line">Texas     <span class="number">2.0</span></div><div class="line">Oregon    <span class="number">2.0</span></div><div class="line">dtype: float64</div></pre></td></tr></table></figure></p>
+<p>这里还有一个applymap函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DataFrame.applymap(func)</div><div class="line"></div><div class="line">Apply a function to a DataFrame that <span class="keyword">is</span> intended to operate elementwise, i.e. like doing map(func, series) <span class="keyword">for</span> each series <span class="keyword">in</span> the DataFrame</div></pre></td></tr></table></figure></p>
+<p>这里得注意下，这2个函数的区别；<br>目前的理解是，applymap是元素级的，apply在轴上进行操作（貌似不太顺，等明白了再记录下）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">f = <span class="keyword">lambda</span> x: <span class="string">'$&#123;:,.3f&#125;'</span>.format(x)</div><div class="line"></div><div class="line">frame</div><div class="line">Out[<span class="number">237</span>]: </div><div class="line">          b     d     e</div><div class="line">Utah    <span class="number">0.0</span>   <span class="number">1.0</span>   <span class="number">2.0</span></div><div class="line">Ohio    <span class="number">3.0</span>   <span class="number">4.0</span>   <span class="number">5.0</span></div><div class="line">Texas   <span class="number">6.0</span>   <span class="number">7.0</span>   <span class="number">8.0</span></div><div class="line">Oregon  <span class="number">9.0</span>  <span class="number">10.0</span>  <span class="number">11.0</span></div><div class="line"></div><div class="line"><span class="comment">#前面，我们有用过，格式化内容的</span></div><div class="line">frame.applymap(f)</div><div class="line">Out[<span class="number">238</span>]: </div><div class="line">             b        d        e</div><div class="line">Utah    $<span class="number">0.000</span>   $<span class="number">1.000</span>   $<span class="number">2.000</span></div><div class="line">Ohio    $<span class="number">3.000</span>   $<span class="number">4.000</span>   $<span class="number">5.000</span></div><div class="line">Texas   $<span class="number">6.000</span>   $<span class="number">7.000</span>   $<span class="number">8.000</span></div><div class="line">Oregon  $<span class="number">9.000</span>  $<span class="number">10.000</span>  $<span class="number">11.000</span></div></pre></td></tr></table></figure></p>
+<h1 id="6-处理缺失数据"><a href="#6-处理缺失数据" class="headerlink" title="6.处理缺失数据"></a>6.处理缺失数据</h1><p>在pandas中处理缺失数据非常容易，pandas使用浮点值NaN（Not a Number）表示缺失值。<br>前面，我们说过使用isnull来判断是否有NaN值<br>小例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">a = pd.Series([<span class="string">'one'</span>,<span class="string">'two'</span>,np.nan,<span class="string">'three'</span>])</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">240</span>]: </div><div class="line"><span class="number">0</span>      one</div><div class="line"><span class="number">1</span>      two</div><div class="line"><span class="number">2</span>      NaN</div><div class="line"><span class="number">3</span>    three</div><div class="line">dtype: object</div><div class="line"></div><div class="line">a.isnull()</div><div class="line">Out[<span class="number">241</span>]: </div><div class="line"><span class="number">0</span>    <span class="keyword">False</span></div><div class="line"><span class="number">1</span>    <span class="keyword">False</span></div><div class="line"><span class="number">2</span>     <span class="keyword">True</span></div><div class="line"><span class="number">3</span>    <span class="keyword">False</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line">a.notnull()</div><div class="line">Out[<span class="number">242</span>]: </div><div class="line"><span class="number">0</span>     <span class="keyword">True</span></div><div class="line"><span class="number">1</span>     <span class="keyword">True</span></div><div class="line"><span class="number">2</span>    <span class="keyword">False</span></div><div class="line"><span class="number">3</span>     <span class="keyword">True</span></div><div class="line">dtype: bool</div><div class="line"></div><div class="line"><span class="comment">#Python内置的None也会被当做NaN处理</span></div><div class="line">a[<span class="number">4</span>]=<span class="keyword">None</span></div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">247</span>]: </div><div class="line"><span class="number">0</span>      one</div><div class="line"><span class="number">1</span>      two</div><div class="line"><span class="number">2</span>      NaN</div><div class="line"><span class="number">3</span>    three</div><div class="line"><span class="number">4</span>     <span class="keyword">None</span></div><div class="line">dtype: object</div><div class="line"></div><div class="line">a.isnull()</div><div class="line">Out[<span class="number">248</span>]: </div><div class="line"><span class="number">0</span>    <span class="keyword">False</span></div><div class="line"><span class="number">1</span>    <span class="keyword">False</span></div><div class="line"><span class="number">2</span>     <span class="keyword">True</span></div><div class="line"><span class="number">3</span>    <span class="keyword">False</span></div><div class="line"><span class="number">4</span>     <span class="keyword">True</span></div><div class="line">dtype: bool</div></pre></td></tr></table></figure></p>
+<p>对于这种数据，我们要怎样处理呢？有的时候，我们可能会初始化为默认值，或者直接剔除掉<br>我们可以使用dropna函数来剔除掉，或者布尔类型索引<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">DataFrame.dropna(axis=<span class="number">0</span>, how=<span class="string">'any'</span>, thresh=<span class="keyword">None</span>, subset=<span class="keyword">None</span>, inplace=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">249</span>]: </div><div class="line"><span class="number">0</span>      one</div><div class="line"><span class="number">1</span>      two</div><div class="line"><span class="number">2</span>      NaN</div><div class="line"><span class="number">3</span>    three</div><div class="line"><span class="number">4</span>     <span class="keyword">None</span></div><div class="line">dtype: object</div><div class="line"></div><div class="line">a.dropna()</div><div class="line">Out[<span class="number">250</span>]: </div><div class="line"><span class="number">0</span>      one</div><div class="line"><span class="number">1</span>      two</div><div class="line"><span class="number">3</span>    three</div><div class="line">dtype: object</div><div class="line"></div><div class="line">a[a.notnull()]</div><div class="line">Out[<span class="number">251</span>]: </div><div class="line"><span class="number">0</span>      one</div><div class="line"><span class="number">1</span>      two</div><div class="line"><span class="number">3</span>    three</div><div class="line">dtype: object</div><div class="line"></div><div class="line"><span class="comment">##dataframe</span></div><div class="line"></div><div class="line">data = pd.DataFrame([[<span class="number">1.</span>, <span class="number">6.5</span>, <span class="number">3.</span>], [<span class="number">1.</span>, np.nan, np.nan],</div><div class="line">                  [np.nan, np.nan, np.nan], [np.nan, <span class="number">6.5</span>, <span class="number">3.</span>]])</div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">254</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">0</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">1</span>  <span class="number">1.0</span>  NaN  NaN</div><div class="line"><span class="number">2</span>  NaN  NaN  NaN</div><div class="line"><span class="number">3</span>  NaN  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"></div><div class="line"><span class="comment">#默认的话，会将行、列含有NaN的都剔除掉</span></div><div class="line">data.dropna()</div><div class="line">Out[<span class="number">255</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">0</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"></div><div class="line"><span class="comment">#我们可以使用参数how来控制</span></div><div class="line">how : &#123;‘any’, ‘all’&#125;</div><div class="line"></div><div class="line">        any : <span class="keyword">if</span> any NA values are present, drop that label</div><div class="line">        all : <span class="keyword">if</span> all values are NA, drop that label</div><div class="line"></div><div class="line">data.dropna(how=<span class="string">'all'</span>)</div><div class="line">Out[<span class="number">257</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">0</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">1</span>  <span class="number">1.0</span>  NaN  NaN</div><div class="line"><span class="number">3</span>  NaN  <span class="number">6.5</span>  <span class="number">3.0</span></div></pre></td></tr></table></figure></p>
+<p>有的时候，我们想要做填充而不是剔除，像我们前面使用的参数fill_value<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">DataFrame.fillna(value=<span class="keyword">None</span>, method=<span class="keyword">None</span>, axis=<span class="keyword">None</span>, inplace=<span class="keyword">False</span>, limit=<span class="keyword">None</span>, downcast=<span class="keyword">None</span>, **kwargs)</div><div class="line">Fill NA/NaN values using the specified method</div><div class="line">method : &#123;‘backfill’, ‘bfill’, ‘pad’, ‘ffill’, <span class="keyword">None</span>&#125;, default <span class="keyword">None</span></div><div class="line"></div><div class="line">data</div><div class="line">Out[<span class="number">261</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">0</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">1</span>  <span class="number">1.0</span>  NaN  NaN</div><div class="line"><span class="number">2</span>  NaN  NaN  NaN</div><div class="line"><span class="number">3</span>  NaN  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"></div><div class="line">data.fillna(<span class="number">9.9</span>)</div><div class="line">Out[<span class="number">259</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">0</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">1</span>  <span class="number">1.0</span>  <span class="number">9.9</span>  <span class="number">9.9</span></div><div class="line"><span class="number">2</span>  <span class="number">9.9</span>  <span class="number">9.9</span>  <span class="number">9.9</span></div><div class="line"><span class="number">3</span>  <span class="number">9.9</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"></div><div class="line"><span class="comment">#使用method，和前面reindex的时候是一个道理</span></div><div class="line">data.fillna(method=<span class="string">'ffill'</span>)</div><div class="line">Out[<span class="number">262</span>]: </div><div class="line">     <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></div><div class="line"><span class="number">0</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">1</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">2</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div><div class="line"><span class="number">3</span>  <span class="number">1.0</span>  <span class="number">6.5</span>  <span class="number">3.0</span></div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/06/numpy-handbook-02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -947,156 +1109,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/02/numpy-handbook-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/02/numpy-handbook-01/" itemprop="url">numpy手册(1)-ndarray</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T21:59:00+08:00">
-                2017-08-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Numpy/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Numpy</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。</p>
-<h1 id="1-numpy基本介绍"><a href="#1-numpy基本介绍" class="headerlink" title="1.numpy基本介绍"></a>1.numpy基本介绍</h1><blockquote class="blockquote-center"><br>numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。<br>一个用Python实现的科学计算包。<br>from 百度百科<br></blockquote>
-
-<p>numpy有2种基本对象，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ndarray（N-dimensional array object）和 ufunc（universal function object）</div></pre></td></tr></table></figure></p>
-<p>ndarray是存储单一数据类型的多维数组，ufunc是能够对数组进行处理的函数。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/02/numpy-handbook-01/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1151,7 +1163,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

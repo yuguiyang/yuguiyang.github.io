@@ -46,6 +46,62 @@
   </entry>
   
   <entry>
+    <title>常见图表-散点图</title>
+    <link href="https://yuguiyang.github.io/2017/10/28/statistics-handbook-03/"/>
+    <id>https://yuguiyang.github.io/2017/10/28/statistics-handbook-03/</id>
+    <published>2017-10-28T00:08:00.000Z</published>
+    <updated>2017-10-28T05:03:38.876Z</updated>
+    
+    <content type="html"><![CDATA[<p>常见图表介绍及实例</p>
+<blockquote>
+<p>发现一篇文档讲的很好，这里基本都是摘录，原文请参见附录</p>
+</blockquote>
+<h1 id="什么是散点图"><a href="#什么是散点图" class="headerlink" title="什么是散点图"></a>什么是散点图</h1><blockquote>
+<p>散点图也叫 X-Y 图，它将所有的数据以点的形式展现在直角坐标系上，以显示变量之间的相互影响程度，点的位置由变量的数值决定。</p>
+</blockquote>
+<p>通过观察散点图上数据点的分布情况，我们可以推断出变量间的相关性。如果变量之间不存在相互关系，那么在散点图上就会表现为随机分布的离散的点，如果存在某种相关性，那么大部分的数据点就会相对密集并以某种趋势呈现。数据的相关关系主要分为：正相关（两个变量值同时增长）、负相关（一个变量值增加另一个变量值下降）、不相关、线性相关、指数相关等，表现在散点图上的大致分布如下图所示。那些离点集群较远的点我们称为离群点或者异常点。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-a2e031b1185c53d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<a id="more"></a>
+<p>散点图经常与回归线（就是最准确地贯穿所有点的线）结合使用，归纳分析现有数据以进行预测分析。</p>
+<p>对于那些变量之间存在密切关系，但是这些关系又不像数学公式和物理公式那样能够精确表达的，散点图是一种很好的图形工具。但是在分析过程中需要注意，这两个变量之间的相关性并不等同于确定的因果关系，也可能需要考虑其他的影响因素。</p>
+<p>英文名：Scatter graph, Point graph, X-Y plot, Scatter chart or Scattergram</p>
+<h1 id="散点图应用场景"><a href="#散点图应用场景" class="headerlink" title="散点图应用场景"></a>散点图应用场景</h1><p>散点图通常用于显示和比较数值，不光可以显示趋势，还能显示数据集群的形状，以及在数据云团中各数据点的关系。</p>
+<p>常见的是身高和体重的数据<br>从网上找一份身高体重的数据，</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-367acc3d7ef157a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>然后，我们选中身高和体重，插入一个散点图</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-0e2cca73eff5ab7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>通过观察，很容易发现，身高和体重是正相关的，而且是线性相关，及身高越高，体重越重</p>
+<p>我们可以添加趋势线，并显示公式<br><img src="http://upload-images.jianshu.io/upload_images/76024-01e40726cea87f9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>当然，我们还可以在添加一个性别维度去看</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-8fa3f6dcea89d61c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这里我们要分别选择数据源，在Excel中，需要先制作男生的散点图，然后添加数据源，增加列，然后使用不同的图形表示就好了</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-eed4ff69c686a986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>好了，上面，我们简单了解了散点图，知道在Excel中简单制作散点图了，先到这里。</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>以上内容参考: <a href="https://antv.alipay.com/vis/doc/chart/details/scatter-plot.html" target="_blank" rel="external">https://antv.alipay.com/vis/doc/chart/details/scatter-plot.html</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;常见图表介绍及实例&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;发现一篇文档讲的很好，这里基本都是摘录，原文请参见附录&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;什么是散点图&quot;&gt;&lt;a href=&quot;#什么是散点图&quot; class=&quot;headerlink&quot; title=&quot;什么是散点图&quot;&gt;&lt;/a&gt;什么是散点图&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;散点图也叫 X-Y 图，它将所有的数据以点的形式展现在直角坐标系上，以显示变量之间的相互影响程度，点的位置由变量的数值决定。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;通过观察散点图上数据点的分布情况，我们可以推断出变量间的相关性。如果变量之间不存在相互关系，那么在散点图上就会表现为随机分布的离散的点，如果存在某种相关性，那么大部分的数据点就会相对密集并以某种趋势呈现。数据的相关关系主要分为：正相关（两个变量值同时增长）、负相关（一个变量值增加另一个变量值下降）、不相关、线性相关、指数相关等，表现在散点图上的大致分布如下图所示。那些离点集群较远的点我们称为离群点或者异常点。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-a2e031b1185c53d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="统计知识" scheme="https://yuguiyang.github.io/categories/%E7%BB%9F%E8%AE%A1%E7%9F%A5%E8%AF%86/"/>
+    
+    
+      <category term="统计" scheme="https://yuguiyang.github.io/tags/%E7%BB%9F%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
     <title>读书笔记-数据化运营(1章）</title>
     <link href="https://yuguiyang.github.io/2017/10/27/reading_notes_data_analysis_03/"/>
     <id>https://yuguiyang.github.io/2017/10/27/reading_notes_data_analysis_03/</id>
@@ -112,9 +168,9 @@
       <category term="读书笔记" scheme="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
       <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
     
       <category term="实例" scheme="https://yuguiyang.github.io/tags/%E5%AE%9E%E4%BE%8B/"/>
     
@@ -1118,55 +1174,6 @@
 &lt;p&gt;这里介绍下，MySQL中常用的函数，函数有太多太多，不一定都需要记住，只需要有个印象，需要的时候去文档中找一下，记住一些常用的就好了&lt;/p&gt;
 &lt;h2 id=&quot;数学函数&quot;&gt;&lt;a href=&quot;#数学函数&quot; class=&quot;headerlink&quot; title=&quot;数学函数&quot;&gt;&lt;/a&gt;数学函数&lt;/h2&gt;&lt;h3 id=&quot;abs-x&quot;&gt;&lt;a href=&quot;#abs-x&quot; class=&quot;headerlink&quot; title=&quot;abs(x)&quot;&gt;&lt;/a&gt;abs(x)&lt;/h3&gt;&lt;p&gt;返回x的绝对值&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;abs&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;-10&lt;/span&gt;),&lt;span class=&quot;keyword&quot;&gt;abs&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-5a4d7d49d66d09b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;abs&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
-    
-    
-      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL-regexp</title>
-    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/"/>
-    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/</id>
-    <published>2017-09-09T04:00:00.000Z</published>
-    <updated>2017-09-09T15:44:03.148Z</updated>
-    
-    <content type="html"><![CDATA[<p>MySQL<br>正则表达式</p>
-<p>在前面，我们了解了like的使用，它可以做一些简单的匹配</p>
-<blockquote>
-<p>在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符</p>
-</blockquote>
-<p>但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。</p>
-<p>常用的正则表达式，更多的内容，大家可以百度下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-01.png-blog.photo" alt="mysql-handbook-04-01"></p>
-<a id="more"></a>
-<p>我们就以前面的t_student表为例</p>
-<h2 id="查询学生姓路或乔的学生信息"><a href="#查询学生姓路或乔的学生信息" class="headerlink" title="查询学生姓路或乔的学生信息"></a>查询学生姓路或乔的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- like </span></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name <span class="keyword">like</span> <span class="string">'路%'</span> <span class="keyword">or</span> s_name <span class="keyword">like</span> <span class="string">'乔%'</span></div><div class="line"></div><div class="line"><span class="comment">-- regexp</span></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name regexp <span class="string">'^(路|乔)'</span></div></pre></td></tr></table></figure>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-02.png-blog.photo" alt="mysql-handbook-04-02"></p>
-<h2 id="查询名字是以美结尾的学生信息"><a href="#查询名字是以美结尾的学生信息" class="headerlink" title="查询名字是以美结尾的学生信息"></a>查询名字是以美结尾的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name regexp <span class="string">'美$'</span></div></pre></td></tr></table></figure>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-03.png-blog.photo" alt="mysql-handbook-04-03"></p>
-<h2 id="查询学生爱好中，有吃肉的学生信息"><a href="#查询学生爱好中，有吃肉的学生信息" class="headerlink" title="查询学生爱好中，有吃肉的学生信息"></a>查询学生爱好中，有吃肉的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_hobby regexp <span class="string">'吃肉'</span></div></pre></td></tr></table></figure>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-04.png-blog.photo" alt="mysql-handbook-04-04"></p>
-<h2 id="查询学生姓乔或者名字中有美字的学生信息"><a href="#查询学生姓乔或者名字中有美字的学生信息" class="headerlink" title="查询学生姓乔或者名字中有美字的学生信息"></a>查询学生姓乔或者名字中有美字的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name regexp <span class="string">'(^乔)|美'</span></div></pre></td></tr></table></figure>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-05.png-blog.photo" alt="mysql-handbook-04-05"></p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这里先整理这几个简单的例子，后续会再补充。</p>
-<p>可以参考官方的文档练习：<a href="https://dev.mysql.com/doc/refman/5.7/en/regexp.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/regexp.html</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;MySQL&lt;br&gt;正则表达式&lt;/p&gt;
-&lt;p&gt;在前面，我们了解了like的使用，它可以做一些简单的匹配&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。&lt;/p&gt;
-&lt;p&gt;常用的正则表达式，更多的内容，大家可以百度下&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-01.png-blog.photo&quot; alt=&quot;mysql-handbook-04-01&quot;&gt;&lt;/p&gt;
     
     </summary>
     

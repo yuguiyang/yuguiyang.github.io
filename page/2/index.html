@@ -325,6 +325,158 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/21/mysql-handbook-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/21/mysql-handbook-14/" itemprop="url">MySQL-每周练习答案(2017-10-20)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-21T10:00:00+08:00">
+                2017-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>MySQL<br>每周练习答案</p>
+<p>这里和大家分享下本周练习题的一种解题思路</p>
+<p>将题目简化一下，其实就是实现这样一个功能：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-ca0606de4cf51b9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们将使用逗号分隔的数据，拆分为多行数据，熟悉MySQL的同学，可能会想到，这有点儿像group_concat函数，但这是他的逆过程</p>
+<h1 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> tm_company(</div><div class="line">  company_name <span class="built_in">varchar</span>(<span class="number">10</span>),</div><div class="line">  company_industry <span class="built_in">varchar</span>(<span class="number">20</span>)</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_company(company_name,company_industry) <span class="keyword">values</span>(<span class="string">'A公司'</span>,<span class="string">'移动互联网,金融'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_company(company_name,company_industry) <span class="keyword">values</span>(<span class="string">'B公司'</span>,<span class="string">'移动互联网'</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_company(company_name,company_industry) <span class="keyword">values</span>(<span class="string">'C公司'</span>,<span class="string">'教育,招聘,魔法'</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> tm_company;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-bf06fbffe9d157cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/21/mysql-handbook-14/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/18/mysql-handbook-13/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -916,155 +1068,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/10/12/mysql-handbook-11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/12/mysql-handbook-11/" itemprop="url">MySQL-Workbench使用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T16:00:00+08:00">
-                2017-10-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index">
-                    <span itemprop="name">MySQL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>MySQL<br>Workbench使用</p>
-<p>简单介绍下Workbench的使用<br>Workbench是MySQL官方提供的一个可视化管理工具，跨多个平台而且免费的，详情参考<a href="https://www.mysql.com/products/workbench/" target="_blank" rel="external">官网</a>。<br>我们从下载地址下载，安装就行了</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><img src="http://upload-images.jianshu.io/upload_images/76024-7b7ea58cc50de3b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="workbench 安装"><br>可以单独下载，也可以使用提供的一个管理工具统一下载管理，管理工具提供了整个MySQL所有相关组件的统一管理维护，也挺方便。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-f1ad915acdeb4815.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="管理工具"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/12/mysql-handbook-11/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1119,7 +1122,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

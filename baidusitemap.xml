@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/10/28/statistics-handbook-03/</loc>
+    <lastmod>2017-10-28T05:03:38.876Z</lastmod>
+    <data>
+        <display>
+        <title>常见图表-散点图</title>
+        <pubTime>2017-10-28T00:08:00.000Z</pubTime>
+        
+        <tag>统计</tag>
+         
+         
+           
+             
+              <breadCrumb title="统计知识" url="https://yuguiyang.github.io/categories/%E7%BB%9F%E8%AE%A1%E7%9F%A5%E8%AF%86/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/09/09/mysql-handbook-00/</loc>
     <lastmod>2017-10-28T01:03:48.481Z</lastmod>
     <data>
@@ -33,9 +53,9 @@
         <title>读书笔记-数据化运营(1章）</title>
         <pubTime>2017-10-27T04:00:00.000Z</pubTime>
         
-        <tag>数据分析</tag>
-         
         <tag>读书笔记</tag>
+         
+        <tag>数据分析</tag>
          
         <tag>实例</tag>
          
@@ -1673,9 +1693,9 @@
         <title>读书笔记-数据分析实战(3章)</title>
         <pubTime>2017-09-04T15:59:00.000Z</pubTime>
         
-        <tag>数据分析</tag>
-         
         <tag>读书笔记</tag>
+         
+        <tag>数据分析</tag>
          
         <tag>实例</tag>
          
@@ -1697,9 +1717,9 @@
         <title>读书笔记-数据分析实战(1、2章)</title>
         <pubTime>2017-08-31T16:59:00.000Z</pubTime>
         
-        <tag>数据分析</tag>
-         
         <tag>读书笔记</tag>
+         
+        <tag>数据分析</tag>
          
         <tag>实例</tag>
          
