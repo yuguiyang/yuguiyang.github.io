@@ -50,7 +50,7 @@
     <link href="https://yuguiyang.github.io/2017/10/27/reading_notes_data_analysis_03/"/>
     <id>https://yuguiyang.github.io/2017/10/27/reading_notes_data_analysis_03/</id>
     <published>2017-10-27T04:00:00.000Z</published>
-    <updated>2017-10-27T09:19:51.789Z</updated>
+    <updated>2017-10-27T09:22:01.331Z</updated>
     
     <content type="html"><![CDATA[<p>读书笔记<br>数据化运营速成手册<br>第一章</p>
 <blockquote>
@@ -67,6 +67,7 @@
 </ul>
 <p>基础数据是这样的<br><img src="http://upload-images.jianshu.io/upload_images/76024-46e93f4cc19defb6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>转化成图表可能会是这样，图看上去还不错<br><img src="http://upload-images.jianshu.io/upload_images/76024-1fbf0a3c87784de8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>上面的折线图用的不太妥，折线图一般可能用在时间序列上或者具有演进关系的，而地区之间并没有这种演进关系，当然，我们可以改一下图表：</p>
+<a id="more"></a>
 <p><img src="http://upload-images.jianshu.io/upload_images/76024-84ed7d36adb63d83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>这样虽然满足了，但是图的效果差些，而且，如果老板又要增加一个VIP用户占比情况，图表就没法好好表达了，所以，最直接的，我们就是使用一个表格来展现数据</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/76024-7b16315088c01213.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
@@ -92,16 +93,28 @@
     
       &lt;p&gt;读书笔记&lt;br&gt;数据化运营速成手册&lt;br&gt;第一章&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;这本书，大概翻了一遍，感觉还不错，作者结合自身经验从实际问题角度出发给我们介绍了数据化运营、数据分析，书中图表、分析模型都是基于Excel的，不需要学习其他的工具，对于我们上手来说很简
+&lt;p&gt;这本书，大概翻了一遍，感觉还不错，作者结合自身经验从实际问题角度出发给我们介绍了数据化运营、数据分析，书中图表、分析模型都是基于Excel的，不需要学习其他的工具，对于我们上手来说很简单。后面就让我们跟随作者的脚步，一步一步来学习下。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;对于数据分析、数据化运营来说，最终的表现形式可能是一份数据分析报告，都说“字不如表，表不如图”，所以报告中可能会是各种图表，然而，是不是所有的报告或者需求都需要使用图表呢？这是我们首先要判断的问题。&lt;/p&gt;
+&lt;h1 id=&quot;真的要做图吗？&quot;&gt;&lt;a href=&quot;#真的要做图吗？&quot; class=&quot;headerlink&quot; title=&quot;真的要做图吗？&quot;&gt;&lt;/a&gt;真的要做图吗？&lt;/h1&gt;&lt;p&gt;我们拿到一个需求，面对收集好的数据，我们首先要思考的是：真的要做图吗？&lt;br&gt;有时候，文字报告或者一个表格的表达效果会比图表好得多。&lt;br&gt;我们最终的目的，其实是准确传达信息或者解决业务方的疑问，不要盲目的认为图表一定是最好的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;短期内了解性需求&lt;br&gt;一些临时性的了解某个指标实际情况的需求：“近一个月的日活、上个月的支出”，我们只要提供准确的数据就好了。&lt;/li&gt;
+&lt;li&gt;多维度相互组合的需求&lt;br&gt;这里说的就是指标涉及的维度比较多，用图表没有办法准确的传达信息，作者有举一个具体的例子:&lt;blockquote&gt;
+&lt;p&gt;老板说他想看上个月各个城市中VIP客户和非VIP客户数量的对比和同比上上月的情况。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;基础数据是这样的&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-46e93f4cc19defb6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;转化成图表可能会是这样，图看上去还不错&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-1fbf0a3c87784de8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;br&gt;上面的折线图用的不太妥，折线图一般可能用在时间序列上或者具有演进关系的，而地区之间并没有这种演进关系，当然，我们可以改一下图表：&lt;/p&gt;
     
     </summary>
     
       <category term="读书笔记" scheme="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
       <category term="实例" scheme="https://yuguiyang.github.io/tags/%E5%AE%9E%E4%BE%8B/"/>
     
@@ -1118,41 +1131,42 @@
   </entry>
   
   <entry>
-    <title>MySQL-分组排序</title>
-    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/"/>
-    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/</id>
+    <title>MySQL-regexp</title>
+    <link href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/"/>
+    <id>https://yuguiyang.github.io/2017/09/09/mysql-handbook-04/</id>
     <published>2017-09-09T04:00:00.000Z</published>
-    <updated>2017-09-11T09:04:45.018Z</updated>
+    <updated>2017-09-09T15:44:03.148Z</updated>
     
-    <content type="html"><![CDATA[<p>MySQL<br>分组排序</p>
-<p>使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。</p>
-<p>我们先来看第一个类型的问题，关于排序的问题</p>
-<h2 id="排名"><a href="#排名" class="headerlink" title="排名"></a>排名</h2><p>就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名<br>在postgresql中可以使用像rank() over()这样的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo" alt="mysql-handbook-05-02"></p>
+    <content type="html"><![CDATA[<p>MySQL<br>正则表达式</p>
+<p>在前面，我们了解了like的使用，它可以做一些简单的匹配</p>
+<blockquote>
+<p>在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符</p>
+</blockquote>
+<p>但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。</p>
+<p>常用的正则表达式，更多的内容，大家可以百度下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-01.png-blog.photo" alt="mysql-handbook-04-01"></p>
 <a id="more"></a>
-<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="comment">-- 根据排序规则，每条记录增加1</span></div><div class="line">    @rn:=@rn+<span class="number">1</span> <span class="keyword">as</span> rank_score</div><div class="line">    <span class="comment">-- 初始化变量@rn，从0开始</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-03.png-blog.photo" alt="mysql-handbook-05-03"></p>
-<p>细心的同学，会发现，上面的排名会有些差别，以前2条记录为例，因为都是87，所以postgresql中排名都是1，而在MySQL中呢，依然是自增，一个1，一个2，那我们是否能让他也是2个1并列呢？</p>
-<p>当然可以，我们改一下SQL<br>只要我们判断一下，当前记录的score和上一条记录的score是不是一样就可以了，那怎样才能获取上一条记录的score呢？就是增加一个变量来记录上一条记录的score<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    <span class="comment">-- 判断当前score是否和上一条记录的score相等，</span></div><div class="line">    <span class="comment">-- 如果相等则使用和上一条一样的排名</span></div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn+<span class="number">1</span>) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    <span class="comment">-- 使用pre来保存上一条记录的score</span></div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-04.png-blog.photo" alt="mysql-handbook-05-04"></p>
-<p>上面的排序还是有点儿问题，比如有2个第1之后，依然从第2开始，那我们能不能跳过直接从3开始呢？</p>
-<p>我们回想下，最开始他的排名其实就是3，只是我们上边把它变成了2，那我们再有一个和之前一样的变量就够了。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    @pre pre_score,</div><div class="line">    @rn_1:=@rn_1+<span class="number">1</span> rank_score_1,</div><div class="line">    <span class="keyword">if</span>(@pre=score ,@rn:=@rn,@rn:=@rn_1) <span class="keyword">as</span> rank_score,</div><div class="line">    @pre:=score cur_score</div><div class="line">    </div><div class="line"><span class="keyword">from</span> t_score <span class="keyword">cross</span> <span class="keyword">join</span> (<span class="keyword">select</span> @rn:=<span class="number">0</span>,@pre:=<span class="literal">null</span>,@rn_1:=<span class="number">0</span>) x</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></div></pre></td></tr></table></figure>
-<p>我们使用@rn_1来正常记录排名，当当前记录和上一条记录的score不一样时，我们使用@rn_1的排名信息。</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-05.png-blog.photo" alt="mysql-handbook-05-05"></p>
-<h2 id="分组排序"><a href="#分组排序" class="headerlink" title="分组排序"></a>分组排序</h2><p>就是给每个分组中的数据，分别进行排名<br>如果有类似rank() over()的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 在postgresql中</span></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> course_name <span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) rank_score</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_score</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-01.png-blog.photo" alt="mysql-handbook-05-01"></p>
-<p>但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现<br>这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，<br>如果课程名称一样，则继续排名，如果不一样，则重新开始排名<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> @rn:=<span class="number">0</span>;</div><div class="line"><span class="keyword">set</span> @pre_course:=<span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> </div><div class="line">    course_name,</div><div class="line">    s_id,</div><div class="line">    score,</div><div class="line">    <span class="keyword">if</span>(@pre_course=course_name,@rn:=@rn+<span class="number">1</span>,@rn:=<span class="number">0</span>),</div><div class="line">    @pre_course:= course_name </div><div class="line"><span class="keyword">from</span> t_score </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> course_name,score <span class="keyword">desc</span>;</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-91fb3a9a983c21d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分组排序"></p>
+<p>我们就以前面的t_student表为例</p>
+<h2 id="查询学生姓路或乔的学生信息"><a href="#查询学生姓路或乔的学生信息" class="headerlink" title="查询学生姓路或乔的学生信息"></a>查询学生姓路或乔的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- like </span></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name <span class="keyword">like</span> <span class="string">'路%'</span> <span class="keyword">or</span> s_name <span class="keyword">like</span> <span class="string">'乔%'</span></div><div class="line"></div><div class="line"><span class="comment">-- regexp</span></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name regexp <span class="string">'^(路|乔)'</span></div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-02.png-blog.photo" alt="mysql-handbook-04-02"></p>
+<h2 id="查询名字是以美结尾的学生信息"><a href="#查询名字是以美结尾的学生信息" class="headerlink" title="查询名字是以美结尾的学生信息"></a>查询名字是以美结尾的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name regexp <span class="string">'美$'</span></div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-03.png-blog.photo" alt="mysql-handbook-04-03"></p>
+<h2 id="查询学生爱好中，有吃肉的学生信息"><a href="#查询学生爱好中，有吃肉的学生信息" class="headerlink" title="查询学生爱好中，有吃肉的学生信息"></a>查询学生爱好中，有吃肉的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_hobby regexp <span class="string">'吃肉'</span></div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-04.png-blog.photo" alt="mysql-handbook-04-04"></p>
+<h2 id="查询学生姓乔或者名字中有美字的学生信息"><a href="#查询学生姓乔或者名字中有美字的学生信息" class="headerlink" title="查询学生姓乔或者名字中有美字的学生信息"></a>查询学生姓乔或者名字中有美字的学生信息</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">where</span> s_name regexp <span class="string">'(^乔)|美'</span></div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-05.png-blog.photo" alt="mysql-handbook-04-05"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这里先整理这几个简单的例子，后续会再补充。</p>
+<p>可以参考官方的文档练习：<a href="https://dev.mysql.com/doc/refman/5.7/en/regexp.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/regexp.html</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;MySQL&lt;br&gt;分组排序&lt;/p&gt;
-&lt;p&gt;使用过其他数据库的同学，一定知道那些好用的开窗函数，像什么rank() over(),sum() over() 等等，实现一些功能的时候很好用，但是呢，MySQL中并没有这些函数，那怎样实现这些功能呢？我们可以使用MySQL中的变量来实现这个功能。&lt;/p&gt;
-&lt;p&gt;我们先来看第一个类型的问题，关于排序的问题&lt;/p&gt;
-&lt;h2 id=&quot;排名&quot;&gt;&lt;a href=&quot;#排名&quot; class=&quot;headerlink&quot; title=&quot;排名&quot;&gt;&lt;/a&gt;排名&lt;/h2&gt;&lt;p&gt;就是按照指定的字段，给每一条记录分配一个行号（序号），作为他的排名&lt;br&gt;在postgresql中可以使用像rank() over()这样的函数&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    course_name,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    s_id,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    score,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;rank&lt;/span&gt;() &lt;span class=&quot;keyword&quot;&gt;over&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;by&lt;/span&gt; score &lt;span class=&quot;keyword&quot;&gt;desc&lt;/span&gt;) rank_score&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    t_score&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-02.png-blog.photo&quot; alt=&quot;mysql-handbook-05-02&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;MySQL&lt;br&gt;正则表达式&lt;/p&gt;
+&lt;p&gt;在前面，我们了解了like的使用，它可以做一些简单的匹配&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在like中，我们使用%来代替任意个或多个字符，_表示任意单个字符&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;但在实际的应用场景中，我们可能还会需要更强大的匹配方式，比如“正则表达式”，这就需要使用regexp。&lt;/p&gt;
+&lt;p&gt;常用的正则表达式，更多的内容，大家可以百度下&lt;br&gt;&lt;img src=&quot;http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-04-01.png-blog.photo&quot; alt=&quot;mysql-handbook-04-01&quot;&gt;&lt;/p&gt;
     
     </summary>
     
