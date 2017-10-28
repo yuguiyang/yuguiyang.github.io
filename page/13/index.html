@@ -325,6 +325,308 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/09/matplotlib-handbook-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/09/matplotlib-handbook-02/" itemprop="url">matplotlib手册(2)-pyplot.figure</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-09T08:11:00+08:00">
+                2017-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据可视化-Python-R/" itemprop="url" rel="index">
+                    <span itemprop="name">数据可视化-Python&R</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>matplotlib手册(2)</p>
+<p>这里，我们继续上一节，继续学习下pyplot<br>参考官方文档：<a href="http://matplotlib.org/2.0.2/users/pyplot_tutorial.html" target="_blank" rel="external">http://matplotlib.org/2.0.2/users/pyplot_tutorial.html</a></p>
+<h1 id="1-pyplot-figure"><a href="#1-pyplot-figure" class="headerlink" title="1. pyplot.figure"></a>1. pyplot.figure</h1><p>   我暂时是把他理解成画板的意思，前面我们虽然没有使用figure，但是默认会创建一个figure<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">matplotlib.pyplot.figure(num=None, figsize=None, dpi=None, facecolor=None, edgecolor=None, frameon=True, FigureClass=&lt;class 'matplotlib.figure.Figure'&gt;, **kwargs)</div><div class="line"></div><div class="line"><span class="comment">#这里有几个常用的参数，比如num，这就好比是一个id，来表示每一个figure</span></div><div class="line">num : integer <span class="keyword">or</span> string, optional, default: none</div><div class="line"><span class="comment">#画板的大小</span></div><div class="line">figsize : tuple of integers, optional, default: <span class="keyword">None</span></div><div class="line"><span class="comment">#表示画板的背景颜色</span></div><div class="line">facecolor :the background color. If <span class="keyword">not</span> provided, defaults to rc figure.facecolor</div></pre></td></tr></table></figure></p>
+<p>我们来个小例子，我们就创建3个figure，修改背景颜色，不做其他的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line">plt.figure(<span class="string">'one'</span> ,facecolor=<span class="string">'green'</span>)</div><div class="line"></div><div class="line">plt.figure(<span class="string">'two'</span> ,facecolor=<span class="string">'red'</span>)</div><div class="line"></div><div class="line">plt.figure(<span class="string">'three'</span> ,facecolor=<span class="string">'blue'</span>)</div><div class="line"></div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/09/matplotlib-handbook-02/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/08/numpy-handbook-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/08/numpy-handbook-04/" itemprop="url">numpy手册(4)-ufunc</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T21:59:00+08:00">
+                2017-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Numpy/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Numpy</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Python<br>Numpy知识总结</p>
+<hr>
+<p>这里，我们说下对数组操作的常用函数</p>
+<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><p>我们先说下接收一个参数的一元函数，比如 np.sqrt 开方函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">a = np.arange(<span class="number">10</span>)</div><div class="line"></div><div class="line">np.sqrt(a)</div><div class="line">Out[<span class="number">45</span>]: </div><div class="line">array([ <span class="number">0.</span>        ,  <span class="number">1.</span>        ,  <span class="number">1.41421356</span>,  <span class="number">1.73205081</span>,  <span class="number">2.</span>        ,</div><div class="line">        <span class="number">2.23606798</span>,  <span class="number">2.44948974</span>,  <span class="number">2.64575131</span>,  <span class="number">2.82842712</span>,  <span class="number">3.</span>        ])</div><div class="line"></div><div class="line">a**<span class="number">0.5</span></div><div class="line">Out[<span class="number">46</span>]: </div><div class="line">array([ <span class="number">0.</span>        ,  <span class="number">1.</span>        ,  <span class="number">1.41421356</span>,  <span class="number">1.73205081</span>,  <span class="number">2.</span>        ,</div><div class="line">        <span class="number">2.23606798</span>,  <span class="number">2.44948974</span>,  <span class="number">2.64575131</span>,  <span class="number">2.82842712</span>,  <span class="number">3.</span>        ])</div></pre></td></tr></table></figure></p>
+<p>常用的一元函数<br><img src="http://upload-images.jianshu.io/upload_images/76024-4e51ac598140bce5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常用一元函数"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-fc8bedc9e7685c7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常用一元函数"></p>
+<p>还有些常用的二元函数，比如 add,subtract<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">a = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line"></div><div class="line">b = np.array([<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">49</span>]: array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">50</span>]: array([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</div><div class="line"></div><div class="line">np.add(a,b)</div><div class="line">Out[<span class="number">51</span>]: array([<span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>])</div><div class="line"></div><div class="line">np.subtract(a,b)</div><div class="line">Out[<span class="number">52</span>]: array([<span class="number">-3</span>, <span class="number">-3</span>, <span class="number">-3</span>])</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-49d48098a4dc8dce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常用二元函数"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/08/numpy-handbook-04/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/08/matplotlib-handbook-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -768,318 +1070,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/07/numpy-handbook-03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/07/numpy-handbook-03/" itemprop="url">numpy手册(3)-Datetimes and Timedeltas</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T21:59:00+08:00">
-                2017-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Numpy/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Numpy</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Python<br>Numpy知识总结</p>
-<hr>
-<p>这里说下numpy中日期、时间相关的使用。<br>主要参考：<br><a href="https://docs.scipy.org/doc/numpy-dev/reference/arrays.datetime.html" target="_blank" rel="external">https://docs.scipy.org/doc/numpy-dev/reference/arrays.datetime.html</a></p>
-<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>在numpy中，我们很方便的讲字符串转换成日期类型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">np.datetime64(<span class="string">'2017-08-06'</span>)</div><div class="line">Out[<span class="number">3</span>]: numpy.datetime64(<span class="string">'2017-08-06'</span>)</div><div class="line"></div><div class="line">np.datetime64(<span class="string">'2017-08'</span>)</div><div class="line">Out[<span class="number">4</span>]: numpy.datetime64(<span class="string">'2017-08'</span>)</div><div class="line"></div><div class="line"><span class="comment">#我们可以通过参数，强制将数据格式化为我们想要的粒度</span></div><div class="line">np.datetime64(<span class="string">'2017-08'</span> , <span class="string">'D'</span>)</div><div class="line">Out[<span class="number">5</span>]: numpy.datetime64(<span class="string">'2017-08-01'</span>)</div><div class="line"></div><div class="line">np.datetime64(<span class="string">'2017-08'</span> , <span class="string">'Y'</span>)</div><div class="line">Out[<span class="number">6</span>]: numpy.datetime64(<span class="string">'2017'</span>)</div><div class="line"></div><div class="line">a = np.array([<span class="string">'2017-07-01'</span>,<span class="string">'2017-07-15'</span>,<span class="string">'2017-08-01'</span>] , dtype=np.datetime64)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">10</span>]: array([<span class="string">'2017-07-01'</span>, <span class="string">'2017-07-15'</span>, <span class="string">'2017-08-01'</span>], dtype=<span class="string">'datetime64[D]'</span>)</div><div class="line"></div><div class="line"><span class="comment">#我们也可以使用arange函数初始化数组</span></div><div class="line">b = np.arange(<span class="string">'2017-08-01'</span>,<span class="string">'2017-09-01'</span>,dtype=np.datetime64)</div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">12</span>]: </div><div class="line">array([<span class="string">'2017-08-01'</span>, <span class="string">'2017-08-02'</span>, <span class="string">'2017-08-03'</span>, ..., <span class="string">'2017-08-29'</span>,</div><div class="line">       <span class="string">'2017-08-30'</span>, <span class="string">'2017-08-31'</span>], dtype=<span class="string">'datetime64[D]'</span>)</div></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/07/numpy-handbook-03/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/07/python-handbook-07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/07/python-handbook-07/" itemprop="url">Python基础（7）- Selenium使用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T10:00:00+08:00">
-                2017-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>以前搞Java的时候，知道Selenium是做自动化测试的，后来发现搞爬虫也会用到Selenium，这里就和Python整合方面，简单学习下。</p>
-<h1 id="1-什么是Selenium"><a href="#1-什么是Selenium" class="headerlink" title="1. 什么是Selenium"></a>1. 什么是Selenium</h1><blockquote>
-<p>Selenium是一个用于Web应用程序测试的工具。Selenium测试直接运行在浏览器中，就像真正的用户在操作一样。支持的浏览器包括IE（7, 8, 9, 10, 11），Mozilla Firefox，Safari，Google Chrome，Opera等。这个工具的主要功能包括：测试与浏览器的兼容性——测试你的应用程序看是否能够很好得工作在不同浏览器和操作系统之上。测试系统功能——创建回归测试检验软件功能和用户需求。支持自动录制动作和自动生成 .Net、Java、Perl等不同语言的测试脚本。–百度百科</p>
-</blockquote>
-<p>官网地址：<a href="http://www.seleniumhq.org/" target="_blank" rel="external">http://www.seleniumhq.org/</a><br>因为Selenium可以录制不同的动作，模拟操作，和Python结合以后，在爬取数据的时候就很方便，所以下面我们来看看需要怎样配置。</p>
-<p>#2. 安装配置</p>
-<h2 id="2-1火狐浏览器插件安装"><a href="#2-1火狐浏览器插件安装" class="headerlink" title="2.1火狐浏览器插件安装"></a>2.1火狐浏览器插件安装</h2><p>插件地址：<a href="https://addons.mozilla.org/en-US/firefox/addon/selenium-ide/" target="_blank" rel="external">https://addons.mozilla.org/en-US/firefox/addon/selenium-ide/</a><br><img src="http://upload-images.jianshu.io/upload_images/76024-fb51bbc84930a80a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>安装之后，我们可以直接在浏览器中使用Selenium<br><img src="http://upload-images.jianshu.io/upload_images/76024-cd0adde7e4935c6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="2-2火狐浏览器driver下载"><a href="#2-2火狐浏览器driver下载" class="headerlink" title="2.2火狐浏览器driver下载"></a>2.2火狐浏览器driver下载</h2><p>这个再后面会用到，地址：<a href="https://github.com/mozilla/geckodriver/releases" target="_blank" rel="external">https://github.com/mozilla/geckodriver/releases</a><br>WebDriver是Selenium的API，我们用Python集成开发会很方便，这个下载后，需要放到Path路径下</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-ab2854acd301d3b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-2e9ae39edd468860.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><img src="http://upload-images.jianshu.io/upload_images/76024-7061f3c7d3934ab7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="2-3Python安装Selenium模块"><a href="#2-3Python安装Selenium模块" class="headerlink" title="2.3Python安装Selenium模块"></a>2.3Python安装Selenium模块</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install selenium</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-48b11d9d6b8a53ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h1 id="3-示例代码"><a href="#3-示例代码" class="headerlink" title="3.示例代码"></a>3.示例代码</h1><p>我们先来看一个简单的例子，我们打开火狐浏览器，然后让浏览器加载一个URL<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"></div><div class="line">browser = webdriver.Firefox()</div><div class="line">browser.get(<span class="string">'http://www.baidu.com/'</span>)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">error 信息：</div><div class="line">  File <span class="string">"D:\Users\yugui\Anaconda3\lib\site-packages\selenium\webdriver\common\service.py"</span>, line <span class="number">81</span>, <span class="keyword">in</span> start</div><div class="line">    os.path.basename(self.path), self.start_error_message)</div><div class="line"></div><div class="line">WebDriverException: <span class="string">'geckodriver'</span> executable needs to be <span class="keyword">in</span> PATH.</div></pre></td></tr></table></figure></p>
-<p>刚开始可能会报错，这是因为我们上面的那个driver没有加到PATH。<br>加到PATH后，再次执行，就可打开浏览器了<br><img src="http://upload-images.jianshu.io/upload_images/76024-9cceb324c62e349e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>再来看一个略复杂的例子：<br>这是官方中的例子：<a href="http://www.seleniumhq.org/docs/03_webdriver.jsp#selenium-webdriver" target="_blank" rel="external">http://www.seleniumhq.org/docs/03_webdriver.jsp#selenium-webdriver</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> selenium.common.exceptions <span class="keyword">import</span> TimeoutException</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait <span class="comment"># available since 2.4.0</span></div><div class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC <span class="comment"># available since 2.26.0</span></div><div class="line"></div><div class="line"><span class="comment">#1.打开浏览器</span></div><div class="line">browser = webdriver.Firefox()</div><div class="line"><span class="comment">#2.浏览器加载地址</span></div><div class="line">browser.get(<span class="string">'https://www.baidu.com/'</span>)</div><div class="line"><span class="comment">#3.输出浏览器标题</span></div><div class="line">print(browser.title)</div><div class="line"><span class="comment">#4.一个断言，浏览器标题中包含'百度'关键字</span></div><div class="line"><span class="keyword">assert</span> <span class="string">'百度'</span> <span class="keyword">in</span> browser.title</div><div class="line"></div><div class="line"><span class="comment">#5.根据ID，获取搜索框</span></div><div class="line">elem = browser.find_element_by_id(<span class="string">'kw'</span>)</div><div class="line"><span class="comment">#模拟输入Python，进行搜索</span></div><div class="line">elem.send_keys(<span class="string">'python'</span>)</div><div class="line">elem.submit()</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="comment"># 等待浏览器刷新，返回我们的搜索结果</span></div><div class="line">    WebDriverWait(browser, <span class="number">10</span>).until(EC.title_contains(<span class="string">"python"</span>))</div><div class="line"></div><div class="line">    <span class="comment"># 输出当前浏览器的标题</span></div><div class="line">    print(browser.title)</div><div class="line"></div><div class="line"><span class="keyword">finally</span>:</div><div class="line">    <span class="comment"># 关闭浏览器</span></div><div class="line">    browser.quit()</div></pre></td></tr></table></figure></p>
-<p>执行后，我们会看到，打开浏览器，然后搜索‘Python’，返回搜索结果后会关闭。</p>
-<h1 id="4-获取控件的方式"><a href="#4-获取控件的方式" class="headerlink" title="4.获取控件的方式"></a>4.获取控件的方式</h1><p>在上面的例子中，我们使用了find_element_by_id，就是通过标签的id来获取元素<br>这个和JS里面的差不多，还有很多其他的方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#by id</span></div><div class="line"><span class="comment">#&lt;div id="coolestWidgetEvah"&gt;...&lt;/div&gt;</span></div><div class="line">find_element_by_id(id_)</div><div class="line"></div><div class="line">element = driver.find_element_by_id(<span class="string">"coolestWidgetEvah"</span>)</div><div class="line"></div><div class="line"><span class="comment">#by class name</span></div><div class="line"><span class="comment">#&lt;div class="cheese"&gt;&lt;span&gt;Cheddar&lt;/span&gt;&lt;/div&gt;&lt;div class="cheese"&gt;&lt;span&gt;Gouda&lt;/span&gt;&lt;/div&gt;</span></div><div class="line">find_element_by_class_name(name)</div><div class="line"></div><div class="line">cheeses = driver.find_elements_by_class_name(<span class="string">"cheese"</span>)</div></pre></td></tr></table></figure></p>
-<p>论坛里这篇博客写的很好：<a href="https://ask.hellobi.com/blog/cuiqingcai/8411" target="_blank" rel="external">Python3中Selenium使用方法 </a></p>
-<h1 id="5-实例练习"><a href="#5-实例练习" class="headerlink" title="5. 实例练习"></a>5. 实例练习</h1><p>这里顺便写个小例子，练习下，我们方位豆瓣读书，然后搜索关键字，将所有的书都打印出来<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</div><div class="line"><span class="keyword">from</span> selenium.common.exceptions <span class="keyword">import</span> NoSuchElementException</div><div class="line"></div><div class="line"><span class="comment">#打开浏览器</span></div><div class="line">browser = webdriver.Firefox()</div><div class="line"><span class="comment">#设置等待时长，最长等待10s</span></div><div class="line">wait = WebDriverWait(browser,<span class="number">10</span>)</div><div class="line"></div><div class="line"><span class="comment">#打开URL</span></div><div class="line">browser.get(<span class="string">'https://book.douban.com/'</span>)</div><div class="line"></div><div class="line"><span class="comment">#输出浏览器标题</span></div><div class="line">print(<span class="string">'browser title: '</span>,browser.title)</div><div class="line"></div><div class="line"><span class="comment">#获取搜索框</span></div><div class="line">inp_query = wait.until(EC.presence_of_element_located((By.ID,<span class="string">'inp-query'</span>)))</div><div class="line">inp_query.send_keys(<span class="string">'onepiece'</span>)</div><div class="line"><span class="comment">#可以直接提交，或者获取提交按钮再提交</span></div><div class="line">inp_query.submit()</div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">#获取提交按钮</span></div><div class="line"><span class="string">inp_btn =  browser.find_element_by_class_name('inp-btn').find_element_by_tag_name('input')</span></div><div class="line"><span class="string">inp_btn.click()</span></div><div class="line"><span class="string">'''</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_current_page</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">'-----------------------------------'</span>)</div><div class="line">    print(<span class="string">'current url: '</span>,browser.current_url)</div><div class="line">    </div><div class="line">    <span class="comment">#&lt;ul class="subject-list"&gt;</span></div><div class="line">    rs = wait.until(EC.presence_of_element_located((By.CLASS_NAME,<span class="string">'subject-list'</span>)))</div><div class="line">    book_list = rs.find_elements_by_tag_name(<span class="string">'li'</span>)</div><div class="line">    print(<span class="string">'current page total book: '</span>,len(book_list))</div><div class="line">    print(<span class="string">'info:'</span>,browser.find_element_by_class_name(<span class="string">'trr'</span>).text)</div><div class="line">    </div><div class="line">    <span class="comment">#输出书的名字</span></div><div class="line">    <span class="keyword">for</span> book <span class="keyword">in</span> book_list:</div><div class="line">        print(book.find_element_by_tag_name(<span class="string">'h2'</span>).text)</div><div class="line">    </div><div class="line">    print(<span class="string">'-----------------------------------'</span>)</div><div class="line">    </div><div class="line">    <span class="comment">#进入下一页</span></div><div class="line">    show_next_page()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_next_page</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment">#获取下一页的标签</span></div><div class="line">    <span class="comment">#&lt;span class="next"&gt;</span></div><div class="line">    span_next = wait.until(EC.presence_of_element_located((By.CLASS_NAME,<span class="string">'next'</span>)))</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="comment">#获取span中的a标签</span></div><div class="line">        a_next = span_next.find_element_by_tag_name(<span class="string">'a'</span>)</div><div class="line">        a_next.click()</div><div class="line">        </div><div class="line">        show_current_page()</div><div class="line">    <span class="keyword">except</span> NoSuchElementException:</div><div class="line">        <span class="comment">#已经没有下一页，可以退出了</span></div><div class="line">        print(<span class="string">'now print all pages.'</span>)</div><div class="line">    <span class="keyword">finally</span>:</div><div class="line">        browser.quit()</div><div class="line">       </div><div class="line">show_current_page()  </div><div class="line"><span class="comment">#time.sleep(10)</span></div><div class="line"><span class="comment">#退出</span></div><div class="line">browser.quit()</div></pre></td></tr></table></figure></p>
-<p>这里的元素获取方式，不是最佳的，代码还得继续优化，这个下一页挺好玩儿的，<br><img src="http://upload-images.jianshu.io/upload_images/76024-9db2013729e34b9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>刚刚简单优化了下代码，主要改了些元素选择的方式，更直接了：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</div><div class="line"><span class="keyword">from</span> selenium.common.exceptions <span class="keyword">import</span> TimeoutException</div><div class="line"></div><div class="line"><span class="comment">#打开浏览器</span></div><div class="line">browser = webdriver.Firefox()</div><div class="line"><span class="comment">#设置等待时长，最长等待10s</span></div><div class="line">wait = WebDriverWait(browser,<span class="number">10</span>)</div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment">#打开URL</span></div><div class="line">    browser.get(<span class="string">'https://book.douban.com/'</span>)</div><div class="line">    </div><div class="line">    <span class="comment">#输出浏览器标题</span></div><div class="line">    print(<span class="string">'browser title: '</span>,browser.title)</div><div class="line">    </div><div class="line">    <span class="comment">#获取搜索框</span></div><div class="line">    inp_query = wait.until(EC.presence_of_element_located((By.ID,<span class="string">'inp-query'</span>)))</div><div class="line">    inp_query.send_keys(<span class="string">'onepiece'</span>)</div><div class="line">    <span class="comment">#可以直接提交，或者获取提交按钮再提交</span></div><div class="line">    inp_query.submit()</div><div class="line">    </div><div class="line">    show_current_page()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_current_page</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">'-----------------------------------'</span>)</div><div class="line">    print(<span class="string">'current url: '</span>,browser.current_url)</div><div class="line">    </div><div class="line">    <span class="comment">#搜索结果-汇总信息</span></div><div class="line">    page_info = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,<span class="string">'div.article div.trr'</span>)))</div><div class="line">    print(<span class="string">'info: '</span>,page_info.text)</div><div class="line">    </div><div class="line">    <span class="comment">#搜索结果-书籍列表</span></div><div class="line">    book_list = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR,<span class="string">'div.article ul.subject-list li.subject-item'</span>)))</div><div class="line">    </div><div class="line">    print(<span class="string">'current page total book: '</span>,len(book_list))</div><div class="line">    <span class="keyword">for</span> book <span class="keyword">in</span> book_list:</div><div class="line">        print(book.find_element_by_tag_name(<span class="string">'h2'</span>).text)</div><div class="line">    </div><div class="line">    print(<span class="string">'-----------------------------------'</span>)</div><div class="line"></div><div class="line">    <span class="comment">#进入下一页</span></div><div class="line">    show_next_page()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_next_page</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="comment">#获取下一页的标签</span></div><div class="line">        a_next = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,<span class="string">'div.article div.paginator span.next a'</span>)))</div><div class="line">        a_next.click()</div><div class="line">        show_current_page()</div><div class="line">    <span class="keyword">except</span> TimeoutException:</div><div class="line">        print(<span class="string">'超时了.'</span>)</div><div class="line">        span_next = EC.invisibility_of_element_located((By.CSS_SELECTOR,<span class="string">'div.article div.paginator span.next'</span>))</div><div class="line">        <span class="keyword">if</span> span_next:</div><div class="line">            print(<span class="string">'now print all pages.'</span>)</div><div class="line">        <span class="keyword">else</span> :</div><div class="line">            <span class="comment">#真的超时，重试一次</span></div><div class="line">            show_next_page()</div><div class="line">    <span class="keyword">finally</span>:</div><div class="line">        browser.quit()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1134,7 +1124,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

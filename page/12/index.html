@@ -325,6 +325,305 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/10/numpy-handbook-05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/10/numpy-handbook-05/" itemprop="url">numpy手册(5)-random模块</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T21:59:00+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-Numpy/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-Numpy</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Python<br>Numpy知识总结</p>
+<hr>
+<p>numpy的random模块应该很常用，这里整理一下，<br>参考文章：<br><a href="http://www.mamicode.com/info-detail-507676.html" target="_blank" rel="external">http://www.mamicode.com/info-detail-507676.html</a><br><a href="https://docs.scipy.org/doc/numpy/reference/routines.random.html" target="_blank" rel="external">https://docs.scipy.org/doc/numpy/reference/routines.random.html</a></p>
+<h2 id="简单随机数据"><a href="#简单随机数据" class="headerlink" title="简单随机数据"></a>简单随机数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">numpy.random.rand(d0, d1, ..., dn)</div><div class="line">Random values <span class="keyword">in</span> a given shape.</div><div class="line"></div><div class="line">Create an array of the given shape <span class="keyword">and</span> populate it <span class="keyword">with</span> random samples <span class="keyword">from</span> a uniform distribution over [<span class="number">0</span>, <span class="number">1</span>)</div><div class="line">生成给定形状的随机值，随机值在[<span class="number">0</span>,<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">np.random.rand(<span class="number">10</span>)</div><div class="line">Out[<span class="number">2</span>]: </div><div class="line">array([ <span class="number">0.41103285</span>,  <span class="number">0.19043225</span>,  <span class="number">0.30385602</span>,  <span class="number">0.19330136</span>,  <span class="number">0.09727556</span>,</div><div class="line">        <span class="number">0.96518049</span>,  <span class="number">0.29930132</span>,  <span class="number">0.00633969</span>,  <span class="number">0.64269577</span>,  <span class="number">0.79953589</span>])</div><div class="line"></div><div class="line">np.random.rand(<span class="number">2</span>,<span class="number">3</span>)</div><div class="line">Out[<span class="number">3</span>]: </div><div class="line">array([[ <span class="number">0.86213038</span>,  <span class="number">0.56657202</span>,  <span class="number">0.83083843</span>],</div><div class="line">       [ <span class="number">0.48660386</span>,  <span class="number">0.20508572</span>,  <span class="number">0.4927877</span> ]])</div><div class="line"></div><div class="line">np.random.rand(<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>)</div><div class="line">Out[<span class="number">4</span>]: </div><div class="line">array([[[ <span class="number">0.06676746</span>],</div><div class="line">        [ <span class="number">0.55548283</span>],</div><div class="line">        [ <span class="number">0.04411342</span>]],</div><div class="line"></div><div class="line">       [[ <span class="number">0.18659571</span>],</div><div class="line">        [ <span class="number">0.02209355</span>],</div><div class="line">        [ <span class="number">0.83529269</span>]]])</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/10/numpy-handbook-05/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/10/matplotlib-handbook-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/10/matplotlib-handbook-04/" itemprop="url">matplotlib手册(4)-中文乱码</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T20:11:00+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据可视化-Python-R/" itemprop="url" rel="index">
+                    <span itemprop="name">数据可视化-Python&R</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>matplotlib手册(4)</p>
+<p>前面的练习中，我们基本上没有使用中文，但是在实际使用时，中文肯定是需要的，刚刚试了下，发现会有乱码的，就找了找，这里记录下。</p>
+<h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1.问题描述"></a>1.问题描述</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line">plt.figure(<span class="string">u'中文'</span>)</div><div class="line"></div><div class="line">plt.title(<span class="string">u'今天'</span>)</div><div class="line"></div><div class="line">plt.xlabel(<span class="string">u'明天'</span>)</div><div class="line"></div><div class="line">plt.ylabel(<span class="string">u'昨天'</span>)</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-0d9651a2bc1f3206.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>通过上面的例子，我们可以看到，除了figure的title没有问题，其他的title、label中文都显示为乱码</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/10/matplotlib-handbook-04/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/10/python-handbook-08/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -773,308 +1072,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/09/matplotlib-handbook-02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/09/matplotlib-handbook-02/" itemprop="url">matplotlib手册(2)-pyplot.figure</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-09T08:11:00+08:00">
-                2017-08-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据可视化-Python-R/" itemprop="url" rel="index">
-                    <span itemprop="name">数据可视化-Python&R</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>matplotlib手册(2)</p>
-<p>这里，我们继续上一节，继续学习下pyplot<br>参考官方文档：<a href="http://matplotlib.org/2.0.2/users/pyplot_tutorial.html" target="_blank" rel="external">http://matplotlib.org/2.0.2/users/pyplot_tutorial.html</a></p>
-<h1 id="1-pyplot-figure"><a href="#1-pyplot-figure" class="headerlink" title="1. pyplot.figure"></a>1. pyplot.figure</h1><p>   我暂时是把他理解成画板的意思，前面我们虽然没有使用figure，但是默认会创建一个figure<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">matplotlib.pyplot.figure(num=None, figsize=None, dpi=None, facecolor=None, edgecolor=None, frameon=True, FigureClass=&lt;class 'matplotlib.figure.Figure'&gt;, **kwargs)</div><div class="line"></div><div class="line"><span class="comment">#这里有几个常用的参数，比如num，这就好比是一个id，来表示每一个figure</span></div><div class="line">num : integer <span class="keyword">or</span> string, optional, default: none</div><div class="line"><span class="comment">#画板的大小</span></div><div class="line">figsize : tuple of integers, optional, default: <span class="keyword">None</span></div><div class="line"><span class="comment">#表示画板的背景颜色</span></div><div class="line">facecolor :the background color. If <span class="keyword">not</span> provided, defaults to rc figure.facecolor</div></pre></td></tr></table></figure></p>
-<p>我们来个小例子，我们就创建3个figure，修改背景颜色，不做其他的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line">plt.figure(<span class="string">'one'</span> ,facecolor=<span class="string">'green'</span>)</div><div class="line"></div><div class="line">plt.figure(<span class="string">'two'</span> ,facecolor=<span class="string">'red'</span>)</div><div class="line"></div><div class="line">plt.figure(<span class="string">'three'</span> ,facecolor=<span class="string">'blue'</span>)</div><div class="line"></div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/09/matplotlib-handbook-02/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/08/numpy-handbook-04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/08/numpy-handbook-04/" itemprop="url">numpy手册(4)-ufunc</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T21:59:00+08:00">
-                2017-08-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Numpy/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Numpy</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Python<br>Numpy知识总结</p>
-<hr>
-<p>这里，我们说下对数组操作的常用函数</p>
-<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><p>我们先说下接收一个参数的一元函数，比如 np.sqrt 开方函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">a = np.arange(<span class="number">10</span>)</div><div class="line"></div><div class="line">np.sqrt(a)</div><div class="line">Out[<span class="number">45</span>]: </div><div class="line">array([ <span class="number">0.</span>        ,  <span class="number">1.</span>        ,  <span class="number">1.41421356</span>,  <span class="number">1.73205081</span>,  <span class="number">2.</span>        ,</div><div class="line">        <span class="number">2.23606798</span>,  <span class="number">2.44948974</span>,  <span class="number">2.64575131</span>,  <span class="number">2.82842712</span>,  <span class="number">3.</span>        ])</div><div class="line"></div><div class="line">a**<span class="number">0.5</span></div><div class="line">Out[<span class="number">46</span>]: </div><div class="line">array([ <span class="number">0.</span>        ,  <span class="number">1.</span>        ,  <span class="number">1.41421356</span>,  <span class="number">1.73205081</span>,  <span class="number">2.</span>        ,</div><div class="line">        <span class="number">2.23606798</span>,  <span class="number">2.44948974</span>,  <span class="number">2.64575131</span>,  <span class="number">2.82842712</span>,  <span class="number">3.</span>        ])</div></pre></td></tr></table></figure></p>
-<p>常用的一元函数<br><img src="http://upload-images.jianshu.io/upload_images/76024-4e51ac598140bce5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常用一元函数"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-fc8bedc9e7685c7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常用一元函数"></p>
-<p>还有些常用的二元函数，比如 add,subtract<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">a = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line"></div><div class="line">b = np.array([<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">49</span>]: array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">50</span>]: array([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</div><div class="line"></div><div class="line">np.add(a,b)</div><div class="line">Out[<span class="number">51</span>]: array([<span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>])</div><div class="line"></div><div class="line">np.subtract(a,b)</div><div class="line">Out[<span class="number">52</span>]: array([<span class="number">-3</span>, <span class="number">-3</span>, <span class="number">-3</span>])</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-49d48098a4dc8dce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常用二元函数"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/08/numpy-handbook-04/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1129,7 +1126,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

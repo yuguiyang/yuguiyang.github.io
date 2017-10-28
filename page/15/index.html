@@ -325,6 +325,344 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/05/python-handbook-05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/05/python-handbook-05/" itemprop="url">Python基础（5）- csv</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-05T12:00:00+08:00">
+                2017-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这里简单介绍下Python中的csv模块，应该蛮常用的。<br>和csv有关，一定要回合打开文件这类操作有关，这里先看下这个open函数<br>官方文档：<a href="https://docs.python.org/3/library/functions.html#open" target="_blank" rel="external">https://docs.python.org/3/library/functions.html#open</a></p>
+<h1 id="1-open"><a href="#1-open" class="headerlink" title="1.open"></a>1.open</h1><blockquote>
+<p>open(file, mode=’r’, buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)Open file and return a corresponding file object. If the file cannot be opened, an OSError is raised.</p>
+</blockquote>
+<p>file，就是我们要打开的文件地址；<br>mode，就是打开的方式，默认是只读文本（’rt’)</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-6b900cd2865a1c71.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-2dbd703eb2d9b406.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>newline，和换行符有关，在网上找了个资料：<a href="https://www.zhihu.com/question/19751023" target="_blank" rel="external">https://www.zhihu.com/question/19751023</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-5729473610100cb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>换行符看起来有点儿乱，以后如果一段问题了再研究下。<br>下面，我们先来看看csv</p>
+<h1 id="2-csv-reader"><a href="#2-csv-reader" class="headerlink" title="2. csv.reader"></a>2. csv.reader</h1><blockquote>
+<p>csv.reader(csvfile, dialect=’excel’, **fmtparams)Return a reader object which will iterate over lines in the given csvfile.</p>
+</blockquote>
+<p>我们的csv文件是这样的<br><img src="http://upload-images.jianshu.io/upload_images/76024-247a9d0b9b1d4f0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> csv</div><div class="line"></div><div class="line"><span class="keyword">with</span> open(<span class="string">r'D:\document\python_demo\employee_data.csv'</span>) <span class="keyword">as</span> csvfile:</div><div class="line">    emp_reader = csv.reader(csvfile)</div><div class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> emp_reader:</div><div class="line">        print(row)</div><div class="line"></div><div class="line"><span class="comment">##</span></div><div class="line">runfile(<span class="string">'D:/document/python_demo/demo_open.py'</span>, wdir=<span class="string">'D:/document/python_demo'</span>)</div><div class="line">[<span class="string">'lufei'</span>, <span class="string">'20'</span>, <span class="string">'leader'</span>, <span class="string">'onepiece'</span>, <span class="string">'100'</span>]</div><div class="line">[<span class="string">'namei'</span>, <span class="string">'19'</span>, <span class="string">'teacher'</span>, <span class="string">'onepiece'</span>, <span class="string">'999'</span>]</div></pre></td></tr></table></figure>
+<p>就csv文件来说，会有几个特点，比如字段之间的分隔符，换行符等，我们使用上面的dialect来指定<br>如果我们，现在将分隔符，替换为^<br><img src="http://upload-images.jianshu.io/upload_images/76024-d2d41da40334e1cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们再次执行，就无法正确分割数据了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">runfile(<span class="string">'D:/document/python_demo/demo_open.py'</span>, wdir=<span class="string">'D:/document/python_demo'</span>)</div><div class="line">[<span class="string">'lufei^20^leader^onepiece^100'</span>]</div><div class="line">[<span class="string">'namei^19^teacher^onepiece^999'</span>]</div></pre></td></tr></table></figure></p>
+<p>我们修改下代码，加上delimiter就行了，详情参考官网：<a href="https://docs.python.org/3/library/csv.html#csv-fmt-params" target="_blank" rel="external">https://docs.python.org/3/library/csv.html#csv-fmt-params</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> csv</div><div class="line"></div><div class="line"><span class="keyword">with</span> open(<span class="string">r'D:\document\python_demo\employee_data.csv'</span>) <span class="keyword">as</span> csvfile:</div><div class="line">    emp_reader = csv.reader(csvfile,delimiter=<span class="string">'^'</span>)</div><div class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> emp_reader:</div><div class="line">        print(row)</div><div class="line"></div><div class="line"><span class="comment">##</span></div><div class="line">runfile(<span class="string">'D:/document/python_demo/demo_open.py'</span>, wdir=<span class="string">'D:/document/python_demo'</span>)</div><div class="line">[<span class="string">'lufei'</span>, <span class="string">'20'</span>, <span class="string">'leader'</span>, <span class="string">'onepiece'</span>, <span class="string">'100'</span>]</div><div class="line">[<span class="string">'namei'</span>, <span class="string">'19'</span>, <span class="string">'teacher'</span>, <span class="string">'onepiece'</span>, <span class="string">'999'</span>]</div></pre></td></tr></table></figure>
+<p>这时候，如果我们的数据中，含有分隔符，我们需要再加上封闭符，一般都会使用双引号，这里使用参数quotechar指定，默认是双引号<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">csv data:</div><div class="line">lufei^<span class="number">20</span>^leader^$one^_^piece$^<span class="number">100</span></div><div class="line">namei^<span class="number">19</span>^teacher^onepiece^<span class="number">999</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> csv</div><div class="line"></div><div class="line"><span class="keyword">with</span> open(<span class="string">r'D:\document\python_demo\employee_data.csv'</span>) <span class="keyword">as</span> csvfile:</div><div class="line">    emp_reader = csv.reader(csvfile,delimiter=<span class="string">'^'</span>,quotechar=<span class="string">'$'</span>)</div><div class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> emp_reader:</div><div class="line">        print(row)</div><div class="line"></div><div class="line"></div><div class="line">result:</div><div class="line">runfile(<span class="string">'D:/document/python_demo/demo_open.py'</span>, wdir=<span class="string">'D:/document/python_demo'</span>)</div><div class="line">[<span class="string">'lufei'</span>, <span class="string">'20'</span>, <span class="string">'leader'</span>, <span class="string">'one^_^piece'</span>, <span class="string">'100'</span>]</div><div class="line">[<span class="string">'namei'</span>, <span class="string">'19'</span>, <span class="string">'teacher'</span>, <span class="string">'onepiece'</span>, <span class="string">'999'</span>]</div></pre></td></tr></table></figure></p>
+<h1 id="3-csv-writer"><a href="#3-csv-writer" class="headerlink" title="3.csv.writer"></a>3.csv.writer</h1><blockquote>
+<p>csv.writer(csvfile, dialect=’excel’, **fmtparams)Return a writer object responsible for converting the user’s data into delimited strings on the given file-like object. csvfile can be any object with a write() method.</p>
+</blockquote>
+<p>这里的用法都差不多，我们简单举个小例子，用官网的例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> open(<span class="string">'eggs.csv'</span>, <span class="string">'w'</span>, newline=<span class="string">''</span>) <span class="keyword">as</span> csvfile:</div><div class="line">    spamwriter = csv.writer(csvfile, delimiter=<span class="string">' '</span>,</div><div class="line">                            quotechar=<span class="string">'|'</span>, quoting=csv.QUOTE_MINIMAL)</div><div class="line">    spamwriter.writerow([<span class="string">'Spam'</span>] * <span class="number">5</span> + [<span class="string">'Baked Beans'</span>])</div><div class="line">    spamwriter.writerow([<span class="string">'Spam'</span>, <span class="string">'Lovely |Spam'</span>, <span class="string">'Wonderful Spam'</span>]) </div><div class="line"></div><div class="line">result：</div><div class="line">|Spam| |Spam| |Spam| |Spam| |Spam| |Baked Beans|</div><div class="line">|Spam| |Lovely ||Spam| |Wonderful Spam|</div></pre></td></tr></table></figure></p>
+<p>这里用到了另一个参数：quoting，这个参数是针对quotechar来说的，<br>quotechar在ETL工具中叫做封闭符，是为了防止字段内容中出现分割符，我们需要区分到底是分隔符，还是字段内容，所以需要根据quotechar去判断；<br>quoting则是控制在什么情况下使用封闭符，他有几个选项<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">csv.QUOTE_ALL <span class="comment">#所有字段都添加封闭符</span></div><div class="line">csv.QUOTE_NONNUMERIC <span class="comment">#在非数值字段加封闭符</span></div><div class="line">csv.QUOTE_NONE <span class="comment">#所有字段都不加</span></div><div class="line">csv.QUOTE_MINIMAL <span class="comment">#只在出现分隔符的字段旁加封闭符，默认</span></div></pre></td></tr></table></figure></p>
+<p>好了，csv的就简单分享到这里了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/05/python-handbook-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/05/python-handbook-04/" itemprop="url">Python基础（4）- collections</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-05T10:00:00+08:00">
+                2017-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>昨天用到了这个collections模块，挺好用的，这里记录下。<br>官网介绍：<a href="https://docs.python.org/3/library/collections.html" target="_blank" rel="external">https://docs.python.org/3/library/collections.html</a><br>博客：<a href="https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001411031239400f7181f65f33a4623bc42276a605debf6000" target="_blank" rel="external">廖雪峰的博客</a><br>这里介绍些好玩儿的例子。</p>
+<h1 id="namedtuple"><a href="#namedtuple" class="headerlink" title="namedtuple"></a>namedtuple</h1><blockquote>
+<p>collections.namedtuple(typename, field_names, *, verbose=False, rename=False, module=None)<br>Returns a new tuple subclass named typename. The new subclass is used to create tuple-like objects that have fields accessible by attribute lookup as well as being indexable and iterable. Instances of the subclass also have a helpful docstring (with typename and field_names) and a helpful <strong>repr</strong>() method which lists the tuple contents in a name=value format.</p>
+</blockquote>
+<p>namedtuple是一个工厂函数，返回一个自定义的tuple类，可读性更强些。<br>通常我们使用tuple的时候，像这样<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">point_a = <span class="number">1</span>,<span class="number">3</span></div><div class="line"></div><div class="line">point_b = <span class="number">2</span>,<span class="number">6</span></div><div class="line"></div><div class="line">point_a</div><div class="line">Out[<span class="number">37</span>]: (<span class="number">1</span>, <span class="number">3</span>)</div><div class="line"></div><div class="line">point_b</div><div class="line">Out[<span class="number">38</span>]: (<span class="number">2</span>, <span class="number">6</span>)</div><div class="line"></div><div class="line">point_a[<span class="number">0</span>]</div><div class="line">Out[<span class="number">39</span>]: <span class="number">1</span></div><div class="line"></div><div class="line">point_a[<span class="number">1</span>]</div><div class="line">Out[<span class="number">40</span>]: <span class="number">3</span></div></pre></td></tr></table></figure></p>
+<p>我们是那个namedtuple就可以这样了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> namedtuple</div><div class="line"></div><div class="line">Point = namedtuple(<span class="string">'Point'</span>,[<span class="string">'x'</span>,<span class="string">'y'</span>])</div><div class="line"></div><div class="line">point_a = Point(<span class="number">2</span>,<span class="number">2</span>)</div><div class="line"></div><div class="line">point_b = Point(<span class="number">3</span>,<span class="number">3</span>)</div><div class="line"></div><div class="line">point_a</div><div class="line">Out[<span class="number">45</span>]: Point(x=<span class="number">2</span>, y=<span class="number">2</span>)</div><div class="line"></div><div class="line">point_b</div><div class="line">Out[<span class="number">46</span>]: Point(x=<span class="number">3</span>, y=<span class="number">3</span>)</div><div class="line"></div><div class="line">point_a.x</div><div class="line">Out[<span class="number">47</span>]: <span class="number">2</span></div><div class="line"></div><div class="line">point_b.y</div><div class="line">Out[<span class="number">48</span>]: <span class="number">3</span></div></pre></td></tr></table></figure></p>
+<p>这样使用一个坐标位置，是不是可读性更强呢，而且用起来也很方便<br>我们可以看看这个Point是怎样定义的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">print(point_a._source)</div><div class="line"><span class="keyword">from</span> builtins <span class="keyword">import</span> property <span class="keyword">as</span> _property, tuple <span class="keyword">as</span> _tuple</div><div class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> itemgetter <span class="keyword">as</span> _itemgetter</div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span><span class="params">(tuple)</span>:</span></div><div class="line">    <span class="string">'Point(x, y)'</span></div><div class="line"></div><div class="line">    __slots__ = ()</div><div class="line"></div><div class="line">    _fields = (<span class="string">'x'</span>, <span class="string">'y'</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(_cls, x, y)</span>:</span></div><div class="line">        <span class="string">'Create new instance of Point(x, y)'</span></div><div class="line">        <span class="keyword">return</span> _tuple.__new__(_cls, (x, y))</div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_make</span><span class="params">(cls, iterable, new=tuple.__new__, len=len)</span>:</span></div><div class="line">        <span class="string">'Make a new Point object from a sequence or iterable'</span></div><div class="line">        result = new(cls, iterable)</div><div class="line">        <span class="keyword">if</span> len(result) != <span class="number">2</span>:</div><div class="line">            <span class="keyword">raise</span> TypeError(<span class="string">'Expected 2 arguments, got %d'</span> % len(result))</div><div class="line">        <span class="keyword">return</span> result</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_replace</span><span class="params">(_self, **kwds)</span>:</span></div><div class="line">        <span class="string">'Return a new Point object replacing specified fields with new values'</span></div><div class="line">        result = _self._make(map(kwds.pop, (<span class="string">'x'</span>, <span class="string">'y'</span>), _self))</div><div class="line">        <span class="keyword">if</span> kwds:</div><div class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'Got unexpected field names: %r'</span> % list(kwds))</div><div class="line">        <span class="keyword">return</span> result</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">'Return a nicely formatted representation string'</span></div><div class="line">        <span class="keyword">return</span> self.__class__.__name__ + <span class="string">'(x=%r, y=%r)'</span> % self</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_asdict</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">'Return a new OrderedDict which maps field names to their values.'</span></div><div class="line">        <span class="keyword">return</span> OrderedDict(zip(self._fields, self))</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getnewargs__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">'Return self as a plain tuple.  Used by copy and pickle.'</span></div><div class="line">        <span class="keyword">return</span> tuple(self)</div><div class="line"></div><div class="line">    x = _property(_itemgetter(<span class="number">0</span>), doc=<span class="string">'Alias for field number 0'</span>)</div><div class="line"></div><div class="line">    y = _property(_itemgetter(<span class="number">1</span>), doc=<span class="string">'Alias for field number 1'</span>)</div></pre></td></tr></table></figure></p>
+<p>下面还有个更好用的地方，我们再读取CSV或者数据库的时候，会返回结果集，这个时候用起来更方便，比如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> csv</div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> namedtuple</div><div class="line">       </div><div class="line">EmployeeRecord = namedtuple(<span class="string">'EmployeeRecord'</span>, <span class="string">'name, age, title, department, paygrade'</span>)</div><div class="line"><span class="keyword">for</span> emp <span class="keyword">in</span> map(EmployeeRecord._make, csv.reader(open(<span class="string">r'D:\document\python_demo\employee_data.csv'</span>))):</div><div class="line">    print(emp.name, emp.title)</div><div class="line">    print(<span class="string">'emp:'</span>,emp)</div><div class="line"></div><div class="line"></div><div class="line">runfile(<span class="string">'D:/document/python_demo/demo_hi.py'</span>, wdir=<span class="string">'D:/document/python_demo'</span>)</div><div class="line">lufei leader</div><div class="line">emp: EmployeeRecord(name=<span class="string">'lufei'</span>, age=<span class="string">'20'</span>, title=<span class="string">'leader'</span>, department=<span class="string">'onepiece'</span>, paygrade=<span class="string">'100'</span>)</div><div class="line">namei teacher</div><div class="line">emp: EmployeeRecord(name=<span class="string">'namei'</span>, age=<span class="string">'19'</span>, title=<span class="string">'teacher'</span>, department=<span class="string">'onepiece'</span>, paygrade=<span class="string">'999'</span>)</div></pre></td></tr></table></figure></p>
+<p>_make<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">somenamedtuple._make(iterable)</div><div class="line">Class method that makes a new instance <span class="keyword">from</span> an existing sequence <span class="keyword">or</span> iterable.</div></pre></td></tr></table></figure></p>
+<h1 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h1><p>我们使用list的时候，用下标查找很快，数据量大的时候，插入删除比较慢，deque是为了高效实现插入和删除的双向队列。</p>
+<blockquote>
+<p>deque:double-ended queue</p>
+<p>class collections.deque([iterable[, maxlen]])<br>Returns a new deque object initialized left-to-right (using append()) with data from iterable. If iterable is not specified, the new deque is empty.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</div><div class="line"></div><div class="line">a = deque(list(<span class="string">'abcdef'</span>))</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">80</span>]: deque([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>])</div><div class="line"></div><div class="line">a.append(<span class="string">'x'</span>)</div><div class="line"></div><div class="line">a.append(<span class="string">'y'</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">83</span>]: deque([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'x'</span>, <span class="string">'y'</span>])</div><div class="line"></div><div class="line">a.appendleft(<span class="string">'w'</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">85</span>]: deque([<span class="string">'w'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'x'</span>, <span class="string">'y'</span>])</div><div class="line"></div><div class="line">a.pop()</div><div class="line">Out[<span class="number">86</span>]: <span class="string">'y'</span></div><div class="line"></div><div class="line">a.popleft()</div><div class="line">Out[<span class="number">87</span>]: <span class="string">'w'</span></div></pre></td></tr></table></figure>
+<p>这里扩展了很多方便的函数，appendleft(),popleft()等等</p>
+<h1 id="defaultdict"><a href="#defaultdict" class="headerlink" title="defaultdict"></a>defaultdict</h1><p>可以设置默认值的dict，平时我们使用dict的时候，如果key不存在，会报错</p>
+<blockquote>
+<p>class collections.defaultdict([default_factory[, …]])<br>Returns a new dictionary-like object. defaultdict is a subclass of the built-in dict class. It overrides one method and adds one writable instance variable. The remaining functionality is the same as for the dict class and is not documented here.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">a = &#123;<span class="string">'name'</span>:<span class="string">'lufe'</span>,<span class="string">'age'</span>:<span class="number">20</span>&#125;</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">105</span>]: &#123;<span class="string">'age'</span>: <span class="number">20</span>, <span class="string">'name'</span>: <span class="string">'lufe'</span>&#125;</div><div class="line"></div><div class="line">a[<span class="string">'name'</span>]</div><div class="line">Out[<span class="number">106</span>]: <span class="string">'lufe'</span></div><div class="line"></div><div class="line">a[<span class="string">'age'</span>]</div><div class="line">Out[<span class="number">107</span>]: <span class="number">20</span></div><div class="line"></div><div class="line">a[<span class="string">'score'</span>]</div><div class="line">Traceback (most recent call last):</div><div class="line"></div><div class="line">  File <span class="string">"&lt;ipython-input-108-99f54e089332&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    a[<span class="string">'score'</span>]</div><div class="line"></div><div class="line">KeyError: <span class="string">'score'</span></div></pre></td></tr></table></figure>
+<p>我们使用defaultdict就可以避免这个错误<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"></div><div class="line">b = defaultdict(int)</div><div class="line"></div><div class="line">b[<span class="string">'name'</span>]=<span class="string">'lufei'</span></div><div class="line"></div><div class="line">b</div><div class="line">Out[<span class="number">123</span>]: defaultdict(int, &#123;<span class="string">'name'</span>: <span class="string">'lufei'</span>&#125;)</div><div class="line"></div><div class="line">b[<span class="string">'age'</span>]</div><div class="line">Out[<span class="number">124</span>]: <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<p>这里我们设置默认是int型，默认值为0<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">x = defaultdict(<span class="number">0</span>)</div><div class="line">Traceback (most recent call last):</div><div class="line"></div><div class="line">  File <span class="string">"&lt;ipython-input-125-dd2052e23af0&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    x = defaultdict(<span class="number">0</span>)</div><div class="line"></div><div class="line">TypeError: first argument must be callable <span class="keyword">or</span> <span class="keyword">None</span></div><div class="line"></div><div class="line"></div><div class="line">x = defaultdict(<span class="keyword">lambda</span> : <span class="number">100</span>)</div><div class="line"></div><div class="line">x</div><div class="line">Out[<span class="number">127</span>]: defaultdict(&lt;function __main__.&lt;<span class="keyword">lambda</span>&gt;&gt;, &#123;&#125;)</div><div class="line"></div><div class="line">x[<span class="string">'name'</span>]</div><div class="line">Out[<span class="number">128</span>]: <span class="number">100</span></div></pre></td></tr></table></figure></p>
+<h1 id="Counter"><a href="#Counter" class="headerlink" title="Counter"></a>Counter</h1><p>是一个简单的计数器，</p>
+<blockquote>
+<p>class collections.Counter([iterable-or-mapping])<br>A Counter is a dict subclass for counting hashable objects. It is an unordered collection where elements are stored as dictionary keys and their counts are stored as dictionary values. Counts are allowed to be any integer value including zero or negative counts. The Counter class is similar to bags or multisets in other languages.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</div><div class="line"></div><div class="line">cnt = Counter([<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>, <span class="string">'blue'</span>])</div><div class="line"></div><div class="line">cnt</div><div class="line">Out[<span class="number">131</span>]: Counter(&#123;<span class="string">'blue'</span>: <span class="number">3</span>, <span class="string">'green'</span>: <span class="number">1</span>, <span class="string">'red'</span>: <span class="number">2</span>&#125;)</div><div class="line"></div><div class="line">cnt.most_common(<span class="number">1</span>)</div><div class="line">Out[<span class="number">132</span>]: [(<span class="string">'blue'</span>, <span class="number">3</span>)]</div><div class="line"></div><div class="line">cnt.most_common(<span class="number">-1</span>)</div><div class="line">Out[<span class="number">133</span>]: []</div><div class="line"></div><div class="line">cnt.elements</div><div class="line">Out[<span class="number">134</span>]: &lt;bound method Counter.elements of Counter(&#123;<span class="string">'blue'</span>: <span class="number">3</span>, <span class="string">'red'</span>: <span class="number">2</span>, <span class="string">'green'</span>: <span class="number">1</span>&#125;)&gt;</div><div class="line"></div><div class="line">cnt.most_common(<span class="number">3</span>)[:<span class="number">-2</span>:<span class="number">-1</span>]</div><div class="line">Out[<span class="number">137</span>]: [(<span class="string">'green'</span>, <span class="number">1</span>)]</div></pre></td></tr></table></figure>
+<p>这个most_common最好用了感觉，根据次数进行排名</p>
+<p>当然，collections中还有很多其他的好用的类，我们可以参考官方文档。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/02/numpy-handbook-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -763,315 +1101,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/01/python-handbook-03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/01/python-handbook-03/" itemprop="url">Python基础（3）- lambda表达式</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T10:00:00+08:00">
-                2017-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这里简单整理下，lambda表达式相关内容。</p>
-<h1 id="什么是lambda表达式"><a href="#什么是lambda表达式" class="headerlink" title="什么是lambda表达式"></a>什么是lambda表达式</h1><p>lambda表达式，是一个匿名函数，用起来方便快捷一些<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#lambda 参数:操作(参数)</span></div><div class="line"></div><div class="line">fun_add = <span class="keyword">lambda</span> x: x+<span class="number">1</span></div><div class="line"></div><div class="line">print(fun_add(<span class="number">1</span>))</div><div class="line">print(fun_add(<span class="number">10</span>))</div></pre></td></tr></table></figure></p>
-<p>这里，一个简单的加1的函数，看起来也很直观<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fun_add = <span class="keyword">lambda</span> x,y: x+y</div><div class="line"></div><div class="line">print(fun_add(<span class="number">3</span>,<span class="number">4</span>))</div><div class="line">print(fun_add(<span class="number">8</span>,<span class="number">9</span>))</div></pre></td></tr></table></figure></p>
-<p>这是x+y的函数，的确简洁很多<br>看网上，提到lambda表达式的话，都会提到函数式编程，一些常用的函数，像map,reduce,filter,sorted，</p>
-<h1 id="map函数"><a href="#map函数" class="headerlink" title="map函数"></a>map函数</h1><p>map是Python内置的一个函数，接收2个参数，一个函数，一个或多个可迭代参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">map(func, *iterables) --&gt; map object</div><div class="line"></div><div class="line">Make an iterator that computes the function using arguments <span class="keyword">from</span></div><div class="line">each of the iterables.  Stops when the shortest iterable <span class="keyword">is</span> exhausted.</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">d1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x)</span>:</span></div><div class="line">    <span class="keyword">return</span> x+<span class="number">10</span></div><div class="line"></div><div class="line">t = map(add , d1)</div><div class="line">print(<span class="string">'原来的list:'</span>,d1)</div><div class="line">print(<span class="string">'执行add后的list:'</span>,list(t))</div></pre></td></tr></table></figure>
-<p>我们定义了一个函数，对传入的参数加10，一个list<br><img src="http://upload-images.jianshu.io/upload_images/76024-8893ba955b9085cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>map把这个函数，作用在每一个list的元素上，<br>这里呢，我们就可以用lambda表达式写，方便又直观<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">d1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line">t = map(<span class="keyword">lambda</span> x: x+<span class="number">10</span> , d1)</div><div class="line">print(<span class="string">'原来的list:'</span>,d1)</div><div class="line">print(<span class="string">'执行add后的list:'</span>,list(t))</div></pre></td></tr></table></figure></p>
-<p>我们也可以传2个list，这里会计算2个list的和<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">s1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line">s2 = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line">t = map(<span class="keyword">lambda</span> x,y: x+y,s1,s2)</div><div class="line">print(list(t)) <span class="comment">##[5, 7, 9]</span></div></pre></td></tr></table></figure></p>
-<h1 id="reduce函数"><a href="#reduce函数" class="headerlink" title="reduce函数"></a>reduce函数</h1><p>reduce会将function作用于sequence，function接收2个参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">reduce(function, sequence[, initial]) -&gt; value</div><div class="line"></div><div class="line">Apply a function of two arguments cumulatively to the items of a sequence,</div><div class="line"><span class="keyword">from</span> left to right, so <span class="keyword">as</span> to reduce the sequence to a single value.</div><div class="line">For example, reduce(<span class="keyword">lambda</span> x, y: x+y, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]) calculates</div><div class="line">((((<span class="number">1</span>+<span class="number">2</span>)+<span class="number">3</span>)+<span class="number">4</span>)+<span class="number">5</span>).  If initial <span class="keyword">is</span> present, it <span class="keyword">is</span> placed before the items</div><div class="line">of the sequence <span class="keyword">in</span> the calculation, <span class="keyword">and</span> serves <span class="keyword">as</span> a default when the</div><div class="line">sequence <span class="keyword">is</span> empty.</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">t = reduce(<span class="keyword">lambda</span> x,y: x+y, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line">print(t)   <span class="comment">#6，((1+2)+3)=6</span></div><div class="line"></div><div class="line">t = reduce(<span class="keyword">lambda</span> x,y: x*<span class="number">10</span>+y,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line">print(t) <span class="comment"># ((1*10+2)*10+3)=123</span></div></pre></td></tr></table></figure>
-<h1 id="filter函数"><a href="#filter函数" class="headerlink" title="filter函数"></a>filter函数</h1><p>看名字，就是一个过滤的功能，对每个item调用function，只返回为True的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">|  filter(function or None, iterable) --&gt; filter object</div><div class="line">|  </div><div class="line">|  Return an iterator yielding those items of iterable <span class="keyword">for</span> which function(item)</div><div class="line">|  <span class="keyword">is</span> true. If function <span class="keyword">is</span> <span class="keyword">None</span>, <span class="keyword">return</span> the items that are true.</div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">t = filter(<span class="keyword">lambda</span> x: x&lt;<span class="number">0</span>,range(<span class="number">-5</span>,<span class="number">5</span>))</div><div class="line">print(list(t)) <span class="comment">#[-5, -4, -3, -2, -1]</span></div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/01/pandas-handbook-05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/01/pandas-handbook-05/" itemprop="url">Pandas手册（5）- 用pandas完成excel中常见任务</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T08:59:00+08:00">
-                2017-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Pandas</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Python<br>Pandas</p>
-<hr>
-<p>发现了一篇很好的教程，介绍一些Excel中的常用操作，怎样在pandas中实现，很不错，这里学习，顺便分享下。<br>原文地址：<a href="http://python.jobbole.com/80870/" target="_blank" rel="external">用Pandas完成Excel中常见的任务</a>，</p>
-<p>这个是翻译的，再原文是：<a href="http://pbpython.com/excel-pandas-comp.html" target="_blank" rel="external">Common Excel Tasks Demonstrated in Pandas </a></p>
-<p>好了，下面，我们开始学习下。</p>
-<h1 id="基础数据"><a href="#基础数据" class="headerlink" title="基础数据"></a>基础数据</h1><p>这个是从网上找的一个成绩单，拿了一部分数据</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-fc77ad95f5aeb18d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>首先呢，我们想要，在加一列，显示总分，Excel中很方便<br><img src="http://upload-images.jianshu.io/upload_images/76024-cc298b5d57f6ba58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>在pandas中呢，其实，我们就是需要“数学”，“语文”，“英语”这3列加在一起，我们怎样获取这3列呢？<br>前面，我们说过在DataFrame中，怎样去筛选数据<br><img src="http://upload-images.jianshu.io/upload_images/76024-3c57ffb8a1ecd92f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">df = pd.read_excel(<span class="string">r'D:\document\tableau_data\data_stu.xlsx'</span>,sheetname=<span class="number">0</span>)</div><div class="line"></div><div class="line">print(df)</div><div class="line">print(df[<span class="string">'数学'</span>])</div><div class="line">print(df[<span class="string">'语文'</span>])</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-7d28c7bfc1bde1e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/01/pandas-handbook-05/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1126,7 +1155,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
