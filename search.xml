@@ -12,6 +12,30 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[MySQL-排序再记]]></title>
+    <url>%2F2017%2F10%2F29%2Fmysql-handbook-16%2F</url>
+    <content type="text"><![CDATA[这里整理下在MySQL中排序的方法 我就记得在哪儿写过，刚刚一直没找着，就又整理了一下，后来找到了，坑之前的博客：MySQL-分组排序 序号在MySQL中，没有什么row_number()，rank() 之类的开窗函数，我们想要显示数据行号的话，要使用变量来手动排序关于变量可以参考之前的博客：MySQL-变量的使用12set @r:= 0;select @r,@r:=@r+1,@r:=@r+1 这里呢，我们先使用set对@r变量进行了初始化，不初始化的话，变量默认为NULL，12set @r:= 0;select @r,@r:=@r+1,@r:=@r+1,@k,@k:=@k+2 因为我们使用的用户自定义变量，只在当前会话窗口有效,换个窗口就不行了；同样的，如果不初始化为0，他会继续使用上次的值 所以，我们要给数据显示序号的话，就需要使用这个变量1234567select a.*, @row_num:=@row_num+1 as row_num from t_student a , (select @row_num:=0) b order by s_id 我们在表b中初始化序号变量，表a表b没有关联关系，直接产生笛卡尔积，因为记录是按行返回的，所以每行记录都会产生一个序号，每行记录按照@row_num:=@row_num+1进行赋值这里就和SQL的执行顺序有关，要好好领会一下 用下面的方式也可以12345678set @row_num:=0;select a.*, @row_num:=@row_num+1 as row_num from t_student a order by s_id 分组排序上面，我们就简单的实现了序号，有时候，我们需要实现更复杂的分组排序123456789101112set @row_num:=1;set @pre_c_id:=null;select a.*, if(@pre_c_id=c_id,@row_num:=@row_num+1,@row_num:=1) as row_num, @pre_c_id:=c_id -- @row_num:=@row_num+1 as row_num from t_student a order by c_id,s_id 因为我们要看分组的序号，所以，我们得知道当前记录的c_id和上一条记录的c_id是否一样，一样继续序号，不一样，就要重新开始编号了。后面就参考前面的文章吧。MySQL-分组排序]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL-获取前10%数据]]></title>
+    <url>%2F2017%2F10%2F29%2Fmysql-handbook-15%2F</url>
+    <content type="text"><![CDATA[这里记录一个问题 在MySQL中，我们要查看前3条记录的话，是使用limit1select *from t_student order by s_id limit 3; 简单的分页也可以使用力limit来完成1select *from t_student order by s_id limit 3 offset 3; 这都比较常见，如果我们想要获取数据的前10%呢？ 在SQLServer中，我们可以直接使用top 10 percent 就可以了，但在MySQL中，我们得另想办法前10%的数据，我们得知道数据一共有多少，那我们就知道该获取多少条记录了，然后还得知道记录的行号。 记录行号在MySQL中，获取行号，要使用变量可以参考之前的文章：MySQL-变量的使用MySQL-排序 1234567select a.*, @row_num:=@row_num+1 as row_num from t_student a , (select @row_num:=0) b order by s_id 前10%有了行号，我们就可以根据行号和总记录数来过滤了，我们数据少，就看前50%的1234567891011select *from ( select a.*, @row_num:=@row_num+1 as row_num from t_student a , (select @row_num:=0) b order by s_id) basewhere base.row_num &lt;= (@row_num*0.5) @row_num这个变量，是按行来的，所以我们再where条件中使用的时候，他是最后1条记录的行号，及总记录数总记录数乘以50%，就是前50%的记录数，这样，我们就获取了前X%数据，做完收工。]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[常见图表-柱形图]]></title>
     <url>%2F2017%2F10%2F28%2Fstatistics-handbook-04%2F</url>
     <content type="text"><![CDATA[常见图表介绍及实例 本篇为阅读笔记《数据化运营速成手册》 柱形图是我们非常常用的一种图表，竖着放叫柱形图，横着放就是条形图，把柱子分割成几块就成了累加柱形图，柱形图的目的就是为了对比，下面从几个方面介绍下柱形图的使用。 利用累加柱形图对比数据结构的变化累加柱形图，可能也叫堆叠柱状图，像这样： 上图的例子是说一家公司运营策略的改变前后，运营成本的对比图，通过累加柱形图，非常直观的表现出各个部分成本的变化。 我们可以快速得到一些信息： 公司运营成本有显著下降 公司运营思路有重大调整原来重挽回，现在重拉新和促活 基础成本有所下降 多指标组合对比当我们想要在多个指标上进行对比时，像这样查看新签约数和续约数2个指标， 这里使用要注意，分组数据不能太多，如果有10个部门，就不会表达出台清晰的观点；那我们就可以使用条形图，分开查看单个指标。 这个还不是最直观的，我们可以用均值，把他改成双向条形图 这样更直观一些上图，我们将每组数据都减去平均值，然后就形成了正负的数据，优劣显示非常明显（Excel里这个图，那个标签的位置，一直没找到让他显示在左边，找了好久 ）]]></content>
@@ -30,8 +54,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>读书笔记</tag>
         <tag>数据分析</tag>
+        <tag>读书笔记</tag>
         <tag>实例</tag>
       </tags>
   </entry>
@@ -54,8 +78,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>读书笔记</tag>
         <tag>数据分析</tag>
+        <tag>读书笔记</tag>
         <tag>实例</tag>
       </tags>
   </entry>
@@ -94,6 +118,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[数据分析师是否需要掌握SQL？]]></title>
+    <url>%2F2017%2F10%2F18%2Fjotting-03%2F</url>
+    <content type="text"><![CDATA[前面，我们分析了一下数据分析师的前景要不要找一份数据分析的工作？ 这里，我们研究下，数据分析师是否需要掌握SQL。 什么是数据分析师？我们从字面来理解，数据分析师=数据+分析+师 数据对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，没有数据支撑的分析报告，一定是异想天开。数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。 分析有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。这个分析一定要基于业务，脱离业务的分析是没有任何价值的。 真的要掌握SQL吗？上面，我们说了，分析公司内部的数据，需要使用SQL，行业内的其他公司是不是也是这样呢？前面，我们爬取了拉勾网的数据，这里，我们就可以通过招聘数据证明一下，数据分析师是否需要掌握SQL 我们根据岗位需求的标签和岗位描述来判断是否需要掌握SQL12345678IF ( CONTAINS(upper([position_lables]),'SQL') OR CONTAINS(upper([job_desc]),'SQL') )THEN '是'ELSE '否'END 就岗位数量来看，每个城市的岗位中，需要掌握SQL的岗位都超过50% 就算SQL不是数据分析师必备的技能，掌握了SQL，你就多了50%的机会，我们再来看下，哪些公司的岗位需要掌握SQL呢 这些都是互联网知名的企业，跟着他们走没有问题。 总上所述，掌握了SQL，不会吃亏，不会上当，不说啦，我得学习SQL去了。]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MySQL-每周练习(2017-10-20)]]></title>
     <url>%2F2017%2F10%2F18%2Fmysql-handbook-13%2F</url>
     <content type="text"><![CDATA[MySQL每周练习 本周我们来一道数据处理的练习题。 数据背景不知道大家学会爬虫了没，拉勾网的数据大家会爬取了吗？这道题和拉勾网有关哦。假设你已经学会爬取数据了，可以将数据爬取下来，数据可能是这个样子(demo库中的tm_lagou_data表)：1234567891011121314151617CREATE TABLE `tm_lagou_data` ( `city` varchar(20) DEFAULT NULL COMMENT '城市', `company_short_name` varchar(100) DEFAULT NULL COMMENT '公司简称', `company_full_name` varchar(200) DEFAULT NULL COMMENT '公司全称', `company_industry` varchar(100) DEFAULT NULL COMMENT '所属行业', `company_location` varchar(100) DEFAULT NULL COMMENT '工作地点', `position_advantage` varchar(100) DEFAULT NULL COMMENT '岗位特点', `position_salary` varchar(20) DEFAULT NULL COMMENT '薪资', `position_workyear` varchar(20) DEFAULT NULL COMMENT '工作经验', `position_name` varchar(50) DEFAULT NULL COMMENT '职位名称', `position_first_type` varchar(100) DEFAULT NULL COMMENT '岗位类型-大类', `position_second_type` varchar(100) DEFAULT NULL COMMENT '岗位类型-小类', `position_lables` varchar(100) DEFAULT NULL COMMENT '岗位标签', `position_id` varchar(20) DEFAULT NULL COMMENT '岗位ID', `create_time` datetime DEFAULT NULL COMMENT '发布时间', `job_desc` text comment '岗位描述') ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='拉勾网-数据分析数据'; 在Python中，我们没有过多的处理，数据是这个样子的 这一次呢，我们只需要关注一个字段即可company_industry，这是公司所属行业这个行业呢，一般会有多个，像上海的这个挖财网，就是互联网+金融，有2个标签，中间是逗号分隔符 问题描述原始数据：tm_lagou_data表中，company_industry（所属行业）字段可能会有多个值，并用逗号分隔 我们的目的是把这个字段拆分，变成下面这样的数据 处理后数据： 知识点为了解决上面的问题，我们需要掌握的知识点如下： 多表关联:MySQL-关联查询Mysql 连接的使用 字符串函数: https://dev.mysql.com/doc/refman/5.7/en/string-functions.html 附有了拆分后的数据，我们就可以看数据分析师的行业分布，哪个行业招的数据分析师最多，哪个行业招的最少了。]]></content>
@@ -103,17 +138,6 @@
       <tags>
         <tag>SQL</tag>
         <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[数据分析师是否需要掌握SQL？]]></title>
-    <url>%2F2017%2F10%2F18%2Fjotting-03%2F</url>
-    <content type="text"><![CDATA[前面，我们分析了一下数据分析师的前景要不要找一份数据分析的工作？ 这里，我们研究下，数据分析师是否需要掌握SQL。 什么是数据分析师？我们从字面来理解，数据分析师=数据+分析+师 数据对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，没有数据支撑的分析报告，一定是异想天开。数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。 分析有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。这个分析一定要基于业务，脱离业务的分析是没有任何价值的。 真的要掌握SQL吗？上面，我们说了，分析公司内部的数据，需要使用SQL，行业内的其他公司是不是也是这样呢？前面，我们爬取了拉勾网的数据，这里，我们就可以通过招聘数据证明一下，数据分析师是否需要掌握SQL 我们根据岗位需求的标签和岗位描述来判断是否需要掌握SQL12345678IF ( CONTAINS(upper([position_lables]),'SQL') OR CONTAINS(upper([job_desc]),'SQL') )THEN '是'ELSE '否'END 就岗位数量来看，每个城市的岗位中，需要掌握SQL的岗位都超过50% 就算SQL不是数据分析师必备的技能，掌握了SQL，你就多了50%的机会，我们再来看下，哪些公司的岗位需要掌握SQL呢 这些都是互联网知名的企业，跟着他们走没有问题。 总上所述，掌握了SQL，不会吃亏，不会上当，不说啦，我得学习SQL去了。]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -351,8 +375,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>读书笔记</tag>
         <tag>数据分析</tag>
+        <tag>读书笔记</tag>
         <tag>实例</tag>
       </tags>
   </entry>
@@ -376,8 +400,8 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>读书笔记</tag>
         <tag>数据分析</tag>
+        <tag>读书笔记</tag>
         <tag>实例</tag>
       </tags>
   </entry>
@@ -454,18 +478,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python异常（1）- module 'urllib' has no attribute 'urlopen']]></title>
-    <url>%2F2017%2F08%2F19%2Fpython-handbook-10%2F</url>
-    <content type="text"><![CDATA[今天想复习下BeautifulSoup，就把之前的代码拿过来测试，发现报错了 12345678910111213141516import urllibfrom bs4 import BeautifulSoup#加载网址，获取当前页面def getHTML(url) : page = urllib.urlopen(url) html = page.read() return htmlhtml = getHTML('https://movie.douban.com/top250')soup = BeautifulSoup(html, "html.parser")for img in soup.find_all('img'): print(img.get('src')) 查了下，发下是Python3中，需要引入的模块变了改一下就可以了1urllib.request.urlopen(url)]]></content>
-      <categories>
-        <category>Python-基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>异常</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Python中文分词-jieba]]></title>
     <url>%2F2017%2F08%2F19%2Fpython-handbook-11%2F</url>
     <content type="text"><![CDATA[刚刚在看Python的词云图，想要显示中文的时候，需要做一个分词，这里我们学习下jieba分词。 1. jieba中文分词jieba是Python中文分词的一个组件 github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba) 支持三种分词模式：精确模式，试图将句子最精确地切开，适合文本分析；全模式，把句子中所有的可以成词的词语都扫描出来, 速度非常快，但是不能解决歧义；搜索引擎模式，在精确模式的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词。支持繁体分词支持自定义词典MIT 授权协议 安装：1pip install jieba 官网上的小实例12345678910111213import jiebaseg_list = jieba.cut("我来到北京清华大学", cut_all=True)print("Full Mode: " + "/ ".join(seg_list)) # 全模式seg_list = jieba.cut("我来到北京清华大学", cut_all=False)print("Default Mode: " + "/ ".join(seg_list)) # 精确模式seg_list = jieba.cut("他来到了网易杭研大厦") # 默认是精确模式print(", ".join(seg_list))seg_list = jieba.cut_for_search("小明硕士毕业于中国科学院计算所，后在日本京都大学深造") # 搜索引擎模式print(", ".join(seg_list)) 12345678Building prefix dict from the default dictionary ...Dumping model to file cache C:\Users\YUGUIY~1\AppData\Local\Temp\jieba.cacheLoading model cost 0.884 seconds.Prefix dict has been built succesfully.Full Mode: 我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学Default Mode: 我/ 来到/ 北京/ 清华大学他, 来到, 了, 网易, 杭研, 大厦小明, 硕士, 毕业, 于, 中国, 科学, 学院, 科学院, 中国科学院, 计算, 计算所, ，, 后, 在, 日本, 京都, 大学, 日本京都大学, 深造 到这里，想要的功能其实已经足够了，官网还有很多其他的介绍内容，很强大，后面需要的时候，再来补充，接着回去改那个词云的了先。]]></content>
@@ -475,6 +487,18 @@
       <tags>
         <tag>Python</tag>
         <tag>分词</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python异常（1）- module 'urllib' has no attribute 'urlopen']]></title>
+    <url>%2F2017%2F08%2F19%2Fpython-handbook-10%2F</url>
+    <content type="text"><![CDATA[今天想复习下BeautifulSoup，就把之前的代码拿过来测试，发现报错了 12345678910111213141516import urllibfrom bs4 import BeautifulSoup#加载网址，获取当前页面def getHTML(url) : page = urllib.urlopen(url) html = page.read() return htmlhtml = getHTML('https://movie.douban.com/top250')soup = BeautifulSoup(html, "html.parser")for img in soup.find_all('img'): print(img.get('src')) 查了下，发下是Python3中，需要引入的模块变了改一下就可以了1urllib.request.urlopen(url)]]></content>
+      <categories>
+        <category>Python-基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>异常</tag>
       </tags>
   </entry>
   <entry>
@@ -760,18 +784,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[使用Spyder不弹出画图面板]]></title>
-    <url>%2F2017%2F08%2F08%2Fvisual-handbook-01%2F</url>
-    <content type="text"><![CDATA[最近练习Python都是在Spyder中开发，很方便，今天练习matplotlib的时候，发现，绘制的图片显示在out中1234import matplotlib.pyplot as pltplt.plot([1,2,3,4])plt.ylabel('some numbers')plt.show() 依稀记得之前在IPython中执行的时候，是单独弹出一个面板的，就百度了下，找到了解决方法我们在Tools-&gt;Preferences-&gt; 修改完以后，我们需要重启下Spyder重启后，再次执行，就可以看到那个单独的窗口了。]]></content>
-      <categories>
-        <category>数据可视化-Python&amp;R</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Spyder</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Pandas手册（7）- pandas数据加载]]></title>
     <url>%2F2017%2F08%2F08%2Fpandas-handbook-07%2F</url>
     <content type="text"><![CDATA[PythonPandas 这里整理下，pandas中数据加载的几个方法，前面，我们也有用过，read_csv，下面，我们整理下 1.pandas读取数据方法1pandas.read_csv(filepath_or_buffer, sep=', ', delimiter=None, header='infer', names=None, index_col=None, usecols=None, squeeze=False, prefix=None, mangle_dupe_cols=True, dtype=None, engine=None, converters=None, true_values=None, false_values=None, skipinitialspace=False, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False, iterator=False, chunksize=None, compression='infer', thousands=None, decimal=b'.', lineterminator=None, quotechar='"', quoting=0, escapechar=None, comment=None, encoding=None, dialect=None, tupleize_cols=False, error_bad_lines=True, warn_bad_lines=True, skipfooter=0, skip_footer=0, doublequote=True, delim_whitespace=False, as_recarray=False, compact_ints=False, use_unsigned=False, low_memory=True, buffer_lines=None, memory_map=False, float_precision=None) 我们可以看到这个参数非常多，基本上可以解决我们文件读取时的常见问题。 下面就是小例子csv文件内容是这样的：数据以逗号分隔，没有其他特殊的情况 123456789101112131415161718import pandas as pddf = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv')#使用read_table需要，手动指定下分隔符#df = pd.read_table(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',sep=',')print(df)print(df.index)print(df.columns)runfile('D:/document/python_demo/pandas_csv.py', wdir='D:/document/python_demo') a b c d message0 1 2 3 4 hello1 5 6 7 8 world2 9 10 11 12 fooRangeIndex(start=0, stop=3, step=1)Index(['a', 'b', 'c', 'd', 'message'], dtype='object') 我们可以看到，这里默认把第一行当做columns了，我们可以通过header=None，来自动指定标题1234567891011121314151617181920df = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',header=None) 0 1 2 3 40 a b c d message1 1 2 3 4 hello2 5 6 7 8 world3 9 10 11 12 fooRangeIndex(start=0, stop=4, step=1)Int64Index([0, 1, 2, 3, 4], dtype='int64')#通过names，来自定义columnsdf = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',header=None,names=list('opqrxy')) o p q r x y0 a b c d message NaN1 1 2 3 4 hello NaN2 5 6 7 8 world NaN3 9 10 11 12 foo NaNRangeIndex(start=0, stop=4, step=1)Index(['o', 'p', 'q', 'r', 'x', 'y'], dtype='object') 现在的行索引是自动初始化的，我们可以指定存在的列为索引12345678910111213path = r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv'df = pd.read_csv(path,header=None, names=list('opqrxy'), index_col='x') o p q r yx message a b c d NaNhello 1 2 3 4 NaNworld 5 6 7 8 NaNfoo 9 10 11 12 NaNIndex(['message', 'hello', 'world', 'foo'], dtype='object', name='x')Index(['o', 'p', 'q', 'r', 'y'], dtype='object') 比如，有这样一份数据，字段间是通过一个或多个空格来分隔的 我们直接使用read_csv去读取，会发现，列索引有些不友好，我们可以使用正则表达式去分隔123456789101112131415161718df = pd.read_csv(path) A B C0 aaa -0.264438 -1.026059 -0.6195001 bbb 0.927272 0.302904 -0.0323992 ccc -0.264273 -0.386314 -0.2176013 ddd -0.871858 -0.348382 1.100491RangeIndex(start=0, stop=4, step=1)Index([' A B C'], dtype='object')#\s表示空格，+表示1个或多个，就是说分隔符是1个或多个空格df = pd.read_table(path,sep='\s+') A B Caaa -0.264438 -1.026059 -0.619500bbb 0.927272 0.302904 -0.032399ccc -0.264273 -0.386314 -0.217601ddd -0.871858 -0.348382 1.100491Index(['aaa', 'bbb', 'ccc', 'ddd'], dtype='object')Index(['A', 'B', 'C'], dtype='object') 还有很多其他常用的参数，比如skiprows，可以跳过指定行下面，再说个填充缺失值的方法，na_values可以将其他我们指定的值也当成NaN处理12345678910111213141516171819202122232425262728na_values : scalar, str, list-like, or dict, default None Additional strings to recognize as NA/NaN. If dict passed, specific per-column NA values. By default the following values are interpreted as NaN: ‘’, ‘#N/A’, ‘#N/A N/A’, ‘#NA’, ‘-1.#IND’, ‘-1.#QNAN’, ‘-NaN’, ‘-nan’, ‘1.#IND’, ‘1.#QNAN’, ‘N/A’, ‘NA’, ‘NULL’, ‘NaN’, ‘nan’`.#原始数据是这样的， something a b c d message0 one 1 2 3.0 4 NaN1 two 5 6 NaN 8 world2 three 9 10 11.0 12 foo#这里，我们将1，2，4也当成NaN值处理df = pd.read_csv(path,na_values=[1,2,4])#加载后，数据就会变成这样 something a b c d message0 one NaN NaN 3.0 NaN NaN1 two 5.0 6.0 NaN 8.0 world2 three 9.0 10.0 11.0 12.0 foo#我们还可以用一个dict来对不同的列指定NaN值df = pd.read_csv(path,na_values=&#123;'something':['one','three'],'d':[8,12]&#125;) something a b c d message0 NaN 1 2 3.0 4.0 NaN1 two 5 6 NaN NaN world2 NaN 9 10 11.0 NaN foo #2.pandas导出数据我们使用read_csv读取数据，处理完之后，我们可能还需要将数据存储起来，还有一个to_csv的函数1234567891011121314151617181920212223242526272829DataFrame.to_csv(path_or_buf=None, sep=', ', na_rep='', float_format=None, columns=None, header=True, index=True, index_label=None, mode='w', encoding=None, compression=None, quoting=None, quotechar='"', line_terminator='\n', chunksize=None, tupleize_cols=False, date_format=None, doublequote=True, escapechar=None, decimal='.')##我们就使用这份数据，先读取后，再保存something,a,b,c,d,messageone,1,2,3,4,NAtwo,5,6,,8,worldthree,9,10,11,12,foodf.to_csv(sys.stdout,sep='^')^something^a^b^c^d^message0^one^1^2^3.0^4^1^two^5^6^^8^world2^three^9^10^11.0^12^foo#我们看到这个输出，发现，NaN值，导出时，转为了空字符串，这里呢，我们可以手工指定na_rep : string, default ‘’df.to_csv(sys.stdout,sep='^',na_rep='NaN')^something^a^b^c^d^message0^one^1^2^3.0^4^NaN1^two^5^6^NaN^8^world2^three^9^10^11.0^12^foo#有时候，行列标签可能也不需要，我们也可以禁用df.to_csv(sys.stdout,sep='^',na_rep='NaN',index=False,header=False)one^1^2^3.0^4^NaNtwo^5^6^NaN^8^worldthree^9^10^11.0^12^foo #3.附录pandas中还有其他的加载数据方式，像读取HTML，JSON，xml等等，常用的可能还是和数据库取连接，这块后面会再补充，这里就先到这里。]]></content>
@@ -781,6 +793,18 @@
       <tags>
         <tag>Python</tag>
         <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用Spyder不弹出画图面板]]></title>
+    <url>%2F2017%2F08%2F08%2Fvisual-handbook-01%2F</url>
+    <content type="text"><![CDATA[最近练习Python都是在Spyder中开发，很方便，今天练习matplotlib的时候，发现，绘制的图片显示在out中1234import matplotlib.pyplot as pltplt.plot([1,2,3,4])plt.ylabel('some numbers')plt.show() 依稀记得之前在IPython中执行的时候，是单独弹出一个面板的，就百度了下，找到了解决方法我们在Tools-&gt;Preferences-&gt; 修改完以后，我们需要重启下Spyder重启后，再次执行，就可以看到那个单独的窗口了。]]></content>
+      <categories>
+        <category>数据可视化-Python&amp;R</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Spyder</tag>
       </tags>
   </entry>
   <entry>

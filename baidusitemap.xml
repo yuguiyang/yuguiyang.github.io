@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>https://yuguiyang.github.io/2017/10/29/mysql-handbook-16/</loc>
+    <lastmod>2017-10-29T05:53:13.955Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL-排序再记</title>
+        <pubTime>2017-10-29T04:00:00.000Z</pubTime>
+        
+        <tag>SQL</tag>
+         
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="https://yuguiyang.github.io/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuguiyang.github.io/2017/10/29/mysql-handbook-15/</loc>
+    <lastmod>2017-10-29T04:30:08.285Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL-获取前10%数据</title>
+        <pubTime>2017-10-29T02:00:00.000Z</pubTime>
+        
+        <tag>SQL</tag>
+         
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="https://yuguiyang.github.io/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuguiyang.github.io/2017/10/28/statistics-handbook-04/</loc>
     <lastmod>2017-10-28T15:47:16.042Z</lastmod>
     <data>
@@ -31,9 +75,9 @@
         <title>读书笔记-数据化运营(2章）</title>
         <pubTime>2017-10-28T04:00:00.000Z</pubTime>
         
-        <tag>读书笔记</tag>
-         
         <tag>数据分析</tag>
+         
+        <tag>读书笔记</tag>
          
         <tag>实例</tag>
          
@@ -97,9 +141,9 @@
         <title>读书笔记-数据化运营(1章）</title>
         <pubTime>2017-10-27T04:00:00.000Z</pubTime>
         
-        <tag>读书笔记</tag>
-         
         <tag>数据分析</tag>
+         
+        <tag>读书笔记</tag>
          
         <tag>实例</tag>
          
@@ -1737,9 +1781,9 @@
         <title>读书笔记-数据分析实战(3章)</title>
         <pubTime>2017-09-04T15:59:00.000Z</pubTime>
         
-        <tag>读书笔记</tag>
-         
         <tag>数据分析</tag>
+         
+        <tag>读书笔记</tag>
          
         <tag>实例</tag>
          
@@ -1761,9 +1805,9 @@
         <title>读书笔记-数据分析实战(1、2章)</title>
         <pubTime>2017-08-31T16:59:00.000Z</pubTime>
         
-        <tag>读书笔记</tag>
-         
         <tag>数据分析</tag>
+         
+        <tag>读书笔记</tag>
          
         <tag>实例</tag>
          

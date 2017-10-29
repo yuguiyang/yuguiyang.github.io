@@ -46,6 +46,102 @@
   </entry>
   
   <entry>
+    <title>MySQL-排序再记</title>
+    <link href="https://yuguiyang.github.io/2017/10/29/mysql-handbook-16/"/>
+    <id>https://yuguiyang.github.io/2017/10/29/mysql-handbook-16/</id>
+    <published>2017-10-29T04:00:00.000Z</published>
+    <updated>2017-10-29T05:53:13.955Z</updated>
+    
+    <content type="html"><![CDATA[<p>这里整理下在MySQL中排序的方法</p>
+<blockquote>
+<p>我就记得在哪儿写过，刚刚一直没找着，就又整理了一下，后来找到了，坑<br>之前的博客：<a href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/">MySQL-分组排序</a></p>
+</blockquote>
+<h1 id="序号"><a href="#序号" class="headerlink" title="序号"></a>序号</h1><p>在MySQL中，没有什么row_number()，rank() 之类的开窗函数，我们想要显示数据行号的话，要使用变量来手动排序<br>关于变量可以参考之前的博客：<a href="https://yuguiyang.github.io/2017/09/10/mysql-handbook-07/">MySQL-变量的使用</a><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> @r:= <span class="number">0</span>;</div><div class="line"><span class="keyword">select</span> @r,@r:=@r+<span class="number">1</span>,@r:=@r+<span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-73af546d7c86abaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这里呢，我们先使用set对@r变量进行了初始化，不初始化的话，变量默认为NULL，<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> @r:= <span class="number">0</span>;</div><div class="line"><span class="keyword">select</span> @r,@r:=@r+<span class="number">1</span>,@r:=@r+<span class="number">1</span>,@k,@k:=@k+<span class="number">2</span></div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-2a3fad4a21a914b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<a id="more"></a>
+<p>因为我们使用的用户自定义变量，只在当前会话窗口有效,换个窗口就不行了；同样的，如果不初始化为0，他会继续使用上次的值</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-e3ae8cc59cbd1b46.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>所以，我们要给数据显示序号的话，就需要使用这个变量<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">  a.*,</div><div class="line">  @row_num:=@row_num+<span class="number">1</span> <span class="keyword">as</span> row_num </div><div class="line"><span class="keyword">from</span> </div><div class="line">  t_student a , (<span class="keyword">select</span> @row_num:=<span class="number">0</span>) b  </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> </div><div class="line">  s_id</div></pre></td></tr></table></figure></p>
+<p>我们在表b中初始化序号变量，表a表b没有关联关系，直接产生笛卡尔积，因为记录是按行返回的，所以每行记录都会产生一个序号，每行记录按照@row_num:=@row_num+1进行赋值<br>这里就和SQL的执行顺序有关，要好好领会一下</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-a3b2b70b4c33f48e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>用下面的方式也可以<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> @row_num:=<span class="number">0</span>;</div><div class="line"><span class="keyword">select</span> </div><div class="line">  a.*,</div><div class="line">  @row_num:=@row_num+<span class="number">1</span> <span class="keyword">as</span> row_num </div><div class="line"><span class="keyword">from</span> </div><div class="line">  t_student a </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> </div><div class="line">  s_id</div></pre></td></tr></table></figure></p>
+<h1 id="分组排序"><a href="#分组排序" class="headerlink" title="分组排序"></a>分组排序</h1><p>上面，我们就简单的实现了序号，有时候，我们需要实现更复杂的分组排序<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">set</span> @row_num:=<span class="number">1</span>;</div><div class="line"><span class="keyword">set</span> @pre_c_id:=<span class="literal">null</span>;</div><div class="line"><span class="keyword">select</span> </div><div class="line">  a.*,</div><div class="line">  <span class="keyword">if</span>(@pre_c_id=c_id,@row_num:=@row_num+<span class="number">1</span>,@row_num:=<span class="number">1</span>) <span class="keyword">as</span> row_num,</div><div class="line">  @pre_c_id:=c_id</div><div class="line">  <span class="comment">-- @row_num:=@row_num+1 as row_num </span></div><div class="line"><span class="keyword">from</span> </div><div class="line">  t_student a </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> </div><div class="line">  c_id,s_id</div></pre></td></tr></table></figure></p>
+<p>因为我们要看分组的序号，所以，我们得知道当前记录的c_id和上一条记录的c_id是否一样，一样继续序号，不一样，就要重新开始编号了。<br>后面就参考前面的文章吧。<br><a href="https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/">MySQL-分组排序</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里整理下在MySQL中排序的方法&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我就记得在哪儿写过，刚刚一直没找着，就又整理了一下，后来找到了，坑&lt;br&gt;之前的博客：&lt;a href=&quot;https://yuguiyang.github.io/2017/09/09/mysql-handbook-05/&quot;&gt;MySQL-分组排序&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;序号&quot;&gt;&lt;a href=&quot;#序号&quot; class=&quot;headerlink&quot; title=&quot;序号&quot;&gt;&lt;/a&gt;序号&lt;/h1&gt;&lt;p&gt;在MySQL中，没有什么row_number()，rank() 之类的开窗函数，我们想要显示数据行号的话，要使用变量来手动排序&lt;br&gt;关于变量可以参考之前的博客：&lt;a href=&quot;https://yuguiyang.github.io/2017/09/10/mysql-handbook-07/&quot;&gt;MySQL-变量的使用&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;set&lt;/span&gt; @r:= &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; @r,@r:=@r+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,@r:=@r+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-73af546d7c86abaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这里呢，我们先使用set对@r变量进行了初始化，不初始化的话，变量默认为NULL，&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;set&lt;/span&gt; @r:= &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; @r,@r:=@r+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,@r:=@r+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,@k,@k:=@k+&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-2a3fad4a21a914b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL-获取前10%数据</title>
+    <link href="https://yuguiyang.github.io/2017/10/29/mysql-handbook-15/"/>
+    <id>https://yuguiyang.github.io/2017/10/29/mysql-handbook-15/</id>
+    <published>2017-10-29T02:00:00.000Z</published>
+    <updated>2017-10-29T04:30:08.285Z</updated>
+    
+    <content type="html"><![CDATA[<p>这里记录一个问题</p>
+<p>在MySQL中，我们要查看前3条记录的话，是使用limit<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">order</span> <span class="keyword">by</span> s_id <span class="keyword">limit</span> <span class="number">3</span>;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-841842e9c09b99e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>简单的分页也可以使用力limit来完成<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student <span class="keyword">order</span> <span class="keyword">by</span> s_id <span class="keyword">limit</span> <span class="number">3</span> <span class="keyword">offset</span> <span class="number">3</span>;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-c250d91456ec6915.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这都比较常见，如果我们想要获取数据的前10%呢？</p>
+<a id="more"></a>
+<p>在SQLServer中，我们可以直接使用top  10 percent 就可以了，但在MySQL中，我们得另想办法<br>前10%的数据，我们得知道数据一共有多少，那我们就知道该获取多少条记录了，然后还得知道记录的行号。</p>
+<ul>
+<li>记录行号<br>在MySQL中，获取行号，要使用变量<br>可以参考之前的文章：<br><a href="https://yuguiyang.github.io/2017/09/10/mysql-handbook-07/">MySQL-变量的使用</a><br><a href="https://yuguiyang.github.io/2017/10/29/mysql-handbook-16/">MySQL-排序</a></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">  a.*,</div><div class="line">  @row_num:=@row_num+<span class="number">1</span> <span class="keyword">as</span> row_num </div><div class="line"><span class="keyword">from</span> </div><div class="line">  t_student a , (<span class="keyword">select</span> @row_num:=<span class="number">0</span>) b  </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> </div><div class="line">  s_id</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-99ab1c98e1f0f879.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>前10%<br>有了行号，我们就可以根据行号和总记录数来过滤了，我们数据少，就看前50%的<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> (</div><div class="line">  <span class="keyword">select</span> </div><div class="line">    a.*,</div><div class="line">    @row_num:=@row_num+<span class="number">1</span> <span class="keyword">as</span> row_num </div><div class="line">  <span class="keyword">from</span> </div><div class="line">    t_student a , (<span class="keyword">select</span> @row_num:=<span class="number">0</span>) b  </div><div class="line">  <span class="keyword">order</span> <span class="keyword">by</span> </div><div class="line">    s_id</div><div class="line">) base</div><div class="line"><span class="keyword">where</span> </div><div class="line">  base.row_num &lt;= (@row_num*<span class="number">0.5</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-1ded0675d2e06e5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>@row_num这个变量，是按行来的，所以我们再where条件中使用的时候，他是最后1条记录的行号，及总记录数<br>总记录数乘以50%，就是前50%的记录数，这样，我们就获取了前X%数据，做完收工。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里记录一个问题&lt;/p&gt;
+&lt;p&gt;在MySQL中，我们要查看前3条记录的话，是使用limit&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; *&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; t_student &lt;span class=&quot;keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;by&lt;/span&gt; s_id &lt;span class=&quot;keyword&quot;&gt;limit&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-841842e9c09b99e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;简单的分页也可以使用力limit来完成&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; *&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; t_student &lt;span class=&quot;keyword&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;by&lt;/span&gt; s_id &lt;span class=&quot;keyword&quot;&gt;limit&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-c250d91456ec6915.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这都比较常见，如果我们想要获取数据的前10%呢？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
+    
+    
+      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
+    
+      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>常见图表-柱形图</title>
     <link href="https://yuguiyang.github.io/2017/10/28/statistics-handbook-04/"/>
     <id>https://yuguiyang.github.io/2017/10/28/statistics-handbook-04/</id>
@@ -127,9 +223,9 @@
       <category term="读书笔记" scheme="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
       <category term="实例" scheme="https://yuguiyang.github.io/tags/%E5%AE%9E%E4%BE%8B/"/>
     
@@ -266,9 +362,9 @@
       <category term="读书笔记" scheme="https://yuguiyang.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="数据分析" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="读书笔记" scheme="https://yuguiyang.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
       <category term="实例" scheme="https://yuguiyang.github.io/tags/%E5%AE%9E%E4%BE%8B/"/>
     
@@ -474,6 +570,45 @@
   </entry>
   
   <entry>
+    <title>数据分析师是否需要掌握SQL？</title>
+    <link href="https://yuguiyang.github.io/2017/10/18/jotting-03/"/>
+    <id>https://yuguiyang.github.io/2017/10/18/jotting-03/</id>
+    <published>2017-10-18T12:00:00.000Z</published>
+    <updated>2017-10-20T01:53:06.893Z</updated>
+    
+    <content type="html"><![CDATA[<p>前面，我们分析了一下数据分析师的前景<a href="https://yuguiyang.github.io/2017/10/18/jotting-02/">要不要找一份数据分析的工作？</a></p>
+<p>这里，我们研究下，数据分析师是否需要掌握SQL。</p>
+<h1 id="什么是数据分析师？"><a href="#什么是数据分析师？" class="headerlink" title="什么是数据分析师？"></a>什么是数据分析师？</h1><p>我们从字面来理解，数据分析师=数据+分析+师</p>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，<br>没有数据支撑的分析报告，一定是异想天开。<br>数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。<br>外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；<br>内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。<br>这个分析一定要基于业务，脱离业务的分析是没有任何价值的。</p>
+<a id="more"></a>
+<h1 id="真的要掌握SQL吗？"><a href="#真的要掌握SQL吗？" class="headerlink" title="真的要掌握SQL吗？"></a>真的要掌握SQL吗？</h1><p>上面，我们说了，分析公司内部的数据，需要使用SQL，行业内的其他公司是不是也是这样呢？<br>前面，我们爬取了拉勾网的数据，这里，我们就可以通过招聘数据证明一下，数据分析师是否需要掌握SQL</p>
+<p>我们根据岗位需求的标签和岗位描述来判断是否需要掌握SQL<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">IF (</div><div class="line">    CONTAINS(upper([position_lables]),'SQL')</div><div class="line">    OR </div><div class="line">    CONTAINS(upper([job_desc]),'SQL')</div><div class="line">    )</div><div class="line">THEN '是'</div><div class="line">ELSE '否'</div><div class="line"><span class="keyword">END</span></div></pre></td></tr></table></figure></p>
+<p>就岗位数量来看，每个城市的岗位中，需要掌握SQL的岗位都超过50%<br><img src="http://upload-images.jianshu.io/upload_images/76024-f393f5f9b08e057c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>就算SQL不是数据分析师必备的技能，掌握了SQL，你就多了50%的机会，我们再来看下，哪些公司的岗位需要掌握SQL呢</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/76024-4257c5cbbff62bab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这些都是互联网知名的企业，跟着他们走没有问题。</p>
+<p>总上所述，掌握了SQL，不会吃亏，不会上当，不说啦，我得学习SQL去了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前面，我们分析了一下数据分析师的前景&lt;a href=&quot;https://yuguiyang.github.io/2017/10/18/jotting-02/&quot;&gt;要不要找一份数据分析的工作？&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里，我们研究下，数据分析师是否需要掌握SQL。&lt;/p&gt;
+&lt;h1 id=&quot;什么是数据分析师？&quot;&gt;&lt;a href=&quot;#什么是数据分析师？&quot; class=&quot;headerlink&quot; title=&quot;什么是数据分析师？&quot;&gt;&lt;/a&gt;什么是数据分析师？&lt;/h1&gt;&lt;p&gt;我们从字面来理解，数据分析师=数据+分析+师&lt;/p&gt;
+&lt;h2 id=&quot;数据&quot;&gt;&lt;a href=&quot;#数据&quot; class=&quot;headerlink&quot; title=&quot;数据&quot;&gt;&lt;/a&gt;数据&lt;/h2&gt;&lt;p&gt;对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，&lt;br&gt;没有数据支撑的分析报告，一定是异想天开。&lt;br&gt;数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。&lt;br&gt;外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；&lt;br&gt;内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。&lt;/p&gt;
+&lt;h2 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析&quot;&gt;&lt;/a&gt;分析&lt;/h2&gt;&lt;p&gt;有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。&lt;br&gt;这个分析一定要基于业务，脱离业务的分析是没有任何价值的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MySQL-每周练习(2017-10-20)</title>
     <link href="https://yuguiyang.github.io/2017/10/18/mysql-handbook-13/"/>
     <id>https://yuguiyang.github.io/2017/10/18/mysql-handbook-13/</id>
@@ -517,45 +652,6 @@
       <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
     
       <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据分析师是否需要掌握SQL？</title>
-    <link href="https://yuguiyang.github.io/2017/10/18/jotting-03/"/>
-    <id>https://yuguiyang.github.io/2017/10/18/jotting-03/</id>
-    <published>2017-10-18T12:00:00.000Z</published>
-    <updated>2017-10-20T01:53:06.893Z</updated>
-    
-    <content type="html"><![CDATA[<p>前面，我们分析了一下数据分析师的前景<a href="https://yuguiyang.github.io/2017/10/18/jotting-02/">要不要找一份数据分析的工作？</a></p>
-<p>这里，我们研究下，数据分析师是否需要掌握SQL。</p>
-<h1 id="什么是数据分析师？"><a href="#什么是数据分析师？" class="headerlink" title="什么是数据分析师？"></a>什么是数据分析师？</h1><p>我们从字面来理解，数据分析师=数据+分析+师</p>
-<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，<br>没有数据支撑的分析报告，一定是异想天开。<br>数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。<br>外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；<br>内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。<br>这个分析一定要基于业务，脱离业务的分析是没有任何价值的。</p>
-<a id="more"></a>
-<h1 id="真的要掌握SQL吗？"><a href="#真的要掌握SQL吗？" class="headerlink" title="真的要掌握SQL吗？"></a>真的要掌握SQL吗？</h1><p>上面，我们说了，分析公司内部的数据，需要使用SQL，行业内的其他公司是不是也是这样呢？<br>前面，我们爬取了拉勾网的数据，这里，我们就可以通过招聘数据证明一下，数据分析师是否需要掌握SQL</p>
-<p>我们根据岗位需求的标签和岗位描述来判断是否需要掌握SQL<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">IF (</div><div class="line">    CONTAINS(upper([position_lables]),'SQL')</div><div class="line">    OR </div><div class="line">    CONTAINS(upper([job_desc]),'SQL')</div><div class="line">    )</div><div class="line">THEN '是'</div><div class="line">ELSE '否'</div><div class="line"><span class="keyword">END</span></div></pre></td></tr></table></figure></p>
-<p>就岗位数量来看，每个城市的岗位中，需要掌握SQL的岗位都超过50%<br><img src="http://upload-images.jianshu.io/upload_images/76024-f393f5f9b08e057c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>就算SQL不是数据分析师必备的技能，掌握了SQL，你就多了50%的机会，我们再来看下，哪些公司的岗位需要掌握SQL呢</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-4257c5cbbff62bab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这些都是互联网知名的企业，跟着他们走没有问题。</p>
-<p>总上所述，掌握了SQL，不会吃亏，不会上当，不说啦，我得学习SQL去了。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;前面，我们分析了一下数据分析师的前景&lt;a href=&quot;https://yuguiyang.github.io/2017/10/18/jotting-02/&quot;&gt;要不要找一份数据分析的工作？&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这里，我们研究下，数据分析师是否需要掌握SQL。&lt;/p&gt;
-&lt;h1 id=&quot;什么是数据分析师？&quot;&gt;&lt;a href=&quot;#什么是数据分析师？&quot; class=&quot;headerlink&quot; title=&quot;什么是数据分析师？&quot;&gt;&lt;/a&gt;什么是数据分析师？&lt;/h1&gt;&lt;p&gt;我们从字面来理解，数据分析师=数据+分析+师&lt;/p&gt;
-&lt;h2 id=&quot;数据&quot;&gt;&lt;a href=&quot;#数据&quot; class=&quot;headerlink&quot; title=&quot;数据&quot;&gt;&lt;/a&gt;数据&lt;/h2&gt;&lt;p&gt;对于数据分析师来说，数据是基础，俗话说，巧妇难为无米之炊，没有数据，做什么可视化，做什么分析，&lt;br&gt;没有数据支撑的分析报告，一定是异想天开。&lt;br&gt;数据的来源通常有2中，一种是公司内部数据，一种是公司外部数据。&lt;br&gt;外部数据，我们可能需要通过第三方渠道购买，或者使用爬虫从网上爬取，通常的竞品分析啊，舆情分析啊，都属于这种；&lt;br&gt;内部数据，一般是公司业务数据，存储在数据库中，我们可以使用SQL来实现自己的业务需求。&lt;/p&gt;
-&lt;h2 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析&quot;&gt;&lt;/a&gt;分析&lt;/h2&gt;&lt;p&gt;有了数据，我们需要在业务的基础上，通过分析方法、分析思维、模型等来发现问题，验证问题。&lt;br&gt;这个分析一定要基于业务，脱离业务的分析是没有任何价值的。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://yuguiyang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="随笔" scheme="https://yuguiyang.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -1036,117 +1132,6 @@
       <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
     
       <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL-子查询的使用</title>
-    <link href="https://yuguiyang.github.io/2017/09/11/mysql-handbook-08/"/>
-    <id>https://yuguiyang.github.io/2017/09/11/mysql-handbook-08/</id>
-    <published>2017-09-11T01:00:00.000Z</published>
-    <updated>2017-09-14T01:18:39.737Z</updated>
-    
-    <content type="html"><![CDATA[<p>MySQL<br>变量的使用</p>
-<h2 id="什么是子查询"><a href="#什么是子查询" class="headerlink" title="什么是子查询"></a>什么是子查询</h2><p>子查询是将一个 SELECT 语句的查询结果作为中间结果，供另一个 SQL 语句调用。<br>像这样：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 我们将学生表中的所有班级ID当做中间结果</span></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_class <span class="keyword">where</span> c_id <span class="keyword">in</span> (<span class="keyword">select</span> <span class="keyword">distinct</span> c_id <span class="keyword">from</span> t_student);</div></pre></td></tr></table></figure></p>
-<h2 id="常用比较符"><a href="#常用比较符" class="headerlink" title="常用比较符"></a>常用比较符</h2><p>子查询最常用的用法：</p>
-<blockquote>
-<p>non_subquery_operand comparison_operator (subquery)<br>其中操作符通常为<br>=  &gt;  &lt;  &gt;=  &lt;=  &lt;&gt;  !=  &lt;=&gt;</p>
-</blockquote>
-<p>其他的都不说了，这里说下这个&lt;=&gt;,以前还真没用过<br>&lt;=&gt;和=比较类似，也是判断是否相等，相等返回1，不相等返回2<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select 1&lt;=&gt;1,1&lt;=&gt;2;</div><div class="line">+<span class="comment">-------+-------+</span></div><div class="line">| 1&lt;=&gt;1 | 1&lt;=&gt;2 |</div><div class="line">+<span class="comment">-------+-------+</span></div><div class="line">|     1 |     0 |</div><div class="line">+<span class="comment">-------+-------+</span></div><div class="line">1 row in <span class="keyword">set</span></div><div class="line"></div><div class="line">mysql&gt; <span class="keyword">select</span> <span class="number">1</span>=<span class="number">1</span>,<span class="number">1</span>=<span class="number">2</span>;</div><div class="line">+<span class="comment">-----+-----+</span></div><div class="line">| 1=1 | 1=2 |</div><div class="line">+<span class="comment">-----+-----+</span></div><div class="line">|   1 |   0 |</div><div class="line">+<span class="comment">-----+-----+</span></div><div class="line">1 row in <span class="keyword">set</span></div></pre></td></tr></table></figure></p>
-<p>和=不一样的地方，是对NULL的支持，用&lt;=&gt;可以判断是否为null，而等号则是出现null，结果就为null<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select 1&lt;=&gt;null,null&lt;=&gt;null,1=null,null=null;</div><div class="line">+<span class="comment">----------+-------------+--------+-----------+</span></div><div class="line">| 1&lt;=&gt;null | null&lt;=&gt;null | 1=null | null=null |</div><div class="line">+<span class="comment">----------+-------------+--------+-----------+</span></div><div class="line">|        0 |           1 | NULL   | NULL      |</div><div class="line">+<span class="comment">----------+-------------+--------+-----------+</span></div><div class="line">1 row in <span class="keyword">set</span></div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<h3 id="any、in、some"><a href="#any、in、some" class="headerlink" title="any、in、some"></a>any、in、some</h3><p>在子查询中，in平时用的比较多，这个any、some，这里简单说下any和some</p>
-<blockquote>
-<p>operand comparison_operator ANY (subquery)<br>operand comparison_operator SOME (subquery)<br><figure class="highlight plain"><figcaption><span>可以为 =  >  <  >=  <= <="">  != ```</=></span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">any表示任意一个值，比如</div><div class="line">\&gt; any () :表示大于any中任意一个值，即&gt;子查询中最小值</div><div class="line">&lt; any(): 表示小于any中任意一个值，即&lt;子查询中最大值</div><div class="line">= any(): 和in一样</div><div class="line">&lt;&gt; any():比较好玩儿，如果子查询返回多个值，&lt;&gt; any会返回所有值</div><div class="line"></div><div class="line">``` sql</div><div class="line">select *from t_student </div><div class="line">where s_id &gt; any(</div><div class="line">    select s_id from t_student where s_id in (105,109,111)</div><div class="line">);</div></pre></td></tr></table></figure></p>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-84ca84a9cea73689.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="&gt;any"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student </div><div class="line"><span class="keyword">where</span> s_id = <span class="keyword">any</span>(</div><div class="line">    <span class="keyword">select</span> s_id <span class="keyword">from</span> t_student <span class="keyword">where</span> s_id <span class="keyword">in</span> (<span class="number">105</span>,<span class="number">109</span>,<span class="number">111</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-79acd1b91a2fb372.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="=any"></p>
-<p>some 和any是一样的就不多说了</p>
-<h3 id="all"><a href="#all" class="headerlink" title="all"></a>all</h3><p>这个all我也没咋用过，all表示所有值，和any有点儿相反的意思</p>
-<blockquote>
-<p>operand comparison_operator ALL (subquery)</p>
-</blockquote>
-<p>> all ()：表示大于所有值，即&gt;子查询中最大值<br>&lt; all() : 表示小于所有值，即&lt; 子查询中的最小值<br>= all(): 返回单个值时和=一样，返回多个值时貌似没啥用<br>&lt;&gt; all(): 和not in 一样</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student </div><div class="line"><span class="keyword">where</span> s_id &gt; all(</div><div class="line">    <span class="keyword">select</span> s_id <span class="keyword">from</span> t_student <span class="keyword">where</span> s_id <span class="keyword">in</span> (<span class="number">105</span>,<span class="number">109</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-8f0ce33bafb39e86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="&gt;all"></p>
-<h2 id="标量子查询"><a href="#标量子查询" class="headerlink" title="标量子查询"></a>标量子查询</h2><p>这种情况下，子查询返回单个值，可以在任何地方使用它。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span></div><div class="line">    c_id,</div><div class="line">    c_name,</div><div class="line">    (<span class="keyword">select</span> <span class="keyword">max</span>(s_id) <span class="keyword">from</span> t_student) <span class="keyword">as</span> max_s_id</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_class;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">select</span></div><div class="line">    *</div><div class="line"><span class="keyword">from</span> </div><div class="line">    t_class </div><div class="line"><span class="keyword">where</span> </div><div class="line">    c_id = (<span class="keyword">select</span> <span class="keyword">max</span>(c_id) <span class="keyword">from</span> t_class);</div></pre></td></tr></table></figure></p>
-<h2 id="行子查询"><a href="#行子查询" class="headerlink" title="行子查询"></a>行子查询</h2><p>上面我们介绍的子查询，都是返回1列多行，行子查询的话，是返回1行多列<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 查询一班所有男生</span></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student</div><div class="line"><span class="keyword">where</span> (c_id,s_gender) = (<span class="number">901</span>,<span class="number">0</span>);</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-f925380b1f971526.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="行子查询"></p>
-<p>这里也可以返回多行多列（也叫做表子查询）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> t_student</div><div class="line"><span class="keyword">where</span> (c_id,s_gender) <span class="keyword">in</span> (<span class="keyword">select</span> <span class="number">901</span>,<span class="number">0</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">902</span>,<span class="number">0</span>);</div></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-7c558cc3f28c665f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="多行多列"></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>官方文档：<br><a href="https://dev.mysql.com/doc/refman/5.7/en/subqueries.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/subqueries.html</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;MySQL&lt;br&gt;变量的使用&lt;/p&gt;
-&lt;h2 id=&quot;什么是子查询&quot;&gt;&lt;a href=&quot;#什么是子查询&quot; class=&quot;headerlink&quot; title=&quot;什么是子查询&quot;&gt;&lt;/a&gt;什么是子查询&lt;/h2&gt;&lt;p&gt;子查询是将一个 SELECT 语句的查询结果作为中间结果，供另一个 SQL 语句调用。&lt;br&gt;像这样：&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;-- 我们将学生表中的所有班级ID当做中间结果&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; *&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; t_class &lt;span class=&quot;keyword&quot;&gt;where&lt;/span&gt; c_id &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;distinct&lt;/span&gt; c_id &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; t_student);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h2 id=&quot;常用比较符&quot;&gt;&lt;a href=&quot;#常用比较符&quot; class=&quot;headerlink&quot; title=&quot;常用比较符&quot;&gt;&lt;/a&gt;常用比较符&lt;/h2&gt;&lt;p&gt;子查询最常用的用法：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;non_subquery_operand comparison_operator (subquery)&lt;br&gt;其中操作符通常为&lt;br&gt;=  &amp;gt;  &amp;lt;  &amp;gt;=  &amp;lt;=  &amp;lt;&amp;gt;  !=  &amp;lt;=&amp;gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;其他的都不说了，这里说下这个&amp;lt;=&amp;gt;,以前还真没用过&lt;br&gt;&amp;lt;=&amp;gt;和=比较类似，也是判断是否相等，相等返回1，不相等返回2&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;mysql&amp;gt; select 1&amp;lt;=&amp;gt;1,1&amp;lt;=&amp;gt;2;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;+&lt;span class=&quot;comment&quot;&gt;-------+-------+&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;| 1&amp;lt;=&amp;gt;1 | 1&amp;lt;=&amp;gt;2 |&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;+&lt;span class=&quot;comment&quot;&gt;-------+-------+&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;|     1 |     0 |&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;+&lt;span class=&quot;comment&quot;&gt;-------+-------+&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1 row in &lt;span class=&quot;keyword&quot;&gt;set&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;mysql&amp;gt; &lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;=&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;=&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;+&lt;span class=&quot;comment&quot;&gt;-----+-----+&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;| 1=1 | 1=2 |&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;+&lt;span class=&quot;comment&quot;&gt;-----+-----+&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;|   1 |   0 |&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;+&lt;span class=&quot;comment&quot;&gt;-----+-----+&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1 row in &lt;span class=&quot;keyword&quot;&gt;set&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;和=不一样的地方，是对NULL的支持，用&amp;lt;=&amp;gt;可以判断是否为null，而等号则是出现null，结果就为null&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;mysql&amp;gt; select 1&amp;lt;=&amp;gt;null,null&amp;lt;=&amp;gt;null,1=null,null=null;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;+&lt;span class=&quot;comment&quot;&gt;----------+-------------+--------+-----------+&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;| 1&amp;lt;=&amp;gt;null | null&amp;lt;=&amp;gt;null | 1=null | null=null |&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;+&lt;span class=&quot;comment&quot;&gt;----------+-------------+--------+-----------+&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;|        0 |           1 | NULL   | NULL      |&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;+&lt;span class=&quot;comment&quot;&gt;----------+-------------+--------+-----------+&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1 row in &lt;span class=&quot;keyword&quot;&gt;set&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/categories/MySQL/"/>
-    
-    
-      <category term="SQL" scheme="https://yuguiyang.github.io/tags/SQL/"/>
-    
-      <category term="MySQL" scheme="https://yuguiyang.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小白学习Tableau-使用计算进行聚焦</title>
-    <link href="https://yuguiyang.github.io/2017/09/10/Tableau-handbook-05/"/>
-    <id>https://yuguiyang.github.io/2017/09/10/Tableau-handbook-05/</id>
-    <published>2017-09-10T02:57:00.000Z</published>
-    <updated>2017-09-11T09:05:50.032Z</updated>
-    
-    <content type="html"><![CDATA[<p>Tableau实例</p>
-<h2 id="什么是聚焦"><a href="#什么是聚焦" class="headerlink" title="什么是聚焦"></a>什么是聚焦</h2><p>聚焦是一种技术，用于根据某个度量的值显示离散阈值。聚焦计算其实是一种可产生离散度量的特殊计算。</p>
-<p>其实就是新构造了一个维度，这个维度将度量值进行分段，类似于年龄段这样的维度。<br>这个应用场景很多，比如我们有一个达标值，想要哪些数据达标，哪些未达标。</p>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h3><p>使用Tableau中自带的“示例-超市”，其中的订单表</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-ca3c0327cba4b659.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据源"></p>
-<h3 id="交叉列表"><a href="#交叉列表" class="headerlink" title="交叉列表"></a>交叉列表</h3><p>我们来看每个地区，每个子类别的数量<br><img src="http://upload-images.jianshu.io/upload_images/76024-b45df3b52a76e9fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="交叉列表"></p>
-<a id="more"></a>
-<p>现在，我们想要实现这样的功能，就是我有一个达标值500，只有数量达到500，才达标，怎样展示最好呢？</p>
-<h3 id="创建计算字段"><a href="#创建计算字段" class="headerlink" title="创建计算字段"></a>创建计算字段</h3><p>我们来创建一个计算字段，如果数量大于500则达标，否则不达标</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-ce584722a9c7cd1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建计算字段"></p>
-<p>然后，把他拖到颜色上</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-482bee397ffda796.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="颜色"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-2ae64b31b040e229.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="颜色图例"></p>
-<p>到这里，我们就可以看到，已经按照Good、Bad来区分颜色，达标、不达标</p>
-<h3 id="使用参数"><a href="#使用参数" class="headerlink" title="使用参数"></a>使用参数</h3><p>上面，我们已经达成了目的，思考下，这个达标值的问题，这个月是500，下个月可能会浮动为600或者400，但我们在代码中写死了500，不够灵活，我们就可以使用参数来控制。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-d5545f23a0bb367f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建参数"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-6b6e05faf29e3361.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="参数配置"></p>
-<p>然后，我们修改上面的计算字段</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-424aca6d4258c774.png" alt="修改计算字段"></p>
-<p>好了，最后，我们就可以动态的修改这个达标值了<br><img src="http://upload-images.jianshu.io/upload_images/76024-4b80c6002deb5858.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>官方文档：<a href="https://onlinehelp.tableau.com/current/pro/desktop/zh-cn/calculations_calculatedfields_ex2spotlighting.html" target="_blank" rel="external">示例 — 使用计算进行聚焦</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Tableau实例&lt;/p&gt;
-&lt;h2 id=&quot;什么是聚焦&quot;&gt;&lt;a href=&quot;#什么是聚焦&quot; class=&quot;headerlink&quot; title=&quot;什么是聚焦&quot;&gt;&lt;/a&gt;什么是聚焦&lt;/h2&gt;&lt;p&gt;聚焦是一种技术，用于根据某个度量的值显示离散阈值。聚焦计算其实是一种可产生离散度量的特殊计算。&lt;/p&gt;
-&lt;p&gt;其实就是新构造了一个维度，这个维度将度量值进行分段，类似于年龄段这样的维度。&lt;br&gt;这个应用场景很多，比如我们有一个达标值，想要哪些数据达标，哪些未达标。&lt;/p&gt;
-&lt;h2 id=&quot;实例&quot;&gt;&lt;a href=&quot;#实例&quot; class=&quot;headerlink&quot; title=&quot;实例&quot;&gt;&lt;/a&gt;实例&lt;/h2&gt;&lt;h3 id=&quot;数据源&quot;&gt;&lt;a href=&quot;#数据源&quot; class=&quot;headerlink&quot; title=&quot;数据源&quot;&gt;&lt;/a&gt;数据源&lt;/h3&gt;&lt;p&gt;使用Tableau中自带的“示例-超市”，其中的订单表&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-ca3c0327cba4b659.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;数据源&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;交叉列表&quot;&gt;&lt;a href=&quot;#交叉列表&quot; class=&quot;headerlink&quot; title=&quot;交叉列表&quot;&gt;&lt;/a&gt;交叉列表&lt;/h3&gt;&lt;p&gt;我们来看每个地区，每个子类别的数量&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/76024-b45df3b52a76e9fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;交叉列表&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Tableau" scheme="https://yuguiyang.github.io/categories/Tableau/"/>
-    
-    
-      <category term="数据可视化" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-      <category term="Tableau" scheme="https://yuguiyang.github.io/tags/Tableau/"/>
     
   </entry>
   
