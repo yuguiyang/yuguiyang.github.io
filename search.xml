@@ -12,6 +12,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[什么是沟通？]]></title>
+    <url>%2F2017%2F10%2F31%2Fjotting-05%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[你为什么离职？]]></title>
     <url>%2F2017%2F10%2F31%2Fjotting-04%2F</url>
     <content type="text"><![CDATA[HR：“为什么从上一家公司辞职？” 我：“。。。” 最近在找工作，投了很多简历，面了很多试，经常被问到这个问题，以至于后来面试官不问我，我都会反问他“你咋不问我为啥离职啊？真是太不专业了，这个公司不行，说着我就走出了阿里园区”（别介意，只是一个梦，希望有机会去这些互联网巨头公司） 面试的时候问还是好的，奇葩的是，经常还会接到电话问： 我：“喂，你好”来电：“请问是xxx先生吗？”我：“对，你是？”来电：“你为什么从上家公司离职啊？”我：“。。。” 这种电话还真是无语，不知道在哪儿看到我的简历，就打电话来问问就问呗，起码得告诉我你是干嘛的，要不我还以为是上家公司做电话回访一问就是什么什么猎头，什么什么公司，真是醉了，我都怀疑他们这样能不能招到人问之前起码介绍下，什么公司，什么岗位，有的直接就 我：“喂，你好”来电：“请问是xxx先生吗？”我：“对，你是？”来电：“你现在薪资多少？期望多少？”我：“。。。” 好像我已经确定要去入职了一样，又不是菜市场买菜，你看上我了就可以买我虽然我好看好吃，但也不能这样啊，做人得矜持一点儿，忍住不要激动，如果你也好看好吃，不要钱你就可以带我走，都不用带，我直接跟你走，想不要都不行，就跟着你所以以后招聘应该直接加微信，证明一下你真的好看，然后我们再聊这些电话我一般就回复“奥，已经找到工作了”，然后对方就自觉挂掉了 找工作的时候，还是最期望投简历的公司打来电话，我觉得你好看好吃，我得让你知道我啊，嗯，然后投一下简历，80%的简历投出去，就没有然后了，一般这个时候，就算是来一个诈骗电话，我都会接，万一是我投的公司呢，是吧 我：“喂，你好”来电：“地铁附近商铺投资要考虑一下吗？”我：“。。。你们公司招人吗？”来电：“。。。” 北京大妈卖煎饼果子都月入三万了，我觉得我创业的时机到了其实我一直都觉得煎饼果子很挣钱，我的梦想就是开一家店卖煎饼果子话说上海的煎饼果子和北方的不一样，感觉还是北方的好吃些记得在东北老家上学的时候，学校门口都会有一个卖煎饼果子的摊儿，每天去买个煎饼果子，然后我就站那边吃边看，那个时候也就2、3块钱起步，每次买都有10几个人在排队，也就早上、中午、晚上这3个时间点买的人多，哦，跑题了，这个创业大计以后再说 找工作的时候，来电话特别多，平时也就快递、外卖，这段时间还挺欣慰，总是有人问你“想找个什么样的工作啊？期望的薪资是多少啊？”，被一些陌生人关心还是挺开心的 说到底，还是自己技术不到位，还得到处找工作，不是说牛掰的人都是工作自己找过去嘛。IT这个行业也搞了好几年了，以前朋友总是吐槽“少壮不努力，老大搞IT”做IT好不好玩儿呢？仁者见仁智者见智 我们回到主题，为什么离职呢？以前在网上看到关于马云老师对这个的看法，不知道是真是假 离职原因，总结来说就2个原因： 钱没给到位 心受委屈了 说的好像挺在理，当然，一定会有一些别的理由，像什么“公司搬家了没告诉我”这种我觉得可能还有一种： “你是个好人，但我们不合适” 好了，不管咋样，做好自己的规划，理性离职，三思而后行。]]></content>
@@ -511,18 +522,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python中文分词-jieba]]></title>
-    <url>%2F2017%2F08%2F19%2Fpython-handbook-11%2F</url>
-    <content type="text"><![CDATA[刚刚在看Python的词云图，想要显示中文的时候，需要做一个分词，这里我们学习下jieba分词。 1. jieba中文分词jieba是Python中文分词的一个组件 github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba) 支持三种分词模式：精确模式，试图将句子最精确地切开，适合文本分析；全模式，把句子中所有的可以成词的词语都扫描出来, 速度非常快，但是不能解决歧义；搜索引擎模式，在精确模式的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词。支持繁体分词支持自定义词典MIT 授权协议 安装：1pip install jieba 官网上的小实例12345678910111213import jiebaseg_list = jieba.cut("我来到北京清华大学", cut_all=True)print("Full Mode: " + "/ ".join(seg_list)) # 全模式seg_list = jieba.cut("我来到北京清华大学", cut_all=False)print("Default Mode: " + "/ ".join(seg_list)) # 精确模式seg_list = jieba.cut("他来到了网易杭研大厦") # 默认是精确模式print(", ".join(seg_list))seg_list = jieba.cut_for_search("小明硕士毕业于中国科学院计算所，后在日本京都大学深造") # 搜索引擎模式print(", ".join(seg_list)) 12345678Building prefix dict from the default dictionary ...Dumping model to file cache C:\Users\YUGUIY~1\AppData\Local\Temp\jieba.cacheLoading model cost 0.884 seconds.Prefix dict has been built succesfully.Full Mode: 我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学Default Mode: 我/ 来到/ 北京/ 清华大学他, 来到, 了, 网易, 杭研, 大厦小明, 硕士, 毕业, 于, 中国, 科学, 学院, 科学院, 中国科学院, 计算, 计算所, ，, 后, 在, 日本, 京都, 大学, 日本京都大学, 深造 到这里，想要的功能其实已经足够了，官网还有很多其他的介绍内容，很强大，后面需要的时候，再来补充，接着回去改那个词云的了先。]]></content>
-      <categories>
-        <category>Python-基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>分词</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Python异常（1）- module 'urllib' has no attribute 'urlopen']]></title>
     <url>%2F2017%2F08%2F19%2Fpython-handbook-10%2F</url>
     <content type="text"><![CDATA[今天想复习下BeautifulSoup，就把之前的代码拿过来测试，发现报错了 12345678910111213141516import urllibfrom bs4 import BeautifulSoup#加载网址，获取当前页面def getHTML(url) : page = urllib.urlopen(url) html = page.read() return htmlhtml = getHTML('https://movie.douban.com/top250')soup = BeautifulSoup(html, "html.parser")for img in soup.find_all('img'): print(img.get('src')) 查了下，发下是Python3中，需要引入的模块变了改一下就可以了1urllib.request.urlopen(url)]]></content>
@@ -532,6 +531,18 @@
       <tags>
         <tag>Python</tag>
         <tag>异常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python中文分词-jieba]]></title>
+    <url>%2F2017%2F08%2F19%2Fpython-handbook-11%2F</url>
+    <content type="text"><![CDATA[刚刚在看Python的词云图，想要显示中文的时候，需要做一个分词，这里我们学习下jieba分词。 1. jieba中文分词jieba是Python中文分词的一个组件 github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba) 支持三种分词模式：精确模式，试图将句子最精确地切开，适合文本分析；全模式，把句子中所有的可以成词的词语都扫描出来, 速度非常快，但是不能解决歧义；搜索引擎模式，在精确模式的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词。支持繁体分词支持自定义词典MIT 授权协议 安装：1pip install jieba 官网上的小实例12345678910111213import jiebaseg_list = jieba.cut("我来到北京清华大学", cut_all=True)print("Full Mode: " + "/ ".join(seg_list)) # 全模式seg_list = jieba.cut("我来到北京清华大学", cut_all=False)print("Default Mode: " + "/ ".join(seg_list)) # 精确模式seg_list = jieba.cut("他来到了网易杭研大厦") # 默认是精确模式print(", ".join(seg_list))seg_list = jieba.cut_for_search("小明硕士毕业于中国科学院计算所，后在日本京都大学深造") # 搜索引擎模式print(", ".join(seg_list)) 12345678Building prefix dict from the default dictionary ...Dumping model to file cache C:\Users\YUGUIY~1\AppData\Local\Temp\jieba.cacheLoading model cost 0.884 seconds.Prefix dict has been built succesfully.Full Mode: 我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学Default Mode: 我/ 来到/ 北京/ 清华大学他, 来到, 了, 网易, 杭研, 大厦小明, 硕士, 毕业, 于, 中国, 科学, 学院, 科学院, 中国科学院, 计算, 计算所, ，, 后, 在, 日本, 京都, 大学, 日本京都大学, 深造 到这里，想要的功能其实已经足够了，官网还有很多其他的介绍内容，很强大，后面需要的时候，再来补充，接着回去改那个词云的了先。]]></content>
+      <categories>
+        <category>Python-基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>分词</tag>
       </tags>
   </entry>
   <entry>
@@ -817,18 +828,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Pandas手册（7）- pandas数据加载]]></title>
-    <url>%2F2017%2F08%2F08%2Fpandas-handbook-07%2F</url>
-    <content type="text"><![CDATA[PythonPandas 这里整理下，pandas中数据加载的几个方法，前面，我们也有用过，read_csv，下面，我们整理下 1.pandas读取数据方法1pandas.read_csv(filepath_or_buffer, sep=', ', delimiter=None, header='infer', names=None, index_col=None, usecols=None, squeeze=False, prefix=None, mangle_dupe_cols=True, dtype=None, engine=None, converters=None, true_values=None, false_values=None, skipinitialspace=False, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False, iterator=False, chunksize=None, compression='infer', thousands=None, decimal=b'.', lineterminator=None, quotechar='"', quoting=0, escapechar=None, comment=None, encoding=None, dialect=None, tupleize_cols=False, error_bad_lines=True, warn_bad_lines=True, skipfooter=0, skip_footer=0, doublequote=True, delim_whitespace=False, as_recarray=False, compact_ints=False, use_unsigned=False, low_memory=True, buffer_lines=None, memory_map=False, float_precision=None) 我们可以看到这个参数非常多，基本上可以解决我们文件读取时的常见问题。 下面就是小例子csv文件内容是这样的：数据以逗号分隔，没有其他特殊的情况 123456789101112131415161718import pandas as pddf = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv')#使用read_table需要，手动指定下分隔符#df = pd.read_table(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',sep=',')print(df)print(df.index)print(df.columns)runfile('D:/document/python_demo/pandas_csv.py', wdir='D:/document/python_demo') a b c d message0 1 2 3 4 hello1 5 6 7 8 world2 9 10 11 12 fooRangeIndex(start=0, stop=3, step=1)Index(['a', 'b', 'c', 'd', 'message'], dtype='object') 我们可以看到，这里默认把第一行当做columns了，我们可以通过header=None，来自动指定标题1234567891011121314151617181920df = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',header=None) 0 1 2 3 40 a b c d message1 1 2 3 4 hello2 5 6 7 8 world3 9 10 11 12 fooRangeIndex(start=0, stop=4, step=1)Int64Index([0, 1, 2, 3, 4], dtype='int64')#通过names，来自定义columnsdf = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',header=None,names=list('opqrxy')) o p q r x y0 a b c d message NaN1 1 2 3 4 hello NaN2 5 6 7 8 world NaN3 9 10 11 12 foo NaNRangeIndex(start=0, stop=4, step=1)Index(['o', 'p', 'q', 'r', 'x', 'y'], dtype='object') 现在的行索引是自动初始化的，我们可以指定存在的列为索引12345678910111213path = r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv'df = pd.read_csv(path,header=None, names=list('opqrxy'), index_col='x') o p q r yx message a b c d NaNhello 1 2 3 4 NaNworld 5 6 7 8 NaNfoo 9 10 11 12 NaNIndex(['message', 'hello', 'world', 'foo'], dtype='object', name='x')Index(['o', 'p', 'q', 'r', 'y'], dtype='object') 比如，有这样一份数据，字段间是通过一个或多个空格来分隔的 我们直接使用read_csv去读取，会发现，列索引有些不友好，我们可以使用正则表达式去分隔123456789101112131415161718df = pd.read_csv(path) A B C0 aaa -0.264438 -1.026059 -0.6195001 bbb 0.927272 0.302904 -0.0323992 ccc -0.264273 -0.386314 -0.2176013 ddd -0.871858 -0.348382 1.100491RangeIndex(start=0, stop=4, step=1)Index([' A B C'], dtype='object')#\s表示空格，+表示1个或多个，就是说分隔符是1个或多个空格df = pd.read_table(path,sep='\s+') A B Caaa -0.264438 -1.026059 -0.619500bbb 0.927272 0.302904 -0.032399ccc -0.264273 -0.386314 -0.217601ddd -0.871858 -0.348382 1.100491Index(['aaa', 'bbb', 'ccc', 'ddd'], dtype='object')Index(['A', 'B', 'C'], dtype='object') 还有很多其他常用的参数，比如skiprows，可以跳过指定行下面，再说个填充缺失值的方法，na_values可以将其他我们指定的值也当成NaN处理12345678910111213141516171819202122232425262728na_values : scalar, str, list-like, or dict, default None Additional strings to recognize as NA/NaN. If dict passed, specific per-column NA values. By default the following values are interpreted as NaN: ‘’, ‘#N/A’, ‘#N/A N/A’, ‘#NA’, ‘-1.#IND’, ‘-1.#QNAN’, ‘-NaN’, ‘-nan’, ‘1.#IND’, ‘1.#QNAN’, ‘N/A’, ‘NA’, ‘NULL’, ‘NaN’, ‘nan’`.#原始数据是这样的， something a b c d message0 one 1 2 3.0 4 NaN1 two 5 6 NaN 8 world2 three 9 10 11.0 12 foo#这里，我们将1，2，4也当成NaN值处理df = pd.read_csv(path,na_values=[1,2,4])#加载后，数据就会变成这样 something a b c d message0 one NaN NaN 3.0 NaN NaN1 two 5.0 6.0 NaN 8.0 world2 three 9.0 10.0 11.0 12.0 foo#我们还可以用一个dict来对不同的列指定NaN值df = pd.read_csv(path,na_values=&#123;'something':['one','three'],'d':[8,12]&#125;) something a b c d message0 NaN 1 2 3.0 4.0 NaN1 two 5 6 NaN NaN world2 NaN 9 10 11.0 NaN foo #2.pandas导出数据我们使用read_csv读取数据，处理完之后，我们可能还需要将数据存储起来，还有一个to_csv的函数1234567891011121314151617181920212223242526272829DataFrame.to_csv(path_or_buf=None, sep=', ', na_rep='', float_format=None, columns=None, header=True, index=True, index_label=None, mode='w', encoding=None, compression=None, quoting=None, quotechar='"', line_terminator='\n', chunksize=None, tupleize_cols=False, date_format=None, doublequote=True, escapechar=None, decimal='.')##我们就使用这份数据，先读取后，再保存something,a,b,c,d,messageone,1,2,3,4,NAtwo,5,6,,8,worldthree,9,10,11,12,foodf.to_csv(sys.stdout,sep='^')^something^a^b^c^d^message0^one^1^2^3.0^4^1^two^5^6^^8^world2^three^9^10^11.0^12^foo#我们看到这个输出，发现，NaN值，导出时，转为了空字符串，这里呢，我们可以手工指定na_rep : string, default ‘’df.to_csv(sys.stdout,sep='^',na_rep='NaN')^something^a^b^c^d^message0^one^1^2^3.0^4^NaN1^two^5^6^NaN^8^world2^three^9^10^11.0^12^foo#有时候，行列标签可能也不需要，我们也可以禁用df.to_csv(sys.stdout,sep='^',na_rep='NaN',index=False,header=False)one^1^2^3.0^4^NaNtwo^5^6^NaN^8^worldthree^9^10^11.0^12^foo #3.附录pandas中还有其他的加载数据方式，像读取HTML，JSON，xml等等，常用的可能还是和数据库取连接，这块后面会再补充，这里就先到这里。]]></content>
-      <categories>
-        <category>Python-Pandas</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Pandas</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[使用Spyder不弹出画图面板]]></title>
     <url>%2F2017%2F08%2F08%2Fvisual-handbook-01%2F</url>
     <content type="text"><![CDATA[最近练习Python都是在Spyder中开发，很方便，今天练习matplotlib的时候，发现，绘制的图片显示在out中1234import matplotlib.pyplot as pltplt.plot([1,2,3,4])plt.ylabel('some numbers')plt.show() 依稀记得之前在IPython中执行的时候，是单独弹出一个面板的，就百度了下，找到了解决方法我们在Tools-&gt;Preferences-&gt; 修改完以后，我们需要重启下Spyder重启后，再次执行，就可以看到那个单独的窗口了。]]></content>
@@ -838,6 +837,18 @@
       <tags>
         <tag>Python</tag>
         <tag>Spyder</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Pandas手册（7）- pandas数据加载]]></title>
+    <url>%2F2017%2F08%2F08%2Fpandas-handbook-07%2F</url>
+    <content type="text"><![CDATA[PythonPandas 这里整理下，pandas中数据加载的几个方法，前面，我们也有用过，read_csv，下面，我们整理下 1.pandas读取数据方法1pandas.read_csv(filepath_or_buffer, sep=', ', delimiter=None, header='infer', names=None, index_col=None, usecols=None, squeeze=False, prefix=None, mangle_dupe_cols=True, dtype=None, engine=None, converters=None, true_values=None, false_values=None, skipinitialspace=False, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, skip_blank_lines=True, parse_dates=False, infer_datetime_format=False, keep_date_col=False, date_parser=None, dayfirst=False, iterator=False, chunksize=None, compression='infer', thousands=None, decimal=b'.', lineterminator=None, quotechar='"', quoting=0, escapechar=None, comment=None, encoding=None, dialect=None, tupleize_cols=False, error_bad_lines=True, warn_bad_lines=True, skipfooter=0, skip_footer=0, doublequote=True, delim_whitespace=False, as_recarray=False, compact_ints=False, use_unsigned=False, low_memory=True, buffer_lines=None, memory_map=False, float_precision=None) 我们可以看到这个参数非常多，基本上可以解决我们文件读取时的常见问题。 下面就是小例子csv文件内容是这样的：数据以逗号分隔，没有其他特殊的情况 123456789101112131415161718import pandas as pddf = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv')#使用read_table需要，手动指定下分隔符#df = pd.read_table(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',sep=',')print(df)print(df.index)print(df.columns)runfile('D:/document/python_demo/pandas_csv.py', wdir='D:/document/python_demo') a b c d message0 1 2 3 4 hello1 5 6 7 8 world2 9 10 11 12 fooRangeIndex(start=0, stop=3, step=1)Index(['a', 'b', 'c', 'd', 'message'], dtype='object') 我们可以看到，这里默认把第一行当做columns了，我们可以通过header=None，来自动指定标题1234567891011121314151617181920df = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',header=None) 0 1 2 3 40 a b c d message1 1 2 3 4 hello2 5 6 7 8 world3 9 10 11 12 fooRangeIndex(start=0, stop=4, step=1)Int64Index([0, 1, 2, 3, 4], dtype='int64')#通过names，来自定义columnsdf = pd.read_csv(r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv',header=None,names=list('opqrxy')) o p q r x y0 a b c d message NaN1 1 2 3 4 hello NaN2 5 6 7 8 world NaN3 9 10 11 12 foo NaNRangeIndex(start=0, stop=4, step=1)Index(['o', 'p', 'q', 'r', 'x', 'y'], dtype='object') 现在的行索引是自动初始化的，我们可以指定存在的列为索引12345678910111213path = r'D:\document\python_demo\pydata-book-master\ch06\ex1.csv'df = pd.read_csv(path,header=None, names=list('opqrxy'), index_col='x') o p q r yx message a b c d NaNhello 1 2 3 4 NaNworld 5 6 7 8 NaNfoo 9 10 11 12 NaNIndex(['message', 'hello', 'world', 'foo'], dtype='object', name='x')Index(['o', 'p', 'q', 'r', 'y'], dtype='object') 比如，有这样一份数据，字段间是通过一个或多个空格来分隔的 我们直接使用read_csv去读取，会发现，列索引有些不友好，我们可以使用正则表达式去分隔123456789101112131415161718df = pd.read_csv(path) A B C0 aaa -0.264438 -1.026059 -0.6195001 bbb 0.927272 0.302904 -0.0323992 ccc -0.264273 -0.386314 -0.2176013 ddd -0.871858 -0.348382 1.100491RangeIndex(start=0, stop=4, step=1)Index([' A B C'], dtype='object')#\s表示空格，+表示1个或多个，就是说分隔符是1个或多个空格df = pd.read_table(path,sep='\s+') A B Caaa -0.264438 -1.026059 -0.619500bbb 0.927272 0.302904 -0.032399ccc -0.264273 -0.386314 -0.217601ddd -0.871858 -0.348382 1.100491Index(['aaa', 'bbb', 'ccc', 'ddd'], dtype='object')Index(['A', 'B', 'C'], dtype='object') 还有很多其他常用的参数，比如skiprows，可以跳过指定行下面，再说个填充缺失值的方法，na_values可以将其他我们指定的值也当成NaN处理12345678910111213141516171819202122232425262728na_values : scalar, str, list-like, or dict, default None Additional strings to recognize as NA/NaN. If dict passed, specific per-column NA values. By default the following values are interpreted as NaN: ‘’, ‘#N/A’, ‘#N/A N/A’, ‘#NA’, ‘-1.#IND’, ‘-1.#QNAN’, ‘-NaN’, ‘-nan’, ‘1.#IND’, ‘1.#QNAN’, ‘N/A’, ‘NA’, ‘NULL’, ‘NaN’, ‘nan’`.#原始数据是这样的， something a b c d message0 one 1 2 3.0 4 NaN1 two 5 6 NaN 8 world2 three 9 10 11.0 12 foo#这里，我们将1，2，4也当成NaN值处理df = pd.read_csv(path,na_values=[1,2,4])#加载后，数据就会变成这样 something a b c d message0 one NaN NaN 3.0 NaN NaN1 two 5.0 6.0 NaN 8.0 world2 three 9.0 10.0 11.0 12.0 foo#我们还可以用一个dict来对不同的列指定NaN值df = pd.read_csv(path,na_values=&#123;'something':['one','three'],'d':[8,12]&#125;) something a b c d message0 NaN 1 2 3.0 4.0 NaN1 two 5 6 NaN NaN world2 NaN 9 10 11.0 NaN foo #2.pandas导出数据我们使用read_csv读取数据，处理完之后，我们可能还需要将数据存储起来，还有一个to_csv的函数1234567891011121314151617181920212223242526272829DataFrame.to_csv(path_or_buf=None, sep=', ', na_rep='', float_format=None, columns=None, header=True, index=True, index_label=None, mode='w', encoding=None, compression=None, quoting=None, quotechar='"', line_terminator='\n', chunksize=None, tupleize_cols=False, date_format=None, doublequote=True, escapechar=None, decimal='.')##我们就使用这份数据，先读取后，再保存something,a,b,c,d,messageone,1,2,3,4,NAtwo,5,6,,8,worldthree,9,10,11,12,foodf.to_csv(sys.stdout,sep='^')^something^a^b^c^d^message0^one^1^2^3.0^4^1^two^5^6^^8^world2^three^9^10^11.0^12^foo#我们看到这个输出，发现，NaN值，导出时，转为了空字符串，这里呢，我们可以手工指定na_rep : string, default ‘’df.to_csv(sys.stdout,sep='^',na_rep='NaN')^something^a^b^c^d^message0^one^1^2^3.0^4^NaN1^two^5^6^NaN^8^world2^three^9^10^11.0^12^foo#有时候，行列标签可能也不需要，我们也可以禁用df.to_csv(sys.stdout,sep='^',na_rep='NaN',index=False,header=False)one^1^2^3.0^4^NaNtwo^5^6^NaN^8^worldthree^9^10^11.0^12^foo #3.附录pandas中还有其他的加载数据方式，像读取HTML，JSON，xml等等，常用的可能还是和数据库取连接，这块后面会再补充，这里就先到这里。]]></content>
+      <categories>
+        <category>Python-Pandas</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Pandas</tag>
       </tags>
   </entry>
   <entry>

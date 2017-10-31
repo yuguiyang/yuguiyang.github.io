@@ -325,6 +325,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/19/python-handbook-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/19/python-handbook-11/" itemprop="url">Python中文分词-jieba</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T10:00:00+08:00">
+                2017-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Python-基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>刚刚在看Python的词云图，想要显示中文的时候，需要做一个分词，这里我们学习下jieba分词。</p>
+<h1 id="1-jieba中文分词"><a href="#1-jieba中文分词" class="headerlink" title="1. jieba中文分词"></a>1. jieba中文分词</h1><pre><code>jieba是Python中文分词的一个组件
+github地址：[https://github.com/fxsjy/jieba](https://github.com/fxsjy/jieba)
+</code></pre><blockquote>
+<p>支持三种分词模式：精确模式，试图将句子最精确地切开，适合文本分析；全模式，把句子中所有的可以成词的词语都扫描出来, 速度非常快，但是不能解决歧义；搜索引擎模式，在精确模式的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词。支持繁体分词支持自定义词典MIT 授权协议</p>
+</blockquote>
+<p>安装：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install jieba</div></pre></td></tr></table></figure></p>
+<p>官网上的小实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> jieba</div><div class="line"></div><div class="line">seg_list = jieba.cut(<span class="string">"我来到北京清华大学"</span>, cut_all=<span class="keyword">True</span>)</div><div class="line">print(<span class="string">"Full Mode: "</span> + <span class="string">"/ "</span>.join(seg_list))  <span class="comment"># 全模式</span></div><div class="line"></div><div class="line">seg_list = jieba.cut(<span class="string">"我来到北京清华大学"</span>, cut_all=<span class="keyword">False</span>)</div><div class="line">print(<span class="string">"Default Mode: "</span> + <span class="string">"/ "</span>.join(seg_list))  <span class="comment"># 精确模式</span></div><div class="line"></div><div class="line">seg_list = jieba.cut(<span class="string">"他来到了网易杭研大厦"</span>)  <span class="comment"># 默认是精确模式</span></div><div class="line">print(<span class="string">", "</span>.join(seg_list))</div><div class="line"></div><div class="line">seg_list = jieba.cut_for_search(<span class="string">"小明硕士毕业于中国科学院计算所，后在日本京都大学深造"</span>)  <span class="comment"># 搜索引擎模式</span></div><div class="line">print(<span class="string">", "</span>.join(seg_list))</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Building prefix dict <span class="keyword">from</span> the default dictionary ...</div><div class="line">Dumping model to file cache C:\Users\YUGUIY~<span class="number">1</span>\AppData\Local\Temp\jieba.cache</div><div class="line">Loading model cost <span class="number">0.884</span> seconds.</div><div class="line">Prefix dict has been built succesfully.</div><div class="line">Full Mode: 我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学</div><div class="line">Default Mode: 我/ 来到/ 北京/ 清华大学</div><div class="line">他, 来到, 了, 网易, 杭研, 大厦</div><div class="line">小明, 硕士, 毕业, 于, 中国, 科学, 学院, 科学院, 中国科学院, 计算, 计算所, ，, 后, 在, 日本, 京都, 大学, 日本京都大学, 深造</div></pre></td></tr></table></figure>
+<p>到这里，想要的功能其实已经足够了，官网还有很多其他的介绍内容，很强大，后面需要的时候，再来补充，接着回去改那个词云的了先。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/19/visual-handbook-02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -925,174 +1076,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuguiyang.github.io/2017/08/17/pandas-handbook-12/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/17/pandas-handbook-12/" itemprop="url">Pandas手册（12）- 时间序列</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-17T08:00:00+08:00">
-                2017-08-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python-Pandas/" itemprop="url" rel="index">
-                    <span itemprop="name">Python-Pandas</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Python<br>Pandas</p>
-<hr>
-<p>在数据分析中，时间序列应该很常见，这里，我们看看在pandas里面的使用</p>
-<h1 id="1-日期和时间数据类型"><a href="#1-日期和时间数据类型" class="headerlink" title="1. 日期和时间数据类型"></a>1. 日期和时间数据类型</h1><p>经常使用的datetime，time，及calendar模块<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"></div><div class="line">now = datetime.now()</div><div class="line"></div><div class="line">now</div><div class="line">Out[<span class="number">33</span>]: datetime.datetime(<span class="number">2017</span>, <span class="number">8</span>, <span class="number">18</span>, <span class="number">9</span>, <span class="number">43</span>, <span class="number">46</span>, <span class="number">360886</span>)</div><div class="line"></div><div class="line">now.year</div><div class="line">Out[<span class="number">34</span>]: <span class="number">2017</span></div><div class="line"></div><div class="line">now.month</div><div class="line">Out[<span class="number">35</span>]: <span class="number">8</span></div><div class="line"></div><div class="line">now.day</div><div class="line">Out[<span class="number">36</span>]: <span class="number">18</span></div></pre></td></tr></table></figure></p>
-<p>datetime.timedelta表示2个datetime对象的时间差<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">a = datetime(<span class="number">2018</span>,<span class="number">8</span>,<span class="number">18</span>) - datetime(<span class="number">2018</span>,<span class="number">8</span>,<span class="number">17</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">38</span>]: datetime.timedelta(<span class="number">1</span>)</div><div class="line"></div><div class="line">a.days</div><div class="line">Out[<span class="number">39</span>]: <span class="number">1</span></div><div class="line"></div><div class="line">a.seconds</div><div class="line">Out[<span class="number">40</span>]: <span class="number">0</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">datetime</span>.<span class="title">timedelta</span><span class="params">(days=<span class="number">0</span>, seconds=<span class="number">0</span>, microseconds=<span class="number">0</span>, milliseconds=<span class="number">0</span>, minutes=<span class="number">0</span>, hours=<span class="number">0</span>, weeks=<span class="number">0</span>)</span></span></div><div class="line">A timedelta object represents a duration, the difference between two dates or times.</div></pre></td></tr></table></figure>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-2334b8c861235fd7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>我们可以给datetime加上或者减去一个或多个timedelta<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</div><div class="line"></div><div class="line">start = datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">18</span>)</div><div class="line"></div><div class="line">start + timedelta(days=<span class="number">-12</span>)</div><div class="line">Out[<span class="number">44</span>]: datetime.datetime(<span class="number">2017</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">0</span>, <span class="number">0</span>)</div><div class="line"></div><div class="line">start + timedelta(seconds=<span class="number">600</span>)</div><div class="line">Out[<span class="number">45</span>]: datetime.datetime(<span class="number">2017</span>, <span class="number">8</span>, <span class="number">18</span>, <span class="number">0</span>, <span class="number">10</span>)</div></pre></td></tr></table></figure></p>
-<h1 id="2-日期转换"><a href="#2-日期转换" class="headerlink" title="2. 日期转换"></a>2. 日期转换</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pandas.to_datetime(arg, errors=<span class="string">'raise'</span>, dayfirst=<span class="keyword">False</span>, yearfirst=<span class="keyword">False</span>, utc=<span class="keyword">None</span>, box=<span class="keyword">True</span>, format=<span class="keyword">None</span>, exact=<span class="keyword">True</span>, unit=<span class="keyword">None</span>, infer_datetime_format=<span class="keyword">False</span>, origin=<span class="string">'unix'</span>)</div></pre></td></tr></table></figure>
-<p>dayfirst参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#比如有时候，我们的格式，可能是day在前面，默认的话，会转换为 月/日/年</span></div><div class="line">pd.to_datetime([<span class="string">'06/08/2017'</span>,<span class="string">'07/08/2017'</span>])</div><div class="line">Out[<span class="number">29</span>]: DatetimeIndex([<span class="string">'2017-06-08'</span>, <span class="string">'2017-07-08'</span>], dtype=<span class="string">'datetime64[ns]'</span>, freq=<span class="keyword">None</span>)</div><div class="line"></div><div class="line"><span class="comment">#使用dayfirst，指定日期，日/月/年</span></div><div class="line">pd.to_datetime([<span class="string">'06/08/2017'</span>,<span class="string">'07/08/2017'</span>],dayfirst=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">30</span>]: DatetimeIndex([<span class="string">'2017-08-06'</span>, <span class="string">'2017-08-07'</span>], dtype=<span class="string">'datetime64[ns]'</span>, freq=<span class="keyword">None</span>)</div></pre></td></tr></table></figure></p>
-<p>我们可以将一个包含日期信息的DataFrame封装成datetime<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">df = pd.DataFrame(&#123;<span class="string">'year'</span>: [<span class="number">2015</span>, <span class="number">2016</span>],</div><div class="line">                       <span class="string">'month'</span>: [<span class="number">2</span>, <span class="number">3</span>],</div><div class="line">                       <span class="string">'day'</span>: [<span class="number">4</span>, <span class="number">5</span>]&#125;)</div><div class="line"></div><div class="line">df</div><div class="line">Out[<span class="number">32</span>]: </div><div class="line">   day  month  year</div><div class="line"><span class="number">0</span>    <span class="number">4</span>      <span class="number">2</span>  <span class="number">2015</span></div><div class="line"><span class="number">1</span>    <span class="number">5</span>      <span class="number">3</span>  <span class="number">2016</span></div><div class="line"></div><div class="line">pd.to_datetime(df)</div><div class="line">Out[<span class="number">33</span>]: </div><div class="line"><span class="number">0</span>   <span class="number">2015</span><span class="number">-02</span><span class="number">-04</span></div><div class="line"><span class="number">1</span>   <span class="number">2016</span><span class="number">-03</span><span class="number">-05</span></div><div class="line">dtype: datetime64[ns]</div></pre></td></tr></table></figure></p>
-<p>这样转换的时候，是一定需要，最少满足年月日3列，不然会报错</p>
-<blockquote>
-<p>ValueError: to assemble mappings requires at least that [year, month, day] be specified: [day,month] is missing</p>
-</blockquote>
-<p>errors参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">errors : &#123;‘ignore’, ‘<span class="keyword">raise</span>’, ‘coerce’&#125;, default ‘<span class="keyword">raise</span>’</div><div class="line"></div><div class="line">       If ‘<span class="keyword">raise</span>’, then invalid parsing will <span class="keyword">raise</span> an exception</div><div class="line">       If ‘coerce’, then invalid parsing will be set <span class="keyword">as</span> NaT</div><div class="line">       If ‘ignore’, then invalid parsing will <span class="keyword">return</span> the input</div></pre></td></tr></table></figure></p>
-<p>如果一个日期不符合规范，默认是会报错的，我们可以通过errors参数来控制<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">pd.to_datetime(<span class="string">'13/13/2017'</span>)</div><div class="line">ValueError: month must be <span class="keyword">in</span> <span class="number">1.</span><span class="number">.12</span></div><div class="line"></div><div class="line">pd.to_datetime(<span class="string">'13/13/2017'</span>,errors=<span class="string">'ignore'</span>)</div><div class="line">Out[<span class="number">38</span>]: <span class="string">'13/13/2017'</span></div><div class="line"></div><div class="line">pd.to_datetime(<span class="string">'13/13/2017'</span>,errors=<span class="string">'coerce'</span>)</div><div class="line">Out[<span class="number">39</span>]: NaT</div></pre></td></tr></table></figure></p>
-<p>这个NaT，就是Not a Time，在时间序列里面表示NA值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">pd.to_datetime(<span class="number">1</span>)</div><div class="line">Out[<span class="number">21</span>]: Timestamp(<span class="string">'1970-01-01 00:00:00.000000001'</span>)</div><div class="line"></div><div class="line">pd.to_datetime(<span class="number">10</span>)</div><div class="line">Out[<span class="number">22</span>]: Timestamp(<span class="string">'1970-01-01 00:00:00.000000010'</span>)</div><div class="line"></div><div class="line">s1 = pd.Series([<span class="string">'2017-01-01'</span>,<span class="string">'2017-02-01'</span>,<span class="string">'2017-03-01'</span>]*<span class="number">3</span>)</div><div class="line"></div><div class="line">s1</div><div class="line">Out[<span class="number">24</span>]: </div><div class="line"><span class="number">0</span>    <span class="number">2017</span><span class="number">-01</span><span class="number">-01</span></div><div class="line"><span class="number">1</span>    <span class="number">2017</span><span class="number">-02</span><span class="number">-01</span></div><div class="line"><span class="number">2</span>    <span class="number">2017</span><span class="number">-03</span><span class="number">-01</span></div><div class="line"><span class="number">3</span>    <span class="number">2017</span><span class="number">-01</span><span class="number">-01</span></div><div class="line"><span class="number">4</span>    <span class="number">2017</span><span class="number">-02</span><span class="number">-01</span></div><div class="line"><span class="number">5</span>    <span class="number">2017</span><span class="number">-03</span><span class="number">-01</span></div><div class="line"><span class="number">6</span>    <span class="number">2017</span><span class="number">-01</span><span class="number">-01</span></div><div class="line"><span class="number">7</span>    <span class="number">2017</span><span class="number">-02</span><span class="number">-01</span></div><div class="line"><span class="number">8</span>    <span class="number">2017</span><span class="number">-03</span><span class="number">-01</span></div><div class="line">dtype: object</div><div class="line"></div><div class="line">pd.to_datetime(s1)</div><div class="line">Out[<span class="number">25</span>]: </div><div class="line"><span class="number">0</span>   <span class="number">2017</span><span class="number">-01</span><span class="number">-01</span></div><div class="line"><span class="number">1</span>   <span class="number">2017</span><span class="number">-02</span><span class="number">-01</span></div><div class="line"><span class="number">2</span>   <span class="number">2017</span><span class="number">-03</span><span class="number">-01</span></div><div class="line"><span class="number">3</span>   <span class="number">2017</span><span class="number">-01</span><span class="number">-01</span></div><div class="line"><span class="number">4</span>   <span class="number">2017</span><span class="number">-02</span><span class="number">-01</span></div><div class="line"><span class="number">5</span>   <span class="number">2017</span><span class="number">-03</span><span class="number">-01</span></div><div class="line"><span class="number">6</span>   <span class="number">2017</span><span class="number">-01</span><span class="number">-01</span></div><div class="line"><span class="number">7</span>   <span class="number">2017</span><span class="number">-02</span><span class="number">-01</span></div><div class="line"><span class="number">8</span>   <span class="number">2017</span><span class="number">-03</span><span class="number">-01</span></div><div class="line">dtype: datetime64[ns]</div></pre></td></tr></table></figure></p>
-<h1 id="3-时间序列基础"><a href="#3-时间序列基础" class="headerlink" title="3. 时间序列基础"></a>3. 时间序列基础</h1><p>最基本的时间序列类型，就是以时间戳为索引的Series<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">s = pd.Series(np.random.randn(<span class="number">3</span>),index=[datetime(<span class="number">2018</span>,<span class="number">8</span>,<span class="number">1</span>),datetime(<span class="number">2018</span>,<span class="number">8</span>,<span class="number">2</span>),datetime(<span class="number">2018</span>,<span class="number">8</span>,<span class="number">3</span>)])</div><div class="line"></div><div class="line">s</div><div class="line">Out[<span class="number">52</span>]: </div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-01</span>    <span class="number">0.360137</span></div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-02</span>    <span class="number">1.422533</span></div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-03</span>   <span class="number">-1.079172</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">s.index</div><div class="line">Out[<span class="number">53</span>]: DatetimeIndex([<span class="string">'2018-08-01'</span>, <span class="string">'2018-08-02'</span>, <span class="string">'2018-08-03'</span>], dtype=<span class="string">'datetime64[ns]'</span>, freq=<span class="keyword">None</span>)</div><div class="line"></div><div class="line">type(s)</div><div class="line">Out[<span class="number">54</span>]: pandas.core.series.Series</div></pre></td></tr></table></figure></p>
-<p>不同索引的时间序列之间的算术运算会按时间自动对齐<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">s+s[<span class="number">1</span>:]</div><div class="line">Out[<span class="number">56</span>]: </div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-01</span>         NaN</div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-02</span>    <span class="number">2.845066</span></div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-03</span>   <span class="number">-2.158345</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">s</div><div class="line">Out[<span class="number">57</span>]: </div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-01</span>    <span class="number">0.360137</span></div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-02</span>    <span class="number">1.422533</span></div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-03</span>   <span class="number">-1.079172</span></div><div class="line">dtype: float64</div><div class="line"></div><div class="line">s[<span class="number">1</span>:]</div><div class="line">Out[<span class="number">58</span>]: </div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-02</span>    <span class="number">1.422533</span></div><div class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-03</span>   <span class="number">-1.079172</span></div><div class="line">dtype: float64</div></pre></td></tr></table></figure></p>
-<h1 id="4-索引、选取、子集构造"><a href="#4-索引、选取、子集构造" class="headerlink" title="4. 索引、选取、子集构造"></a>4. 索引、选取、子集构造</h1><p>对于时间序列的处理，有很方便的方式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">longer_ts = pd.Series(np.random.randn(<span class="number">1000</span>),</div><div class="line">                   index=pd.date_range(<span class="string">'1/1/2000'</span>, periods=<span class="number">1000</span>))</div><div class="line"></div><div class="line">longer_ts.head()</div><div class="line">Out[<span class="number">76</span>]: </div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-01</span>   <span class="number">-0.617652</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-02</span>    <span class="number">1.331210</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-03</span>    <span class="number">0.351012</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-04</span>   <span class="number">-1.686123</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-05</span>   <span class="number">-0.426614</span></div><div class="line">Freq: D, dtype: float64</div><div class="line"></div><div class="line">longer_ts[<span class="string">'2000-01-01'</span>:<span class="string">'2000-01-04'</span>]</div><div class="line">Out[<span class="number">77</span>]: </div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-01</span>   <span class="number">-0.617652</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-02</span>    <span class="number">1.331210</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-03</span>    <span class="number">0.351012</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-04</span>   <span class="number">-1.686123</span></div><div class="line">Freq: D, dtype: float64</div><div class="line"></div><div class="line">longer_ts[<span class="string">'01/01/2000'</span>:<span class="string">'01/04/2000'</span>]</div><div class="line">Out[<span class="number">78</span>]: </div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-01</span>   <span class="number">-0.617652</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-02</span>    <span class="number">1.331210</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-03</span>    <span class="number">0.351012</span></div><div class="line"><span class="number">2000</span><span class="number">-01</span><span class="number">-04</span>   <span class="number">-1.686123</span></div><div class="line">Freq: D, dtype: float64</div></pre></td></tr></table></figure></p>
-<p>对于DataFrame来说，也是一样的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pandas.date_range(start=<span class="keyword">None</span>, end=<span class="keyword">None</span>, periods=<span class="keyword">None</span>, freq=<span class="string">'D'</span>, tz=<span class="keyword">None</span>, normalize=<span class="keyword">False</span>, name=<span class="keyword">None</span>, closed=<span class="keyword">None</span>, **kwargs)</div><div class="line">Return a fixed frequency datetime index, <span class="keyword">with</span> day (calendar) <span class="keyword">as</span> the default frequency</div><div class="line"></div><div class="line">freq参数可以参考网址：http://pandas.pydata.org/pandas-docs/stable/timeseries.html<span class="comment">#offset-aliases</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#从2017-01-01开始，每个周三，生成100个</span></div><div class="line">dates = pd.date_range(<span class="string">'1/1/2017'</span>, periods=<span class="number">100</span>, freq=<span class="string">'W-WED'</span>)</div><div class="line">long_df = pd.DataFrame(np.random.randn(<span class="number">100</span>, <span class="number">4</span>),</div><div class="line">                    index=dates,</div><div class="line">                    columns=[<span class="string">'Colorado'</span>, <span class="string">'Texas'</span>, <span class="string">'New York'</span>, <span class="string">'Ohio'</span>])</div><div class="line"></div><div class="line">long_df.head()</div><div class="line">Out[<span class="number">92</span>]: </div><div class="line">            Colorado     Texas  New York      Ohio</div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-04</span> <span class="number">-1.061954</span>  <span class="number">0.324256</span>  <span class="number">1.532633</span> <span class="number">-0.310599</span></div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-11</span>  <span class="number">1.211990</span> <span class="number">-0.241169</span> <span class="number">-0.488018</span> <span class="number">-0.473085</span></div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-18</span>  <span class="number">0.112726</span> <span class="number">-0.021406</span> <span class="number">-0.903449</span> <span class="number">-1.191892</span></div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-25</span>  <span class="number">0.247537</span> <span class="number">-0.086301</span>  <span class="number">1.252001</span>  <span class="number">1.119687</span></div><div class="line"><span class="number">2017</span><span class="number">-02</span><span class="number">-01</span> <span class="number">-0.058160</span> <span class="number">-0.856956</span> <span class="number">-0.783473</span>  <span class="number">0.081420</span></div><div class="line"></div><div class="line"><span class="comment">#选取1月份所有数据</span></div><div class="line">long_df.loc[<span class="string">'2017-01'</span>]</div><div class="line">Out[<span class="number">94</span>]: </div><div class="line">            Colorado     Texas  New York      Ohio</div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-04</span> <span class="number">-1.061954</span>  <span class="number">0.324256</span>  <span class="number">1.532633</span> <span class="number">-0.310599</span></div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-11</span>  <span class="number">1.211990</span> <span class="number">-0.241169</span> <span class="number">-0.488018</span> <span class="number">-0.473085</span></div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-18</span>  <span class="number">0.112726</span> <span class="number">-0.021406</span> <span class="number">-0.903449</span> <span class="number">-1.191892</span></div><div class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-25</span>  <span class="number">0.247537</span> <span class="number">-0.086301</span>  <span class="number">1.252001</span>  <span class="number">1.119687</span></div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1142,7 +1130,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">110</span>
+                  <span class="site-state-item-count">111</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

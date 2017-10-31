@@ -46,11 +46,29 @@
   </entry>
   
   <entry>
+    <title>什么是沟通？</title>
+    <link href="https://yuguiyang.github.io/2017/10/31/jotting-05/"/>
+    <id>https://yuguiyang.github.io/2017/10/31/jotting-05/</id>
+    <published>2017-10-31T10:59:00.000Z</published>
+    <updated>2017-10-31T10:46:12.286Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://yuguiyang.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>你为什么离职？</title>
     <link href="https://yuguiyang.github.io/2017/10/31/jotting-04/"/>
     <id>https://yuguiyang.github.io/2017/10/31/jotting-04/</id>
     <published>2017-10-31T02:59:00.000Z</published>
-    <updated>2017-10-31T09:56:00.509Z</updated>
+    <updated>2017-10-31T09:59:40.294Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>HR：“为什么从上一家公司辞职？”</p>
@@ -1117,58 +1135,6 @@
       <category term="数据可视化" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
       <category term="Tableau" scheme="https://yuguiyang.github.io/tags/Tableau/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>二八定律与长尾理论</title>
-    <link href="https://yuguiyang.github.io/2017/09/18/analysis-method-01/"/>
-    <id>https://yuguiyang.github.io/2017/09/18/analysis-method-01/</id>
-    <published>2017-09-18T01:08:00.000Z</published>
-    <updated>2017-09-19T14:07:05.940Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="二八定律"><a href="#二八定律" class="headerlink" title="二八定律"></a>二八定律</h1><p>前面，我们整理了<a href="https://yuguiyang.github.io/2017/09/18/jotting-01/">《帕累托的故事》</a>，里面有说过“帕累托法则”，就是这个二八定律，简单说来，就是</p>
-<blockquote>
-<p>世界上20%的人占有80%的财富，即财富的分布式是不平衡的</p>
-</blockquote>
-<p>这里理论不单单应用在经济学领域，其他领域也一样适用。比如：<br>在零售或销售行业，80%的利润可能来自20%的客户，所以运用该分析方法，就可以专注于维护这20%的客户，而不是将主要精力放在那80%的客户身上，因为他们只产生了20%的利润。通过80/20分析方法，可以有效的找到影响利润的主要因素</p>
-<h2 id="二八定律应用场景"><a href="#二八定律应用场景" class="headerlink" title="二八定律应用场景"></a>二八定律应用场景</h2><p>这里列举几个广泛使用的场景</p>
-<ul>
-<li>在管理学中，企业80%的利润来自20%的项目或客户</li>
-<li>心理学中，20%的人身上集中了80%的智慧，他们一出生就鹤立鸡群</li>
-<li>20%的有目标，80%的人爱瞎想</li>
-<li>20%的人把握机会，80%错失机会</li>
-<li>20%的人会坚持，80%的人会放弃</li>
-</ul>
-<a id="more"></a>
-<h1 id="长尾理论"><a href="#长尾理论" class="headerlink" title="长尾理论"></a>长尾理论</h1><p>长尾理论的关注点和二八定律不同，上面是说要关注产生重大影响的20%，而长尾理论则提倡关注剩下的那80%，在一些互联网公司，如果那80%的尾巴足够长，就可能会产生超过前面20%的那部分产生的利润。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/76024-6262d4b48f4a778d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="长尾理论"><br>在互联网时代，关注成本或是生产、运输成本都大大的降低，这长尾巴就产生了优势。<br>该理论在Google、亚马逊、沃尔玛，都用数据证实过，互联网行业尤其适用。</p>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>二八定律的话，告诉我们关注可以产生重大影响的事情，抓住主要的；<br>长尾理论的应用应该还是处在互联网公司中，等看看那本书，详细了解下。<br>有的时候，换个角度看问题，的确可以发现不一样的世界。</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>资料来源“百度百科”，“维基百科”</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;二八定律&quot;&gt;&lt;a href=&quot;#二八定律&quot; class=&quot;headerlink&quot; title=&quot;二八定律&quot;&gt;&lt;/a&gt;二八定律&lt;/h1&gt;&lt;p&gt;前面，我们整理了&lt;a href=&quot;https://yuguiyang.github.io/2017/09/18/jotting-01/&quot;&gt;《帕累托的故事》&lt;/a&gt;，里面有说过“帕累托法则”，就是这个二八定律，简单说来，就是&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;世界上20%的人占有80%的财富，即财富的分布式是不平衡的&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;这里理论不单单应用在经济学领域，其他领域也一样适用。比如：&lt;br&gt;在零售或销售行业，80%的利润可能来自20%的客户，所以运用该分析方法，就可以专注于维护这20%的客户，而不是将主要精力放在那80%的客户身上，因为他们只产生了20%的利润。通过80/20分析方法，可以有效的找到影响利润的主要因素&lt;/p&gt;
-&lt;h2 id=&quot;二八定律应用场景&quot;&gt;&lt;a href=&quot;#二八定律应用场景&quot; class=&quot;headerlink&quot; title=&quot;二八定律应用场景&quot;&gt;&lt;/a&gt;二八定律应用场景&lt;/h2&gt;&lt;p&gt;这里列举几个广泛使用的场景&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;在管理学中，企业80%的利润来自20%的项目或客户&lt;/li&gt;
-&lt;li&gt;心理学中，20%的人身上集中了80%的智慧，他们一出生就鹤立鸡群&lt;/li&gt;
-&lt;li&gt;20%的有目标，80%的人爱瞎想&lt;/li&gt;
-&lt;li&gt;20%的人把握机会，80%错失机会&lt;/li&gt;
-&lt;li&gt;20%的人会坚持，80%的人会放弃&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="数据分析思维" scheme="https://yuguiyang.github.io/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%80%9D%E7%BB%B4/"/>
-    
-    
-      <category term="数据分析思维" scheme="https://yuguiyang.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%80%9D%E7%BB%B4/"/>
     
   </entry>
   
